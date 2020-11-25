@@ -1,0 +1,269 @@
+basePath: /api/v1
+definitions:
+  ApiHelpers.ResponseError:
+    properties:
+      description:
+        type: string
+      error:
+        type: string
+    type: object
+  RequestMessages.AddNewEstudiantePayload:
+    properties:
+      apellidos_estudiante:
+        type: string
+      correo_electronico_estudiante:
+        type: string
+      hash_contrasena_estudiante:
+        type: string
+      nombres_estudiante:
+        description: |-
+          add fk
+          add fk
+        type: string
+      rut_estudiante:
+        type: string
+      telefono_celular_estudiante:
+        type: string
+      telefono_fijo_estudiante:
+        type: string
+    type: object
+  RequestMessages.PutOneEstudiantePayload:
+    properties:
+      apellidos_estudiante:
+        type: string
+      correo_electronico_estudiante:
+        type: string
+      hash_contrasena_estudiante:
+        type: string
+      nombres_estudiante:
+        description: |-
+          add fk
+          add fk
+        type: string
+      rut_estudiante:
+        type: string
+      telefono_celular_estudiante:
+        type: string
+      telefono_fijo_estudiante:
+        type: string
+    type: object
+  ResponseMessages.AddNewEstudianteResponse:
+    properties:
+      apellidos_estudiante:
+        type: string
+      correo_electronico_estudiante:
+        type: string
+      nombres_estudiante:
+        description: |-
+          add fk
+          add fk
+        type: string
+      rut_estudiante:
+        type: string
+      telefono_celular_estudiante:
+        type: string
+      telefono_fijo_estudiante:
+        type: string
+    type: object
+  ResponseMessages.DeleteEstudianteResponse:
+    properties:
+      apellidos_estudiante:
+        type: string
+      correo_electronico_estudiante:
+        type: string
+      nombres_estudiante:
+        description: |-
+          add fk
+          add fk
+        type: string
+      rut_estudiante:
+        type: string
+      telefono_celular_estudiante:
+        type: string
+      telefono_fijo_estudiante:
+        type: string
+    type: object
+  ResponseMessages.GetOneEstudianteResponse:
+    properties:
+      apellidos_estudiante:
+        type: string
+      correo_electronico_estudiante:
+        type: string
+      nombres_estudiante:
+        description: |-
+          add fk
+          add fk
+        type: string
+      rut_estudiante:
+        type: string
+      telefono_celular_estudiante:
+        type: string
+      telefono_fijo_estudiante:
+        type: string
+    type: object
+  ResponseMessages.ListEstudiantesResponse:
+    properties:
+      apellidos_estudiante:
+        type: string
+      correo_electronico_estudiante:
+        type: string
+      nombres_estudiante:
+        description: |-
+          add fk
+          add fk
+        type: string
+      rut_estudiante:
+        type: string
+      telefono_celular_estudiante:
+        type: string
+      telefono_fijo_estudiante:
+        type: string
+    type: object
+  ResponseMessages.PutOneEstudianteResponse:
+    properties:
+      apellidos_estudiante:
+        type: string
+      correo_electronico_estudiante:
+        type: string
+      nombres_estudiante:
+        description: |-
+          add fk
+          add fk
+        type: string
+      rut_estudiante:
+        type: string
+      telefono_celular_estudiante:
+        type: string
+      telefono_fijo_estudiante:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: martin.saavedra@mail.udp.cl
+    name: Martín Saavedra
+    url: https://www.swagger.io/support
+  description: Swagger definition for MedRoom backend.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: https://swagger.io/terms/
+  title: MedRoom API
+  version: "1.0"
+paths:
+  /estudiantes:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los estudiantes
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ResponseMessages.ListEstudiantesResponse'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de estudiantes
+    post:
+      consumes:
+      - application/json
+      description: Genera un nuevo estudiante con los datos entregados
+      parameters:
+      - description: Estudiante a agregar
+        in: body
+        name: input_estudiante
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.AddNewEstudiantePayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.AddNewEstudianteResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Agrega un nuevo estudiante
+  /estudiantes/{uuid_estudiante}:
+    delete:
+      consumes:
+      - application/json
+      description: Elimina un estudiante con los datos entregados
+      parameters:
+      - description: UUID del estudiante a eliminar
+        in: path
+        name: uuid_estudiante
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.DeleteEstudianteResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Elimina un estudiante
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un estudiante según su UUID
+      parameters:
+      - description: UUID del estudiante a buscar
+        in: path
+        name: uuid_estudiante
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.GetOneEstudianteResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un estudiante
+    put:
+      consumes:
+      - application/json
+      description: Modifica un estudiante con los datos entregados
+      parameters:
+      - description: UUID del estudiante a modificar
+        in: path
+        name: uuid_estudiante
+        required: true
+        type: string
+      - description: Estudiante a modificar
+        in: body
+        name: input_actualiza_estudiante
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.PutOneEstudiantePayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.PutOneEstudianteResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica un estudiante
+swagger: "2.0"

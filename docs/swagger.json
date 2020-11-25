@@ -1,0 +1,383 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Swagger definition for MedRoom backend.",
+        "title": "MedRoom API",
+        "termsOfService": "https://swagger.io/terms/",
+        "contact": {
+            "name": "Martín Saavedra",
+            "url": "https://www.swagger.io/support",
+            "email": "martin.saavedra@mail.udp.cl"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/api/v1",
+    "paths": {
+        "/estudiantes": {
+            "get": {
+                "description": "Lista todos los estudiantes",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Lista de estudiantes",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ResponseMessages.ListEstudiantesResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Genera un nuevo estudiante con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Agrega un nuevo estudiante",
+                "parameters": [
+                    {
+                        "description": "Estudiante a agregar",
+                        "name": "input_estudiante",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.AddNewEstudiantePayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.AddNewEstudianteResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/estudiantes/{uuid_estudiante}": {
+            "get": {
+                "description": "Obtiene un estudiante según su UUID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Obtiene un estudiante",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del estudiante a buscar",
+                        "name": "uuid_estudiante",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.GetOneEstudianteResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Modifica un estudiante con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Modifica un estudiante",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del estudiante a modificar",
+                        "name": "uuid_estudiante",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Estudiante a modificar",
+                        "name": "input_actualiza_estudiante",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.PutOneEstudiantePayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.PutOneEstudianteResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Elimina un estudiante con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Elimina un estudiante",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del estudiante a eliminar",
+                        "name": "uuid_estudiante",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.DeleteEstudianteResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "ApiHelpers.ResponseError": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "RequestMessages.AddNewEstudiantePayload": {
+            "type": "object",
+            "properties": {
+                "apellidos_estudiante": {
+                    "type": "string"
+                },
+                "correo_electronico_estudiante": {
+                    "type": "string"
+                },
+                "hash_contrasena_estudiante": {
+                    "type": "string"
+                },
+                "nombres_estudiante": {
+                    "description": "add fk\nadd fk",
+                    "type": "string"
+                },
+                "rut_estudiante": {
+                    "type": "string"
+                },
+                "telefono_celular_estudiante": {
+                    "type": "string"
+                },
+                "telefono_fijo_estudiante": {
+                    "type": "string"
+                }
+            }
+        },
+        "RequestMessages.PutOneEstudiantePayload": {
+            "type": "object",
+            "properties": {
+                "apellidos_estudiante": {
+                    "type": "string"
+                },
+                "correo_electronico_estudiante": {
+                    "type": "string"
+                },
+                "hash_contrasena_estudiante": {
+                    "type": "string"
+                },
+                "nombres_estudiante": {
+                    "description": "add fk\nadd fk",
+                    "type": "string"
+                },
+                "rut_estudiante": {
+                    "type": "string"
+                },
+                "telefono_celular_estudiante": {
+                    "type": "string"
+                },
+                "telefono_fijo_estudiante": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.AddNewEstudianteResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_estudiante": {
+                    "type": "string"
+                },
+                "correo_electronico_estudiante": {
+                    "type": "string"
+                },
+                "nombres_estudiante": {
+                    "description": "add fk\nadd fk",
+                    "type": "string"
+                },
+                "rut_estudiante": {
+                    "type": "string"
+                },
+                "telefono_celular_estudiante": {
+                    "type": "string"
+                },
+                "telefono_fijo_estudiante": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.DeleteEstudianteResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_estudiante": {
+                    "type": "string"
+                },
+                "correo_electronico_estudiante": {
+                    "type": "string"
+                },
+                "nombres_estudiante": {
+                    "description": "add fk\nadd fk",
+                    "type": "string"
+                },
+                "rut_estudiante": {
+                    "type": "string"
+                },
+                "telefono_celular_estudiante": {
+                    "type": "string"
+                },
+                "telefono_fijo_estudiante": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.GetOneEstudianteResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_estudiante": {
+                    "type": "string"
+                },
+                "correo_electronico_estudiante": {
+                    "type": "string"
+                },
+                "nombres_estudiante": {
+                    "description": "add fk\nadd fk",
+                    "type": "string"
+                },
+                "rut_estudiante": {
+                    "type": "string"
+                },
+                "telefono_celular_estudiante": {
+                    "type": "string"
+                },
+                "telefono_fijo_estudiante": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.ListEstudiantesResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_estudiante": {
+                    "type": "string"
+                },
+                "correo_electronico_estudiante": {
+                    "type": "string"
+                },
+                "nombres_estudiante": {
+                    "description": "add fk\nadd fk",
+                    "type": "string"
+                },
+                "rut_estudiante": {
+                    "type": "string"
+                },
+                "telefono_celular_estudiante": {
+                    "type": "string"
+                },
+                "telefono_fijo_estudiante": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.PutOneEstudianteResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_estudiante": {
+                    "type": "string"
+                },
+                "correo_electronico_estudiante": {
+                    "type": "string"
+                },
+                "nombres_estudiante": {
+                    "description": "add fk\nadd fk",
+                    "type": "string"
+                },
+                "rut_estudiante": {
+                    "type": "string"
+                },
+                "telefono_celular_estudiante": {
+                    "type": "string"
+                },
+                "telefono_fijo_estudiante": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
