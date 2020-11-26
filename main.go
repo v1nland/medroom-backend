@@ -37,6 +37,7 @@ func main() {
 
 	connection_string := os.Getenv("POSTGRESQL_CONNECTION_STRING")
 	should_automigrate := os.Getenv("SHOULD_AUTOMIGRATE")
+	swagger_url := os.Getenv("SWAGGER_URL")
 
 	Config.DB, err = gorm.Open("postgres", connection_string)
 	if err != nil {
@@ -46,18 +47,18 @@ func main() {
 
 	if should_automigrate == "1" {
 		// Inicialización de tablas en DB
-		Config.DB.AutoMigrate(&Models.Competencia{}, &Models.Puntaje{}, &Models.Periodo{}, &Models.Rol{}, &Models.Evaluador{}, &Models.Curso{}, &Models.Grupo{}, &Models.Estudiante{})
+		Config.DB.AutoMigrate(&Models.Competencia{}, &Models.Periodo{}, &Models.Rol{}, &Models.Evaluador{}, &Models.Curso{}, &Models.Grupo{}, &Models.Estudiante{}, &Models.Evaluacion{}, &Models.Puntaje{})
 
 		// // Las FK de las relaciones N - N con datos adicionales se deben aplicar manualmente de la siguiente forma
 		// // Para relaciones 1 - N y 1 - 1, se deben especificar únicamente en el Model.go
-		// Config.DB.Model(&Models.PedidoProducto{}).AddForeignKey("pedido_id", "public.pedidos(id)", "CASCADE", "CASCADE")
-		// Config.DB.Model(&Models.PedidoProducto{}).AddForeignKey("producto_id", "public.productos(id)", "CASCADE", "CASCADE")
+		// Config.DB.Model(&Models.EvaluacionPuntaje{}).AddForeignKey("id_evaluacion", "public.evaluaciones(id)", "CASCADE", "CASCADE")
+		// Config.DB.Model(&Models.EvaluacionPuntaje{}).AddForeignKey("id_puntaje", "public.puntajes(id)", "CASCADE", "CASCADE")
 	}
 
 	r := Routers.SetupRouter()
 
 	// auto swagger configuration
-	url := gin_swagger.URL("http://localhost:8080/docs/v1/doc.json")
+	url := gin_swagger.URL(swagger_url + "/docs/v1/doc.json")
 	r.GET("/docs/v1/*any", gin_swagger.WrapHandler(swagger_files.Handler, url))
 
 	r.Run()

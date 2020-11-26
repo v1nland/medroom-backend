@@ -42,6 +42,35 @@ definitions:
       telefono_fijo_estudiante:
         type: string
     type: object
+  RequestMessages.AddNewEvaluacionPayload:
+    properties:
+      asunto_principal_consulta_evaluacion:
+        type: string
+      categoria_observador_evaluacion:
+        type: string
+      complejidad_caso_evaluacion:
+        type: string
+      entorno_clinico_evaluacion:
+        type: string
+      id_competencia:
+        type: integer
+      id_estudiante:
+        type: string
+      id_evaluador:
+        type: string
+      id_periodo:
+        type: integer
+      nombre_evaluacion:
+        type: string
+      numero_observaciones_previas_evaluacion:
+        type: string
+      observacion_calificacion_evaluacion:
+        type: string
+      paciente_evaluacion:
+        type: string
+      tiempo_utilizado_evaluacion:
+        type: integer
+    type: object
   RequestMessages.AddNewEvaluadorPayload:
     properties:
       apellidos_evaluador:
@@ -85,10 +114,12 @@ definitions:
     properties:
       calificacion_puntaje:
         type: integer
-      feedback_puntaje:
-        type: string
       id_competencia:
         type: integer
+      id_evaluacion:
+        type: integer
+      nivel_logro_puntaje:
+        type: string
     type: object
   RequestMessages.AddNewRolPayload:
     properties:
@@ -129,6 +160,35 @@ definitions:
         type: string
       telefono_fijo_estudiante:
         type: string
+    type: object
+  RequestMessages.PutOneEvaluacionPayload:
+    properties:
+      asunto_principal_consulta_evaluacion:
+        type: string
+      categoria_observador_evaluacion:
+        type: string
+      complejidad_caso_evaluacion:
+        type: string
+      entorno_clinico_evaluacion:
+        type: string
+      id_competencia:
+        type: integer
+      id_estudiante:
+        type: string
+      id_evaluador:
+        type: string
+      id_periodo:
+        type: integer
+      nombre_evaluacion:
+        type: string
+      numero_observaciones_previas_evaluacion:
+        type: string
+      observacion_calificacion_evaluacion:
+        type: string
+      paciente_evaluacion:
+        type: string
+      tiempo_utilizado_evaluacion:
+        type: integer
     type: object
   RequestMessages.PutOneEvaluadorPayload:
     properties:
@@ -173,10 +233,12 @@ definitions:
     properties:
       calificacion_puntaje:
         type: integer
-      feedback_puntaje:
-        type: string
       id_competencia:
         type: integer
+      id_evaluacion:
+        type: integer
+      nivel_logro_puntaje:
+        type: string
     type: object
   RequestMessages.PutOneRolPayload:
     properties:
@@ -215,6 +277,35 @@ definitions:
         type: string
       telefono_fijo_estudiante:
         type: string
+    type: object
+  ResponseMessages.AddNewEvaluacionResponse:
+    properties:
+      asunto_principal_consulta_evaluacion:
+        type: string
+      categoria_observador_evaluacion:
+        type: string
+      complejidad_caso_evaluacion:
+        type: string
+      entorno_clinico_evaluacion:
+        type: string
+      id_competencia:
+        type: integer
+      id_curso:
+        type: string
+      id_evaluador:
+        type: string
+      id_periodo:
+        type: integer
+      nombre_evaluacion:
+        type: string
+      numero_observaciones_previas_evaluacion:
+        type: string
+      observacion_calificacion_evaluacion:
+        type: string
+      paciente_evaluacion:
+        type: string
+      tiempo_utilizado_evaluacion:
+        type: integer
     type: object
   ResponseMessages.AddNewEvaluadorResponse:
     properties:
@@ -257,10 +348,12 @@ definitions:
     properties:
       calificacion_puntaje:
         type: integer
-      feedback_puntaje:
-        type: string
       id_competencia:
         type: integer
+      id_evaluacion:
+        type: integer
+      nivel_logro_puntaje:
+        type: string
     type: object
   ResponseMessages.AddNewRolResponse:
     properties:
@@ -299,6 +392,35 @@ definitions:
         type: string
       telefono_fijo_estudiante:
         type: string
+    type: object
+  ResponseMessages.DeleteEvaluacionResponse:
+    properties:
+      asunto_principal_consulta_evaluacion:
+        type: string
+      categoria_observador_evaluacion:
+        type: string
+      complejidad_caso_evaluacion:
+        type: string
+      entorno_clinico_evaluacion:
+        type: string
+      id_competencia:
+        type: integer
+      id_curso:
+        type: string
+      id_evaluador:
+        type: string
+      id_periodo:
+        type: integer
+      nombre_evaluacion:
+        type: string
+      numero_observaciones_previas_evaluacion:
+        type: string
+      observacion_calificacion_evaluacion:
+        type: string
+      paciente_evaluacion:
+        type: string
+      tiempo_utilizado_evaluacion:
+        type: integer
     type: object
   ResponseMessages.DeleteEvaluadorResponse:
     properties:
@@ -341,10 +463,12 @@ definitions:
     properties:
       calificacion_puntaje:
         type: integer
-      feedback_puntaje:
-        type: string
       id_competencia:
         type: integer
+      id_evaluacion:
+        type: integer
+      nivel_logro_puntaje:
+        type: string
     type: object
   ResponseMessages.DeleteRolResponse:
     properties:
@@ -383,6 +507,39 @@ definitions:
         type: string
       telefono_fijo_estudiante:
         type: string
+    type: object
+  ResponseMessages.GetOneEvaluacionResponse:
+    properties:
+      asunto_principal_consulta_evaluacion:
+        type: string
+      categoria_observador_evaluacion:
+        type: string
+      competencia_evaluacion:
+        $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
+      complejidad_caso_evaluacion:
+        type: string
+      curso_evaluacion:
+        $ref: '#/definitions/ResponseMessages.GetOneEstudianteResponse'
+      entorno_clinico_evaluacion:
+        type: string
+      evaluador_evaluacion:
+        $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+      nombre_evaluacion:
+        type: string
+      numero_observaciones_previas_evaluacion:
+        type: string
+      observacion_calificacion_evaluacion:
+        type: string
+      paciente_evaluacion:
+        type: string
+      periodo_evaluacion:
+        $ref: '#/definitions/ResponseMessages.GetOnePeriodoResponse'
+      puntajes_evaluacion:
+        items:
+          $ref: '#/definitions/ResponseMessages.ListPuntajesResponse'
+        type: array
+      tiempo_utilizado_evaluacion:
+        type: integer
     type: object
   ResponseMessages.GetOneEvaluadorResponse:
     properties:
@@ -427,7 +584,8 @@ definitions:
         type: integer
       competencia_puntaje:
         $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
-      feedback_puntaje:
+        description: Evaluacion_puntaje   GetOneEvaluacionResponse  `json:"evaluacion_puntaje"`
+      nivel_logro_puntaje:
         type: string
     type: object
   ResponseMessages.GetOneRolResponse:
@@ -467,6 +625,39 @@ definitions:
         type: string
       telefono_fijo_estudiante:
         type: string
+    type: object
+  ResponseMessages.ListEvaluacionsResponse:
+    properties:
+      asunto_principal_consulta_evaluacion:
+        type: string
+      categoria_observador_evaluacion:
+        type: string
+      competencia_evaluacion:
+        $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
+      complejidad_caso_evaluacion:
+        type: string
+      curso_evaluacion:
+        $ref: '#/definitions/ResponseMessages.GetOneEstudianteResponse'
+      entorno_clinico_evaluacion:
+        type: string
+      evaluador_evaluacion:
+        $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+      nombre_evaluacion:
+        type: string
+      numero_observaciones_previas_evaluacion:
+        type: string
+      observacion_calificacion_evaluacion:
+        type: string
+      paciente_evaluacion:
+        type: string
+      periodo_evaluacion:
+        $ref: '#/definitions/ResponseMessages.GetOnePeriodoResponse'
+      puntajes_evaluacion:
+        items:
+          $ref: '#/definitions/ResponseMessages.ListPuntajesResponse'
+        type: array
+      tiempo_utilizado_evaluacion:
+        type: integer
     type: object
   ResponseMessages.ListEvaluadorsResponse:
     properties:
@@ -511,7 +702,8 @@ definitions:
         type: integer
       competencia_puntaje:
         $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
-      feedback_puntaje:
+        description: Evaluacion_puntaje   GetOneEvaluacionResponse  `json:"evaluacion_puntaje"`
+      nivel_logro_puntaje:
         type: string
     type: object
   ResponseMessages.ListRolsResponse:
@@ -553,6 +745,35 @@ definitions:
         type: string
       telefono_fijo_estudiante:
         type: string
+    type: object
+  ResponseMessages.PutOneEvaluacionResponse:
+    properties:
+      asunto_principal_consulta_evaluacion:
+        type: string
+      categoria_observador_evaluacion:
+        type: string
+      complejidad_caso_evaluacion:
+        type: string
+      entorno_clinico_evaluacion:
+        type: string
+      id_competencia:
+        type: integer
+      id_curso:
+        type: string
+      id_evaluador:
+        type: string
+      id_periodo:
+        type: integer
+      nombre_evaluacion:
+        type: string
+      numero_observaciones_previas_evaluacion:
+        type: string
+      observacion_calificacion_evaluacion:
+        type: string
+      paciente_evaluacion:
+        type: string
+      tiempo_utilizado_evaluacion:
+        type: integer
     type: object
   ResponseMessages.PutOneEvaluadorResponse:
     properties:
@@ -597,10 +818,12 @@ definitions:
     properties:
       calificacion_puntaje:
         type: integer
-      feedback_puntaje:
-        type: string
       id_competencia:
         type: integer
+      id_evaluacion:
+        type: integer
+      nivel_logro_puntaje:
+        type: string
     type: object
   ResponseMessages.PutOneRolResponse:
     properties:
@@ -996,6 +1219,131 @@ paths:
       summary: Modifica un estudiante
       tags:
       - Estudiantes
+  /evaluacions:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los evaluacions
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ResponseMessages.ListEvaluacionsResponse'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de evaluacions
+      tags:
+      - Evaluacions
+    post:
+      consumes:
+      - application/json
+      description: Genera un nuevo evaluacion con los datos entregados
+      parameters:
+      - description: Evaluacion a agregar
+        in: body
+        name: input_evaluacion
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.AddNewEvaluacionPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.AddNewEvaluacionResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Agrega un nuevo evaluacion
+      tags:
+      - Evaluacions
+  /evaluacions/{uuid_evaluacion}:
+    delete:
+      consumes:
+      - application/json
+      description: Elimina un evaluacion con los datos entregados
+      parameters:
+      - description: UUID del evaluacion a eliminar
+        in: path
+        name: uuid_evaluacion
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.DeleteEvaluacionResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Elimina un evaluacion
+      tags:
+      - Evaluacions
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un evaluacion según su UUID
+      parameters:
+      - description: UUID del evaluacion a buscar
+        in: path
+        name: uuid_evaluacion
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.GetOneEvaluacionResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un evaluacion
+      tags:
+      - Evaluacions
+    put:
+      consumes:
+      - application/json
+      description: Modifica un evaluacion con los datos entregados
+      parameters:
+      - description: UUID del evaluacion a modificar
+        in: path
+        name: uuid_evaluacion
+        required: true
+        type: string
+      - description: Evaluacion a modificar
+        in: body
+        name: input_actualiza_evaluacion
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.PutOneEvaluacionPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.PutOneEvaluacionResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica un evaluacion
+      tags:
+      - Evaluacions
   /evaluadors:
     get:
       consumes:

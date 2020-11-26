@@ -600,6 +600,195 @@ var doc = `{
                 }
             }
         },
+        "/evaluacions": {
+            "get": {
+                "description": "Lista todos los evaluacions",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Evaluacions"
+                ],
+                "summary": "Lista de evaluacions",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ResponseMessages.ListEvaluacionsResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Genera un nuevo evaluacion con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Evaluacions"
+                ],
+                "summary": "Agrega un nuevo evaluacion",
+                "parameters": [
+                    {
+                        "description": "Evaluacion a agregar",
+                        "name": "input_evaluacion",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.AddNewEvaluacionPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.AddNewEvaluacionResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/evaluacions/{uuid_evaluacion}": {
+            "get": {
+                "description": "Obtiene un evaluacion según su UUID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Evaluacions"
+                ],
+                "summary": "Obtiene un evaluacion",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del evaluacion a buscar",
+                        "name": "uuid_evaluacion",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.GetOneEvaluacionResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Modifica un evaluacion con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Evaluacions"
+                ],
+                "summary": "Modifica un evaluacion",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del evaluacion a modificar",
+                        "name": "uuid_evaluacion",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Evaluacion a modificar",
+                        "name": "input_actualiza_evaluacion",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.PutOneEvaluacionPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.PutOneEvaluacionResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Elimina un evaluacion con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Evaluacions"
+                ],
+                "summary": "Elimina un evaluacion",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del evaluacion a eliminar",
+                        "name": "uuid_evaluacion",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.DeleteEvaluacionResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
         "/evaluadors": {
             "get": {
                 "description": "Lista todos los evaluadors",
@@ -1612,6 +1801,50 @@ var doc = `{
                 }
             }
         },
+        "RequestMessages.AddNewEvaluacionPayload": {
+            "type": "object",
+            "properties": {
+                "asunto_principal_consulta_evaluacion": {
+                    "type": "string"
+                },
+                "categoria_observador_evaluacion": {
+                    "type": "string"
+                },
+                "complejidad_caso_evaluacion": {
+                    "type": "string"
+                },
+                "entorno_clinico_evaluacion": {
+                    "type": "string"
+                },
+                "id_competencia": {
+                    "type": "integer"
+                },
+                "id_estudiante": {
+                    "type": "string"
+                },
+                "id_evaluador": {
+                    "type": "string"
+                },
+                "id_periodo": {
+                    "type": "integer"
+                },
+                "nombre_evaluacion": {
+                    "type": "string"
+                },
+                "numero_observaciones_previas_evaluacion": {
+                    "type": "string"
+                },
+                "observacion_calificacion_evaluacion": {
+                    "type": "string"
+                },
+                "paciente_evaluacion": {
+                    "type": "string"
+                },
+                "tiempo_utilizado_evaluacion": {
+                    "type": "integer"
+                }
+            }
+        },
         "RequestMessages.AddNewEvaluadorPayload": {
             "type": "object",
             "properties": {
@@ -1678,11 +1911,14 @@ var doc = `{
                 "calificacion_puntaje": {
                     "type": "integer"
                 },
-                "feedback_puntaje": {
-                    "type": "string"
-                },
                 "id_competencia": {
                     "type": "integer"
+                },
+                "id_evaluacion": {
+                    "type": "integer"
+                },
+                "nivel_logro_puntaje": {
+                    "type": "string"
                 }
             }
         },
@@ -1745,6 +1981,50 @@ var doc = `{
                 },
                 "telefono_fijo_estudiante": {
                     "type": "string"
+                }
+            }
+        },
+        "RequestMessages.PutOneEvaluacionPayload": {
+            "type": "object",
+            "properties": {
+                "asunto_principal_consulta_evaluacion": {
+                    "type": "string"
+                },
+                "categoria_observador_evaluacion": {
+                    "type": "string"
+                },
+                "complejidad_caso_evaluacion": {
+                    "type": "string"
+                },
+                "entorno_clinico_evaluacion": {
+                    "type": "string"
+                },
+                "id_competencia": {
+                    "type": "integer"
+                },
+                "id_estudiante": {
+                    "type": "string"
+                },
+                "id_evaluador": {
+                    "type": "string"
+                },
+                "id_periodo": {
+                    "type": "integer"
+                },
+                "nombre_evaluacion": {
+                    "type": "string"
+                },
+                "numero_observaciones_previas_evaluacion": {
+                    "type": "string"
+                },
+                "observacion_calificacion_evaluacion": {
+                    "type": "string"
+                },
+                "paciente_evaluacion": {
+                    "type": "string"
+                },
+                "tiempo_utilizado_evaluacion": {
+                    "type": "integer"
                 }
             }
         },
@@ -1814,11 +2094,14 @@ var doc = `{
                 "calificacion_puntaje": {
                     "type": "integer"
                 },
-                "feedback_puntaje": {
-                    "type": "string"
-                },
                 "id_competencia": {
                     "type": "integer"
+                },
+                "id_evaluacion": {
+                    "type": "integer"
+                },
+                "nivel_logro_puntaje": {
+                    "type": "string"
                 }
             }
         },
@@ -1878,6 +2161,50 @@ var doc = `{
                 },
                 "telefono_fijo_estudiante": {
                     "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.AddNewEvaluacionResponse": {
+            "type": "object",
+            "properties": {
+                "asunto_principal_consulta_evaluacion": {
+                    "type": "string"
+                },
+                "categoria_observador_evaluacion": {
+                    "type": "string"
+                },
+                "complejidad_caso_evaluacion": {
+                    "type": "string"
+                },
+                "entorno_clinico_evaluacion": {
+                    "type": "string"
+                },
+                "id_competencia": {
+                    "type": "integer"
+                },
+                "id_curso": {
+                    "type": "string"
+                },
+                "id_evaluador": {
+                    "type": "string"
+                },
+                "id_periodo": {
+                    "type": "integer"
+                },
+                "nombre_evaluacion": {
+                    "type": "string"
+                },
+                "numero_observaciones_previas_evaluacion": {
+                    "type": "string"
+                },
+                "observacion_calificacion_evaluacion": {
+                    "type": "string"
+                },
+                "paciente_evaluacion": {
+                    "type": "string"
+                },
+                "tiempo_utilizado_evaluacion": {
+                    "type": "integer"
                 }
             }
         },
@@ -1944,11 +2271,14 @@ var doc = `{
                 "calificacion_puntaje": {
                     "type": "integer"
                 },
-                "feedback_puntaje": {
-                    "type": "string"
-                },
                 "id_competencia": {
                     "type": "integer"
+                },
+                "id_evaluacion": {
+                    "type": "integer"
+                },
+                "nivel_logro_puntaje": {
+                    "type": "string"
                 }
             }
         },
@@ -2008,6 +2338,50 @@ var doc = `{
                 },
                 "telefono_fijo_estudiante": {
                     "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.DeleteEvaluacionResponse": {
+            "type": "object",
+            "properties": {
+                "asunto_principal_consulta_evaluacion": {
+                    "type": "string"
+                },
+                "categoria_observador_evaluacion": {
+                    "type": "string"
+                },
+                "complejidad_caso_evaluacion": {
+                    "type": "string"
+                },
+                "entorno_clinico_evaluacion": {
+                    "type": "string"
+                },
+                "id_competencia": {
+                    "type": "integer"
+                },
+                "id_curso": {
+                    "type": "string"
+                },
+                "id_evaluador": {
+                    "type": "string"
+                },
+                "id_periodo": {
+                    "type": "integer"
+                },
+                "nombre_evaluacion": {
+                    "type": "string"
+                },
+                "numero_observaciones_previas_evaluacion": {
+                    "type": "string"
+                },
+                "observacion_calificacion_evaluacion": {
+                    "type": "string"
+                },
+                "paciente_evaluacion": {
+                    "type": "string"
+                },
+                "tiempo_utilizado_evaluacion": {
+                    "type": "integer"
                 }
             }
         },
@@ -2074,11 +2448,14 @@ var doc = `{
                 "calificacion_puntaje": {
                     "type": "integer"
                 },
-                "feedback_puntaje": {
-                    "type": "string"
-                },
                 "id_competencia": {
                     "type": "integer"
+                },
+                "id_evaluacion": {
+                    "type": "integer"
+                },
+                "nivel_logro_puntaje": {
+                    "type": "string"
                 }
             }
         },
@@ -2138,6 +2515,56 @@ var doc = `{
                 },
                 "telefono_fijo_estudiante": {
                     "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.GetOneEvaluacionResponse": {
+            "type": "object",
+            "properties": {
+                "asunto_principal_consulta_evaluacion": {
+                    "type": "string"
+                },
+                "categoria_observador_evaluacion": {
+                    "type": "string"
+                },
+                "competencia_evaluacion": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneCompetenciaResponse"
+                },
+                "complejidad_caso_evaluacion": {
+                    "type": "string"
+                },
+                "curso_evaluacion": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneEstudianteResponse"
+                },
+                "entorno_clinico_evaluacion": {
+                    "type": "string"
+                },
+                "evaluador_evaluacion": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
+                },
+                "nombre_evaluacion": {
+                    "type": "string"
+                },
+                "numero_observaciones_previas_evaluacion": {
+                    "type": "string"
+                },
+                "observacion_calificacion_evaluacion": {
+                    "type": "string"
+                },
+                "paciente_evaluacion": {
+                    "type": "string"
+                },
+                "periodo_evaluacion": {
+                    "$ref": "#/definitions/ResponseMessages.GetOnePeriodoResponse"
+                },
+                "puntajes_evaluacion": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ResponseMessages.ListPuntajesResponse"
+                    }
+                },
+                "tiempo_utilizado_evaluacion": {
+                    "type": "integer"
                 }
             }
         },
@@ -2205,9 +2632,10 @@ var doc = `{
                     "type": "integer"
                 },
                 "competencia_puntaje": {
+                    "description": "Evaluacion_puntaje   GetOneEvaluacionResponse  ` + "`" + `json:\"evaluacion_puntaje\"` + "`" + `",
                     "$ref": "#/definitions/ResponseMessages.GetOneCompetenciaResponse"
                 },
-                "feedback_puntaje": {
+                "nivel_logro_puntaje": {
                     "type": "string"
                 }
             }
@@ -2268,6 +2696,56 @@ var doc = `{
                 },
                 "telefono_fijo_estudiante": {
                     "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.ListEvaluacionsResponse": {
+            "type": "object",
+            "properties": {
+                "asunto_principal_consulta_evaluacion": {
+                    "type": "string"
+                },
+                "categoria_observador_evaluacion": {
+                    "type": "string"
+                },
+                "competencia_evaluacion": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneCompetenciaResponse"
+                },
+                "complejidad_caso_evaluacion": {
+                    "type": "string"
+                },
+                "curso_evaluacion": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneEstudianteResponse"
+                },
+                "entorno_clinico_evaluacion": {
+                    "type": "string"
+                },
+                "evaluador_evaluacion": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
+                },
+                "nombre_evaluacion": {
+                    "type": "string"
+                },
+                "numero_observaciones_previas_evaluacion": {
+                    "type": "string"
+                },
+                "observacion_calificacion_evaluacion": {
+                    "type": "string"
+                },
+                "paciente_evaluacion": {
+                    "type": "string"
+                },
+                "periodo_evaluacion": {
+                    "$ref": "#/definitions/ResponseMessages.GetOnePeriodoResponse"
+                },
+                "puntajes_evaluacion": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ResponseMessages.ListPuntajesResponse"
+                    }
+                },
+                "tiempo_utilizado_evaluacion": {
+                    "type": "integer"
                 }
             }
         },
@@ -2335,9 +2813,10 @@ var doc = `{
                     "type": "integer"
                 },
                 "competencia_puntaje": {
+                    "description": "Evaluacion_puntaje   GetOneEvaluacionResponse  ` + "`" + `json:\"evaluacion_puntaje\"` + "`" + `",
                     "$ref": "#/definitions/ResponseMessages.GetOneCompetenciaResponse"
                 },
-                "feedback_puntaje": {
+                "nivel_logro_puntaje": {
                     "type": "string"
                 }
             }
@@ -2401,6 +2880,50 @@ var doc = `{
                 },
                 "telefono_fijo_estudiante": {
                     "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.PutOneEvaluacionResponse": {
+            "type": "object",
+            "properties": {
+                "asunto_principal_consulta_evaluacion": {
+                    "type": "string"
+                },
+                "categoria_observador_evaluacion": {
+                    "type": "string"
+                },
+                "complejidad_caso_evaluacion": {
+                    "type": "string"
+                },
+                "entorno_clinico_evaluacion": {
+                    "type": "string"
+                },
+                "id_competencia": {
+                    "type": "integer"
+                },
+                "id_curso": {
+                    "type": "string"
+                },
+                "id_evaluador": {
+                    "type": "string"
+                },
+                "id_periodo": {
+                    "type": "integer"
+                },
+                "nombre_evaluacion": {
+                    "type": "string"
+                },
+                "numero_observaciones_previas_evaluacion": {
+                    "type": "string"
+                },
+                "observacion_calificacion_evaluacion": {
+                    "type": "string"
+                },
+                "paciente_evaluacion": {
+                    "type": "string"
+                },
+                "tiempo_utilizado_evaluacion": {
+                    "type": "integer"
                 }
             }
         },
@@ -2470,11 +2993,14 @@ var doc = `{
                 "calificacion_puntaje": {
                     "type": "integer"
                 },
-                "feedback_puntaje": {
-                    "type": "string"
-                },
                 "id_competencia": {
                     "type": "integer"
+                },
+                "id_evaluacion": {
+                    "type": "integer"
+                },
+                "nivel_logro_puntaje": {
+                    "type": "string"
                 }
             }
         },

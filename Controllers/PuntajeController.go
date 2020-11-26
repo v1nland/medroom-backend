@@ -115,9 +115,10 @@ func AddNewPuntaje(c *gin.Context) {
 
 	// generate model entity
 	model_container := Models.Puntaje{
+		Id_evaluacion:        container.Id_evaluacion,
 		Id_competencia:       container.Id_competencia,
 		Calificacion_puntaje: container.Calificacion_puntaje,
-		Feedback_puntaje:     container.Feedback_puntaje,
+		Nivel_logro_puntaje:  container.Nivel_logro_puntaje,
 	}
 
 	// query
@@ -180,10 +181,18 @@ func PutOnePuntaje(c *gin.Context) {
 	// replace data in model entity
 	model_container = Models.Puntaje{
 		ID:                   model_container.ID,
+		Id_evaluacion:        Utils.CheckUpdatedInt(container.Id_evaluacion, model_container.Id_evaluacion),
 		Id_competencia:       Utils.CheckUpdatedInt(container.Id_competencia, model_container.Id_competencia),
 		Calificacion_puntaje: Utils.CheckUpdatedInt(container.Calificacion_puntaje, model_container.Calificacion_puntaje),
-		Feedback_puntaje:     Utils.CheckUpdatedString(container.Feedback_puntaje, model_container.Feedback_puntaje),
+		Nivel_logro_puntaje:  Utils.CheckUpdatedString(container.Nivel_logro_puntaje, model_container.Nivel_logro_puntaje),
 	}
+
+	// update foreign entity
+	// err = Repositories.GetOneEvaluacion(&model_container.Evaluacion_puntaje, Utils.ConvertIntToString(model_container.Id_evaluacion))
+	// if err != nil {
+	// 	ApiHelpers.RespondError(c, 500, "default")
+	// 	return
+	// }
 
 	// update foreign entity
 	err = Repositories.GetOneCompetencia(&model_container.Competencia_puntaje, Utils.ConvertIntToString(model_container.Id_competencia))

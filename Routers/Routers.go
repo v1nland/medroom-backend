@@ -97,6 +97,16 @@ func SetupRouter() *gin.Engine {
 			puntajes.PUT(":id", Controllers.PutOnePuntaje)
 			puntajes.DELETE(":id", Controllers.DeletePuntaje)
 		}
+
+		// segment by business domain
+		evaluaciones := v1.Group("/evaluaciones")
+		{
+			evaluaciones.GET("", Controllers.ListEvaluacions)
+			evaluaciones.GET(":id", Controllers.GetOneEvaluacion)
+			evaluaciones.POST("", Controllers.AddNewEvaluacion)
+			evaluaciones.PUT(":id", Controllers.PutOneEvaluacion)
+			evaluaciones.DELETE(":id", Controllers.DeleteEvaluacion)
+		}
 	}
 
 	return r

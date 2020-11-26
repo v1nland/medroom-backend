@@ -15,15 +15,15 @@ func GetOnePuntajeInput(u *RequestMessages.GetOnePuntajePayload) {
 }
 
 func AddNewPuntajeInput(u *RequestMessages.AddNewPuntajePayload) {
-	u.Feedback_puntaje = strings.TrimSpace(u.Feedback_puntaje)
-	u.Feedback_puntaje = strings.ToUpper(u.Feedback_puntaje)
-	u.Feedback_puntaje = Utils.RemoveAccents(u.Feedback_puntaje)
+	u.Nivel_logro_puntaje = strings.TrimSpace(u.Nivel_logro_puntaje)
+	u.Nivel_logro_puntaje = strings.ToUpper(u.Nivel_logro_puntaje)
+	u.Nivel_logro_puntaje = Utils.RemoveAccents(u.Nivel_logro_puntaje)
 }
 
 func PutOnePuntajeInput(u *RequestMessages.PutOnePuntajePayload) {
-	u.Feedback_puntaje = strings.TrimSpace(u.Feedback_puntaje)
-	u.Feedback_puntaje = strings.ToUpper(u.Feedback_puntaje)
-	u.Feedback_puntaje = Utils.RemoveAccents(u.Feedback_puntaje)
+	u.Nivel_logro_puntaje = strings.TrimSpace(u.Nivel_logro_puntaje)
+	u.Nivel_logro_puntaje = strings.ToUpper(u.Nivel_logro_puntaje)
+	u.Nivel_logro_puntaje = Utils.RemoveAccents(u.Nivel_logro_puntaje)
 }
 
 func DeletePuntajeInput(u *RequestMessages.DeletePuntajePayload) {
