@@ -23,6 +23,7 @@ import (
 
 // @Summary Lista de grupos
 // @Description Lista todos los grupos
+// @Tags Grupos
 // @Accept  json
 // @Produce  json
 // @Success 200 {array} ResponseMessages.ListGruposResponse "OK"
@@ -55,6 +56,7 @@ func ListGrupos(c *gin.Context) {
 
 // @Summary Obtiene un grupo
 // @Description Obtiene un grupo según su UUID
+// @Tags Grupos
 // @Accept  json
 // @Produce  json
 // @Param   uuid_grupo     path    string     true        "UUID del grupo a buscar"
@@ -91,6 +93,7 @@ func GetOneGrupo(c *gin.Context) {
 
 // @Summary Agrega un nuevo grupo
 // @Description Genera un nuevo grupo con los datos entregados
+// @Tags Grupos
 // @Accept  json
 // @Produce  json
 // @Param   input_grupo     body    RequestMessages.AddNewGrupoPayload     true        "Grupo a agregar"
@@ -112,6 +115,8 @@ func AddNewGrupo(c *gin.Context) {
 
 	// generate model entity
 	model_container := Models.Grupo{
+		Id_curso:     container.Id_curso,
+		Id_evaluador: container.Id_evaluador,
 		Nombre_grupo: container.Nombre_grupo,
 		Sigla_grupo:  container.Sigla_grupo,
 	}
@@ -139,6 +144,7 @@ func AddNewGrupo(c *gin.Context) {
 
 // @Summary Modifica un grupo
 // @Description Modifica un grupo con los datos entregados
+// @Tags Grupos
 // @Accept  json
 // @Produce  json
 // @Param   uuid_grupo     path    string     true        "UUID del grupo a modificar"
@@ -175,8 +181,24 @@ func PutOneGrupo(c *gin.Context) {
 	// replace data in model entity
 	model_container = Models.Grupo{
 		ID:           model_container.ID,
+		Id_curso:     Utils.CheckUpdatedInt(container.Id_curso, model_container.Id_curso),
+		Id_evaluador: Utils.CheckUpdatedString(container.Id_evaluador, model_container.Id_evaluador),
 		Nombre_grupo: Utils.CheckUpdatedString(container.Nombre_grupo, model_container.Nombre_grupo),
 		Sigla_grupo:  Utils.CheckUpdatedString(container.Sigla_grupo, model_container.Sigla_grupo),
+	}
+
+	// update foreign entity
+	err = Repositories.GetOneCurso(&model_container.Curso_grupo, model_container.Id_evaluador)
+	if err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
+	// update foreign entity
+	err = Repositories.GetOneEvaluador(&model_container.Evaluador_grupo, model_container.Id_evaluador)
+	if err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
 	}
 
 	// put query
@@ -202,6 +224,7 @@ func PutOneGrupo(c *gin.Context) {
 
 // @Summary Elimina un grupo
 // @Description Elimina un grupo con los datos entregados
+// @Tags Grupos
 // @Accept  json
 // @Produce  json
 // @Param   uuid_grupo     path    string     true        "UUID del grupo a eliminar"
@@ -215,8 +238,15 @@ func DeleteGrupo(c *gin.Context) {
 	// model container
 	var container Models.Grupo
 
+	// get query
+	err := Repositories.GetOneGrupo(&container, id)
+	if err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
 	// query
-	err := Repositories.DeleteGrupo(&container, id)
+	err = Repositories.DeleteGrupo(&container, id)
 	if err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return

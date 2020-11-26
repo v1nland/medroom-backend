@@ -18,6 +18,384 @@
     "host": "localhost:8080",
     "basePath": "/api/v1",
     "paths": {
+        "/competencias": {
+            "get": {
+                "description": "Lista todos los competencias",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Competencias"
+                ],
+                "summary": "Lista de competencias",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ResponseMessages.ListCompetenciasResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Genera un nuevo competencia con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Competencias"
+                ],
+                "summary": "Agrega un nuevo competencia",
+                "parameters": [
+                    {
+                        "description": "Competencia a agregar",
+                        "name": "input_competencia",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.AddNewCompetenciaPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.AddNewCompetenciaResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/competencias/{uuid_competencia}": {
+            "get": {
+                "description": "Obtiene un competencia según su UUID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Competencias"
+                ],
+                "summary": "Obtiene un competencia",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del competencia a buscar",
+                        "name": "uuid_competencia",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.GetOneCompetenciaResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Modifica un competencia con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Competencias"
+                ],
+                "summary": "Modifica un competencia",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del competencia a modificar",
+                        "name": "uuid_competencia",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Competencia a modificar",
+                        "name": "input_actualiza_competencia",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.PutOneCompetenciaPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.PutOneCompetenciaResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Elimina un competencia con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Competencias"
+                ],
+                "summary": "Elimina un competencia",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del competencia a eliminar",
+                        "name": "uuid_competencia",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.DeleteCompetenciaResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/cursos": {
+            "get": {
+                "description": "Lista todos los cursos",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cursos"
+                ],
+                "summary": "Lista de cursos",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ResponseMessages.ListCursosResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Genera un nuevo curso con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cursos"
+                ],
+                "summary": "Agrega un nuevo curso",
+                "parameters": [
+                    {
+                        "description": "Curso a agregar",
+                        "name": "input_curso",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.AddNewCursoPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.AddNewCursoResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/cursos/{uuid_curso}": {
+            "get": {
+                "description": "Obtiene un curso según su UUID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cursos"
+                ],
+                "summary": "Obtiene un curso",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del curso a buscar",
+                        "name": "uuid_curso",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.GetOneCursoResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Modifica un curso con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cursos"
+                ],
+                "summary": "Modifica un curso",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del curso a modificar",
+                        "name": "uuid_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Curso a modificar",
+                        "name": "input_actualiza_curso",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.PutOneCursoPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.PutOneCursoResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Elimina un curso con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cursos"
+                ],
+                "summary": "Elimina un curso",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del curso a eliminar",
+                        "name": "uuid_curso",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.DeleteCursoResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
         "/estudiantes": {
             "get": {
                 "description": "Lista todos los estudiantes",
@@ -26,6 +404,9 @@
                 ],
                 "produces": [
                     "application/json"
+                ],
+                "tags": [
+                    "Estudiantes"
                 ],
                 "summary": "Lista de estudiantes",
                 "responses": {
@@ -53,6 +434,9 @@
                 ],
                 "produces": [
                     "application/json"
+                ],
+                "tags": [
+                    "Estudiantes"
                 ],
                 "summary": "Agrega un nuevo estudiante",
                 "parameters": [
@@ -91,6 +475,9 @@
                 "produces": [
                     "application/json"
                 ],
+                "tags": [
+                    "Estudiantes"
+                ],
                 "summary": "Obtiene un estudiante",
                 "parameters": [
                     {
@@ -123,6 +510,9 @@
                 ],
                 "produces": [
                     "application/json"
+                ],
+                "tags": [
+                    "Estudiantes"
                 ],
                 "summary": "Modifica un estudiante",
                 "parameters": [
@@ -166,6 +556,9 @@
                 "produces": [
                     "application/json"
                 ],
+                "tags": [
+                    "Estudiantes"
+                ],
                 "summary": "Elimina un estudiante",
                 "parameters": [
                     {
@@ -191,6 +584,951 @@
                     }
                 }
             }
+        },
+        "/evaluadors": {
+            "get": {
+                "description": "Lista todos los evaluadors",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Evaluadors"
+                ],
+                "summary": "Lista de evaluadors",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ResponseMessages.ListEvaluadorsResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Genera un nuevo evaluador con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Evaluadors"
+                ],
+                "summary": "Agrega un nuevo evaluador",
+                "parameters": [
+                    {
+                        "description": "Evaluador a agregar",
+                        "name": "input_evaluador",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.AddNewEvaluadorPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.AddNewEvaluadorResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/evaluadors/{uuid_evaluador}": {
+            "get": {
+                "description": "Obtiene un evaluador según su UUID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Evaluadors"
+                ],
+                "summary": "Obtiene un evaluador",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del evaluador a buscar",
+                        "name": "uuid_evaluador",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Modifica un evaluador con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Evaluadors"
+                ],
+                "summary": "Modifica un evaluador",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del evaluador a modificar",
+                        "name": "uuid_evaluador",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Evaluador a modificar",
+                        "name": "input_actualiza_evaluador",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.PutOneEvaluadorPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.PutOneEvaluadorResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Elimina un evaluador con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Evaluadors"
+                ],
+                "summary": "Elimina un evaluador",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del evaluador a eliminar",
+                        "name": "uuid_evaluador",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.DeleteEvaluadorResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/grupos": {
+            "get": {
+                "description": "Lista todos los grupos",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Grupos"
+                ],
+                "summary": "Lista de grupos",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ResponseMessages.ListGruposResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Genera un nuevo grupo con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Grupos"
+                ],
+                "summary": "Agrega un nuevo grupo",
+                "parameters": [
+                    {
+                        "description": "Grupo a agregar",
+                        "name": "input_grupo",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.AddNewGrupoPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.AddNewGrupoResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/grupos/{uuid_grupo}": {
+            "get": {
+                "description": "Obtiene un grupo según su UUID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Grupos"
+                ],
+                "summary": "Obtiene un grupo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del grupo a buscar",
+                        "name": "uuid_grupo",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.GetOneGrupoResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Modifica un grupo con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Grupos"
+                ],
+                "summary": "Modifica un grupo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del grupo a modificar",
+                        "name": "uuid_grupo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Grupo a modificar",
+                        "name": "input_actualiza_grupo",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.PutOneGrupoPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.PutOneGrupoResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Elimina un grupo con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Grupos"
+                ],
+                "summary": "Elimina un grupo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del grupo a eliminar",
+                        "name": "uuid_grupo",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.DeleteGrupoResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/periodos": {
+            "get": {
+                "description": "Lista todos los periodos",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Periodos"
+                ],
+                "summary": "Lista de periodos",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ResponseMessages.ListPeriodosResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Genera un nuevo periodo con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Periodos"
+                ],
+                "summary": "Agrega un nuevo periodo",
+                "parameters": [
+                    {
+                        "description": "Periodo a agregar",
+                        "name": "input_periodo",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.AddNewPeriodoPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.AddNewPeriodoResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/periodos/{uuid_periodo}": {
+            "get": {
+                "description": "Obtiene un periodo según su UUID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Periodos"
+                ],
+                "summary": "Obtiene un periodo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del periodo a buscar",
+                        "name": "uuid_periodo",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.GetOnePeriodoResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Modifica un periodo con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Periodos"
+                ],
+                "summary": "Modifica un periodo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del periodo a modificar",
+                        "name": "uuid_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Periodo a modificar",
+                        "name": "input_actualiza_periodo",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.PutOnePeriodoPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.PutOnePeriodoResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Elimina un periodo con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Periodos"
+                ],
+                "summary": "Elimina un periodo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del periodo a eliminar",
+                        "name": "uuid_periodo",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.DeletePeriodoResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/puntajes": {
+            "get": {
+                "description": "Lista todos los puntajes",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Puntajes"
+                ],
+                "summary": "Lista de puntajes",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ResponseMessages.ListPuntajesResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Genera un nuevo puntaje con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Puntajes"
+                ],
+                "summary": "Agrega un nuevo puntaje",
+                "parameters": [
+                    {
+                        "description": "Puntaje a agregar",
+                        "name": "input_puntaje",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.AddNewPuntajePayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.AddNewPuntajeResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/puntajes/{uuid_puntaje}": {
+            "get": {
+                "description": "Obtiene un puntaje según su UUID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Puntajes"
+                ],
+                "summary": "Obtiene un puntaje",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del puntaje a buscar",
+                        "name": "uuid_puntaje",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.GetOnePuntajeResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Modifica un puntaje con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Puntajes"
+                ],
+                "summary": "Modifica un puntaje",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del puntaje a modificar",
+                        "name": "uuid_puntaje",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Puntaje a modificar",
+                        "name": "input_actualiza_puntaje",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.PutOnePuntajePayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.PutOnePuntajeResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Elimina un puntaje con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Puntajes"
+                ],
+                "summary": "Elimina un puntaje",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del puntaje a eliminar",
+                        "name": "uuid_puntaje",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.DeletePuntajeResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/rols": {
+            "get": {
+                "description": "Lista todos los rols",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Rols"
+                ],
+                "summary": "Lista de rols",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ResponseMessages.ListRolsResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Genera un nuevo rol con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Rols"
+                ],
+                "summary": "Agrega un nuevo rol",
+                "parameters": [
+                    {
+                        "description": "Rol a agregar",
+                        "name": "input_rol",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.AddNewRolPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.AddNewRolResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/rols/{uuid_rol}": {
+            "get": {
+                "description": "Obtiene un rol según su UUID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Rols"
+                ],
+                "summary": "Obtiene un rol",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del rol a buscar",
+                        "name": "uuid_rol",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Modifica un rol con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Rols"
+                ],
+                "summary": "Modifica un rol",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del rol a modificar",
+                        "name": "uuid_rol",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Rol a modificar",
+                        "name": "input_actualiza_rol",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.PutOneRolPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.PutOneRolResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Elimina un rol con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Rols"
+                ],
+                "summary": "Elimina un rol",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del rol a eliminar",
+                        "name": "uuid_rol",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseMessages.DeleteRolResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -201,6 +1539,28 @@
                     "type": "string"
                 },
                 "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "RequestMessages.AddNewCompetenciaPayload": {
+            "type": "object",
+            "properties": {
+                "nombre_competencia": {
+                    "type": "string"
+                }
+            }
+        },
+        "RequestMessages.AddNewCursoPayload": {
+            "type": "object",
+            "properties": {
+                "id_periodo": {
+                    "type": "integer"
+                },
+                "nombre_curso": {
+                    "type": "string"
+                },
+                "sigla_curso": {
                     "type": "string"
                 }
             }
@@ -217,8 +1577,13 @@
                 "hash_contrasena_estudiante": {
                     "type": "string"
                 },
+                "id_grupo": {
+                    "type": "integer"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
                 "nombres_estudiante": {
-                    "description": "add fk\nadd fk",
                     "type": "string"
                 },
                 "rut_estudiante": {
@@ -228,6 +1593,110 @@
                     "type": "string"
                 },
                 "telefono_fijo_estudiante": {
+                    "type": "string"
+                }
+            }
+        },
+        "RequestMessages.AddNewEvaluadorPayload": {
+            "type": "object",
+            "properties": {
+                "apellidos_evaluador": {
+                    "type": "string"
+                },
+                "cargo_evaluador": {
+                    "type": "string"
+                },
+                "correo_electronico_evaluador": {
+                    "type": "string"
+                },
+                "hash_contrasena_evaluador": {
+                    "type": "string"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_evaluador": {
+                    "type": "string"
+                },
+                "recinto_evaluador": {
+                    "type": "string"
+                },
+                "rut_evaluador": {
+                    "type": "string"
+                },
+                "telefono_celular_evaluador": {
+                    "type": "string"
+                },
+                "telefono_fijo_evaluador": {
+                    "type": "string"
+                }
+            }
+        },
+        "RequestMessages.AddNewGrupoPayload": {
+            "type": "object",
+            "properties": {
+                "id_curso": {
+                    "type": "integer"
+                },
+                "id_evaluador": {
+                    "type": "string"
+                },
+                "nombre_grupo": {
+                    "type": "string"
+                },
+                "sigla_grupo": {
+                    "type": "string"
+                }
+            }
+        },
+        "RequestMessages.AddNewPeriodoPayload": {
+            "type": "object",
+            "properties": {
+                "nombre_periodo": {
+                    "type": "string"
+                }
+            }
+        },
+        "RequestMessages.AddNewPuntajePayload": {
+            "type": "object",
+            "properties": {
+                "calificacion_puntaje": {
+                    "type": "integer"
+                },
+                "feedback_puntaje": {
+                    "type": "string"
+                },
+                "id_competencia": {
+                    "type": "integer"
+                }
+            }
+        },
+        "RequestMessages.AddNewRolPayload": {
+            "type": "object",
+            "properties": {
+                "nombre_rol": {
+                    "type": "string"
+                }
+            }
+        },
+        "RequestMessages.PutOneCompetenciaPayload": {
+            "type": "object",
+            "properties": {
+                "nombre_competencia": {
+                    "type": "string"
+                }
+            }
+        },
+        "RequestMessages.PutOneCursoPayload": {
+            "type": "object",
+            "properties": {
+                "id_periodo": {
+                    "type": "integer"
+                },
+                "nombre_curso": {
+                    "type": "string"
+                },
+                "sigla_curso": {
                     "type": "string"
                 }
             }
@@ -244,8 +1713,13 @@
                 "hash_contrasena_estudiante": {
                     "type": "string"
                 },
+                "id_grupo": {
+                    "type": "integer"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
                 "nombres_estudiante": {
-                    "description": "add fk\nadd fk",
                     "type": "string"
                 },
                 "rut_estudiante": {
@@ -255,6 +1729,110 @@
                     "type": "string"
                 },
                 "telefono_fijo_estudiante": {
+                    "type": "string"
+                }
+            }
+        },
+        "RequestMessages.PutOneEvaluadorPayload": {
+            "type": "object",
+            "properties": {
+                "apellidos_evaluador": {
+                    "type": "string"
+                },
+                "cargo_evaluador": {
+                    "type": "string"
+                },
+                "correo_electronico_evaluador": {
+                    "type": "string"
+                },
+                "hash_contrasena_evaluador": {
+                    "type": "string"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_evaluador": {
+                    "type": "string"
+                },
+                "recinto_evaluador": {
+                    "type": "string"
+                },
+                "rut_evaluador": {
+                    "type": "string"
+                },
+                "telefono_celular_evaluador": {
+                    "type": "string"
+                },
+                "telefono_fijo_evaluador": {
+                    "type": "string"
+                }
+            }
+        },
+        "RequestMessages.PutOneGrupoPayload": {
+            "type": "object",
+            "properties": {
+                "id_curso": {
+                    "type": "integer"
+                },
+                "id_evaluador": {
+                    "type": "string"
+                },
+                "nombre_grupo": {
+                    "type": "string"
+                },
+                "sigla_grupo": {
+                    "type": "string"
+                }
+            }
+        },
+        "RequestMessages.PutOnePeriodoPayload": {
+            "type": "object",
+            "properties": {
+                "nombre_periodo": {
+                    "type": "string"
+                }
+            }
+        },
+        "RequestMessages.PutOnePuntajePayload": {
+            "type": "object",
+            "properties": {
+                "calificacion_puntaje": {
+                    "type": "integer"
+                },
+                "feedback_puntaje": {
+                    "type": "string"
+                },
+                "id_competencia": {
+                    "type": "integer"
+                }
+            }
+        },
+        "RequestMessages.PutOneRolPayload": {
+            "type": "object",
+            "properties": {
+                "nombre_rol": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.AddNewCompetenciaResponse": {
+            "type": "object",
+            "properties": {
+                "nombre_competencia": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.AddNewCursoResponse": {
+            "type": "object",
+            "properties": {
+                "id_periodo": {
+                    "type": "integer"
+                },
+                "nombre_curso": {
+                    "type": "string"
+                },
+                "sigla_curso": {
                     "type": "string"
                 }
             }
@@ -268,8 +1846,13 @@
                 "correo_electronico_estudiante": {
                     "type": "string"
                 },
+                "id_grupo": {
+                    "type": "integer"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
                 "nombres_estudiante": {
-                    "description": "add fk\nadd fk",
                     "type": "string"
                 },
                 "rut_estudiante": {
@@ -279,6 +1862,107 @@
                     "type": "string"
                 },
                 "telefono_fijo_estudiante": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.AddNewEvaluadorResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_evaluador": {
+                    "type": "string"
+                },
+                "cargo_evaluador": {
+                    "type": "string"
+                },
+                "correo_electronico_evaluador": {
+                    "type": "string"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_evaluador": {
+                    "type": "string"
+                },
+                "recinto_evaluador": {
+                    "type": "string"
+                },
+                "rut_evaluador": {
+                    "type": "string"
+                },
+                "telefono_celular_evaluador": {
+                    "type": "string"
+                },
+                "telefono_fijo_evaluador": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.AddNewGrupoResponse": {
+            "type": "object",
+            "properties": {
+                "id_curso": {
+                    "type": "integer"
+                },
+                "id_evaluador": {
+                    "type": "string"
+                },
+                "nombre_grupo": {
+                    "type": "string"
+                },
+                "sigla_grupo": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.AddNewPeriodoResponse": {
+            "type": "object",
+            "properties": {
+                "nombre_periodo": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.AddNewPuntajeResponse": {
+            "type": "object",
+            "properties": {
+                "calificacion_puntaje": {
+                    "type": "integer"
+                },
+                "feedback_puntaje": {
+                    "type": "string"
+                },
+                "id_competencia": {
+                    "type": "integer"
+                }
+            }
+        },
+        "ResponseMessages.AddNewRolResponse": {
+            "type": "object",
+            "properties": {
+                "nombre_rol": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.DeleteCompetenciaResponse": {
+            "type": "object",
+            "properties": {
+                "nombre_competencia": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.DeleteCursoResponse": {
+            "type": "object",
+            "properties": {
+                "id_periodo": {
+                    "type": "integer"
+                },
+                "nombre_curso": {
+                    "type": "string"
+                },
+                "sigla_curso": {
                     "type": "string"
                 }
             }
@@ -292,8 +1976,13 @@
                 "correo_electronico_estudiante": {
                     "type": "string"
                 },
+                "id_grupo": {
+                    "type": "integer"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
                 "nombres_estudiante": {
-                    "description": "add fk\nadd fk",
                     "type": "string"
                 },
                 "rut_estudiante": {
@@ -303,6 +1992,107 @@
                     "type": "string"
                 },
                 "telefono_fijo_estudiante": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.DeleteEvaluadorResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_evaluador": {
+                    "type": "string"
+                },
+                "cargo_evaluador": {
+                    "type": "string"
+                },
+                "correo_electronico_evaluador": {
+                    "type": "string"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_evaluador": {
+                    "type": "string"
+                },
+                "recinto_evaluador": {
+                    "type": "string"
+                },
+                "rut_evaluador": {
+                    "type": "string"
+                },
+                "telefono_celular_evaluador": {
+                    "type": "string"
+                },
+                "telefono_fijo_evaluador": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.DeleteGrupoResponse": {
+            "type": "object",
+            "properties": {
+                "id_curso": {
+                    "type": "integer"
+                },
+                "id_evaluador": {
+                    "type": "string"
+                },
+                "nombre_grupo": {
+                    "type": "string"
+                },
+                "sigla_grupo": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.DeletePeriodoResponse": {
+            "type": "object",
+            "properties": {
+                "nombre_periodo": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.DeletePuntajeResponse": {
+            "type": "object",
+            "properties": {
+                "calificacion_puntaje": {
+                    "type": "integer"
+                },
+                "feedback_puntaje": {
+                    "type": "string"
+                },
+                "id_competencia": {
+                    "type": "integer"
+                }
+            }
+        },
+        "ResponseMessages.DeleteRolResponse": {
+            "type": "object",
+            "properties": {
+                "nombre_rol": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.GetOneCompetenciaResponse": {
+            "type": "object",
+            "properties": {
+                "nombre_competencia": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.GetOneCursoResponse": {
+            "type": "object",
+            "properties": {
+                "nombre_curso": {
+                    "type": "string"
+                },
+                "periodo_curso": {
+                    "$ref": "#/definitions/ResponseMessages.GetOnePeriodoResponse"
+                },
+                "sigla_curso": {
                     "type": "string"
                 }
             }
@@ -316,9 +2106,14 @@
                 "correo_electronico_estudiante": {
                     "type": "string"
                 },
+                "grupo_estudiante": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneGrupoResponse"
+                },
                 "nombres_estudiante": {
-                    "description": "add fk\nadd fk",
                     "type": "string"
+                },
+                "rol_estudiante": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
                 },
                 "rut_estudiante": {
                     "type": "string"
@@ -327,6 +2122,107 @@
                     "type": "string"
                 },
                 "telefono_fijo_estudiante": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.GetOneEvaluadorResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_evaluador": {
+                    "type": "string"
+                },
+                "cargo_evaluador": {
+                    "type": "string"
+                },
+                "correo_electronico_evaluador": {
+                    "type": "string"
+                },
+                "nombres_evaluador": {
+                    "type": "string"
+                },
+                "recinto_evaluador": {
+                    "type": "string"
+                },
+                "rol_evaluador": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                },
+                "rut_evaluador": {
+                    "type": "string"
+                },
+                "telefono_celular_evaluador": {
+                    "type": "string"
+                },
+                "telefono_fijo_evaluador": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.GetOneGrupoResponse": {
+            "type": "object",
+            "properties": {
+                "curso_grupo": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneCursoResponse"
+                },
+                "evaluador_grupo": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
+                },
+                "nombre_grupo": {
+                    "type": "string"
+                },
+                "sigla_grupo": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.GetOnePeriodoResponse": {
+            "type": "object",
+            "properties": {
+                "nombre_periodo": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.GetOnePuntajeResponse": {
+            "type": "object",
+            "properties": {
+                "calificacion_puntaje": {
+                    "type": "integer"
+                },
+                "competencia_puntaje": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneCompetenciaResponse"
+                },
+                "feedback_puntaje": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.GetOneRolResponse": {
+            "type": "object",
+            "properties": {
+                "nombre_rol": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.ListCompetenciasResponse": {
+            "type": "object",
+            "properties": {
+                "nombre_competencia": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.ListCursosResponse": {
+            "type": "object",
+            "properties": {
+                "nombre_curso": {
+                    "type": "string"
+                },
+                "periodo_curso": {
+                    "$ref": "#/definitions/ResponseMessages.GetOnePeriodoResponse"
+                },
+                "sigla_curso": {
                     "type": "string"
                 }
             }
@@ -340,9 +2236,14 @@
                 "correo_electronico_estudiante": {
                     "type": "string"
                 },
+                "grupo_estudiante": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneGrupoResponse"
+                },
                 "nombres_estudiante": {
-                    "description": "add fk\nadd fk",
                     "type": "string"
+                },
+                "rol_estudiante": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
                 },
                 "rut_estudiante": {
                     "type": "string"
@@ -351,6 +2252,107 @@
                     "type": "string"
                 },
                 "telefono_fijo_estudiante": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.ListEvaluadorsResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_evaluador": {
+                    "type": "string"
+                },
+                "cargo_evaluador": {
+                    "type": "string"
+                },
+                "correo_electronico_evaluador": {
+                    "type": "string"
+                },
+                "nombres_evaluador": {
+                    "type": "string"
+                },
+                "recinto_evaluador": {
+                    "type": "string"
+                },
+                "rol_evaluador": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                },
+                "rut_evaluador": {
+                    "type": "string"
+                },
+                "telefono_celular_evaluador": {
+                    "type": "string"
+                },
+                "telefono_fijo_evaluador": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.ListGruposResponse": {
+            "type": "object",
+            "properties": {
+                "curso_grupo": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneCursoResponse"
+                },
+                "evaluador_grupo": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
+                },
+                "nombre_grupo": {
+                    "type": "string"
+                },
+                "sigla_grupo": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.ListPeriodosResponse": {
+            "type": "object",
+            "properties": {
+                "nombre_periodo": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.ListPuntajesResponse": {
+            "type": "object",
+            "properties": {
+                "calificacion_puntaje": {
+                    "type": "integer"
+                },
+                "competencia_puntaje": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneCompetenciaResponse"
+                },
+                "feedback_puntaje": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.ListRolsResponse": {
+            "type": "object",
+            "properties": {
+                "nombre_rol": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.PutOneCompetenciaResponse": {
+            "type": "object",
+            "properties": {
+                "nombre_competencia": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.PutOneCursoResponse": {
+            "type": "object",
+            "properties": {
+                "id_periodo": {
+                    "type": "integer"
+                },
+                "nombre_curso": {
+                    "type": "string"
+                },
+                "sigla_curso": {
                     "type": "string"
                 }
             }
@@ -364,8 +2366,16 @@
                 "correo_electronico_estudiante": {
                     "type": "string"
                 },
+                "hash_contrasena_estudiante": {
+                    "type": "string"
+                },
+                "id_grupo": {
+                    "type": "integer"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
                 "nombres_estudiante": {
-                    "description": "add fk\nadd fk",
                     "type": "string"
                 },
                 "rut_estudiante": {
@@ -375,6 +2385,88 @@
                     "type": "string"
                 },
                 "telefono_fijo_estudiante": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.PutOneEvaluadorResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_evaluador": {
+                    "type": "string"
+                },
+                "cargo_evaluador": {
+                    "type": "string"
+                },
+                "correo_electronico_evaluador": {
+                    "type": "string"
+                },
+                "hash_contrasena_evaluador": {
+                    "type": "string"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_evaluador": {
+                    "type": "string"
+                },
+                "recinto_evaluador": {
+                    "type": "string"
+                },
+                "rut_evaluador": {
+                    "type": "string"
+                },
+                "telefono_celular_evaluador": {
+                    "type": "string"
+                },
+                "telefono_fijo_evaluador": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.PutOneGrupoResponse": {
+            "type": "object",
+            "properties": {
+                "id_curso": {
+                    "type": "integer"
+                },
+                "id_evaluador": {
+                    "type": "string"
+                },
+                "nombre_grupo": {
+                    "type": "string"
+                },
+                "sigla_grupo": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.PutOnePeriodoResponse": {
+            "type": "object",
+            "properties": {
+                "nombre_periodo": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.PutOnePuntajeResponse": {
+            "type": "object",
+            "properties": {
+                "calificacion_puntaje": {
+                    "type": "integer"
+                },
+                "feedback_puntaje": {
+                    "type": "string"
+                },
+                "id_competencia": {
+                    "type": "integer"
+                }
+            }
+        },
+        "ResponseMessages.PutOneRolResponse": {
+            "type": "object",
+            "properties": {
+                "nombre_rol": {
                     "type": "string"
                 }
             }

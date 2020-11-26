@@ -5,12 +5,15 @@ import (
 )
 
 type Grupo struct {
-	ID int `json:"id"`
-	// add fk evaluador
-	Nombre_grupo string    `json:"nombre_grupo"`
-	Sigla_grupo  string    `json:"sigla_grupo"`
-	CreatedAt    time.Time `json:"created_at"`
-	UpdatedAt    time.Time `json:"updated_at"`
+	ID              int       `json:"id"`
+	Id_curso        int       `json:"id_curso" sql:"type:int REFERENCES public.cursos(id)"`
+	Curso_grupo     Curso     `json:"curso_grupo" gorm:"foreignKey:Id_curso"`
+	Id_evaluador    string    `json:"id_evaluador" sql:"type:uuid REFERENCES public.evaluadores(id)"`
+	Evaluador_grupo Evaluador `json:"evaluador_grupo" gorm:"foreignKey:Id_evaluador"`
+	Nombre_grupo    string    `json:"nombre_grupo"`
+	Sigla_grupo     string    `json:"sigla_grupo"`
+	CreatedAt       time.Time `json:"created_at"`
+	UpdatedAt       time.Time `json:"updated_at"`
 }
 
 func (u *Grupo) TableName() string {

@@ -23,6 +23,7 @@ import (
 
 // @Summary Lista de estudiantes
 // @Description Lista todos los estudiantes
+// @Tags Estudiantes
 // @Accept  json
 // @Produce  json
 // @Success 200 {array} ResponseMessages.ListEstudiantesResponse "OK"
@@ -55,6 +56,7 @@ func ListEstudiantes(c *gin.Context) {
 
 // @Summary Obtiene un estudiante
 // @Description Obtiene un estudiante según su UUID
+// @Tags Estudiantes
 // @Accept  json
 // @Produce  json
 // @Param   uuid_estudiante     path    string     true        "UUID del estudiante a buscar"
@@ -91,6 +93,7 @@ func GetOneEstudiante(c *gin.Context) {
 
 // @Summary Agrega un nuevo estudiante
 // @Description Genera un nuevo estudiante con los datos entregados
+// @Tags Estudiantes
 // @Accept  json
 // @Produce  json
 // @Param   input_estudiante     body    RequestMessages.AddNewEstudiantePayload     true        "Estudiante a agregar"
@@ -146,6 +149,7 @@ func AddNewEstudiante(c *gin.Context) {
 
 // @Summary Modifica un estudiante
 // @Description Modifica un estudiante con los datos entregados
+// @Tags Estudiantes
 // @Accept  json
 // @Produce  json
 // @Param   uuid_estudiante     path    string     true        "UUID del estudiante a modificar"
@@ -193,6 +197,20 @@ func PutOneEstudiante(c *gin.Context) {
 		Telefono_celular_estudiante:   Utils.CheckUpdatedString(container.Telefono_celular_estudiante, model_container.Telefono_celular_estudiante),
 	}
 
+	// update foreign entity
+	err = Repositories.GetOneRol(&model_container.Rol_estudiante, Utils.ConvertIntToString(model_container.Id_rol))
+	if err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
+	// update foreign entity
+	err = Repositories.GetOneGrupo(&model_container.Grupo_estudiante, Utils.ConvertIntToString(model_container.Id_grupo))
+	if err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
 	// put query
 	err = Repositories.PutOneEstudiante(&model_container, id)
 	if err != nil {
@@ -216,6 +234,7 @@ func PutOneEstudiante(c *gin.Context) {
 
 // @Summary Elimina un estudiante
 // @Description Elimina un estudiante con los datos entregados
+// @Tags Estudiantes
 // @Accept  json
 // @Produce  json
 // @Param   uuid_estudiante     path    string     true        "UUID del estudiante a eliminar"
@@ -229,8 +248,15 @@ func DeleteEstudiante(c *gin.Context) {
 	// model container
 	var container Models.Estudiante
 
+	// get query
+	err := Repositories.GetOneEstudiante(&container, id)
+	if err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
 	// query
-	err := Repositories.DeleteEstudiante(&container, id)
+	err = Repositories.DeleteEstudiante(&container, id)
 	if err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return

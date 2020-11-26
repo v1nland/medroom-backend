@@ -23,6 +23,7 @@ import (
 
 // @Summary Lista de rols
 // @Description Lista todos los rols
+// @Tags Rols
 // @Accept  json
 // @Produce  json
 // @Success 200 {array} ResponseMessages.ListRolsResponse "OK"
@@ -55,6 +56,7 @@ func ListRols(c *gin.Context) {
 
 // @Summary Obtiene un rol
 // @Description Obtiene un rol según su UUID
+// @Tags Rols
 // @Accept  json
 // @Produce  json
 // @Param   uuid_rol     path    string     true        "UUID del rol a buscar"
@@ -91,6 +93,7 @@ func GetOneRol(c *gin.Context) {
 
 // @Summary Agrega un nuevo rol
 // @Description Genera un nuevo rol con los datos entregados
+// @Tags Rols
 // @Accept  json
 // @Produce  json
 // @Param   input_rol     body    RequestMessages.AddNewRolPayload     true        "Rol a agregar"
@@ -138,6 +141,7 @@ func AddNewRol(c *gin.Context) {
 
 // @Summary Modifica un rol
 // @Description Modifica un rol con los datos entregados
+// @Tags Rols
 // @Accept  json
 // @Produce  json
 // @Param   uuid_rol     path    string     true        "UUID del rol a modificar"
@@ -200,6 +204,7 @@ func PutOneRol(c *gin.Context) {
 
 // @Summary Elimina un rol
 // @Description Elimina un rol con los datos entregados
+// @Tags Rols
 // @Accept  json
 // @Produce  json
 // @Param   uuid_rol     path    string     true        "UUID del rol a eliminar"
@@ -213,8 +218,15 @@ func DeleteRol(c *gin.Context) {
 	// model container
 	var container Models.Rol
 
+	// get query
+	err := Repositories.GetOneRol(&container, id)
+	if err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
 	// query
-	err := Repositories.DeleteRol(&container, id)
+	err = Repositories.DeleteRol(&container, id)
 	if err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return

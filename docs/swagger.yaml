@@ -7,6 +7,20 @@ definitions:
       error:
         type: string
     type: object
+  RequestMessages.AddNewCompetenciaPayload:
+    properties:
+      nombre_competencia:
+        type: string
+    type: object
+  RequestMessages.AddNewCursoPayload:
+    properties:
+      id_periodo:
+        type: integer
+      nombre_curso:
+        type: string
+      sigla_curso:
+        type: string
+    type: object
   RequestMessages.AddNewEstudiantePayload:
     properties:
       apellidos_estudiante:
@@ -15,16 +29,84 @@ definitions:
         type: string
       hash_contrasena_estudiante:
         type: string
+      id_grupo:
+        type: integer
+      id_rol:
+        type: integer
       nombres_estudiante:
-        description: |-
-          add fk
-          add fk
         type: string
       rut_estudiante:
         type: string
       telefono_celular_estudiante:
         type: string
       telefono_fijo_estudiante:
+        type: string
+    type: object
+  RequestMessages.AddNewEvaluadorPayload:
+    properties:
+      apellidos_evaluador:
+        type: string
+      cargo_evaluador:
+        type: string
+      correo_electronico_evaluador:
+        type: string
+      hash_contrasena_evaluador:
+        type: string
+      id_rol:
+        type: integer
+      nombres_evaluador:
+        type: string
+      recinto_evaluador:
+        type: string
+      rut_evaluador:
+        type: string
+      telefono_celular_evaluador:
+        type: string
+      telefono_fijo_evaluador:
+        type: string
+    type: object
+  RequestMessages.AddNewGrupoPayload:
+    properties:
+      id_curso:
+        type: integer
+      id_evaluador:
+        type: string
+      nombre_grupo:
+        type: string
+      sigla_grupo:
+        type: string
+    type: object
+  RequestMessages.AddNewPeriodoPayload:
+    properties:
+      nombre_periodo:
+        type: string
+    type: object
+  RequestMessages.AddNewPuntajePayload:
+    properties:
+      calificacion_puntaje:
+        type: integer
+      feedback_puntaje:
+        type: string
+      id_competencia:
+        type: integer
+    type: object
+  RequestMessages.AddNewRolPayload:
+    properties:
+      nombre_rol:
+        type: string
+    type: object
+  RequestMessages.PutOneCompetenciaPayload:
+    properties:
+      nombre_competencia:
+        type: string
+    type: object
+  RequestMessages.PutOneCursoPayload:
+    properties:
+      id_periodo:
+        type: integer
+      nombre_curso:
+        type: string
+      sigla_curso:
         type: string
     type: object
   RequestMessages.PutOneEstudiantePayload:
@@ -35,16 +117,84 @@ definitions:
         type: string
       hash_contrasena_estudiante:
         type: string
+      id_grupo:
+        type: integer
+      id_rol:
+        type: integer
       nombres_estudiante:
-        description: |-
-          add fk
-          add fk
         type: string
       rut_estudiante:
         type: string
       telefono_celular_estudiante:
         type: string
       telefono_fijo_estudiante:
+        type: string
+    type: object
+  RequestMessages.PutOneEvaluadorPayload:
+    properties:
+      apellidos_evaluador:
+        type: string
+      cargo_evaluador:
+        type: string
+      correo_electronico_evaluador:
+        type: string
+      hash_contrasena_evaluador:
+        type: string
+      id_rol:
+        type: integer
+      nombres_evaluador:
+        type: string
+      recinto_evaluador:
+        type: string
+      rut_evaluador:
+        type: string
+      telefono_celular_evaluador:
+        type: string
+      telefono_fijo_evaluador:
+        type: string
+    type: object
+  RequestMessages.PutOneGrupoPayload:
+    properties:
+      id_curso:
+        type: integer
+      id_evaluador:
+        type: string
+      nombre_grupo:
+        type: string
+      sigla_grupo:
+        type: string
+    type: object
+  RequestMessages.PutOnePeriodoPayload:
+    properties:
+      nombre_periodo:
+        type: string
+    type: object
+  RequestMessages.PutOnePuntajePayload:
+    properties:
+      calificacion_puntaje:
+        type: integer
+      feedback_puntaje:
+        type: string
+      id_competencia:
+        type: integer
+    type: object
+  RequestMessages.PutOneRolPayload:
+    properties:
+      nombre_rol:
+        type: string
+    type: object
+  ResponseMessages.AddNewCompetenciaResponse:
+    properties:
+      nombre_competencia:
+        type: string
+    type: object
+  ResponseMessages.AddNewCursoResponse:
+    properties:
+      id_periodo:
+        type: integer
+      nombre_curso:
+        type: string
+      sigla_curso:
         type: string
     type: object
   ResponseMessages.AddNewEstudianteResponse:
@@ -53,16 +203,82 @@ definitions:
         type: string
       correo_electronico_estudiante:
         type: string
+      id_grupo:
+        type: integer
+      id_rol:
+        type: integer
       nombres_estudiante:
-        description: |-
-          add fk
-          add fk
         type: string
       rut_estudiante:
         type: string
       telefono_celular_estudiante:
         type: string
       telefono_fijo_estudiante:
+        type: string
+    type: object
+  ResponseMessages.AddNewEvaluadorResponse:
+    properties:
+      apellidos_evaluador:
+        type: string
+      cargo_evaluador:
+        type: string
+      correo_electronico_evaluador:
+        type: string
+      id_rol:
+        type: integer
+      nombres_evaluador:
+        type: string
+      recinto_evaluador:
+        type: string
+      rut_evaluador:
+        type: string
+      telefono_celular_evaluador:
+        type: string
+      telefono_fijo_evaluador:
+        type: string
+    type: object
+  ResponseMessages.AddNewGrupoResponse:
+    properties:
+      id_curso:
+        type: integer
+      id_evaluador:
+        type: string
+      nombre_grupo:
+        type: string
+      sigla_grupo:
+        type: string
+    type: object
+  ResponseMessages.AddNewPeriodoResponse:
+    properties:
+      nombre_periodo:
+        type: string
+    type: object
+  ResponseMessages.AddNewPuntajeResponse:
+    properties:
+      calificacion_puntaje:
+        type: integer
+      feedback_puntaje:
+        type: string
+      id_competencia:
+        type: integer
+    type: object
+  ResponseMessages.AddNewRolResponse:
+    properties:
+      nombre_rol:
+        type: string
+    type: object
+  ResponseMessages.DeleteCompetenciaResponse:
+    properties:
+      nombre_competencia:
+        type: string
+    type: object
+  ResponseMessages.DeleteCursoResponse:
+    properties:
+      id_periodo:
+        type: integer
+      nombre_curso:
+        type: string
+      sigla_curso:
         type: string
     type: object
   ResponseMessages.DeleteEstudianteResponse:
@@ -71,16 +287,82 @@ definitions:
         type: string
       correo_electronico_estudiante:
         type: string
+      id_grupo:
+        type: integer
+      id_rol:
+        type: integer
       nombres_estudiante:
-        description: |-
-          add fk
-          add fk
         type: string
       rut_estudiante:
         type: string
       telefono_celular_estudiante:
         type: string
       telefono_fijo_estudiante:
+        type: string
+    type: object
+  ResponseMessages.DeleteEvaluadorResponse:
+    properties:
+      apellidos_evaluador:
+        type: string
+      cargo_evaluador:
+        type: string
+      correo_electronico_evaluador:
+        type: string
+      id_rol:
+        type: integer
+      nombres_evaluador:
+        type: string
+      recinto_evaluador:
+        type: string
+      rut_evaluador:
+        type: string
+      telefono_celular_evaluador:
+        type: string
+      telefono_fijo_evaluador:
+        type: string
+    type: object
+  ResponseMessages.DeleteGrupoResponse:
+    properties:
+      id_curso:
+        type: integer
+      id_evaluador:
+        type: string
+      nombre_grupo:
+        type: string
+      sigla_grupo:
+        type: string
+    type: object
+  ResponseMessages.DeletePeriodoResponse:
+    properties:
+      nombre_periodo:
+        type: string
+    type: object
+  ResponseMessages.DeletePuntajeResponse:
+    properties:
+      calificacion_puntaje:
+        type: integer
+      feedback_puntaje:
+        type: string
+      id_competencia:
+        type: integer
+    type: object
+  ResponseMessages.DeleteRolResponse:
+    properties:
+      nombre_rol:
+        type: string
+    type: object
+  ResponseMessages.GetOneCompetenciaResponse:
+    properties:
+      nombre_competencia:
+        type: string
+    type: object
+  ResponseMessages.GetOneCursoResponse:
+    properties:
+      nombre_curso:
+        type: string
+      periodo_curso:
+        $ref: '#/definitions/ResponseMessages.GetOnePeriodoResponse'
+      sigla_curso:
         type: string
     type: object
   ResponseMessages.GetOneEstudianteResponse:
@@ -89,16 +371,82 @@ definitions:
         type: string
       correo_electronico_estudiante:
         type: string
+      grupo_estudiante:
+        $ref: '#/definitions/ResponseMessages.GetOneGrupoResponse'
       nombres_estudiante:
-        description: |-
-          add fk
-          add fk
         type: string
+      rol_estudiante:
+        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
       rut_estudiante:
         type: string
       telefono_celular_estudiante:
         type: string
       telefono_fijo_estudiante:
+        type: string
+    type: object
+  ResponseMessages.GetOneEvaluadorResponse:
+    properties:
+      apellidos_evaluador:
+        type: string
+      cargo_evaluador:
+        type: string
+      correo_electronico_evaluador:
+        type: string
+      nombres_evaluador:
+        type: string
+      recinto_evaluador:
+        type: string
+      rol_evaluador:
+        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+      rut_evaluador:
+        type: string
+      telefono_celular_evaluador:
+        type: string
+      telefono_fijo_evaluador:
+        type: string
+    type: object
+  ResponseMessages.GetOneGrupoResponse:
+    properties:
+      curso_grupo:
+        $ref: '#/definitions/ResponseMessages.GetOneCursoResponse'
+      evaluador_grupo:
+        $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+      nombre_grupo:
+        type: string
+      sigla_grupo:
+        type: string
+    type: object
+  ResponseMessages.GetOnePeriodoResponse:
+    properties:
+      nombre_periodo:
+        type: string
+    type: object
+  ResponseMessages.GetOnePuntajeResponse:
+    properties:
+      calificacion_puntaje:
+        type: integer
+      competencia_puntaje:
+        $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
+      feedback_puntaje:
+        type: string
+    type: object
+  ResponseMessages.GetOneRolResponse:
+    properties:
+      nombre_rol:
+        type: string
+    type: object
+  ResponseMessages.ListCompetenciasResponse:
+    properties:
+      nombre_competencia:
+        type: string
+    type: object
+  ResponseMessages.ListCursosResponse:
+    properties:
+      nombre_curso:
+        type: string
+      periodo_curso:
+        $ref: '#/definitions/ResponseMessages.GetOnePeriodoResponse'
+      sigla_curso:
         type: string
     type: object
   ResponseMessages.ListEstudiantesResponse:
@@ -107,16 +455,82 @@ definitions:
         type: string
       correo_electronico_estudiante:
         type: string
+      grupo_estudiante:
+        $ref: '#/definitions/ResponseMessages.GetOneGrupoResponse'
       nombres_estudiante:
-        description: |-
-          add fk
-          add fk
         type: string
+      rol_estudiante:
+        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
       rut_estudiante:
         type: string
       telefono_celular_estudiante:
         type: string
       telefono_fijo_estudiante:
+        type: string
+    type: object
+  ResponseMessages.ListEvaluadorsResponse:
+    properties:
+      apellidos_evaluador:
+        type: string
+      cargo_evaluador:
+        type: string
+      correo_electronico_evaluador:
+        type: string
+      nombres_evaluador:
+        type: string
+      recinto_evaluador:
+        type: string
+      rol_evaluador:
+        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+      rut_evaluador:
+        type: string
+      telefono_celular_evaluador:
+        type: string
+      telefono_fijo_evaluador:
+        type: string
+    type: object
+  ResponseMessages.ListGruposResponse:
+    properties:
+      curso_grupo:
+        $ref: '#/definitions/ResponseMessages.GetOneCursoResponse'
+      evaluador_grupo:
+        $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+      nombre_grupo:
+        type: string
+      sigla_grupo:
+        type: string
+    type: object
+  ResponseMessages.ListPeriodosResponse:
+    properties:
+      nombre_periodo:
+        type: string
+    type: object
+  ResponseMessages.ListPuntajesResponse:
+    properties:
+      calificacion_puntaje:
+        type: integer
+      competencia_puntaje:
+        $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
+      feedback_puntaje:
+        type: string
+    type: object
+  ResponseMessages.ListRolsResponse:
+    properties:
+      nombre_rol:
+        type: string
+    type: object
+  ResponseMessages.PutOneCompetenciaResponse:
+    properties:
+      nombre_competencia:
+        type: string
+    type: object
+  ResponseMessages.PutOneCursoResponse:
+    properties:
+      id_periodo:
+        type: integer
+      nombre_curso:
+        type: string
+      sigla_curso:
         type: string
     type: object
   ResponseMessages.PutOneEstudianteResponse:
@@ -125,16 +539,72 @@ definitions:
         type: string
       correo_electronico_estudiante:
         type: string
+      hash_contrasena_estudiante:
+        type: string
+      id_grupo:
+        type: integer
+      id_rol:
+        type: integer
       nombres_estudiante:
-        description: |-
-          add fk
-          add fk
         type: string
       rut_estudiante:
         type: string
       telefono_celular_estudiante:
         type: string
       telefono_fijo_estudiante:
+        type: string
+    type: object
+  ResponseMessages.PutOneEvaluadorResponse:
+    properties:
+      apellidos_evaluador:
+        type: string
+      cargo_evaluador:
+        type: string
+      correo_electronico_evaluador:
+        type: string
+      hash_contrasena_evaluador:
+        type: string
+      id_rol:
+        type: integer
+      nombres_evaluador:
+        type: string
+      recinto_evaluador:
+        type: string
+      rut_evaluador:
+        type: string
+      telefono_celular_evaluador:
+        type: string
+      telefono_fijo_evaluador:
+        type: string
+    type: object
+  ResponseMessages.PutOneGrupoResponse:
+    properties:
+      id_curso:
+        type: integer
+      id_evaluador:
+        type: string
+      nombre_grupo:
+        type: string
+      sigla_grupo:
+        type: string
+    type: object
+  ResponseMessages.PutOnePeriodoResponse:
+    properties:
+      nombre_periodo:
+        type: string
+    type: object
+  ResponseMessages.PutOnePuntajeResponse:
+    properties:
+      calificacion_puntaje:
+        type: integer
+      feedback_puntaje:
+        type: string
+      id_competencia:
+        type: integer
+    type: object
+  ResponseMessages.PutOneRolResponse:
+    properties:
+      nombre_rol:
         type: string
     type: object
 host: localhost:8080
@@ -151,6 +621,256 @@ info:
   title: MedRoom API
   version: "1.0"
 paths:
+  /competencias:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los competencias
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ResponseMessages.ListCompetenciasResponse'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de competencias
+      tags:
+      - Competencias
+    post:
+      consumes:
+      - application/json
+      description: Genera un nuevo competencia con los datos entregados
+      parameters:
+      - description: Competencia a agregar
+        in: body
+        name: input_competencia
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.AddNewCompetenciaPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.AddNewCompetenciaResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Agrega un nuevo competencia
+      tags:
+      - Competencias
+  /competencias/{uuid_competencia}:
+    delete:
+      consumes:
+      - application/json
+      description: Elimina un competencia con los datos entregados
+      parameters:
+      - description: UUID del competencia a eliminar
+        in: path
+        name: uuid_competencia
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.DeleteCompetenciaResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Elimina un competencia
+      tags:
+      - Competencias
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un competencia según su UUID
+      parameters:
+      - description: UUID del competencia a buscar
+        in: path
+        name: uuid_competencia
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un competencia
+      tags:
+      - Competencias
+    put:
+      consumes:
+      - application/json
+      description: Modifica un competencia con los datos entregados
+      parameters:
+      - description: UUID del competencia a modificar
+        in: path
+        name: uuid_competencia
+        required: true
+        type: string
+      - description: Competencia a modificar
+        in: body
+        name: input_actualiza_competencia
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.PutOneCompetenciaPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.PutOneCompetenciaResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica un competencia
+      tags:
+      - Competencias
+  /cursos:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los cursos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ResponseMessages.ListCursosResponse'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de cursos
+      tags:
+      - Cursos
+    post:
+      consumes:
+      - application/json
+      description: Genera un nuevo curso con los datos entregados
+      parameters:
+      - description: Curso a agregar
+        in: body
+        name: input_curso
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.AddNewCursoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.AddNewCursoResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Agrega un nuevo curso
+      tags:
+      - Cursos
+  /cursos/{uuid_curso}:
+    delete:
+      consumes:
+      - application/json
+      description: Elimina un curso con los datos entregados
+      parameters:
+      - description: UUID del curso a eliminar
+        in: path
+        name: uuid_curso
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.DeleteCursoResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Elimina un curso
+      tags:
+      - Cursos
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un curso según su UUID
+      parameters:
+      - description: UUID del curso a buscar
+        in: path
+        name: uuid_curso
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.GetOneCursoResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un curso
+      tags:
+      - Cursos
+    put:
+      consumes:
+      - application/json
+      description: Modifica un curso con los datos entregados
+      parameters:
+      - description: UUID del curso a modificar
+        in: path
+        name: uuid_curso
+        required: true
+        type: string
+      - description: Curso a modificar
+        in: body
+        name: input_actualiza_curso
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.PutOneCursoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.PutOneCursoResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica un curso
+      tags:
+      - Cursos
   /estudiantes:
     get:
       consumes:
@@ -170,6 +890,8 @@ paths:
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Lista de estudiantes
+      tags:
+      - Estudiantes
     post:
       consumes:
       - application/json
@@ -193,6 +915,8 @@ paths:
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Agrega un nuevo estudiante
+      tags:
+      - Estudiantes
   /estudiantes/{uuid_estudiante}:
     delete:
       consumes:
@@ -216,6 +940,8 @@ paths:
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Elimina un estudiante
+      tags:
+      - Estudiantes
     get:
       consumes:
       - application/json
@@ -238,6 +964,8 @@ paths:
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Obtiene un estudiante
+      tags:
+      - Estudiantes
     put:
       consumes:
       - application/json
@@ -266,4 +994,631 @@ paths:
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Modifica un estudiante
+      tags:
+      - Estudiantes
+  /evaluadors:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los evaluadors
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ResponseMessages.ListEvaluadorsResponse'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de evaluadors
+      tags:
+      - Evaluadors
+    post:
+      consumes:
+      - application/json
+      description: Genera un nuevo evaluador con los datos entregados
+      parameters:
+      - description: Evaluador a agregar
+        in: body
+        name: input_evaluador
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.AddNewEvaluadorPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.AddNewEvaluadorResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Agrega un nuevo evaluador
+      tags:
+      - Evaluadors
+  /evaluadors/{uuid_evaluador}:
+    delete:
+      consumes:
+      - application/json
+      description: Elimina un evaluador con los datos entregados
+      parameters:
+      - description: UUID del evaluador a eliminar
+        in: path
+        name: uuid_evaluador
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.DeleteEvaluadorResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Elimina un evaluador
+      tags:
+      - Evaluadors
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un evaluador según su UUID
+      parameters:
+      - description: UUID del evaluador a buscar
+        in: path
+        name: uuid_evaluador
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un evaluador
+      tags:
+      - Evaluadors
+    put:
+      consumes:
+      - application/json
+      description: Modifica un evaluador con los datos entregados
+      parameters:
+      - description: UUID del evaluador a modificar
+        in: path
+        name: uuid_evaluador
+        required: true
+        type: string
+      - description: Evaluador a modificar
+        in: body
+        name: input_actualiza_evaluador
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.PutOneEvaluadorPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.PutOneEvaluadorResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica un evaluador
+      tags:
+      - Evaluadors
+  /grupos:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los grupos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ResponseMessages.ListGruposResponse'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de grupos
+      tags:
+      - Grupos
+    post:
+      consumes:
+      - application/json
+      description: Genera un nuevo grupo con los datos entregados
+      parameters:
+      - description: Grupo a agregar
+        in: body
+        name: input_grupo
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.AddNewGrupoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.AddNewGrupoResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Agrega un nuevo grupo
+      tags:
+      - Grupos
+  /grupos/{uuid_grupo}:
+    delete:
+      consumes:
+      - application/json
+      description: Elimina un grupo con los datos entregados
+      parameters:
+      - description: UUID del grupo a eliminar
+        in: path
+        name: uuid_grupo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.DeleteGrupoResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Elimina un grupo
+      tags:
+      - Grupos
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un grupo según su UUID
+      parameters:
+      - description: UUID del grupo a buscar
+        in: path
+        name: uuid_grupo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.GetOneGrupoResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un grupo
+      tags:
+      - Grupos
+    put:
+      consumes:
+      - application/json
+      description: Modifica un grupo con los datos entregados
+      parameters:
+      - description: UUID del grupo a modificar
+        in: path
+        name: uuid_grupo
+        required: true
+        type: string
+      - description: Grupo a modificar
+        in: body
+        name: input_actualiza_grupo
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.PutOneGrupoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.PutOneGrupoResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica un grupo
+      tags:
+      - Grupos
+  /periodos:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los periodos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ResponseMessages.ListPeriodosResponse'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de periodos
+      tags:
+      - Periodos
+    post:
+      consumes:
+      - application/json
+      description: Genera un nuevo periodo con los datos entregados
+      parameters:
+      - description: Periodo a agregar
+        in: body
+        name: input_periodo
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.AddNewPeriodoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.AddNewPeriodoResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Agrega un nuevo periodo
+      tags:
+      - Periodos
+  /periodos/{uuid_periodo}:
+    delete:
+      consumes:
+      - application/json
+      description: Elimina un periodo con los datos entregados
+      parameters:
+      - description: UUID del periodo a eliminar
+        in: path
+        name: uuid_periodo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.DeletePeriodoResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Elimina un periodo
+      tags:
+      - Periodos
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un periodo según su UUID
+      parameters:
+      - description: UUID del periodo a buscar
+        in: path
+        name: uuid_periodo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.GetOnePeriodoResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un periodo
+      tags:
+      - Periodos
+    put:
+      consumes:
+      - application/json
+      description: Modifica un periodo con los datos entregados
+      parameters:
+      - description: UUID del periodo a modificar
+        in: path
+        name: uuid_periodo
+        required: true
+        type: string
+      - description: Periodo a modificar
+        in: body
+        name: input_actualiza_periodo
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.PutOnePeriodoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.PutOnePeriodoResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica un periodo
+      tags:
+      - Periodos
+  /puntajes:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los puntajes
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ResponseMessages.ListPuntajesResponse'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de puntajes
+      tags:
+      - Puntajes
+    post:
+      consumes:
+      - application/json
+      description: Genera un nuevo puntaje con los datos entregados
+      parameters:
+      - description: Puntaje a agregar
+        in: body
+        name: input_puntaje
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.AddNewPuntajePayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.AddNewPuntajeResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Agrega un nuevo puntaje
+      tags:
+      - Puntajes
+  /puntajes/{uuid_puntaje}:
+    delete:
+      consumes:
+      - application/json
+      description: Elimina un puntaje con los datos entregados
+      parameters:
+      - description: UUID del puntaje a eliminar
+        in: path
+        name: uuid_puntaje
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.DeletePuntajeResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Elimina un puntaje
+      tags:
+      - Puntajes
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un puntaje según su UUID
+      parameters:
+      - description: UUID del puntaje a buscar
+        in: path
+        name: uuid_puntaje
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.GetOnePuntajeResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un puntaje
+      tags:
+      - Puntajes
+    put:
+      consumes:
+      - application/json
+      description: Modifica un puntaje con los datos entregados
+      parameters:
+      - description: UUID del puntaje a modificar
+        in: path
+        name: uuid_puntaje
+        required: true
+        type: string
+      - description: Puntaje a modificar
+        in: body
+        name: input_actualiza_puntaje
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.PutOnePuntajePayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.PutOnePuntajeResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica un puntaje
+      tags:
+      - Puntajes
+  /rols:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los rols
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ResponseMessages.ListRolsResponse'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de rols
+      tags:
+      - Rols
+    post:
+      consumes:
+      - application/json
+      description: Genera un nuevo rol con los datos entregados
+      parameters:
+      - description: Rol a agregar
+        in: body
+        name: input_rol
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.AddNewRolPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.AddNewRolResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Agrega un nuevo rol
+      tags:
+      - Rols
+  /rols/{uuid_rol}:
+    delete:
+      consumes:
+      - application/json
+      description: Elimina un rol con los datos entregados
+      parameters:
+      - description: UUID del rol a eliminar
+        in: path
+        name: uuid_rol
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.DeleteRolResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Elimina un rol
+      tags:
+      - Rols
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un rol según su UUID
+      parameters:
+      - description: UUID del rol a buscar
+        in: path
+        name: uuid_rol
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un rol
+      tags:
+      - Rols
+    put:
+      consumes:
+      - application/json
+      description: Modifica un rol con los datos entregados
+      parameters:
+      - description: UUID del rol a modificar
+        in: path
+        name: uuid_rol
+        required: true
+        type: string
+      - description: Rol a modificar
+        in: body
+        name: input_actualiza_rol
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.PutOneRolPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseMessages.PutOneRolResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica un rol
+      tags:
+      - Rols
 swagger: "2.0"

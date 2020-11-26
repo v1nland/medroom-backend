@@ -25,6 +25,12 @@ Install dependencies
 $ dep ensure
 ```
 
+Build swagger
+
+```bash
+$ swag init
+```
+
 ## API
 
 #### /estudiantes

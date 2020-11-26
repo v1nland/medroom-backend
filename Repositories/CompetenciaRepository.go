@@ -7,34 +7,34 @@ import (
 	"medroom-backend/Models"
 )
 
-func GetAllGrupos(u *[]Models.Grupo) (err error) {
+func GetAllCompetencias(u *[]Models.Competencia) (err error) {
 	if err = Config.DB.Set("gorm:auto_preload", true).Find(u).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
-func GetOneGrupo(u *Models.Grupo, id string) (err error) {
+func GetOneCompetencia(u *Models.Competencia, id string) (err error) {
 	if err := Config.DB.Set("gorm:auto_preload", true).Where("id = ?", id).First(u).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
-func AddNewGrupo(u *Models.Grupo) (err error) {
+func AddNewCompetencia(u *Models.Competencia) (err error) {
 	if err = Config.DB.Create(u).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
-func PutOneGrupo(u *Models.Grupo, id string) (err error) {
+func PutOneCompetencia(u *Models.Competencia, id string) (err error) {
 	fmt.Println(u)
 	Config.DB.Save(u)
 	return nil
 }
 
-func DeleteGrupo(u *Models.Grupo, id string) (err error) {
+func DeleteCompetencia(u *Models.Competencia, id string) (err error) {
 	Config.DB.Where("id = ?", id).Delete(u)
 	return nil
 }

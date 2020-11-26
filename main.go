@@ -45,8 +45,8 @@ func main() {
 	defer Config.DB.Close()
 
 	if should_automigrate == "1" {
-		// // Inicialización de tablas en DB
-		Config.DB.AutoMigrate(&Models.Rol{}, &Models.Grupo{}, &Models.Estudiante{})
+		// Inicialización de tablas en DB
+		Config.DB.AutoMigrate(&Models.Competencia{}, &Models.Puntaje{}, &Models.Periodo{}, &Models.Rol{}, &Models.Evaluador{}, &Models.Curso{}, &Models.Grupo{}, &Models.Estudiante{})
 
 		// // Las FK de las relaciones N - N con datos adicionales se deben aplicar manualmente de la siguiente forma
 		// // Para relaciones 1 - N y 1 - 1, se deben especificar únicamente en el Model.go
@@ -57,8 +57,8 @@ func main() {
 	r := Routers.SetupRouter()
 
 	// auto swagger configuration
-	url := gin_swagger.URL("http://localhost:8080/swagger/doc.json")
-	r.GET("/swagger/*any", gin_swagger.WrapHandler(swagger_files.Handler, url))
+	url := gin_swagger.URL("http://localhost:8080/docs/v1/doc.json")
+	r.GET("/docs/v1/*any", gin_swagger.WrapHandler(swagger_files.Handler, url))
 
 	r.Run()
 }

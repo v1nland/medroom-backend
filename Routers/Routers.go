@@ -47,6 +47,56 @@ func SetupRouter() *gin.Engine {
 			grupos.PUT(":id", Controllers.PutOneGrupo)
 			grupos.DELETE(":id", Controllers.DeleteGrupo)
 		}
+
+		// segment by business domain
+		evaluadores := v1.Group("/evaluadores")
+		{
+			evaluadores.GET("", Controllers.ListEvaluadors)
+			evaluadores.GET(":id", Controllers.GetOneEvaluador)
+			evaluadores.POST("", Controllers.AddNewEvaluador)
+			evaluadores.PUT(":id", Controllers.PutOneEvaluador)
+			evaluadores.DELETE(":id", Controllers.DeleteEvaluador)
+		}
+
+		// segment by business domain
+		cursos := v1.Group("/cursos")
+		{
+			cursos.GET("", Controllers.ListCursos)
+			cursos.GET(":id", Controllers.GetOneCurso)
+			cursos.POST("", Controllers.AddNewCurso)
+			cursos.PUT(":id", Controllers.PutOneCurso)
+			cursos.DELETE(":id", Controllers.DeleteCurso)
+		}
+
+		// segment by business domain
+		periodos := v1.Group("/periodos")
+		{
+			periodos.GET("", Controllers.ListPeriodos)
+			periodos.GET(":id", Controllers.GetOnePeriodo)
+			periodos.POST("", Controllers.AddNewPeriodo)
+			periodos.PUT(":id", Controllers.PutOnePeriodo)
+			periodos.DELETE(":id", Controllers.DeletePeriodo)
+		}
+
+		// segment by business domain
+		competencias := v1.Group("/competencias")
+		{
+			competencias.GET("", Controllers.ListCompetencias)
+			competencias.GET(":id", Controllers.GetOneCompetencia)
+			competencias.POST("", Controllers.AddNewCompetencia)
+			competencias.PUT(":id", Controllers.PutOneCompetencia)
+			competencias.DELETE(":id", Controllers.DeleteCompetencia)
+		}
+
+		// segment by business domain
+		puntajes := v1.Group("/puntajes")
+		{
+			puntajes.GET("", Controllers.ListPuntajes)
+			puntajes.GET(":id", Controllers.GetOnePuntaje)
+			puntajes.POST("", Controllers.AddNewPuntaje)
+			puntajes.PUT(":id", Controllers.PutOnePuntaje)
+			puntajes.DELETE(":id", Controllers.DeletePuntaje)
+		}
 	}
 
 	return r

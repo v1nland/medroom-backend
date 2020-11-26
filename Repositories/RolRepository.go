@@ -8,14 +8,14 @@ import (
 )
 
 func GetAllRols(u *[]Models.Rol) (err error) {
-	if err = Config.DB.Find(u).Error; err != nil {
+	if err = Config.DB.Set("gorm:auto_preload", true).Find(u).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
 func GetOneRol(u *Models.Rol, id string) (err error) {
-	if err := Config.DB.Where("id = ?", id).First(u).Error; err != nil {
+	if err := Config.DB.Set("gorm:auto_preload", true).Where("id = ?", id).First(u).Error; err != nil {
 		return err
 	}
 	return nil

@@ -7,34 +7,34 @@ import (
 	"medroom-backend/Models"
 )
 
-func GetAllGrupos(u *[]Models.Grupo) (err error) {
+func GetAllPeriodos(u *[]Models.Periodo) (err error) {
 	if err = Config.DB.Set("gorm:auto_preload", true).Find(u).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
-func GetOneGrupo(u *Models.Grupo, id string) (err error) {
+func GetOnePeriodo(u *Models.Periodo, id string) (err error) {
 	if err := Config.DB.Set("gorm:auto_preload", true).Where("id = ?", id).First(u).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
-func AddNewGrupo(u *Models.Grupo) (err error) {
+func AddNewPeriodo(u *Models.Periodo) (err error) {
 	if err = Config.DB.Create(u).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
-func PutOneGrupo(u *Models.Grupo, id string) (err error) {
+func PutOnePeriodo(u *Models.Periodo, id string) (err error) {
 	fmt.Println(u)
 	Config.DB.Save(u)
 	return nil
 }
 
-func DeleteGrupo(u *Models.Grupo, id string) (err error) {
+func DeletePeriodo(u *Models.Periodo, id string) (err error) {
 	Config.DB.Where("id = ?", id).Delete(u)
 	return nil
 }
