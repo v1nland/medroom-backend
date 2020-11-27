@@ -36,7 +36,8 @@ func main() {
 
 	connection_string := os.Getenv("POSTGRESQL_CONNECTION_STRING")
 	should_automigrate := os.Getenv("SHOULD_AUTOMIGRATE")
-	swagger_url := os.Getenv("SWAGGER_URL")
+	swagger_protocol := os.Getenv("SWAGGER_PROTOCOL")
+	swagger_host := os.Getenv("SWAGGER_HOST")
 
 	Config.DB, err = gorm.Open("postgres", connection_string)
 	if err != nil {
@@ -57,8 +58,8 @@ func main() {
 	r := Routers.SetupRouter()
 
 	// auto swagger configuration
-	docs.SwaggerInfo.Host = swagger_url
-	url := gin_swagger.URL(swagger_url + "/docs/v1/doc.json")
+	docs.SwaggerInfo.Host = swagger_host
+	url := gin_swagger.URL(swagger_protocol + "://" + swagger_host + "/docs/v1/doc.json")
 	r.GET("/docs/v1/*any", gin_swagger.WrapHandler(swagger_files.Handler, url))
 
 	r.Run()
