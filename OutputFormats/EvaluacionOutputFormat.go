@@ -5,9 +5,9 @@ import (
 	"medroom-backend/ResponseMessages"
 )
 
-func GetEvaluacionsOutput(u []Models.Evaluacion) (output []ResponseMessages.ListEvaluacionsResponse) {
+func GetEvaluacionesOutput(u []Models.Evaluacion) (output []ResponseMessages.ListEvaluacionesResponse) {
 	for i := 0; i < len(u); i++ {
-		output = append(output, ResponseMessages.ListEvaluacionsResponse{
+		output = append(output, ResponseMessages.ListEvaluacionesResponse{
 			Estudiante_evaluacion:                   GetOneEstudianteOutput(u[i].Estudiante_evaluacion),
 			Evaluador_evaluacion:                    GetOneEvaluadorOutput(u[i].Evaluador_evaluacion),
 			Competencia_evaluacion:                  GetOneCompetenciaOutput(u[i].Competencia_evaluacion),

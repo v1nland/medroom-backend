@@ -26,7 +26,7 @@ import (
 // @Tags Grupos
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} ResponseMessages.ListGruposResponse "OK"
+// @Success 200 {array} SwaggerMessages.ListGruposSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /grupos [get]
 func ListGrupos(c *gin.Context) {
@@ -60,7 +60,7 @@ func ListGrupos(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   uuid_grupo     path    string     true        "UUID del grupo a buscar"
-// @Success 200 {object} ResponseMessages.GetOneGrupoResponse "OK"
+// @Success 200 {object} SwaggerMessages.GetOneGrupoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /grupos/{uuid_grupo} [get]
 func GetOneGrupo(c *gin.Context) {
@@ -97,7 +97,7 @@ func GetOneGrupo(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   input_grupo     body    RequestMessages.AddNewGrupoPayload     true        "Grupo a agregar"
-// @Success 200 {object} ResponseMessages.AddNewGrupoResponse "OK"
+// @Success 200 {object} SwaggerMessages.AddNewGrupoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /grupos [post]
 func AddNewGrupo(c *gin.Context) {
@@ -149,7 +149,7 @@ func AddNewGrupo(c *gin.Context) {
 // @Produce  json
 // @Param   uuid_grupo     path    string     true        "UUID del grupo a modificar"
 // @Param   input_actualiza_grupo     body    RequestMessages.PutOneGrupoPayload     true        "Grupo a modificar"
-// @Success 200 {object} ResponseMessages.PutOneGrupoResponse "OK"
+// @Success 200 {object} SwaggerMessages.PutOneGrupoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /grupos/{uuid_grupo} [put]
 func PutOneGrupo(c *gin.Context) {
@@ -228,7 +228,7 @@ func PutOneGrupo(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   uuid_grupo     path    string     true        "UUID del grupo a eliminar"
-// @Success 200 {object} ResponseMessages.DeleteGrupoResponse "OK"
+// @Success 200 {object} SwaggerMessages.DeleteGrupoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /grupos/{uuid_grupo} [delete]
 func DeleteGrupo(c *gin.Context) {

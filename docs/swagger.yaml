@@ -626,7 +626,7 @@ definitions:
       telefono_fijo_estudiante:
         type: string
     type: object
-  ResponseMessages.ListEvaluacionsResponse:
+  ResponseMessages.ListEvaluacionesResponse:
     properties:
       asunto_principal_consulta_evaluacion:
         type: string
@@ -659,7 +659,7 @@ definitions:
       tiempo_utilizado_evaluacion:
         type: integer
     type: object
-  ResponseMessages.ListEvaluadorsResponse:
+  ResponseMessages.ListEvaluadoresResponse:
     properties:
       apellidos_evaluador:
         type: string
@@ -706,7 +706,7 @@ definitions:
       nivel_logro_puntaje:
         type: string
     type: object
-  ResponseMessages.ListRolsResponse:
+  ResponseMessages.ListRolesResponse:
     properties:
       nombre_rol:
         type: string
@@ -830,7 +830,411 @@ definitions:
       nombre_rol:
         type: string
     type: object
-host: localhost:8080
+  SwaggerMessages.AddNewCompetenciaSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.AddNewCompetenciaResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.AddNewCursoSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.AddNewCursoResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.AddNewEstudianteSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.AddNewEstudianteResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.AddNewEvaluacionSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.AddNewEvaluacionResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.AddNewEvaluadorSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.AddNewEvaluadorResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.AddNewGrupoSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.AddNewGrupoResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.AddNewPeriodoSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.AddNewPeriodoResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.AddNewPuntajeSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.AddNewPuntajeResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.AddNewRolSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.AddNewRolResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.DeleteCompetenciaSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.DeleteCompetenciaResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.DeleteCursoSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.DeleteCursoResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.DeleteEstudianteSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.DeleteEstudianteResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.DeleteEvaluacionSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.DeleteEvaluacionResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.DeleteEvaluadorSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.DeleteEvaluadorResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.DeleteGrupoSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.DeleteGrupoResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.DeletePeriodoSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.DeletePeriodoResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.DeletePuntajeSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.DeletePuntajeResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.DeleteRolSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.DeleteRolResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.GetOneCompetenciaSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.GetOneCursoSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.GetOneCursoResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.GetOneEstudianteSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.GetOneEstudianteResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.GetOneEvaluacionSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.GetOneEvaluacionResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.GetOneEvaluadorSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.GetOneGrupoSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.GetOneGrupoResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.GetOnePeriodoSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.GetOnePeriodoResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.GetOnePuntajeSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.GetOnePuntajeResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.GetOneRolSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.ListCompetenciasSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.ListCompetenciasResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.ListCursosSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.ListCursosResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.ListEstudiantesSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.ListEstudiantesResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.ListEvaluacionesSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.ListEvaluacionesResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.ListEvaluadoresSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.ListEvaluadoresResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.ListGruposSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.ListGruposResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.ListPeriodosSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.ListPeriodosResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.ListPuntajesSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.ListPuntajesResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.ListRolesSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.ListRolesResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.PutOneCompetenciaSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.PutOneCompetenciaResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.PutOneCursoSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.PutOneCursoResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.PutOneEstudianteSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.PutOneEstudianteResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.PutOneEvaluacionSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.PutOneEvaluacionResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.PutOneEvaluadorSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.PutOneEvaluadorResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.PutOneGrupoSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.PutOneGrupoResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.PutOnePeriodoSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.PutOnePeriodoResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.PutOnePuntajeSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.PutOnePuntajeResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
+  SwaggerMessages.PutOneRolSwagger:
+    properties:
+      Data:
+        $ref: '#/definitions/ResponseMessages.PutOneRolResponse'
+      Meta:
+        type: string
+      Status:
+        type: boolean
+    type: object
 info:
   contact:
     email: martin.saavedra@mail.udp.cl
@@ -856,7 +1260,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/ResponseMessages.ListCompetenciasResponse'
+              $ref: '#/definitions/SwaggerMessages.ListCompetenciasSwagger'
             type: array
         "400":
           description: Bad request
@@ -882,7 +1286,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.AddNewCompetenciaResponse'
+            $ref: '#/definitions/SwaggerMessages.AddNewCompetenciaSwagger'
         "400":
           description: Bad request
           schema:
@@ -907,7 +1311,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.DeleteCompetenciaResponse'
+            $ref: '#/definitions/SwaggerMessages.DeleteCompetenciaSwagger'
         "400":
           description: Bad request
           schema:
@@ -931,7 +1335,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
+            $ref: '#/definitions/SwaggerMessages.GetOneCompetenciaSwagger'
         "400":
           description: Bad request
           schema:
@@ -961,7 +1365,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.PutOneCompetenciaResponse'
+            $ref: '#/definitions/SwaggerMessages.PutOneCompetenciaSwagger'
         "400":
           description: Bad request
           schema:
@@ -981,7 +1385,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/ResponseMessages.ListCursosResponse'
+              $ref: '#/definitions/SwaggerMessages.ListCursosSwagger'
             type: array
         "400":
           description: Bad request
@@ -1007,7 +1411,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.AddNewCursoResponse'
+            $ref: '#/definitions/SwaggerMessages.AddNewCursoSwagger'
         "400":
           description: Bad request
           schema:
@@ -1032,7 +1436,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.DeleteCursoResponse'
+            $ref: '#/definitions/SwaggerMessages.DeleteCursoSwagger'
         "400":
           description: Bad request
           schema:
@@ -1056,7 +1460,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.GetOneCursoResponse'
+            $ref: '#/definitions/SwaggerMessages.GetOneCursoSwagger'
         "400":
           description: Bad request
           schema:
@@ -1086,7 +1490,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.PutOneCursoResponse'
+            $ref: '#/definitions/SwaggerMessages.PutOneCursoSwagger'
         "400":
           description: Bad request
           schema:
@@ -1106,7 +1510,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/ResponseMessages.ListEstudiantesResponse'
+              $ref: '#/definitions/SwaggerMessages.ListEstudiantesSwagger'
             type: array
         "400":
           description: Bad request
@@ -1132,7 +1536,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.AddNewEstudianteResponse'
+            $ref: '#/definitions/SwaggerMessages.AddNewEstudianteSwagger'
         "400":
           description: Bad request
           schema:
@@ -1157,7 +1561,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.DeleteEstudianteResponse'
+            $ref: '#/definitions/SwaggerMessages.DeleteEstudianteSwagger'
         "400":
           description: Bad request
           schema:
@@ -1181,7 +1585,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.GetOneEstudianteResponse'
+            $ref: '#/definitions/SwaggerMessages.GetOneEstudianteSwagger'
         "400":
           description: Bad request
           schema:
@@ -1211,7 +1615,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.PutOneEstudianteResponse'
+            $ref: '#/definitions/SwaggerMessages.PutOneEstudianteSwagger'
         "400":
           description: Bad request
           schema:
@@ -1219,11 +1623,11 @@ paths:
       summary: Modifica un estudiante
       tags:
       - Estudiantes
-  /evaluacions:
+  /evaluaciones:
     get:
       consumes:
       - application/json
-      description: Lista todos los evaluacions
+      description: Lista todos los evaluaciones
       produces:
       - application/json
       responses:
@@ -1231,15 +1635,15 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/ResponseMessages.ListEvaluacionsResponse'
+              $ref: '#/definitions/SwaggerMessages.ListEvaluacionesSwagger'
             type: array
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Lista de evaluacions
+      summary: Lista de evaluaciones
       tags:
-      - Evaluacions
+      - Evaluaciones
     post:
       consumes:
       - application/json
@@ -1257,15 +1661,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.AddNewEvaluacionResponse'
+            $ref: '#/definitions/SwaggerMessages.AddNewEvaluacionSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Agrega un nuevo evaluacion
       tags:
-      - Evaluacions
-  /evaluacions/{uuid_evaluacion}:
+      - Evaluaciones
+  /evaluaciones/{uuid_evaluacion}:
     delete:
       consumes:
       - application/json
@@ -1282,14 +1686,14 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.DeleteEvaluacionResponse'
+            $ref: '#/definitions/SwaggerMessages.DeleteEvaluacionSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Elimina un evaluacion
       tags:
-      - Evaluacions
+      - Evaluaciones
     get:
       consumes:
       - application/json
@@ -1306,14 +1710,14 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.GetOneEvaluacionResponse'
+            $ref: '#/definitions/SwaggerMessages.GetOneEvaluacionSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Obtiene un evaluacion
       tags:
-      - Evaluacions
+      - Evaluaciones
     put:
       consumes:
       - application/json
@@ -1336,19 +1740,19 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.PutOneEvaluacionResponse'
+            $ref: '#/definitions/SwaggerMessages.PutOneEvaluacionSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Modifica un evaluacion
       tags:
-      - Evaluacions
-  /evaluadors:
+      - Evaluaciones
+  /evaluadores:
     get:
       consumes:
       - application/json
-      description: Lista todos los evaluadors
+      description: Lista todos los evaluadores
       produces:
       - application/json
       responses:
@@ -1356,15 +1760,15 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/ResponseMessages.ListEvaluadorsResponse'
+              $ref: '#/definitions/SwaggerMessages.ListEvaluadoresSwagger'
             type: array
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Lista de evaluadors
+      summary: Lista de evaluadores
       tags:
-      - Evaluadors
+      - Evaluadores
     post:
       consumes:
       - application/json
@@ -1382,15 +1786,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.AddNewEvaluadorResponse'
+            $ref: '#/definitions/SwaggerMessages.AddNewEvaluadorSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Agrega un nuevo evaluador
       tags:
-      - Evaluadors
-  /evaluadors/{uuid_evaluador}:
+      - Evaluadores
+  /evaluadores/{uuid_evaluador}:
     delete:
       consumes:
       - application/json
@@ -1407,14 +1811,14 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.DeleteEvaluadorResponse'
+            $ref: '#/definitions/SwaggerMessages.DeleteEvaluadorSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Elimina un evaluador
       tags:
-      - Evaluadors
+      - Evaluadores
     get:
       consumes:
       - application/json
@@ -1431,14 +1835,14 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+            $ref: '#/definitions/SwaggerMessages.GetOneEvaluadorSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Obtiene un evaluador
       tags:
-      - Evaluadors
+      - Evaluadores
     put:
       consumes:
       - application/json
@@ -1461,14 +1865,14 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.PutOneEvaluadorResponse'
+            $ref: '#/definitions/SwaggerMessages.PutOneEvaluadorSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Modifica un evaluador
       tags:
-      - Evaluadors
+      - Evaluadores
   /grupos:
     get:
       consumes:
@@ -1481,7 +1885,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/ResponseMessages.ListGruposResponse'
+              $ref: '#/definitions/SwaggerMessages.ListGruposSwagger'
             type: array
         "400":
           description: Bad request
@@ -1507,7 +1911,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.AddNewGrupoResponse'
+            $ref: '#/definitions/SwaggerMessages.AddNewGrupoSwagger'
         "400":
           description: Bad request
           schema:
@@ -1532,7 +1936,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.DeleteGrupoResponse'
+            $ref: '#/definitions/SwaggerMessages.DeleteGrupoSwagger'
         "400":
           description: Bad request
           schema:
@@ -1556,7 +1960,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.GetOneGrupoResponse'
+            $ref: '#/definitions/SwaggerMessages.GetOneGrupoSwagger'
         "400":
           description: Bad request
           schema:
@@ -1586,7 +1990,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.PutOneGrupoResponse'
+            $ref: '#/definitions/SwaggerMessages.PutOneGrupoSwagger'
         "400":
           description: Bad request
           schema:
@@ -1606,7 +2010,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/ResponseMessages.ListPeriodosResponse'
+              $ref: '#/definitions/SwaggerMessages.ListPeriodosSwagger'
             type: array
         "400":
           description: Bad request
@@ -1632,7 +2036,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.AddNewPeriodoResponse'
+            $ref: '#/definitions/SwaggerMessages.AddNewPeriodoSwagger'
         "400":
           description: Bad request
           schema:
@@ -1657,7 +2061,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.DeletePeriodoResponse'
+            $ref: '#/definitions/SwaggerMessages.DeletePeriodoSwagger'
         "400":
           description: Bad request
           schema:
@@ -1681,7 +2085,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.GetOnePeriodoResponse'
+            $ref: '#/definitions/SwaggerMessages.GetOnePeriodoSwagger'
         "400":
           description: Bad request
           schema:
@@ -1711,7 +2115,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.PutOnePeriodoResponse'
+            $ref: '#/definitions/SwaggerMessages.PutOnePeriodoSwagger'
         "400":
           description: Bad request
           schema:
@@ -1731,7 +2135,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/ResponseMessages.ListPuntajesResponse'
+              $ref: '#/definitions/SwaggerMessages.ListPuntajesSwagger'
             type: array
         "400":
           description: Bad request
@@ -1757,7 +2161,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.AddNewPuntajeResponse'
+            $ref: '#/definitions/SwaggerMessages.AddNewPuntajeSwagger'
         "400":
           description: Bad request
           schema:
@@ -1782,7 +2186,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.DeletePuntajeResponse'
+            $ref: '#/definitions/SwaggerMessages.DeletePuntajeSwagger'
         "400":
           description: Bad request
           schema:
@@ -1806,7 +2210,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.GetOnePuntajeResponse'
+            $ref: '#/definitions/SwaggerMessages.GetOnePuntajeSwagger'
         "400":
           description: Bad request
           schema:
@@ -1836,7 +2240,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.PutOnePuntajeResponse'
+            $ref: '#/definitions/SwaggerMessages.PutOnePuntajeSwagger'
         "400":
           description: Bad request
           schema:
@@ -1844,11 +2248,11 @@ paths:
       summary: Modifica un puntaje
       tags:
       - Puntajes
-  /rols:
+  /roles:
     get:
       consumes:
       - application/json
-      description: Lista todos los rols
+      description: Lista todos los roles
       produces:
       - application/json
       responses:
@@ -1856,15 +2260,15 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/ResponseMessages.ListRolsResponse'
+              $ref: '#/definitions/SwaggerMessages.ListRolesSwagger'
             type: array
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Lista de rols
+      summary: Lista de roles
       tags:
-      - Rols
+      - Roles
     post:
       consumes:
       - application/json
@@ -1882,15 +2286,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.AddNewRolResponse'
+            $ref: '#/definitions/SwaggerMessages.AddNewRolSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Agrega un nuevo rol
       tags:
-      - Rols
-  /rols/{uuid_rol}:
+      - Roles
+  /roles/{uuid_rol}:
     delete:
       consumes:
       - application/json
@@ -1907,14 +2311,14 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.DeleteRolResponse'
+            $ref: '#/definitions/SwaggerMessages.DeleteRolSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Elimina un rol
       tags:
-      - Rols
+      - Roles
     get:
       consumes:
       - application/json
@@ -1931,14 +2335,14 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+            $ref: '#/definitions/SwaggerMessages.GetOneRolSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Obtiene un rol
       tags:
-      - Rols
+      - Roles
     put:
       consumes:
       - application/json
@@ -1961,12 +2365,12 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.PutOneRolResponse'
+            $ref: '#/definitions/SwaggerMessages.PutOneRolSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Modifica un rol
       tags:
-      - Rols
+      - Roles
 swagger: "2.0"

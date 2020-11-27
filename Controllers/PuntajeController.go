@@ -26,7 +26,7 @@ import (
 // @Tags Puntajes
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} ResponseMessages.ListPuntajesResponse "OK"
+// @Success 200 {array} SwaggerMessages.ListPuntajesSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /puntajes [get]
 func ListPuntajes(c *gin.Context) {
@@ -60,7 +60,7 @@ func ListPuntajes(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   uuid_puntaje     path    string     true        "UUID del puntaje a buscar"
-// @Success 200 {object} ResponseMessages.GetOnePuntajeResponse "OK"
+// @Success 200 {object} SwaggerMessages.GetOnePuntajeSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /puntajes/{uuid_puntaje} [get]
 func GetOnePuntaje(c *gin.Context) {
@@ -97,7 +97,7 @@ func GetOnePuntaje(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   input_puntaje     body    RequestMessages.AddNewPuntajePayload     true        "Puntaje a agregar"
-// @Success 200 {object} ResponseMessages.AddNewPuntajeResponse "OK"
+// @Success 200 {object} SwaggerMessages.AddNewPuntajeSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /puntajes [post]
 func AddNewPuntaje(c *gin.Context) {
@@ -149,7 +149,7 @@ func AddNewPuntaje(c *gin.Context) {
 // @Produce  json
 // @Param   uuid_puntaje     path    string     true        "UUID del puntaje a modificar"
 // @Param   input_actualiza_puntaje     body    RequestMessages.PutOnePuntajePayload     true        "Puntaje a modificar"
-// @Success 200 {object} ResponseMessages.PutOnePuntajeResponse "OK"
+// @Success 200 {object} SwaggerMessages.PutOnePuntajeSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /puntajes/{uuid_puntaje} [put]
 func PutOnePuntaje(c *gin.Context) {
@@ -228,7 +228,7 @@ func PutOnePuntaje(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   uuid_puntaje     path    string     true        "UUID del puntaje a eliminar"
-// @Success 200 {object} ResponseMessages.DeletePuntajeResponse "OK"
+// @Success 200 {object} SwaggerMessages.DeletePuntajeSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /puntajes/{uuid_puntaje} [delete]
 func DeletePuntaje(c *gin.Context) {

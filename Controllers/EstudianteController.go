@@ -26,7 +26,7 @@ import (
 // @Tags Estudiantes
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} ResponseMessages.ListEstudiantesResponse "OK"
+// @Success 200 {array} SwaggerMessages.ListEstudiantesSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /estudiantes [get]
 func ListEstudiantes(c *gin.Context) {
@@ -60,7 +60,7 @@ func ListEstudiantes(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   uuid_estudiante     path    string     true        "UUID del estudiante a buscar"
-// @Success 200 {object} ResponseMessages.GetOneEstudianteResponse "OK"
+// @Success 200 {object} SwaggerMessages.GetOneEstudianteSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /estudiantes/{uuid_estudiante} [get]
 func GetOneEstudiante(c *gin.Context) {
@@ -97,7 +97,7 @@ func GetOneEstudiante(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   input_estudiante     body    RequestMessages.AddNewEstudiantePayload     true        "Estudiante a agregar"
-// @Success 200 {object} ResponseMessages.AddNewEstudianteResponse "OK"
+// @Success 200 {object} SwaggerMessages.AddNewEstudianteSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /estudiantes [post]
 func AddNewEstudiante(c *gin.Context) {
@@ -154,7 +154,7 @@ func AddNewEstudiante(c *gin.Context) {
 // @Produce  json
 // @Param   uuid_estudiante     path    string     true        "UUID del estudiante a modificar"
 // @Param   input_actualiza_estudiante     body    RequestMessages.PutOneEstudiantePayload     true        "Estudiante a modificar"
-// @Success 200 {object} ResponseMessages.PutOneEstudianteResponse "OK"
+// @Success 200 {object} SwaggerMessages.PutOneEstudianteSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /estudiantes/{uuid_estudiante} [put]
 func PutOneEstudiante(c *gin.Context) {
@@ -238,7 +238,7 @@ func PutOneEstudiante(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   uuid_estudiante     path    string     true        "UUID del estudiante a eliminar"
-// @Success 200 {object} ResponseMessages.DeleteEstudianteResponse "OK"
+// @Success 200 {object} SwaggerMessages.DeleteEstudianteSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /estudiantes/{uuid_estudiante} [delete]
 func DeleteEstudiante(c *gin.Context) {

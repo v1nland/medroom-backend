@@ -9,7 +9,7 @@ import (
 	"medroom-backend/Config"
 	"medroom-backend/Models"
 	"medroom-backend/Routers"
-	_ "medroom-backend/docs"
+	"medroom-backend/docs"
 	"os"
 )
 
@@ -27,7 +27,6 @@ var err error
 // @license.name Apache 2.0
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 
-// @host localhost:8080
 // @BasePath /api/v1
 func main() {
 	err := godotenv.Load()
@@ -58,6 +57,7 @@ func main() {
 	r := Routers.SetupRouter()
 
 	// auto swagger configuration
+	docs.SwaggerInfo.Host = swagger_url
 	url := gin_swagger.URL(swagger_url + "/docs/v1/doc.json")
 	r.GET("/docs/v1/*any", gin_swagger.WrapHandler(swagger_files.Handler, url))
 

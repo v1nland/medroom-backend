@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func GetEvaluadorsInput(u *RequestMessages.ListEvaluadorsPayload) {
+func GetEvaluadoresInput(u *RequestMessages.ListEvaluadoresPayload) {
 
 }
 

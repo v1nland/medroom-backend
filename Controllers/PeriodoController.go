@@ -26,7 +26,7 @@ import (
 // @Tags Periodos
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} ResponseMessages.ListPeriodosResponse "OK"
+// @Success 200 {array} SwaggerMessages.ListPeriodosSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /periodos [get]
 func ListPeriodos(c *gin.Context) {
@@ -60,7 +60,7 @@ func ListPeriodos(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   uuid_periodo     path    string     true        "UUID del periodo a buscar"
-// @Success 200 {object} ResponseMessages.GetOnePeriodoResponse "OK"
+// @Success 200 {object} SwaggerMessages.GetOnePeriodoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /periodos/{uuid_periodo} [get]
 func GetOnePeriodo(c *gin.Context) {
@@ -97,7 +97,7 @@ func GetOnePeriodo(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   input_periodo     body    RequestMessages.AddNewPeriodoPayload     true        "Periodo a agregar"
-// @Success 200 {object} ResponseMessages.AddNewPeriodoResponse "OK"
+// @Success 200 {object} SwaggerMessages.AddNewPeriodoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /periodos [post]
 func AddNewPeriodo(c *gin.Context) {
@@ -146,7 +146,7 @@ func AddNewPeriodo(c *gin.Context) {
 // @Produce  json
 // @Param   uuid_periodo     path    string     true        "UUID del periodo a modificar"
 // @Param   input_actualiza_periodo     body    RequestMessages.PutOnePeriodoPayload     true        "Periodo a modificar"
-// @Success 200 {object} ResponseMessages.PutOnePeriodoResponse "OK"
+// @Success 200 {object} SwaggerMessages.PutOnePeriodoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /periodos/{uuid_periodo} [put]
 func PutOnePeriodo(c *gin.Context) {
@@ -215,7 +215,7 @@ func PutOnePeriodo(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   uuid_periodo     path    string     true        "UUID del periodo a eliminar"
-// @Success 200 {object} ResponseMessages.DeletePeriodoResponse "OK"
+// @Success 200 {object} SwaggerMessages.DeletePeriodoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /periodos/{uuid_periodo} [delete]
 func DeletePeriodo(c *gin.Context) {

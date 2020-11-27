@@ -7,7 +7,7 @@ import (
 	"medroom-backend/Models"
 )
 
-func GetAllEvaluacions(u *[]Models.Evaluacion) (err error) {
+func GetAllEvaluaciones(u *[]Models.Evaluacion) (err error) {
 	if err = Config.DB.Debug().Set("gorm:auto_preload", true).Find(u).Error; err != nil {
 		return err
 	}

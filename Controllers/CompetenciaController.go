@@ -26,7 +26,7 @@ import (
 // @Tags Competencias
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} ResponseMessages.ListCompetenciasResponse "OK"
+// @Success 200 {array} SwaggerMessages.ListCompetenciasSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /competencias [get]
 func ListCompetencias(c *gin.Context) {
@@ -60,7 +60,7 @@ func ListCompetencias(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   uuid_competencia     path    string     true        "UUID del competencia a buscar"
-// @Success 200 {object} ResponseMessages.GetOneCompetenciaResponse "OK"
+// @Success 200 {object} SwaggerMessages.GetOneCompetenciaSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /competencias/{uuid_competencia} [get]
 func GetOneCompetencia(c *gin.Context) {
@@ -97,7 +97,7 @@ func GetOneCompetencia(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   input_competencia     body    RequestMessages.AddNewCompetenciaPayload     true        "Competencia a agregar"
-// @Success 200 {object} ResponseMessages.AddNewCompetenciaResponse "OK"
+// @Success 200 {object} SwaggerMessages.AddNewCompetenciaSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /competencias [post]
 func AddNewCompetencia(c *gin.Context) {
@@ -146,7 +146,7 @@ func AddNewCompetencia(c *gin.Context) {
 // @Produce  json
 // @Param   uuid_competencia     path    string     true        "UUID del competencia a modificar"
 // @Param   input_actualiza_competencia     body    RequestMessages.PutOneCompetenciaPayload     true        "Competencia a modificar"
-// @Success 200 {object} ResponseMessages.PutOneCompetenciaResponse "OK"
+// @Success 200 {object} SwaggerMessages.PutOneCompetenciaSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /competencias/{uuid_competencia} [put]
 func PutOneCompetencia(c *gin.Context) {
@@ -208,7 +208,7 @@ func PutOneCompetencia(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   uuid_competencia     path    string     true        "UUID del competencia a eliminar"
-// @Success 200 {object} ResponseMessages.DeleteCompetenciaResponse "OK"
+// @Success 200 {object} SwaggerMessages.DeleteCompetenciaSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /competencias/{uuid_competencia} [delete]
 func DeleteCompetencia(c *gin.Context) {

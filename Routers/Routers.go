@@ -31,7 +31,7 @@ func SetupRouter() *gin.Engine {
 		// segment by business domain
 		roles := v1.Group("/roles")
 		{
-			roles.GET("", Controllers.ListRols)
+			roles.GET("", Controllers.ListRoles)
 			roles.GET(":id", Controllers.GetOneRol)
 			roles.POST("", Controllers.AddNewRol)
 			roles.PUT(":id", Controllers.PutOneRol)
@@ -51,7 +51,7 @@ func SetupRouter() *gin.Engine {
 		// segment by business domain
 		evaluadores := v1.Group("/evaluadores")
 		{
-			evaluadores.GET("", Controllers.ListEvaluadors)
+			evaluadores.GET("", Controllers.ListEvaluadores)
 			evaluadores.GET(":id", Controllers.GetOneEvaluador)
 			evaluadores.POST("", Controllers.AddNewEvaluador)
 			evaluadores.PUT(":id", Controllers.PutOneEvaluador)
@@ -101,7 +101,7 @@ func SetupRouter() *gin.Engine {
 		// segment by business domain
 		evaluaciones := v1.Group("/evaluaciones")
 		{
-			evaluaciones.GET("", Controllers.ListEvaluacions)
+			evaluaciones.GET("", Controllers.ListEvaluaciones)
 			evaluaciones.GET(":id", Controllers.GetOneEvaluacion)
 			evaluaciones.POST("", Controllers.AddNewEvaluacion)
 			evaluaciones.PUT(":id", Controllers.PutOneEvaluacion)

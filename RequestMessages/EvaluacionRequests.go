@@ -1,6 +1,6 @@
 package RequestMessages
 
-type ListEvaluacionsPayload struct {
+type ListEvaluacionesPayload struct {
 }
 
 type GetOneEvaluacionPayload struct {

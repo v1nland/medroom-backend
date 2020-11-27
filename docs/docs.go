@@ -52,7 +52,7 @@ var doc = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/ResponseMessages.ListCompetenciasResponse"
+                                "$ref": "#/definitions/SwaggerMessages.ListCompetenciasSwagger"
                             }
                         }
                     },
@@ -91,7 +91,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.AddNewCompetenciaResponse"
+                            "$ref": "#/definitions/SwaggerMessages.AddNewCompetenciaSwagger"
                         }
                     },
                     "400": {
@@ -129,7 +129,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.GetOneCompetenciaResponse"
+                            "$ref": "#/definitions/SwaggerMessages.GetOneCompetenciaSwagger"
                         }
                     },
                     "400": {
@@ -174,7 +174,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.PutOneCompetenciaResponse"
+                            "$ref": "#/definitions/SwaggerMessages.PutOneCompetenciaSwagger"
                         }
                     },
                     "400": {
@@ -210,7 +210,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.DeleteCompetenciaResponse"
+                            "$ref": "#/definitions/SwaggerMessages.DeleteCompetenciaSwagger"
                         }
                     },
                     "400": {
@@ -241,7 +241,7 @@ var doc = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/ResponseMessages.ListCursosResponse"
+                                "$ref": "#/definitions/SwaggerMessages.ListCursosSwagger"
                             }
                         }
                     },
@@ -280,7 +280,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.AddNewCursoResponse"
+                            "$ref": "#/definitions/SwaggerMessages.AddNewCursoSwagger"
                         }
                     },
                     "400": {
@@ -318,7 +318,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.GetOneCursoResponse"
+                            "$ref": "#/definitions/SwaggerMessages.GetOneCursoSwagger"
                         }
                     },
                     "400": {
@@ -363,7 +363,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.PutOneCursoResponse"
+                            "$ref": "#/definitions/SwaggerMessages.PutOneCursoSwagger"
                         }
                     },
                     "400": {
@@ -399,7 +399,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.DeleteCursoResponse"
+                            "$ref": "#/definitions/SwaggerMessages.DeleteCursoSwagger"
                         }
                     },
                     "400": {
@@ -430,7 +430,7 @@ var doc = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/ResponseMessages.ListEstudiantesResponse"
+                                "$ref": "#/definitions/SwaggerMessages.ListEstudiantesSwagger"
                             }
                         }
                     },
@@ -469,7 +469,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.AddNewEstudianteResponse"
+                            "$ref": "#/definitions/SwaggerMessages.AddNewEstudianteSwagger"
                         }
                     },
                     "400": {
@@ -507,7 +507,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.GetOneEstudianteResponse"
+                            "$ref": "#/definitions/SwaggerMessages.GetOneEstudianteSwagger"
                         }
                     },
                     "400": {
@@ -552,7 +552,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.PutOneEstudianteResponse"
+                            "$ref": "#/definitions/SwaggerMessages.PutOneEstudianteSwagger"
                         }
                     },
                     "400": {
@@ -588,7 +588,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.DeleteEstudianteResponse"
+                            "$ref": "#/definitions/SwaggerMessages.DeleteEstudianteSwagger"
                         }
                     },
                     "400": {
@@ -600,9 +600,9 @@ var doc = `{
                 }
             }
         },
-        "/evaluacions": {
+        "/evaluaciones": {
             "get": {
-                "description": "Lista todos los evaluacions",
+                "description": "Lista todos los evaluaciones",
                 "consumes": [
                     "application/json"
                 ],
@@ -610,16 +610,16 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Evaluacions"
+                    "Evaluaciones"
                 ],
-                "summary": "Lista de evaluacions",
+                "summary": "Lista de evaluaciones",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/ResponseMessages.ListEvaluacionsResponse"
+                                "$ref": "#/definitions/SwaggerMessages.ListEvaluacionesSwagger"
                             }
                         }
                     },
@@ -640,7 +640,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Evaluacions"
+                    "Evaluaciones"
                 ],
                 "summary": "Agrega un nuevo evaluacion",
                 "parameters": [
@@ -658,7 +658,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.AddNewEvaluacionResponse"
+                            "$ref": "#/definitions/SwaggerMessages.AddNewEvaluacionSwagger"
                         }
                     },
                     "400": {
@@ -670,7 +670,7 @@ var doc = `{
                 }
             }
         },
-        "/evaluacions/{uuid_evaluacion}": {
+        "/evaluaciones/{uuid_evaluacion}": {
             "get": {
                 "description": "Obtiene un evaluacion según su UUID",
                 "consumes": [
@@ -680,7 +680,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Evaluacions"
+                    "Evaluaciones"
                 ],
                 "summary": "Obtiene un evaluacion",
                 "parameters": [
@@ -696,7 +696,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.GetOneEvaluacionResponse"
+                            "$ref": "#/definitions/SwaggerMessages.GetOneEvaluacionSwagger"
                         }
                     },
                     "400": {
@@ -716,7 +716,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Evaluacions"
+                    "Evaluaciones"
                 ],
                 "summary": "Modifica un evaluacion",
                 "parameters": [
@@ -741,7 +741,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.PutOneEvaluacionResponse"
+                            "$ref": "#/definitions/SwaggerMessages.PutOneEvaluacionSwagger"
                         }
                     },
                     "400": {
@@ -761,7 +761,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Evaluacions"
+                    "Evaluaciones"
                 ],
                 "summary": "Elimina un evaluacion",
                 "parameters": [
@@ -777,7 +777,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.DeleteEvaluacionResponse"
+                            "$ref": "#/definitions/SwaggerMessages.DeleteEvaluacionSwagger"
                         }
                     },
                     "400": {
@@ -789,9 +789,9 @@ var doc = `{
                 }
             }
         },
-        "/evaluadors": {
+        "/evaluadores": {
             "get": {
-                "description": "Lista todos los evaluadors",
+                "description": "Lista todos los evaluadores",
                 "consumes": [
                     "application/json"
                 ],
@@ -799,16 +799,16 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Evaluadors"
+                    "Evaluadores"
                 ],
-                "summary": "Lista de evaluadors",
+                "summary": "Lista de evaluadores",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/ResponseMessages.ListEvaluadorsResponse"
+                                "$ref": "#/definitions/SwaggerMessages.ListEvaluadoresSwagger"
                             }
                         }
                     },
@@ -829,7 +829,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Evaluadors"
+                    "Evaluadores"
                 ],
                 "summary": "Agrega un nuevo evaluador",
                 "parameters": [
@@ -847,7 +847,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.AddNewEvaluadorResponse"
+                            "$ref": "#/definitions/SwaggerMessages.AddNewEvaluadorSwagger"
                         }
                     },
                     "400": {
@@ -859,7 +859,7 @@ var doc = `{
                 }
             }
         },
-        "/evaluadors/{uuid_evaluador}": {
+        "/evaluadores/{uuid_evaluador}": {
             "get": {
                 "description": "Obtiene un evaluador según su UUID",
                 "consumes": [
@@ -869,7 +869,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Evaluadors"
+                    "Evaluadores"
                 ],
                 "summary": "Obtiene un evaluador",
                 "parameters": [
@@ -885,7 +885,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
+                            "$ref": "#/definitions/SwaggerMessages.GetOneEvaluadorSwagger"
                         }
                     },
                     "400": {
@@ -905,7 +905,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Evaluadors"
+                    "Evaluadores"
                 ],
                 "summary": "Modifica un evaluador",
                 "parameters": [
@@ -930,7 +930,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.PutOneEvaluadorResponse"
+                            "$ref": "#/definitions/SwaggerMessages.PutOneEvaluadorSwagger"
                         }
                     },
                     "400": {
@@ -950,7 +950,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Evaluadors"
+                    "Evaluadores"
                 ],
                 "summary": "Elimina un evaluador",
                 "parameters": [
@@ -966,7 +966,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.DeleteEvaluadorResponse"
+                            "$ref": "#/definitions/SwaggerMessages.DeleteEvaluadorSwagger"
                         }
                     },
                     "400": {
@@ -997,7 +997,7 @@ var doc = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/ResponseMessages.ListGruposResponse"
+                                "$ref": "#/definitions/SwaggerMessages.ListGruposSwagger"
                             }
                         }
                     },
@@ -1036,7 +1036,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.AddNewGrupoResponse"
+                            "$ref": "#/definitions/SwaggerMessages.AddNewGrupoSwagger"
                         }
                     },
                     "400": {
@@ -1074,7 +1074,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.GetOneGrupoResponse"
+                            "$ref": "#/definitions/SwaggerMessages.GetOneGrupoSwagger"
                         }
                     },
                     "400": {
@@ -1119,7 +1119,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.PutOneGrupoResponse"
+                            "$ref": "#/definitions/SwaggerMessages.PutOneGrupoSwagger"
                         }
                     },
                     "400": {
@@ -1155,7 +1155,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.DeleteGrupoResponse"
+                            "$ref": "#/definitions/SwaggerMessages.DeleteGrupoSwagger"
                         }
                     },
                     "400": {
@@ -1186,7 +1186,7 @@ var doc = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/ResponseMessages.ListPeriodosResponse"
+                                "$ref": "#/definitions/SwaggerMessages.ListPeriodosSwagger"
                             }
                         }
                     },
@@ -1225,7 +1225,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.AddNewPeriodoResponse"
+                            "$ref": "#/definitions/SwaggerMessages.AddNewPeriodoSwagger"
                         }
                     },
                     "400": {
@@ -1263,7 +1263,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.GetOnePeriodoResponse"
+                            "$ref": "#/definitions/SwaggerMessages.GetOnePeriodoSwagger"
                         }
                     },
                     "400": {
@@ -1308,7 +1308,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.PutOnePeriodoResponse"
+                            "$ref": "#/definitions/SwaggerMessages.PutOnePeriodoSwagger"
                         }
                     },
                     "400": {
@@ -1344,7 +1344,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.DeletePeriodoResponse"
+                            "$ref": "#/definitions/SwaggerMessages.DeletePeriodoSwagger"
                         }
                     },
                     "400": {
@@ -1375,7 +1375,7 @@ var doc = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/ResponseMessages.ListPuntajesResponse"
+                                "$ref": "#/definitions/SwaggerMessages.ListPuntajesSwagger"
                             }
                         }
                     },
@@ -1414,7 +1414,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.AddNewPuntajeResponse"
+                            "$ref": "#/definitions/SwaggerMessages.AddNewPuntajeSwagger"
                         }
                     },
                     "400": {
@@ -1452,7 +1452,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.GetOnePuntajeResponse"
+                            "$ref": "#/definitions/SwaggerMessages.GetOnePuntajeSwagger"
                         }
                     },
                     "400": {
@@ -1497,7 +1497,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.PutOnePuntajeResponse"
+                            "$ref": "#/definitions/SwaggerMessages.PutOnePuntajeSwagger"
                         }
                     },
                     "400": {
@@ -1533,7 +1533,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.DeletePuntajeResponse"
+                            "$ref": "#/definitions/SwaggerMessages.DeletePuntajeSwagger"
                         }
                     },
                     "400": {
@@ -1545,9 +1545,9 @@ var doc = `{
                 }
             }
         },
-        "/rols": {
+        "/roles": {
             "get": {
-                "description": "Lista todos los rols",
+                "description": "Lista todos los roles",
                 "consumes": [
                     "application/json"
                 ],
@@ -1555,16 +1555,16 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Rols"
+                    "Roles"
                 ],
-                "summary": "Lista de rols",
+                "summary": "Lista de roles",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/ResponseMessages.ListRolsResponse"
+                                "$ref": "#/definitions/SwaggerMessages.ListRolesSwagger"
                             }
                         }
                     },
@@ -1585,7 +1585,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Rols"
+                    "Roles"
                 ],
                 "summary": "Agrega un nuevo rol",
                 "parameters": [
@@ -1603,7 +1603,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.AddNewRolResponse"
+                            "$ref": "#/definitions/SwaggerMessages.AddNewRolSwagger"
                         }
                     },
                     "400": {
@@ -1615,7 +1615,7 @@ var doc = `{
                 }
             }
         },
-        "/rols/{uuid_rol}": {
+        "/roles/{uuid_rol}": {
             "get": {
                 "description": "Obtiene un rol según su UUID",
                 "consumes": [
@@ -1625,7 +1625,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Rols"
+                    "Roles"
                 ],
                 "summary": "Obtiene un rol",
                 "parameters": [
@@ -1641,7 +1641,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                            "$ref": "#/definitions/SwaggerMessages.GetOneRolSwagger"
                         }
                     },
                     "400": {
@@ -1661,7 +1661,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Rols"
+                    "Roles"
                 ],
                 "summary": "Modifica un rol",
                 "parameters": [
@@ -1686,7 +1686,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.PutOneRolResponse"
+                            "$ref": "#/definitions/SwaggerMessages.PutOneRolSwagger"
                         }
                     },
                     "400": {
@@ -1706,7 +1706,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Rols"
+                    "Roles"
                 ],
                 "summary": "Elimina un rol",
                 "parameters": [
@@ -1722,7 +1722,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/ResponseMessages.DeleteRolResponse"
+                            "$ref": "#/definitions/SwaggerMessages.DeleteRolSwagger"
                         }
                     },
                     "400": {
@@ -2699,7 +2699,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.ListEvaluacionsResponse": {
+        "ResponseMessages.ListEvaluacionesResponse": {
             "type": "object",
             "properties": {
                 "asunto_principal_consulta_evaluacion": {
@@ -2749,7 +2749,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.ListEvaluadorsResponse": {
+        "ResponseMessages.ListEvaluadoresResponse": {
             "type": "object",
             "properties": {
                 "apellidos_evaluador": {
@@ -2821,7 +2821,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.ListRolsResponse": {
+        "ResponseMessages.ListRolesResponse": {
             "type": "object",
             "properties": {
                 "nombre_rol": {
@@ -3011,6 +3011,636 @@ var doc = `{
                     "type": "string"
                 }
             }
+        },
+        "SwaggerMessages.AddNewCompetenciaSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.AddNewCompetenciaResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.AddNewCursoSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.AddNewCursoResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.AddNewEstudianteSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.AddNewEstudianteResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.AddNewEvaluacionSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.AddNewEvaluacionResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.AddNewEvaluadorSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.AddNewEvaluadorResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.AddNewGrupoSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.AddNewGrupoResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.AddNewPeriodoSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.AddNewPeriodoResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.AddNewPuntajeSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.AddNewPuntajeResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.AddNewRolSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.AddNewRolResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.DeleteCompetenciaSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.DeleteCompetenciaResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.DeleteCursoSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.DeleteCursoResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.DeleteEstudianteSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.DeleteEstudianteResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.DeleteEvaluacionSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.DeleteEvaluacionResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.DeleteEvaluadorSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.DeleteEvaluadorResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.DeleteGrupoSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.DeleteGrupoResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.DeletePeriodoSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.DeletePeriodoResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.DeletePuntajeSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.DeletePuntajeResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.DeleteRolSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.DeleteRolResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.GetOneCompetenciaSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneCompetenciaResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.GetOneCursoSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneCursoResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.GetOneEstudianteSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneEstudianteResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.GetOneEvaluacionSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneEvaluacionResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.GetOneEvaluadorSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.GetOneGrupoSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneGrupoResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.GetOnePeriodoSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.GetOnePeriodoResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.GetOnePuntajeSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.GetOnePuntajeResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.GetOneRolSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.ListCompetenciasSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.ListCompetenciasResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.ListCursosSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.ListCursosResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.ListEstudiantesSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.ListEstudiantesResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.ListEvaluacionesSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.ListEvaluacionesResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.ListEvaluadoresSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.ListEvaluadoresResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.ListGruposSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.ListGruposResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.ListPeriodosSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.ListPeriodosResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.ListPuntajesSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.ListPuntajesResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.ListRolesSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.ListRolesResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.PutOneCompetenciaSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.PutOneCompetenciaResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.PutOneCursoSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.PutOneCursoResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.PutOneEstudianteSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.PutOneEstudianteResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.PutOneEvaluacionSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.PutOneEvaluacionResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.PutOneEvaluadorSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.PutOneEvaluadorResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.PutOneGrupoSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.PutOneGrupoResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.PutOnePeriodoSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.PutOnePeriodoResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.PutOnePuntajeSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.PutOnePuntajeResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.PutOneRolSwagger": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/definitions/ResponseMessages.PutOneRolResponse"
+                },
+                "Meta": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "boolean"
+                }
+            }
         }
     }
 }`
@@ -3027,7 +3657,7 @@ type swaggerInfo struct {
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = swaggerInfo{
 	Version:     "1.0",
-	Host:        "localhost:8080",
+	Host:        "",
 	BasePath:    "/api/v1",
 	Schemes:     []string{},
 	Title:       "MedRoom API",

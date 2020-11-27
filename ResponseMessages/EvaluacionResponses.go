@@ -1,6 +1,6 @@
 package ResponseMessages
 
-type ListEvaluacionsResponse struct {
+type ListEvaluacionesResponse struct {
 	Estudiante_evaluacion                   GetOneEstudianteResponse  `json:"curso_evaluacion"`
 	Evaluador_evaluacion                    GetOneEvaluadorResponse   `json:"evaluador_evaluacion"`
 	Competencia_evaluacion                  GetOneCompetenciaResponse `json:"competencia_evaluacion"`

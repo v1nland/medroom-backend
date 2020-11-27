@@ -1,6 +1,6 @@
 package RequestMessages
 
-type ListEvaluadorsPayload struct {
+type ListEvaluadoresPayload struct {
 }
 
 type GetOneEvaluadorPayload struct {

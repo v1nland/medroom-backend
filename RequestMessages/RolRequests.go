@@ -1,6 +1,6 @@
 package RequestMessages
 
-type ListRolsPayload struct {
+type ListRolesPayload struct {
 }
 
 type GetOneRolPayload struct {

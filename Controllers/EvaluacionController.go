@@ -21,27 +21,27 @@ import (
     *
 */
 
-// @Summary Lista de evaluacions
-// @Description Lista todos los evaluacions
-// @Tags Evaluacions
+// @Summary Lista de evaluaciones
+// @Description Lista todos los evaluaciones
+// @Tags Evaluaciones
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} ResponseMessages.ListEvaluacionsResponse "OK"
+// @Success 200 {array} SwaggerMessages.ListEvaluacionesSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /evaluacions [get]
-func ListEvaluacions(c *gin.Context) {
+// @Router /evaluaciones [get]
+func ListEvaluaciones(c *gin.Context) {
 	// model container
 	var container []Models.Evaluacion
 
 	// query
-	err := Repositories.GetAllEvaluacions(&container)
+	err := Repositories.GetAllEvaluaciones(&container)
 	if err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetEvaluacionsOutput(container))
+	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetEvaluacionesOutput(container))
 }
 
 /*
@@ -56,13 +56,13 @@ func ListEvaluacions(c *gin.Context) {
 
 // @Summary Obtiene un evaluacion
 // @Description Obtiene un evaluacion según su UUID
-// @Tags Evaluacions
+// @Tags Evaluaciones
 // @Accept  json
 // @Produce  json
 // @Param   uuid_evaluacion     path    string     true        "UUID del evaluacion a buscar"
-// @Success 200 {object} ResponseMessages.GetOneEvaluacionResponse "OK"
+// @Success 200 {object} SwaggerMessages.GetOneEvaluacionSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /evaluacions/{uuid_evaluacion} [get]
+// @Router /evaluaciones/{uuid_evaluacion} [get]
 func GetOneEvaluacion(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -93,13 +93,13 @@ func GetOneEvaluacion(c *gin.Context) {
 
 // @Summary Agrega un nuevo evaluacion
 // @Description Genera un nuevo evaluacion con los datos entregados
-// @Tags Evaluacions
+// @Tags Evaluaciones
 // @Accept  json
 // @Produce  json
 // @Param   input_evaluacion     body    RequestMessages.AddNewEvaluacionPayload     true        "Evaluacion a agregar"
-// @Success 200 {object} ResponseMessages.AddNewEvaluacionResponse "OK"
+// @Success 200 {object} SwaggerMessages.AddNewEvaluacionSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /evaluacions [post]
+// @Router /evaluaciones [post]
 func AddNewEvaluacion(c *gin.Context) {
 	// input container
 	var container RequestMessages.AddNewEvaluacionPayload
@@ -153,14 +153,14 @@ func AddNewEvaluacion(c *gin.Context) {
 
 // @Summary Modifica un evaluacion
 // @Description Modifica un evaluacion con los datos entregados
-// @Tags Evaluacions
+// @Tags Evaluaciones
 // @Accept  json
 // @Produce  json
 // @Param   uuid_evaluacion     path    string     true        "UUID del evaluacion a modificar"
 // @Param   input_actualiza_evaluacion     body    RequestMessages.PutOneEvaluacionPayload     true        "Evaluacion a modificar"
-// @Success 200 {object} ResponseMessages.PutOneEvaluacionResponse "OK"
+// @Success 200 {object} SwaggerMessages.PutOneEvaluacionSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /evaluacions/{uuid_evaluacion} [put]
+// @Router /evaluaciones/{uuid_evaluacion} [put]
 func PutOneEvaluacion(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -256,13 +256,13 @@ func PutOneEvaluacion(c *gin.Context) {
 
 // @Summary Elimina un evaluacion
 // @Description Elimina un evaluacion con los datos entregados
-// @Tags Evaluacions
+// @Tags Evaluaciones
 // @Accept  json
 // @Produce  json
 // @Param   uuid_evaluacion     path    string     true        "UUID del evaluacion a eliminar"
-// @Success 200 {object} ResponseMessages.DeleteEvaluacionResponse "OK"
+// @Success 200 {object} SwaggerMessages.DeleteEvaluacionSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /evaluacions/{uuid_evaluacion} [delete]
+// @Router /evaluaciones/{uuid_evaluacion} [delete]
 func DeleteEvaluacion(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")

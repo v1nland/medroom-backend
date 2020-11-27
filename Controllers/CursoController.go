@@ -26,7 +26,7 @@ import (
 // @Tags Cursos
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} ResponseMessages.ListCursosResponse "OK"
+// @Success 200 {array} SwaggerMessages.ListCursosSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /cursos [get]
 func ListCursos(c *gin.Context) {
@@ -60,7 +60,7 @@ func ListCursos(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   uuid_curso     path    string     true        "UUID del curso a buscar"
-// @Success 200 {object} ResponseMessages.GetOneCursoResponse "OK"
+// @Success 200 {object} SwaggerMessages.GetOneCursoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /cursos/{uuid_curso} [get]
 func GetOneCurso(c *gin.Context) {
@@ -97,7 +97,7 @@ func GetOneCurso(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   input_curso     body    RequestMessages.AddNewCursoPayload     true        "Curso a agregar"
-// @Success 200 {object} ResponseMessages.AddNewCursoResponse "OK"
+// @Success 200 {object} SwaggerMessages.AddNewCursoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /cursos [post]
 func AddNewCurso(c *gin.Context) {
@@ -148,7 +148,7 @@ func AddNewCurso(c *gin.Context) {
 // @Produce  json
 // @Param   uuid_curso     path    string     true        "UUID del curso a modificar"
 // @Param   input_actualiza_curso     body    RequestMessages.PutOneCursoPayload     true        "Curso a modificar"
-// @Success 200 {object} ResponseMessages.PutOneCursoResponse "OK"
+// @Success 200 {object} SwaggerMessages.PutOneCursoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /cursos/{uuid_curso} [put]
 func PutOneCurso(c *gin.Context) {
@@ -219,7 +219,7 @@ func PutOneCurso(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   uuid_curso     path    string     true        "UUID del curso a eliminar"
-// @Success 200 {object} ResponseMessages.DeleteCursoResponse "OK"
+// @Success 200 {object} SwaggerMessages.DeleteCursoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /cursos/{uuid_curso} [delete]
 func DeleteCurso(c *gin.Context) {

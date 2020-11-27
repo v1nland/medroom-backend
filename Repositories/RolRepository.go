@@ -7,7 +7,7 @@ import (
 	"medroom-backend/Models"
 )
 
-func GetAllRols(u *[]Models.Rol) (err error) {
+func GetAllRoles(u *[]Models.Rol) (err error) {
 	if err = Config.DB.Set("gorm:auto_preload", true).Find(u).Error; err != nil {
 		return err
 	}

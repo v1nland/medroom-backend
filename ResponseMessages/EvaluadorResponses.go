@@ -1,6 +1,6 @@
 package ResponseMessages
 
-type ListEvaluadorsResponse struct {
+type ListEvaluadoresResponse struct {
 	Rol_evaluador                GetOneRolResponse `json:"rol_evaluador"`
 	Rut_evaluador                string            `json:"rut_evaluador"`
 	Nombres_evaluador            string            `json:"nombres_evaluador"`

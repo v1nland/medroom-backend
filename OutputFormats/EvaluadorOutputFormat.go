@@ -5,9 +5,9 @@ import (
 	"medroom-backend/ResponseMessages"
 )
 
-func GetEvaluadorsOutput(u []Models.Evaluador) (output []ResponseMessages.ListEvaluadorsResponse) {
+func GetEvaluadoresOutput(u []Models.Evaluador) (output []ResponseMessages.ListEvaluadoresResponse) {
 	for i := 0; i < len(u); i++ {
-		output = append(output, ResponseMessages.ListEvaluadorsResponse{
+		output = append(output, ResponseMessages.ListEvaluadoresResponse{
 			Rol_evaluador:                GetOneRolOutput(u[i].Rol_evaluador),
 			Rut_evaluador:                u[i].Rut_evaluador,
 			Nombres_evaluador:            u[i].Nombres_evaluador,
