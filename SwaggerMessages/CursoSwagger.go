@@ -5,31 +5,31 @@ import (
 )
 
 type ListCursosSwagger struct {
-	Status bool                                `json:"Status"`
-	Meta   string                              `json:"Meta"`
-	Data   ResponseMessages.ListCursosResponse `json:"Data"`
+	Status bool                                `json:"status"`
+	Meta   string                              `json:"meta"`
+	Data   ResponseMessages.ListCursosResponse `json:"data"`
 }
 
 type GetOneCursoSwagger struct {
-	Status bool                                 `json:"Status"`
-	Meta   string                               `json:"Meta"`
-	Data   ResponseMessages.GetOneCursoResponse `json:"Data"`
+	Status bool                                 `json:"status"`
+	Meta   string                               `json:"meta"`
+	Data   ResponseMessages.GetOneCursoResponse `json:"data"`
 }
 
 type AddNewCursoSwagger struct {
-	Status bool                                 `json:"Status"`
-	Meta   string                               `json:"Meta"`
-	Data   ResponseMessages.AddNewCursoResponse `json:"Data"`
+	Status bool                                 `json:"status"`
+	Meta   string                               `json:"meta"`
+	Data   ResponseMessages.AddNewCursoResponse `json:"data"`
 }
 
 type PutOneCursoSwagger struct {
-	Status bool                                 `json:"Status"`
-	Meta   string                               `json:"Meta"`
-	Data   ResponseMessages.PutOneCursoResponse `json:"Data"`
+	Status bool                                 `json:"status"`
+	Meta   string                               `json:"meta"`
+	Data   ResponseMessages.PutOneCursoResponse `json:"data"`
 }
 
 type DeleteCursoSwagger struct {
-	Status bool                                 `json:"Status"`
-	Meta   string                               `json:"Meta"`
-	Data   ResponseMessages.DeleteCursoResponse `json:"Data"`
+	Status bool                                 `json:"status"`
+	Meta   string                               `json:"meta"`
+	Data   ResponseMessages.DeleteCursoResponse `json:"data"`
 }

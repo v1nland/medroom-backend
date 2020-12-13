@@ -1,7 +1,6 @@
 package Controllers
 
 import (
-	"github.com/gin-gonic/gin"
 	"medroom-backend/ApiHelpers"
 	"medroom-backend/InputFormats"
 	"medroom-backend/Models"
@@ -9,6 +8,8 @@ import (
 	"medroom-backend/Repositories"
 	"medroom-backend/RequestMessages"
 	"medroom-backend/Utils"
+
+	"github.com/gin-gonic/gin"
 )
 
 /*
@@ -55,14 +56,14 @@ func ListPeriodos(c *gin.Context) {
 */
 
 // @Summary Obtiene un periodo
-// @Description Obtiene un periodo según su UUID
+// @Description Obtiene un periodo según su ID
 // @Tags Periodos
 // @Accept  json
 // @Produce  json
-// @Param   uuid_periodo     path    string     true        "UUID del periodo a buscar"
+// @Param   id_periodo     path    string     true        "ID del periodo a buscar"
 // @Success 200 {object} SwaggerMessages.GetOnePeriodoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /periodos/{uuid_periodo} [get]
+// @Router /periodos/{id_periodo} [get]
 func GetOnePeriodo(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -144,11 +145,11 @@ func AddNewPeriodo(c *gin.Context) {
 // @Tags Periodos
 // @Accept  json
 // @Produce  json
-// @Param   uuid_periodo     path    string     true        "UUID del periodo a modificar"
+// @Param   id_periodo     path    string     true        "ID del periodo a modificar"
 // @Param   input_actualiza_periodo     body    RequestMessages.PutOnePeriodoPayload     true        "Periodo a modificar"
 // @Success 200 {object} SwaggerMessages.PutOnePeriodoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /periodos/{uuid_periodo} [put]
+// @Router /periodos/{id_periodo} [put]
 func PutOnePeriodo(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -214,10 +215,10 @@ func PutOnePeriodo(c *gin.Context) {
 // @Tags Periodos
 // @Accept  json
 // @Produce  json
-// @Param   uuid_periodo     path    string     true        "UUID del periodo a eliminar"
+// @Param   id_periodo     path    string     true        "ID del periodo a eliminar"
 // @Success 200 {object} SwaggerMessages.DeletePeriodoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /periodos/{uuid_periodo} [delete]
+// @Router /periodos/{id_periodo} [delete]
 func DeletePeriodo(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")

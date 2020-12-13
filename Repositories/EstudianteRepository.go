@@ -2,9 +2,10 @@ package Repositories
 
 import (
 	"fmt"
-	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"medroom-backend/Config"
 	"medroom-backend/Models"
+
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
 func GetAllEstudiantes(u *[]Models.Estudiante) (err error) {
@@ -36,5 +37,12 @@ func PutOneEstudiante(u *Models.Estudiante, id string) (err error) {
 
 func DeleteEstudiante(u *Models.Estudiante, id string) (err error) {
 	Config.DB.Where("id = ?", id).Delete(u)
+	return nil
+}
+
+func AuthEstudiante(u *Models.Estudiante, correo_electronico_estudiante string, hash_contrasena_estudiante string) (err error) {
+	if err := Config.DB.Set("gorm:auto_preload", true).Where("correo_electronico_estudiante = ? AND hash_contrasena_estudiante = ?", correo_electronico_estudiante, hash_contrasena_estudiante).First(u).Error; err != nil {
+		return err
+	}
 	return nil
 }

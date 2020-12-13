@@ -2,15 +2,16 @@ package main
 
 import (
 	"fmt"
-	"github.com/jinzhu/gorm"
-	"github.com/joho/godotenv"
-	swagger_files "github.com/swaggo/files"
-	gin_swagger "github.com/swaggo/gin-swagger"
 	"medroom-backend/Config"
 	"medroom-backend/Models"
 	"medroom-backend/Routers"
 	"medroom-backend/docs"
 	"os"
+
+	"github.com/jinzhu/gorm"
+	"github.com/joho/godotenv"
+	swagger_files "github.com/swaggo/files"
+	gin_swagger "github.com/swaggo/gin-swagger"
 )
 
 var err error
@@ -47,7 +48,7 @@ func main() {
 
 	if should_automigrate == "1" {
 		// Inicialización de tablas en DB
-		Config.DB.AutoMigrate(&Models.Competencia{}, &Models.Periodo{}, &Models.Rol{}, &Models.Evaluador{}, &Models.Curso{}, &Models.Grupo{}, &Models.Estudiante{}, &Models.Evaluacion{}, &Models.Puntaje{})
+		Config.DB.AutoMigrate(&Models.Competencia{}, &Models.Periodo{}, &Models.Rol{}, &Models.Evaluador{}, &Models.Curso{}, &Models.Grupo{}, &Models.Estudiante{}, &Models.Evaluacion{}, &Models.Puntaje{}, &Models.AdministradorAcademico{}, &Models.AdministradorTi{})
 
 		// // Las FK de las relaciones N - N con datos adicionales se deben aplicar manualmente de la siguiente forma
 		// // Para relaciones 1 - N y 1 - 1, se deben especificar únicamente en el Model.go

@@ -1,7 +1,6 @@
 package Controllers
 
 import (
-	"github.com/gin-gonic/gin"
 	"medroom-backend/ApiHelpers"
 	"medroom-backend/InputFormats"
 	"medroom-backend/Models"
@@ -9,6 +8,8 @@ import (
 	"medroom-backend/Repositories"
 	"medroom-backend/RequestMessages"
 	"medroom-backend/Utils"
+
+	"github.com/gin-gonic/gin"
 )
 
 /*
@@ -55,14 +56,14 @@ func ListRoles(c *gin.Context) {
 */
 
 // @Summary Obtiene un rol
-// @Description Obtiene un rol según su UUID
+// @Description Obtiene un rol según su ID
 // @Tags Roles
 // @Accept  json
 // @Produce  json
-// @Param   uuid_rol     path    string     true        "UUID del rol a buscar"
+// @Param   id_rol     path    string     true        "ID del rol a buscar"
 // @Success 200 {object} SwaggerMessages.GetOneRolSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /roles/{uuid_rol} [get]
+// @Router /roles/{id_rol} [get]
 func GetOneRol(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -144,11 +145,11 @@ func AddNewRol(c *gin.Context) {
 // @Tags Roles
 // @Accept  json
 // @Produce  json
-// @Param   uuid_rol     path    string     true        "UUID del rol a modificar"
+// @Param   id_rol     path    string     true        "ID del rol a modificar"
 // @Param   input_actualiza_rol     body    RequestMessages.PutOneRolPayload     true        "Rol a modificar"
 // @Success 200 {object} SwaggerMessages.PutOneRolSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /roles/{uuid_rol} [put]
+// @Router /roles/{id_rol} [put]
 func PutOneRol(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -207,10 +208,10 @@ func PutOneRol(c *gin.Context) {
 // @Tags Roles
 // @Accept  json
 // @Produce  json
-// @Param   uuid_rol     path    string     true        "UUID del rol a eliminar"
+// @Param   id_rol     path    string     true        "ID del rol a eliminar"
 // @Success 200 {object} SwaggerMessages.DeleteRolSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /roles/{uuid_rol} [delete]
+// @Router /roles/{id_rol} [delete]
 func DeleteRol(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")

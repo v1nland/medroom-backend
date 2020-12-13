@@ -1,7 +1,6 @@
 package Controllers
 
 import (
-	"github.com/gin-gonic/gin"
 	"medroom-backend/ApiHelpers"
 	"medroom-backend/InputFormats"
 	"medroom-backend/Models"
@@ -9,6 +8,8 @@ import (
 	"medroom-backend/Repositories"
 	"medroom-backend/RequestMessages"
 	"medroom-backend/Utils"
+
+	"github.com/gin-gonic/gin"
 )
 
 /*
@@ -55,14 +56,14 @@ func ListPuntajes(c *gin.Context) {
 */
 
 // @Summary Obtiene un puntaje
-// @Description Obtiene un puntaje según su UUID
+// @Description Obtiene un puntaje según su ID
 // @Tags Puntajes
 // @Accept  json
 // @Produce  json
-// @Param   uuid_puntaje     path    string     true        "UUID del puntaje a buscar"
+// @Param   id_puntaje     path    string     true        "ID del puntaje a buscar"
 // @Success 200 {object} SwaggerMessages.GetOnePuntajeSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /puntajes/{uuid_puntaje} [get]
+// @Router /puntajes/{id_puntaje} [get]
 func GetOnePuntaje(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -147,11 +148,11 @@ func AddNewPuntaje(c *gin.Context) {
 // @Tags Puntajes
 // @Accept  json
 // @Produce  json
-// @Param   uuid_puntaje     path    string     true        "UUID del puntaje a modificar"
+// @Param   id_puntaje     path    string     true        "ID del puntaje a modificar"
 // @Param   input_actualiza_puntaje     body    RequestMessages.PutOnePuntajePayload     true        "Puntaje a modificar"
 // @Success 200 {object} SwaggerMessages.PutOnePuntajeSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /puntajes/{uuid_puntaje} [put]
+// @Router /puntajes/{id_puntaje} [put]
 func PutOnePuntaje(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -227,10 +228,10 @@ func PutOnePuntaje(c *gin.Context) {
 // @Tags Puntajes
 // @Accept  json
 // @Produce  json
-// @Param   uuid_puntaje     path    string     true        "UUID del puntaje a eliminar"
+// @Param   id_puntaje     path    string     true        "ID del puntaje a eliminar"
 // @Success 200 {object} SwaggerMessages.DeletePuntajeSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /puntajes/{uuid_puntaje} [delete]
+// @Router /puntajes/{id_puntaje} [delete]
 func DeletePuntaje(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")

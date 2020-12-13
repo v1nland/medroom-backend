@@ -33,6 +33,384 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/administradores-academicos": {
+            "get": {
+                "description": "Lista todos los administradores-academicos",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "AdministradoresAcademicos"
+                ],
+                "summary": "Lista de administradores-academicos",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/SwaggerMessages.ListAdministradoresAcademicosSwagger"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Genera un nuevo administrador_academico con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "AdministradoresAcademicos"
+                ],
+                "summary": "Agrega un nuevo administrador_academico",
+                "parameters": [
+                    {
+                        "description": "AdministradorAcademico a agregar",
+                        "name": "input_administrador_academico",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.AddNewAdministradorAcademicoPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.AddNewAdministradorAcademicoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administradores-academicos/{uuid_administrador_academico}": {
+            "get": {
+                "description": "Obtiene un administrador_academico según su UUID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "AdministradoresAcademicos"
+                ],
+                "summary": "Obtiene un administrador_academico",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del administrador_academico a buscar",
+                        "name": "uuid_administrador_academico",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.GetOneAdministradorAcademicoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Modifica un administrador_academico con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "AdministradoresAcademicos"
+                ],
+                "summary": "Modifica un administrador_academico",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del administrador_academico a modificar",
+                        "name": "uuid_administrador_academico",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "AdministradorAcademico a modificar",
+                        "name": "input_actualiza_administrador_academico",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.PutOneAdministradorAcademicoPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.PutOneAdministradorAcademicoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Elimina un administrador_academico con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "AdministradoresAcademicos"
+                ],
+                "summary": "Elimina un administrador_academico",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del administrador_academico a eliminar",
+                        "name": "uuid_administrador_academico",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.DeleteAdministradorAcademicoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administradores-ti": {
+            "get": {
+                "description": "Lista todos los administradores-ti",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "AdministradoresTi"
+                ],
+                "summary": "Lista de administradores-ti",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/SwaggerMessages.ListAdministradoresTiSwagger"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Genera un nuevo administrador_ti con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "AdministradoresTi"
+                ],
+                "summary": "Agrega un nuevo administrador_ti",
+                "parameters": [
+                    {
+                        "description": "AdministradorTi a agregar",
+                        "name": "input_administrador_ti",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.AddNewAdministradorTiPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.AddNewAdministradorTiSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administradores-ti/{uuid_administrador_ti}": {
+            "get": {
+                "description": "Obtiene un administrador_ti según su UUID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "AdministradoresTi"
+                ],
+                "summary": "Obtiene un administrador_ti",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del administrador_ti a buscar",
+                        "name": "uuid_administrador_ti",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.GetOneAdministradorTiSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Modifica un administrador_ti con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "AdministradoresTi"
+                ],
+                "summary": "Modifica un administrador_ti",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del administrador_ti a modificar",
+                        "name": "uuid_administrador_ti",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "AdministradorTi a modificar",
+                        "name": "input_actualiza_administrador_ti",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.PutOneAdministradorTiPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.PutOneAdministradorTiSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Elimina un administrador_ti con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "AdministradoresTi"
+                ],
+                "summary": "Elimina un administrador_ti",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del administrador_ti a eliminar",
+                        "name": "uuid_administrador_ti",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.DeleteAdministradorTiSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
         "/competencias": {
             "get": {
                 "description": "Lista todos los competencias",
@@ -103,9 +481,9 @@ var doc = `{
                 }
             }
         },
-        "/competencias/{uuid_competencia}": {
+        "/competencias/{id_competencia}": {
             "get": {
-                "description": "Obtiene un competencia según su UUID",
+                "description": "Obtiene un competencia según su ID",
                 "consumes": [
                     "application/json"
                 ],
@@ -119,8 +497,8 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "UUID del competencia a buscar",
-                        "name": "uuid_competencia",
+                        "description": "ID del competencia a buscar",
+                        "name": "id_competencia",
                         "in": "path",
                         "required": true
                     }
@@ -155,8 +533,8 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "UUID del competencia a modificar",
-                        "name": "uuid_competencia",
+                        "description": "ID del competencia a modificar",
+                        "name": "id_competencia",
                         "in": "path",
                         "required": true
                     },
@@ -200,8 +578,8 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "UUID del competencia a eliminar",
-                        "name": "uuid_competencia",
+                        "description": "ID del competencia a eliminar",
+                        "name": "id_competencia",
                         "in": "path",
                         "required": true
                     }
@@ -292,9 +670,9 @@ var doc = `{
                 }
             }
         },
-        "/cursos/{uuid_curso}": {
+        "/cursos/{id_curso}": {
             "get": {
-                "description": "Obtiene un curso según su UUID",
+                "description": "Obtiene un curso según su ID",
                 "consumes": [
                     "application/json"
                 ],
@@ -308,8 +686,8 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "UUID del curso a buscar",
-                        "name": "uuid_curso",
+                        "description": "ID del curso a buscar",
+                        "name": "id_curso",
                         "in": "path",
                         "required": true
                     }
@@ -344,8 +722,8 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "UUID del curso a modificar",
-                        "name": "uuid_curso",
+                        "description": "ID del curso a modificar",
+                        "name": "id_curso",
                         "in": "path",
                         "required": true
                     },
@@ -389,8 +767,8 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "UUID del curso a eliminar",
-                        "name": "uuid_curso",
+                        "description": "ID del curso a eliminar",
+                        "name": "id_curso",
                         "in": "path",
                         "required": true
                     }
@@ -670,9 +1048,9 @@ var doc = `{
                 }
             }
         },
-        "/evaluaciones/{uuid_evaluacion}": {
+        "/evaluaciones/{id_evaluacion}": {
             "get": {
-                "description": "Obtiene un evaluacion según su UUID",
+                "description": "Obtiene un evaluacion según su ID",
                 "consumes": [
                     "application/json"
                 ],
@@ -686,8 +1064,8 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "UUID del evaluacion a buscar",
-                        "name": "uuid_evaluacion",
+                        "description": "ID del evaluacion a buscar",
+                        "name": "id_evaluacion",
                         "in": "path",
                         "required": true
                     }
@@ -722,8 +1100,8 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "UUID del evaluacion a modificar",
-                        "name": "uuid_evaluacion",
+                        "description": "ID del evaluacion a modificar",
+                        "name": "id_evaluacion",
                         "in": "path",
                         "required": true
                     },
@@ -767,8 +1145,8 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "UUID del evaluacion a eliminar",
-                        "name": "uuid_evaluacion",
+                        "description": "ID del evaluacion a eliminar",
+                        "name": "id_evaluacion",
                         "in": "path",
                         "required": true
                     }
@@ -1048,9 +1426,9 @@ var doc = `{
                 }
             }
         },
-        "/grupos/{uuid_grupo}": {
+        "/grupos/{id_grupo}": {
             "get": {
-                "description": "Obtiene un grupo según su UUID",
+                "description": "Obtiene un grupo según su ID",
                 "consumes": [
                     "application/json"
                 ],
@@ -1064,8 +1442,8 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "UUID del grupo a buscar",
-                        "name": "uuid_grupo",
+                        "description": "ID del grupo a buscar",
+                        "name": "id_grupo",
                         "in": "path",
                         "required": true
                     }
@@ -1100,8 +1478,8 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "UUID del grupo a modificar",
-                        "name": "uuid_grupo",
+                        "description": "ID del grupo a modificar",
+                        "name": "id_grupo",
                         "in": "path",
                         "required": true
                     },
@@ -1145,8 +1523,8 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "UUID del grupo a eliminar",
-                        "name": "uuid_grupo",
+                        "description": "ID del grupo a eliminar",
+                        "name": "id_grupo",
                         "in": "path",
                         "required": true
                     }
@@ -1156,6 +1534,178 @@ var doc = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/SwaggerMessages.DeleteGrupoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "description": "Ingresa usuario y contraseña para iniciar sesión",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Autenticación"
+                ],
+                "summary": "Autenticación de estudiante",
+                "parameters": [
+                    {
+                        "description": "Credenciales de acceso",
+                        "name": "input_credentials",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.LoginEstudiantePayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/SwaggerMessages.AuthenticationSwagger"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/login-admiministrador-academico": {
+            "post": {
+                "description": "Ingresa usuario y contraseña para iniciar sesión",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Autenticación"
+                ],
+                "summary": "Autenticación de administrador académico",
+                "parameters": [
+                    {
+                        "description": "Credenciales de acceso",
+                        "name": "input_credentials",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.LoginAdministradorAcademicoPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/SwaggerMessages.AuthenticationSwagger"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/login-administrador-ti": {
+            "post": {
+                "description": "Ingresa usuario y contraseña para iniciar sesión",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Autenticación"
+                ],
+                "summary": "Autenticación de administrador ti",
+                "parameters": [
+                    {
+                        "description": "Credenciales de acceso",
+                        "name": "input_credentials",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.LoginAdministradorTiPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/SwaggerMessages.AuthenticationSwagger"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/login-evaluador": {
+            "post": {
+                "description": "Ingresa usuario y contraseña para iniciar sesión",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Autenticación"
+                ],
+                "summary": "Autenticación de evaluador",
+                "parameters": [
+                    {
+                        "description": "Credenciales de acceso",
+                        "name": "input_credentials",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.LoginEvaluadorPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/SwaggerMessages.AuthenticationSwagger"
+                            }
                         }
                     },
                     "400": {
@@ -1237,9 +1787,9 @@ var doc = `{
                 }
             }
         },
-        "/periodos/{uuid_periodo}": {
+        "/periodos/{id_periodo}": {
             "get": {
-                "description": "Obtiene un periodo según su UUID",
+                "description": "Obtiene un periodo según su ID",
                 "consumes": [
                     "application/json"
                 ],
@@ -1253,8 +1803,8 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "UUID del periodo a buscar",
-                        "name": "uuid_periodo",
+                        "description": "ID del periodo a buscar",
+                        "name": "id_periodo",
                         "in": "path",
                         "required": true
                     }
@@ -1289,8 +1839,8 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "UUID del periodo a modificar",
-                        "name": "uuid_periodo",
+                        "description": "ID del periodo a modificar",
+                        "name": "id_periodo",
                         "in": "path",
                         "required": true
                     },
@@ -1334,8 +1884,8 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "UUID del periodo a eliminar",
-                        "name": "uuid_periodo",
+                        "description": "ID del periodo a eliminar",
+                        "name": "id_periodo",
                         "in": "path",
                         "required": true
                     }
@@ -1426,9 +1976,9 @@ var doc = `{
                 }
             }
         },
-        "/puntajes/{uuid_puntaje}": {
+        "/puntajes/{id_puntaje}": {
             "get": {
-                "description": "Obtiene un puntaje según su UUID",
+                "description": "Obtiene un puntaje según su ID",
                 "consumes": [
                     "application/json"
                 ],
@@ -1442,8 +1992,8 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "UUID del puntaje a buscar",
-                        "name": "uuid_puntaje",
+                        "description": "ID del puntaje a buscar",
+                        "name": "id_puntaje",
                         "in": "path",
                         "required": true
                     }
@@ -1478,8 +2028,8 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "UUID del puntaje a modificar",
-                        "name": "uuid_puntaje",
+                        "description": "ID del puntaje a modificar",
+                        "name": "id_puntaje",
                         "in": "path",
                         "required": true
                     },
@@ -1523,8 +2073,8 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "UUID del puntaje a eliminar",
-                        "name": "uuid_puntaje",
+                        "description": "ID del puntaje a eliminar",
+                        "name": "id_puntaje",
                         "in": "path",
                         "required": true
                     }
@@ -1615,9 +2165,9 @@ var doc = `{
                 }
             }
         },
-        "/roles/{uuid_rol}": {
+        "/roles/{id_rol}": {
             "get": {
-                "description": "Obtiene un rol según su UUID",
+                "description": "Obtiene un rol según su ID",
                 "consumes": [
                     "application/json"
                 ],
@@ -1631,8 +2181,8 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "UUID del rol a buscar",
-                        "name": "uuid_rol",
+                        "description": "ID del rol a buscar",
+                        "name": "id_rol",
                         "in": "path",
                         "required": true
                     }
@@ -1667,8 +2217,8 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "UUID del rol a modificar",
-                        "name": "uuid_rol",
+                        "description": "ID del rol a modificar",
+                        "name": "id_rol",
                         "in": "path",
                         "required": true
                     },
@@ -1712,8 +2262,8 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "UUID del rol a eliminar",
-                        "name": "uuid_rol",
+                        "description": "ID del rol a eliminar",
+                        "name": "id_rol",
                         "in": "path",
                         "required": true
                     }
@@ -1743,6 +2293,67 @@ var doc = `{
                     "type": "string"
                 },
                 "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "RequestMessages.AddNewAdministradorAcademicoPayload": {
+            "type": "object",
+            "properties": {
+                "apellidos_administrador_academico": {
+                    "type": "string"
+                },
+                "correo_electronico_administrador_academico": {
+                    "type": "string"
+                },
+                "hash_contrasena_administrador_academico": {
+                    "type": "string"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_administrador_academico": {
+                    "type": "string"
+                },
+                "rut_administrador_academico": {
+                    "type": "string"
+                },
+                "telefono_celular_administrador_academico": {
+                    "type": "string"
+                },
+                "telefono_fijo_administrador_academico": {
+                    "type": "string"
+                }
+            }
+        },
+        "RequestMessages.AddNewAdministradorTiPayload": {
+            "type": "object",
+            "properties": {
+                "apellidos_administrador_ti": {
+                    "type": "string"
+                },
+                "correo_electronico_administrador_ti": {
+                    "type": "string"
+                },
+                "hash_contrasena_administrador_ti": {
+                    "type": "string"
+                },
+                "id_grupo": {
+                    "type": "integer"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_administrador_ti": {
+                    "type": "string"
+                },
+                "rut_administrador_ti": {
+                    "type": "string"
+                },
+                "telefono_celular_administrador_ti": {
+                    "type": "string"
+                },
+                "telefono_fijo_administrador_ti": {
                     "type": "string"
                 }
             }
@@ -1930,6 +2541,111 @@ var doc = `{
                 }
             }
         },
+        "RequestMessages.LoginAdministradorAcademicoPayload": {
+            "type": "object",
+            "properties": {
+                "correo_electronico_administrador_academico": {
+                    "type": "string"
+                },
+                "hash_contrasena_administrador_academico": {
+                    "type": "string"
+                }
+            }
+        },
+        "RequestMessages.LoginAdministradorTiPayload": {
+            "type": "object",
+            "properties": {
+                "correo_electronico_administrador_ti": {
+                    "type": "string"
+                },
+                "hash_contrasena_administrador_ti": {
+                    "type": "string"
+                }
+            }
+        },
+        "RequestMessages.LoginEstudiantePayload": {
+            "type": "object",
+            "properties": {
+                "correo_electronico_estudiante": {
+                    "type": "string"
+                },
+                "hash_contrasena_estudiante": {
+                    "type": "string"
+                }
+            }
+        },
+        "RequestMessages.LoginEvaluadorPayload": {
+            "type": "object",
+            "properties": {
+                "correo_electronico_evaluador": {
+                    "type": "string"
+                },
+                "hash_contrasena_evaluador": {
+                    "type": "string"
+                }
+            }
+        },
+        "RequestMessages.PutOneAdministradorAcademicoPayload": {
+            "type": "object",
+            "properties": {
+                "apellidos_administrador_academico": {
+                    "type": "string"
+                },
+                "correo_electronico_administrador_academico": {
+                    "type": "string"
+                },
+                "hash_contrasena_administrador_academico": {
+                    "type": "string"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_administrador_academico": {
+                    "type": "string"
+                },
+                "rut_administrador_academico": {
+                    "type": "string"
+                },
+                "telefono_celular_administrador_academico": {
+                    "type": "string"
+                },
+                "telefono_fijo_administrador_academico": {
+                    "type": "string"
+                }
+            }
+        },
+        "RequestMessages.PutOneAdministradorTiPayload": {
+            "type": "object",
+            "properties": {
+                "apellidos_administrador_ti": {
+                    "type": "string"
+                },
+                "correo_electronico_administrador_ti": {
+                    "type": "string"
+                },
+                "hash_contrasena_administrador_ti": {
+                    "type": "string"
+                },
+                "id_grupo": {
+                    "type": "integer"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_administrador_ti": {
+                    "type": "string"
+                },
+                "rut_administrador_ti": {
+                    "type": "string"
+                },
+                "telefono_celular_administrador_ti": {
+                    "type": "string"
+                },
+                "telefono_fijo_administrador_ti": {
+                    "type": "string"
+                }
+            }
+        },
         "RequestMessages.PutOneCompetenciaPayload": {
             "type": "object",
             "properties": {
@@ -2113,6 +2829,58 @@ var doc = `{
                 }
             }
         },
+        "ResponseMessages.AddNewAdministradorAcademicoResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_administrador_academico": {
+                    "type": "string"
+                },
+                "correo_electronico_administrador_academico": {
+                    "type": "string"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_administrador_academico": {
+                    "type": "string"
+                },
+                "rut_administrador_academico": {
+                    "type": "string"
+                },
+                "telefono_celular_administrador_academico": {
+                    "type": "string"
+                },
+                "telefono_fijo_administrador_academico": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.AddNewAdministradorTiResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_administrador_ti": {
+                    "type": "string"
+                },
+                "correo_electronico_administrador_ti": {
+                    "type": "string"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_administrador_ti": {
+                    "type": "string"
+                },
+                "rut_administrador_ti": {
+                    "type": "string"
+                },
+                "telefono_celular_administrador_ti": {
+                    "type": "string"
+                },
+                "telefono_fijo_administrador_ti": {
+                    "type": "string"
+                }
+            }
+        },
         "ResponseMessages.AddNewCompetenciaResponse": {
             "type": "object",
             "properties": {
@@ -2290,6 +3058,66 @@ var doc = `{
                 }
             }
         },
+        "ResponseMessages.Authentication": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.DeleteAdministradorAcademicoResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_administrador_academico": {
+                    "type": "string"
+                },
+                "correo_electronico_administrador_academico": {
+                    "type": "string"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_administrador_academico": {
+                    "type": "string"
+                },
+                "rut_administrador_academico": {
+                    "type": "string"
+                },
+                "telefono_celular_administrador_academico": {
+                    "type": "string"
+                },
+                "telefono_fijo_administrador_academico": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.DeleteAdministradorTiResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_administrador_ti": {
+                    "type": "string"
+                },
+                "correo_electronico_administrador_ti": {
+                    "type": "string"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_administrador_ti": {
+                    "type": "string"
+                },
+                "rut_administrador_ti": {
+                    "type": "string"
+                },
+                "telefono_celular_administrador_ti": {
+                    "type": "string"
+                },
+                "telefono_fijo_administrador_ti": {
+                    "type": "string"
+                }
+            }
+        },
         "ResponseMessages.DeleteCompetenciaResponse": {
             "type": "object",
             "properties": {
@@ -2463,6 +3291,58 @@ var doc = `{
             "type": "object",
             "properties": {
                 "nombre_rol": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.GetOneAdministradorAcademicoResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_administrador_academico": {
+                    "type": "string"
+                },
+                "correo_electronico_administrador_academico": {
+                    "type": "string"
+                },
+                "nombres_administrador_academico": {
+                    "type": "string"
+                },
+                "rol_administrador_academico": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                },
+                "rut_administrador_academico": {
+                    "type": "string"
+                },
+                "telefono_celular_administrador_academico": {
+                    "type": "string"
+                },
+                "telefono_fijo_administrador_academico": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.GetOneAdministradorTiResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_administrador_ti": {
+                    "type": "string"
+                },
+                "correo_electronico_administrador_ti": {
+                    "type": "string"
+                },
+                "nombres_administrador_ti": {
+                    "type": "string"
+                },
+                "rol_administrador_ti": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                },
+                "rut_administrador_ti": {
+                    "type": "string"
+                },
+                "telefono_celular_administrador_ti": {
+                    "type": "string"
+                },
+                "telefono_fijo_administrador_ti": {
                     "type": "string"
                 }
             }
@@ -2648,6 +3528,58 @@ var doc = `{
                 }
             }
         },
+        "ResponseMessages.ListAdministradoresAcademicosResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_administrador_academico": {
+                    "type": "string"
+                },
+                "correo_electronico_administrador_academico": {
+                    "type": "string"
+                },
+                "nombres_administrador_academico": {
+                    "type": "string"
+                },
+                "rol_administrador_academico": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                },
+                "rut_administrador_academico": {
+                    "type": "string"
+                },
+                "telefono_celular_administrador_academico": {
+                    "type": "string"
+                },
+                "telefono_fijo_administrador_academico": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.ListAdministradoresTiResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_administrador_ti": {
+                    "type": "string"
+                },
+                "correo_electronico_administrador_ti": {
+                    "type": "string"
+                },
+                "nombres_administrador_ti": {
+                    "type": "string"
+                },
+                "rol_administrador_ti": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                },
+                "rut_administrador_ti": {
+                    "type": "string"
+                },
+                "telefono_celular_administrador_ti": {
+                    "type": "string"
+                },
+                "telefono_fijo_administrador_ti": {
+                    "type": "string"
+                }
+            }
+        },
         "ResponseMessages.ListCompetenciasResponse": {
             "type": "object",
             "properties": {
@@ -2825,6 +3757,64 @@ var doc = `{
             "type": "object",
             "properties": {
                 "nombre_rol": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.PutOneAdministradorAcademicoResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_administrador_academico": {
+                    "type": "string"
+                },
+                "correo_electronico_administrador_academico": {
+                    "type": "string"
+                },
+                "hash_contrasena_administrador_academico": {
+                    "type": "string"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_administrador_academico": {
+                    "type": "string"
+                },
+                "rut_administrador_academico": {
+                    "type": "string"
+                },
+                "telefono_celular_administrador_academico": {
+                    "type": "string"
+                },
+                "telefono_fijo_administrador_academico": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.PutOneAdministradorTiResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_administrador_ti": {
+                    "type": "string"
+                },
+                "correo_electronico_administrador_ti": {
+                    "type": "string"
+                },
+                "hash_contrasena_administrador_ti": {
+                    "type": "string"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_administrador_ti": {
+                    "type": "string"
+                },
+                "rut_administrador_ti": {
+                    "type": "string"
+                },
+                "telefono_celular_administrador_ti": {
+                    "type": "string"
+                },
+                "telefono_fijo_administrador_ti": {
                     "type": "string"
                 }
             }
@@ -3012,16 +4002,44 @@ var doc = `{
                 }
             }
         },
+        "SwaggerMessages.AddNewAdministradorAcademicoSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.AddNewAdministradorAcademicoResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.AddNewAdministradorTiSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.AddNewAdministradorTiResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
         "SwaggerMessages.AddNewCompetenciaSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.AddNewCompetenciaResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3029,13 +4047,13 @@ var doc = `{
         "SwaggerMessages.AddNewCursoSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.AddNewCursoResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3043,13 +4061,13 @@ var doc = `{
         "SwaggerMessages.AddNewEstudianteSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.AddNewEstudianteResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3057,13 +4075,13 @@ var doc = `{
         "SwaggerMessages.AddNewEvaluacionSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.AddNewEvaluacionResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3071,13 +4089,13 @@ var doc = `{
         "SwaggerMessages.AddNewEvaluadorSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.AddNewEvaluadorResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3085,13 +4103,13 @@ var doc = `{
         "SwaggerMessages.AddNewGrupoSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.AddNewGrupoResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3099,13 +4117,13 @@ var doc = `{
         "SwaggerMessages.AddNewPeriodoSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.AddNewPeriodoResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3113,13 +4131,13 @@ var doc = `{
         "SwaggerMessages.AddNewPuntajeSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.AddNewPuntajeResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3127,13 +4145,55 @@ var doc = `{
         "SwaggerMessages.AddNewRolSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.AddNewRolResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.AuthenticationSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.Authentication"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.DeleteAdministradorAcademicoSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.DeleteAdministradorAcademicoResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.DeleteAdministradorTiSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.DeleteAdministradorTiResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3141,13 +4201,13 @@ var doc = `{
         "SwaggerMessages.DeleteCompetenciaSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.DeleteCompetenciaResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3155,13 +4215,13 @@ var doc = `{
         "SwaggerMessages.DeleteCursoSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.DeleteCursoResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3169,13 +4229,13 @@ var doc = `{
         "SwaggerMessages.DeleteEstudianteSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.DeleteEstudianteResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3183,13 +4243,13 @@ var doc = `{
         "SwaggerMessages.DeleteEvaluacionSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.DeleteEvaluacionResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3197,13 +4257,13 @@ var doc = `{
         "SwaggerMessages.DeleteEvaluadorSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.DeleteEvaluadorResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3211,13 +4271,13 @@ var doc = `{
         "SwaggerMessages.DeleteGrupoSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.DeleteGrupoResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3225,13 +4285,13 @@ var doc = `{
         "SwaggerMessages.DeletePeriodoSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.DeletePeriodoResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3239,13 +4299,13 @@ var doc = `{
         "SwaggerMessages.DeletePuntajeSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.DeletePuntajeResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3253,13 +4313,41 @@ var doc = `{
         "SwaggerMessages.DeleteRolSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.DeleteRolResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.GetOneAdministradorAcademicoSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneAdministradorAcademicoResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.GetOneAdministradorTiSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneAdministradorTiResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3267,13 +4355,13 @@ var doc = `{
         "SwaggerMessages.GetOneCompetenciaSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.GetOneCompetenciaResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3281,13 +4369,13 @@ var doc = `{
         "SwaggerMessages.GetOneCursoSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.GetOneCursoResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3295,13 +4383,13 @@ var doc = `{
         "SwaggerMessages.GetOneEstudianteSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.GetOneEstudianteResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3309,13 +4397,13 @@ var doc = `{
         "SwaggerMessages.GetOneEvaluacionSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.GetOneEvaluacionResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3323,13 +4411,13 @@ var doc = `{
         "SwaggerMessages.GetOneEvaluadorSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3337,13 +4425,13 @@ var doc = `{
         "SwaggerMessages.GetOneGrupoSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.GetOneGrupoResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3351,13 +4439,13 @@ var doc = `{
         "SwaggerMessages.GetOnePeriodoSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.GetOnePeriodoResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3365,13 +4453,13 @@ var doc = `{
         "SwaggerMessages.GetOnePuntajeSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.GetOnePuntajeResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3379,13 +4467,41 @@ var doc = `{
         "SwaggerMessages.GetOneRolSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.ListAdministradoresAcademicosSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.ListAdministradoresAcademicosResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.ListAdministradoresTiSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.ListAdministradoresTiResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3393,13 +4509,13 @@ var doc = `{
         "SwaggerMessages.ListCompetenciasSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.ListCompetenciasResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3407,13 +4523,13 @@ var doc = `{
         "SwaggerMessages.ListCursosSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.ListCursosResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3421,13 +4537,13 @@ var doc = `{
         "SwaggerMessages.ListEstudiantesSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.ListEstudiantesResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3435,13 +4551,13 @@ var doc = `{
         "SwaggerMessages.ListEvaluacionesSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.ListEvaluacionesResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3449,13 +4565,13 @@ var doc = `{
         "SwaggerMessages.ListEvaluadoresSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.ListEvaluadoresResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3463,13 +4579,13 @@ var doc = `{
         "SwaggerMessages.ListGruposSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.ListGruposResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3477,13 +4593,13 @@ var doc = `{
         "SwaggerMessages.ListPeriodosSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.ListPeriodosResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3491,13 +4607,13 @@ var doc = `{
         "SwaggerMessages.ListPuntajesSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.ListPuntajesResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3505,13 +4621,41 @@ var doc = `{
         "SwaggerMessages.ListRolesSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.ListRolesResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.PutOneAdministradorAcademicoSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.PutOneAdministradorAcademicoResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.PutOneAdministradorTiSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.PutOneAdministradorTiResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3519,13 +4663,13 @@ var doc = `{
         "SwaggerMessages.PutOneCompetenciaSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.PutOneCompetenciaResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3533,13 +4677,13 @@ var doc = `{
         "SwaggerMessages.PutOneCursoSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.PutOneCursoResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3547,13 +4691,13 @@ var doc = `{
         "SwaggerMessages.PutOneEstudianteSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.PutOneEstudianteResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3561,13 +4705,13 @@ var doc = `{
         "SwaggerMessages.PutOneEvaluacionSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.PutOneEvaluacionResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3575,13 +4719,13 @@ var doc = `{
         "SwaggerMessages.PutOneEvaluadorSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.PutOneEvaluadorResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3589,13 +4733,13 @@ var doc = `{
         "SwaggerMessages.PutOneGrupoSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.PutOneGrupoResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3603,13 +4747,13 @@ var doc = `{
         "SwaggerMessages.PutOnePeriodoSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.PutOnePeriodoResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3617,13 +4761,13 @@ var doc = `{
         "SwaggerMessages.PutOnePuntajeSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.PutOnePuntajeResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }
@@ -3631,13 +4775,13 @@ var doc = `{
         "SwaggerMessages.PutOneRolSwagger": {
             "type": "object",
             "properties": {
-                "Data": {
+                "data": {
                     "$ref": "#/definitions/ResponseMessages.PutOneRolResponse"
                 },
-                "Meta": {
+                "meta": {
                     "type": "string"
                 },
-                "Status": {
+                "status": {
                     "type": "boolean"
                 }
             }

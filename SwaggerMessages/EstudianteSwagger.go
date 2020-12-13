@@ -5,31 +5,31 @@ import (
 )
 
 type ListEstudiantesSwagger struct {
-	Status bool                                     `json:"Status"`
-	Meta   string                                   `json:"Meta"`
-	Data   ResponseMessages.ListEstudiantesResponse `json:"Data"`
+	Status bool                                     `json:"status"`
+	Meta   string                                   `json:"meta"`
+	Data   ResponseMessages.ListEstudiantesResponse `json:"data"`
 }
 
 type GetOneEstudianteSwagger struct {
-	Status bool                                      `json:"Status"`
-	Meta   string                                    `json:"Meta"`
-	Data   ResponseMessages.GetOneEstudianteResponse `json:"Data"`
+	Status bool                                      `json:"status"`
+	Meta   string                                    `json:"meta"`
+	Data   ResponseMessages.GetOneEstudianteResponse `json:"data"`
 }
 
 type AddNewEstudianteSwagger struct {
-	Status bool                                      `json:"Status"`
-	Meta   string                                    `json:"Meta"`
-	Data   ResponseMessages.AddNewEstudianteResponse `json:"Data"`
+	Status bool                                      `json:"status"`
+	Meta   string                                    `json:"meta"`
+	Data   ResponseMessages.AddNewEstudianteResponse `json:"data"`
 }
 
 type PutOneEstudianteSwagger struct {
-	Status bool                                      `json:"Status"`
-	Meta   string                                    `json:"Meta"`
-	Data   ResponseMessages.PutOneEstudianteResponse `json:"Data"`
+	Status bool                                      `json:"status"`
+	Meta   string                                    `json:"meta"`
+	Data   ResponseMessages.PutOneEstudianteResponse `json:"data"`
 }
 
 type DeleteEstudianteSwagger struct {
-	Status bool                                      `json:"Status"`
-	Meta   string                                    `json:"Meta"`
-	Data   ResponseMessages.DeleteEstudianteResponse `json:"Data"`
+	Status bool                                      `json:"status"`
+	Meta   string                                    `json:"meta"`
+	Data   ResponseMessages.DeleteEstudianteResponse `json:"data"`
 }

@@ -5,31 +5,31 @@ import (
 )
 
 type ListEvaluadoresSwagger struct {
-	Status bool                                     `json:"Status"`
-	Meta   string                                   `json:"Meta"`
-	Data   ResponseMessages.ListEvaluadoresResponse `json:"Data"`
+	Status bool                                     `json:"status"`
+	Meta   string                                   `json:"meta"`
+	Data   ResponseMessages.ListEvaluadoresResponse `json:"data"`
 }
 
 type GetOneEvaluadorSwagger struct {
-	Status bool                                     `json:"Status"`
-	Meta   string                                   `json:"Meta"`
-	Data   ResponseMessages.GetOneEvaluadorResponse `json:"Data"`
+	Status bool                                     `json:"status"`
+	Meta   string                                   `json:"meta"`
+	Data   ResponseMessages.GetOneEvaluadorResponse `json:"data"`
 }
 
 type AddNewEvaluadorSwagger struct {
-	Status bool                                     `json:"Status"`
-	Meta   string                                   `json:"Meta"`
-	Data   ResponseMessages.AddNewEvaluadorResponse `json:"Data"`
+	Status bool                                     `json:"status"`
+	Meta   string                                   `json:"meta"`
+	Data   ResponseMessages.AddNewEvaluadorResponse `json:"data"`
 }
 
 type PutOneEvaluadorSwagger struct {
-	Status bool                                     `json:"Status"`
-	Meta   string                                   `json:"Meta"`
-	Data   ResponseMessages.PutOneEvaluadorResponse `json:"Data"`
+	Status bool                                     `json:"status"`
+	Meta   string                                   `json:"meta"`
+	Data   ResponseMessages.PutOneEvaluadorResponse `json:"data"`
 }
 
 type DeleteEvaluadorSwagger struct {
-	Status bool                                     `json:"Status"`
-	Meta   string                                   `json:"Meta"`
-	Data   ResponseMessages.DeleteEvaluadorResponse `json:"Data"`
+	Status bool                                     `json:"status"`
+	Meta   string                                   `json:"meta"`
+	Data   ResponseMessages.DeleteEvaluadorResponse `json:"data"`
 }

@@ -1,7 +1,6 @@
 package Controllers
 
 import (
-	"github.com/gin-gonic/gin"
 	"medroom-backend/ApiHelpers"
 	"medroom-backend/InputFormats"
 	"medroom-backend/Models"
@@ -9,6 +8,8 @@ import (
 	"medroom-backend/Repositories"
 	"medroom-backend/RequestMessages"
 	"medroom-backend/Utils"
+
+	"github.com/gin-gonic/gin"
 )
 
 /*
@@ -55,14 +56,14 @@ func ListEvaluaciones(c *gin.Context) {
 */
 
 // @Summary Obtiene un evaluacion
-// @Description Obtiene un evaluacion según su UUID
+// @Description Obtiene un evaluacion según su ID
 // @Tags Evaluaciones
 // @Accept  json
 // @Produce  json
-// @Param   uuid_evaluacion     path    string     true        "UUID del evaluacion a buscar"
+// @Param   id_evaluacion     path    string     true        "ID del evaluacion a buscar"
 // @Success 200 {object} SwaggerMessages.GetOneEvaluacionSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /evaluaciones/{uuid_evaluacion} [get]
+// @Router /evaluaciones/{id_evaluacion} [get]
 func GetOneEvaluacion(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -156,11 +157,11 @@ func AddNewEvaluacion(c *gin.Context) {
 // @Tags Evaluaciones
 // @Accept  json
 // @Produce  json
-// @Param   uuid_evaluacion     path    string     true        "UUID del evaluacion a modificar"
+// @Param   id_evaluacion     path    string     true        "ID del evaluacion a modificar"
 // @Param   input_actualiza_evaluacion     body    RequestMessages.PutOneEvaluacionPayload     true        "Evaluacion a modificar"
 // @Success 200 {object} SwaggerMessages.PutOneEvaluacionSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /evaluaciones/{uuid_evaluacion} [put]
+// @Router /evaluaciones/{id_evaluacion} [put]
 func PutOneEvaluacion(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -259,10 +260,10 @@ func PutOneEvaluacion(c *gin.Context) {
 // @Tags Evaluaciones
 // @Accept  json
 // @Produce  json
-// @Param   uuid_evaluacion     path    string     true        "UUID del evaluacion a eliminar"
+// @Param   id_evaluacion     path    string     true        "ID del evaluacion a eliminar"
 // @Success 200 {object} SwaggerMessages.DeleteEvaluacionSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /evaluaciones/{uuid_evaluacion} [delete]
+// @Router /evaluaciones/{id_evaluacion} [delete]
 func DeleteEvaluacion(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")

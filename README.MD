@@ -1,10 +1,10 @@
 # MEDROOM BACKEND
 
-A simple RESTful API compatible with heroku using:
+A simple RESTful API compatible with heroku and swaggo using:
 
 1. **Gin Framework**
 2. **Gorm**
-3. **Go 1.13**
+3. **Go 1.15**
 
 ## Installation & Run
 
@@ -19,16 +19,16 @@ To run locally, generate .env file and modify its variables
 cp .env.example .env
 ```
 
-Install dependencies
-
-```bash
-$ dep ensure
-```
-
 Build swagger
 
 ```bash
 $ swag init
+```
+
+Run and install dependencies
+
+```bash
+$ go run *.go
 ```
 
 ## API

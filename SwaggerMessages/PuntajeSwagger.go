@@ -5,31 +5,31 @@ import (
 )
 
 type ListPuntajesSwagger struct {
-	Status bool                                  `json:"Status"`
-	Meta   string                                `json:"Meta"`
-	Data   ResponseMessages.ListPuntajesResponse `json:"Data"`
+	Status bool                                  `json:"status"`
+	Meta   string                                `json:"meta"`
+	Data   ResponseMessages.ListPuntajesResponse `json:"data"`
 }
 
 type GetOnePuntajeSwagger struct {
-	Status bool                                   `json:"Status"`
-	Meta   string                                 `json:"Meta"`
-	Data   ResponseMessages.GetOnePuntajeResponse `json:"Data"`
+	Status bool                                   `json:"status"`
+	Meta   string                                 `json:"meta"`
+	Data   ResponseMessages.GetOnePuntajeResponse `json:"data"`
 }
 
 type AddNewPuntajeSwagger struct {
-	Status bool                                   `json:"Status"`
-	Meta   string                                 `json:"Meta"`
-	Data   ResponseMessages.AddNewPuntajeResponse `json:"Data"`
+	Status bool                                   `json:"status"`
+	Meta   string                                 `json:"meta"`
+	Data   ResponseMessages.AddNewPuntajeResponse `json:"data"`
 }
 
 type PutOnePuntajeSwagger struct {
-	Status bool                                   `json:"Status"`
-	Meta   string                                 `json:"Meta"`
-	Data   ResponseMessages.PutOnePuntajeResponse `json:"Data"`
+	Status bool                                   `json:"status"`
+	Meta   string                                 `json:"meta"`
+	Data   ResponseMessages.PutOnePuntajeResponse `json:"data"`
 }
 
 type DeletePuntajeSwagger struct {
-	Status bool                                   `json:"Status"`
-	Meta   string                                 `json:"Meta"`
-	Data   ResponseMessages.DeletePuntajeResponse `json:"Data"`
+	Status bool                                   `json:"status"`
+	Meta   string                                 `json:"meta"`
+	Data   ResponseMessages.DeletePuntajeResponse `json:"data"`
 }

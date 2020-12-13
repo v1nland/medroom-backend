@@ -7,6 +7,46 @@ definitions:
       error:
         type: string
     type: object
+  RequestMessages.AddNewAdministradorAcademicoPayload:
+    properties:
+      apellidos_administrador_academico:
+        type: string
+      correo_electronico_administrador_academico:
+        type: string
+      hash_contrasena_administrador_academico:
+        type: string
+      id_rol:
+        type: integer
+      nombres_administrador_academico:
+        type: string
+      rut_administrador_academico:
+        type: string
+      telefono_celular_administrador_academico:
+        type: string
+      telefono_fijo_administrador_academico:
+        type: string
+    type: object
+  RequestMessages.AddNewAdministradorTiPayload:
+    properties:
+      apellidos_administrador_ti:
+        type: string
+      correo_electronico_administrador_ti:
+        type: string
+      hash_contrasena_administrador_ti:
+        type: string
+      id_grupo:
+        type: integer
+      id_rol:
+        type: integer
+      nombres_administrador_ti:
+        type: string
+      rut_administrador_ti:
+        type: string
+      telefono_celular_administrador_ti:
+        type: string
+      telefono_fijo_administrador_ti:
+        type: string
+    type: object
   RequestMessages.AddNewCompetenciaPayload:
     properties:
       nombre_competencia:
@@ -124,6 +164,74 @@ definitions:
   RequestMessages.AddNewRolPayload:
     properties:
       nombre_rol:
+        type: string
+    type: object
+  RequestMessages.LoginAdministradorAcademicoPayload:
+    properties:
+      correo_electronico_administrador_academico:
+        type: string
+      hash_contrasena_administrador_academico:
+        type: string
+    type: object
+  RequestMessages.LoginAdministradorTiPayload:
+    properties:
+      correo_electronico_administrador_ti:
+        type: string
+      hash_contrasena_administrador_ti:
+        type: string
+    type: object
+  RequestMessages.LoginEstudiantePayload:
+    properties:
+      correo_electronico_estudiante:
+        type: string
+      hash_contrasena_estudiante:
+        type: string
+    type: object
+  RequestMessages.LoginEvaluadorPayload:
+    properties:
+      correo_electronico_evaluador:
+        type: string
+      hash_contrasena_evaluador:
+        type: string
+    type: object
+  RequestMessages.PutOneAdministradorAcademicoPayload:
+    properties:
+      apellidos_administrador_academico:
+        type: string
+      correo_electronico_administrador_academico:
+        type: string
+      hash_contrasena_administrador_academico:
+        type: string
+      id_rol:
+        type: integer
+      nombres_administrador_academico:
+        type: string
+      rut_administrador_academico:
+        type: string
+      telefono_celular_administrador_academico:
+        type: string
+      telefono_fijo_administrador_academico:
+        type: string
+    type: object
+  RequestMessages.PutOneAdministradorTiPayload:
+    properties:
+      apellidos_administrador_ti:
+        type: string
+      correo_electronico_administrador_ti:
+        type: string
+      hash_contrasena_administrador_ti:
+        type: string
+      id_grupo:
+        type: integer
+      id_rol:
+        type: integer
+      nombres_administrador_ti:
+        type: string
+      rut_administrador_ti:
+        type: string
+      telefono_celular_administrador_ti:
+        type: string
+      telefono_fijo_administrador_ti:
         type: string
     type: object
   RequestMessages.PutOneCompetenciaPayload:
@@ -245,6 +353,40 @@ definitions:
       nombre_rol:
         type: string
     type: object
+  ResponseMessages.AddNewAdministradorAcademicoResponse:
+    properties:
+      apellidos_administrador_academico:
+        type: string
+      correo_electronico_administrador_academico:
+        type: string
+      id_rol:
+        type: integer
+      nombres_administrador_academico:
+        type: string
+      rut_administrador_academico:
+        type: string
+      telefono_celular_administrador_academico:
+        type: string
+      telefono_fijo_administrador_academico:
+        type: string
+    type: object
+  ResponseMessages.AddNewAdministradorTiResponse:
+    properties:
+      apellidos_administrador_ti:
+        type: string
+      correo_electronico_administrador_ti:
+        type: string
+      id_rol:
+        type: integer
+      nombres_administrador_ti:
+        type: string
+      rut_administrador_ti:
+        type: string
+      telefono_celular_administrador_ti:
+        type: string
+      telefono_fijo_administrador_ti:
+        type: string
+    type: object
   ResponseMessages.AddNewCompetenciaResponse:
     properties:
       nombre_competencia:
@@ -360,6 +502,45 @@ definitions:
       nombre_rol:
         type: string
     type: object
+  ResponseMessages.Authentication:
+    properties:
+      token:
+        type: string
+    type: object
+  ResponseMessages.DeleteAdministradorAcademicoResponse:
+    properties:
+      apellidos_administrador_academico:
+        type: string
+      correo_electronico_administrador_academico:
+        type: string
+      id_rol:
+        type: integer
+      nombres_administrador_academico:
+        type: string
+      rut_administrador_academico:
+        type: string
+      telefono_celular_administrador_academico:
+        type: string
+      telefono_fijo_administrador_academico:
+        type: string
+    type: object
+  ResponseMessages.DeleteAdministradorTiResponse:
+    properties:
+      apellidos_administrador_ti:
+        type: string
+      correo_electronico_administrador_ti:
+        type: string
+      id_rol:
+        type: integer
+      nombres_administrador_ti:
+        type: string
+      rut_administrador_ti:
+        type: string
+      telefono_celular_administrador_ti:
+        type: string
+      telefono_fijo_administrador_ti:
+        type: string
+    type: object
   ResponseMessages.DeleteCompetenciaResponse:
     properties:
       nombre_competencia:
@@ -473,6 +654,40 @@ definitions:
   ResponseMessages.DeleteRolResponse:
     properties:
       nombre_rol:
+        type: string
+    type: object
+  ResponseMessages.GetOneAdministradorAcademicoResponse:
+    properties:
+      apellidos_administrador_academico:
+        type: string
+      correo_electronico_administrador_academico:
+        type: string
+      nombres_administrador_academico:
+        type: string
+      rol_administrador_academico:
+        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+      rut_administrador_academico:
+        type: string
+      telefono_celular_administrador_academico:
+        type: string
+      telefono_fijo_administrador_academico:
+        type: string
+    type: object
+  ResponseMessages.GetOneAdministradorTiResponse:
+    properties:
+      apellidos_administrador_ti:
+        type: string
+      correo_electronico_administrador_ti:
+        type: string
+      nombres_administrador_ti:
+        type: string
+      rol_administrador_ti:
+        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+      rut_administrador_ti:
+        type: string
+      telefono_celular_administrador_ti:
+        type: string
+      telefono_fijo_administrador_ti:
         type: string
     type: object
   ResponseMessages.GetOneCompetenciaResponse:
@@ -593,6 +808,40 @@ definitions:
       nombre_rol:
         type: string
     type: object
+  ResponseMessages.ListAdministradoresAcademicosResponse:
+    properties:
+      apellidos_administrador_academico:
+        type: string
+      correo_electronico_administrador_academico:
+        type: string
+      nombres_administrador_academico:
+        type: string
+      rol_administrador_academico:
+        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+      rut_administrador_academico:
+        type: string
+      telefono_celular_administrador_academico:
+        type: string
+      telefono_fijo_administrador_academico:
+        type: string
+    type: object
+  ResponseMessages.ListAdministradoresTiResponse:
+    properties:
+      apellidos_administrador_ti:
+        type: string
+      correo_electronico_administrador_ti:
+        type: string
+      nombres_administrador_ti:
+        type: string
+      rol_administrador_ti:
+        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+      rut_administrador_ti:
+        type: string
+      telefono_celular_administrador_ti:
+        type: string
+      telefono_fijo_administrador_ti:
+        type: string
+    type: object
   ResponseMessages.ListCompetenciasResponse:
     properties:
       nombre_competencia:
@@ -709,6 +958,44 @@ definitions:
   ResponseMessages.ListRolesResponse:
     properties:
       nombre_rol:
+        type: string
+    type: object
+  ResponseMessages.PutOneAdministradorAcademicoResponse:
+    properties:
+      apellidos_administrador_academico:
+        type: string
+      correo_electronico_administrador_academico:
+        type: string
+      hash_contrasena_administrador_academico:
+        type: string
+      id_rol:
+        type: integer
+      nombres_administrador_academico:
+        type: string
+      rut_administrador_academico:
+        type: string
+      telefono_celular_administrador_academico:
+        type: string
+      telefono_fijo_administrador_academico:
+        type: string
+    type: object
+  ResponseMessages.PutOneAdministradorTiResponse:
+    properties:
+      apellidos_administrador_ti:
+        type: string
+      correo_electronico_administrador_ti:
+        type: string
+      hash_contrasena_administrador_ti:
+        type: string
+      id_rol:
+        type: integer
+      nombres_administrador_ti:
+        type: string
+      rut_administrador_ti:
+        type: string
+      telefono_celular_administrador_ti:
+        type: string
+      telefono_fijo_administrador_ti:
         type: string
     type: object
   ResponseMessages.PutOneCompetenciaResponse:
@@ -830,409 +1117,508 @@ definitions:
       nombre_rol:
         type: string
     type: object
+  SwaggerMessages.AddNewAdministradorAcademicoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.AddNewAdministradorAcademicoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  SwaggerMessages.AddNewAdministradorTiSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.AddNewAdministradorTiResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
   SwaggerMessages.AddNewCompetenciaSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.AddNewCompetenciaResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.AddNewCursoSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.AddNewCursoResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.AddNewEstudianteSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.AddNewEstudianteResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.AddNewEvaluacionSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.AddNewEvaluacionResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.AddNewEvaluadorSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.AddNewEvaluadorResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.AddNewGrupoSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.AddNewGrupoResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.AddNewPeriodoSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.AddNewPeriodoResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.AddNewPuntajeSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.AddNewPuntajeResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.AddNewRolSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.AddNewRolResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
+        type: boolean
+    type: object
+  SwaggerMessages.AuthenticationSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.Authentication'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  SwaggerMessages.DeleteAdministradorAcademicoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.DeleteAdministradorAcademicoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  SwaggerMessages.DeleteAdministradorTiSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.DeleteAdministradorTiResponse'
+      meta:
+        type: string
+      status:
         type: boolean
     type: object
   SwaggerMessages.DeleteCompetenciaSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.DeleteCompetenciaResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.DeleteCursoSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.DeleteCursoResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.DeleteEstudianteSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.DeleteEstudianteResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.DeleteEvaluacionSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.DeleteEvaluacionResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.DeleteEvaluadorSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.DeleteEvaluadorResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.DeleteGrupoSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.DeleteGrupoResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.DeletePeriodoSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.DeletePeriodoResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.DeletePuntajeSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.DeletePuntajeResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.DeleteRolSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.DeleteRolResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
+        type: boolean
+    type: object
+  SwaggerMessages.GetOneAdministradorAcademicoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.GetOneAdministradorAcademicoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  SwaggerMessages.GetOneAdministradorTiSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.GetOneAdministradorTiResponse'
+      meta:
+        type: string
+      status:
         type: boolean
     type: object
   SwaggerMessages.GetOneCompetenciaSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.GetOneCursoSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.GetOneCursoResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.GetOneEstudianteSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.GetOneEstudianteResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.GetOneEvaluacionSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.GetOneEvaluacionResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.GetOneEvaluadorSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.GetOneGrupoSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.GetOneGrupoResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.GetOnePeriodoSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.GetOnePeriodoResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.GetOnePuntajeSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.GetOnePuntajeResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.GetOneRolSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
+        type: boolean
+    type: object
+  SwaggerMessages.ListAdministradoresAcademicosSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.ListAdministradoresAcademicosResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  SwaggerMessages.ListAdministradoresTiSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.ListAdministradoresTiResponse'
+      meta:
+        type: string
+      status:
         type: boolean
     type: object
   SwaggerMessages.ListCompetenciasSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.ListCompetenciasResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.ListCursosSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.ListCursosResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.ListEstudiantesSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.ListEstudiantesResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.ListEvaluacionesSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.ListEvaluacionesResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.ListEvaluadoresSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.ListEvaluadoresResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.ListGruposSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.ListGruposResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.ListPeriodosSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.ListPeriodosResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.ListPuntajesSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.ListPuntajesResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.ListRolesSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.ListRolesResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
+        type: boolean
+    type: object
+  SwaggerMessages.PutOneAdministradorAcademicoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.PutOneAdministradorAcademicoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  SwaggerMessages.PutOneAdministradorTiSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.PutOneAdministradorTiResponse'
+      meta:
+        type: string
+      status:
         type: boolean
     type: object
   SwaggerMessages.PutOneCompetenciaSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.PutOneCompetenciaResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.PutOneCursoSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.PutOneCursoResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.PutOneEstudianteSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.PutOneEstudianteResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.PutOneEvaluacionSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.PutOneEvaluacionResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.PutOneEvaluadorSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.PutOneEvaluadorResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.PutOneGrupoSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.PutOneGrupoResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.PutOnePeriodoSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.PutOnePeriodoResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.PutOnePuntajeSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.PutOnePuntajeResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
   SwaggerMessages.PutOneRolSwagger:
     properties:
-      Data:
+      data:
         $ref: '#/definitions/ResponseMessages.PutOneRolResponse'
-      Meta:
+      meta:
         type: string
-      Status:
+      status:
         type: boolean
     type: object
 info:
@@ -1248,6 +1634,256 @@ info:
   title: MedRoom API
   version: "1.0"
 paths:
+  /administradores-academicos:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los administradores-academicos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/SwaggerMessages.ListAdministradoresAcademicosSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de administradores-academicos
+      tags:
+      - AdministradoresAcademicos
+    post:
+      consumes:
+      - application/json
+      description: Genera un nuevo administrador_academico con los datos entregados
+      parameters:
+      - description: AdministradorAcademico a agregar
+        in: body
+        name: input_administrador_academico
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.AddNewAdministradorAcademicoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.AddNewAdministradorAcademicoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Agrega un nuevo administrador_academico
+      tags:
+      - AdministradoresAcademicos
+  /administradores-academicos/{uuid_administrador_academico}:
+    delete:
+      consumes:
+      - application/json
+      description: Elimina un administrador_academico con los datos entregados
+      parameters:
+      - description: UUID del administrador_academico a eliminar
+        in: path
+        name: uuid_administrador_academico
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.DeleteAdministradorAcademicoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Elimina un administrador_academico
+      tags:
+      - AdministradoresAcademicos
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un administrador_academico según su UUID
+      parameters:
+      - description: UUID del administrador_academico a buscar
+        in: path
+        name: uuid_administrador_academico
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.GetOneAdministradorAcademicoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un administrador_academico
+      tags:
+      - AdministradoresAcademicos
+    put:
+      consumes:
+      - application/json
+      description: Modifica un administrador_academico con los datos entregados
+      parameters:
+      - description: UUID del administrador_academico a modificar
+        in: path
+        name: uuid_administrador_academico
+        required: true
+        type: string
+      - description: AdministradorAcademico a modificar
+        in: body
+        name: input_actualiza_administrador_academico
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.PutOneAdministradorAcademicoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.PutOneAdministradorAcademicoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica un administrador_academico
+      tags:
+      - AdministradoresAcademicos
+  /administradores-ti:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los administradores-ti
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/SwaggerMessages.ListAdministradoresTiSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de administradores-ti
+      tags:
+      - AdministradoresTi
+    post:
+      consumes:
+      - application/json
+      description: Genera un nuevo administrador_ti con los datos entregados
+      parameters:
+      - description: AdministradorTi a agregar
+        in: body
+        name: input_administrador_ti
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.AddNewAdministradorTiPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.AddNewAdministradorTiSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Agrega un nuevo administrador_ti
+      tags:
+      - AdministradoresTi
+  /administradores-ti/{uuid_administrador_ti}:
+    delete:
+      consumes:
+      - application/json
+      description: Elimina un administrador_ti con los datos entregados
+      parameters:
+      - description: UUID del administrador_ti a eliminar
+        in: path
+        name: uuid_administrador_ti
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.DeleteAdministradorTiSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Elimina un administrador_ti
+      tags:
+      - AdministradoresTi
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un administrador_ti según su UUID
+      parameters:
+      - description: UUID del administrador_ti a buscar
+        in: path
+        name: uuid_administrador_ti
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.GetOneAdministradorTiSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un administrador_ti
+      tags:
+      - AdministradoresTi
+    put:
+      consumes:
+      - application/json
+      description: Modifica un administrador_ti con los datos entregados
+      parameters:
+      - description: UUID del administrador_ti a modificar
+        in: path
+        name: uuid_administrador_ti
+        required: true
+        type: string
+      - description: AdministradorTi a modificar
+        in: body
+        name: input_actualiza_administrador_ti
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.PutOneAdministradorTiPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.PutOneAdministradorTiSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica un administrador_ti
+      tags:
+      - AdministradoresTi
   /competencias:
     get:
       consumes:
@@ -1294,15 +1930,15 @@ paths:
       summary: Agrega un nuevo competencia
       tags:
       - Competencias
-  /competencias/{uuid_competencia}:
+  /competencias/{id_competencia}:
     delete:
       consumes:
       - application/json
       description: Elimina un competencia con los datos entregados
       parameters:
-      - description: UUID del competencia a eliminar
+      - description: ID del competencia a eliminar
         in: path
-        name: uuid_competencia
+        name: id_competencia
         required: true
         type: string
       produces:
@@ -1322,11 +1958,11 @@ paths:
     get:
       consumes:
       - application/json
-      description: Obtiene un competencia según su UUID
+      description: Obtiene un competencia según su ID
       parameters:
-      - description: UUID del competencia a buscar
+      - description: ID del competencia a buscar
         in: path
-        name: uuid_competencia
+        name: id_competencia
         required: true
         type: string
       produces:
@@ -1348,9 +1984,9 @@ paths:
       - application/json
       description: Modifica un competencia con los datos entregados
       parameters:
-      - description: UUID del competencia a modificar
+      - description: ID del competencia a modificar
         in: path
-        name: uuid_competencia
+        name: id_competencia
         required: true
         type: string
       - description: Competencia a modificar
@@ -1419,15 +2055,15 @@ paths:
       summary: Agrega un nuevo curso
       tags:
       - Cursos
-  /cursos/{uuid_curso}:
+  /cursos/{id_curso}:
     delete:
       consumes:
       - application/json
       description: Elimina un curso con los datos entregados
       parameters:
-      - description: UUID del curso a eliminar
+      - description: ID del curso a eliminar
         in: path
-        name: uuid_curso
+        name: id_curso
         required: true
         type: string
       produces:
@@ -1447,11 +2083,11 @@ paths:
     get:
       consumes:
       - application/json
-      description: Obtiene un curso según su UUID
+      description: Obtiene un curso según su ID
       parameters:
-      - description: UUID del curso a buscar
+      - description: ID del curso a buscar
         in: path
-        name: uuid_curso
+        name: id_curso
         required: true
         type: string
       produces:
@@ -1473,9 +2109,9 @@ paths:
       - application/json
       description: Modifica un curso con los datos entregados
       parameters:
-      - description: UUID del curso a modificar
+      - description: ID del curso a modificar
         in: path
-        name: uuid_curso
+        name: id_curso
         required: true
         type: string
       - description: Curso a modificar
@@ -1669,15 +2305,15 @@ paths:
       summary: Agrega un nuevo evaluacion
       tags:
       - Evaluaciones
-  /evaluaciones/{uuid_evaluacion}:
+  /evaluaciones/{id_evaluacion}:
     delete:
       consumes:
       - application/json
       description: Elimina un evaluacion con los datos entregados
       parameters:
-      - description: UUID del evaluacion a eliminar
+      - description: ID del evaluacion a eliminar
         in: path
-        name: uuid_evaluacion
+        name: id_evaluacion
         required: true
         type: string
       produces:
@@ -1697,11 +2333,11 @@ paths:
     get:
       consumes:
       - application/json
-      description: Obtiene un evaluacion según su UUID
+      description: Obtiene un evaluacion según su ID
       parameters:
-      - description: UUID del evaluacion a buscar
+      - description: ID del evaluacion a buscar
         in: path
-        name: uuid_evaluacion
+        name: id_evaluacion
         required: true
         type: string
       produces:
@@ -1723,9 +2359,9 @@ paths:
       - application/json
       description: Modifica un evaluacion con los datos entregados
       parameters:
-      - description: UUID del evaluacion a modificar
+      - description: ID del evaluacion a modificar
         in: path
-        name: uuid_evaluacion
+        name: id_evaluacion
         required: true
         type: string
       - description: Evaluacion a modificar
@@ -1919,15 +2555,15 @@ paths:
       summary: Agrega un nuevo grupo
       tags:
       - Grupos
-  /grupos/{uuid_grupo}:
+  /grupos/{id_grupo}:
     delete:
       consumes:
       - application/json
       description: Elimina un grupo con los datos entregados
       parameters:
-      - description: UUID del grupo a eliminar
+      - description: ID del grupo a eliminar
         in: path
-        name: uuid_grupo
+        name: id_grupo
         required: true
         type: string
       produces:
@@ -1947,11 +2583,11 @@ paths:
     get:
       consumes:
       - application/json
-      description: Obtiene un grupo según su UUID
+      description: Obtiene un grupo según su ID
       parameters:
-      - description: UUID del grupo a buscar
+      - description: ID del grupo a buscar
         in: path
-        name: uuid_grupo
+        name: id_grupo
         required: true
         type: string
       produces:
@@ -1973,9 +2609,9 @@ paths:
       - application/json
       description: Modifica un grupo con los datos entregados
       parameters:
-      - description: UUID del grupo a modificar
+      - description: ID del grupo a modificar
         in: path
-        name: uuid_grupo
+        name: id_grupo
         required: true
         type: string
       - description: Grupo a modificar
@@ -1998,6 +2634,118 @@ paths:
       summary: Modifica un grupo
       tags:
       - Grupos
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: Ingresa usuario y contraseña para iniciar sesión
+      parameters:
+      - description: Credenciales de acceso
+        in: body
+        name: input_credentials
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.LoginEstudiantePayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/SwaggerMessages.AuthenticationSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Autenticación de estudiante
+      tags:
+      - Autenticación
+  /login-admiministrador-academico:
+    post:
+      consumes:
+      - application/json
+      description: Ingresa usuario y contraseña para iniciar sesión
+      parameters:
+      - description: Credenciales de acceso
+        in: body
+        name: input_credentials
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.LoginAdministradorAcademicoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/SwaggerMessages.AuthenticationSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Autenticación de administrador académico
+      tags:
+      - Autenticación
+  /login-administrador-ti:
+    post:
+      consumes:
+      - application/json
+      description: Ingresa usuario y contraseña para iniciar sesión
+      parameters:
+      - description: Credenciales de acceso
+        in: body
+        name: input_credentials
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.LoginAdministradorTiPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/SwaggerMessages.AuthenticationSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Autenticación de administrador ti
+      tags:
+      - Autenticación
+  /login-evaluador:
+    post:
+      consumes:
+      - application/json
+      description: Ingresa usuario y contraseña para iniciar sesión
+      parameters:
+      - description: Credenciales de acceso
+        in: body
+        name: input_credentials
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.LoginEvaluadorPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/SwaggerMessages.AuthenticationSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Autenticación de evaluador
+      tags:
+      - Autenticación
   /periodos:
     get:
       consumes:
@@ -2044,15 +2792,15 @@ paths:
       summary: Agrega un nuevo periodo
       tags:
       - Periodos
-  /periodos/{uuid_periodo}:
+  /periodos/{id_periodo}:
     delete:
       consumes:
       - application/json
       description: Elimina un periodo con los datos entregados
       parameters:
-      - description: UUID del periodo a eliminar
+      - description: ID del periodo a eliminar
         in: path
-        name: uuid_periodo
+        name: id_periodo
         required: true
         type: string
       produces:
@@ -2072,11 +2820,11 @@ paths:
     get:
       consumes:
       - application/json
-      description: Obtiene un periodo según su UUID
+      description: Obtiene un periodo según su ID
       parameters:
-      - description: UUID del periodo a buscar
+      - description: ID del periodo a buscar
         in: path
-        name: uuid_periodo
+        name: id_periodo
         required: true
         type: string
       produces:
@@ -2098,9 +2846,9 @@ paths:
       - application/json
       description: Modifica un periodo con los datos entregados
       parameters:
-      - description: UUID del periodo a modificar
+      - description: ID del periodo a modificar
         in: path
-        name: uuid_periodo
+        name: id_periodo
         required: true
         type: string
       - description: Periodo a modificar
@@ -2169,15 +2917,15 @@ paths:
       summary: Agrega un nuevo puntaje
       tags:
       - Puntajes
-  /puntajes/{uuid_puntaje}:
+  /puntajes/{id_puntaje}:
     delete:
       consumes:
       - application/json
       description: Elimina un puntaje con los datos entregados
       parameters:
-      - description: UUID del puntaje a eliminar
+      - description: ID del puntaje a eliminar
         in: path
-        name: uuid_puntaje
+        name: id_puntaje
         required: true
         type: string
       produces:
@@ -2197,11 +2945,11 @@ paths:
     get:
       consumes:
       - application/json
-      description: Obtiene un puntaje según su UUID
+      description: Obtiene un puntaje según su ID
       parameters:
-      - description: UUID del puntaje a buscar
+      - description: ID del puntaje a buscar
         in: path
-        name: uuid_puntaje
+        name: id_puntaje
         required: true
         type: string
       produces:
@@ -2223,9 +2971,9 @@ paths:
       - application/json
       description: Modifica un puntaje con los datos entregados
       parameters:
-      - description: UUID del puntaje a modificar
+      - description: ID del puntaje a modificar
         in: path
-        name: uuid_puntaje
+        name: id_puntaje
         required: true
         type: string
       - description: Puntaje a modificar
@@ -2294,15 +3042,15 @@ paths:
       summary: Agrega un nuevo rol
       tags:
       - Roles
-  /roles/{uuid_rol}:
+  /roles/{id_rol}:
     delete:
       consumes:
       - application/json
       description: Elimina un rol con los datos entregados
       parameters:
-      - description: UUID del rol a eliminar
+      - description: ID del rol a eliminar
         in: path
-        name: uuid_rol
+        name: id_rol
         required: true
         type: string
       produces:
@@ -2322,11 +3070,11 @@ paths:
     get:
       consumes:
       - application/json
-      description: Obtiene un rol según su UUID
+      description: Obtiene un rol según su ID
       parameters:
-      - description: UUID del rol a buscar
+      - description: ID del rol a buscar
         in: path
-        name: uuid_rol
+        name: id_rol
         required: true
         type: string
       produces:
@@ -2348,9 +3096,9 @@ paths:
       - application/json
       description: Modifica un rol con los datos entregados
       parameters:
-      - description: UUID del rol a modificar
+      - description: ID del rol a modificar
         in: path
-        name: uuid_rol
+        name: id_rol
         required: true
         type: string
       - description: Rol a modificar

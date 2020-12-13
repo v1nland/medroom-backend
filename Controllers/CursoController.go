@@ -1,7 +1,6 @@
 package Controllers
 
 import (
-	"github.com/gin-gonic/gin"
 	"medroom-backend/ApiHelpers"
 	"medroom-backend/InputFormats"
 	"medroom-backend/Models"
@@ -9,6 +8,8 @@ import (
 	"medroom-backend/Repositories"
 	"medroom-backend/RequestMessages"
 	"medroom-backend/Utils"
+
+	"github.com/gin-gonic/gin"
 )
 
 /*
@@ -55,14 +56,14 @@ func ListCursos(c *gin.Context) {
 */
 
 // @Summary Obtiene un curso
-// @Description Obtiene un curso según su UUID
+// @Description Obtiene un curso según su ID
 // @Tags Cursos
 // @Accept  json
 // @Produce  json
-// @Param   uuid_curso     path    string     true        "UUID del curso a buscar"
+// @Param   id_curso     path    string     true        "ID del curso a buscar"
 // @Success 200 {object} SwaggerMessages.GetOneCursoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /cursos/{uuid_curso} [get]
+// @Router /cursos/{id_curso} [get]
 func GetOneCurso(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -146,11 +147,11 @@ func AddNewCurso(c *gin.Context) {
 // @Tags Cursos
 // @Accept  json
 // @Produce  json
-// @Param   uuid_curso     path    string     true        "UUID del curso a modificar"
+// @Param   id_curso     path    string     true        "ID del curso a modificar"
 // @Param   input_actualiza_curso     body    RequestMessages.PutOneCursoPayload     true        "Curso a modificar"
 // @Success 200 {object} SwaggerMessages.PutOneCursoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /cursos/{uuid_curso} [put]
+// @Router /cursos/{id_curso} [put]
 func PutOneCurso(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -218,10 +219,10 @@ func PutOneCurso(c *gin.Context) {
 // @Tags Cursos
 // @Accept  json
 // @Produce  json
-// @Param   uuid_curso     path    string     true        "UUID del curso a eliminar"
+// @Param   id_curso     path    string     true        "ID del curso a eliminar"
 // @Success 200 {object} SwaggerMessages.DeleteCursoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /cursos/{uuid_curso} [delete]
+// @Router /cursos/{id_curso} [delete]
 func DeleteCurso(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")

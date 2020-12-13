@@ -1,7 +1,6 @@
 package Controllers
 
 import (
-	"github.com/gin-gonic/gin"
 	"medroom-backend/ApiHelpers"
 	"medroom-backend/InputFormats"
 	"medroom-backend/Models"
@@ -9,6 +8,8 @@ import (
 	"medroom-backend/Repositories"
 	"medroom-backend/RequestMessages"
 	"medroom-backend/Utils"
+
+	"github.com/gin-gonic/gin"
 )
 
 /*
@@ -55,14 +56,14 @@ func ListGrupos(c *gin.Context) {
 */
 
 // @Summary Obtiene un grupo
-// @Description Obtiene un grupo según su UUID
+// @Description Obtiene un grupo según su ID
 // @Tags Grupos
 // @Accept  json
 // @Produce  json
-// @Param   uuid_grupo     path    string     true        "UUID del grupo a buscar"
+// @Param   id_grupo     path    string     true        "ID del grupo a buscar"
 // @Success 200 {object} SwaggerMessages.GetOneGrupoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /grupos/{uuid_grupo} [get]
+// @Router /grupos/{id_grupo} [get]
 func GetOneGrupo(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -147,11 +148,11 @@ func AddNewGrupo(c *gin.Context) {
 // @Tags Grupos
 // @Accept  json
 // @Produce  json
-// @Param   uuid_grupo     path    string     true        "UUID del grupo a modificar"
+// @Param   id_grupo     path    string     true        "ID del grupo a modificar"
 // @Param   input_actualiza_grupo     body    RequestMessages.PutOneGrupoPayload     true        "Grupo a modificar"
 // @Success 200 {object} SwaggerMessages.PutOneGrupoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /grupos/{uuid_grupo} [put]
+// @Router /grupos/{id_grupo} [put]
 func PutOneGrupo(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -227,10 +228,10 @@ func PutOneGrupo(c *gin.Context) {
 // @Tags Grupos
 // @Accept  json
 // @Produce  json
-// @Param   uuid_grupo     path    string     true        "UUID del grupo a eliminar"
+// @Param   id_grupo     path    string     true        "ID del grupo a eliminar"
 // @Success 200 {object} SwaggerMessages.DeleteGrupoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /grupos/{uuid_grupo} [delete]
+// @Router /grupos/{id_grupo} [delete]
 func DeleteGrupo(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
