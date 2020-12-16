@@ -99,7 +99,7 @@ func GetOneEstudiante(c *gin.Context) {
 // @Produce  json
 // @Success 200 {object} SwaggerMessages.GetMyEstudianteSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /estudiantes [get]
+// @Router /estudiantes/me [get]
 func GetMyEstudiante(c *gin.Context) {
 	// params
 	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
@@ -196,7 +196,7 @@ func AddNewEstudiante(c *gin.Context) {
 // @Router /estudiantes/{uuid_estudiante} [put]
 func PutOneEstudiante(c *gin.Context) {
 	// params
-	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
+	id := c.Params.ByName("id")
 
 	// input container
 	var container RequestMessages.PutMyEstudiantePayload
@@ -214,7 +214,7 @@ func PutOneEstudiante(c *gin.Context) {
 	var model_container Models.Estudiante
 
 	// get query
-	if err := Repositories.GetOneEstudiante(&model_container, id_estudiante); err != nil {
+	if err := Repositories.GetOneEstudiante(&model_container, id); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
@@ -246,7 +246,7 @@ func PutOneEstudiante(c *gin.Context) {
 	}
 
 	// put query
-	if err := Repositories.PutOneEstudiante(&model_container, id_estudiante); err != nil {
+	if err := Repositories.PutOneEstudiante(&model_container, id); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
@@ -276,7 +276,7 @@ func PutOneEstudiante(c *gin.Context) {
 // @Router /estudiantes/me [put]
 func PutMyEstudiante(c *gin.Context) {
 	// params
-	id := c.Params.ByName("id")
+	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
 
 	// input container
 	var container RequestMessages.PutOneEstudiantePayload
@@ -294,7 +294,7 @@ func PutMyEstudiante(c *gin.Context) {
 	var model_container Models.Estudiante
 
 	// get query
-	err := Repositories.GetOneEstudiante(&model_container, id)
+	err := Repositories.GetOneEstudiante(&model_container, id_estudiante)
 	if err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
@@ -329,7 +329,7 @@ func PutMyEstudiante(c *gin.Context) {
 	}
 
 	// put query
-	err = Repositories.PutOneEstudiante(&model_container, id)
+	err = Repositories.PutOneEstudiante(&model_container, id_estudiante)
 	if err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return

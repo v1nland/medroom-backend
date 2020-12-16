@@ -791,7 +791,7 @@ var doc = `{
         },
         "/estudiantes": {
             "get": {
-                "description": "Obtiene el perfil del estudiante según su token",
+                "description": "Lista todos los estudiantes",
                 "consumes": [
                     "application/json"
                 ],
@@ -801,12 +801,15 @@ var doc = `{
                 "tags": [
                     "Estudiantes"
                 ],
-                "summary": "Obtiene el perfil del estudiante",
+                "summary": "Lista de estudiantes",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GetMyEstudianteSwagger"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/SwaggerMessages.ListEstudiantesSwagger"
+                            }
                         }
                     },
                     "400": {
@@ -857,6 +860,33 @@ var doc = `{
             }
         },
         "/estudiantes/me": {
+            "get": {
+                "description": "Obtiene el perfil del estudiante según su token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Estudiantes"
+                ],
+                "summary": "Obtiene el perfil del estudiante",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.GetMyEstudianteSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
             "put": {
                 "description": "Modifica el perfil del propio estudiante con los datos entregados",
                 "consumes": [

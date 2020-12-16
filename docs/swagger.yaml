@@ -2217,19 +2217,21 @@ paths:
     get:
       consumes:
       - application/json
-      description: Obtiene el perfil del estudiante según su token
+      description: Lista todos los estudiantes
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/SwaggerMessages.GetMyEstudianteSwagger'
+            items:
+              $ref: '#/definitions/SwaggerMessages.ListEstudiantesSwagger'
+            type: array
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Obtiene el perfil del estudiante
+      summary: Lista de estudiantes
       tags:
       - Estudiantes
     post:
@@ -2337,6 +2339,24 @@ paths:
       tags:
       - Estudiantes
   /estudiantes/me:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene el perfil del estudiante según su token
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.GetMyEstudianteSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene el perfil del estudiante
+      tags:
+      - Estudiantes
     put:
       consumes:
       - application/json
