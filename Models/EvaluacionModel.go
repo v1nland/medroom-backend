@@ -5,9 +5,9 @@ import (
 )
 
 type Evaluacion struct {
-	ID                                      int         `json:"id"`
-	Id_estudiante                           string      `json:"id_estudiante" sql:"type:uuid REFERENCES public.estudiantes(id)"`
-	Estudiante_evaluacion                   Estudiante  `json:"estudiante_evaluacion" gorm:"foreignKey:Id_estudiante"`
+	ID            int    `json:"id"`
+	Id_estudiante string `json:"id_estudiante" sql:"type:uuid REFERENCES public.estudiantes(id)"`
+	// Estudiante_evaluacion                   Estudiante  `json:"estudiante_evaluacion" gorm:"foreignKey:Id_estudiante"`
 	Id_evaluador                            string      `json:"id_evaluador" sql:"type:uuid REFERENCES public.evaluadores(id)"`
 	Evaluador_evaluacion                    Evaluador   `json:"evaluador_evaluacion" gorm:"foreignKey:Id_evaluador"`
 	Id_competencia                          int         `json:"id_competencia" sql:"type:int REFERENCES public.competencias(id)"`

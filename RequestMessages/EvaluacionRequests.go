@@ -3,6 +3,9 @@ package RequestMessages
 type ListEvaluacionesPayload struct {
 }
 
+type ListEvaluacionesEstudiantePayload struct {
+}
+
 type GetOneEvaluacionPayload struct {
 }
 

@@ -10,7 +10,7 @@ type Grupo struct {
 	Curso_grupo       Curso        `json:"curso_grupo" gorm:"foreignKey:Id_curso"`
 	Id_evaluador      string       `json:"id_evaluador" sql:"type:uuid REFERENCES public.evaluadores(id)"`
 	Evaluador_grupo   Evaluador    `json:"evaluador_grupo" gorm:"foreignKey:Id_evaluador"`
-	Estudiantes_grupo []Estudiante `gorm:"foreignKey:Id_grupo"`
+	Estudiantes_grupo []Estudiante `json:"estudiantes_grupo" gorm:"foreignKey:Id_grupo"`
 	Nombre_grupo      string       `json:"nombre_grupo"`
 	Sigla_grupo       string       `json:"sigla_grupo"`
 	CreatedAt         time.Time    `json:"created_at"`

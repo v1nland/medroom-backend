@@ -47,6 +47,46 @@ func ListEvaluaciones(c *gin.Context) {
 
 /*
 	*
+	*  FUNCIÓN ListEvaluacion
+	*
+    *
+	*
+	*
+    *
+*/
+
+// @Summary Lista de evaluaciones de un estudiante
+// @Description Lista todos los evaluaciones de un estudiante
+// @Tags Evaluaciones
+// @Accept  json
+// @Produce  json
+// @Success 200 {array} SwaggerMessages.ListEvaluacionesSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /estudiantes/me/evaluaciones [get]
+func ListEvaluacionesEstudiante(c *gin.Context) {
+	// params
+	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
+
+	// model container
+	var estudiante Models.Estudiante
+	if err := Repositories.GetOneEstudiante(&estudiante, id_estudiante); err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
+	// model container
+	// var container []Models.Evaluacion
+	// if err := Repositories.GetAllEvaluacionesEstudiante(&container); err != nil {
+	// 	ApiHelpers.RespondError(c, 500, "default")
+	// 	return
+	// }
+
+	// output
+	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetEvaluacionesEstudianteOutput(estudiante.Evaluaciones_estudiante))
+}
+
+/*
+	*
 	*  FUNCIÓN GetOneEvaluacion
 	*
     *
@@ -206,12 +246,12 @@ func PutOneEvaluacion(c *gin.Context) {
 		Tiempo_utilizado_evaluacion:             Utils.CheckUpdatedInt(container.Tiempo_utilizado_evaluacion, model_container.Tiempo_utilizado_evaluacion),
 	}
 
-	// update foreign entity
-	err = Repositories.GetOneEstudiante(&model_container.Estudiante_evaluacion, model_container.Id_estudiante)
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
-	}
+	// // update foreign entity
+	// err = Repositories.GetOneEstudiante(&model_container.Estudiante_evaluacion, model_container.Id_estudiante)
+	// if err != nil {
+	// 	ApiHelpers.RespondError(c, 500, "default")
+	// 	return
+	// }
 
 	// update foreign entity
 	err = Repositories.GetOneEvaluador(&model_container.Evaluador_evaluacion, model_container.Id_evaluador)

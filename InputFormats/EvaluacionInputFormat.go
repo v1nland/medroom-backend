@@ -10,6 +10,10 @@ func GetEvaluacionesInput(u *RequestMessages.ListEvaluacionesPayload) {
 
 }
 
+func GetEvaluacionesEstudianteInput(u *RequestMessages.ListEvaluacionesEstudiantePayload) {
+
+}
+
 func GetOneEvaluacionInput(u *RequestMessages.GetOneEvaluacionPayload) {
 
 }
