@@ -1,7 +1,6 @@
 package Controllers
 
 import (
-	"github.com/gin-gonic/gin"
 	"medroom-backend/ApiHelpers"
 	"medroom-backend/InputFormats"
 	"medroom-backend/Models"
@@ -9,6 +8,8 @@ import (
 	"medroom-backend/Repositories"
 	"medroom-backend/RequestMessages"
 	"medroom-backend/Utils"
+
+	"github.com/gin-gonic/gin"
 )
 
 /*
@@ -83,6 +84,39 @@ func GetOneEvaluador(c *gin.Context) {
 
 /*
 	*
+	*  FUNCIÓN GetOneEvaluador
+	*
+    *
+	*
+	*
+    *
+*/
+
+// @Summary Obtiene el perfil del evaluador
+// @Description Obtiene el perfil del evaluador según su token
+// @Tags Evaluadores
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} SwaggerMessages.GetMyEvaluadorSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /evaluadores/me [get]
+func GetMyEvaluador(c *gin.Context) {
+	// params
+	id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
+
+	// model container
+	var container Models.Evaluador
+	if err := Repositories.GetOneEvaluador(&container, id_evaluador); err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
+	// output
+	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetMyEvaluadorOutput(container))
+}
+
+/*
+	*
 	*  FUNCIÓN AddNewEvaluador
 	*
     *
@@ -137,16 +171,6 @@ func AddNewEvaluador(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.AddNewEvaluadorOutput(model_container))
 }
-
-/*
-	*
-	*  FUNCIÓN PutOneEvaluador
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Modifica un evaluador
 // @Description Modifica un evaluador con los datos entregados
@@ -215,6 +239,74 @@ func PutOneEvaluador(c *gin.Context) {
 
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutOneEvaluadorOutput(model_container))
+}
+
+// @Summary Modifica mi perfil
+// @Description Modifica el perfil del propio evaluador con los datos entregados
+// @Tags Evaluadores
+// @Accept  json
+// @Produce  json
+// @Param   input_actualiza_evaluador     body    RequestMessages.PutMyEvaluadorPayload     true        "Evaluador a modificar"
+// @Success 200 {object} SwaggerMessages.PutMyEvaluadorSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /evaluadores/me [put]
+func PutMyEvaluador(c *gin.Context) {
+	// params
+	id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
+
+	// input container
+	var container RequestMessages.PutMyEvaluadorPayload
+
+	// input bind
+	if err := c.ShouldBind(&container); err != nil {
+		ApiHelpers.RespondError(c, 400, "default")
+		return
+	}
+
+	// format input
+	InputFormats.PutMyEvaluadorInput(&container)
+
+	// generate model entity
+	var model_container Models.Evaluador
+
+	// get query
+	err := Repositories.GetOneEvaluador(&model_container, id_evaluador)
+	if err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
+	// replace data in model entity
+	model_container = Models.Evaluador{
+		ID:                           model_container.ID,
+		Id_rol:                       Utils.CheckUpdatedInt(container.Id_rol, model_container.Id_rol),
+		Rut_evaluador:                Utils.CheckUpdatedString(container.Rut_evaluador, model_container.Rut_evaluador),
+		Nombres_evaluador:            Utils.CheckUpdatedString(container.Nombres_evaluador, model_container.Nombres_evaluador),
+		Apellidos_evaluador:          Utils.CheckUpdatedString(container.Apellidos_evaluador, model_container.Apellidos_evaluador),
+		Hash_contrasena_evaluador:    Utils.CheckUpdatedString(container.Hash_contrasena_evaluador, model_container.Hash_contrasena_evaluador),
+		Correo_electronico_evaluador: Utils.CheckUpdatedString(container.Correo_electronico_evaluador, model_container.Correo_electronico_evaluador),
+		Telefono_fijo_evaluador:      Utils.CheckUpdatedString(container.Telefono_fijo_evaluador, model_container.Telefono_fijo_evaluador),
+		Telefono_celular_evaluador:   Utils.CheckUpdatedString(container.Telefono_celular_evaluador, model_container.Telefono_celular_evaluador),
+		Recinto_evaluador:            Utils.CheckUpdatedString(container.Recinto_evaluador, model_container.Recinto_evaluador),
+		Cargo_evaluador:              Utils.CheckUpdatedString(container.Cargo_evaluador, model_container.Cargo_evaluador),
+	}
+
+	// update foreign entity
+	err = Repositories.GetOneRol(&model_container.Rol_evaluador, Utils.ConvertIntToString(model_container.Id_rol))
+	if err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
+	// put query
+	err = Repositories.PutOneEvaluador(&model_container, id_evaluador)
+	if err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
+	// output
+	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutMyEvaluadorOutput(model_container))
 }
 
 /*

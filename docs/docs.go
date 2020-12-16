@@ -926,6 +926,38 @@ var doc = `{
                 }
             }
         },
+        "/estudiantes/me/evaluaciones": {
+            "get": {
+                "description": "Lista todos los evaluaciones de un estudiante",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Evaluaciones"
+                ],
+                "summary": "Lista de evaluaciones de un estudiante",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/SwaggerMessages.ListEvaluacionesSwagger"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
         "/estudiantes/me/group": {
             "get": {
                 "description": "Obtiene un grupo de un estudiante según su token",
@@ -1322,6 +1354,102 @@ var doc = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/SwaggerMessages.AddNewEvaluadorSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/evaluadores/me": {
+            "get": {
+                "description": "Obtiene el perfil del evaluador según su token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Evaluadores"
+                ],
+                "summary": "Obtiene el perfil del evaluador",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.GetMyEvaluadorSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Modifica el perfil del propio evaluador con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Evaluadores"
+                ],
+                "summary": "Modifica mi perfil",
+                "parameters": [
+                    {
+                        "description": "Evaluador a modificar",
+                        "name": "input_actualiza_evaluador",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.PutMyEvaluadorPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.PutMyEvaluadorSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/evaluadores/me/group": {
+            "get": {
+                "description": "Obtiene un grupo de un evaluador según su token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Grupos"
+                ],
+                "summary": "Obtiene un grupo de un evaluador",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.GetGrupoEvaluadorSwagger"
                         }
                     },
                     "400": {
@@ -2716,6 +2844,41 @@ var doc = `{
                 }
             }
         },
+        "RequestMessages.PutMyEvaluadorPayload": {
+            "type": "object",
+            "properties": {
+                "apellidos_evaluador": {
+                    "type": "string"
+                },
+                "cargo_evaluador": {
+                    "type": "string"
+                },
+                "correo_electronico_evaluador": {
+                    "type": "string"
+                },
+                "hash_contrasena_evaluador": {
+                    "type": "string"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_evaluador": {
+                    "type": "string"
+                },
+                "recinto_evaluador": {
+                    "type": "string"
+                },
+                "rut_evaluador": {
+                    "type": "string"
+                },
+                "telefono_celular_evaluador": {
+                    "type": "string"
+                },
+                "telefono_fijo_evaluador": {
+                    "type": "string"
+                }
+            }
+        },
         "RequestMessages.PutOneAdministradorAcademicoPayload": {
             "type": "object",
             "properties": {
@@ -3081,7 +3244,7 @@ var doc = `{
                 "id_competencia": {
                     "type": "integer"
                 },
-                "id_curso": {
+                "id_estudiante": {
                     "type": "string"
                 },
                 "id_evaluador": {
@@ -3318,7 +3481,7 @@ var doc = `{
                 "id_competencia": {
                     "type": "integer"
                 },
-                "id_curso": {
+                "id_estudiante": {
                     "type": "string"
                 },
                 "id_evaluador": {
@@ -3449,6 +3612,29 @@ var doc = `{
                 }
             }
         },
+        "ResponseMessages.GetGrupoEvaluadorResponse": {
+            "type": "object",
+            "properties": {
+                "curso_grupo": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneCursoResponse"
+                },
+                "estudiantes_grupo": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ResponseMessages.ListEstudiantesResponse"
+                    }
+                },
+                "evaluador_grupo": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
+                },
+                "nombre_grupo": {
+                    "type": "string"
+                },
+                "sigla_grupo": {
+                    "type": "string"
+                }
+            }
+        },
         "ResponseMessages.GetMyEstudianteResponse": {
             "type": "object",
             "properties": {
@@ -3457,6 +3643,12 @@ var doc = `{
                 },
                 "correo_electronico_estudiante": {
                     "type": "string"
+                },
+                "evaluaciones_estudiante": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ResponseMessages.ListEvaluacionesEstudianteResponse"
+                    }
                 },
                 "id_grupo": {
                     "type": "integer"
@@ -3474,6 +3666,38 @@ var doc = `{
                     "type": "string"
                 },
                 "telefono_fijo_estudiante": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.GetMyEvaluadorResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_evaluador": {
+                    "type": "string"
+                },
+                "cargo_evaluador": {
+                    "type": "string"
+                },
+                "correo_electronico_evaluador": {
+                    "type": "string"
+                },
+                "nombres_evaluador": {
+                    "type": "string"
+                },
+                "recinto_evaluador": {
+                    "type": "string"
+                },
+                "rol_evaluador": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                },
+                "rut_evaluador": {
+                    "type": "string"
+                },
+                "telefono_celular_evaluador": {
+                    "type": "string"
+                },
+                "telefono_fijo_evaluador": {
                     "type": "string"
                 }
             }
@@ -3561,6 +3785,12 @@ var doc = `{
                 "correo_electronico_estudiante": {
                     "type": "string"
                 },
+                "evaluaciones_estudiante": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ResponseMessages.ListEvaluacionesEstudianteResponse"
+                    }
+                },
                 "id_grupo": {
                     "type": "integer"
                 },
@@ -3596,14 +3826,14 @@ var doc = `{
                 "complejidad_caso_evaluacion": {
                     "type": "string"
                 },
-                "curso_evaluacion": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneEstudianteResponse"
-                },
                 "entorno_clinico_evaluacion": {
                     "type": "string"
                 },
                 "evaluador_evaluacion": {
                     "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
+                },
+                "id_estudiante": {
+                    "type": "string"
                 },
                 "nombre_evaluacion": {
                     "type": "string"
@@ -3701,8 +3931,10 @@ var doc = `{
                     "type": "integer"
                 },
                 "competencia_puntaje": {
-                    "description": "Evaluacion_puntaje   GetOneEvaluacionResponse  ` + "`" + `json:\"evaluacion_puntaje\"` + "`" + `",
                     "$ref": "#/definitions/ResponseMessages.GetOneCompetenciaResponse"
+                },
+                "id_evaluacion": {
+                    "type": "integer"
                 },
                 "nivel_logro_puntaje": {
                     "type": "string"
@@ -3800,6 +4032,12 @@ var doc = `{
                 "correo_electronico_estudiante": {
                     "type": "string"
                 },
+                "evaluaciones_estudiante": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ResponseMessages.ListEvaluacionesEstudianteResponse"
+                    }
+                },
                 "id_grupo": {
                     "type": "integer"
                 },
@@ -3820,6 +4058,56 @@ var doc = `{
                 }
             }
         },
+        "ResponseMessages.ListEvaluacionesEstudianteResponse": {
+            "type": "object",
+            "properties": {
+                "asunto_principal_consulta_evaluacion": {
+                    "type": "string"
+                },
+                "categoria_observador_evaluacion": {
+                    "type": "string"
+                },
+                "competencia_evaluacion": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneCompetenciaResponse"
+                },
+                "complejidad_caso_evaluacion": {
+                    "type": "string"
+                },
+                "entorno_clinico_evaluacion": {
+                    "type": "string"
+                },
+                "evaluador_evaluacion": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
+                },
+                "id_estudiante": {
+                    "type": "string"
+                },
+                "nombre_evaluacion": {
+                    "type": "string"
+                },
+                "numero_observaciones_previas_evaluacion": {
+                    "type": "string"
+                },
+                "observacion_calificacion_evaluacion": {
+                    "type": "string"
+                },
+                "paciente_evaluacion": {
+                    "type": "string"
+                },
+                "periodo_evaluacion": {
+                    "$ref": "#/definitions/ResponseMessages.GetOnePeriodoResponse"
+                },
+                "puntajes_evaluacion": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ResponseMessages.ListPuntajesResponse"
+                    }
+                },
+                "tiempo_utilizado_evaluacion": {
+                    "type": "integer"
+                }
+            }
+        },
         "ResponseMessages.ListEvaluacionesResponse": {
             "type": "object",
             "properties": {
@@ -3835,14 +4123,14 @@ var doc = `{
                 "complejidad_caso_evaluacion": {
                     "type": "string"
                 },
-                "curso_evaluacion": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneEstudianteResponse"
-                },
                 "entorno_clinico_evaluacion": {
                     "type": "string"
                 },
                 "evaluador_evaluacion": {
                     "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
+                },
+                "id_estudiante": {
+                    "type": "string"
                 },
                 "nombre_evaluacion": {
                     "type": "string"
@@ -3940,8 +4228,10 @@ var doc = `{
                     "type": "integer"
                 },
                 "competencia_puntaje": {
-                    "description": "Evaluacion_puntaje   GetOneEvaluacionResponse  ` + "`" + `json:\"evaluacion_puntaje\"` + "`" + `",
                     "$ref": "#/definitions/ResponseMessages.GetOneCompetenciaResponse"
+                },
+                "id_evaluacion": {
+                    "type": "integer"
                 },
                 "nivel_logro_puntaje": {
                     "type": "string"
@@ -3984,6 +4274,41 @@ var doc = `{
                     "type": "string"
                 },
                 "telefono_fijo_estudiante": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.PutMyEvaluadorResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_evaluador": {
+                    "type": "string"
+                },
+                "cargo_evaluador": {
+                    "type": "string"
+                },
+                "correo_electronico_evaluador": {
+                    "type": "string"
+                },
+                "hash_contrasena_evaluador": {
+                    "type": "string"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_evaluador": {
+                    "type": "string"
+                },
+                "recinto_evaluador": {
+                    "type": "string"
+                },
+                "rut_evaluador": {
+                    "type": "string"
+                },
+                "telefono_celular_evaluador": {
+                    "type": "string"
+                },
+                "telefono_fijo_evaluador": {
                     "type": "string"
                 }
             }
@@ -4118,7 +4443,7 @@ var doc = `{
                 "id_competencia": {
                     "type": "integer"
                 },
-                "id_curso": {
+                "id_estudiante": {
                     "type": "string"
                 },
                 "id_evaluador": {
@@ -4565,11 +4890,39 @@ var doc = `{
                 }
             }
         },
+        "SwaggerMessages.GetGrupoEvaluadorSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.GetGrupoEvaluadorResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
         "SwaggerMessages.GetMyEstudianteSwagger": {
             "type": "object",
             "properties": {
                 "data": {
                     "$ref": "#/definitions/ResponseMessages.GetMyEstudianteResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.GetMyEvaluadorSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.GetMyEvaluadorResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4892,6 +5245,20 @@ var doc = `{
             "properties": {
                 "data": {
                     "$ref": "#/definitions/ResponseMessages.PutMyEstudianteResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.PutMyEvaluadorSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.PutMyEvaluadorResponse"
                 },
                 "meta": {
                     "type": "string"

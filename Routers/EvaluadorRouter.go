@@ -2,6 +2,7 @@ package Routers
 
 import (
 	"medroom-backend/ApiHelpers"
+	"medroom-backend/Controllers"
 	"medroom-backend/Utils"
 
 	"github.com/gin-gonic/gin"
@@ -25,11 +26,11 @@ func SetupEvaluadorRouter(r *gin.Engine) *gin.Engine {
 	router.Use(evaluadorAuthMiddleware)
 	{
 		// profile routes
-		// router.GET("me", Controllers.GetMyEvaluador)
-		// router.PUT("me", Controllers.PutMyEvaluador)
+		router.GET("me", Controllers.GetMyEvaluador)
+		router.PUT("me", Controllers.PutMyEvaluador)
 
 		// my group routes
-		// router.GET("me/group", Controllers.GetGrupoEvaluador)
+		router.GET("me/group", Controllers.GetGrupoEvaluador)
 
 		// make evaluation routes
 		// call 'me/group' to list students and it's ramos

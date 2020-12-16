@@ -2,9 +2,10 @@ package Repositories
 
 import (
 	"fmt"
-	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"medroom-backend/Config"
 	"medroom-backend/Models"
+
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
 func GetAllGrupos(u *[]Models.Grupo) (err error) {
@@ -16,6 +17,13 @@ func GetAllGrupos(u *[]Models.Grupo) (err error) {
 
 func GetOneGrupo(u *Models.Grupo, id string) (err error) {
 	if err := Config.DB.Set("gorm:auto_preload", true).Where("id = ?", id).First(u).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
+func GetOneGrupoByEvaluadorId(u *Models.Grupo, id_evaluador string) (err error) {
+	if err := Config.DB.Set("gorm:auto_preload", true).Where("id_evaluador = ?", id_evaluador).First(u).Error; err != nil {
 		return err
 	}
 	return nil

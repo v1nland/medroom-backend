@@ -112,6 +112,29 @@ func GetGrupoEstudiante(c *gin.Context) {
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetGrupoEstudianteOutput(container))
 }
 
+// @Summary Obtiene un grupo de un evaluador
+// @Description Obtiene un grupo de un evaluador según su token
+// @Tags Grupos
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} SwaggerMessages.GetGrupoEvaluadorSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /evaluadores/me/group [get]
+func GetGrupoEvaluador(c *gin.Context) {
+	// params
+	id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
+
+	// model container
+	var container Models.Grupo
+	if err := Repositories.GetOneGrupoByEvaluadorId(&container, id_evaluador); err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
+	// output
+	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetGrupoEvaluadorOutput(container))
+}
+
 /*
 	*
 	*  FUNCIÓN AddNewGrupo

@@ -39,6 +39,16 @@ func GetGrupoEstudianteOutput(u Models.Grupo) (output ResponseMessages.GetGrupoE
 	}
 }
 
+func GetGrupoEvaluadorOutput(u Models.Grupo) (output ResponseMessages.GetGrupoEvaluadorResponse) {
+	return ResponseMessages.GetGrupoEvaluadorResponse{
+		Curso_grupo:       GetOneCursoOutput(u.Curso_grupo),
+		Evaluador_grupo:   GetOneEvaluadorOutput(u.Evaluador_grupo),
+		Estudiantes_grupo: GetEstudiantesOutput(u.Estudiantes_grupo),
+		Nombre_grupo:      u.Nombre_grupo,
+		Sigla_grupo:       u.Sigla_grupo,
+	}
+}
+
 func AddNewGrupoOutput(u Models.Grupo) (output ResponseMessages.AddNewGrupoResponse) {
 	return ResponseMessages.AddNewGrupoResponse{
 		Id_curso:     u.Id_curso,

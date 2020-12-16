@@ -16,6 +16,12 @@ type GetOneEvaluadorSwagger struct {
 	Data   ResponseMessages.GetOneEvaluadorResponse `json:"data"`
 }
 
+type GetMyEvaluadorSwagger struct {
+	Status bool                                    `json:"status"`
+	Meta   string                                  `json:"meta"`
+	Data   ResponseMessages.GetMyEvaluadorResponse `json:"data"`
+}
+
 type AddNewEvaluadorSwagger struct {
 	Status bool                                     `json:"status"`
 	Meta   string                                   `json:"meta"`
@@ -26,6 +32,12 @@ type PutOneEvaluadorSwagger struct {
 	Status bool                                     `json:"status"`
 	Meta   string                                   `json:"meta"`
 	Data   ResponseMessages.PutOneEvaluadorResponse `json:"data"`
+}
+
+type PutMyEvaluadorSwagger struct {
+	Status bool                                    `json:"status"`
+	Meta   string                                  `json:"meta"`
+	Data   ResponseMessages.PutMyEvaluadorResponse `json:"data"`
 }
 
 type DeleteEvaluadorSwagger struct {

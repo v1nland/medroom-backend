@@ -218,6 +218,29 @@ definitions:
         description: solo este
         type: string
     type: object
+  RequestMessages.PutMyEvaluadorPayload:
+    properties:
+      apellidos_evaluador:
+        type: string
+      cargo_evaluador:
+        type: string
+      correo_electronico_evaluador:
+        type: string
+      hash_contrasena_evaluador:
+        type: string
+      id_rol:
+        type: integer
+      nombres_evaluador:
+        type: string
+      recinto_evaluador:
+        type: string
+      rut_evaluador:
+        type: string
+      telefono_celular_evaluador:
+        type: string
+      telefono_fijo_evaluador:
+        type: string
+    type: object
   RequestMessages.PutOneAdministradorAcademicoPayload:
     properties:
       apellidos_administrador_academico:
@@ -456,7 +479,7 @@ definitions:
         type: string
       id_competencia:
         type: integer
-      id_curso:
+      id_estudiante:
         type: string
       id_evaluador:
         type: string
@@ -610,7 +633,7 @@ definitions:
         type: string
       id_competencia:
         type: integer
-      id_curso:
+      id_estudiante:
         type: string
       id_evaluador:
         type: string
@@ -695,12 +718,31 @@ definitions:
       sigla_grupo:
         type: string
     type: object
+  ResponseMessages.GetGrupoEvaluadorResponse:
+    properties:
+      curso_grupo:
+        $ref: '#/definitions/ResponseMessages.GetOneCursoResponse'
+      estudiantes_grupo:
+        items:
+          $ref: '#/definitions/ResponseMessages.ListEstudiantesResponse'
+        type: array
+      evaluador_grupo:
+        $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+      nombre_grupo:
+        type: string
+      sigla_grupo:
+        type: string
+    type: object
   ResponseMessages.GetMyEstudianteResponse:
     properties:
       apellidos_estudiante:
         type: string
       correo_electronico_estudiante:
         type: string
+      evaluaciones_estudiante:
+        items:
+          $ref: '#/definitions/ResponseMessages.ListEvaluacionesEstudianteResponse'
+        type: array
       id_grupo:
         type: integer
       nombres_estudiante:
@@ -712,6 +754,27 @@ definitions:
       telefono_celular_estudiante:
         type: string
       telefono_fijo_estudiante:
+        type: string
+    type: object
+  ResponseMessages.GetMyEvaluadorResponse:
+    properties:
+      apellidos_evaluador:
+        type: string
+      cargo_evaluador:
+        type: string
+      correo_electronico_evaluador:
+        type: string
+      nombres_evaluador:
+        type: string
+      recinto_evaluador:
+        type: string
+      rol_evaluador:
+        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+      rut_evaluador:
+        type: string
+      telefono_celular_evaluador:
+        type: string
+      telefono_fijo_evaluador:
         type: string
     type: object
   ResponseMessages.GetOneAdministradorAcademicoResponse:
@@ -768,6 +831,10 @@ definitions:
         type: string
       correo_electronico_estudiante:
         type: string
+      evaluaciones_estudiante:
+        items:
+          $ref: '#/definitions/ResponseMessages.ListEvaluacionesEstudianteResponse'
+        type: array
       id_grupo:
         type: integer
       nombres_estudiante:
@@ -791,12 +858,12 @@ definitions:
         $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
       complejidad_caso_evaluacion:
         type: string
-      curso_evaluacion:
-        $ref: '#/definitions/ResponseMessages.GetOneEstudianteResponse'
       entorno_clinico_evaluacion:
         type: string
       evaluador_evaluacion:
         $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+      id_estudiante:
+        type: string
       nombre_evaluacion:
         type: string
       numero_observaciones_previas_evaluacion:
@@ -861,7 +928,8 @@ definitions:
         type: integer
       competencia_puntaje:
         $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
-        description: Evaluacion_puntaje   GetOneEvaluacionResponse  `json:"evaluacion_puntaje"`
+      id_evaluacion:
+        type: integer
       nivel_logro_puntaje:
         type: string
     type: object
@@ -924,6 +992,10 @@ definitions:
         type: string
       correo_electronico_estudiante:
         type: string
+      evaluaciones_estudiante:
+        items:
+          $ref: '#/definitions/ResponseMessages.ListEvaluacionesEstudianteResponse'
+        type: array
       id_grupo:
         type: integer
       nombres_estudiante:
@@ -937,6 +1009,39 @@ definitions:
       telefono_fijo_estudiante:
         type: string
     type: object
+  ResponseMessages.ListEvaluacionesEstudianteResponse:
+    properties:
+      asunto_principal_consulta_evaluacion:
+        type: string
+      categoria_observador_evaluacion:
+        type: string
+      competencia_evaluacion:
+        $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
+      complejidad_caso_evaluacion:
+        type: string
+      entorno_clinico_evaluacion:
+        type: string
+      evaluador_evaluacion:
+        $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+      id_estudiante:
+        type: string
+      nombre_evaluacion:
+        type: string
+      numero_observaciones_previas_evaluacion:
+        type: string
+      observacion_calificacion_evaluacion:
+        type: string
+      paciente_evaluacion:
+        type: string
+      periodo_evaluacion:
+        $ref: '#/definitions/ResponseMessages.GetOnePeriodoResponse'
+      puntajes_evaluacion:
+        items:
+          $ref: '#/definitions/ResponseMessages.ListPuntajesResponse'
+        type: array
+      tiempo_utilizado_evaluacion:
+        type: integer
+    type: object
   ResponseMessages.ListEvaluacionesResponse:
     properties:
       asunto_principal_consulta_evaluacion:
@@ -947,12 +1052,12 @@ definitions:
         $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
       complejidad_caso_evaluacion:
         type: string
-      curso_evaluacion:
-        $ref: '#/definitions/ResponseMessages.GetOneEstudianteResponse'
       entorno_clinico_evaluacion:
         type: string
       evaluador_evaluacion:
         $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+      id_estudiante:
+        type: string
       nombre_evaluacion:
         type: string
       numero_observaciones_previas_evaluacion:
@@ -1017,7 +1122,8 @@ definitions:
         type: integer
       competencia_puntaje:
         $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
-        description: Evaluacion_puntaje   GetOneEvaluacionResponse  `json:"evaluacion_puntaje"`
+      id_evaluacion:
+        type: integer
       nivel_logro_puntaje:
         type: string
     type: object
@@ -1045,6 +1151,29 @@ definitions:
       telefono_celular_estudiante:
         type: string
       telefono_fijo_estudiante:
+        type: string
+    type: object
+  ResponseMessages.PutMyEvaluadorResponse:
+    properties:
+      apellidos_evaluador:
+        type: string
+      cargo_evaluador:
+        type: string
+      correo_electronico_evaluador:
+        type: string
+      hash_contrasena_evaluador:
+        type: string
+      id_rol:
+        type: integer
+      nombres_evaluador:
+        type: string
+      recinto_evaluador:
+        type: string
+      rut_evaluador:
+        type: string
+      telefono_celular_evaluador:
+        type: string
+      telefono_fijo_evaluador:
         type: string
     type: object
   ResponseMessages.PutOneAdministradorAcademicoResponse:
@@ -1132,7 +1261,7 @@ definitions:
         type: string
       id_competencia:
         type: integer
-      id_curso:
+      id_estudiante:
         type: string
       id_evaluador:
         type: string
@@ -1420,10 +1549,28 @@ definitions:
       status:
         type: boolean
     type: object
+  SwaggerMessages.GetGrupoEvaluadorSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.GetGrupoEvaluadorResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
   SwaggerMessages.GetMyEstudianteSwagger:
     properties:
       data:
         $ref: '#/definitions/ResponseMessages.GetMyEstudianteResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  SwaggerMessages.GetMyEvaluadorSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.GetMyEvaluadorResponse'
       meta:
         type: string
       status:
@@ -1631,6 +1778,15 @@ definitions:
     properties:
       data:
         $ref: '#/definitions/ResponseMessages.PutMyEstudianteResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  SwaggerMessages.PutMyEvaluadorSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.PutMyEvaluadorResponse'
       meta:
         type: string
       status:
@@ -2417,6 +2573,27 @@ paths:
       summary: Modifica mi perfil
       tags:
       - Estudiantes
+  /estudiantes/me/evaluaciones:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los evaluaciones de un estudiante
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/SwaggerMessages.ListEvaluacionesSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de evaluaciones de un estudiante
+      tags:
+      - Evaluaciones
   /estudiantes/me/group:
     get:
       consumes:
@@ -2686,6 +2863,69 @@ paths:
       summary: Modifica un evaluador
       tags:
       - Evaluadores
+  /evaluadores/me:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene el perfil del evaluador según su token
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.GetMyEvaluadorSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene el perfil del evaluador
+      tags:
+      - Evaluadores
+    put:
+      consumes:
+      - application/json
+      description: Modifica el perfil del propio evaluador con los datos entregados
+      parameters:
+      - description: Evaluador a modificar
+        in: body
+        name: input_actualiza_evaluador
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.PutMyEvaluadorPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.PutMyEvaluadorSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica mi perfil
+      tags:
+      - Evaluadores
+  /evaluadores/me/group:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un grupo de un evaluador según su token
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.GetGrupoEvaluadorSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un grupo de un evaluador
+      tags:
+      - Grupos
   /grupos:
     get:
       consumes:

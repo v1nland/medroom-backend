@@ -12,16 +12,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-/*
-	*
-	*  FUNCIÓN ListEstudiante
-	*
-    *
-	*
-	*
-    *
-*/
-
 // @Summary Lista de estudiantes
 // @Description Lista todos los estudiantes
 // @Tags Estudiantes
@@ -44,16 +34,6 @@ func ListEstudiantes(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetEstudiantesOutput(container))
 }
-
-/*
-	*
-	*  FUNCIÓN GetOneEstudiante
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Obtiene un estudiante
 // @Description Obtiene un estudiante según su UUID
@@ -118,16 +98,6 @@ func GetMyEstudiante(c *gin.Context) {
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetMyEstudianteOutput(container))
 }
 
-/*
-	*
-	*  FUNCIÓN AddNewEstudiante
-	*
-    *
-	*
-	*
-    *
-*/
-
 // @Summary Agrega un nuevo estudiante
 // @Description Genera un nuevo estudiante con los datos entregados
 // @Tags Estudiantes
@@ -173,16 +143,6 @@ func AddNewEstudiante(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.AddNewEstudianteOutput(model_container))
 }
-
-/*
-	*
-	*  FUNCIÓN PutOneEstudiante
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Modifica un estudiante
 // @Description Modifica un estudiante con los datos entregados
@@ -249,16 +209,6 @@ func PutOneEstudiante(c *gin.Context) {
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutMyEstudianteOutput(model_container))
 }
 
-/*
-	*
-	*  FUNCIÓN PutOneEstudiante
-	*
-    *
-	*
-	*
-    *
-*/
-
 // @Summary Modifica mi perfil
 // @Description Modifica el perfil del propio estudiante con los datos entregados
 // @Tags Estudiantes
@@ -273,7 +223,7 @@ func PutMyEstudiante(c *gin.Context) {
 	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
 
 	// input container
-	var container RequestMessages.PutOneEstudiantePayload
+	var container RequestMessages.PutMyEstudiantePayload
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {
@@ -282,7 +232,7 @@ func PutMyEstudiante(c *gin.Context) {
 	}
 
 	// format input
-	InputFormats.PutOneEstudianteInput(&container)
+	InputFormats.PutMyEstudianteInput(&container)
 
 	// generate model entity
 	var model_container Models.Estudiante
@@ -325,16 +275,6 @@ func PutMyEstudiante(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutOneEstudianteOutput(model_container))
 }
-
-/*
-	*
-	*  FUNCIÓN DeleteEstudiante
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Elimina un estudiante
 // @Description Elimina un estudiante con los datos entregados
