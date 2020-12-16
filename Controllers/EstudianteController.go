@@ -239,12 +239,6 @@ func PutOneEstudiante(c *gin.Context) {
 		return
 	}
 
-	// update foreign entity
-	if err := Repositories.GetOneGrupo(&model_container.Grupo_estudiante, Utils.ConvertIntToString(model_container.Id_grupo)); err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
-	}
-
 	// put query
 	if err := Repositories.PutOneEstudiante(&model_container, id); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
@@ -316,13 +310,6 @@ func PutMyEstudiante(c *gin.Context) {
 
 	// update foreign entity
 	err = Repositories.GetOneRol(&model_container.Rol_estudiante, Utils.ConvertIntToString(model_container.Id_rol))
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
-	}
-
-	// update foreign entity
-	err = Repositories.GetOneGrupo(&model_container.Grupo_estudiante, Utils.ConvertIntToString(model_container.Id_grupo))
 	if err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return

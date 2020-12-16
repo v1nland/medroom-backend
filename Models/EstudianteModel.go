@@ -1,9 +1,10 @@
 package Models
 
 import (
-	"github.com/jinzhu/gorm"
-	"github.com/satori/go.uuid"
 	"time"
+
+	"github.com/jinzhu/gorm"
+	uuid "github.com/satori/go.uuid"
 )
 
 type Estudiante struct {
@@ -11,7 +12,6 @@ type Estudiante struct {
 	Id_rol                        int       `json:"id_rol" sql:"type:int REFERENCES public.roles(id)"`
 	Rol_estudiante                Rol       `json:"rol_estudiante" gorm:"foreignKey:Id_rol"`
 	Id_grupo                      int       `json:"id_grupo" sql:"type:int REFERENCES public.grupos(id)"`
-	Grupo_estudiante              Grupo     `json:"grupo_estudiante" gorm:"foreignKey:Id_grupo"`
 	Rut_estudiante                string    `json:"rut_estudiante"`
 	Nombres_estudiante            string    `json:"nombres_estudiante"`
 	Apellidos_estudiante          string    `json:"apellidos_estudiante"`

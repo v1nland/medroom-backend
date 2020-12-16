@@ -10,7 +10,7 @@ func FormatLoginEstudianteMessage(msg *RequestMessages.LoginEstudiantePayload) {
 	msg.Hash_contrasena_estudiante = strings.TrimSpace(msg.Hash_contrasena_estudiante)
 
 	// format uppercase
-	msg.Hash_contrasena_estudiante = strings.ToUpper(msg.Hash_contrasena_estudiante)
+	// msg.Hash_contrasena_estudiante = strings.ToUpper(msg.Hash_contrasena_estudiante)
 }
 
 func FormatLoginEvaluadorMessage(msg *RequestMessages.LoginEvaluadorPayload) {
@@ -18,7 +18,7 @@ func FormatLoginEvaluadorMessage(msg *RequestMessages.LoginEvaluadorPayload) {
 	msg.Hash_contrasena_evaluador = strings.TrimSpace(msg.Hash_contrasena_evaluador)
 
 	// format uppercase
-	msg.Hash_contrasena_evaluador = strings.ToUpper(msg.Hash_contrasena_evaluador)
+	// msg.Hash_contrasena_evaluador = strings.ToUpper(msg.Hash_contrasena_evaluador)
 }
 
 func FormatLoginAdministradorAcademicoMessage(msg *RequestMessages.LoginAdministradorAcademicoPayload) {
@@ -26,7 +26,7 @@ func FormatLoginAdministradorAcademicoMessage(msg *RequestMessages.LoginAdminist
 	msg.Hash_contrasena_administrador_academico = strings.TrimSpace(msg.Hash_contrasena_administrador_academico)
 
 	// format uppercase
-	msg.Hash_contrasena_administrador_academico = strings.ToUpper(msg.Hash_contrasena_administrador_academico)
+	// msg.Hash_contrasena_administrador_academico = strings.ToUpper(msg.Hash_contrasena_administrador_academico)
 }
 
 func FormatLoginAdministradorTiMessage(msg *RequestMessages.LoginAdministradorTiPayload) {
@@ -34,5 +34,5 @@ func FormatLoginAdministradorTiMessage(msg *RequestMessages.LoginAdministradorTi
 	msg.Hash_contrasena_administrador_ti = strings.TrimSpace(msg.Hash_contrasena_administrador_ti)
 
 	// format uppercase
-	msg.Hash_contrasena_administrador_ti = strings.ToUpper(msg.Hash_contrasena_administrador_ti)
+	// msg.Hash_contrasena_administrador_ti = strings.ToUpper(msg.Hash_contrasena_administrador_ti)
 }

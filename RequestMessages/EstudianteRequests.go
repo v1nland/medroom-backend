@@ -38,10 +38,10 @@ type PutMyEstudiantePayload struct {
 	Rut_estudiante                string `json:"rut_estudiante"`
 	Nombres_estudiante            string `json:"nombres_estudiante"`
 	Apellidos_estudiante          string `json:"apellidos_estudiante"`
-	Hash_contrasena_estudiante    string `json:"hash_contrasena_estudiante"`
+	Hash_contrasena_estudiante    string `json:"hash_contrasena_estudiante"` // solo este
 	Correo_electronico_estudiante string `json:"correo_electronico_estudiante"`
-	Telefono_fijo_estudiante      string `json:"telefono_fijo_estudiante"`
-	Telefono_celular_estudiante   string `json:"telefono_celular_estudiante"`
+	Telefono_fijo_estudiante      string `json:"telefono_fijo_estudiante"`    // solo este
+	Telefono_celular_estudiante   string `json:"telefono_celular_estudiante"` // solo este
 }
 
 type DeleteEstudiantePayload struct {

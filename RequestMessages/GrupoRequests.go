@@ -6,6 +6,9 @@ type ListGruposPayload struct {
 type GetOneGrupoPayload struct {
 }
 
+type GetGrupoEstudiantePayload struct {
+}
+
 type AddNewGrupoPayload struct {
 	Id_curso     int    `json:"id_curso"`
 	Id_evaluador string `json:"id_evaluador"`

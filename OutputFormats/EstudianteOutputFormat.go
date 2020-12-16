@@ -9,7 +9,7 @@ func GetEstudiantesOutput(u []Models.Estudiante) (output []ResponseMessages.List
 	for i := 0; i < len(u); i++ {
 		output = append(output, ResponseMessages.ListEstudiantesResponse{
 			Rol_estudiante:                GetOneRolOutput(u[i].Rol_estudiante),
-			Grupo_estudiante:              GetOneGrupoOutput(u[i].Grupo_estudiante),
+			Id_grupo:                      u[i].Id_grupo,
 			Rut_estudiante:                u[i].Rut_estudiante,
 			Nombres_estudiante:            u[i].Nombres_estudiante,
 			Apellidos_estudiante:          u[i].Apellidos_estudiante,
@@ -25,7 +25,7 @@ func GetEstudiantesOutput(u []Models.Estudiante) (output []ResponseMessages.List
 func GetOneEstudianteOutput(u Models.Estudiante) (output ResponseMessages.GetOneEstudianteResponse) {
 	return ResponseMessages.GetOneEstudianteResponse{
 		Rol_estudiante:                GetOneRolOutput(u.Rol_estudiante),
-		Grupo_estudiante:              GetOneGrupoOutput(u.Grupo_estudiante),
+		Id_grupo:                      u.Id_grupo,
 		Rut_estudiante:                u.Rut_estudiante,
 		Nombres_estudiante:            u.Nombres_estudiante,
 		Apellidos_estudiante:          u.Apellidos_estudiante,
@@ -38,7 +38,7 @@ func GetOneEstudianteOutput(u Models.Estudiante) (output ResponseMessages.GetOne
 func GetMyEstudianteOutput(u Models.Estudiante) (output ResponseMessages.GetMyEstudianteResponse) {
 	return ResponseMessages.GetMyEstudianteResponse{
 		Rol_estudiante:                GetOneRolOutput(u.Rol_estudiante),
-		Grupo_estudiante:              GetOneGrupoOutput(u.Grupo_estudiante),
+		Id_grupo:                      u.Id_grupo,
 		Rut_estudiante:                u.Rut_estudiante,
 		Nombres_estudiante:            u.Nombres_estudiante,
 		Apellidos_estudiante:          u.Apellidos_estudiante,

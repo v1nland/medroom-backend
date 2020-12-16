@@ -32,6 +32,8 @@ func SetupEstudianteRouter(r *gin.Engine) *gin.Engine {
 		router.PUT("me", Controllers.PutMyEstudiante)
 		// router.DELETE(":id", Controllers.DeleteEstudiante)
 
+		router.GET("me/group", Controllers.GetGrupoEstudiante)
+
 		// roles := router.Group("/roles")
 		// {
 		// 	roles.GET("", Controllers.ListRoles)

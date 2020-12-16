@@ -14,6 +14,10 @@ func GetOneGrupoInput(u *RequestMessages.GetOneGrupoPayload) {
 
 }
 
+func GetGrupoEstudianteInput(u *RequestMessages.GetGrupoEstudiantePayload) {
+
+}
+
 func AddNewGrupoInput(u *RequestMessages.AddNewGrupoPayload) {
 	u.Nombre_grupo = strings.TrimSpace(u.Nombre_grupo)
 	u.Nombre_grupo = strings.ToUpper(u.Nombre_grupo)

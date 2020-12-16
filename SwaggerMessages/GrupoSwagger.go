@@ -16,6 +16,12 @@ type GetOneGrupoSwagger struct {
 	Data   ResponseMessages.GetOneGrupoResponse `json:"data"`
 }
 
+type GetGrupoEstudianteSwagger struct {
+	Status bool                                        `json:"status"`
+	Meta   string                                      `json:"meta"`
+	Data   ResponseMessages.GetGrupoEstudianteResponse `json:"data"`
+}
+
 type AddNewGrupoSwagger struct {
 	Status bool                                 `json:"status"`
 	Meta   string                               `json:"meta"`

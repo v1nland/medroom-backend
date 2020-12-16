@@ -201,6 +201,7 @@ definitions:
       correo_electronico_estudiante:
         type: string
       hash_contrasena_estudiante:
+        description: solo este
         type: string
       id_grupo:
         type: integer
@@ -211,8 +212,10 @@ definitions:
       rut_estudiante:
         type: string
       telefono_celular_estudiante:
+        description: solo este
         type: string
       telefono_fijo_estudiante:
+        description: solo este
         type: string
     type: object
   RequestMessages.PutOneAdministradorAcademicoPayload:
@@ -677,14 +680,29 @@ definitions:
       nombre_rol:
         type: string
     type: object
+  ResponseMessages.GetGrupoEstudianteResponse:
+    properties:
+      curso_grupo:
+        $ref: '#/definitions/ResponseMessages.GetOneCursoResponse'
+      estudiantes_grupo:
+        items:
+          $ref: '#/definitions/ResponseMessages.ListEstudiantesResponse'
+        type: array
+      evaluador_grupo:
+        $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+      nombre_grupo:
+        type: string
+      sigla_grupo:
+        type: string
+    type: object
   ResponseMessages.GetMyEstudianteResponse:
     properties:
       apellidos_estudiante:
         type: string
       correo_electronico_estudiante:
         type: string
-      grupo_estudiante:
-        $ref: '#/definitions/ResponseMessages.GetOneGrupoResponse'
+      id_grupo:
+        type: integer
       nombres_estudiante:
         type: string
       rol_estudiante:
@@ -750,8 +768,8 @@ definitions:
         type: string
       correo_electronico_estudiante:
         type: string
-      grupo_estudiante:
-        $ref: '#/definitions/ResponseMessages.GetOneGrupoResponse'
+      id_grupo:
+        type: integer
       nombres_estudiante:
         type: string
       rol_estudiante:
@@ -821,6 +839,10 @@ definitions:
     properties:
       curso_grupo:
         $ref: '#/definitions/ResponseMessages.GetOneCursoResponse'
+      estudiantes_grupo:
+        items:
+          $ref: '#/definitions/ResponseMessages.ListEstudiantesResponse'
+        type: array
       evaluador_grupo:
         $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
       nombre_grupo:
@@ -902,8 +924,8 @@ definitions:
         type: string
       correo_electronico_estudiante:
         type: string
-      grupo_estudiante:
-        $ref: '#/definitions/ResponseMessages.GetOneGrupoResponse'
+      id_grupo:
+        type: integer
       nombres_estudiante:
         type: string
       rol_estudiante:
@@ -973,6 +995,10 @@ definitions:
     properties:
       curso_grupo:
         $ref: '#/definitions/ResponseMessages.GetOneCursoResponse'
+      estudiantes_grupo:
+        items:
+          $ref: '#/definitions/ResponseMessages.ListEstudiantesResponse'
+        type: array
       evaluador_grupo:
         $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
       nombre_grupo:
@@ -1380,6 +1406,15 @@ definitions:
     properties:
       data:
         $ref: '#/definitions/ResponseMessages.DeleteRolResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  SwaggerMessages.GetGrupoEstudianteSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.GetGrupoEstudianteResponse'
       meta:
         type: string
       status:
@@ -2382,6 +2417,25 @@ paths:
       summary: Modifica mi perfil
       tags:
       - Estudiantes
+  /estudiantes/me/group:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un grupo de un estudiante según su token
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.GetGrupoEstudianteSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un grupo de un estudiante
+      tags:
+      - Grupos
   /evaluaciones:
     get:
       consumes:

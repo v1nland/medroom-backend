@@ -82,6 +82,36 @@ func GetOneGrupo(c *gin.Context) {
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetOneGrupoOutput(container))
 }
 
+// @Summary Obtiene un grupo de un estudiante
+// @Description Obtiene un grupo de un estudiante según su token
+// @Tags Grupos
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} SwaggerMessages.GetGrupoEstudianteSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /estudiantes/me/group [get]
+func GetGrupoEstudiante(c *gin.Context) {
+	// params
+	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
+
+	// model container
+	var estudiante Models.Estudiante
+	if err := Repositories.GetOneEstudiante(&estudiante, id_estudiante); err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
+	// model container
+	var container Models.Grupo
+	if err := Repositories.GetOneGrupo(&container, Utils.ConvertIntToString(estudiante.Id_grupo)); err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
+	// output
+	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetGrupoEstudianteOutput(container))
+}
+
 /*
 	*
 	*  FUNCIÓN AddNewGrupo

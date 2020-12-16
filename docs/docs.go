@@ -926,6 +926,35 @@ var doc = `{
                 }
             }
         },
+        "/estudiantes/me/group": {
+            "get": {
+                "description": "Obtiene un grupo de un estudiante según su token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Grupos"
+                ],
+                "summary": "Obtiene un grupo de un estudiante",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.GetGrupoEstudianteSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
         "/estudiantes/{uuid_estudiante}": {
             "get": {
                 "description": "Obtiene un estudiante según su UUID",
@@ -2662,6 +2691,7 @@ var doc = `{
                     "type": "string"
                 },
                 "hash_contrasena_estudiante": {
+                    "description": "solo este",
                     "type": "string"
                 },
                 "id_grupo": {
@@ -2677,9 +2707,11 @@ var doc = `{
                     "type": "string"
                 },
                 "telefono_celular_estudiante": {
+                    "description": "solo este",
                     "type": "string"
                 },
                 "telefono_fijo_estudiante": {
+                    "description": "solo este",
                     "type": "string"
                 }
             }
@@ -3394,6 +3426,29 @@ var doc = `{
                 }
             }
         },
+        "ResponseMessages.GetGrupoEstudianteResponse": {
+            "type": "object",
+            "properties": {
+                "curso_grupo": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneCursoResponse"
+                },
+                "estudiantes_grupo": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ResponseMessages.ListEstudiantesResponse"
+                    }
+                },
+                "evaluador_grupo": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
+                },
+                "nombre_grupo": {
+                    "type": "string"
+                },
+                "sigla_grupo": {
+                    "type": "string"
+                }
+            }
+        },
         "ResponseMessages.GetMyEstudianteResponse": {
             "type": "object",
             "properties": {
@@ -3403,8 +3458,8 @@ var doc = `{
                 "correo_electronico_estudiante": {
                     "type": "string"
                 },
-                "grupo_estudiante": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneGrupoResponse"
+                "id_grupo": {
+                    "type": "integer"
                 },
                 "nombres_estudiante": {
                     "type": "string"
@@ -3506,8 +3561,8 @@ var doc = `{
                 "correo_electronico_estudiante": {
                     "type": "string"
                 },
-                "grupo_estudiante": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneGrupoResponse"
+                "id_grupo": {
+                    "type": "integer"
                 },
                 "nombres_estudiante": {
                     "type": "string"
@@ -3613,6 +3668,12 @@ var doc = `{
             "properties": {
                 "curso_grupo": {
                     "$ref": "#/definitions/ResponseMessages.GetOneCursoResponse"
+                },
+                "estudiantes_grupo": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ResponseMessages.ListEstudiantesResponse"
+                    }
                 },
                 "evaluador_grupo": {
                     "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
@@ -3739,8 +3800,8 @@ var doc = `{
                 "correo_electronico_estudiante": {
                     "type": "string"
                 },
-                "grupo_estudiante": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneGrupoResponse"
+                "id_grupo": {
+                    "type": "integer"
                 },
                 "nombres_estudiante": {
                     "type": "string"
@@ -3846,6 +3907,12 @@ var doc = `{
             "properties": {
                 "curso_grupo": {
                     "$ref": "#/definitions/ResponseMessages.GetOneCursoResponse"
+                },
+                "estudiantes_grupo": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ResponseMessages.ListEstudiantesResponse"
+                    }
                 },
                 "evaluador_grupo": {
                     "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
@@ -4475,6 +4542,20 @@ var doc = `{
             "properties": {
                 "data": {
                     "$ref": "#/definitions/ResponseMessages.DeleteRolResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.GetGrupoEstudianteSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.GetGrupoEstudianteResponse"
                 },
                 "meta": {
                     "type": "string"
