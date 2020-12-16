@@ -10,7 +10,7 @@ package Utils
     *
 */
 func CheckUpdatedString(new_value string, old_value string) (updated string) {
-	if new_value != old_value {
+	if new_value != old_value && new_value != "" {
 		return new_value
 	} else {
 		return old_value
@@ -18,7 +18,7 @@ func CheckUpdatedString(new_value string, old_value string) (updated string) {
 }
 
 func CheckUpdatedInt(new_value int, old_value int) (updated int) {
-	if new_value != old_value {
+	if new_value != old_value && new_value != 0 {
 		return new_value
 	} else {
 		return old_value

@@ -791,7 +791,7 @@ var doc = `{
         },
         "/estudiantes": {
             "get": {
-                "description": "Lista todos los estudiantes",
+                "description": "Obtiene el perfil del estudiante según su token",
                 "consumes": [
                     "application/json"
                 ],
@@ -801,15 +801,12 @@ var doc = `{
                 "tags": [
                     "Estudiantes"
                 ],
-                "summary": "Lista de estudiantes",
+                "summary": "Obtiene el perfil del estudiante",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/SwaggerMessages.ListEstudiantesSwagger"
-                            }
+                            "$ref": "#/definitions/SwaggerMessages.GetMyEstudianteSwagger"
                         }
                     },
                     "400": {
@@ -848,6 +845,46 @@ var doc = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/SwaggerMessages.AddNewEstudianteSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/estudiantes/me": {
+            "put": {
+                "description": "Modifica el perfil del propio estudiante con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Estudiantes"
+                ],
+                "summary": "Modifica mi perfil",
+                "parameters": [
+                    {
+                        "description": "Nuevos datos del estudiante a modificar",
+                        "name": "input_actualiza_estudiante",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.PutMyEstudiantePayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.PutMyEstudianteSwagger"
                         }
                     },
                     "400": {
@@ -2585,6 +2622,38 @@ var doc = `{
                 }
             }
         },
+        "RequestMessages.PutMyEstudiantePayload": {
+            "type": "object",
+            "properties": {
+                "apellidos_estudiante": {
+                    "type": "string"
+                },
+                "correo_electronico_estudiante": {
+                    "type": "string"
+                },
+                "hash_contrasena_estudiante": {
+                    "type": "string"
+                },
+                "id_grupo": {
+                    "type": "integer"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_estudiante": {
+                    "type": "string"
+                },
+                "rut_estudiante": {
+                    "type": "string"
+                },
+                "telefono_celular_estudiante": {
+                    "type": "string"
+                },
+                "telefono_fijo_estudiante": {
+                    "type": "string"
+                }
+            }
+        },
         "RequestMessages.PutOneAdministradorAcademicoPayload": {
             "type": "object",
             "properties": {
@@ -3295,6 +3364,35 @@ var doc = `{
                 }
             }
         },
+        "ResponseMessages.GetMyEstudianteResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_estudiante": {
+                    "type": "string"
+                },
+                "correo_electronico_estudiante": {
+                    "type": "string"
+                },
+                "grupo_estudiante": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneGrupoResponse"
+                },
+                "nombres_estudiante": {
+                    "type": "string"
+                },
+                "rol_estudiante": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                },
+                "rut_estudiante": {
+                    "type": "string"
+                },
+                "telefono_celular_estudiante": {
+                    "type": "string"
+                },
+                "telefono_fijo_estudiante": {
+                    "type": "string"
+                }
+            }
+        },
         "ResponseMessages.GetOneAdministradorAcademicoResponse": {
             "type": "object",
             "properties": {
@@ -3757,6 +3855,38 @@ var doc = `{
             "type": "object",
             "properties": {
                 "nombre_rol": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.PutMyEstudianteResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_estudiante": {
+                    "type": "string"
+                },
+                "correo_electronico_estudiante": {
+                    "type": "string"
+                },
+                "hash_contrasena_estudiante": {
+                    "type": "string"
+                },
+                "id_grupo": {
+                    "type": "integer"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_estudiante": {
+                    "type": "string"
+                },
+                "rut_estudiante": {
+                    "type": "string"
+                },
+                "telefono_celular_estudiante": {
+                    "type": "string"
+                },
+                "telefono_fijo_estudiante": {
                     "type": "string"
                 }
             }
@@ -4324,6 +4454,20 @@ var doc = `{
                 }
             }
         },
+        "SwaggerMessages.GetMyEstudianteSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.GetMyEstudianteResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
         "SwaggerMessages.GetOneAdministradorAcademicoSwagger": {
             "type": "object",
             "properties": {
@@ -4623,6 +4767,20 @@ var doc = `{
             "properties": {
                 "data": {
                     "$ref": "#/definitions/ResponseMessages.ListRolesResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.PutMyEstudianteSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.PutMyEstudianteResponse"
                 },
                 "meta": {
                     "type": "string"

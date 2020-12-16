@@ -194,6 +194,27 @@ definitions:
       hash_contrasena_evaluador:
         type: string
     type: object
+  RequestMessages.PutMyEstudiantePayload:
+    properties:
+      apellidos_estudiante:
+        type: string
+      correo_electronico_estudiante:
+        type: string
+      hash_contrasena_estudiante:
+        type: string
+      id_grupo:
+        type: integer
+      id_rol:
+        type: integer
+      nombres_estudiante:
+        type: string
+      rut_estudiante:
+        type: string
+      telefono_celular_estudiante:
+        type: string
+      telefono_fijo_estudiante:
+        type: string
+    type: object
   RequestMessages.PutOneAdministradorAcademicoPayload:
     properties:
       apellidos_administrador_academico:
@@ -656,6 +677,25 @@ definitions:
       nombre_rol:
         type: string
     type: object
+  ResponseMessages.GetMyEstudianteResponse:
+    properties:
+      apellidos_estudiante:
+        type: string
+      correo_electronico_estudiante:
+        type: string
+      grupo_estudiante:
+        $ref: '#/definitions/ResponseMessages.GetOneGrupoResponse'
+      nombres_estudiante:
+        type: string
+      rol_estudiante:
+        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+      rut_estudiante:
+        type: string
+      telefono_celular_estudiante:
+        type: string
+      telefono_fijo_estudiante:
+        type: string
+    type: object
   ResponseMessages.GetOneAdministradorAcademicoResponse:
     properties:
       apellidos_administrador_academico:
@@ -958,6 +998,27 @@ definitions:
   ResponseMessages.ListRolesResponse:
     properties:
       nombre_rol:
+        type: string
+    type: object
+  ResponseMessages.PutMyEstudianteResponse:
+    properties:
+      apellidos_estudiante:
+        type: string
+      correo_electronico_estudiante:
+        type: string
+      hash_contrasena_estudiante:
+        type: string
+      id_grupo:
+        type: integer
+      id_rol:
+        type: integer
+      nombres_estudiante:
+        type: string
+      rut_estudiante:
+        type: string
+      telefono_celular_estudiante:
+        type: string
+      telefono_fijo_estudiante:
         type: string
     type: object
   ResponseMessages.PutOneAdministradorAcademicoResponse:
@@ -1324,6 +1385,15 @@ definitions:
       status:
         type: boolean
     type: object
+  SwaggerMessages.GetMyEstudianteSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.GetMyEstudianteResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
   SwaggerMessages.GetOneAdministradorAcademicoSwagger:
     properties:
       data:
@@ -1517,6 +1587,15 @@ definitions:
     properties:
       data:
         $ref: '#/definitions/ResponseMessages.ListRolesResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  SwaggerMessages.PutMyEstudianteSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.PutMyEstudianteResponse'
       meta:
         type: string
       status:
@@ -2138,21 +2217,19 @@ paths:
     get:
       consumes:
       - application/json
-      description: Lista todos los estudiantes
+      description: Obtiene el perfil del estudiante según su token
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            items:
-              $ref: '#/definitions/SwaggerMessages.ListEstudiantesSwagger'
-            type: array
+            $ref: '#/definitions/SwaggerMessages.GetMyEstudianteSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Lista de estudiantes
+      summary: Obtiene el perfil del estudiante
       tags:
       - Estudiantes
     post:
@@ -2257,6 +2334,32 @@ paths:
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Modifica un estudiante
+      tags:
+      - Estudiantes
+  /estudiantes/me:
+    put:
+      consumes:
+      - application/json
+      description: Modifica el perfil del propio estudiante con los datos entregados
+      parameters:
+      - description: Nuevos datos del estudiante a modificar
+        in: body
+        name: input_actualiza_estudiante
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.PutMyEstudiantePayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.PutMyEstudianteSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica mi perfil
       tags:
       - Estudiantes
   /evaluaciones:
