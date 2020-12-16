@@ -9,7 +9,6 @@ func GetEvaluacionesOutput(u []Models.Evaluacion) (output []ResponseMessages.Lis
 	for i := 0; i < len(u); i++ {
 		output = append(output, ResponseMessages.ListEvaluacionesResponse{
 			Evaluador_evaluacion:                    GetOneEvaluadorOutput(u[i].Evaluador_evaluacion),
-			Competencia_evaluacion:                  GetOneCompetenciaOutput(u[i].Competencia_evaluacion),
 			Periodo_evaluacion:                      GetOnePeriodoOutput(u[i].Periodo_evaluacion),
 			Puntajes_evaluacion:                     GetPuntajesOutput(u[i].Puntajes_evaluacion),
 			Id_estudiante:                           u[i].Id_estudiante,
@@ -32,7 +31,6 @@ func GetEvaluacionesEstudianteOutput(u []Models.Evaluacion) (output []ResponseMe
 	for i := 0; i < len(u); i++ {
 		output = append(output, ResponseMessages.ListEvaluacionesEstudianteResponse{
 			Evaluador_evaluacion:                    GetOneEvaluadorOutput(u[i].Evaluador_evaluacion),
-			Competencia_evaluacion:                  GetOneCompetenciaOutput(u[i].Competencia_evaluacion),
 			Periodo_evaluacion:                      GetOnePeriodoOutput(u[i].Periodo_evaluacion),
 			Puntajes_evaluacion:                     GetPuntajesOutput(u[i].Puntajes_evaluacion),
 			Id_estudiante:                           u[i].Id_estudiante,
@@ -54,7 +52,6 @@ func GetEvaluacionesEstudianteOutput(u []Models.Evaluacion) (output []ResponseMe
 func GetOneEvaluacionOutput(u Models.Evaluacion) (output ResponseMessages.GetOneEvaluacionResponse) {
 	return ResponseMessages.GetOneEvaluacionResponse{
 		Evaluador_evaluacion:                    GetOneEvaluadorOutput(u.Evaluador_evaluacion),
-		Competencia_evaluacion:                  GetOneCompetenciaOutput(u.Competencia_evaluacion),
 		Periodo_evaluacion:                      GetOnePeriodoOutput(u.Periodo_evaluacion),
 		Id_estudiante:                           u.Id_estudiante,
 		Nombre_evaluacion:                       u.Nombre_evaluacion,
@@ -73,7 +70,24 @@ func AddNewEvaluacionOutput(u Models.Evaluacion) (output ResponseMessages.AddNew
 	return ResponseMessages.AddNewEvaluacionResponse{
 		Id_estudiante:                           u.Id_estudiante,
 		Id_evaluador:                            u.Id_evaluador,
-		Id_competencia:                          u.Id_competencia,
+		Id_periodo:                              u.Id_periodo,
+		Nombre_evaluacion:                       u.Nombre_evaluacion,
+		Entorno_clinico_evaluacion:              u.Entorno_clinico_evaluacion,
+		Paciente_evaluacion:                     u.Paciente_evaluacion,
+		Asunto_principal_consulta_evaluacion:    u.Asunto_principal_consulta_evaluacion,
+		Complejidad_caso_evaluacion:             u.Complejidad_caso_evaluacion,
+		Numero_observaciones_previas_evaluacion: u.Numero_observaciones_previas_evaluacion,
+		Categoria_observador_evaluacion:         u.Categoria_observador_evaluacion,
+		Observacion_calificacion_evaluacion:     u.Observacion_calificacion_evaluacion,
+		Tiempo_utilizado_evaluacion:             u.Tiempo_utilizado_evaluacion,
+	}
+}
+
+func GenerarEvaluacionOutput(u Models.Evaluacion) (output ResponseMessages.GenerarEvaluacionResponse) {
+	return ResponseMessages.GenerarEvaluacionResponse{
+		Puntajes_evaluacion:                     GetPuntajesOutput(u.Puntajes_evaluacion),
+		Id_estudiante:                           u.Id_estudiante,
+		Id_evaluador:                            u.Id_evaluador,
 		Id_periodo:                              u.Id_periodo,
 		Nombre_evaluacion:                       u.Nombre_evaluacion,
 		Entorno_clinico_evaluacion:              u.Entorno_clinico_evaluacion,
@@ -91,7 +105,6 @@ func PutOneEvaluacionOutput(u Models.Evaluacion) (output ResponseMessages.PutOne
 	return ResponseMessages.PutOneEvaluacionResponse{
 		Id_estudiante:                           u.Id_estudiante,
 		Id_evaluador:                            u.Id_evaluador,
-		Id_competencia:                          u.Id_competencia,
 		Id_periodo:                              u.Id_periodo,
 		Nombre_evaluacion:                       u.Nombre_evaluacion,
 		Entorno_clinico_evaluacion:              u.Entorno_clinico_evaluacion,
@@ -109,7 +122,6 @@ func DeleteEvaluacionOutput(u Models.Evaluacion) (output ResponseMessages.Delete
 	return ResponseMessages.DeleteEvaluacionResponse{
 		Id_estudiante:                           u.Id_estudiante,
 		Id_evaluador:                            u.Id_evaluador,
-		Id_competencia:                          u.Id_competencia,
 		Id_periodo:                              u.Id_periodo,
 		Nombre_evaluacion:                       u.Nombre_evaluacion,
 		Entorno_clinico_evaluacion:              u.Entorno_clinico_evaluacion,

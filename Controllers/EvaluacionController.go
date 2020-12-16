@@ -12,16 +12,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-/*
-	*
-	*  FUNCIÓN ListEvaluacion
-	*
-    *
-	*
-	*
-    *
-*/
-
 // @Summary Lista de evaluaciones
 // @Description Lista todos los evaluaciones
 // @Tags Evaluaciones
@@ -44,16 +34,6 @@ func ListEvaluaciones(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetEvaluacionesOutput(container))
 }
-
-/*
-	*
-	*  FUNCIÓN ListEvaluacion
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Lista de evaluaciones de un estudiante
 // @Description Lista todos los evaluaciones de un estudiante
@@ -85,16 +65,6 @@ func ListEvaluacionesEstudiante(c *gin.Context) {
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetEvaluacionesEstudianteOutput(estudiante.Evaluaciones_estudiante))
 }
 
-/*
-	*
-	*  FUNCIÓN GetOneEvaluacion
-	*
-    *
-	*
-	*
-    *
-*/
-
 // @Summary Obtiene un evaluacion
 // @Description Obtiene un evaluacion según su ID
 // @Tags Evaluaciones
@@ -122,16 +92,6 @@ func GetOneEvaluacion(c *gin.Context) {
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetOneEvaluacionOutput(container))
 }
 
-/*
-	*
-	*  FUNCIÓN AddNewEvaluacion
-	*
-    *
-	*
-	*
-    *
-*/
-
 // @Summary Agrega un nuevo evaluacion
 // @Description Genera un nuevo evaluacion con los datos entregados
 // @Tags Evaluaciones
@@ -158,7 +118,6 @@ func AddNewEvaluacion(c *gin.Context) {
 	model_container := Models.Evaluacion{
 		Id_estudiante:                           container.Id_estudiante,
 		Id_evaluador:                            container.Id_evaluador,
-		Id_competencia:                          container.Id_competencia,
 		Id_periodo:                              container.Id_periodo,
 		Nombre_evaluacion:                       container.Nombre_evaluacion,
 		Entorno_clinico_evaluacion:              container.Entorno_clinico_evaluacion,
@@ -182,15 +141,72 @@ func AddNewEvaluacion(c *gin.Context) {
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.AddNewEvaluacionOutput(model_container))
 }
 
-/*
-	*
-	*  FUNCIÓN PutOneEvaluacion
-	*
-    *
-	*
-	*
-    *
-*/
+// @Summary Genera una evaluación para un estudiante
+// @Description Genera una nueva evaluación de un estudiante con los datos entregados
+// @Tags Evaluaciones
+// @Accept  json
+// @Produce  json
+// @Param   input_evaluacion     body    RequestMessages.GenerarEvaluacionPayload     true        "Evaluacion a generar"
+// @Success 200 {object} SwaggerMessages.GenerarEvaluacionSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /evaluadores/evaluaciones [post]
+func GenerarEvaluacion(c *gin.Context) {
+	// params
+	id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
+
+	// input container
+	var container RequestMessages.GenerarEvaluacionPayload
+
+	// input bind
+	if err := c.ShouldBind(&container); err != nil {
+		ApiHelpers.RespondError(c, 400, "default")
+		return
+	}
+
+	// format input
+	InputFormats.GenerarEvaluacionInput(&container)
+
+	// validate puntajes_evaluacion enum
+
+	// generate model entity
+	model_container := Models.Evaluacion{
+		Id_estudiante:                           container.Id_estudiante,
+		Id_evaluador:                            id_evaluador,
+		Id_periodo:                              container.Id_periodo,
+		Nombre_evaluacion:                       container.Nombre_evaluacion,
+		Entorno_clinico_evaluacion:              container.Entorno_clinico_evaluacion,
+		Paciente_evaluacion:                     container.Paciente_evaluacion,
+		Asunto_principal_consulta_evaluacion:    container.Asunto_principal_consulta_evaluacion,
+		Complejidad_caso_evaluacion:             container.Complejidad_caso_evaluacion,
+		Numero_observaciones_previas_evaluacion: container.Numero_observaciones_previas_evaluacion,
+		Categoria_observador_evaluacion:         container.Categoria_observador_evaluacion,
+		Observacion_calificacion_evaluacion:     container.Observacion_calificacion_evaluacion,
+		Tiempo_utilizado_evaluacion:             container.Tiempo_utilizado_evaluacion,
+	}
+
+	// query
+	if err := Repositories.AddNewEvaluacion(&model_container); err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
+	for i := 0; i < len(container.Puntajes_evaluacion); i++ {
+		puntaje := Models.Puntaje{
+			Id_evaluacion:              model_container.ID,
+			Nombre_competencia_puntaje: container.Puntajes_evaluacion[i].Nombre_competencia,
+			Calificacion_puntaje:       container.Puntajes_evaluacion[i].Puntaje_competencia,
+			Feedback_puntaje:           container.Puntajes_evaluacion[i].Feedback_competencia,
+		}
+
+		if err := Repositories.AddNewPuntaje(&puntaje); err != nil {
+			ApiHelpers.RespondError(c, 500, "default")
+			return
+		}
+	}
+
+	// output
+	ApiHelpers.RespondJSON(c, 200, OutputFormats.GenerarEvaluacionOutput(model_container))
+}
 
 // @Summary Modifica un evaluacion
 // @Description Modifica un evaluacion con los datos entregados
@@ -233,7 +249,6 @@ func PutOneEvaluacion(c *gin.Context) {
 		ID:                                      model_container.ID,
 		Id_estudiante:                           Utils.CheckUpdatedString(container.Id_estudiante, model_container.Id_estudiante),
 		Id_evaluador:                            Utils.CheckUpdatedString(container.Id_evaluador, model_container.Id_evaluador),
-		Id_competencia:                          Utils.CheckUpdatedInt(container.Id_competencia, model_container.Id_competencia),
 		Id_periodo:                              Utils.CheckUpdatedInt(container.Id_periodo, model_container.Id_periodo),
 		Nombre_evaluacion:                       Utils.CheckUpdatedString(container.Nombre_evaluacion, model_container.Nombre_evaluacion),
 		Entorno_clinico_evaluacion:              Utils.CheckUpdatedString(container.Entorno_clinico_evaluacion, model_container.Entorno_clinico_evaluacion),
@@ -261,13 +276,6 @@ func PutOneEvaluacion(c *gin.Context) {
 	}
 
 	// update foreign entity
-	err = Repositories.GetOneCompetencia(&model_container.Competencia_evaluacion, Utils.ConvertIntToString(model_container.Id_competencia))
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
-	}
-
-	// update foreign entity
 	err = Repositories.GetOnePeriodo(&model_container.Periodo_evaluacion, Utils.ConvertIntToString(model_container.Id_periodo))
 	if err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
@@ -284,16 +292,6 @@ func PutOneEvaluacion(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutOneEvaluacionOutput(model_container))
 }
-
-/*
-	*
-	*  FUNCIÓN DeleteEvaluacion
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Elimina un evaluacion
 // @Description Elimina un evaluacion con los datos entregados

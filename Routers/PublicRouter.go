@@ -93,14 +93,14 @@ func SetupPublicRouter(r *gin.Engine) *gin.Engine {
 		// 	puntajes.DELETE(":id", Controllers.DeletePuntaje)
 		// }
 
-		// evaluaciones := router.Group("/evaluaciones")
-		// {
-		// 	evaluaciones.GET("", Controllers.ListEvaluaciones)
-		// 	evaluaciones.GET(":id", Controllers.GetOneEvaluacion)
-		// 	evaluaciones.POST("", Controllers.AddNewEvaluacion)
-		// 	evaluaciones.PUT(":id", Controllers.PutOneEvaluacion)
-		// 	evaluaciones.DELETE(":id", Controllers.DeleteEvaluacion)
-		// }
+		evaluaciones := router.Group("/evaluaciones")
+		{
+			evaluaciones.GET("", Controllers.ListEvaluaciones)
+			evaluaciones.GET(":id", Controllers.GetOneEvaluacion)
+			evaluaciones.POST("", Controllers.AddNewEvaluacion)
+			evaluaciones.PUT(":id", Controllers.PutOneEvaluacion)
+			evaluaciones.DELETE(":id", Controllers.DeleteEvaluacion)
+		}
 	}
 
 	return r

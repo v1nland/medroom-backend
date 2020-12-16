@@ -22,6 +22,12 @@ type AddNewEvaluacionSwagger struct {
 	Data   ResponseMessages.AddNewEvaluacionResponse `json:"data"`
 }
 
+type GenerarEvaluacionSwagger struct {
+	Status bool                                       `json:"status"`
+	Meta   string                                     `json:"meta"`
+	Data   ResponseMessages.GenerarEvaluacionResponse `json:"data"`
+}
+
 type PutOneEvaluacionSwagger struct {
 	Status bool                                      `json:"status"`
 	Meta   string                                    `json:"meta"`

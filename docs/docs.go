@@ -1365,6 +1365,46 @@ var doc = `{
                 }
             }
         },
+        "/evaluadores/evaluaciones": {
+            "post": {
+                "description": "Genera una nueva evaluación de un estudiante con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Evaluaciones"
+                ],
+                "summary": "Genera una evaluación para un estudiante",
+                "parameters": [
+                    {
+                        "description": "Evaluacion a generar",
+                        "name": "input_evaluacion",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.GenerarEvaluacionPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.GenerarEvaluacionSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
         "/evaluadores/me": {
             "get": {
                 "description": "Obtiene el perfil del evaluador según su token",
@@ -2651,9 +2691,6 @@ var doc = `{
                 "entorno_clinico_evaluacion": {
                     "type": "string"
                 },
-                "id_competencia": {
-                    "type": "integer"
-                },
                 "id_estudiante": {
                     "type": "string"
                 },
@@ -2746,13 +2783,13 @@ var doc = `{
                 "calificacion_puntaje": {
                     "type": "integer"
                 },
-                "id_competencia": {
-                    "type": "integer"
+                "feedback_puntaje": {
+                    "type": "string"
                 },
                 "id_evaluacion": {
                     "type": "integer"
                 },
-                "nivel_logro_puntaje": {
+                "nombre_competencia_puntaje": {
                     "type": "string"
                 }
             }
@@ -2762,6 +2799,53 @@ var doc = `{
             "properties": {
                 "nombre_rol": {
                     "type": "string"
+                }
+            }
+        },
+        "RequestMessages.GenerarEvaluacionPayload": {
+            "type": "object",
+            "properties": {
+                "asunto_principal_consulta_evaluacion": {
+                    "type": "string"
+                },
+                "categoria_observador_evaluacion": {
+                    "type": "string"
+                },
+                "complejidad_caso_evaluacion": {
+                    "type": "string"
+                },
+                "entorno_clinico_evaluacion": {
+                    "type": "string"
+                },
+                "id_estudiante": {
+                    "type": "string"
+                },
+                "id_evaluador": {
+                    "type": "string"
+                },
+                "id_periodo": {
+                    "type": "integer"
+                },
+                "nombre_evaluacion": {
+                    "type": "string"
+                },
+                "numero_observaciones_previas_evaluacion": {
+                    "type": "string"
+                },
+                "observacion_calificacion_evaluacion": {
+                    "type": "string"
+                },
+                "paciente_evaluacion": {
+                    "type": "string"
+                },
+                "puntajes_evaluacion": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RequestMessages.PuntajesEvaluacion"
+                    }
+                },
+                "tiempo_utilizado_evaluacion": {
+                    "type": "integer"
                 }
             }
         },
@@ -2806,6 +2890,20 @@ var doc = `{
                 },
                 "hash_contrasena_evaluador": {
                     "type": "string"
+                }
+            }
+        },
+        "RequestMessages.PuntajesEvaluacion": {
+            "type": "object",
+            "properties": {
+                "feedback_competencia": {
+                    "type": "string"
+                },
+                "nombre_competencia": {
+                    "type": "string"
+                },
+                "puntaje_competencia": {
+                    "type": "integer"
                 }
             }
         },
@@ -3009,9 +3107,6 @@ var doc = `{
                 "entorno_clinico_evaluacion": {
                     "type": "string"
                 },
-                "id_competencia": {
-                    "type": "integer"
-                },
                 "id_estudiante": {
                     "type": "string"
                 },
@@ -3104,13 +3199,13 @@ var doc = `{
                 "calificacion_puntaje": {
                     "type": "integer"
                 },
-                "id_competencia": {
-                    "type": "integer"
+                "feedback_puntaje": {
+                    "type": "string"
                 },
                 "id_evaluacion": {
                     "type": "integer"
                 },
-                "nivel_logro_puntaje": {
+                "nombre_competencia_puntaje": {
                     "type": "string"
                 }
             }
@@ -3241,9 +3336,6 @@ var doc = `{
                 "entorno_clinico_evaluacion": {
                     "type": "string"
                 },
-                "id_competencia": {
-                    "type": "integer"
-                },
                 "id_estudiante": {
                     "type": "string"
                 },
@@ -3333,13 +3425,13 @@ var doc = `{
                 "calificacion_puntaje": {
                     "type": "integer"
                 },
-                "id_competencia": {
-                    "type": "integer"
+                "feedback_puntaje": {
+                    "type": "string"
                 },
                 "id_evaluacion": {
                     "type": "integer"
                 },
-                "nivel_logro_puntaje": {
+                "nombre_competencia_puntaje": {
                     "type": "string"
                 }
             }
@@ -3478,9 +3570,6 @@ var doc = `{
                 "entorno_clinico_evaluacion": {
                     "type": "string"
                 },
-                "id_competencia": {
-                    "type": "integer"
-                },
                 "id_estudiante": {
                     "type": "string"
                 },
@@ -3570,13 +3659,13 @@ var doc = `{
                 "calificacion_puntaje": {
                     "type": "integer"
                 },
-                "id_competencia": {
-                    "type": "integer"
+                "feedback_puntaje": {
+                    "type": "string"
                 },
                 "id_evaluacion": {
                     "type": "integer"
                 },
-                "nivel_logro_puntaje": {
+                "nombre_competencia_puntaje": {
                     "type": "string"
                 }
             }
@@ -3586,6 +3675,53 @@ var doc = `{
             "properties": {
                 "nombre_rol": {
                     "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.GenerarEvaluacionResponse": {
+            "type": "object",
+            "properties": {
+                "asunto_principal_consulta_evaluacion": {
+                    "type": "string"
+                },
+                "categoria_observador_evaluacion": {
+                    "type": "string"
+                },
+                "complejidad_caso_evaluacion": {
+                    "type": "string"
+                },
+                "entorno_clinico_evaluacion": {
+                    "type": "string"
+                },
+                "id_estudiante": {
+                    "type": "string"
+                },
+                "id_evaluador": {
+                    "type": "string"
+                },
+                "id_periodo": {
+                    "type": "integer"
+                },
+                "nombre_evaluacion": {
+                    "type": "string"
+                },
+                "numero_observaciones_previas_evaluacion": {
+                    "type": "string"
+                },
+                "observacion_calificacion_evaluacion": {
+                    "type": "string"
+                },
+                "paciente_evaluacion": {
+                    "type": "string"
+                },
+                "puntajes_evaluacion": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ResponseMessages.ListPuntajesResponse"
+                    }
+                },
+                "tiempo_utilizado_evaluacion": {
+                    "type": "integer"
                 }
             }
         },
@@ -3820,9 +3956,6 @@ var doc = `{
                 "categoria_observador_evaluacion": {
                     "type": "string"
                 },
-                "competencia_evaluacion": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneCompetenciaResponse"
-                },
                 "complejidad_caso_evaluacion": {
                     "type": "string"
                 },
@@ -3930,13 +4063,13 @@ var doc = `{
                 "calificacion_puntaje": {
                     "type": "integer"
                 },
-                "competencia_puntaje": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneCompetenciaResponse"
+                "feedback_puntaje": {
+                    "type": "string"
                 },
                 "id_evaluacion": {
                     "type": "integer"
                 },
-                "nivel_logro_puntaje": {
+                "nombre_competencia_puntaje": {
                     "type": "string"
                 }
             }
@@ -4067,9 +4200,6 @@ var doc = `{
                 "categoria_observador_evaluacion": {
                     "type": "string"
                 },
-                "competencia_evaluacion": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneCompetenciaResponse"
-                },
                 "complejidad_caso_evaluacion": {
                     "type": "string"
                 },
@@ -4116,9 +4246,6 @@ var doc = `{
                 },
                 "categoria_observador_evaluacion": {
                     "type": "string"
-                },
-                "competencia_evaluacion": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneCompetenciaResponse"
                 },
                 "complejidad_caso_evaluacion": {
                     "type": "string"
@@ -4227,13 +4354,13 @@ var doc = `{
                 "calificacion_puntaje": {
                     "type": "integer"
                 },
-                "competencia_puntaje": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneCompetenciaResponse"
+                "feedback_puntaje": {
+                    "type": "string"
                 },
                 "id_evaluacion": {
                     "type": "integer"
                 },
-                "nivel_logro_puntaje": {
+                "nombre_competencia_puntaje": {
                     "type": "string"
                 }
             }
@@ -4440,9 +4567,6 @@ var doc = `{
                 "entorno_clinico_evaluacion": {
                     "type": "string"
                 },
-                "id_competencia": {
-                    "type": "integer"
-                },
                 "id_estudiante": {
                     "type": "string"
                 },
@@ -4535,13 +4659,13 @@ var doc = `{
                 "calificacion_puntaje": {
                     "type": "integer"
                 },
-                "id_competencia": {
-                    "type": "integer"
+                "feedback_puntaje": {
+                    "type": "string"
                 },
                 "id_evaluacion": {
                     "type": "integer"
                 },
-                "nivel_logro_puntaje": {
+                "nombre_competencia_puntaje": {
                     "type": "string"
                 }
             }
@@ -4867,6 +4991,20 @@ var doc = `{
             "properties": {
                 "data": {
                     "$ref": "#/definitions/ResponseMessages.DeleteRolResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.GenerarEvaluacionSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.GenerarEvaluacionResponse"
                 },
                 "meta": {
                     "type": "string"

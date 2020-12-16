@@ -92,8 +92,6 @@ definitions:
         type: string
       entorno_clinico_evaluacion:
         type: string
-      id_competencia:
-        type: integer
       id_estudiante:
         type: string
       id_evaluador:
@@ -154,17 +152,48 @@ definitions:
     properties:
       calificacion_puntaje:
         type: integer
-      id_competencia:
-        type: integer
+      feedback_puntaje:
+        type: string
       id_evaluacion:
         type: integer
-      nivel_logro_puntaje:
+      nombre_competencia_puntaje:
         type: string
     type: object
   RequestMessages.AddNewRolPayload:
     properties:
       nombre_rol:
         type: string
+    type: object
+  RequestMessages.GenerarEvaluacionPayload:
+    properties:
+      asunto_principal_consulta_evaluacion:
+        type: string
+      categoria_observador_evaluacion:
+        type: string
+      complejidad_caso_evaluacion:
+        type: string
+      entorno_clinico_evaluacion:
+        type: string
+      id_estudiante:
+        type: string
+      id_evaluador:
+        type: string
+      id_periodo:
+        type: integer
+      nombre_evaluacion:
+        type: string
+      numero_observaciones_previas_evaluacion:
+        type: string
+      observacion_calificacion_evaluacion:
+        type: string
+      paciente_evaluacion:
+        type: string
+      puntajes_evaluacion:
+        items:
+          $ref: '#/definitions/RequestMessages.PuntajesEvaluacion'
+        type: array
+      tiempo_utilizado_evaluacion:
+        type: integer
     type: object
   RequestMessages.LoginAdministradorAcademicoPayload:
     properties:
@@ -193,6 +222,15 @@ definitions:
         type: string
       hash_contrasena_evaluador:
         type: string
+    type: object
+  RequestMessages.PuntajesEvaluacion:
+    properties:
+      feedback_competencia:
+        type: string
+      nombre_competencia:
+        type: string
+      puntaje_competencia:
+        type: integer
     type: object
   RequestMessages.PutMyEstudiantePayload:
     properties:
@@ -326,8 +364,6 @@ definitions:
         type: string
       entorno_clinico_evaluacion:
         type: string
-      id_competencia:
-        type: integer
       id_estudiante:
         type: string
       id_evaluador:
@@ -388,11 +424,11 @@ definitions:
     properties:
       calificacion_puntaje:
         type: integer
-      id_competencia:
-        type: integer
+      feedback_puntaje:
+        type: string
       id_evaluacion:
         type: integer
-      nivel_logro_puntaje:
+      nombre_competencia_puntaje:
         type: string
     type: object
   RequestMessages.PutOneRolPayload:
@@ -477,8 +513,6 @@ definitions:
         type: string
       entorno_clinico_evaluacion:
         type: string
-      id_competencia:
-        type: integer
       id_estudiante:
         type: string
       id_evaluador:
@@ -537,11 +571,11 @@ definitions:
     properties:
       calificacion_puntaje:
         type: integer
-      id_competencia:
-        type: integer
+      feedback_puntaje:
+        type: string
       id_evaluacion:
         type: integer
-      nivel_logro_puntaje:
+      nombre_competencia_puntaje:
         type: string
     type: object
   ResponseMessages.AddNewRolResponse:
@@ -631,8 +665,6 @@ definitions:
         type: string
       entorno_clinico_evaluacion:
         type: string
-      id_competencia:
-        type: integer
       id_estudiante:
         type: string
       id_evaluador:
@@ -691,17 +723,48 @@ definitions:
     properties:
       calificacion_puntaje:
         type: integer
-      id_competencia:
-        type: integer
+      feedback_puntaje:
+        type: string
       id_evaluacion:
         type: integer
-      nivel_logro_puntaje:
+      nombre_competencia_puntaje:
         type: string
     type: object
   ResponseMessages.DeleteRolResponse:
     properties:
       nombre_rol:
         type: string
+    type: object
+  ResponseMessages.GenerarEvaluacionResponse:
+    properties:
+      asunto_principal_consulta_evaluacion:
+        type: string
+      categoria_observador_evaluacion:
+        type: string
+      complejidad_caso_evaluacion:
+        type: string
+      entorno_clinico_evaluacion:
+        type: string
+      id_estudiante:
+        type: string
+      id_evaluador:
+        type: string
+      id_periodo:
+        type: integer
+      nombre_evaluacion:
+        type: string
+      numero_observaciones_previas_evaluacion:
+        type: string
+      observacion_calificacion_evaluacion:
+        type: string
+      paciente_evaluacion:
+        type: string
+      puntajes_evaluacion:
+        items:
+          $ref: '#/definitions/ResponseMessages.ListPuntajesResponse'
+        type: array
+      tiempo_utilizado_evaluacion:
+        type: integer
     type: object
   ResponseMessages.GetGrupoEstudianteResponse:
     properties:
@@ -854,8 +917,6 @@ definitions:
         type: string
       categoria_observador_evaluacion:
         type: string
-      competencia_evaluacion:
-        $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
       complejidad_caso_evaluacion:
         type: string
       entorno_clinico_evaluacion:
@@ -926,11 +987,11 @@ definitions:
     properties:
       calificacion_puntaje:
         type: integer
-      competencia_puntaje:
-        $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
+      feedback_puntaje:
+        type: string
       id_evaluacion:
         type: integer
-      nivel_logro_puntaje:
+      nombre_competencia_puntaje:
         type: string
     type: object
   ResponseMessages.GetOneRolResponse:
@@ -1015,8 +1076,6 @@ definitions:
         type: string
       categoria_observador_evaluacion:
         type: string
-      competencia_evaluacion:
-        $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
       complejidad_caso_evaluacion:
         type: string
       entorno_clinico_evaluacion:
@@ -1048,8 +1107,6 @@ definitions:
         type: string
       categoria_observador_evaluacion:
         type: string
-      competencia_evaluacion:
-        $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
       complejidad_caso_evaluacion:
         type: string
       entorno_clinico_evaluacion:
@@ -1120,11 +1177,11 @@ definitions:
     properties:
       calificacion_puntaje:
         type: integer
-      competencia_puntaje:
-        $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
+      feedback_puntaje:
+        type: string
       id_evaluacion:
         type: integer
-      nivel_logro_puntaje:
+      nombre_competencia_puntaje:
         type: string
     type: object
   ResponseMessages.ListRolesResponse:
@@ -1259,8 +1316,6 @@ definitions:
         type: string
       entorno_clinico_evaluacion:
         type: string
-      id_competencia:
-        type: integer
       id_estudiante:
         type: string
       id_evaluador:
@@ -1321,11 +1376,11 @@ definitions:
     properties:
       calificacion_puntaje:
         type: integer
-      id_competencia:
-        type: integer
+      feedback_puntaje:
+        type: string
       id_evaluacion:
         type: integer
-      nivel_logro_puntaje:
+      nombre_competencia_puntaje:
         type: string
     type: object
   ResponseMessages.PutOneRolResponse:
@@ -1535,6 +1590,15 @@ definitions:
     properties:
       data:
         $ref: '#/definitions/ResponseMessages.DeleteRolResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  SwaggerMessages.GenerarEvaluacionSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.GenerarEvaluacionResponse'
       meta:
         type: string
       status:
@@ -2863,6 +2927,32 @@ paths:
       summary: Modifica un evaluador
       tags:
       - Evaluadores
+  /evaluadores/evaluaciones:
+    post:
+      consumes:
+      - application/json
+      description: Genera una nueva evaluación de un estudiante con los datos entregados
+      parameters:
+      - description: Evaluacion a generar
+        in: body
+        name: input_evaluacion
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.GenerarEvaluacionPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.GenerarEvaluacionSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Genera una evaluación para un estudiante
+      tags:
+      - Evaluaciones
   /evaluadores/me:
     get:
       consumes:

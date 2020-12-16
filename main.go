@@ -46,6 +46,9 @@ func main() {
 	}
 	defer Config.DB.Close()
 
+	Config.DB.AutoMigrate(&Models.Evaluacion{})
+	Config.DB.AutoMigrate(&Models.Puntaje{})
+
 	if should_automigrate == "1" {
 		// Inicialización de tablas en DB
 		Config.DB.AutoMigrate(&Models.Competencia{}, &Models.Periodo{}, &Models.Rol{}, &Models.Evaluador{}, &Models.Curso{}, &Models.Grupo{}, &Models.Estudiante{}, &Models.Evaluacion{}, &Models.Puntaje{}, &Models.AdministradorAcademico{}, &Models.AdministradorTi{})

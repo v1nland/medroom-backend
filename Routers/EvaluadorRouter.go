@@ -25,6 +25,9 @@ func SetupEvaluadorRouter(r *gin.Engine) *gin.Engine {
 	router := r.Group("api/v1/evaluadores")
 	router.Use(evaluadorAuthMiddleware)
 	{
+		// traversal
+		router.GET("periodos", Controllers.ListPeriodos)
+
 		// profile routes
 		router.GET("me", Controllers.GetMyEvaluador)
 		router.PUT("me", Controllers.PutMyEvaluador)
@@ -34,7 +37,7 @@ func SetupEvaluadorRouter(r *gin.Engine) *gin.Engine {
 
 		// make evaluation routes
 		// call 'me/group' to list students and it's ramos
-		// router.POST("evaluaciones", Controllers.AddNewEvaluacion)
+		router.POST("evaluaciones", Controllers.GenerarEvaluacion)
 
 		// view reports routes
 		// call 'me/group' to list students and it's ramos
