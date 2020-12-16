@@ -52,6 +52,7 @@ func AutenticarEstudiante(c *gin.Context) {
 		claims := encoder.Claims.(jwt.MapClaims)
 
 		claims["id"] = estudiante.ID
+		claims["perfil"] = "estudiante"
 		claims["correo_electronico_estudiante"] = estudiante.Correo_electronico_estudiante
 
 		token, _ := encoder.SignedString([]byte(os.Getenv("SECRET_KEY_ESTUDIANTE")))
@@ -101,6 +102,7 @@ func AutenticarEvaluador(c *gin.Context) {
 		claims := encoder.Claims.(jwt.MapClaims)
 
 		claims["id"] = evaluador.ID
+		claims["perfil"] = "evaluador"
 		claims["correo_electronico_evaluador"] = evaluador.Correo_electronico_evaluador
 
 		token, _ := encoder.SignedString([]byte(os.Getenv("SECRET_KEY_EVALUADOR")))
@@ -150,6 +152,7 @@ func AutenticarAdministradorAcademico(c *gin.Context) {
 		claims := encoder.Claims.(jwt.MapClaims)
 
 		claims["id"] = administrador_academico.ID
+		claims["perfil"] = "administrador_academico"
 		claims["correo_electronico_administrador_academico"] = administrador_academico.Correo_electronico_administrador_academico
 
 		token, _ := encoder.SignedString([]byte(os.Getenv("SECRET_KEY_ADMINISTRADOR_ACADEMICO")))
@@ -199,6 +202,7 @@ func AutenticarAdministradorTi(c *gin.Context) {
 		claims := encoder.Claims.(jwt.MapClaims)
 
 		claims["id"] = administrador_ti.ID
+		claims["perfil"] = "administrador_ti"
 		claims["correo_electronico_administrador_ti"] = administrador_ti.Correo_electronico_administrador_ti
 
 		token, _ := encoder.SignedString([]byte(os.Getenv("SECRET_KEY_ADMINISTRADOR_TI")))
