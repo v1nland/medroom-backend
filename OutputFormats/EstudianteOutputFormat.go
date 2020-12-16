@@ -35,6 +35,19 @@ func GetOneEstudianteOutput(u Models.Estudiante) (output ResponseMessages.GetOne
 	}
 }
 
+func GetMyEstudianteOutput(u Models.Estudiante) (output ResponseMessages.GetMyEstudianteResponse) {
+	return ResponseMessages.GetMyEstudianteResponse{
+		Rol_estudiante:                GetOneRolOutput(u.Rol_estudiante),
+		Grupo_estudiante:              GetOneGrupoOutput(u.Grupo_estudiante),
+		Rut_estudiante:                u.Rut_estudiante,
+		Nombres_estudiante:            u.Nombres_estudiante,
+		Apellidos_estudiante:          u.Apellidos_estudiante,
+		Correo_electronico_estudiante: u.Correo_electronico_estudiante,
+		Telefono_fijo_estudiante:      u.Telefono_fijo_estudiante,
+		Telefono_celular_estudiante:   u.Telefono_celular_estudiante,
+	}
+}
+
 func AddNewEstudianteOutput(u Models.Estudiante) (output ResponseMessages.AddNewEstudianteResponse) {
 	return ResponseMessages.AddNewEstudianteResponse{
 		Id_rol:                        u.Id_rol,
@@ -50,6 +63,19 @@ func AddNewEstudianteOutput(u Models.Estudiante) (output ResponseMessages.AddNew
 
 func PutOneEstudianteOutput(u Models.Estudiante) (output ResponseMessages.PutOneEstudianteResponse) {
 	return ResponseMessages.PutOneEstudianteResponse{
+		Id_rol:                        u.Id_rol,
+		Id_grupo:                      u.Id_grupo,
+		Nombres_estudiante:            u.Nombres_estudiante,
+		Apellidos_estudiante:          u.Apellidos_estudiante,
+		Hash_contrasena_estudiante:    u.Hash_contrasena_estudiante,
+		Correo_electronico_estudiante: u.Correo_electronico_estudiante,
+		Telefono_fijo_estudiante:      u.Telefono_fijo_estudiante,
+		Telefono_celular_estudiante:   u.Telefono_celular_estudiante,
+	}
+}
+
+func PutMyEstudianteOutput(u Models.Estudiante) (output ResponseMessages.PutMyEstudianteResponse) {
+	return ResponseMessages.PutMyEstudianteResponse{
 		Id_rol:                        u.Id_rol,
 		Id_grupo:                      u.Id_grupo,
 		Nombres_estudiante:            u.Nombres_estudiante,

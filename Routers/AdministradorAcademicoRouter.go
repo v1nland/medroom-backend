@@ -23,7 +23,7 @@ func administradorAcademicoAuthMiddleware(c *gin.Context) {
 func SetupAdministradorAcademicoRouter(r *gin.Engine) *gin.Engine {
 
 	// segment API by version
-	router := r.Group("api/v1")
+	router := r.Group("api/v1/administracion-academica")
 	router.Use(administradorAcademicoAuthMiddleware)
 	{
 		estudiantes := router.Group("/estudiantes")

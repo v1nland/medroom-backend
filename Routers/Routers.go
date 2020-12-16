@@ -16,6 +16,8 @@ func SetupRouter() *gin.Engine {
 
 	r = SetupPublicRouter(r)
 	r = SetupEstudianteRouter(r)
+	r = SetupAdministradorAcademicoRouter(r)
+	r = SetupAdministradorTiRouter(r)
 
 	return r
 }

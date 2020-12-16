@@ -23,7 +23,7 @@ func administradorTiAuthMiddleware(c *gin.Context) {
 func SetupAdministradorTiRouter(r *gin.Engine) *gin.Engine {
 
 	// segment API by version
-	router := r.Group("api/v1")
+	router := r.Group("api/v1/administracion-ti")
 	router.Use(administradorTiAuthMiddleware)
 	{
 		estudiantes := router.Group("/estudiantes")

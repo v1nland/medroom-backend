@@ -23,7 +23,7 @@ func evaluadorAuthMiddleware(c *gin.Context) {
 func SetupEvaluadorRouter(r *gin.Engine) *gin.Engine {
 
 	// segment API by version
-	router := r.Group("api/v1")
+	router := r.Group("api/v1/evaluadores")
 	router.Use(evaluadorAuthMiddleware)
 	{
 		estudiantes := router.Group("/estudiantes")
