@@ -16,7 +16,7 @@ func SetupPublicRouter(r *gin.Engine) *gin.Engine {
 		router.POST("administracion-academica/login", Controllers.AutenticarAdministradorAcademico)
 		router.POST("administracion-ti/login", Controllers.AutenticarAdministradorTi)
 
-		// traversal
+		// traversal paths
 		router.GET("periodos", Controllers.ListPeriodos)
 
 		// testing
