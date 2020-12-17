@@ -12,16 +12,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-/*
-	*
-	*  FUNCIÓN ListEvaluador
-	*
-    *
-	*
-	*
-    *
-*/
-
 // @Summary Lista de evaluadores
 // @Description Lista todos los evaluadores
 // @Tags Evaluadores
@@ -44,16 +34,6 @@ func ListEvaluadores(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetEvaluadoresOutput(container))
 }
-
-/*
-	*
-	*  FUNCIÓN GetOneEvaluador
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Obtiene un evaluador
 // @Description Obtiene un evaluador según su UUID
@@ -82,16 +62,6 @@ func GetOneEvaluador(c *gin.Context) {
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetOneEvaluadorOutput(container))
 }
 
-/*
-	*
-	*  FUNCIÓN GetOneEvaluador
-	*
-    *
-	*
-	*
-    *
-*/
-
 // @Summary Obtiene el perfil del evaluador
 // @Description Obtiene el perfil del evaluador según su token
 // @Tags Evaluadores
@@ -114,16 +84,6 @@ func GetMyEvaluador(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetMyEvaluadorOutput(container))
 }
-
-/*
-	*
-	*  FUNCIÓN AddNewEvaluador
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Agrega un nuevo evaluador
 // @Description Genera un nuevo evaluador con los datos entregados
@@ -308,16 +268,6 @@ func PutMyEvaluador(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutMyEvaluadorOutput(model_container))
 }
-
-/*
-	*
-	*  FUNCIÓN DeleteEvaluador
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Elimina un evaluador
 // @Description Elimina un evaluador con los datos entregados

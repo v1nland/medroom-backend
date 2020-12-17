@@ -261,13 +261,6 @@ func PutOneEvaluacion(c *gin.Context) {
 		Tiempo_utilizado_evaluacion:             Utils.CheckUpdatedInt(container.Tiempo_utilizado_evaluacion, model_container.Tiempo_utilizado_evaluacion),
 	}
 
-	// // update foreign entity
-	// err = Repositories.GetOneEstudiante(&model_container.Estudiante_evaluacion, model_container.Id_estudiante)
-	// if err != nil {
-	// 	ApiHelpers.RespondError(c, 500, "default")
-	// 	return
-	// }
-
 	// update foreign entity
 	err = Repositories.GetOneEvaluador(&model_container.Evaluador_evaluacion, model_container.Id_evaluador)
 	if err != nil {

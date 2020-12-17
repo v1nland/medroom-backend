@@ -13,15 +13,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-/*
-	*
-	*  FUNCIÓN AutenticarEstudiante
-	*
-    *  ESTA FUNCIÓN RECIBE EL JSON BODY DE LA REQUEST, Y RETORNA
-	*  UN TOKEN JWT CON LOS DATOS DE LA TIENDA CIFRADOS.
-	*  SI NO SE ENCUENTRA EN LA DB LA TIENDA, RETORNA ERROR.
-    *
-*/
 // @Summary Autenticación de estudiante
 // @Description Ingresa usuario y contraseña para iniciar sesión
 // @Tags Autenticación
@@ -63,15 +54,6 @@ func AutenticarEstudiante(c *gin.Context) {
 	}
 }
 
-/*
-	*
-	*  FUNCIÓN AutenticarEvaluador
-	*
-    *  ESTA FUNCIÓN RECIBE EL JSON BODY DE LA REQUEST, Y RETORNA
-	*  UN TOKEN JWT CON LOS DATOS DE LA TIENDA CIFRADOS.
-	*  SI NO SE ENCUENTRA EN LA DB LA TIENDA, RETORNA ERROR.
-    *
-*/
 // @Summary Autenticación de evaluador
 // @Description Ingresa usuario y contraseña para iniciar sesión
 // @Tags Autenticación
@@ -113,15 +95,6 @@ func AutenticarEvaluador(c *gin.Context) {
 	}
 }
 
-/*
-	*
-	*  FUNCIÓN AutenticarAdministradorAcademico
-	*
-    *  ESTA FUNCIÓN RECIBE EL JSON BODY DE LA REQUEST, Y RETORNA
-	*  UN TOKEN JWT CON LOS DATOS DE LA TIENDA CIFRADOS.
-	*  SI NO SE ENCUENTRA EN LA DB LA TIENDA, RETORNA ERROR.
-    *
-*/
 // @Summary Autenticación de administrador académico
 // @Description Ingresa usuario y contraseña para iniciar sesión
 // @Tags Autenticación
@@ -163,15 +136,6 @@ func AutenticarAdministradorAcademico(c *gin.Context) {
 	}
 }
 
-/*
-	*
-	*  FUNCIÓN AutenticarAdministradorTi
-	*
-    *  ESTA FUNCIÓN RECIBE EL JSON BODY DE LA REQUEST, Y RETORNA
-	*  UN TOKEN JWT CON LOS DATOS DE LA TIENDA CIFRADOS.
-	*  SI NO SE ENCUENTRA EN LA DB LA TIENDA, RETORNA ERROR.
-    *
-*/
 // @Summary Autenticación de administrador ti
 // @Description Ingresa usuario y contraseña para iniciar sesión
 // @Tags Autenticación

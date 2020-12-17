@@ -12,16 +12,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-/*
-	*
-	*  FUNCIÓN ListAdministradorTi
-	*
-    *
-	*
-	*
-    *
-*/
-
 // @Summary Lista de administradores-ti
 // @Description Lista todos los administradores-ti
 // @Tags AdministradoresTi
@@ -44,16 +34,6 @@ func ListAdministradoresTi(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetAdministradoresTiOutput(container))
 }
-
-/*
-	*
-	*  FUNCIÓN GetOneAdministradorTi
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Obtiene un administrador_ti
 // @Description Obtiene un administrador_ti según su UUID
@@ -81,16 +61,6 @@ func GetOneAdministradorTi(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetOneAdministradorTiOutput(container))
 }
-
-/*
-	*
-	*  FUNCIÓN AddNewAdministradorTi
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Agrega un nuevo administrador_ti
 // @Description Genera un nuevo administrador_ti con los datos entregados
@@ -136,16 +106,6 @@ func AddNewAdministradorTi(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.AddNewAdministradorTiOutput(model_container))
 }
-
-/*
-	*
-	*  FUNCIÓN PutOneAdministradorTi
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Modifica un administrador_ti
 // @Description Modifica un administrador_ti con los datos entregados
@@ -213,16 +173,6 @@ func PutOneAdministradorTi(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutOneAdministradorTiOutput(model_container))
 }
-
-/*
-	*
-	*  FUNCIÓN DeleteAdministradorTi
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Elimina un administrador_ti
 // @Description Elimina un administrador_ti con los datos entregados

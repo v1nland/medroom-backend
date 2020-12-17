@@ -12,16 +12,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-/*
-	*
-	*  FUNCIÓN ListCurso
-	*
-    *
-	*
-	*
-    *
-*/
-
 // @Summary Lista de cursos
 // @Description Lista todos los cursos
 // @Tags Cursos
@@ -44,16 +34,6 @@ func ListCursos(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetCursosOutput(container))
 }
-
-/*
-	*
-	*  FUNCIÓN GetOneCurso
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Obtiene un curso
 // @Description Obtiene un curso según su ID
@@ -81,16 +61,6 @@ func GetOneCurso(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetOneCursoOutput(container))
 }
-
-/*
-	*
-	*  FUNCIÓN AddNewCurso
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Agrega un nuevo curso
 // @Description Genera un nuevo curso con los datos entregados
@@ -131,16 +101,6 @@ func AddNewCurso(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.AddNewCursoOutput(model_container))
 }
-
-/*
-	*
-	*  FUNCIÓN PutOneCurso
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Modifica un curso
 // @Description Modifica un curso con los datos entregados
@@ -203,16 +163,6 @@ func PutOneCurso(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutOneCursoOutput(model_container))
 }
-
-/*
-	*
-	*  FUNCIÓN DeleteCurso
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Elimina un curso
 // @Description Elimina un curso con los datos entregados

@@ -12,16 +12,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-/*
-	*
-	*  FUNCIÓN ListAdministradorAcademico
-	*
-    *
-	*
-	*
-    *
-*/
-
 // @Summary Lista de administradores-academicos
 // @Description Lista todos los administradores-academicos
 // @Tags AdministradoresAcademicos
@@ -44,16 +34,6 @@ func ListAdministradoresAcademicos(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetAdministradoresAcademicosOutput(container))
 }
-
-/*
-	*
-	*  FUNCIÓN GetOneAdministradorAcademico
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Obtiene un administrador_academico
 // @Description Obtiene un administrador_academico según su UUID
@@ -81,16 +61,6 @@ func GetOneAdministradorAcademico(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetOneAdministradorAcademicoOutput(container))
 }
-
-/*
-	*
-	*  FUNCIÓN AddNewAdministradorAcademico
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Agrega un nuevo administrador_academico
 // @Description Genera un nuevo administrador_academico con los datos entregados
@@ -136,16 +106,6 @@ func AddNewAdministradorAcademico(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.AddNewAdministradorAcademicoOutput(model_container))
 }
-
-/*
-	*
-	*  FUNCIÓN PutOneAdministradorAcademico
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Modifica un administrador_academico
 // @Description Modifica un administrador_academico con los datos entregados
@@ -213,16 +173,6 @@ func PutOneAdministradorAcademico(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutOneAdministradorAcademicoOutput(model_container))
 }
-
-/*
-	*
-	*  FUNCIÓN DeleteAdministradorAcademico
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Elimina un administrador_academico
 // @Description Elimina un administrador_academico con los datos entregados

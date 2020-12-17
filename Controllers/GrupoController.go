@@ -12,16 +12,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-/*
-	*
-	*  FUNCIÓN ListGrupo
-	*
-    *
-	*
-	*
-    *
-*/
-
 // @Summary Lista de grupos
 // @Description Lista todos los grupos
 // @Tags Grupos
@@ -44,16 +34,6 @@ func ListGrupos(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetGruposOutput(container))
 }
-
-/*
-	*
-	*  FUNCIÓN GetOneGrupo
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Obtiene un grupo
 // @Description Obtiene un grupo según su ID
@@ -135,16 +115,6 @@ func GetGrupoEvaluador(c *gin.Context) {
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetGrupoEvaluadorOutput(container))
 }
 
-/*
-	*
-	*  FUNCIÓN AddNewGrupo
-	*
-    *
-	*
-	*
-    *
-*/
-
 // @Summary Agrega un nuevo grupo
 // @Description Genera un nuevo grupo con los datos entregados
 // @Tags Grupos
@@ -185,16 +155,6 @@ func AddNewGrupo(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.AddNewGrupoOutput(model_container))
 }
-
-/*
-	*
-	*  FUNCIÓN PutOneGrupo
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Modifica un grupo
 // @Description Modifica un grupo con los datos entregados
@@ -265,16 +225,6 @@ func PutOneGrupo(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutOneGrupoOutput(model_container))
 }
-
-/*
-	*
-	*  FUNCIÓN DeleteGrupo
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Elimina un grupo
 // @Description Elimina un grupo con los datos entregados

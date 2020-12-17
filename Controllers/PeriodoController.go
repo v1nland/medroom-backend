@@ -12,16 +12,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-/*
-	*
-	*  FUNCIÓN ListPeriodo
-	*
-    *
-	*
-	*
-    *
-*/
-
 // @Summary Lista de periodos
 // @Description Lista todos los periodos
 // @Tags Periodos
@@ -44,16 +34,6 @@ func ListPeriodos(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetPeriodosOutput(container))
 }
-
-/*
-	*
-	*  FUNCIÓN GetOnePeriodo
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Obtiene un periodo
 // @Description Obtiene un periodo según su ID
@@ -81,16 +61,6 @@ func GetOnePeriodo(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetOnePeriodoOutput(container))
 }
-
-/*
-	*
-	*  FUNCIÓN AddNewPeriodo
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Agrega un nuevo periodo
 // @Description Genera un nuevo periodo con los datos entregados
@@ -129,16 +99,6 @@ func AddNewPeriodo(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.AddNewPeriodoOutput(model_container))
 }
-
-/*
-	*
-	*  FUNCIÓN PutOnePeriodo
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Modifica un periodo
 // @Description Modifica un periodo con los datos entregados
@@ -199,16 +159,6 @@ func PutOnePeriodo(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutOnePeriodoOutput(model_container))
 }
-
-/*
-	*
-	*  FUNCIÓN DeletePeriodo
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Elimina un periodo
 // @Description Elimina un periodo con los datos entregados

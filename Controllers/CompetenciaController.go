@@ -12,16 +12,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-/*
-	*
-	*  FUNCIÓN ListCompetencia
-	*
-    *
-	*
-	*
-    *
-*/
-
 // @Summary Lista de competencias
 // @Description Lista todos los competencias
 // @Tags Competencias
@@ -44,16 +34,6 @@ func ListCompetencias(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetCompetenciasOutput(container))
 }
-
-/*
-	*
-	*  FUNCIÓN GetOneCompetencia
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Obtiene un competencia
 // @Description Obtiene un competencia según su ID
@@ -81,16 +61,6 @@ func GetOneCompetencia(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetOneCompetenciaOutput(container))
 }
-
-/*
-	*
-	*  FUNCIÓN AddNewCompetencia
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Agrega un nuevo competencia
 // @Description Genera un nuevo competencia con los datos entregados
@@ -129,16 +99,6 @@ func AddNewCompetencia(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.AddNewCompetenciaOutput(model_container))
 }
-
-/*
-	*
-	*  FUNCIÓN PutOneCompetencia
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Modifica un competencia
 // @Description Modifica un competencia con los datos entregados
@@ -192,16 +152,6 @@ func PutOneCompetencia(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutOneCompetenciaOutput(model_container))
 }
-
-/*
-	*
-	*  FUNCIÓN DeleteCompetencia
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Elimina un competencia
 // @Description Elimina un competencia con los datos entregados

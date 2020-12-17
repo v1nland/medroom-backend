@@ -3414,6 +3414,9 @@ var doc = `{
         "ResponseMessages.AddNewPeriodoResponse": {
             "type": "object",
             "properties": {
+                "id": {
+                    "type": "integer"
+                },
                 "nombre_periodo": {
                     "type": "string"
                 }
@@ -3648,6 +3651,9 @@ var doc = `{
         "ResponseMessages.DeletePeriodoResponse": {
             "type": "object",
             "properties": {
+                "id": {
+                    "type": "integer"
+                },
                 "nombre_periodo": {
                     "type": "string"
                 }
@@ -4052,6 +4058,9 @@ var doc = `{
         "ResponseMessages.GetOnePeriodoResponse": {
             "type": "object",
             "properties": {
+                "id": {
+                    "type": "integer"
+                },
                 "nombre_periodo": {
                     "type": "string"
                 }
@@ -4343,6 +4352,9 @@ var doc = `{
         "ResponseMessages.ListPeriodosResponse": {
             "type": "object",
             "properties": {
+                "id": {
+                    "type": "integer"
+                },
                 "nombre_periodo": {
                     "type": "string"
                 }
@@ -4648,6 +4660,9 @@ var doc = `{
         "ResponseMessages.PutOnePeriodoResponse": {
             "type": "object",
             "properties": {
+                "id": {
+                    "type": "integer"
+                },
                 "nombre_periodo": {
                     "type": "string"
                 }

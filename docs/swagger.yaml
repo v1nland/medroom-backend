@@ -564,6 +564,8 @@ definitions:
     type: object
   ResponseMessages.AddNewPeriodoResponse:
     properties:
+      id:
+        type: integer
       nombre_periodo:
         type: string
     type: object
@@ -716,6 +718,8 @@ definitions:
     type: object
   ResponseMessages.DeletePeriodoResponse:
     properties:
+      id:
+        type: integer
       nombre_periodo:
         type: string
     type: object
@@ -980,6 +984,8 @@ definitions:
     type: object
   ResponseMessages.GetOnePeriodoResponse:
     properties:
+      id:
+        type: integer
       nombre_periodo:
         type: string
     type: object
@@ -1170,6 +1176,8 @@ definitions:
     type: object
   ResponseMessages.ListPeriodosResponse:
     properties:
+      id:
+        type: integer
       nombre_periodo:
         type: string
     type: object
@@ -1369,6 +1377,8 @@ definitions:
     type: object
   ResponseMessages.PutOnePeriodoResponse:
     properties:
+      id:
+        type: integer
       nombre_periodo:
         type: string
     type: object

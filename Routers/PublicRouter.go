@@ -16,6 +16,9 @@ func SetupPublicRouter(r *gin.Engine) *gin.Engine {
 		router.POST("administracion-academica/login", Controllers.AutenticarAdministradorAcademico)
 		router.POST("administracion-ti/login", Controllers.AutenticarAdministradorTi)
 
+		// traversal
+		router.GET("periodos", Controllers.ListPeriodos)
+
 		// testing
 		// router.GET("gruposs", Controllers.ListGrupos)
 		// router.GET("gruposs/:id", Controllers.GetOneGrupo)
@@ -93,14 +96,14 @@ func SetupPublicRouter(r *gin.Engine) *gin.Engine {
 		// 	puntajes.DELETE(":id", Controllers.DeletePuntaje)
 		// }
 
-		evaluaciones := router.Group("/evaluaciones")
-		{
-			evaluaciones.GET("", Controllers.ListEvaluaciones)
-			evaluaciones.GET(":id", Controllers.GetOneEvaluacion)
-			evaluaciones.POST("", Controllers.AddNewEvaluacion)
-			evaluaciones.PUT(":id", Controllers.PutOneEvaluacion)
-			evaluaciones.DELETE(":id", Controllers.DeleteEvaluacion)
-		}
+		// evaluaciones := router.Group("/evaluaciones")
+		// {
+		// 	evaluaciones.GET("", Controllers.ListEvaluaciones)
+		// 	evaluaciones.GET(":id", Controllers.GetOneEvaluacion)
+		// 	evaluaciones.POST("", Controllers.AddNewEvaluacion)
+		// 	evaluaciones.PUT(":id", Controllers.PutOneEvaluacion)
+		// 	evaluaciones.DELETE(":id", Controllers.DeleteEvaluacion)
+		// }
 	}
 
 	return r

@@ -12,16 +12,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-/*
-	*
-	*  FUNCIÓN ListRol
-	*
-    *
-	*
-	*
-    *
-*/
-
 // @Summary Lista de roles
 // @Description Lista todos los roles
 // @Tags Roles
@@ -44,16 +34,6 @@ func ListRoles(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetRolesOutput(container))
 }
-
-/*
-	*
-	*  FUNCIÓN GetOneRol
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Obtiene un rol
 // @Description Obtiene un rol según su ID
@@ -81,16 +61,6 @@ func GetOneRol(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetOneRolOutput(container))
 }
-
-/*
-	*
-	*  FUNCIÓN AddNewRol
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Agrega un nuevo rol
 // @Description Genera un nuevo rol con los datos entregados
@@ -129,16 +99,6 @@ func AddNewRol(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.AddNewRolOutput(model_container))
 }
-
-/*
-	*
-	*  FUNCIÓN PutOneRol
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Modifica un rol
 // @Description Modifica un rol con los datos entregados
@@ -192,16 +152,6 @@ func PutOneRol(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutOneRolOutput(model_container))
 }
-
-/*
-	*
-	*  FUNCIÓN DeleteRol
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Elimina un rol
 // @Description Elimina un rol con los datos entregados

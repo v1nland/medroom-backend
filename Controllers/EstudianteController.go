@@ -62,16 +62,6 @@ func GetOneEstudiante(c *gin.Context) {
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetOneEstudianteOutput(container))
 }
 
-/*
-	*
-	*  FUNCIÓN GetOneEstudiante
-	*
-    *
-	*
-	*
-    *
-*/
-
 // @Summary Obtiene el perfil del estudiante
 // @Description Obtiene el perfil del estudiante según su token
 // @Tags Estudiantes

@@ -12,16 +12,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-/*
-	*
-	*  FUNCIÓN ListPuntaje
-	*
-    *
-	*
-	*
-    *
-*/
-
 // @Summary Lista de puntajes
 // @Description Lista todos los puntajes
 // @Tags Puntajes
@@ -44,16 +34,6 @@ func ListPuntajes(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetPuntajesOutput(container))
 }
-
-/*
-	*
-	*  FUNCIÓN GetOnePuntaje
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Obtiene un puntaje
 // @Description Obtiene un puntaje según su ID
@@ -81,16 +61,6 @@ func GetOnePuntaje(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetOnePuntajeOutput(container))
 }
-
-/*
-	*
-	*  FUNCIÓN AddNewPuntaje
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Agrega un nuevo puntaje
 // @Description Genera un nuevo puntaje con los datos entregados
@@ -132,16 +102,6 @@ func AddNewPuntaje(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.AddNewPuntajeOutput(model_container))
 }
-
-/*
-	*
-	*  FUNCIÓN PutOnePuntaje
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Modifica un puntaje
 // @Description Modifica un puntaje con los datos entregados
@@ -204,16 +164,6 @@ func PutOnePuntaje(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutOnePuntajeOutput(model_container))
 }
-
-/*
-	*
-	*  FUNCIÓN DeletePuntaje
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Elimina un puntaje
 // @Description Elimina un puntaje con los datos entregados

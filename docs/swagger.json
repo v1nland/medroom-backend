@@ -3398,6 +3398,9 @@
         "ResponseMessages.AddNewPeriodoResponse": {
             "type": "object",
             "properties": {
+                "id": {
+                    "type": "integer"
+                },
                 "nombre_periodo": {
                     "type": "string"
                 }
@@ -3632,6 +3635,9 @@
         "ResponseMessages.DeletePeriodoResponse": {
             "type": "object",
             "properties": {
+                "id": {
+                    "type": "integer"
+                },
                 "nombre_periodo": {
                     "type": "string"
                 }
@@ -4036,6 +4042,9 @@
         "ResponseMessages.GetOnePeriodoResponse": {
             "type": "object",
             "properties": {
+                "id": {
+                    "type": "integer"
+                },
                 "nombre_periodo": {
                     "type": "string"
                 }
@@ -4327,6 +4336,9 @@
         "ResponseMessages.ListPeriodosResponse": {
             "type": "object",
             "properties": {
+                "id": {
+                    "type": "integer"
+                },
                 "nombre_periodo": {
                     "type": "string"
                 }
@@ -4632,6 +4644,9 @@
         "ResponseMessages.PutOnePeriodoResponse": {
             "type": "object",
             "properties": {
+                "id": {
+                    "type": "integer"
+                },
                 "nombre_periodo": {
                     "type": "string"
                 }
