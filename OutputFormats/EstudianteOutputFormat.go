@@ -8,6 +8,7 @@ import (
 func GetEstudiantesOutput(u []Models.Estudiante) (output []ResponseMessages.ListEstudiantesResponse) {
 	for i := 0; i < len(u); i++ {
 		output = append(output, ResponseMessages.ListEstudiantesResponse{
+			Id:                            u[i].ID,
 			Rol_estudiante:                GetOneRolOutput(u[i].Rol_estudiante),
 			Evaluaciones_estudiante:       GetEvaluacionesEstudianteOutput(u[i].Evaluaciones_estudiante),
 			Id_grupo:                      u[i].Id_grupo,

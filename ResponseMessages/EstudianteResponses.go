@@ -1,6 +1,7 @@
 package ResponseMessages
 
 type ListEstudiantesResponse struct {
+	Id                            string                               `json:"id"`
 	Rol_estudiante                GetOneRolResponse                    `json:"rol_estudiante"`
 	Evaluaciones_estudiante       []ListEvaluacionesEstudianteResponse `json:"evaluaciones_estudiante"`
 	Id_grupo                      int                                  `json:"id_grupo"`
