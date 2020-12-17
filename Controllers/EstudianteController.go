@@ -13,13 +13,13 @@ import (
 )
 
 // @Summary Lista de estudiantes
-// @Description Lista todos los estudiantes
-// @Tags Estudiantes
+// @Description Lista todos los estudiantes existentes
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Success 200 {array} SwaggerMessages.ListEstudiantesSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /estudiantes [get]
+// @Router /administracion-ti/estudiantes [get]
 func ListEstudiantes(c *gin.Context) {
 	// model container
 	var container []Models.Estudiante
@@ -37,13 +37,13 @@ func ListEstudiantes(c *gin.Context) {
 
 // @Summary Obtiene un estudiante
 // @Description Obtiene un estudiante según su UUID
-// @Tags Estudiantes
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   uuid_estudiante     path    string     true        "UUID del estudiante a buscar"
 // @Success 200 {object} SwaggerMessages.GetOneEstudianteSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /estudiantes/{uuid_estudiante} [get]
+// @Router /administracion-ti/estudiantes/{uuid_estudiante} [get]
 func GetOneEstudiante(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -62,41 +62,15 @@ func GetOneEstudiante(c *gin.Context) {
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetOneEstudianteOutput(container))
 }
 
-// @Summary Obtiene el perfil del estudiante
-// @Description Obtiene el perfil del estudiante según su token
-// @Tags Estudiantes
-// @Accept  json
-// @Produce  json
-// @Success 200 {object} SwaggerMessages.GetMyEstudianteSwagger "OK"
-// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /estudiantes/me [get]
-func GetMyEstudiante(c *gin.Context) {
-	// params
-	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
-
-	// model container
-	var container Models.Estudiante
-
-	// query
-	err := Repositories.GetOneEstudiante(&container, id_estudiante)
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
-	}
-
-	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetMyEstudianteOutput(container))
-}
-
 // @Summary Agrega un nuevo estudiante
 // @Description Genera un nuevo estudiante con los datos entregados
-// @Tags Estudiantes
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   input_estudiante     body    RequestMessages.AddNewEstudiantePayload     true        "Estudiante a agregar"
 // @Success 200 {object} SwaggerMessages.AddNewEstudianteSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /estudiantes [post]
+// @Router /administracion-ti/estudiantes [post]
 func AddNewEstudiante(c *gin.Context) {
 	// input container
 	var container RequestMessages.AddNewEstudiantePayload
@@ -136,14 +110,14 @@ func AddNewEstudiante(c *gin.Context) {
 
 // @Summary Modifica un estudiante
 // @Description Modifica un estudiante con los datos entregados
-// @Tags Estudiantes
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   uuid_estudiante     path    string     true        "UUID del estudiante a modificar"
 // @Param   input_actualiza_estudiante     body    RequestMessages.PutOneEstudiantePayload     true        "Estudiante a modificar"
 // @Success 200 {object} SwaggerMessages.PutOneEstudianteSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /estudiantes/{uuid_estudiante} [put]
+// @Router /administracion-ti/estudiantes/{uuid_estudiante} [put]
 func PutOneEstudiante(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -197,6 +171,66 @@ func PutOneEstudiante(c *gin.Context) {
 
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutMyEstudianteOutput(model_container))
+}
+
+// @Summary Elimina un estudiante
+// @Description Elimina un estudiante con los datos entregados
+// @Tags Administración Ti
+// @Accept  json
+// @Produce  json
+// @Param   uuid_estudiante     path    string     true        "UUID del estudiante a eliminar"
+// @Success 200 {object} SwaggerMessages.DeleteEstudianteSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /administracion-ti/estudiantes/{uuid_estudiante} [delete]
+func DeleteEstudiante(c *gin.Context) {
+	// params
+	id := c.Params.ByName("id")
+
+	// model container
+	var container Models.Estudiante
+
+	// get query
+	err := Repositories.GetOneEstudiante(&container, id)
+	if err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
+	// query
+	err = Repositories.DeleteEstudiante(&container, id)
+	if err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
+	// output
+	ApiHelpers.RespondJSON(c, 200, OutputFormats.DeleteEstudianteOutput(container))
+}
+
+// @Summary Obtiene el perfil del estudiante
+// @Description Obtiene el perfil del estudiante según su token
+// @Tags Estudiantes
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} SwaggerMessages.GetMyEstudianteSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /estudiantes/me [get]
+func GetMyEstudiante(c *gin.Context) {
+	// params
+	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
+
+	// model container
+	var container Models.Estudiante
+
+	// query
+	err := Repositories.GetOneEstudiante(&container, id_estudiante)
+	if err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
+	// output
+	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetMyEstudianteOutput(container))
 }
 
 // @Summary Modifica mi perfil
@@ -264,38 +298,4 @@ func PutMyEstudiante(c *gin.Context) {
 
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutOneEstudianteOutput(model_container))
-}
-
-// @Summary Elimina un estudiante
-// @Description Elimina un estudiante con los datos entregados
-// @Tags Estudiantes
-// @Accept  json
-// @Produce  json
-// @Param   uuid_estudiante     path    string     true        "UUID del estudiante a eliminar"
-// @Success 200 {object} SwaggerMessages.DeleteEstudianteSwagger "OK"
-// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /estudiantes/{uuid_estudiante} [delete]
-func DeleteEstudiante(c *gin.Context) {
-	// params
-	id := c.Params.ByName("id")
-
-	// model container
-	var container Models.Estudiante
-
-	// get query
-	err := Repositories.GetOneEstudiante(&container, id)
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
-	}
-
-	// query
-	err = Repositories.DeleteEstudiante(&container, id)
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
-	}
-
-	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.DeleteEstudianteOutput(container))
 }

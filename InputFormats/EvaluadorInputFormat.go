@@ -14,10 +14,6 @@ func GetOneEvaluadorInput(u *RequestMessages.GetOneEvaluadorPayload) {
 
 }
 
-func GetMyEvaluadorInput(u *RequestMessages.GetMyEvaluadorPayload) {
-
-}
-
 func AddNewEvaluadorInput(u *RequestMessages.AddNewEvaluadorPayload) {
 	u.Rut_evaluador = strings.TrimSpace(u.Rut_evaluador)
 	u.Rut_evaluador = strings.ToUpper(u.Rut_evaluador)
@@ -86,6 +82,14 @@ func PutOneEvaluadorInput(u *RequestMessages.PutOneEvaluadorPayload) {
 	u.Cargo_evaluador = Utils.RemoveAccents(u.Cargo_evaluador)
 }
 
+func DeleteEvaluadorInput(u *RequestMessages.DeleteEvaluadorPayload) {
+
+}
+
+func GetMyEvaluadorInput(u *RequestMessages.GetMyEvaluadorPayload) {
+
+}
+
 func PutMyEvaluadorInput(u *RequestMessages.PutMyEvaluadorPayload) {
 	u.Rut_evaluador = strings.TrimSpace(u.Rut_evaluador)
 	u.Rut_evaluador = strings.ToUpper(u.Rut_evaluador)
@@ -118,8 +122,4 @@ func PutMyEvaluadorInput(u *RequestMessages.PutMyEvaluadorPayload) {
 	u.Cargo_evaluador = strings.TrimSpace(u.Cargo_evaluador)
 	u.Cargo_evaluador = strings.ToUpper(u.Cargo_evaluador)
 	u.Cargo_evaluador = Utils.RemoveAccents(u.Cargo_evaluador)
-}
-
-func DeleteEvaluadorInput(u *RequestMessages.DeleteEvaluadorPayload) {
-
 }

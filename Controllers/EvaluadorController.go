@@ -14,12 +14,12 @@ import (
 
 // @Summary Lista de evaluadores
 // @Description Lista todos los evaluadores
-// @Tags Evaluadores
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Success 200 {array} SwaggerMessages.ListEvaluadoresSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /evaluadores [get]
+// @Router /administracion-ti/evaluadores [get]
 func ListEvaluadores(c *gin.Context) {
 	// model container
 	var container []Models.Evaluador
@@ -37,13 +37,13 @@ func ListEvaluadores(c *gin.Context) {
 
 // @Summary Obtiene un evaluador
 // @Description Obtiene un evaluador según su UUID
-// @Tags Evaluadores
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   uuid_evaluador     path    string     true        "UUID del evaluador a buscar"
 // @Success 200 {object} SwaggerMessages.GetOneEvaluadorSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /evaluadores/{uuid_evaluador} [get]
+// @Router /administracion-ti/evaluadores/{uuid_evaluador} [get]
 func GetOneEvaluador(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -62,38 +62,15 @@ func GetOneEvaluador(c *gin.Context) {
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetOneEvaluadorOutput(container))
 }
 
-// @Summary Obtiene el perfil del evaluador
-// @Description Obtiene el perfil del evaluador según su token
-// @Tags Evaluadores
-// @Accept  json
-// @Produce  json
-// @Success 200 {object} SwaggerMessages.GetMyEvaluadorSwagger "OK"
-// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /evaluadores/me [get]
-func GetMyEvaluador(c *gin.Context) {
-	// params
-	id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
-
-	// model container
-	var container Models.Evaluador
-	if err := Repositories.GetOneEvaluador(&container, id_evaluador); err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
-	}
-
-	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetMyEvaluadorOutput(container))
-}
-
 // @Summary Agrega un nuevo evaluador
 // @Description Genera un nuevo evaluador con los datos entregados
-// @Tags Evaluadores
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   input_evaluador     body    RequestMessages.AddNewEvaluadorPayload     true        "Evaluador a agregar"
 // @Success 200 {object} SwaggerMessages.AddNewEvaluadorSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /evaluadores [post]
+// @Router /administracion-ti/evaluadores [post]
 func AddNewEvaluador(c *gin.Context) {
 	// input container
 	var container RequestMessages.AddNewEvaluadorPayload
@@ -134,14 +111,14 @@ func AddNewEvaluador(c *gin.Context) {
 
 // @Summary Modifica un evaluador
 // @Description Modifica un evaluador con los datos entregados
-// @Tags Evaluadores
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   uuid_evaluador     path    string     true        "UUID del evaluador a modificar"
 // @Param   input_actualiza_evaluador     body    RequestMessages.PutOneEvaluadorPayload     true        "Evaluador a modificar"
 // @Success 200 {object} SwaggerMessages.PutOneEvaluadorSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /evaluadores/{uuid_evaluador} [put]
+// @Router /administracion-ti/evaluadores/{uuid_evaluador} [put]
 func PutOneEvaluador(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -199,6 +176,63 @@ func PutOneEvaluador(c *gin.Context) {
 
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutOneEvaluadorOutput(model_container))
+}
+
+// @Summary Elimina un evaluador
+// @Description Elimina un evaluador con los datos entregados
+// @Tags Administración Ti
+// @Accept  json
+// @Produce  json
+// @Param   uuid_evaluador     path    string     true        "UUID del evaluador a eliminar"
+// @Success 200 {object} SwaggerMessages.DeleteEvaluadorSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /administracion-ti/evaluadores/{uuid_evaluador} [delete]
+func DeleteEvaluador(c *gin.Context) {
+	// params
+	id := c.Params.ByName("id")
+
+	// model container
+	var container Models.Evaluador
+
+	// get query
+	err := Repositories.GetOneEvaluador(&container, id)
+	if err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
+	// query
+	err = Repositories.DeleteEvaluador(&container, id)
+	if err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
+	// output
+	ApiHelpers.RespondJSON(c, 200, OutputFormats.DeleteEvaluadorOutput(container))
+}
+
+// @Summary Obtiene el perfil del evaluador
+// @Description Obtiene el perfil del evaluador según su token
+// @Tags Evaluadores
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} SwaggerMessages.GetMyEvaluadorSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /evaluadores/me [get]
+func GetMyEvaluador(c *gin.Context) {
+	// params
+	id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
+
+	// model container
+	var container Models.Evaluador
+	if err := Repositories.GetOneEvaluador(&container, id_evaluador); err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
+	// output
+	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetMyEvaluadorOutput(container))
 }
 
 // @Summary Modifica mi perfil
@@ -267,38 +301,4 @@ func PutMyEvaluador(c *gin.Context) {
 
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutMyEvaluadorOutput(model_container))
-}
-
-// @Summary Elimina un evaluador
-// @Description Elimina un evaluador con los datos entregados
-// @Tags Evaluadores
-// @Accept  json
-// @Produce  json
-// @Param   uuid_evaluador     path    string     true        "UUID del evaluador a eliminar"
-// @Success 200 {object} SwaggerMessages.DeleteEvaluadorSwagger "OK"
-// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /evaluadores/{uuid_evaluador} [delete]
-func DeleteEvaluador(c *gin.Context) {
-	// params
-	id := c.Params.ByName("id")
-
-	// model container
-	var container Models.Evaluador
-
-	// get query
-	err := Repositories.GetOneEvaluador(&container, id)
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
-	}
-
-	// query
-	err = Repositories.DeleteEvaluador(&container, id)
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
-	}
-
-	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.DeleteEvaluadorOutput(container))
 }

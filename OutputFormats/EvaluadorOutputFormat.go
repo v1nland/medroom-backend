@@ -37,20 +37,6 @@ func GetOneEvaluadorOutput(u Models.Evaluador) (output ResponseMessages.GetOneEv
 	}
 }
 
-func GetMyEvaluadorOutput(u Models.Evaluador) (output ResponseMessages.GetMyEvaluadorResponse) {
-	return ResponseMessages.GetMyEvaluadorResponse{
-		Rol_evaluador:                GetOneRolOutput(u.Rol_evaluador),
-		Rut_evaluador:                u.Rut_evaluador,
-		Nombres_evaluador:            u.Nombres_evaluador,
-		Apellidos_evaluador:          u.Apellidos_evaluador,
-		Correo_electronico_evaluador: u.Correo_electronico_evaluador,
-		Telefono_fijo_evaluador:      u.Telefono_fijo_evaluador,
-		Telefono_celular_evaluador:   u.Telefono_celular_evaluador,
-		Recinto_evaluador:            u.Recinto_evaluador,
-		Cargo_evaluador:              u.Cargo_evaluador,
-	}
-}
-
 func AddNewEvaluadorOutput(u Models.Evaluador) (output ResponseMessages.AddNewEvaluadorResponse) {
 	return ResponseMessages.AddNewEvaluadorResponse{
 		Id_rol:                       u.Id_rol,
@@ -80,13 +66,12 @@ func PutOneEvaluadorOutput(u Models.Evaluador) (output ResponseMessages.PutOneEv
 	}
 }
 
-func PutMyEvaluadorOutput(u Models.Evaluador) (output ResponseMessages.PutMyEvaluadorResponse) {
-	return ResponseMessages.PutMyEvaluadorResponse{
+func DeleteEvaluadorOutput(u Models.Evaluador) (output ResponseMessages.DeleteEvaluadorResponse) {
+	return ResponseMessages.DeleteEvaluadorResponse{
 		Id_rol:                       u.Id_rol,
 		Rut_evaluador:                u.Rut_evaluador,
 		Nombres_evaluador:            u.Nombres_evaluador,
 		Apellidos_evaluador:          u.Apellidos_evaluador,
-		Hash_contrasena_evaluador:    u.Hash_contrasena_evaluador,
 		Correo_electronico_evaluador: u.Correo_electronico_evaluador,
 		Telefono_fijo_evaluador:      u.Telefono_fijo_evaluador,
 		Telefono_celular_evaluador:   u.Telefono_celular_evaluador,
@@ -95,12 +80,27 @@ func PutMyEvaluadorOutput(u Models.Evaluador) (output ResponseMessages.PutMyEval
 	}
 }
 
-func DeleteEvaluadorOutput(u Models.Evaluador) (output ResponseMessages.DeleteEvaluadorResponse) {
-	return ResponseMessages.DeleteEvaluadorResponse{
+func GetMyEvaluadorOutput(u Models.Evaluador) (output ResponseMessages.GetMyEvaluadorResponse) {
+	return ResponseMessages.GetMyEvaluadorResponse{
+		Rol_evaluador:                GetOneRolOutput(u.Rol_evaluador),
+		Rut_evaluador:                u.Rut_evaluador,
+		Nombres_evaluador:            u.Nombres_evaluador,
+		Apellidos_evaluador:          u.Apellidos_evaluador,
+		Correo_electronico_evaluador: u.Correo_electronico_evaluador,
+		Telefono_fijo_evaluador:      u.Telefono_fijo_evaluador,
+		Telefono_celular_evaluador:   u.Telefono_celular_evaluador,
+		Recinto_evaluador:            u.Recinto_evaluador,
+		Cargo_evaluador:              u.Cargo_evaluador,
+	}
+}
+
+func PutMyEvaluadorOutput(u Models.Evaluador) (output ResponseMessages.PutMyEvaluadorResponse) {
+	return ResponseMessages.PutMyEvaluadorResponse{
 		Id_rol:                       u.Id_rol,
 		Rut_evaluador:                u.Rut_evaluador,
 		Nombres_evaluador:            u.Nombres_evaluador,
 		Apellidos_evaluador:          u.Apellidos_evaluador,
+		Hash_contrasena_evaluador:    u.Hash_contrasena_evaluador,
 		Correo_electronico_evaluador: u.Correo_electronico_evaluador,
 		Telefono_fijo_evaluador:      u.Telefono_fijo_evaluador,
 		Telefono_celular_evaluador:   u.Telefono_celular_evaluador,

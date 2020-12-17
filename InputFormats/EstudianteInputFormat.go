@@ -14,10 +14,6 @@ func GetOneEstudianteInput(u *RequestMessages.GetOneEstudiantePayload) {
 
 }
 
-func GetMyEstudianteInput(u *RequestMessages.GetMyEstudiantePayload) {
-
-}
-
 func AddNewEstudianteInput(u *RequestMessages.AddNewEstudiantePayload) {
 	u.Rut_estudiante = strings.TrimSpace(u.Rut_estudiante)
 	u.Rut_estudiante = strings.ToUpper(u.Rut_estudiante)
@@ -70,6 +66,14 @@ func PutOneEstudianteInput(u *RequestMessages.PutOneEstudiantePayload) {
 	u.Telefono_celular_estudiante = Utils.RemoveAccents(u.Telefono_celular_estudiante)
 }
 
+func DeleteEstudianteInput(u *RequestMessages.DeleteEstudiantePayload) {
+
+}
+
+func GetMyEstudianteInput(u *RequestMessages.GetMyEstudiantePayload) {
+
+}
+
 func PutMyEstudianteInput(u *RequestMessages.PutMyEstudiantePayload) {
 	u.Rut_estudiante = strings.TrimSpace(u.Rut_estudiante)
 	u.Rut_estudiante = strings.ToUpper(u.Rut_estudiante)
@@ -94,8 +98,4 @@ func PutMyEstudianteInput(u *RequestMessages.PutMyEstudiantePayload) {
 	u.Telefono_celular_estudiante = strings.TrimSpace(u.Telefono_celular_estudiante)
 	u.Telefono_celular_estudiante = strings.ToUpper(u.Telefono_celular_estudiante)
 	u.Telefono_celular_estudiante = Utils.RemoveAccents(u.Telefono_celular_estudiante)
-}
-
-func DeleteEstudianteInput(u *RequestMessages.DeleteEstudiantePayload) {
-
 }

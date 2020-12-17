@@ -14,12 +14,12 @@ import (
 
 // @Summary Lista de cursos
 // @Description Lista todos los cursos
-// @Tags Cursos
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Success 200 {array} SwaggerMessages.ListCursosSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /cursos [get]
+// @Router /administracion-ti/cursos [get]
 func ListCursos(c *gin.Context) {
 	// model container
 	var container []Models.Curso
@@ -37,13 +37,13 @@ func ListCursos(c *gin.Context) {
 
 // @Summary Obtiene un curso
 // @Description Obtiene un curso según su ID
-// @Tags Cursos
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   id_curso     path    string     true        "ID del curso a buscar"
 // @Success 200 {object} SwaggerMessages.GetOneCursoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /cursos/{id_curso} [get]
+// @Router /administracion-ti/cursos/{id_curso} [get]
 func GetOneCurso(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -64,13 +64,13 @@ func GetOneCurso(c *gin.Context) {
 
 // @Summary Agrega un nuevo curso
 // @Description Genera un nuevo curso con los datos entregados
-// @Tags Cursos
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   input_curso     body    RequestMessages.AddNewCursoPayload     true        "Curso a agregar"
 // @Success 200 {object} SwaggerMessages.AddNewCursoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /cursos [post]
+// @Router /administracion-ti/cursos [post]
 func AddNewCurso(c *gin.Context) {
 	// input container
 	var container RequestMessages.AddNewCursoPayload
@@ -104,14 +104,14 @@ func AddNewCurso(c *gin.Context) {
 
 // @Summary Modifica un curso
 // @Description Modifica un curso con los datos entregados
-// @Tags Cursos
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   id_curso     path    string     true        "ID del curso a modificar"
 // @Param   input_actualiza_curso     body    RequestMessages.PutOneCursoPayload     true        "Curso a modificar"
 // @Success 200 {object} SwaggerMessages.PutOneCursoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /cursos/{id_curso} [put]
+// @Router /administracion-ti/cursos/{id_curso} [put]
 func PutOneCurso(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -166,13 +166,13 @@ func PutOneCurso(c *gin.Context) {
 
 // @Summary Elimina un curso
 // @Description Elimina un curso con los datos entregados
-// @Tags Cursos
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   id_curso     path    string     true        "ID del curso a eliminar"
 // @Success 200 {object} SwaggerMessages.DeleteCursoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /cursos/{id_curso} [delete]
+// @Router /administracion-ti/cursos/{id_curso} [delete]
 func DeleteCurso(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")

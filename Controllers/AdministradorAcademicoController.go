@@ -14,12 +14,12 @@ import (
 
 // @Summary Lista de administradores-academicos
 // @Description Lista todos los administradores-academicos
-// @Tags AdministradoresAcademicos
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Success 200 {array} SwaggerMessages.ListAdministradoresAcademicosSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /administradores-academicos [get]
+// @Router /administracion-ti/administradores-academicos [get]
 func ListAdministradoresAcademicos(c *gin.Context) {
 	// model container
 	var container []Models.AdministradorAcademico
@@ -37,13 +37,13 @@ func ListAdministradoresAcademicos(c *gin.Context) {
 
 // @Summary Obtiene un administrador_academico
 // @Description Obtiene un administrador_academico según su UUID
-// @Tags AdministradoresAcademicos
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   uuid_administrador_academico     path    string     true        "UUID del administrador_academico a buscar"
 // @Success 200 {object} SwaggerMessages.GetOneAdministradorAcademicoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /administradores-academicos/{uuid_administrador_academico} [get]
+// @Router /administracion-ti/administradores-academicos/{uuid_administrador_academico} [get]
 func GetOneAdministradorAcademico(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -64,13 +64,13 @@ func GetOneAdministradorAcademico(c *gin.Context) {
 
 // @Summary Agrega un nuevo administrador_academico
 // @Description Genera un nuevo administrador_academico con los datos entregados
-// @Tags AdministradoresAcademicos
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   input_administrador_academico     body    RequestMessages.AddNewAdministradorAcademicoPayload     true        "AdministradorAcademico a agregar"
 // @Success 200 {object} SwaggerMessages.AddNewAdministradorAcademicoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /administradores-academicos [post]
+// @Router /administracion-ti/administradores-academicos [post]
 func AddNewAdministradorAcademico(c *gin.Context) {
 	// input container
 	var container RequestMessages.AddNewAdministradorAcademicoPayload
@@ -109,14 +109,14 @@ func AddNewAdministradorAcademico(c *gin.Context) {
 
 // @Summary Modifica un administrador_academico
 // @Description Modifica un administrador_academico con los datos entregados
-// @Tags AdministradoresAcademicos
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   uuid_administrador_academico     path    string     true        "UUID del administrador_academico a modificar"
 // @Param   input_actualiza_administrador_academico     body    RequestMessages.PutOneAdministradorAcademicoPayload     true        "AdministradorAcademico a modificar"
 // @Success 200 {object} SwaggerMessages.PutOneAdministradorAcademicoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /administradores-academicos/{uuid_administrador_academico} [put]
+// @Router /administracion-ti/administradores-academicos/{uuid_administrador_academico} [put]
 func PutOneAdministradorAcademico(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -176,13 +176,13 @@ func PutOneAdministradorAcademico(c *gin.Context) {
 
 // @Summary Elimina un administrador_academico
 // @Description Elimina un administrador_academico con los datos entregados
-// @Tags AdministradoresAcademicos
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   uuid_administrador_academico     path    string     true        "UUID del administrador_academico a eliminar"
 // @Success 200 {object} SwaggerMessages.DeleteAdministradorAcademicoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /administradores-academicos/{uuid_administrador_academico} [delete]
+// @Router /administracion-ti/administradores-academicos/{uuid_administrador_academico} [delete]
 func DeleteAdministradorAcademico(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")

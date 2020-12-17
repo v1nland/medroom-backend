@@ -1,6 +1,6 @@
 package Controllers
 
-import (
+/*import (
 	"medroom-backend/ApiHelpers"
 	"medroom-backend/InputFormats"
 	"medroom-backend/Models"
@@ -20,6 +20,7 @@ import (
 // @Success 200 {array} SwaggerMessages.ListPuntajesSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /puntajes [get]
+
 func ListPuntajes(c *gin.Context) {
 	// model container
 	var container []Models.Puntaje
@@ -44,6 +45,7 @@ func ListPuntajes(c *gin.Context) {
 // @Success 200 {object} SwaggerMessages.GetOnePuntajeSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /puntajes/{id_puntaje} [get]
+
 func GetOnePuntaje(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -71,6 +73,7 @@ func GetOnePuntaje(c *gin.Context) {
 // @Success 200 {object} SwaggerMessages.AddNewPuntajeSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /puntajes [post]
+
 func AddNewPuntaje(c *gin.Context) {
 	// input container
 	var container RequestMessages.AddNewPuntajePayload
@@ -113,6 +116,7 @@ func AddNewPuntaje(c *gin.Context) {
 // @Success 200 {object} SwaggerMessages.PutOnePuntajeSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /puntajes/{id_puntaje} [put]
+
 func PutOnePuntaje(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -174,6 +178,7 @@ func PutOnePuntaje(c *gin.Context) {
 // @Success 200 {object} SwaggerMessages.DeletePuntajeSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /puntajes/{id_puntaje} [delete]
+
 func DeletePuntaje(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -197,4 +202,4 @@ func DeletePuntaje(c *gin.Context) {
 
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.DeletePuntajeOutput(container))
-}
+} */

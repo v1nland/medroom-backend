@@ -14,12 +14,12 @@ import (
 
 // @Summary Lista de administradores-ti
 // @Description Lista todos los administradores-ti
-// @Tags AdministradoresTi
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Success 200 {array} SwaggerMessages.ListAdministradoresTiSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /administradores-ti [get]
+// @Router /administracion-ti/administradores-ti [get]
 func ListAdministradoresTi(c *gin.Context) {
 	// model container
 	var container []Models.AdministradorTi
@@ -37,13 +37,13 @@ func ListAdministradoresTi(c *gin.Context) {
 
 // @Summary Obtiene un administrador_ti
 // @Description Obtiene un administrador_ti según su UUID
-// @Tags AdministradoresTi
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   uuid_administrador_ti     path    string     true        "UUID del administrador_ti a buscar"
 // @Success 200 {object} SwaggerMessages.GetOneAdministradorTiSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /administradores-ti/{uuid_administrador_ti} [get]
+// @Router /administracion-ti/administradores-ti/{uuid_administrador_ti} [get]
 func GetOneAdministradorTi(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -64,13 +64,13 @@ func GetOneAdministradorTi(c *gin.Context) {
 
 // @Summary Agrega un nuevo administrador_ti
 // @Description Genera un nuevo administrador_ti con los datos entregados
-// @Tags AdministradoresTi
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   input_administrador_ti     body    RequestMessages.AddNewAdministradorTiPayload     true        "AdministradorTi a agregar"
 // @Success 200 {object} SwaggerMessages.AddNewAdministradorTiSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /administradores-ti [post]
+// @Router /administracion-ti/administradores-ti [post]
 func AddNewAdministradorTi(c *gin.Context) {
 	// input container
 	var container RequestMessages.AddNewAdministradorTiPayload
@@ -109,14 +109,14 @@ func AddNewAdministradorTi(c *gin.Context) {
 
 // @Summary Modifica un administrador_ti
 // @Description Modifica un administrador_ti con los datos entregados
-// @Tags AdministradoresTi
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   uuid_administrador_ti     path    string     true        "UUID del administrador_ti a modificar"
 // @Param   input_actualiza_administrador_ti     body    RequestMessages.PutOneAdministradorTiPayload     true        "AdministradorTi a modificar"
 // @Success 200 {object} SwaggerMessages.PutOneAdministradorTiSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /administradores-ti/{uuid_administrador_ti} [put]
+// @Router /administracion-ti/administradores-ti/{uuid_administrador_ti} [put]
 func PutOneAdministradorTi(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -176,13 +176,13 @@ func PutOneAdministradorTi(c *gin.Context) {
 
 // @Summary Elimina un administrador_ti
 // @Description Elimina un administrador_ti con los datos entregados
-// @Tags AdministradoresTi
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   uuid_administrador_ti     path    string     true        "UUID del administrador_ti a eliminar"
 // @Success 200 {object} SwaggerMessages.DeleteAdministradorTiSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /administradores-ti/{uuid_administrador_ti} [delete]
+// @Router /administracion-ti/administradores-ti/{uuid_administrador_ti} [delete]
 func DeleteAdministradorTi(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")

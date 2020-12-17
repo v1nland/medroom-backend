@@ -6,9 +6,6 @@ type ListEstudiantesPayload struct {
 type GetOneEstudiantePayload struct {
 }
 
-type GetMyEstudiantePayload struct {
-}
-
 type AddNewEstudiantePayload struct {
 	Id_rol                        int    `json:"id_rol"`
 	Id_grupo                      int    `json:"id_grupo"`
@@ -32,6 +29,13 @@ type PutOneEstudiantePayload struct {
 	Telefono_fijo_estudiante      string `json:"telefono_fijo_estudiante"`
 	Telefono_celular_estudiante   string `json:"telefono_celular_estudiante"`
 }
+
+type DeleteEstudiantePayload struct {
+}
+
+type GetMyEstudiantePayload struct {
+}
+
 type PutMyEstudiantePayload struct {
 	Id_rol                        int    `json:"id_rol"`
 	Id_grupo                      int    `json:"id_grupo"`
@@ -42,7 +46,4 @@ type PutMyEstudiantePayload struct {
 	Correo_electronico_estudiante string `json:"correo_electronico_estudiante"`
 	Telefono_fijo_estudiante      string `json:"telefono_fijo_estudiante"`    // solo este
 	Telefono_celular_estudiante   string `json:"telefono_celular_estudiante"` // solo este
-}
-
-type DeleteEstudiantePayload struct {
 }

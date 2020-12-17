@@ -6,9 +6,6 @@ type ListEvaluadoresPayload struct {
 type GetOneEvaluadorPayload struct {
 }
 
-type GetMyEvaluadorPayload struct {
-}
-
 type AddNewEvaluadorPayload struct {
 	Id_rol                       int    `json:"id_rol"`
 	Rut_evaluador                string `json:"rut_evaluador"`
@@ -35,6 +32,12 @@ type PutOneEvaluadorPayload struct {
 	Cargo_evaluador              string `json:"cargo_evaluador"`
 }
 
+type DeleteEvaluadorPayload struct {
+}
+
+type GetMyEvaluadorPayload struct {
+}
+
 type PutMyEvaluadorPayload struct {
 	Id_rol                       int    `json:"id_rol"`
 	Rut_evaluador                string `json:"rut_evaluador"`
@@ -46,7 +49,4 @@ type PutMyEvaluadorPayload struct {
 	Telefono_celular_evaluador   string `json:"telefono_celular_evaluador"`
 	Recinto_evaluador            string `json:"recinto_evaluador"`
 	Cargo_evaluador              string `json:"cargo_evaluador"`
-}
-
-type DeleteEvaluadorPayload struct {
 }

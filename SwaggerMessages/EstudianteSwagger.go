@@ -16,12 +16,6 @@ type GetOneEstudianteSwagger struct {
 	Data   ResponseMessages.GetOneEstudianteResponse `json:"data"`
 }
 
-type GetMyEstudianteSwagger struct {
-	Status bool                                     `json:"status"`
-	Meta   string                                   `json:"meta"`
-	Data   ResponseMessages.GetMyEstudianteResponse `json:"data"`
-}
-
 type AddNewEstudianteSwagger struct {
 	Status bool                                      `json:"status"`
 	Meta   string                                    `json:"meta"`
@@ -34,14 +28,20 @@ type PutOneEstudianteSwagger struct {
 	Data   ResponseMessages.PutOneEstudianteResponse `json:"data"`
 }
 
-type PutMyEstudianteSwagger struct {
-	Status bool                                     `json:"status"`
-	Meta   string                                   `json:"meta"`
-	Data   ResponseMessages.PutMyEstudianteResponse `json:"data"`
-}
-
 type DeleteEstudianteSwagger struct {
 	Status bool                                      `json:"status"`
 	Meta   string                                    `json:"meta"`
 	Data   ResponseMessages.DeleteEstudianteResponse `json:"data"`
+}
+
+type GetMyEstudianteSwagger struct {
+	Status bool                                     `json:"status"`
+	Meta   string                                   `json:"meta"`
+	Data   ResponseMessages.GetMyEstudianteResponse `json:"data"`
+}
+
+type PutMyEstudianteSwagger struct {
+	Status bool                                     `json:"status"`
+	Meta   string                                   `json:"meta"`
+	Data   ResponseMessages.PutMyEstudianteResponse `json:"data"`
 }

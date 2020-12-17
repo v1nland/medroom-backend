@@ -14,7 +14,7 @@ import (
 
 // @Summary Lista de periodos
 // @Description Lista todos los periodos
-// @Tags Periodos
+// @Tags No auth
 // @Accept  json
 // @Produce  json
 // @Success 200 {array} SwaggerMessages.ListPeriodosSwagger "OK"
@@ -37,7 +37,7 @@ func ListPeriodos(c *gin.Context) {
 
 // @Summary Obtiene un periodo
 // @Description Obtiene un periodo según su ID
-// @Tags Periodos
+// @Tags No auth
 // @Accept  json
 // @Produce  json
 // @Param   id_periodo     path    string     true        "ID del periodo a buscar"
@@ -64,13 +64,13 @@ func GetOnePeriodo(c *gin.Context) {
 
 // @Summary Agrega un nuevo periodo
 // @Description Genera un nuevo periodo con los datos entregados
-// @Tags Periodos
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   input_periodo     body    RequestMessages.AddNewPeriodoPayload     true        "Periodo a agregar"
 // @Success 200 {object} SwaggerMessages.AddNewPeriodoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /periodos [post]
+// @Router /administracion-ti/periodos [post]
 func AddNewPeriodo(c *gin.Context) {
 	// input container
 	var container RequestMessages.AddNewPeriodoPayload
@@ -102,14 +102,14 @@ func AddNewPeriodo(c *gin.Context) {
 
 // @Summary Modifica un periodo
 // @Description Modifica un periodo con los datos entregados
-// @Tags Periodos
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   id_periodo     path    string     true        "ID del periodo a modificar"
 // @Param   input_actualiza_periodo     body    RequestMessages.PutOnePeriodoPayload     true        "Periodo a modificar"
 // @Success 200 {object} SwaggerMessages.PutOnePeriodoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /periodos/{id_periodo} [put]
+// @Router /administracion-ti/periodos/{id_periodo} [put]
 func PutOnePeriodo(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -162,13 +162,13 @@ func PutOnePeriodo(c *gin.Context) {
 
 // @Summary Elimina un periodo
 // @Description Elimina un periodo con los datos entregados
-// @Tags Periodos
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   id_periodo     path    string     true        "ID del periodo a eliminar"
 // @Success 200 {object} SwaggerMessages.DeletePeriodoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /periodos/{id_periodo} [delete]
+// @Router /administracion-ti/periodos/{id_periodo} [delete]
 func DeletePeriodo(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")

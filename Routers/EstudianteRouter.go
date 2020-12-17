@@ -30,7 +30,7 @@ func SetupEstudianteRouter(r *gin.Engine) *gin.Engine {
 		router.PUT("me", Controllers.PutMyEstudiante)
 
 		// my group routes
-		router.GET("me/group", Controllers.GetGrupoEstudiante)
+		router.GET("me/grupo", Controllers.GetGrupoEstudiante)
 
 		// my evaluations
 		router.GET("me/evaluaciones", Controllers.ListEvaluacionesEstudiante)
