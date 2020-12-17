@@ -182,6 +182,8 @@ definitions:
     type: object
   RequestMessages.PuntajesEvaluacion:
     properties:
+      codigo_competencia:
+        type: string
       feedback_competencia:
         type: string
       nombre_competencia:
@@ -567,6 +569,28 @@ definitions:
       nombre_rol:
         type: string
     type: object
+  ResponseMessages.EvolucionEstudiantePorCompetenciaResponse:
+    properties:
+      nombre_evaluacion:
+        type: string
+      promedio_curso:
+        type: number
+      promedio_estudiante:
+        type: number
+      promedio_grupo:
+        type: number
+    type: object
+  ResponseMessages.EvolucionEstudiantePorEvaluacionResponse:
+    properties:
+      nombre_evaluacion:
+        type: string
+      promedio_curso:
+        type: number
+      promedio_estudiante:
+        type: number
+      promedio_grupo:
+        type: number
+    type: object
   ResponseMessages.GenerarEvaluacionResponse:
     properties:
       asunto_principal_consulta_evaluacion:
@@ -598,16 +622,42 @@ definitions:
       tiempo_utilizado_evaluacion:
         type: integer
     type: object
+  ResponseMessages.GetCursoEstudianteResponse:
+    properties:
+      grupos_curso:
+        items:
+          $ref: '#/definitions/ResponseMessages.ListGruposResponse'
+        type: array
+      nombre_curso:
+        type: string
+      periodo_curso:
+        $ref: '#/definitions/ResponseMessages.GetOnePeriodoResponse'
+      sigla_curso:
+        type: string
+    type: object
+  ResponseMessages.GetCursoEvaluadorResponse:
+    properties:
+      grupos_curso:
+        items:
+          $ref: '#/definitions/ResponseMessages.ListGruposResponse'
+        type: array
+      nombre_curso:
+        type: string
+      periodo_curso:
+        $ref: '#/definitions/ResponseMessages.GetOnePeriodoResponse'
+      sigla_curso:
+        type: string
+    type: object
   ResponseMessages.GetGrupoEstudianteResponse:
     properties:
-      curso_grupo:
-        $ref: '#/definitions/ResponseMessages.GetOneCursoResponse'
       estudiantes_grupo:
         items:
           $ref: '#/definitions/ResponseMessages.ListEstudiantesResponse'
         type: array
       evaluador_grupo:
         $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+      id_curso:
+        type: integer
       nombre_grupo:
         type: string
       sigla_grupo:
@@ -615,14 +665,14 @@ definitions:
     type: object
   ResponseMessages.GetGrupoEvaluadorResponse:
     properties:
-      curso_grupo:
-        $ref: '#/definitions/ResponseMessages.GetOneCursoResponse'
       estudiantes_grupo:
         items:
           $ref: '#/definitions/ResponseMessages.ListEstudiantesResponse'
         type: array
       evaluador_grupo:
         $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+      id_curso:
+        type: integer
       nombre_grupo:
         type: string
       sigla_grupo:
@@ -708,6 +758,10 @@ definitions:
     type: object
   ResponseMessages.GetOneCursoResponse:
     properties:
+      grupos_curso:
+        items:
+          $ref: '#/definitions/ResponseMessages.ListGruposResponse'
+        type: array
       nombre_curso:
         type: string
       periodo_curso:
@@ -761,14 +815,14 @@ definitions:
     type: object
   ResponseMessages.GetOneGrupoResponse:
     properties:
-      curso_grupo:
-        $ref: '#/definitions/ResponseMessages.GetOneCursoResponse'
       estudiantes_grupo:
         items:
           $ref: '#/definitions/ResponseMessages.ListEstudiantesResponse'
         type: array
       evaluador_grupo:
         $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+      id_curso:
+        type: integer
       nombre_grupo:
         type: string
       sigla_grupo:
@@ -822,6 +876,10 @@ definitions:
     type: object
   ResponseMessages.ListCursosResponse:
     properties:
+      grupos_curso:
+        items:
+          $ref: '#/definitions/ResponseMessages.ListGruposResponse'
+        type: array
       nombre_curso:
         type: string
       periodo_curso:
@@ -939,14 +997,14 @@ definitions:
     type: object
   ResponseMessages.ListGruposResponse:
     properties:
-      curso_grupo:
-        $ref: '#/definitions/ResponseMessages.GetOneCursoResponse'
       estudiantes_grupo:
         items:
           $ref: '#/definitions/ResponseMessages.ListEstudiantesResponse'
         type: array
       evaluador_grupo:
         $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+      id_curso:
+        type: integer
       nombre_grupo:
         type: string
       sigla_grupo:
@@ -963,6 +1021,8 @@ definitions:
     properties:
       calificacion_puntaje:
         type: integer
+      codigo_competencia_puntaje:
+        type: string
       feedback_puntaje:
         type: string
       id_evaluacion:
@@ -1286,10 +1346,46 @@ definitions:
       status:
         type: boolean
     type: object
+  SwaggerMessages.EvolucionEstudiantePorCompetenciaSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.EvolucionEstudiantePorCompetenciaResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  SwaggerMessages.EvolucionEstudiantePorEvaluacionSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.EvolucionEstudiantePorEvaluacionResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
   SwaggerMessages.GenerarEvaluacionSwagger:
     properties:
       data:
         $ref: '#/definitions/ResponseMessages.GenerarEvaluacionResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  SwaggerMessages.GetCursoEstudianteSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.GetCursoEstudianteResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  SwaggerMessages.GetCursoEvaluadorSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.GetCursoEvaluadorResponse'
       meta:
         type: string
       status:
@@ -2627,6 +2723,79 @@ paths:
       summary: Modifica mi perfil
       tags:
       - Estudiantes
+  /estudiantes/me/curso:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un curso de un estudiante según su token
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.GetCursoEstudianteSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un curso de un estudiante
+      tags:
+      - Estudiantes
+  /estudiantes/me/estadisticas/evolucion/competencia/{codigo_competencia}:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene la evolución de un estudiante según una competencia
+      parameters:
+      - description: Código de la competencia
+        in: path
+        name: codigo_competencia
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/SwaggerMessages.EvolucionEstudiantePorCompetenciaSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Evolución por competencia
+      tags:
+      - Estudiantes
+  /estudiantes/me/estadisticas/evolucion/evaluacion/{id_evaluacion}:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene la evolución de un estudiante según una evaluación
+      parameters:
+      - description: ID de la evaluación
+        in: path
+        name: id_evaluacion
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/SwaggerMessages.EvolucionEstudiantePorEvaluacionSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Evolución por evaluación
+      tags:
+      - Estudiantes
   /estudiantes/me/evaluaciones:
     get:
       consumes:
@@ -2737,6 +2906,25 @@ paths:
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Modifica mi perfil
+      tags:
+      - Evaluadores
+  /evaluadores/me/curso:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un curso de un evaluador según su token
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.GetCursoEvaluadorSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un curso de un evaluador
       tags:
       - Evaluadores
   /evaluadores/me/evaluaciones:

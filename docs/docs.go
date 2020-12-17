@@ -1609,6 +1609,117 @@ var doc = `{
                 }
             }
         },
+        "/estudiantes/me/curso": {
+            "get": {
+                "description": "Obtiene un curso de un estudiante según su token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Estudiantes"
+                ],
+                "summary": "Obtiene un curso de un estudiante",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.GetCursoEstudianteSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/estudiantes/me/estadisticas/evolucion/competencia/{codigo_competencia}": {
+            "get": {
+                "description": "Obtiene la evolución de un estudiante según una competencia",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Estudiantes"
+                ],
+                "summary": "Evolución por competencia",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Código de la competencia",
+                        "name": "codigo_competencia",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/SwaggerMessages.EvolucionEstudiantePorCompetenciaSwagger"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/estudiantes/me/estadisticas/evolucion/evaluacion/{id_evaluacion}": {
+            "get": {
+                "description": "Obtiene la evolución de un estudiante según una evaluación",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Estudiantes"
+                ],
+                "summary": "Evolución por evaluación",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID de la evaluación",
+                        "name": "id_evaluacion",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/SwaggerMessages.EvolucionEstudiantePorEvaluacionSwagger"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
         "/estudiantes/me/evaluaciones": {
             "get": {
                 "description": "Lista todos los evaluaciones de un estudiante",
@@ -1769,6 +1880,35 @@ var doc = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/SwaggerMessages.PutMyEvaluadorSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/evaluadores/me/curso": {
+            "get": {
+                "description": "Obtiene un curso de un evaluador según su token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Evaluadores"
+                ],
+                "summary": "Obtiene un curso de un evaluador",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.GetCursoEvaluadorSwagger"
                         }
                     },
                     "400": {
@@ -2271,6 +2411,9 @@ var doc = `{
         "RequestMessages.PuntajesEvaluacion": {
             "type": "object",
             "properties": {
+                "codigo_competencia": {
+                    "type": "string"
+                },
                 "feedback_competencia": {
                     "type": "string"
                 },
@@ -2861,6 +3004,40 @@ var doc = `{
                 }
             }
         },
+        "ResponseMessages.EvolucionEstudiantePorCompetenciaResponse": {
+            "type": "object",
+            "properties": {
+                "nombre_evaluacion": {
+                    "type": "string"
+                },
+                "promedio_curso": {
+                    "type": "number"
+                },
+                "promedio_estudiante": {
+                    "type": "number"
+                },
+                "promedio_grupo": {
+                    "type": "number"
+                }
+            }
+        },
+        "ResponseMessages.EvolucionEstudiantePorEvaluacionResponse": {
+            "type": "object",
+            "properties": {
+                "nombre_evaluacion": {
+                    "type": "string"
+                },
+                "promedio_curso": {
+                    "type": "number"
+                },
+                "promedio_estudiante": {
+                    "type": "number"
+                },
+                "promedio_grupo": {
+                    "type": "number"
+                }
+            }
+        },
         "ResponseMessages.GenerarEvaluacionResponse": {
             "type": "object",
             "properties": {
@@ -2908,12 +3085,49 @@ var doc = `{
                 }
             }
         },
+        "ResponseMessages.GetCursoEstudianteResponse": {
+            "type": "object",
+            "properties": {
+                "grupos_curso": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ResponseMessages.ListGruposResponse"
+                    }
+                },
+                "nombre_curso": {
+                    "type": "string"
+                },
+                "periodo_curso": {
+                    "$ref": "#/definitions/ResponseMessages.GetOnePeriodoResponse"
+                },
+                "sigla_curso": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.GetCursoEvaluadorResponse": {
+            "type": "object",
+            "properties": {
+                "grupos_curso": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ResponseMessages.ListGruposResponse"
+                    }
+                },
+                "nombre_curso": {
+                    "type": "string"
+                },
+                "periodo_curso": {
+                    "$ref": "#/definitions/ResponseMessages.GetOnePeriodoResponse"
+                },
+                "sigla_curso": {
+                    "type": "string"
+                }
+            }
+        },
         "ResponseMessages.GetGrupoEstudianteResponse": {
             "type": "object",
             "properties": {
-                "curso_grupo": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneCursoResponse"
-                },
                 "estudiantes_grupo": {
                     "type": "array",
                     "items": {
@@ -2922,6 +3136,9 @@ var doc = `{
                 },
                 "evaluador_grupo": {
                     "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
+                },
+                "id_curso": {
+                    "type": "integer"
                 },
                 "nombre_grupo": {
                     "type": "string"
@@ -2934,9 +3151,6 @@ var doc = `{
         "ResponseMessages.GetGrupoEvaluadorResponse": {
             "type": "object",
             "properties": {
-                "curso_grupo": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneCursoResponse"
-                },
                 "estudiantes_grupo": {
                     "type": "array",
                     "items": {
@@ -2945,6 +3159,9 @@ var doc = `{
                 },
                 "evaluador_grupo": {
                     "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
+                },
+                "id_curso": {
+                    "type": "integer"
                 },
                 "nombre_grupo": {
                     "type": "string"
@@ -3076,6 +3293,12 @@ var doc = `{
         "ResponseMessages.GetOneCursoResponse": {
             "type": "object",
             "properties": {
+                "grupos_curso": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ResponseMessages.ListGruposResponse"
+                    }
+                },
                 "nombre_curso": {
                     "type": "string"
                 },
@@ -3157,9 +3380,6 @@ var doc = `{
         "ResponseMessages.GetOneGrupoResponse": {
             "type": "object",
             "properties": {
-                "curso_grupo": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneCursoResponse"
-                },
                 "estudiantes_grupo": {
                     "type": "array",
                     "items": {
@@ -3168,6 +3388,9 @@ var doc = `{
                 },
                 "evaluador_grupo": {
                     "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
+                },
+                "id_curso": {
+                    "type": "integer"
                 },
                 "nombre_grupo": {
                     "type": "string"
@@ -3251,6 +3474,12 @@ var doc = `{
         "ResponseMessages.ListCursosResponse": {
             "type": "object",
             "properties": {
+                "grupos_curso": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ResponseMessages.ListGruposResponse"
+                    }
+                },
                 "nombre_curso": {
                     "type": "string"
                 },
@@ -3429,9 +3658,6 @@ var doc = `{
         "ResponseMessages.ListGruposResponse": {
             "type": "object",
             "properties": {
-                "curso_grupo": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneCursoResponse"
-                },
                 "estudiantes_grupo": {
                     "type": "array",
                     "items": {
@@ -3440,6 +3666,9 @@ var doc = `{
                 },
                 "evaluador_grupo": {
                     "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
+                },
+                "id_curso": {
+                    "type": "integer"
                 },
                 "nombre_grupo": {
                     "type": "string"
@@ -3465,6 +3694,9 @@ var doc = `{
             "properties": {
                 "calificacion_puntaje": {
                     "type": "integer"
+                },
+                "codigo_competencia_puntaje": {
+                    "type": "string"
                 },
                 "feedback_puntaje": {
                     "type": "string"
@@ -3965,11 +4197,67 @@ var doc = `{
                 }
             }
         },
+        "SwaggerMessages.EvolucionEstudiantePorCompetenciaSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.EvolucionEstudiantePorCompetenciaResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.EvolucionEstudiantePorEvaluacionSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.EvolucionEstudiantePorEvaluacionResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
         "SwaggerMessages.GenerarEvaluacionSwagger": {
             "type": "object",
             "properties": {
                 "data": {
                     "$ref": "#/definitions/ResponseMessages.GenerarEvaluacionResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.GetCursoEstudianteSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.GetCursoEstudianteResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.GetCursoEvaluadorSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.GetCursoEvaluadorResponse"
                 },
                 "meta": {
                     "type": "string"

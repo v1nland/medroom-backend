@@ -2,9 +2,10 @@ package Repositories
 
 import (
 	"fmt"
-	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"medroom-backend/Config"
 	"medroom-backend/Models"
+
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
 func GetAllCursos(u *[]Models.Curso) (err error) {

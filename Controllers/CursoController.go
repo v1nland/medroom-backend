@@ -197,3 +197,69 @@ func DeleteCurso(c *gin.Context) {
 	// output
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.DeleteCursoOutput(container))
 }
+
+// @Summary Obtiene un curso de un estudiante
+// @Description Obtiene un curso de un estudiante según su token
+// @Tags Estudiantes
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} SwaggerMessages.GetCursoEstudianteSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /estudiantes/me/curso [get]
+func GetCursoEstudiante(c *gin.Context) {
+	// params
+	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
+
+	// model container
+	var estudiante Models.Estudiante
+	if err := Repositories.GetOneEstudiante(&estudiante, id_estudiante); err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
+	// model container
+	var container Models.Grupo
+	if err := Repositories.GetOneGrupo(&container, Utils.ConvertIntToString(estudiante.Id_grupo)); err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
+	// model container
+	var container_curso Models.Curso
+	if err := Repositories.GetOneCurso(&container_curso, Utils.ConvertIntToString(estudiante.Id_grupo)); err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+	// output
+	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetCursoEstudianteOutput(container_curso))
+}
+
+// @Summary Obtiene un curso de un evaluador
+// @Description Obtiene un curso de un evaluador según su token
+// @Tags Evaluadores
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} SwaggerMessages.GetCursoEvaluadorSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /evaluadores/me/curso [get]
+func GetCursoEvaluador(c *gin.Context) {
+	// params
+	id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
+
+	// model container
+	var container Models.Grupo
+	if err := Repositories.GetOneGrupoByEvaluadorId(&container, id_evaluador); err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
+	// model container
+	var curso_container Models.Curso
+	if err := Repositories.GetOneCurso(&curso_container, Utils.ConvertIntToString(container.Id_curso)); err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
+	}
+
+	// output
+	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetCursoEvaluadorOutput(curso_container))
+}

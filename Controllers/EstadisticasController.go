@@ -16,7 +16,7 @@ import (
 // @Accept  json
 // @Produce  json
 // @Param   id_evaluacion     path    string     true        "ID de la evaluación"
-// @Success 200 {array} SwaggerMessages.ListEstudiantesSwagger "OK"
+// @Success 200 {array} SwaggerMessages.EvolucionEstudiantePorEvaluacionSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /estudiantes/me/estadisticas/evolucion/evaluacion/{id_evaluacion} [get]
 func EvolucionEstudiantePorEvaluacion(c *gin.Context) {
@@ -111,7 +111,7 @@ func EvolucionEstudiantePorEvaluacion(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   codigo_competencia     path    string     true        "Código de la competencia"
-// @Success 200 {array} SwaggerMessages.ListEstudiantesSwagger "OK"
+// @Success 200 {array} SwaggerMessages.EvolucionEstudiantePorCompetenciaSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /estudiantes/me/estadisticas/evolucion/competencia/{codigo_competencia} [get]
 func EvolucionEstudiantePorCompetencia(c *gin.Context) {

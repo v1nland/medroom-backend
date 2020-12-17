@@ -27,6 +27,24 @@ func GetOneCursoOutput(u Models.Curso) (output ResponseMessages.GetOneCursoRespo
 	}
 }
 
+func GetCursoEstudianteOutput(u Models.Curso) (output ResponseMessages.GetCursoEstudianteResponse) {
+	return ResponseMessages.GetCursoEstudianteResponse{
+		Periodo_curso: GetOnePeriodoOutput(u.Periodo_curso),
+		Grupos_curso:  GetGruposOutput(u.Grupos_curso),
+		Nombre_curso:  u.Nombre_curso,
+		Sigla_curso:   u.Sigla_curso,
+	}
+}
+
+func GetCursoEvaluadorOutput(u Models.Curso) (output ResponseMessages.GetCursoEvaluadorResponse) {
+	return ResponseMessages.GetCursoEvaluadorResponse{
+		Periodo_curso: GetOnePeriodoOutput(u.Periodo_curso),
+		Grupos_curso:  GetGruposOutput(u.Grupos_curso),
+		Nombre_curso:  u.Nombre_curso,
+		Sigla_curso:   u.Sigla_curso,
+	}
+}
+
 func AddNewCursoOutput(u Models.Curso) (output ResponseMessages.AddNewCursoResponse) {
 	return ResponseMessages.AddNewCursoResponse{
 		Id_periodo:   u.Id_periodo,

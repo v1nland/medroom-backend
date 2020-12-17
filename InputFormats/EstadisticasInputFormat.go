@@ -6,3 +6,6 @@ import (
 
 func EvolucionEstudiantePorEvaluacionInput(u *RequestMessages.EvolucionEstudiantePorEvaluacionPayload) {
 }
+
+func EvolucionEstudiantePorCompetenciaInput(u *RequestMessages.EvolucionEstudiantePorCompetenciaPayload) {
+}

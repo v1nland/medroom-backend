@@ -61,6 +61,7 @@ type DeleteEvaluacionPayload struct {
 // aux entity
 type PuntajesEvaluacion struct {
 	Nombre_competencia   string `json:"nombre_competencia"`
+	Codigo_competencia   string `json:"codigo_competencia"`
 	Puntaje_competencia  int    `json:"puntaje_competencia"`
 	Feedback_competencia string `json:"feedback_competencia"`
 }

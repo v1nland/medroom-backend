@@ -14,6 +14,14 @@ func GetOneCursoInput(u *RequestMessages.GetOneCursoPayload) {
 
 }
 
+func GetCursoEstudianteInput(u *RequestMessages.GetCursoEstudiantePayload) {
+
+}
+
+func GetCursoEvaluadorInput(u *RequestMessages.GetCursoEvaluadorPayload) {
+
+}
+
 func AddNewCursoInput(u *RequestMessages.AddNewCursoPayload) {
 	u.Nombre_curso = strings.TrimSpace(u.Nombre_curso)
 	u.Nombre_curso = strings.ToUpper(u.Nombre_curso)

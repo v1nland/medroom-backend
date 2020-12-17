@@ -305,6 +305,7 @@ func GenerarEvaluacion(c *gin.Context) {
 		puntaje := Models.Puntaje{
 			Id_evaluacion:              model_container.ID,
 			Nombre_competencia_puntaje: container.Puntajes_evaluacion[i].Nombre_competencia,
+			Codigo_competencia_puntaje: container.Puntajes_evaluacion[i].Codigo_competencia,
 			Calificacion_puntaje:       container.Puntajes_evaluacion[i].Puntaje_competencia,
 			Feedback_puntaje:           container.Puntajes_evaluacion[i].Feedback_competencia,
 		}

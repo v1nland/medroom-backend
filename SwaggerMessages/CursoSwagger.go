@@ -16,6 +16,18 @@ type GetOneCursoSwagger struct {
 	Data   ResponseMessages.GetOneCursoResponse `json:"data"`
 }
 
+type GetCursoEstudianteSwagger struct {
+	Status bool                                        `json:"status"`
+	Meta   string                                      `json:"meta"`
+	Data   ResponseMessages.GetCursoEstudianteResponse `json:"data"`
+}
+
+type GetCursoEvaluadorSwagger struct {
+	Status bool                                       `json:"status"`
+	Meta   string                                     `json:"meta"`
+	Data   ResponseMessages.GetCursoEvaluadorResponse `json:"data"`
+}
+
 type AddNewCursoSwagger struct {
 	Status bool                                 `json:"status"`
 	Meta   string                               `json:"meta"`
