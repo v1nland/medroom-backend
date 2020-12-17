@@ -2583,32 +2583,6 @@ paths:
       summary: Obtiene un grupo de un estudiante
       tags:
       - Estudiantes
-  /evaluadores/evaluaciones:
-    post:
-      consumes:
-      - application/json
-      description: Genera una nueva evaluación de un estudiante con los datos entregados
-      parameters:
-      - description: Evaluacion a generar
-        in: body
-        name: input_evaluacion
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.GenerarEvaluacionPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/SwaggerMessages.GenerarEvaluacionSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Genera una evaluación para un estudiante
-      tags:
-      - Evaluadores
   /evaluadores/me:
     get:
       consumes:
@@ -2651,6 +2625,32 @@ paths:
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Modifica mi perfil
+      tags:
+      - Evaluadores
+  /evaluadores/me/evaluaciones:
+    post:
+      consumes:
+      - application/json
+      description: Genera una nueva evaluación de un estudiante con los datos entregados
+      parameters:
+      - description: Evaluacion a generar
+        in: body
+        name: input_evaluacion
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.GenerarEvaluacionPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.GenerarEvaluacionSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Genera una evaluación para un estudiante
       tags:
       - Evaluadores
   /evaluadores/me/grupo:

@@ -34,7 +34,7 @@ func SetupEvaluadorRouter(r *gin.Engine) *gin.Engine {
 
 		// make evaluation routes
 		// call 'me/group' to list students and it's ramos
-		router.POST("evaluaciones", Controllers.GenerarEvaluacion)
+		router.POST("me/evaluaciones", Controllers.GenerarEvaluacion)
 
 		// view reports routes
 		// call 'me/group' to list students and it's ramos

@@ -1541,46 +1541,6 @@ var doc = `{
                 }
             }
         },
-        "/evaluadores/evaluaciones": {
-            "post": {
-                "description": "Genera una nueva evaluación de un estudiante con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Evaluadores"
-                ],
-                "summary": "Genera una evaluación para un estudiante",
-                "parameters": [
-                    {
-                        "description": "Evaluacion a generar",
-                        "name": "input_evaluacion",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RequestMessages.GenerarEvaluacionPayload"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GenerarEvaluacionSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            }
-        },
         "/evaluadores/me": {
             "get": {
                 "description": "Obtiene el perfil del evaluador según su token",
@@ -1637,6 +1597,46 @@ var doc = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/SwaggerMessages.PutMyEvaluadorSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/evaluadores/me/evaluaciones": {
+            "post": {
+                "description": "Genera una nueva evaluación de un estudiante con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Evaluadores"
+                ],
+                "summary": "Genera una evaluación para un estudiante",
+                "parameters": [
+                    {
+                        "description": "Evaluacion a generar",
+                        "name": "input_evaluacion",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.GenerarEvaluacionPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.GenerarEvaluacionSwagger"
                         }
                     },
                     "400": {

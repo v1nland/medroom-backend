@@ -260,7 +260,7 @@ func ListEvaluacionesEstudiante(c *gin.Context) {
 // @Param   input_evaluacion     body    RequestMessages.GenerarEvaluacionPayload     true        "Evaluacion a generar"
 // @Success 200 {object} SwaggerMessages.GenerarEvaluacionSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /evaluadores/evaluaciones [post]
+// @Router /evaluadores/me/evaluaciones [post]
 func GenerarEvaluacion(c *gin.Context) {
 	// params
 	id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
