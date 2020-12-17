@@ -1,7 +1,7 @@
 package ResponseMessages
 
 type ListGruposResponse struct {
-	Curso_grupo       GetOneCursoResponse       `json:"curso_grupo"`
+	Id_curso          int                       `json:"id_curso"`
 	Evaluador_grupo   GetOneEvaluadorResponse   `json:"evaluador_grupo"`
 	Estudiantes_grupo []ListEstudiantesResponse `json:"estudiantes_grupo"`
 	Nombre_grupo      string                    `json:"nombre_grupo"`
@@ -9,7 +9,7 @@ type ListGruposResponse struct {
 }
 
 type GetOneGrupoResponse struct {
-	Curso_grupo       GetOneCursoResponse       `json:"curso_grupo"`
+	Id_curso          int                       `json:"id_curso"`
 	Evaluador_grupo   GetOneEvaluadorResponse   `json:"evaluador_grupo"`
 	Estudiantes_grupo []ListEstudiantesResponse `json:"estudiantes_grupo"`
 	Nombre_grupo      string                    `json:"nombre_grupo"`
@@ -17,7 +17,7 @@ type GetOneGrupoResponse struct {
 }
 
 type GetGrupoEstudianteResponse struct {
-	Curso_grupo       GetOneCursoResponse       `json:"curso_grupo"`
+	Id_curso          int                       `json:"id_curso"`
 	Evaluador_grupo   GetOneEvaluadorResponse   `json:"evaluador_grupo"`
 	Estudiantes_grupo []ListEstudiantesResponse `json:"estudiantes_grupo"`
 	Nombre_grupo      string                    `json:"nombre_grupo"`
@@ -25,7 +25,7 @@ type GetGrupoEstudianteResponse struct {
 }
 
 type GetGrupoEvaluadorResponse struct {
-	Curso_grupo       GetOneCursoResponse       `json:"curso_grupo"`
+	Id_curso          int                       `json:"id_curso"`
 	Evaluador_grupo   GetOneEvaluadorResponse   `json:"evaluador_grupo"`
 	Estudiantes_grupo []ListEstudiantesResponse `json:"estudiantes_grupo"`
 	Nombre_grupo      string                    `json:"nombre_grupo"`

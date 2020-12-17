@@ -17,7 +17,7 @@ type Estudiante struct {
 	Nombres_estudiante            string       `json:"nombres_estudiante"`
 	Apellidos_estudiante          string       `json:"apellidos_estudiante"`
 	Hash_contrasena_estudiante    string       `json:"hash_contrasena_estudiante"`
-	Correo_electronico_estudiante string       `json:"correo_electronico_estudiante"`
+	Correo_electronico_estudiante string       `json:"correo_electronico_estudiante" gorm:"unique;not null"`
 	Telefono_fijo_estudiante      string       `json:"telefono_fijo_estudiante"`
 	Telefono_celular_estudiante   string       `json:"telefono_celular_estudiante"`
 	CreatedAt                     time.Time    `json:"created_at"`

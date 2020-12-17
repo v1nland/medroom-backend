@@ -149,13 +149,6 @@ func PutOneGrupo(c *gin.Context) {
 	}
 
 	// update foreign entity
-	err = Repositories.GetOneCurso(&model_container.Curso_grupo, model_container.Id_evaluador)
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
-	}
-
-	// update foreign entity
 	err = Repositories.GetOneEvaluador(&model_container.Evaluador_grupo, model_container.Id_evaluador)
 	if err != nil {
 		ApiHelpers.RespondError(c, 500, "default")

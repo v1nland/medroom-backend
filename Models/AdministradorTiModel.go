@@ -15,7 +15,7 @@ type AdministradorTi struct {
 	Nombres_administrador_ti            string    `json:"nombres_administrador_ti"`
 	Apellidos_administrador_ti          string    `json:"apellidos_administrador_ti"`
 	Hash_contrasena_administrador_ti    string    `json:"hash_contrasena_administrador_ti"`
-	Correo_electronico_administrador_ti string    `json:"correo_electronico_administrador_ti"`
+	Correo_electronico_administrador_ti string    `json:"correo_electronico_administrador_ti" gorm:"unique;not null"`
 	Telefono_fijo_administrador_ti      string    `json:"telefono_fijo_administrador_ti"`
 	Telefono_celular_administrador_ti   string    `json:"telefono_celular_administrador_ti"`
 	CreatedAt                           time.Time `json:"created_at"`

@@ -10,6 +10,7 @@ func GetPuntajesOutput(u []Models.Puntaje) (output []ResponseMessages.ListPuntaj
 		output = append(output, ResponseMessages.ListPuntajesResponse{
 			Id_evaluacion:              u[i].Id_evaluacion,
 			Nombre_competencia_puntaje: u[i].Nombre_competencia_puntaje,
+			Codigo_competencia_puntaje: u[i].Codigo_competencia_puntaje,
 			Calificacion_puntaje:       u[i].Calificacion_puntaje,
 			Feedback_puntaje:           u[i].Feedback_puntaje,
 		})
@@ -22,6 +23,7 @@ func GetOnePuntajeOutput(u Models.Puntaje) (output ResponseMessages.GetOnePuntaj
 	return ResponseMessages.GetOnePuntajeResponse{
 		Id_evaluacion:              u.Id_evaluacion,
 		Nombre_competencia_puntaje: u.Nombre_competencia_puntaje,
+		Codigo_competencia_puntaje: u.Codigo_competencia_puntaje,
 		Calificacion_puntaje:       u.Calificacion_puntaje,
 		Feedback_puntaje:           u.Feedback_puntaje,
 	}
@@ -31,6 +33,7 @@ func AddNewPuntajeOutput(u Models.Puntaje) (output ResponseMessages.AddNewPuntaj
 	return ResponseMessages.AddNewPuntajeResponse{
 		Id_evaluacion:              u.Id_evaluacion,
 		Nombre_competencia_puntaje: u.Nombre_competencia_puntaje,
+		Codigo_competencia_puntaje: u.Codigo_competencia_puntaje,
 		Calificacion_puntaje:       u.Calificacion_puntaje,
 		Feedback_puntaje:           u.Feedback_puntaje,
 	}
@@ -40,6 +43,7 @@ func PutOnePuntajeOutput(u Models.Puntaje) (output ResponseMessages.PutOnePuntaj
 	return ResponseMessages.PutOnePuntajeResponse{
 		Id_evaluacion:              u.Id_evaluacion,
 		Nombre_competencia_puntaje: u.Nombre_competencia_puntaje,
+		Codigo_competencia_puntaje: u.Codigo_competencia_puntaje,
 		Calificacion_puntaje:       u.Calificacion_puntaje,
 		Feedback_puntaje:           u.Feedback_puntaje,
 	}
@@ -49,6 +53,7 @@ func DeletePuntajeOutput(u Models.Puntaje) (output ResponseMessages.DeletePuntaj
 	return ResponseMessages.DeletePuntajeResponse{
 		Id_evaluacion:              u.Id_evaluacion,
 		Nombre_competencia_puntaje: u.Nombre_competencia_puntaje,
+		Codigo_competencia_puntaje: u.Codigo_competencia_puntaje,
 		Calificacion_puntaje:       u.Calificacion_puntaje,
 		Feedback_puntaje:           u.Feedback_puntaje,
 	}

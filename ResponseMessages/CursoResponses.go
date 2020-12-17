@@ -2,12 +2,14 @@ package ResponseMessages
 
 type ListCursosResponse struct {
 	Periodo_curso GetOnePeriodoResponse `json:"periodo_curso"`
+	Grupos_curso  []ListGruposResponse  `json:"grupos_curso"`
 	Nombre_curso  string                `json:"nombre_curso"`
 	Sigla_curso   string                `json:"sigla_curso"`
 }
 
 type GetOneCursoResponse struct {
 	Periodo_curso GetOnePeriodoResponse `json:"periodo_curso"`
+	Grupos_curso  []ListGruposResponse  `json:"grupos_curso"`
 	Nombre_curso  string                `json:"nombre_curso"`
 	Sigla_curso   string                `json:"sigla_curso"`
 }

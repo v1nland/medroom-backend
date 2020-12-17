@@ -1,9 +1,10 @@
 package Models
 
 import (
-	"github.com/jinzhu/gorm"
-	"github.com/satori/go.uuid"
 	"time"
+
+	"github.com/jinzhu/gorm"
+	uuid "github.com/satori/go.uuid"
 )
 
 type Evaluador struct {
@@ -14,7 +15,7 @@ type Evaluador struct {
 	Nombres_evaluador            string    `json:"nombres_evaluador"`
 	Apellidos_evaluador          string    `json:"apellidos_evaluador"`
 	Hash_contrasena_evaluador    string    `json:"hash_contrasena_evaluador"`
-	Correo_electronico_evaluador string    `json:"correo_electronico_evaluador"`
+	Correo_electronico_evaluador string    `json:"correo_electronico_evaluador" gorm:"unique;not null"`
 	Telefono_fijo_evaluador      string    `json:"telefono_fijo_evaluador"`
 	Telefono_celular_evaluador   string    `json:"telefono_celular_evaluador"`
 	Recinto_evaluador            string    `json:"recinto_evaluador"`

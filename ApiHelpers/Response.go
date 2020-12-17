@@ -7,15 +7,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-/*
-*
-*
-*
-*	RESPONSE: JSON
-*
-*
-*
- */
 type ResponseData struct {
 	Status bool        `json:"status"`
 	Meta   string      `json:"meta"`
@@ -38,15 +29,6 @@ func RespondJSON(w *gin.Context, status int, payload interface{}) {
 	w.JSON(200, res)
 }
 
-/*
-*
-*
-*
-*	RESPONSE: ERROR
-*
-*
-*
- */
 type ResponseError struct {
 	Error       string
 	Description string

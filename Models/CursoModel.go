@@ -8,6 +8,7 @@ type Curso struct {
 	ID            int       `json:"id"`
 	Id_periodo    int       `json:"id_periodo" sql:"type:int REFERENCES public.periodos(id)"`
 	Periodo_curso Periodo   `json:"periodo_curso" gorm:"foreignKey:Id_periodo"`
+	Grupos_curso  []Grupo   `json:"grupos_curso" gorm:"foreignKey:Id_curso"`
 	Nombre_curso  string    `json:"nombre_curso"`
 	Sigla_curso   string    `json:"sigla_curso"`
 	Estado_curso  bool      `json:"estado_curso"`
