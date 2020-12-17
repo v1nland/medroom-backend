@@ -33,6 +33,49 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/administracion-academica/login": {
+            "post": {
+                "description": "Ingresa usuario y contraseña para iniciar sesión",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Autenticación"
+                ],
+                "summary": "Autenticación de administrador académico",
+                "parameters": [
+                    {
+                        "description": "Credenciales de acceso",
+                        "name": "input_credentials",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.LoginAdministradorAcademicoPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/SwaggerMessages.AuthenticationSwagger"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
         "/administracion-ti/administradores-academicos": {
             "get": {
                 "description": "Lista todos los administradores-academicos",
@@ -1167,6 +1210,49 @@ var doc = `{
                 }
             }
         },
+        "/administracion-ti/login": {
+            "post": {
+                "description": "Ingresa usuario y contraseña para iniciar sesión",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Autenticación"
+                ],
+                "summary": "Autenticación de administrador ti",
+                "parameters": [
+                    {
+                        "description": "Credenciales de acceso",
+                        "name": "input_credentials",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.LoginAdministradorTiPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/SwaggerMessages.AuthenticationSwagger"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
         "/administracion-ti/periodos": {
             "post": {
                 "description": "Genera un nuevo periodo con los datos entregados",
@@ -1413,6 +1499,49 @@ var doc = `{
                 }
             }
         },
+        "/estudiantes/login": {
+            "post": {
+                "description": "Ingresa usuario y contraseña para iniciar sesión",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Autenticación"
+                ],
+                "summary": "Autenticación de estudiante",
+                "parameters": [
+                    {
+                        "description": "Credenciales de acceso",
+                        "name": "input_credentials",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.LoginEstudiantePayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/SwaggerMessages.AuthenticationSwagger"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
         "/estudiantes/me": {
             "get": {
                 "description": "Obtiene el perfil del estudiante según su token",
@@ -1530,6 +1659,49 @@ var doc = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/SwaggerMessages.GetGrupoEstudianteSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/evaluadores/login": {
+            "post": {
+                "description": "Ingresa usuario y contraseña para iniciar sesión",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Autenticación"
+                ],
+                "summary": "Autenticación de evaluador",
+                "parameters": [
+                    {
+                        "description": "Credenciales de acceso",
+                        "name": "input_credentials",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.LoginEvaluadorPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/SwaggerMessages.AuthenticationSwagger"
+                            }
                         }
                     },
                     "400": {
@@ -1666,178 +1838,6 @@ var doc = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/SwaggerMessages.GetGrupoEvaluadorSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            }
-        },
-        "/login": {
-            "post": {
-                "description": "Ingresa usuario y contraseña para iniciar sesión",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Autenticación"
-                ],
-                "summary": "Autenticación de estudiante",
-                "parameters": [
-                    {
-                        "description": "Credenciales de acceso",
-                        "name": "input_credentials",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RequestMessages.LoginEstudiantePayload"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/SwaggerMessages.AuthenticationSwagger"
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            }
-        },
-        "/login-admiministrador-academico": {
-            "post": {
-                "description": "Ingresa usuario y contraseña para iniciar sesión",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Autenticación"
-                ],
-                "summary": "Autenticación de administrador académico",
-                "parameters": [
-                    {
-                        "description": "Credenciales de acceso",
-                        "name": "input_credentials",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RequestMessages.LoginAdministradorAcademicoPayload"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/SwaggerMessages.AuthenticationSwagger"
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            }
-        },
-        "/login-administrador-ti": {
-            "post": {
-                "description": "Ingresa usuario y contraseña para iniciar sesión",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Autenticación"
-                ],
-                "summary": "Autenticación de administrador ti",
-                "parameters": [
-                    {
-                        "description": "Credenciales de acceso",
-                        "name": "input_credentials",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RequestMessages.LoginAdministradorTiPayload"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/SwaggerMessages.AuthenticationSwagger"
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            }
-        },
-        "/login-evaluador": {
-            "post": {
-                "description": "Ingresa usuario y contraseña para iniciar sesión",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Autenticación"
-                ],
-                "summary": "Autenticación de evaluador",
-                "parameters": [
-                    {
-                        "description": "Credenciales de acceso",
-                        "name": "input_credentials",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RequestMessages.LoginEvaluadorPayload"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/SwaggerMessages.AuthenticationSwagger"
-                            }
                         }
                     },
                     "400": {

@@ -22,6 +22,7 @@ cp .env.example .env
 Build swagger
 
 ```bash
+$ go get -u github.com/swaggo/swag/cmd/swag
 $ swag init
 ```
 

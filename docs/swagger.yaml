@@ -1587,6 +1587,34 @@ info:
   title: MedRoom API
   version: "1.0"
 paths:
+  /administracion-academica/login:
+    post:
+      consumes:
+      - application/json
+      description: Ingresa usuario y contraseña para iniciar sesión
+      parameters:
+      - description: Credenciales de acceso
+        in: body
+        name: input_credentials
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.LoginAdministradorAcademicoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/SwaggerMessages.AuthenticationSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Autenticación de administrador académico
+      tags:
+      - Autenticación
   /administracion-ti/administradores-academicos:
     get:
       consumes:
@@ -2337,6 +2365,34 @@ paths:
       summary: Modifica un grupo
       tags:
       - Administración Ti
+  /administracion-ti/login:
+    post:
+      consumes:
+      - application/json
+      description: Ingresa usuario y contraseña para iniciar sesión
+      parameters:
+      - description: Credenciales de acceso
+        in: body
+        name: input_credentials
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.LoginAdministradorTiPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/SwaggerMessages.AuthenticationSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Autenticación de administrador ti
+      tags:
+      - Autenticación
   /administracion-ti/periodos:
     post:
       consumes:
@@ -2499,6 +2555,34 @@ paths:
       summary: Modifica un rol
       tags:
       - Administración Ti
+  /estudiantes/login:
+    post:
+      consumes:
+      - application/json
+      description: Ingresa usuario y contraseña para iniciar sesión
+      parameters:
+      - description: Credenciales de acceso
+        in: body
+        name: input_credentials
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.LoginEstudiantePayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/SwaggerMessages.AuthenticationSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Autenticación de estudiante
+      tags:
+      - Autenticación
   /estudiantes/me:
     get:
       consumes:
@@ -2583,6 +2667,34 @@ paths:
       summary: Obtiene un grupo de un estudiante
       tags:
       - Estudiantes
+  /evaluadores/login:
+    post:
+      consumes:
+      - application/json
+      description: Ingresa usuario y contraseña para iniciar sesión
+      parameters:
+      - description: Credenciales de acceso
+        in: body
+        name: input_credentials
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.LoginEvaluadorPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/SwaggerMessages.AuthenticationSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Autenticación de evaluador
+      tags:
+      - Autenticación
   /evaluadores/me:
     get:
       consumes:
@@ -2672,118 +2784,6 @@ paths:
       summary: Obtiene un grupo de un evaluador
       tags:
       - Evaluadores
-  /login:
-    post:
-      consumes:
-      - application/json
-      description: Ingresa usuario y contraseña para iniciar sesión
-      parameters:
-      - description: Credenciales de acceso
-        in: body
-        name: input_credentials
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.LoginEstudiantePayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            items:
-              $ref: '#/definitions/SwaggerMessages.AuthenticationSwagger'
-            type: array
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Autenticación de estudiante
-      tags:
-      - Autenticación
-  /login-admiministrador-academico:
-    post:
-      consumes:
-      - application/json
-      description: Ingresa usuario y contraseña para iniciar sesión
-      parameters:
-      - description: Credenciales de acceso
-        in: body
-        name: input_credentials
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.LoginAdministradorAcademicoPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            items:
-              $ref: '#/definitions/SwaggerMessages.AuthenticationSwagger'
-            type: array
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Autenticación de administrador académico
-      tags:
-      - Autenticación
-  /login-administrador-ti:
-    post:
-      consumes:
-      - application/json
-      description: Ingresa usuario y contraseña para iniciar sesión
-      parameters:
-      - description: Credenciales de acceso
-        in: body
-        name: input_credentials
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.LoginAdministradorTiPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            items:
-              $ref: '#/definitions/SwaggerMessages.AuthenticationSwagger'
-            type: array
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Autenticación de administrador ti
-      tags:
-      - Autenticación
-  /login-evaluador:
-    post:
-      consumes:
-      - application/json
-      description: Ingresa usuario y contraseña para iniciar sesión
-      parameters:
-      - description: Credenciales de acceso
-        in: body
-        name: input_credentials
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.LoginEvaluadorPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            items:
-              $ref: '#/definitions/SwaggerMessages.AuthenticationSwagger'
-            type: array
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Autenticación de evaluador
-      tags:
-      - Autenticación
   /periodos:
     get:
       consumes:

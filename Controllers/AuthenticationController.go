@@ -21,7 +21,7 @@ import (
 // @Param   input_credentials     body    RequestMessages.LoginEstudiantePayload     true        "Credenciales de acceso"
 // @Success 200 {array} SwaggerMessages.AuthenticationSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /login [post]
+// @Router /estudiantes/login [post]
 func AutenticarEstudiante(c *gin.Context) {
 	var estudiante Models.Estudiante
 	var login_message RequestMessages.LoginEstudiantePayload
@@ -62,7 +62,7 @@ func AutenticarEstudiante(c *gin.Context) {
 // @Param   input_credentials     body    RequestMessages.LoginEvaluadorPayload     true        "Credenciales de acceso"
 // @Success 200 {array} SwaggerMessages.AuthenticationSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /login-evaluador [post]
+// @Router /evaluadores/login [post]
 func AutenticarEvaluador(c *gin.Context) {
 	var evaluador Models.Evaluador
 	var login_message RequestMessages.LoginEvaluadorPayload
@@ -103,7 +103,7 @@ func AutenticarEvaluador(c *gin.Context) {
 // @Param   input_credentials     body    RequestMessages.LoginAdministradorAcademicoPayload     true        "Credenciales de acceso"
 // @Success 200 {array} SwaggerMessages.AuthenticationSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /login-admiministrador-academico [post]
+// @Router /administracion-academica/login [post]
 func AutenticarAdministradorAcademico(c *gin.Context) {
 	var administrador_academico Models.AdministradorAcademico
 	var login_message RequestMessages.LoginAdministradorAcademicoPayload
@@ -144,7 +144,7 @@ func AutenticarAdministradorAcademico(c *gin.Context) {
 // @Param   input_credentials     body    RequestMessages.LoginAdministradorTiPayload     true        "Credenciales de acceso"
 // @Success 200 {array} SwaggerMessages.AuthenticationSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /login-administrador-ti [post]
+// @Router /administracion-ti/login [post]
 func AutenticarAdministradorTi(c *gin.Context) {
 	var administrador_ti Models.AdministradorTi
 	var login_message RequestMessages.LoginAdministradorTiPayload
