@@ -182,8 +182,8 @@ func EvolucionEstudiantePorCompetencia(c *gin.Context) {
 		}
 	}
 
-	response := &ResponseMessages.EvolucionEstudiantePorEvaluacionResponse{
-		Nombre_evaluacion:   codigo_competencia,
+	response := &ResponseMessages.EvolucionEstudiantePorCompetenciaResponse{
+		Nombre_competencia:  codigo_competencia,
 		Promedio_estudiante: float64(suma_notas_estudiante / contador_estudiante),
 		Promedio_grupo:      float64(suma_notas_grupo / contador_grupo),
 		Promedio_curso:      float64(suma_notas_curso / contador_curso),
