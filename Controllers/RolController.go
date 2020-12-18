@@ -14,7 +14,7 @@ import (
 
 // @Summary Lista de roles
 // @Description Lista todos los roles
-// @Tags No auth
+// @Tags 00 - Rutas públicas
 // @Accept  json
 // @Produce  json
 // @Success 200 {array} SwaggerMessages.ListRolesSwagger "OK"
@@ -37,7 +37,7 @@ func ListRoles(c *gin.Context) {
 
 // @Summary Obtiene un rol
 // @Description Obtiene un rol según su ID
-// @Tags No auth
+// @Tags 00 - Rutas públicas
 // @Accept  json
 // @Produce  json
 // @Param   id_rol     path    string     true        "ID del rol a buscar"
@@ -64,7 +64,7 @@ func GetOneRol(c *gin.Context) {
 
 // @Summary Agrega un nuevo rol
 // @Description Genera un nuevo rol con los datos entregados
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   input_rol     body    RequestMessages.AddNewRolPayload     true        "Rol a agregar"
@@ -102,7 +102,7 @@ func AddNewRol(c *gin.Context) {
 
 // @Summary Modifica un rol
 // @Description Modifica un rol con los datos entregados
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   id_rol     path    string     true        "ID del rol a modificar"
@@ -155,7 +155,7 @@ func PutOneRol(c *gin.Context) {
 
 // @Summary Elimina un rol
 // @Description Elimina un rol con los datos entregados
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   id_rol     path    string     true        "ID del rol a eliminar"

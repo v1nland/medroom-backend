@@ -231,7 +231,7 @@ func DeleteEvaluacion(c *gin.Context) {
 
 // @Summary Lista de evaluaciones de un estudiante
 // @Description Lista todos los evaluaciones de un estudiante
-// @Tags Estudiantes
+// @Tags 02 - Estudiantes
 // @Accept  json
 // @Produce  json
 // @Success 200 {array} SwaggerMessages.ListEvaluacionesSwagger "OK"
@@ -254,7 +254,7 @@ func ListEvaluacionesEstudiante(c *gin.Context) {
 
 // @Summary Genera una evaluación para un estudiante
 // @Description Genera una nueva evaluación de un estudiante con los datos entregados
-// @Tags Evaluadores
+// @Tags 03 - Evaluadores
 // @Accept  json
 // @Produce  json
 // @Param   input_evaluacion     body    RequestMessages.GenerarEvaluacionPayload     true        "Evaluacion a generar"

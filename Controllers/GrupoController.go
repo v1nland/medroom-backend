@@ -14,7 +14,7 @@ import (
 
 // @Summary Lista de grupos
 // @Description Lista todos los grupos
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Success 200 {array} SwaggerMessages.ListGruposSwagger "OK"
@@ -35,9 +35,21 @@ func ListGrupos(c *gin.Context) {
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetGruposOutput(container))
 }
 
+// @Summary Lista de grupos
+// @Description Lista todos los grupos
+// @Tags 04 - Administración Academica
+// @Accept  json
+// @Produce  json
+// @Success 200 {array} SwaggerMessages.ListGruposSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /administracion-academica/grupos [get]
+func swaggerDummyListGrupos(c *gin.Context) {
+	ListGrupos(c)
+}
+
 // @Summary Obtiene un grupo
 // @Description Obtiene un grupo según su ID
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   id_grupo     path    string     true        "ID del grupo a buscar"
@@ -62,9 +74,22 @@ func GetOneGrupo(c *gin.Context) {
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetOneGrupoOutput(container))
 }
 
+// @Summary Obtiene un grupo
+// @Description Obtiene un grupo según su ID
+// @Tags 04 - Administración Academica
+// @Accept  json
+// @Produce  json
+// @Param   id_grupo     path    string     true        "ID del grupo a buscar"
+// @Success 200 {object} SwaggerMessages.GetOneGrupoSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /administracion-academica/grupos/{id_grupo} [get]
+func swaggerDummyGetOneGrupo(c *gin.Context) {
+	GetOneGrupo(c)
+}
+
 // @Summary Agrega un nuevo grupo
 // @Description Genera un nuevo grupo con los datos entregados
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   input_grupo     body    RequestMessages.AddNewGrupoPayload     true        "Grupo a agregar"
@@ -103,9 +128,22 @@ func AddNewGrupo(c *gin.Context) {
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.AddNewGrupoOutput(model_container))
 }
 
+// @Summary Agrega un nuevo grupo
+// @Description Genera un nuevo grupo con los datos entregados
+// @Tags 04 - Administración Academica
+// @Accept  json
+// @Produce  json
+// @Param   input_grupo     body    RequestMessages.AddNewGrupoPayload     true        "Grupo a agregar"
+// @Success 200 {object} SwaggerMessages.AddNewGrupoSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /administracion-academica/grupos [post]
+func swaggerDummyAddNewGrupo(c *gin.Context) {
+	AddNewGrupo(c)
+}
+
 // @Summary Modifica un grupo
 // @Description Modifica un grupo con los datos entregados
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   id_grupo     path    string     true        "ID del grupo a modificar"
@@ -166,9 +204,23 @@ func PutOneGrupo(c *gin.Context) {
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutOneGrupoOutput(model_container))
 }
 
+// @Summary Modifica un grupo
+// @Description Modifica un grupo con los datos entregados
+// @Tags 04 - Administración Academica
+// @Accept  json
+// @Produce  json
+// @Param   id_grupo     path    string     true        "ID del grupo a modificar"
+// @Param   input_actualiza_grupo     body    RequestMessages.PutOneGrupoPayload     true        "Grupo a modificar"
+// @Success 200 {object} SwaggerMessages.PutOneGrupoSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /administracion-academica/grupos/{id_grupo} [put]
+func swaggerDummyPutOneGrupo(c *gin.Context) {
+	PutOneGrupo(c)
+}
+
 // @Summary Elimina un grupo
 // @Description Elimina un grupo con los datos entregados
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   id_grupo     path    string     true        "ID del grupo a eliminar"
@@ -200,9 +252,22 @@ func DeleteGrupo(c *gin.Context) {
 	ApiHelpers.RespondJSON(c, 200, OutputFormats.DeleteGrupoOutput(container))
 }
 
+// @Summary Elimina un grupo
+// @Description Elimina un grupo con los datos entregados
+// @Tags 04 - Administración Academica
+// @Accept  json
+// @Produce  json
+// @Param   id_grupo     path    string     true        "ID del grupo a eliminar"
+// @Success 200 {object} SwaggerMessages.DeleteGrupoSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /administracion-academica/grupos/{id_grupo} [delete]
+func swaggerDummyDeleteGrupo(c *gin.Context) {
+	DeleteGrupo(c)
+}
+
 // @Summary Obtiene un grupo de un estudiante
 // @Description Obtiene un grupo de un estudiante según su token
-// @Tags Estudiantes
+// @Tags 02 - Estudiantes
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} SwaggerMessages.GetGrupoEstudianteSwagger "OK"
@@ -232,7 +297,7 @@ func GetGrupoEstudiante(c *gin.Context) {
 
 // @Summary Obtiene un grupo de un evaluador
 // @Description Obtiene un grupo de un evaluador según su token
-// @Tags Evaluadores
+// @Tags 03 - Evaluadores
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} SwaggerMessages.GetGrupoEvaluadorSwagger "OK"

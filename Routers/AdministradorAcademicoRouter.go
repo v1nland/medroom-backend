@@ -2,6 +2,7 @@ package Routers
 
 import (
 	"medroom-backend/ApiHelpers"
+	"medroom-backend/Controllers"
 	"medroom-backend/Utils"
 
 	"github.com/gin-gonic/gin"
@@ -25,8 +26,17 @@ func SetupAdministradorAcademicoRouter(r *gin.Engine) *gin.Engine {
 	router.Use(administradorAcademicoAuthMiddleware)
 	{
 		// profile routes
-		// router.GET("me", Controllers.GetMyAdministradorAcademico)
-		// router.PUT("me", Controllers.PutMyAdministradorAcademico)
+		router.GET("me", Controllers.GetMyAdministradorAcademico)
+		router.PUT("me", Controllers.PutMyAdministradorAcademico)
+
+		grupos := router.Group("/grupos")
+		{
+			grupos.GET("", Controllers.ListGrupos)
+			grupos.GET(":id", Controllers.GetOneGrupo)
+			grupos.POST("", Controllers.AddNewGrupo)
+			grupos.PUT(":id", Controllers.PutOneGrupo)
+			grupos.DELETE(":id", Controllers.DeleteGrupo)
+		}
 
 		// cursos routes
 		// router.POST("grupos", Controllers.AddNewGrupo)

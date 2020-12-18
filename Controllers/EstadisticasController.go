@@ -12,7 +12,7 @@ import (
 
 // @Summary Evolución por evaluación
 // @Description Obtiene la evolución de un estudiante según una evaluación
-// @Tags Estudiantes
+// @Tags 02 - Estudiantes
 // @Accept  json
 // @Produce  json
 // @Param   id_evaluacion     path    string     true        "ID de la evaluación"
@@ -107,7 +107,7 @@ func EvolucionEstudiantePorEvaluacion(c *gin.Context) {
 
 // @Summary Evolución por competencia
 // @Description Obtiene la evolución de un estudiante según una competencia
-// @Tags Estudiantes
+// @Tags 02 - Estudiantes
 // @Accept  json
 // @Produce  json
 // @Param   codigo_competencia     path    string     true        "Código de la competencia"

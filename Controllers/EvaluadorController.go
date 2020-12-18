@@ -14,7 +14,7 @@ import (
 
 // @Summary Lista de evaluadores
 // @Description Lista todos los evaluadores
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Success 200 {array} SwaggerMessages.ListEvaluadoresSwagger "OK"
@@ -37,7 +37,7 @@ func ListEvaluadores(c *gin.Context) {
 
 // @Summary Obtiene un evaluador
 // @Description Obtiene un evaluador según su UUID
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   uuid_evaluador     path    string     true        "UUID del evaluador a buscar"
@@ -64,7 +64,7 @@ func GetOneEvaluador(c *gin.Context) {
 
 // @Summary Agrega un nuevo evaluador
 // @Description Genera un nuevo evaluador con los datos entregados
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   input_evaluador     body    RequestMessages.AddNewEvaluadorPayload     true        "Evaluador a agregar"
@@ -111,7 +111,7 @@ func AddNewEvaluador(c *gin.Context) {
 
 // @Summary Modifica un evaluador
 // @Description Modifica un evaluador con los datos entregados
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   uuid_evaluador     path    string     true        "UUID del evaluador a modificar"
@@ -180,7 +180,7 @@ func PutOneEvaluador(c *gin.Context) {
 
 // @Summary Elimina un evaluador
 // @Description Elimina un evaluador con los datos entregados
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   uuid_evaluador     path    string     true        "UUID del evaluador a eliminar"
@@ -214,7 +214,7 @@ func DeleteEvaluador(c *gin.Context) {
 
 // @Summary Obtiene el perfil del evaluador
 // @Description Obtiene el perfil del evaluador según su token
-// @Tags Evaluadores
+// @Tags 03 - Evaluadores
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} SwaggerMessages.GetMyEvaluadorSwagger "OK"
@@ -237,7 +237,7 @@ func GetMyEvaluador(c *gin.Context) {
 
 // @Summary Modifica mi perfil
 // @Description Modifica el perfil del propio evaluador con los datos entregados
-// @Tags Evaluadores
+// @Tags 03 - Evaluadores
 // @Accept  json
 // @Produce  json
 // @Param   input_actualiza_evaluador     body    RequestMessages.PutMyEvaluadorPayload     true        "Evaluador a modificar"

@@ -14,7 +14,7 @@ import (
 
 // @Summary Lista de periodos
 // @Description Lista todos los periodos
-// @Tags No auth
+// @Tags 00 - Rutas públicas
 // @Accept  json
 // @Produce  json
 // @Success 200 {array} SwaggerMessages.ListPeriodosSwagger "OK"
@@ -37,7 +37,7 @@ func ListPeriodos(c *gin.Context) {
 
 // @Summary Obtiene un periodo
 // @Description Obtiene un periodo según su ID
-// @Tags No auth
+// @Tags 00 - Rutas públicas
 // @Accept  json
 // @Produce  json
 // @Param   id_periodo     path    string     true        "ID del periodo a buscar"
@@ -64,7 +64,7 @@ func GetOnePeriodo(c *gin.Context) {
 
 // @Summary Agrega un nuevo periodo
 // @Description Genera un nuevo periodo con los datos entregados
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   input_periodo     body    RequestMessages.AddNewPeriodoPayload     true        "Periodo a agregar"
@@ -102,7 +102,7 @@ func AddNewPeriodo(c *gin.Context) {
 
 // @Summary Modifica un periodo
 // @Description Modifica un periodo con los datos entregados
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   id_periodo     path    string     true        "ID del periodo a modificar"
@@ -162,7 +162,7 @@ func PutOnePeriodo(c *gin.Context) {
 
 // @Summary Elimina un periodo
 // @Description Elimina un periodo con los datos entregados
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   id_periodo     path    string     true        "ID del periodo a eliminar"

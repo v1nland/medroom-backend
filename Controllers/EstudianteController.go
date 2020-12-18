@@ -14,7 +14,7 @@ import (
 
 // @Summary Lista de estudiantes
 // @Description Lista todos los estudiantes existentes
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Success 200 {array} SwaggerMessages.ListEstudiantesSwagger "OK"
@@ -37,7 +37,7 @@ func ListEstudiantes(c *gin.Context) {
 
 // @Summary Obtiene un estudiante
 // @Description Obtiene un estudiante según su UUID
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   uuid_estudiante     path    string     true        "UUID del estudiante a buscar"
@@ -64,7 +64,7 @@ func GetOneEstudiante(c *gin.Context) {
 
 // @Summary Agrega un nuevo estudiante
 // @Description Genera un nuevo estudiante con los datos entregados
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   input_estudiante     body    RequestMessages.AddNewEstudiantePayload     true        "Estudiante a agregar"
@@ -110,7 +110,7 @@ func AddNewEstudiante(c *gin.Context) {
 
 // @Summary Modifica un estudiante
 // @Description Modifica un estudiante con los datos entregados
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   uuid_estudiante     path    string     true        "UUID del estudiante a modificar"
@@ -175,7 +175,7 @@ func PutOneEstudiante(c *gin.Context) {
 
 // @Summary Elimina un estudiante
 // @Description Elimina un estudiante con los datos entregados
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   uuid_estudiante     path    string     true        "UUID del estudiante a eliminar"
@@ -209,7 +209,7 @@ func DeleteEstudiante(c *gin.Context) {
 
 // @Summary Obtiene el perfil del estudiante
 // @Description Obtiene el perfil del estudiante según su token
-// @Tags Estudiantes
+// @Tags 02 - Estudiantes
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} SwaggerMessages.GetMyEstudianteSwagger "OK"
@@ -235,7 +235,7 @@ func GetMyEstudiante(c *gin.Context) {
 
 // @Summary Modifica mi perfil
 // @Description Modifica el perfil del propio estudiante con los datos entregados
-// @Tags Estudiantes
+// @Tags 02 - Estudiantes
 // @Accept  json
 // @Produce  json
 // @Param   input_actualiza_estudiante     body    RequestMessages.PutMyEstudiantePayload     true        "Nuevos datos del estudiante a modificar"

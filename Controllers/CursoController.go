@@ -14,7 +14,7 @@ import (
 
 // @Summary Lista de cursos
 // @Description Lista todos los cursos
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Success 200 {array} SwaggerMessages.ListCursosSwagger "OK"
@@ -37,7 +37,7 @@ func ListCursos(c *gin.Context) {
 
 // @Summary Obtiene un curso
 // @Description Obtiene un curso según su ID
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   id_curso     path    string     true        "ID del curso a buscar"
@@ -64,7 +64,7 @@ func GetOneCurso(c *gin.Context) {
 
 // @Summary Agrega un nuevo curso
 // @Description Genera un nuevo curso con los datos entregados
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   input_curso     body    RequestMessages.AddNewCursoPayload     true        "Curso a agregar"
@@ -104,7 +104,7 @@ func AddNewCurso(c *gin.Context) {
 
 // @Summary Modifica un curso
 // @Description Modifica un curso con los datos entregados
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   id_curso     path    string     true        "ID del curso a modificar"
@@ -166,7 +166,7 @@ func PutOneCurso(c *gin.Context) {
 
 // @Summary Elimina un curso
 // @Description Elimina un curso con los datos entregados
-// @Tags Administración Ti
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   id_curso     path    string     true        "ID del curso a eliminar"
@@ -200,7 +200,7 @@ func DeleteCurso(c *gin.Context) {
 
 // @Summary Obtiene un curso de un estudiante
 // @Description Obtiene un curso de un estudiante según su token
-// @Tags Estudiantes
+// @Tags 02 - Estudiantes
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} SwaggerMessages.GetCursoEstudianteSwagger "OK"
@@ -236,7 +236,7 @@ func GetCursoEstudiante(c *gin.Context) {
 
 // @Summary Obtiene un curso de un evaluador
 // @Description Obtiene un curso de un evaluador según su token
-// @Tags Evaluadores
+// @Tags 03 - Evaluadores
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} SwaggerMessages.GetCursoEvaluadorSwagger "OK"

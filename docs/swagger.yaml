@@ -191,6 +191,46 @@ definitions:
       puntaje_competencia:
         type: integer
     type: object
+  RequestMessages.PutMyAdministradorAcademicoPayload:
+    properties:
+      apellidos_administrador_academico:
+        type: string
+      correo_electronico_administrador_academico:
+        type: string
+      hash_contrasena_administrador_academico:
+        type: string
+      id_rol:
+        type: integer
+      nombres_administrador_academico:
+        type: string
+      rut_administrador_academico:
+        type: string
+      telefono_celular_administrador_academico:
+        type: string
+      telefono_fijo_administrador_academico:
+        type: string
+    type: object
+  RequestMessages.PutMyAdministradorTiPayload:
+    properties:
+      apellidos_administrador_ti:
+        type: string
+      correo_electronico_administrador_ti:
+        type: string
+      hash_contrasena_administrador_ti:
+        type: string
+      id_grupo:
+        type: integer
+      id_rol:
+        type: integer
+      nombres_administrador_ti:
+        type: string
+      rut_administrador_ti:
+        type: string
+      telefono_celular_administrador_ti:
+        type: string
+      telefono_fijo_administrador_ti:
+        type: string
+    type: object
   RequestMessages.PutMyEstudiantePayload:
     properties:
       apellidos_estudiante:
@@ -571,7 +611,7 @@ definitions:
     type: object
   ResponseMessages.EvolucionEstudiantePorCompetenciaResponse:
     properties:
-      nombre_evaluacion:
+      nombre_competencia:
         type: string
       promedio_curso:
         type: number
@@ -676,6 +716,40 @@ definitions:
       nombre_grupo:
         type: string
       sigla_grupo:
+        type: string
+    type: object
+  ResponseMessages.GetMyAdministradorAcademicoResponse:
+    properties:
+      apellidos_administrador_academico:
+        type: string
+      correo_electronico_administrador_academico:
+        type: string
+      nombres_administrador_academico:
+        type: string
+      rol_administrador_academico:
+        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+      rut_administrador_academico:
+        type: string
+      telefono_celular_administrador_academico:
+        type: string
+      telefono_fijo_administrador_academico:
+        type: string
+    type: object
+  ResponseMessages.GetMyAdministradorTiResponse:
+    properties:
+      apellidos_administrador_ti:
+        type: string
+      correo_electronico_administrador_ti:
+        type: string
+      nombres_administrador_ti:
+        type: string
+      rol_administrador_ti:
+        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+      rut_administrador_ti:
+        type: string
+      telefono_celular_administrador_ti:
+        type: string
+      telefono_fijo_administrador_ti:
         type: string
     type: object
   ResponseMessages.GetMyEstudianteResponse:
@@ -1033,6 +1107,44 @@ definitions:
   ResponseMessages.ListRolesResponse:
     properties:
       nombre_rol:
+        type: string
+    type: object
+  ResponseMessages.PutMyAdministradorAcademicoResponse:
+    properties:
+      apellidos_administrador_academico:
+        type: string
+      correo_electronico_administrador_academico:
+        type: string
+      hash_contrasena_administrador_academico:
+        type: string
+      id_rol:
+        type: integer
+      nombres_administrador_academico:
+        type: string
+      rut_administrador_academico:
+        type: string
+      telefono_celular_administrador_academico:
+        type: string
+      telefono_fijo_administrador_academico:
+        type: string
+    type: object
+  ResponseMessages.PutMyAdministradorTiResponse:
+    properties:
+      apellidos_administrador_ti:
+        type: string
+      correo_electronico_administrador_ti:
+        type: string
+      hash_contrasena_administrador_ti:
+        type: string
+      id_rol:
+        type: integer
+      nombres_administrador_ti:
+        type: string
+      rut_administrador_ti:
+        type: string
+      telefono_celular_administrador_ti:
+        type: string
+      telefono_fijo_administrador_ti:
         type: string
     type: object
   ResponseMessages.PutMyEstudianteResponse:
@@ -1409,6 +1521,24 @@ definitions:
       status:
         type: boolean
     type: object
+  SwaggerMessages.GetMyAdministradorAcademicoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.GetMyAdministradorAcademicoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  SwaggerMessages.GetMyAdministradorTiSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.GetMyAdministradorTiResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
   SwaggerMessages.GetMyEstudianteSwagger:
     properties:
       data:
@@ -1580,6 +1710,24 @@ definitions:
       status:
         type: boolean
     type: object
+  SwaggerMessages.PutMyAdministradorAcademicoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.PutMyAdministradorAcademicoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  SwaggerMessages.PutMyAdministradorTiSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/ResponseMessages.PutMyAdministradorTiResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
   SwaggerMessages.PutMyEstudianteSwagger:
     properties:
       data:
@@ -1683,660 +1831,7 @@ info:
   title: MedRoom API
   version: "1.0"
 paths:
-  /administracion-academica/login:
-    post:
-      consumes:
-      - application/json
-      description: Ingresa usuario y contraseña para iniciar sesión
-      parameters:
-      - description: Credenciales de acceso
-        in: body
-        name: input_credentials
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.LoginAdministradorAcademicoPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            items:
-              $ref: '#/definitions/SwaggerMessages.AuthenticationSwagger'
-            type: array
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Autenticación de administrador académico
-      tags:
-      - Autenticación
-  /administracion-ti/administradores-academicos:
-    get:
-      consumes:
-      - application/json
-      description: Lista todos los administradores-academicos
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            items:
-              $ref: '#/definitions/SwaggerMessages.ListAdministradoresAcademicosSwagger'
-            type: array
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Lista de administradores-academicos
-      tags:
-      - Administración Ti
-    post:
-      consumes:
-      - application/json
-      description: Genera un nuevo administrador_academico con los datos entregados
-      parameters:
-      - description: AdministradorAcademico a agregar
-        in: body
-        name: input_administrador_academico
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.AddNewAdministradorAcademicoPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/SwaggerMessages.AddNewAdministradorAcademicoSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Agrega un nuevo administrador_academico
-      tags:
-      - Administración Ti
-  /administracion-ti/administradores-academicos/{uuid_administrador_academico}:
-    delete:
-      consumes:
-      - application/json
-      description: Elimina un administrador_academico con los datos entregados
-      parameters:
-      - description: UUID del administrador_academico a eliminar
-        in: path
-        name: uuid_administrador_academico
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/SwaggerMessages.DeleteAdministradorAcademicoSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Elimina un administrador_academico
-      tags:
-      - Administración Ti
-    get:
-      consumes:
-      - application/json
-      description: Obtiene un administrador_academico según su UUID
-      parameters:
-      - description: UUID del administrador_academico a buscar
-        in: path
-        name: uuid_administrador_academico
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/SwaggerMessages.GetOneAdministradorAcademicoSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Obtiene un administrador_academico
-      tags:
-      - Administración Ti
-    put:
-      consumes:
-      - application/json
-      description: Modifica un administrador_academico con los datos entregados
-      parameters:
-      - description: UUID del administrador_academico a modificar
-        in: path
-        name: uuid_administrador_academico
-        required: true
-        type: string
-      - description: AdministradorAcademico a modificar
-        in: body
-        name: input_actualiza_administrador_academico
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.PutOneAdministradorAcademicoPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/SwaggerMessages.PutOneAdministradorAcademicoSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Modifica un administrador_academico
-      tags:
-      - Administración Ti
-  /administracion-ti/administradores-ti:
-    get:
-      consumes:
-      - application/json
-      description: Lista todos los administradores-ti
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            items:
-              $ref: '#/definitions/SwaggerMessages.ListAdministradoresTiSwagger'
-            type: array
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Lista de administradores-ti
-      tags:
-      - Administración Ti
-    post:
-      consumes:
-      - application/json
-      description: Genera un nuevo administrador_ti con los datos entregados
-      parameters:
-      - description: AdministradorTi a agregar
-        in: body
-        name: input_administrador_ti
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.AddNewAdministradorTiPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/SwaggerMessages.AddNewAdministradorTiSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Agrega un nuevo administrador_ti
-      tags:
-      - Administración Ti
-  /administracion-ti/administradores-ti/{uuid_administrador_ti}:
-    delete:
-      consumes:
-      - application/json
-      description: Elimina un administrador_ti con los datos entregados
-      parameters:
-      - description: UUID del administrador_ti a eliminar
-        in: path
-        name: uuid_administrador_ti
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/SwaggerMessages.DeleteAdministradorTiSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Elimina un administrador_ti
-      tags:
-      - Administración Ti
-    get:
-      consumes:
-      - application/json
-      description: Obtiene un administrador_ti según su UUID
-      parameters:
-      - description: UUID del administrador_ti a buscar
-        in: path
-        name: uuid_administrador_ti
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/SwaggerMessages.GetOneAdministradorTiSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Obtiene un administrador_ti
-      tags:
-      - Administración Ti
-    put:
-      consumes:
-      - application/json
-      description: Modifica un administrador_ti con los datos entregados
-      parameters:
-      - description: UUID del administrador_ti a modificar
-        in: path
-        name: uuid_administrador_ti
-        required: true
-        type: string
-      - description: AdministradorTi a modificar
-        in: body
-        name: input_actualiza_administrador_ti
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.PutOneAdministradorTiPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/SwaggerMessages.PutOneAdministradorTiSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Modifica un administrador_ti
-      tags:
-      - Administración Ti
-  /administracion-ti/cursos:
-    get:
-      consumes:
-      - application/json
-      description: Lista todos los cursos
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            items:
-              $ref: '#/definitions/SwaggerMessages.ListCursosSwagger'
-            type: array
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Lista de cursos
-      tags:
-      - Administración Ti
-    post:
-      consumes:
-      - application/json
-      description: Genera un nuevo curso con los datos entregados
-      parameters:
-      - description: Curso a agregar
-        in: body
-        name: input_curso
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.AddNewCursoPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/SwaggerMessages.AddNewCursoSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Agrega un nuevo curso
-      tags:
-      - Administración Ti
-  /administracion-ti/cursos/{id_curso}:
-    delete:
-      consumes:
-      - application/json
-      description: Elimina un curso con los datos entregados
-      parameters:
-      - description: ID del curso a eliminar
-        in: path
-        name: id_curso
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/SwaggerMessages.DeleteCursoSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Elimina un curso
-      tags:
-      - Administración Ti
-    get:
-      consumes:
-      - application/json
-      description: Obtiene un curso según su ID
-      parameters:
-      - description: ID del curso a buscar
-        in: path
-        name: id_curso
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/SwaggerMessages.GetOneCursoSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Obtiene un curso
-      tags:
-      - Administración Ti
-    put:
-      consumes:
-      - application/json
-      description: Modifica un curso con los datos entregados
-      parameters:
-      - description: ID del curso a modificar
-        in: path
-        name: id_curso
-        required: true
-        type: string
-      - description: Curso a modificar
-        in: body
-        name: input_actualiza_curso
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.PutOneCursoPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/SwaggerMessages.PutOneCursoSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Modifica un curso
-      tags:
-      - Administración Ti
-  /administracion-ti/estudiantes:
-    get:
-      consumes:
-      - application/json
-      description: Lista todos los estudiantes existentes
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            items:
-              $ref: '#/definitions/SwaggerMessages.ListEstudiantesSwagger'
-            type: array
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Lista de estudiantes
-      tags:
-      - Administración Ti
-    post:
-      consumes:
-      - application/json
-      description: Genera un nuevo estudiante con los datos entregados
-      parameters:
-      - description: Estudiante a agregar
-        in: body
-        name: input_estudiante
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.AddNewEstudiantePayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/SwaggerMessages.AddNewEstudianteSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Agrega un nuevo estudiante
-      tags:
-      - Administración Ti
-  /administracion-ti/estudiantes/{uuid_estudiante}:
-    delete:
-      consumes:
-      - application/json
-      description: Elimina un estudiante con los datos entregados
-      parameters:
-      - description: UUID del estudiante a eliminar
-        in: path
-        name: uuid_estudiante
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/SwaggerMessages.DeleteEstudianteSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Elimina un estudiante
-      tags:
-      - Administración Ti
-    get:
-      consumes:
-      - application/json
-      description: Obtiene un estudiante según su UUID
-      parameters:
-      - description: UUID del estudiante a buscar
-        in: path
-        name: uuid_estudiante
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/SwaggerMessages.GetOneEstudianteSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Obtiene un estudiante
-      tags:
-      - Administración Ti
-    put:
-      consumes:
-      - application/json
-      description: Modifica un estudiante con los datos entregados
-      parameters:
-      - description: UUID del estudiante a modificar
-        in: path
-        name: uuid_estudiante
-        required: true
-        type: string
-      - description: Estudiante a modificar
-        in: body
-        name: input_actualiza_estudiante
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.PutOneEstudiantePayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/SwaggerMessages.PutOneEstudianteSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Modifica un estudiante
-      tags:
-      - Administración Ti
-  /administracion-ti/evaluadores:
-    get:
-      consumes:
-      - application/json
-      description: Lista todos los evaluadores
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            items:
-              $ref: '#/definitions/SwaggerMessages.ListEvaluadoresSwagger'
-            type: array
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Lista de evaluadores
-      tags:
-      - Administración Ti
-    post:
-      consumes:
-      - application/json
-      description: Genera un nuevo evaluador con los datos entregados
-      parameters:
-      - description: Evaluador a agregar
-        in: body
-        name: input_evaluador
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.AddNewEvaluadorPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/SwaggerMessages.AddNewEvaluadorSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Agrega un nuevo evaluador
-      tags:
-      - Administración Ti
-  /administracion-ti/evaluadores/{uuid_evaluador}:
-    delete:
-      consumes:
-      - application/json
-      description: Elimina un evaluador con los datos entregados
-      parameters:
-      - description: UUID del evaluador a eliminar
-        in: path
-        name: uuid_evaluador
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/SwaggerMessages.DeleteEvaluadorSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Elimina un evaluador
-      tags:
-      - Administración Ti
-    get:
-      consumes:
-      - application/json
-      description: Obtiene un evaluador según su UUID
-      parameters:
-      - description: UUID del evaluador a buscar
-        in: path
-        name: uuid_evaluador
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/SwaggerMessages.GetOneEvaluadorSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Obtiene un evaluador
-      tags:
-      - Administración Ti
-    put:
-      consumes:
-      - application/json
-      description: Modifica un evaluador con los datos entregados
-      parameters:
-      - description: UUID del evaluador a modificar
-        in: path
-        name: uuid_evaluador
-        required: true
-        type: string
-      - description: Evaluador a modificar
-        in: body
-        name: input_actualiza_evaluador
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.PutOneEvaluadorPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/SwaggerMessages.PutOneEvaluadorSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Modifica un evaluador
-      tags:
-      - Administración Ti
-  /administracion-ti/grupos:
+  /administracion-academica/grupos:
     get:
       consumes:
       - application/json
@@ -2356,7 +1851,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Lista de grupos
       tags:
-      - Administración Ti
+      - 04 - Administración Academica
     post:
       consumes:
       - application/json
@@ -2381,8 +1876,8 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Agrega un nuevo grupo
       tags:
-      - Administración Ti
-  /administracion-ti/grupos/{id_grupo}:
+      - 04 - Administración Academica
+  /administracion-academica/grupos/{id_grupo}:
     delete:
       consumes:
       - application/json
@@ -2406,7 +1901,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Elimina un grupo
       tags:
-      - Administración Ti
+      - 04 - Administración Academica
     get:
       consumes:
       - application/json
@@ -2430,7 +1925,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Obtiene un grupo
       tags:
-      - Administración Ti
+      - 04 - Administración Academica
     put:
       consumes:
       - application/json
@@ -2460,7 +1955,829 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Modifica un grupo
       tags:
-      - Administración Ti
+      - 04 - Administración Academica
+  /administracion-academica/login:
+    post:
+      consumes:
+      - application/json
+      description: Ingresa usuario y contraseña para iniciar sesión
+      parameters:
+      - description: Credenciales de acceso
+        in: body
+        name: input_credentials
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.LoginAdministradorAcademicoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/SwaggerMessages.AuthenticationSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Autenticación de administrador académico
+      tags:
+      - 01 - Autenticación
+  /administracion-academica/me:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene el perfil del administrador academico según su token
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.GetMyAdministradorAcademicoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene el perfil del administrador academico
+      tags:
+      - 04 - Administración Academica
+    put:
+      consumes:
+      - application/json
+      description: Modifica el perfil de un administrador_academico con los datos entregados
+      parameters:
+      - description: AdministradorAcademico a modificar
+        in: body
+        name: input_actualiza_administrador_academico
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.PutMyAdministradorAcademicoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.PutMyAdministradorAcademicoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica mi perfil
+      tags:
+      - 04 - Administración Academica
+  /administracion-ti/administradores-academicos:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los administradores-academicos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/SwaggerMessages.ListAdministradoresAcademicosSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de administradores-academicos
+      tags:
+      - 05 - Administración Ti
+    post:
+      consumes:
+      - application/json
+      description: Genera un nuevo administrador_academico con los datos entregados
+      parameters:
+      - description: AdministradorAcademico a agregar
+        in: body
+        name: input_administrador_academico
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.AddNewAdministradorAcademicoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.AddNewAdministradorAcademicoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Agrega un nuevo administrador_academico
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/administradores-academicos/{uuid_administrador_academico}:
+    delete:
+      consumes:
+      - application/json
+      description: Elimina un administrador_academico con los datos entregados
+      parameters:
+      - description: UUID del administrador_academico a eliminar
+        in: path
+        name: uuid_administrador_academico
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.DeleteAdministradorAcademicoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Elimina un administrador_academico
+      tags:
+      - 05 - Administración Ti
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un administrador_academico según su UUID
+      parameters:
+      - description: UUID del administrador_academico a buscar
+        in: path
+        name: uuid_administrador_academico
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.GetOneAdministradorAcademicoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un administrador_academico
+      tags:
+      - 05 - Administración Ti
+    put:
+      consumes:
+      - application/json
+      description: Modifica un administrador_academico con los datos entregados
+      parameters:
+      - description: UUID del administrador_academico a modificar
+        in: path
+        name: uuid_administrador_academico
+        required: true
+        type: string
+      - description: AdministradorAcademico a modificar
+        in: body
+        name: input_actualiza_administrador_academico
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.PutOneAdministradorAcademicoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.PutOneAdministradorAcademicoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica un administrador_academico
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/administradores-ti:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los administradores-ti
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/SwaggerMessages.ListAdministradoresTiSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de administradores-ti
+      tags:
+      - 05 - Administración Ti
+    post:
+      consumes:
+      - application/json
+      description: Genera un nuevo administrador_ti con los datos entregados
+      parameters:
+      - description: AdministradorTi a agregar
+        in: body
+        name: input_administrador_ti
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.AddNewAdministradorTiPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.AddNewAdministradorTiSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Agrega un nuevo administrador_ti
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/administradores-ti/{uuid_administrador_ti}:
+    delete:
+      consumes:
+      - application/json
+      description: Elimina un administrador_ti con los datos entregados
+      parameters:
+      - description: UUID del administrador_ti a eliminar
+        in: path
+        name: uuid_administrador_ti
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.DeleteAdministradorTiSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Elimina un administrador_ti
+      tags:
+      - 05 - Administración Ti
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un administrador_ti según su UUID
+      parameters:
+      - description: UUID del administrador_ti a buscar
+        in: path
+        name: uuid_administrador_ti
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.GetOneAdministradorTiSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un administrador_ti
+      tags:
+      - 05 - Administración Ti
+    put:
+      consumes:
+      - application/json
+      description: Modifica un administrador_ti con los datos entregados
+      parameters:
+      - description: UUID del administrador_ti a modificar
+        in: path
+        name: uuid_administrador_ti
+        required: true
+        type: string
+      - description: AdministradorTi a modificar
+        in: body
+        name: input_actualiza_administrador_ti
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.PutOneAdministradorTiPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.PutOneAdministradorTiSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica un administrador_ti
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/cursos:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los cursos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/SwaggerMessages.ListCursosSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de cursos
+      tags:
+      - 05 - Administración Ti
+    post:
+      consumes:
+      - application/json
+      description: Genera un nuevo curso con los datos entregados
+      parameters:
+      - description: Curso a agregar
+        in: body
+        name: input_curso
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.AddNewCursoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.AddNewCursoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Agrega un nuevo curso
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/cursos/{id_curso}:
+    delete:
+      consumes:
+      - application/json
+      description: Elimina un curso con los datos entregados
+      parameters:
+      - description: ID del curso a eliminar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.DeleteCursoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Elimina un curso
+      tags:
+      - 05 - Administración Ti
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un curso según su ID
+      parameters:
+      - description: ID del curso a buscar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.GetOneCursoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un curso
+      tags:
+      - 05 - Administración Ti
+    put:
+      consumes:
+      - application/json
+      description: Modifica un curso con los datos entregados
+      parameters:
+      - description: ID del curso a modificar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: Curso a modificar
+        in: body
+        name: input_actualiza_curso
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.PutOneCursoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.PutOneCursoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica un curso
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/estudiantes:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los estudiantes existentes
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/SwaggerMessages.ListEstudiantesSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de estudiantes
+      tags:
+      - 05 - Administración Ti
+    post:
+      consumes:
+      - application/json
+      description: Genera un nuevo estudiante con los datos entregados
+      parameters:
+      - description: Estudiante a agregar
+        in: body
+        name: input_estudiante
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.AddNewEstudiantePayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.AddNewEstudianteSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Agrega un nuevo estudiante
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/estudiantes/{uuid_estudiante}:
+    delete:
+      consumes:
+      - application/json
+      description: Elimina un estudiante con los datos entregados
+      parameters:
+      - description: UUID del estudiante a eliminar
+        in: path
+        name: uuid_estudiante
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.DeleteEstudianteSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Elimina un estudiante
+      tags:
+      - 05 - Administración Ti
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un estudiante según su UUID
+      parameters:
+      - description: UUID del estudiante a buscar
+        in: path
+        name: uuid_estudiante
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.GetOneEstudianteSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un estudiante
+      tags:
+      - 05 - Administración Ti
+    put:
+      consumes:
+      - application/json
+      description: Modifica un estudiante con los datos entregados
+      parameters:
+      - description: UUID del estudiante a modificar
+        in: path
+        name: uuid_estudiante
+        required: true
+        type: string
+      - description: Estudiante a modificar
+        in: body
+        name: input_actualiza_estudiante
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.PutOneEstudiantePayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.PutOneEstudianteSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica un estudiante
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/evaluadores:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los evaluadores
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/SwaggerMessages.ListEvaluadoresSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de evaluadores
+      tags:
+      - 05 - Administración Ti
+    post:
+      consumes:
+      - application/json
+      description: Genera un nuevo evaluador con los datos entregados
+      parameters:
+      - description: Evaluador a agregar
+        in: body
+        name: input_evaluador
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.AddNewEvaluadorPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.AddNewEvaluadorSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Agrega un nuevo evaluador
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/evaluadores/{uuid_evaluador}:
+    delete:
+      consumes:
+      - application/json
+      description: Elimina un evaluador con los datos entregados
+      parameters:
+      - description: UUID del evaluador a eliminar
+        in: path
+        name: uuid_evaluador
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.DeleteEvaluadorSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Elimina un evaluador
+      tags:
+      - 05 - Administración Ti
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un evaluador según su UUID
+      parameters:
+      - description: UUID del evaluador a buscar
+        in: path
+        name: uuid_evaluador
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.GetOneEvaluadorSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un evaluador
+      tags:
+      - 05 - Administración Ti
+    put:
+      consumes:
+      - application/json
+      description: Modifica un evaluador con los datos entregados
+      parameters:
+      - description: UUID del evaluador a modificar
+        in: path
+        name: uuid_evaluador
+        required: true
+        type: string
+      - description: Evaluador a modificar
+        in: body
+        name: input_actualiza_evaluador
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.PutOneEvaluadorPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.PutOneEvaluadorSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica un evaluador
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/grupos:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los grupos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/SwaggerMessages.ListGruposSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de grupos
+      tags:
+      - 05 - Administración Ti
+    post:
+      consumes:
+      - application/json
+      description: Genera un nuevo grupo con los datos entregados
+      parameters:
+      - description: Grupo a agregar
+        in: body
+        name: input_grupo
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.AddNewGrupoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.AddNewGrupoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Agrega un nuevo grupo
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/grupos/{id_grupo}:
+    delete:
+      consumes:
+      - application/json
+      description: Elimina un grupo con los datos entregados
+      parameters:
+      - description: ID del grupo a eliminar
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.DeleteGrupoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Elimina un grupo
+      tags:
+      - 05 - Administración Ti
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un grupo según su ID
+      parameters:
+      - description: ID del grupo a buscar
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.GetOneGrupoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un grupo
+      tags:
+      - 05 - Administración Ti
+    put:
+      consumes:
+      - application/json
+      description: Modifica un grupo con los datos entregados
+      parameters:
+      - description: ID del grupo a modificar
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      - description: Grupo a modificar
+        in: body
+        name: input_actualiza_grupo
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.PutOneGrupoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.PutOneGrupoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica un grupo
+      tags:
+      - 05 - Administración Ti
   /administracion-ti/login:
     post:
       consumes:
@@ -2488,7 +2805,51 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Autenticación de administrador ti
       tags:
-      - Autenticación
+      - 01 - Autenticación
+  /administracion-ti/me:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene el perfil del administrador ti según su token
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.GetMyAdministradorTiSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene el perfil del administrador ti
+      tags:
+      - 05 - Administración Ti
+    put:
+      consumes:
+      - application/json
+      description: Modifica el perfil de un administrador_ti con los datos entregados
+      parameters:
+      - description: AdministradorTi a modificar
+        in: body
+        name: input_actualiza_administrador_ti
+        required: true
+        schema:
+          $ref: '#/definitions/RequestMessages.PutMyAdministradorTiPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/SwaggerMessages.PutMyAdministradorTiSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica mi perfil
+      tags:
+      - 05 - Administración Ti
   /administracion-ti/periodos:
     post:
       consumes:
@@ -2514,7 +2875,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Agrega un nuevo periodo
       tags:
-      - Administración Ti
+      - 05 - Administración Ti
   /administracion-ti/periodos/{id_periodo}:
     delete:
       consumes:
@@ -2539,7 +2900,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Elimina un periodo
       tags:
-      - Administración Ti
+      - 05 - Administración Ti
     put:
       consumes:
       - application/json
@@ -2569,7 +2930,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Modifica un periodo
       tags:
-      - Administración Ti
+      - 05 - Administración Ti
   /administracion-ti/roles:
     post:
       consumes:
@@ -2595,7 +2956,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Agrega un nuevo rol
       tags:
-      - Administración Ti
+      - 05 - Administración Ti
   /administracion-ti/roles/{id_rol}:
     delete:
       consumes:
@@ -2620,7 +2981,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Elimina un rol
       tags:
-      - Administración Ti
+      - 05 - Administración Ti
     put:
       consumes:
       - application/json
@@ -2650,7 +3011,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Modifica un rol
       tags:
-      - Administración Ti
+      - 05 - Administración Ti
   /estudiantes/login:
     post:
       consumes:
@@ -2678,7 +3039,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Autenticación de estudiante
       tags:
-      - Autenticación
+      - 01 - Autenticación
   /estudiantes/me:
     get:
       consumes:
@@ -2697,7 +3058,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Obtiene el perfil del estudiante
       tags:
-      - Estudiantes
+      - 02 - Estudiantes
     put:
       consumes:
       - application/json
@@ -2722,7 +3083,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Modifica mi perfil
       tags:
-      - Estudiantes
+      - 02 - Estudiantes
   /estudiantes/me/curso:
     get:
       consumes:
@@ -2741,7 +3102,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Obtiene un curso de un estudiante
       tags:
-      - Estudiantes
+      - 02 - Estudiantes
   /estudiantes/me/estadisticas/evolucion/competencia/{codigo_competencia}:
     get:
       consumes:
@@ -2768,7 +3129,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Evolución por competencia
       tags:
-      - Estudiantes
+      - 02 - Estudiantes
   /estudiantes/me/estadisticas/evolucion/evaluacion/{id_evaluacion}:
     get:
       consumes:
@@ -2795,7 +3156,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Evolución por evaluación
       tags:
-      - Estudiantes
+      - 02 - Estudiantes
   /estudiantes/me/evaluaciones:
     get:
       consumes:
@@ -2816,7 +3177,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Lista de evaluaciones de un estudiante
       tags:
-      - Estudiantes
+      - 02 - Estudiantes
   /estudiantes/me/grupo:
     get:
       consumes:
@@ -2835,7 +3196,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Obtiene un grupo de un estudiante
       tags:
-      - Estudiantes
+      - 02 - Estudiantes
   /evaluadores/login:
     post:
       consumes:
@@ -2863,7 +3224,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Autenticación de evaluador
       tags:
-      - Autenticación
+      - 01 - Autenticación
   /evaluadores/me:
     get:
       consumes:
@@ -2882,7 +3243,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Obtiene el perfil del evaluador
       tags:
-      - Evaluadores
+      - 03 - Evaluadores
     put:
       consumes:
       - application/json
@@ -2907,7 +3268,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Modifica mi perfil
       tags:
-      - Evaluadores
+      - 03 - Evaluadores
   /evaluadores/me/curso:
     get:
       consumes:
@@ -2926,7 +3287,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Obtiene un curso de un evaluador
       tags:
-      - Evaluadores
+      - 03 - Evaluadores
   /evaluadores/me/evaluaciones:
     post:
       consumes:
@@ -2952,7 +3313,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Genera una evaluación para un estudiante
       tags:
-      - Evaluadores
+      - 03 - Evaluadores
   /evaluadores/me/grupo:
     get:
       consumes:
@@ -2971,7 +3332,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Obtiene un grupo de un evaluador
       tags:
-      - Evaluadores
+      - 03 - Evaluadores
   /periodos:
     get:
       consumes:
@@ -2992,7 +3353,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Lista de periodos
       tags:
-      - No auth
+      - 00 - Rutas públicas
   /periodos/{id_periodo}:
     get:
       consumes:
@@ -3017,7 +3378,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Obtiene un periodo
       tags:
-      - No auth
+      - 00 - Rutas públicas
   /roles:
     get:
       consumes:
@@ -3038,7 +3399,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Lista de roles
       tags:
-      - No auth
+      - 00 - Rutas públicas
   /roles/{id_rol}:
     get:
       consumes:
@@ -3063,5 +3424,5 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Obtiene un rol
       tags:
-      - No auth
+      - 00 - Rutas públicas
 swagger: "2.0"

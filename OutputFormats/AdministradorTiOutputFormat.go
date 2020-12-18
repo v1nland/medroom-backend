@@ -33,6 +33,18 @@ func GetOneAdministradorTiOutput(u Models.AdministradorTi) (output ResponseMessa
 	}
 }
 
+func GetMyAdministradorTiOutput(u Models.AdministradorTi) (output ResponseMessages.GetMyAdministradorTiResponse) {
+	return ResponseMessages.GetMyAdministradorTiResponse{
+		Rol_administrador_ti:                GetOneRolOutput(u.Rol_administrador_ti),
+		Rut_administrador_ti:                u.Rut_administrador_ti,
+		Nombres_administrador_ti:            u.Nombres_administrador_ti,
+		Apellidos_administrador_ti:          u.Apellidos_administrador_ti,
+		Correo_electronico_administrador_ti: u.Correo_electronico_administrador_ti,
+		Telefono_fijo_administrador_ti:      u.Telefono_fijo_administrador_ti,
+		Telefono_celular_administrador_ti:   u.Telefono_celular_administrador_ti,
+	}
+}
+
 func AddNewAdministradorTiOutput(u Models.AdministradorTi) (output ResponseMessages.AddNewAdministradorTiResponse) {
 	return ResponseMessages.AddNewAdministradorTiResponse{
 		Id_rol:                              u.Id_rol,
@@ -47,6 +59,18 @@ func AddNewAdministradorTiOutput(u Models.AdministradorTi) (output ResponseMessa
 
 func PutOneAdministradorTiOutput(u Models.AdministradorTi) (output ResponseMessages.PutOneAdministradorTiResponse) {
 	return ResponseMessages.PutOneAdministradorTiResponse{
+		Id_rol:                              u.Id_rol,
+		Nombres_administrador_ti:            u.Nombres_administrador_ti,
+		Apellidos_administrador_ti:          u.Apellidos_administrador_ti,
+		Hash_contrasena_administrador_ti:    u.Hash_contrasena_administrador_ti,
+		Correo_electronico_administrador_ti: u.Correo_electronico_administrador_ti,
+		Telefono_fijo_administrador_ti:      u.Telefono_fijo_administrador_ti,
+		Telefono_celular_administrador_ti:   u.Telefono_celular_administrador_ti,
+	}
+}
+
+func PutMyAdministradorTiOutput(u Models.AdministradorTi) (output ResponseMessages.PutMyAdministradorTiResponse) {
+	return ResponseMessages.PutMyAdministradorTiResponse{
 		Id_rol:                              u.Id_rol,
 		Nombres_administrador_ti:            u.Nombres_administrador_ti,
 		Apellidos_administrador_ti:          u.Apellidos_administrador_ti,

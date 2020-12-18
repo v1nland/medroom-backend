@@ -15,7 +15,7 @@ import (
 
 // @Summary Autenticación de estudiante
 // @Description Ingresa usuario y contraseña para iniciar sesión
-// @Tags Autenticación
+// @Tags 01 - Autenticación
 // @Accept  json
 // @Produce  json
 // @Param   input_credentials     body    RequestMessages.LoginEstudiantePayload     true        "Credenciales de acceso"
@@ -56,7 +56,7 @@ func AutenticarEstudiante(c *gin.Context) {
 
 // @Summary Autenticación de evaluador
 // @Description Ingresa usuario y contraseña para iniciar sesión
-// @Tags Autenticación
+// @Tags 01 - Autenticación
 // @Accept  json
 // @Produce  json
 // @Param   input_credentials     body    RequestMessages.LoginEvaluadorPayload     true        "Credenciales de acceso"
@@ -97,7 +97,7 @@ func AutenticarEvaluador(c *gin.Context) {
 
 // @Summary Autenticación de administrador académico
 // @Description Ingresa usuario y contraseña para iniciar sesión
-// @Tags Autenticación
+// @Tags 01 - Autenticación
 // @Accept  json
 // @Produce  json
 // @Param   input_credentials     body    RequestMessages.LoginAdministradorAcademicoPayload     true        "Credenciales de acceso"
@@ -138,7 +138,7 @@ func AutenticarAdministradorAcademico(c *gin.Context) {
 
 // @Summary Autenticación de administrador ti
 // @Description Ingresa usuario y contraseña para iniciar sesión
-// @Tags Autenticación
+// @Tags 01 - Autenticación
 // @Accept  json
 // @Produce  json
 // @Param   input_credentials     body    RequestMessages.LoginAdministradorTiPayload     true        "Credenciales de acceso"

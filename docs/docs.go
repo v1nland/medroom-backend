@@ -33,995 +33,7 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/administracion-academica/login": {
-            "post": {
-                "description": "Ingresa usuario y contraseña para iniciar sesión",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Autenticación"
-                ],
-                "summary": "Autenticación de administrador académico",
-                "parameters": [
-                    {
-                        "description": "Credenciales de acceso",
-                        "name": "input_credentials",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RequestMessages.LoginAdministradorAcademicoPayload"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/SwaggerMessages.AuthenticationSwagger"
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            }
-        },
-        "/administracion-ti/administradores-academicos": {
-            "get": {
-                "description": "Lista todos los administradores-academicos",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Lista de administradores-academicos",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/SwaggerMessages.ListAdministradoresAcademicosSwagger"
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "description": "Genera un nuevo administrador_academico con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Agrega un nuevo administrador_academico",
-                "parameters": [
-                    {
-                        "description": "AdministradorAcademico a agregar",
-                        "name": "input_administrador_academico",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RequestMessages.AddNewAdministradorAcademicoPayload"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.AddNewAdministradorAcademicoSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            }
-        },
-        "/administracion-ti/administradores-academicos/{uuid_administrador_academico}": {
-            "get": {
-                "description": "Obtiene un administrador_academico según su UUID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Obtiene un administrador_academico",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "UUID del administrador_academico a buscar",
-                        "name": "uuid_administrador_academico",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GetOneAdministradorAcademicoSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "description": "Modifica un administrador_academico con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Modifica un administrador_academico",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "UUID del administrador_academico a modificar",
-                        "name": "uuid_administrador_academico",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "description": "AdministradorAcademico a modificar",
-                        "name": "input_actualiza_administrador_academico",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RequestMessages.PutOneAdministradorAcademicoPayload"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.PutOneAdministradorAcademicoSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "description": "Elimina un administrador_academico con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Elimina un administrador_academico",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "UUID del administrador_academico a eliminar",
-                        "name": "uuid_administrador_academico",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.DeleteAdministradorAcademicoSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            }
-        },
-        "/administracion-ti/administradores-ti": {
-            "get": {
-                "description": "Lista todos los administradores-ti",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Lista de administradores-ti",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/SwaggerMessages.ListAdministradoresTiSwagger"
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "description": "Genera un nuevo administrador_ti con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Agrega un nuevo administrador_ti",
-                "parameters": [
-                    {
-                        "description": "AdministradorTi a agregar",
-                        "name": "input_administrador_ti",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RequestMessages.AddNewAdministradorTiPayload"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.AddNewAdministradorTiSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            }
-        },
-        "/administracion-ti/administradores-ti/{uuid_administrador_ti}": {
-            "get": {
-                "description": "Obtiene un administrador_ti según su UUID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Obtiene un administrador_ti",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "UUID del administrador_ti a buscar",
-                        "name": "uuid_administrador_ti",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GetOneAdministradorTiSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "description": "Modifica un administrador_ti con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Modifica un administrador_ti",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "UUID del administrador_ti a modificar",
-                        "name": "uuid_administrador_ti",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "description": "AdministradorTi a modificar",
-                        "name": "input_actualiza_administrador_ti",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RequestMessages.PutOneAdministradorTiPayload"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.PutOneAdministradorTiSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "description": "Elimina un administrador_ti con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Elimina un administrador_ti",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "UUID del administrador_ti a eliminar",
-                        "name": "uuid_administrador_ti",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.DeleteAdministradorTiSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            }
-        },
-        "/administracion-ti/cursos": {
-            "get": {
-                "description": "Lista todos los cursos",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Lista de cursos",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/SwaggerMessages.ListCursosSwagger"
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "description": "Genera un nuevo curso con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Agrega un nuevo curso",
-                "parameters": [
-                    {
-                        "description": "Curso a agregar",
-                        "name": "input_curso",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RequestMessages.AddNewCursoPayload"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.AddNewCursoSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            }
-        },
-        "/administracion-ti/cursos/{id_curso}": {
-            "get": {
-                "description": "Obtiene un curso según su ID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Obtiene un curso",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "ID del curso a buscar",
-                        "name": "id_curso",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GetOneCursoSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "description": "Modifica un curso con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Modifica un curso",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "ID del curso a modificar",
-                        "name": "id_curso",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "description": "Curso a modificar",
-                        "name": "input_actualiza_curso",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RequestMessages.PutOneCursoPayload"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.PutOneCursoSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "description": "Elimina un curso con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Elimina un curso",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "ID del curso a eliminar",
-                        "name": "id_curso",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.DeleteCursoSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            }
-        },
-        "/administracion-ti/estudiantes": {
-            "get": {
-                "description": "Lista todos los estudiantes existentes",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Lista de estudiantes",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/SwaggerMessages.ListEstudiantesSwagger"
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "description": "Genera un nuevo estudiante con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Agrega un nuevo estudiante",
-                "parameters": [
-                    {
-                        "description": "Estudiante a agregar",
-                        "name": "input_estudiante",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RequestMessages.AddNewEstudiantePayload"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.AddNewEstudianteSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            }
-        },
-        "/administracion-ti/estudiantes/{uuid_estudiante}": {
-            "get": {
-                "description": "Obtiene un estudiante según su UUID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Obtiene un estudiante",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "UUID del estudiante a buscar",
-                        "name": "uuid_estudiante",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GetOneEstudianteSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "description": "Modifica un estudiante con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Modifica un estudiante",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "UUID del estudiante a modificar",
-                        "name": "uuid_estudiante",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "description": "Estudiante a modificar",
-                        "name": "input_actualiza_estudiante",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RequestMessages.PutOneEstudiantePayload"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.PutOneEstudianteSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "description": "Elimina un estudiante con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Elimina un estudiante",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "UUID del estudiante a eliminar",
-                        "name": "uuid_estudiante",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.DeleteEstudianteSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            }
-        },
-        "/administracion-ti/evaluadores": {
-            "get": {
-                "description": "Lista todos los evaluadores",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Lista de evaluadores",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/SwaggerMessages.ListEvaluadoresSwagger"
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "description": "Genera un nuevo evaluador con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Agrega un nuevo evaluador",
-                "parameters": [
-                    {
-                        "description": "Evaluador a agregar",
-                        "name": "input_evaluador",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RequestMessages.AddNewEvaluadorPayload"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.AddNewEvaluadorSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            }
-        },
-        "/administracion-ti/evaluadores/{uuid_evaluador}": {
-            "get": {
-                "description": "Obtiene un evaluador según su UUID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Obtiene un evaluador",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "UUID del evaluador a buscar",
-                        "name": "uuid_evaluador",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GetOneEvaluadorSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "description": "Modifica un evaluador con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Modifica un evaluador",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "UUID del evaluador a modificar",
-                        "name": "uuid_evaluador",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "description": "Evaluador a modificar",
-                        "name": "input_actualiza_evaluador",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RequestMessages.PutOneEvaluadorPayload"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.PutOneEvaluadorSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "description": "Elimina un evaluador con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Administración Ti"
-                ],
-                "summary": "Elimina un evaluador",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "UUID del evaluador a eliminar",
-                        "name": "uuid_evaluador",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.DeleteEvaluadorSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            }
-        },
-        "/administracion-ti/grupos": {
+        "/administracion-academica/grupos": {
             "get": {
                 "description": "Lista todos los grupos",
                 "consumes": [
@@ -1031,7 +43,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Administración Ti"
+                    "04 - Administración Academica"
                 ],
                 "summary": "Lista de grupos",
                 "responses": {
@@ -1061,7 +73,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Administración Ti"
+                    "04 - Administración Academica"
                 ],
                 "summary": "Agrega un nuevo grupo",
                 "parameters": [
@@ -1091,7 +103,7 @@ var doc = `{
                 }
             }
         },
-        "/administracion-ti/grupos/{id_grupo}": {
+        "/administracion-academica/grupos/{id_grupo}": {
             "get": {
                 "description": "Obtiene un grupo según su ID",
                 "consumes": [
@@ -1101,7 +113,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Administración Ti"
+                    "04 - Administración Academica"
                 ],
                 "summary": "Obtiene un grupo",
                 "parameters": [
@@ -1137,7 +149,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Administración Ti"
+                    "04 - Administración Academica"
                 ],
                 "summary": "Modifica un grupo",
                 "parameters": [
@@ -1182,7 +194,1251 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Administración Ti"
+                    "04 - Administración Academica"
+                ],
+                "summary": "Elimina un grupo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID del grupo a eliminar",
+                        "name": "id_grupo",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.DeleteGrupoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-academica/login": {
+            "post": {
+                "description": "Ingresa usuario y contraseña para iniciar sesión",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "01 - Autenticación"
+                ],
+                "summary": "Autenticación de administrador académico",
+                "parameters": [
+                    {
+                        "description": "Credenciales de acceso",
+                        "name": "input_credentials",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.LoginAdministradorAcademicoPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/SwaggerMessages.AuthenticationSwagger"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-academica/me": {
+            "get": {
+                "description": "Obtiene el perfil del administrador academico según su token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "04 - Administración Academica"
+                ],
+                "summary": "Obtiene el perfil del administrador academico",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.GetMyAdministradorAcademicoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Modifica el perfil de un administrador_academico con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "04 - Administración Academica"
+                ],
+                "summary": "Modifica mi perfil",
+                "parameters": [
+                    {
+                        "description": "AdministradorAcademico a modificar",
+                        "name": "input_actualiza_administrador_academico",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.PutMyAdministradorAcademicoPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.PutMyAdministradorAcademicoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-ti/administradores-academicos": {
+            "get": {
+                "description": "Lista todos los administradores-academicos",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Lista de administradores-academicos",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/SwaggerMessages.ListAdministradoresAcademicosSwagger"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Genera un nuevo administrador_academico con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Agrega un nuevo administrador_academico",
+                "parameters": [
+                    {
+                        "description": "AdministradorAcademico a agregar",
+                        "name": "input_administrador_academico",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.AddNewAdministradorAcademicoPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.AddNewAdministradorAcademicoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-ti/administradores-academicos/{uuid_administrador_academico}": {
+            "get": {
+                "description": "Obtiene un administrador_academico según su UUID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Obtiene un administrador_academico",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del administrador_academico a buscar",
+                        "name": "uuid_administrador_academico",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.GetOneAdministradorAcademicoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Modifica un administrador_academico con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Modifica un administrador_academico",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del administrador_academico a modificar",
+                        "name": "uuid_administrador_academico",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "AdministradorAcademico a modificar",
+                        "name": "input_actualiza_administrador_academico",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.PutOneAdministradorAcademicoPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.PutOneAdministradorAcademicoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Elimina un administrador_academico con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Elimina un administrador_academico",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del administrador_academico a eliminar",
+                        "name": "uuid_administrador_academico",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.DeleteAdministradorAcademicoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-ti/administradores-ti": {
+            "get": {
+                "description": "Lista todos los administradores-ti",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Lista de administradores-ti",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/SwaggerMessages.ListAdministradoresTiSwagger"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Genera un nuevo administrador_ti con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Agrega un nuevo administrador_ti",
+                "parameters": [
+                    {
+                        "description": "AdministradorTi a agregar",
+                        "name": "input_administrador_ti",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.AddNewAdministradorTiPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.AddNewAdministradorTiSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-ti/administradores-ti/{uuid_administrador_ti}": {
+            "get": {
+                "description": "Obtiene un administrador_ti según su UUID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Obtiene un administrador_ti",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del administrador_ti a buscar",
+                        "name": "uuid_administrador_ti",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.GetOneAdministradorTiSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Modifica un administrador_ti con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Modifica un administrador_ti",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del administrador_ti a modificar",
+                        "name": "uuid_administrador_ti",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "AdministradorTi a modificar",
+                        "name": "input_actualiza_administrador_ti",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.PutOneAdministradorTiPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.PutOneAdministradorTiSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Elimina un administrador_ti con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Elimina un administrador_ti",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del administrador_ti a eliminar",
+                        "name": "uuid_administrador_ti",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.DeleteAdministradorTiSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-ti/cursos": {
+            "get": {
+                "description": "Lista todos los cursos",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Lista de cursos",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/SwaggerMessages.ListCursosSwagger"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Genera un nuevo curso con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Agrega un nuevo curso",
+                "parameters": [
+                    {
+                        "description": "Curso a agregar",
+                        "name": "input_curso",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.AddNewCursoPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.AddNewCursoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-ti/cursos/{id_curso}": {
+            "get": {
+                "description": "Obtiene un curso según su ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Obtiene un curso",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID del curso a buscar",
+                        "name": "id_curso",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.GetOneCursoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Modifica un curso con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Modifica un curso",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID del curso a modificar",
+                        "name": "id_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Curso a modificar",
+                        "name": "input_actualiza_curso",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.PutOneCursoPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.PutOneCursoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Elimina un curso con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Elimina un curso",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID del curso a eliminar",
+                        "name": "id_curso",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.DeleteCursoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-ti/estudiantes": {
+            "get": {
+                "description": "Lista todos los estudiantes existentes",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Lista de estudiantes",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/SwaggerMessages.ListEstudiantesSwagger"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Genera un nuevo estudiante con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Agrega un nuevo estudiante",
+                "parameters": [
+                    {
+                        "description": "Estudiante a agregar",
+                        "name": "input_estudiante",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.AddNewEstudiantePayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.AddNewEstudianteSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-ti/estudiantes/{uuid_estudiante}": {
+            "get": {
+                "description": "Obtiene un estudiante según su UUID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Obtiene un estudiante",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del estudiante a buscar",
+                        "name": "uuid_estudiante",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.GetOneEstudianteSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Modifica un estudiante con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Modifica un estudiante",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del estudiante a modificar",
+                        "name": "uuid_estudiante",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Estudiante a modificar",
+                        "name": "input_actualiza_estudiante",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.PutOneEstudiantePayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.PutOneEstudianteSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Elimina un estudiante con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Elimina un estudiante",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del estudiante a eliminar",
+                        "name": "uuid_estudiante",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.DeleteEstudianteSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-ti/evaluadores": {
+            "get": {
+                "description": "Lista todos los evaluadores",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Lista de evaluadores",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/SwaggerMessages.ListEvaluadoresSwagger"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Genera un nuevo evaluador con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Agrega un nuevo evaluador",
+                "parameters": [
+                    {
+                        "description": "Evaluador a agregar",
+                        "name": "input_evaluador",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.AddNewEvaluadorPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.AddNewEvaluadorSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-ti/evaluadores/{uuid_evaluador}": {
+            "get": {
+                "description": "Obtiene un evaluador según su UUID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Obtiene un evaluador",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del evaluador a buscar",
+                        "name": "uuid_evaluador",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.GetOneEvaluadorSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Modifica un evaluador con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Modifica un evaluador",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del evaluador a modificar",
+                        "name": "uuid_evaluador",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Evaluador a modificar",
+                        "name": "input_actualiza_evaluador",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.PutOneEvaluadorPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.PutOneEvaluadorSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Elimina un evaluador con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Elimina un evaluador",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del evaluador a eliminar",
+                        "name": "uuid_evaluador",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.DeleteEvaluadorSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-ti/grupos": {
+            "get": {
+                "description": "Lista todos los grupos",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Lista de grupos",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/SwaggerMessages.ListGruposSwagger"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Genera un nuevo grupo con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Agrega un nuevo grupo",
+                "parameters": [
+                    {
+                        "description": "Grupo a agregar",
+                        "name": "input_grupo",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.AddNewGrupoPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.AddNewGrupoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-ti/grupos/{id_grupo}": {
+            "get": {
+                "description": "Obtiene un grupo según su ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Obtiene un grupo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID del grupo a buscar",
+                        "name": "id_grupo",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.GetOneGrupoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Modifica un grupo con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Modifica un grupo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID del grupo a modificar",
+                        "name": "id_grupo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Grupo a modificar",
+                        "name": "input_actualiza_grupo",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.PutOneGrupoPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.PutOneGrupoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Elimina un grupo con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
                 ],
                 "summary": "Elimina un grupo",
                 "parameters": [
@@ -1220,7 +1476,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Autenticación"
+                    "01 - Autenticación"
                 ],
                 "summary": "Autenticación de administrador ti",
                 "parameters": [
@@ -1253,6 +1509,73 @@ var doc = `{
                 }
             }
         },
+        "/administracion-ti/me": {
+            "get": {
+                "description": "Obtiene el perfil del administrador ti según su token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Obtiene el perfil del administrador ti",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.GetMyAdministradorTiSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Modifica el perfil de un administrador_ti con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Modifica mi perfil",
+                "parameters": [
+                    {
+                        "description": "AdministradorTi a modificar",
+                        "name": "input_actualiza_administrador_ti",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestMessages.PutMyAdministradorTiPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SwaggerMessages.PutMyAdministradorTiSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
         "/administracion-ti/periodos": {
             "post": {
                 "description": "Genera un nuevo periodo con los datos entregados",
@@ -1263,7 +1586,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Administración Ti"
+                    "05 - Administración Ti"
                 ],
                 "summary": "Agrega un nuevo periodo",
                 "parameters": [
@@ -1303,7 +1626,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Administración Ti"
+                    "05 - Administración Ti"
                 ],
                 "summary": "Modifica un periodo",
                 "parameters": [
@@ -1348,7 +1671,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Administración Ti"
+                    "05 - Administración Ti"
                 ],
                 "summary": "Elimina un periodo",
                 "parameters": [
@@ -1386,7 +1709,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Administración Ti"
+                    "05 - Administración Ti"
                 ],
                 "summary": "Agrega un nuevo rol",
                 "parameters": [
@@ -1426,7 +1749,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Administración Ti"
+                    "05 - Administración Ti"
                 ],
                 "summary": "Modifica un rol",
                 "parameters": [
@@ -1471,7 +1794,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Administración Ti"
+                    "05 - Administración Ti"
                 ],
                 "summary": "Elimina un rol",
                 "parameters": [
@@ -1509,7 +1832,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Autenticación"
+                    "01 - Autenticación"
                 ],
                 "summary": "Autenticación de estudiante",
                 "parameters": [
@@ -1552,7 +1875,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Estudiantes"
+                    "02 - Estudiantes"
                 ],
                 "summary": "Obtiene el perfil del estudiante",
                 "responses": {
@@ -1579,7 +1902,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Estudiantes"
+                    "02 - Estudiantes"
                 ],
                 "summary": "Modifica mi perfil",
                 "parameters": [
@@ -1619,7 +1942,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Estudiantes"
+                    "02 - Estudiantes"
                 ],
                 "summary": "Obtiene un curso de un estudiante",
                 "responses": {
@@ -1648,7 +1971,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Estudiantes"
+                    "02 - Estudiantes"
                 ],
                 "summary": "Evolución por competencia",
                 "parameters": [
@@ -1689,7 +2012,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Estudiantes"
+                    "02 - Estudiantes"
                 ],
                 "summary": "Evolución por evaluación",
                 "parameters": [
@@ -1730,7 +2053,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Estudiantes"
+                    "02 - Estudiantes"
                 ],
                 "summary": "Lista de evaluaciones de un estudiante",
                 "responses": {
@@ -1762,7 +2085,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Estudiantes"
+                    "02 - Estudiantes"
                 ],
                 "summary": "Obtiene un grupo de un estudiante",
                 "responses": {
@@ -1791,7 +2114,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Autenticación"
+                    "01 - Autenticación"
                 ],
                 "summary": "Autenticación de evaluador",
                 "parameters": [
@@ -1834,7 +2157,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Evaluadores"
+                    "03 - Evaluadores"
                 ],
                 "summary": "Obtiene el perfil del evaluador",
                 "responses": {
@@ -1861,7 +2184,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Evaluadores"
+                    "03 - Evaluadores"
                 ],
                 "summary": "Modifica mi perfil",
                 "parameters": [
@@ -1901,7 +2224,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Evaluadores"
+                    "03 - Evaluadores"
                 ],
                 "summary": "Obtiene un curso de un evaluador",
                 "responses": {
@@ -1930,7 +2253,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Evaluadores"
+                    "03 - Evaluadores"
                 ],
                 "summary": "Genera una evaluación para un estudiante",
                 "parameters": [
@@ -1970,7 +2293,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Evaluadores"
+                    "03 - Evaluadores"
                 ],
                 "summary": "Obtiene un grupo de un evaluador",
                 "responses": {
@@ -1999,7 +2322,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "No auth"
+                    "00 - Rutas públicas"
                 ],
                 "summary": "Lista de periodos",
                 "responses": {
@@ -2031,7 +2354,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "No auth"
+                    "00 - Rutas públicas"
                 ],
                 "summary": "Obtiene un periodo",
                 "parameters": [
@@ -2069,7 +2392,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "No auth"
+                    "00 - Rutas públicas"
                 ],
                 "summary": "Lista de roles",
                 "responses": {
@@ -2101,7 +2424,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "No auth"
+                    "00 - Rutas públicas"
                 ],
                 "summary": "Obtiene un rol",
                 "parameters": [
@@ -2422,6 +2745,67 @@ var doc = `{
                 },
                 "puntaje_competencia": {
                     "type": "integer"
+                }
+            }
+        },
+        "RequestMessages.PutMyAdministradorAcademicoPayload": {
+            "type": "object",
+            "properties": {
+                "apellidos_administrador_academico": {
+                    "type": "string"
+                },
+                "correo_electronico_administrador_academico": {
+                    "type": "string"
+                },
+                "hash_contrasena_administrador_academico": {
+                    "type": "string"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_administrador_academico": {
+                    "type": "string"
+                },
+                "rut_administrador_academico": {
+                    "type": "string"
+                },
+                "telefono_celular_administrador_academico": {
+                    "type": "string"
+                },
+                "telefono_fijo_administrador_academico": {
+                    "type": "string"
+                }
+            }
+        },
+        "RequestMessages.PutMyAdministradorTiPayload": {
+            "type": "object",
+            "properties": {
+                "apellidos_administrador_ti": {
+                    "type": "string"
+                },
+                "correo_electronico_administrador_ti": {
+                    "type": "string"
+                },
+                "hash_contrasena_administrador_ti": {
+                    "type": "string"
+                },
+                "id_grupo": {
+                    "type": "integer"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_administrador_ti": {
+                    "type": "string"
+                },
+                "rut_administrador_ti": {
+                    "type": "string"
+                },
+                "telefono_celular_administrador_ti": {
+                    "type": "string"
+                },
+                "telefono_fijo_administrador_ti": {
+                    "type": "string"
                 }
             }
         },
@@ -3007,7 +3391,7 @@ var doc = `{
         "ResponseMessages.EvolucionEstudiantePorCompetenciaResponse": {
             "type": "object",
             "properties": {
-                "nombre_evaluacion": {
+                "nombre_competencia": {
                     "type": "string"
                 },
                 "promedio_curso": {
@@ -3167,6 +3551,58 @@ var doc = `{
                     "type": "string"
                 },
                 "sigla_grupo": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.GetMyAdministradorAcademicoResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_administrador_academico": {
+                    "type": "string"
+                },
+                "correo_electronico_administrador_academico": {
+                    "type": "string"
+                },
+                "nombres_administrador_academico": {
+                    "type": "string"
+                },
+                "rol_administrador_academico": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                },
+                "rut_administrador_academico": {
+                    "type": "string"
+                },
+                "telefono_celular_administrador_academico": {
+                    "type": "string"
+                },
+                "telefono_fijo_administrador_academico": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.GetMyAdministradorTiResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_administrador_ti": {
+                    "type": "string"
+                },
+                "correo_electronico_administrador_ti": {
+                    "type": "string"
+                },
+                "nombres_administrador_ti": {
+                    "type": "string"
+                },
+                "rol_administrador_ti": {
+                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                },
+                "rut_administrador_ti": {
+                    "type": "string"
+                },
+                "telefono_celular_administrador_ti": {
+                    "type": "string"
+                },
+                "telefono_fijo_administrador_ti": {
                     "type": "string"
                 }
             }
@@ -3713,6 +4149,64 @@ var doc = `{
             "type": "object",
             "properties": {
                 "nombre_rol": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.PutMyAdministradorAcademicoResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_administrador_academico": {
+                    "type": "string"
+                },
+                "correo_electronico_administrador_academico": {
+                    "type": "string"
+                },
+                "hash_contrasena_administrador_academico": {
+                    "type": "string"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_administrador_academico": {
+                    "type": "string"
+                },
+                "rut_administrador_academico": {
+                    "type": "string"
+                },
+                "telefono_celular_administrador_academico": {
+                    "type": "string"
+                },
+                "telefono_fijo_administrador_academico": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseMessages.PutMyAdministradorTiResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_administrador_ti": {
+                    "type": "string"
+                },
+                "correo_electronico_administrador_ti": {
+                    "type": "string"
+                },
+                "hash_contrasena_administrador_ti": {
+                    "type": "string"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_administrador_ti": {
+                    "type": "string"
+                },
+                "rut_administrador_ti": {
+                    "type": "string"
+                },
+                "telefono_celular_administrador_ti": {
+                    "type": "string"
+                },
+                "telefono_fijo_administrador_ti": {
                     "type": "string"
                 }
             }
@@ -4295,6 +4789,34 @@ var doc = `{
                 }
             }
         },
+        "SwaggerMessages.GetMyAdministradorAcademicoSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.GetMyAdministradorAcademicoResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.GetMyAdministradorTiSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.GetMyAdministradorTiResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
         "SwaggerMessages.GetMyEstudianteSwagger": {
             "type": "object",
             "properties": {
@@ -4552,6 +5074,34 @@ var doc = `{
             "properties": {
                 "data": {
                     "$ref": "#/definitions/ResponseMessages.ListRolesResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.PutMyAdministradorAcademicoSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.PutMyAdministradorAcademicoResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "SwaggerMessages.PutMyAdministradorTiSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/ResponseMessages.PutMyAdministradorTiResponse"
                 },
                 "meta": {
                     "type": "string"
