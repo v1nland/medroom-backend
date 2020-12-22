@@ -5,12 +5,12 @@ import (
 	"medroom-backend/Models"
 )
 
-func GetEstudiantesOutput(u []Models.Estudiante) (output []Response.ListEstudiantesResponse) {
+func ListEstudiantesOutput(u []Models.Estudiante) (output []Response.ListEstudiantesResponse) {
 	for i := 0; i < len(u); i++ {
 		output = append(output, Response.ListEstudiantesResponse{
 			Id:                      u[i].Id,
 			Rol_estudiante:          GetOneRolOutput(u[i].Rol_estudiante),
-			Evaluaciones_estudiante: GetEvaluacionesEstudianteOutput(u[i].Evaluaciones_estudiante),
+			Evaluaciones_estudiante: ListEvaluacionesEstudianteOutput(u[i].Calificaciones_estudiante),
 			// Id_grupo:                      u[i].Id_grupo,
 			Rut_estudiante:                u[i].Rut_estudiante,
 			Nombres_estudiante:            u[i].Nombres_estudiante,
@@ -27,7 +27,7 @@ func GetEstudiantesOutput(u []Models.Estudiante) (output []Response.ListEstudian
 func GetOneEstudianteOutput(u Models.Estudiante) (output Response.GetOneEstudianteResponse) {
 	return Response.GetOneEstudianteResponse{
 		Rol_estudiante:          GetOneRolOutput(u.Rol_estudiante),
-		Evaluaciones_estudiante: GetEvaluacionesEstudianteOutput(u.Evaluaciones_estudiante),
+		Evaluaciones_estudiante: ListEvaluacionesEstudianteOutput(u.Calificaciones_estudiante),
 		// Id_grupo:                      u.Id_grupo,
 		Rut_estudiante:                u.Rut_estudiante,
 		Nombres_estudiante:            u.Nombres_estudiante,
@@ -80,7 +80,7 @@ func DeleteEstudianteOutput(u Models.Estudiante) (output Response.DeleteEstudian
 func GetMyEstudianteOutput(u Models.Estudiante) (output Response.GetMyEstudianteResponse) {
 	return Response.GetMyEstudianteResponse{
 		Rol_estudiante:          GetOneRolOutput(u.Rol_estudiante),
-		Evaluaciones_estudiante: GetEvaluacionesEstudianteOutput(u.Evaluaciones_estudiante),
+		Evaluaciones_estudiante: ListEvaluacionesEstudianteOutput(u.Calificaciones_estudiante),
 		// Id_grupo:                      u.Id_grupo,
 		Rut_estudiante:                u.Rut_estudiante,
 		Nombres_estudiante:            u.Nombres_estudiante,

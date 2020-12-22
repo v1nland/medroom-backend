@@ -17,7 +17,7 @@ import (
 // @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} SwaggerMessages.ListAdministradoresAcademicosSwagger "OK"
+// @Success 200 {array} Swagger.ListAdministradoresAcademicosSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/administradores-academicos [get]
 func ListAdministradoresAcademicos(c *gin.Context) {
@@ -32,7 +32,7 @@ func ListAdministradoresAcademicos(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, Output.GetAdministradoresAcademicosOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.ListAdministradoresAcademicosOutput(container))
 }
 
 // @Summary Obtiene un administrador_academico
@@ -41,7 +41,7 @@ func ListAdministradoresAcademicos(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   uuid_administrador_academico     path    string     true        "UUID del administrador_academico a buscar"
-// @Success 200 {object} SwaggerMessages.GetOneAdministradorAcademicoSwagger "OK"
+// @Success 200 {object} Swagger.GetOneAdministradorAcademicoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/administradores-academicos/{uuid_administrador_academico} [get]
 func GetOneAdministradorAcademico(c *gin.Context) {
@@ -68,7 +68,7 @@ func GetOneAdministradorAcademico(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   input_administrador_academico     body    Request.AddNewAdministradorAcademicoPayload     true        "AdministradorAcademico a agregar"
-// @Success 200 {object} SwaggerMessages.AddNewAdministradorAcademicoSwagger "OK"
+// @Success 200 {object} Swagger.AddNewAdministradorAcademicoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/administradores-academicos [post]
 func AddNewAdministradorAcademico(c *gin.Context) {
@@ -114,7 +114,7 @@ func AddNewAdministradorAcademico(c *gin.Context) {
 // @Produce  json
 // @Param   uuid_administrador_academico     path    string     true        "UUID del administrador_academico a modificar"
 // @Param   input_actualiza_administrador_academico     body    Request.PutOneAdministradorAcademicoPayload     true        "AdministradorAcademico a modificar"
-// @Success 200 {object} SwaggerMessages.PutOneAdministradorAcademicoSwagger "OK"
+// @Success 200 {object} Swagger.PutOneAdministradorAcademicoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/administradores-academicos/{uuid_administrador_academico} [put]
 func PutOneAdministradorAcademico(c *gin.Context) {
@@ -180,7 +180,7 @@ func PutOneAdministradorAcademico(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   uuid_administrador_academico     path    string     true        "UUID del administrador_academico a eliminar"
-// @Success 200 {object} SwaggerMessages.DeleteAdministradorAcademicoSwagger "OK"
+// @Success 200 {object} Swagger.DeleteAdministradorAcademicoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/administradores-academicos/{uuid_administrador_academico} [delete]
 func DeleteAdministradorAcademico(c *gin.Context) {
@@ -213,7 +213,7 @@ func DeleteAdministradorAcademico(c *gin.Context) {
 // @Tags 04 - Administración Academica
 // @Accept  json
 // @Produce  json
-// @Success 200 {object} SwaggerMessages.GetMyAdministradorAcademicoSwagger "OK"
+// @Success 200 {object} Swagger.GetMyAdministradorAcademicoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-academica/me [get]
 func GetMyAdministradorAcademico(c *gin.Context) {
@@ -240,7 +240,7 @@ func GetMyAdministradorAcademico(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   input_actualiza_administrador_academico     body    Request.PutMyAdministradorAcademicoPayload     true        "AdministradorAcademico a modificar"
-// @Success 200 {object} SwaggerMessages.PutMyAdministradorAcademicoSwagger "OK"
+// @Success 200 {object} Swagger.PutMyAdministradorAcademicoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-academica/me [put]
 func PutMyAdministradorAcademico(c *gin.Context) {

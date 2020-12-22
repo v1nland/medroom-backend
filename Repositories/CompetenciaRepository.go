@@ -10,34 +10,34 @@ import (
 	"gorm.io/gorm/clause"
 )
 
-func GetAllCursos(u *[]Models.Curso) (err error) {
-	if err = Config.DB.Preload(clause.Associations).Find(u).Error; err != nil {
+func GetAllCompetencias(u *[]Models.Competencia) (err error) {
+	if err = Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Find(u).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
-func GetOneCurso(u *Models.Curso, id string) (err error) {
+func GetOneCompetencia(u *Models.Competencia, id string) (err error) {
 	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("id = ?", id).First(u).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
-func AddNewCurso(u *Models.Curso) (err error) {
+func AddNewCompetencia(u *Models.Competencia) (err error) {
 	if err = Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Create(u).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
-func PutOneCurso(u *Models.Curso, id string) (err error) {
+func PutOneCompetencia(u *Models.Competencia, id string) (err error) {
 	fmt.Println(u)
 	Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Save(u)
 	return nil
 }
 
-func DeleteCurso(u *Models.Curso, id string) (err error) {
+func DeleteCompetencia(u *Models.Competencia, id string) (err error) {
 	Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("id = ?", id).Delete(u)
 	return nil
 }

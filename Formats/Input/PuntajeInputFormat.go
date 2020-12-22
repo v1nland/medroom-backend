@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func GetPuntajesInput(u *Request.ListPuntajesPayload) {
+func ListPuntajesInput(u *Request.ListPuntajesPayload) {
 
 }
 

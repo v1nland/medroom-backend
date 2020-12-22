@@ -17,7 +17,7 @@ import (
 // @Tags 00 - Rutas públicas
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} SwaggerMessages.ListPeriodosSwagger "OK"
+// @Success 200 {array} Swagger.ListPeriodosSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /periodos [get]
 func ListPeriodos(c *gin.Context) {
@@ -32,7 +32,7 @@ func ListPeriodos(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, Output.GetPeriodosOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.ListPeriodosOutput(container))
 }
 
 // @Summary Obtiene un periodo
@@ -41,7 +41,7 @@ func ListPeriodos(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   id_periodo     path    string     true        "Id del periodo a buscar"
-// @Success 200 {object} SwaggerMessages.GetOnePeriodoSwagger "OK"
+// @Success 200 {object} Swagger.GetOnePeriodoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /periodos/{id_periodo} [get]
 func GetOnePeriodo(c *gin.Context) {
@@ -68,7 +68,7 @@ func GetOnePeriodo(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   input_periodo     body    Request.AddNewPeriodoPayload     true        "Periodo a agregar"
-// @Success 200 {object} SwaggerMessages.AddNewPeriodoSwagger "OK"
+// @Success 200 {object} Swagger.AddNewPeriodoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/periodos [post]
 func AddNewPeriodo(c *gin.Context) {
@@ -107,7 +107,7 @@ func AddNewPeriodo(c *gin.Context) {
 // @Produce  json
 // @Param   id_periodo     path    string     true        "Id del periodo a modificar"
 // @Param   input_actualiza_periodo     body    Request.PutOnePeriodoPayload     true        "Periodo a modificar"
-// @Success 200 {object} SwaggerMessages.PutOnePeriodoSwagger "OK"
+// @Success 200 {object} Swagger.PutOnePeriodoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/periodos/{id_periodo} [put]
 func PutOnePeriodo(c *gin.Context) {
@@ -166,7 +166,7 @@ func PutOnePeriodo(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   id_periodo     path    string     true        "Id del periodo a eliminar"
-// @Success 200 {object} SwaggerMessages.DeletePeriodoSwagger "OK"
+// @Success 200 {object} Swagger.DeletePeriodoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/periodos/{id_periodo} [delete]
 func DeletePeriodo(c *gin.Context) {

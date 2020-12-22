@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func GetPeriodosInput(u *Request.ListPeriodosPayload) {
+func ListPeriodosInput(u *Request.ListPeriodosPayload) {
 
 }
 

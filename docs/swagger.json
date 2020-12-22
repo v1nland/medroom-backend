@@ -36,7 +36,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/SwaggerMessages.ListGruposSwagger"
+                                "$ref": "#/definitions/Swagger.ListGruposSwagger"
                             }
                         }
                     },
@@ -75,7 +75,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.AddNewGrupoSwagger"
+                            "$ref": "#/definitions/Swagger.AddNewGrupoSwagger"
                         }
                     },
                     "400": {
@@ -113,7 +113,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GetOneGrupoSwagger"
+                            "$ref": "#/definitions/Swagger.GetOneGrupoSwagger"
                         }
                     },
                     "400": {
@@ -158,7 +158,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.PutOneGrupoSwagger"
+                            "$ref": "#/definitions/Swagger.PutOneGrupoSwagger"
                         }
                     },
                     "400": {
@@ -194,7 +194,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.DeleteGrupoSwagger"
+                            "$ref": "#/definitions/Swagger.DeleteGrupoSwagger"
                         }
                     },
                     "400": {
@@ -236,7 +236,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/SwaggerMessages.AuthenticationSwagger"
+                                "$ref": "#/definitions/Swagger.AuthenticationSwagger"
                             }
                         }
                     },
@@ -266,7 +266,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GetMyAdministradorAcademicoSwagger"
+                            "$ref": "#/definitions/Swagger.GetMyAdministradorAcademicoSwagger"
                         }
                     },
                     "400": {
@@ -304,7 +304,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.PutMyAdministradorAcademicoSwagger"
+                            "$ref": "#/definitions/Swagger.PutMyAdministradorAcademicoSwagger"
                         }
                     },
                     "400": {
@@ -335,7 +335,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/SwaggerMessages.ListAdministradoresAcademicosSwagger"
+                                "$ref": "#/definitions/Swagger.ListAdministradoresAcademicosSwagger"
                             }
                         }
                     },
@@ -374,7 +374,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.AddNewAdministradorAcademicoSwagger"
+                            "$ref": "#/definitions/Swagger.AddNewAdministradorAcademicoSwagger"
                         }
                     },
                     "400": {
@@ -412,7 +412,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GetOneAdministradorAcademicoSwagger"
+                            "$ref": "#/definitions/Swagger.GetOneAdministradorAcademicoSwagger"
                         }
                     },
                     "400": {
@@ -457,7 +457,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.PutOneAdministradorAcademicoSwagger"
+                            "$ref": "#/definitions/Swagger.PutOneAdministradorAcademicoSwagger"
                         }
                     },
                     "400": {
@@ -493,7 +493,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.DeleteAdministradorAcademicoSwagger"
+                            "$ref": "#/definitions/Swagger.DeleteAdministradorAcademicoSwagger"
                         }
                     },
                     "400": {
@@ -524,7 +524,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/SwaggerMessages.ListAdministradoresTiSwagger"
+                                "$ref": "#/definitions/Swagger.ListAdministradoresTiSwagger"
                             }
                         }
                     },
@@ -563,7 +563,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.AddNewAdministradorTiSwagger"
+                            "$ref": "#/definitions/Swagger.AddNewAdministradorTiSwagger"
                         }
                     },
                     "400": {
@@ -601,7 +601,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GetOneAdministradorTiSwagger"
+                            "$ref": "#/definitions/Swagger.GetOneAdministradorTiSwagger"
                         }
                     },
                     "400": {
@@ -646,7 +646,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.PutOneAdministradorTiSwagger"
+                            "$ref": "#/definitions/Swagger.PutOneAdministradorTiSwagger"
                         }
                     },
                     "400": {
@@ -682,7 +682,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.DeleteAdministradorTiSwagger"
+                            "$ref": "#/definitions/Swagger.DeleteAdministradorTiSwagger"
                         }
                     },
                     "400": {
@@ -713,7 +713,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/SwaggerMessages.ListCursosSwagger"
+                                "$ref": "#/definitions/Swagger.ListCursosSwagger"
                             }
                         }
                     },
@@ -752,7 +752,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.AddNewCursoSwagger"
+                            "$ref": "#/definitions/Swagger.AddNewCursoSwagger"
                         }
                     },
                     "400": {
@@ -790,7 +790,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GetOneCursoSwagger"
+                            "$ref": "#/definitions/Swagger.GetOneCursoSwagger"
                         }
                     },
                     "400": {
@@ -835,7 +835,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.PutOneCursoSwagger"
+                            "$ref": "#/definitions/Swagger.PutOneCursoSwagger"
                         }
                     },
                     "400": {
@@ -871,7 +871,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.DeleteCursoSwagger"
+                            "$ref": "#/definitions/Swagger.DeleteCursoSwagger"
                         }
                     },
                     "400": {
@@ -902,7 +902,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/SwaggerMessages.ListEstudiantesSwagger"
+                                "$ref": "#/definitions/Swagger.ListEstudiantesSwagger"
                             }
                         }
                     },
@@ -941,7 +941,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.AddNewEstudianteSwagger"
+                            "$ref": "#/definitions/Swagger.AddNewEstudianteSwagger"
                         }
                     },
                     "400": {
@@ -979,7 +979,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GetOneEstudianteSwagger"
+                            "$ref": "#/definitions/Swagger.GetOneEstudianteSwagger"
                         }
                     },
                     "400": {
@@ -1024,7 +1024,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.PutOneEstudianteSwagger"
+                            "$ref": "#/definitions/Swagger.PutOneEstudianteSwagger"
                         }
                     },
                     "400": {
@@ -1060,7 +1060,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.DeleteEstudianteSwagger"
+                            "$ref": "#/definitions/Swagger.DeleteEstudianteSwagger"
                         }
                     },
                     "400": {
@@ -1091,7 +1091,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/SwaggerMessages.ListEvaluadoresSwagger"
+                                "$ref": "#/definitions/Swagger.ListEvaluadoresSwagger"
                             }
                         }
                     },
@@ -1130,7 +1130,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.AddNewEvaluadorSwagger"
+                            "$ref": "#/definitions/Swagger.AddNewEvaluadorSwagger"
                         }
                     },
                     "400": {
@@ -1168,7 +1168,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GetOneEvaluadorSwagger"
+                            "$ref": "#/definitions/Swagger.GetOneEvaluadorSwagger"
                         }
                     },
                     "400": {
@@ -1213,7 +1213,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.PutOneEvaluadorSwagger"
+                            "$ref": "#/definitions/Swagger.PutOneEvaluadorSwagger"
                         }
                     },
                     "400": {
@@ -1249,7 +1249,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.DeleteEvaluadorSwagger"
+                            "$ref": "#/definitions/Swagger.DeleteEvaluadorSwagger"
                         }
                     },
                     "400": {
@@ -1280,7 +1280,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/SwaggerMessages.ListGruposSwagger"
+                                "$ref": "#/definitions/Swagger.ListGruposSwagger"
                             }
                         }
                     },
@@ -1319,7 +1319,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.AddNewGrupoSwagger"
+                            "$ref": "#/definitions/Swagger.AddNewGrupoSwagger"
                         }
                     },
                     "400": {
@@ -1357,7 +1357,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GetOneGrupoSwagger"
+                            "$ref": "#/definitions/Swagger.GetOneGrupoSwagger"
                         }
                     },
                     "400": {
@@ -1402,7 +1402,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.PutOneGrupoSwagger"
+                            "$ref": "#/definitions/Swagger.PutOneGrupoSwagger"
                         }
                     },
                     "400": {
@@ -1438,7 +1438,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.DeleteGrupoSwagger"
+                            "$ref": "#/definitions/Swagger.DeleteGrupoSwagger"
                         }
                     },
                     "400": {
@@ -1480,7 +1480,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/SwaggerMessages.AuthenticationSwagger"
+                                "$ref": "#/definitions/Swagger.AuthenticationSwagger"
                             }
                         }
                     },
@@ -1510,7 +1510,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GetMyAdministradorTiSwagger"
+                            "$ref": "#/definitions/Swagger.GetMyAdministradorTiSwagger"
                         }
                     },
                     "400": {
@@ -1548,7 +1548,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.PutMyAdministradorTiSwagger"
+                            "$ref": "#/definitions/Swagger.PutMyAdministradorTiSwagger"
                         }
                     },
                     "400": {
@@ -1588,7 +1588,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.AddNewPeriodoSwagger"
+                            "$ref": "#/definitions/Swagger.AddNewPeriodoSwagger"
                         }
                     },
                     "400": {
@@ -1635,7 +1635,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.PutOnePeriodoSwagger"
+                            "$ref": "#/definitions/Swagger.PutOnePeriodoSwagger"
                         }
                     },
                     "400": {
@@ -1671,7 +1671,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.DeletePeriodoSwagger"
+                            "$ref": "#/definitions/Swagger.DeletePeriodoSwagger"
                         }
                     },
                     "400": {
@@ -1711,7 +1711,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.AddNewRolSwagger"
+                            "$ref": "#/definitions/Swagger.AddNewRolSwagger"
                         }
                     },
                     "400": {
@@ -1758,7 +1758,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.PutOneRolSwagger"
+                            "$ref": "#/definitions/Swagger.PutOneRolSwagger"
                         }
                     },
                     "400": {
@@ -1794,7 +1794,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.DeleteRolSwagger"
+                            "$ref": "#/definitions/Swagger.DeleteRolSwagger"
                         }
                     },
                     "400": {
@@ -1836,7 +1836,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/SwaggerMessages.AuthenticationSwagger"
+                                "$ref": "#/definitions/Swagger.AuthenticationSwagger"
                             }
                         }
                     },
@@ -1866,7 +1866,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GetMyEstudianteSwagger"
+                            "$ref": "#/definitions/Swagger.GetMyEstudianteSwagger"
                         }
                     },
                     "400": {
@@ -1904,7 +1904,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.PutMyEstudianteSwagger"
+                            "$ref": "#/definitions/Swagger.PutMyEstudianteSwagger"
                         }
                     },
                     "400": {
@@ -1933,7 +1933,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GetCursoEstudianteSwagger"
+                            "$ref": "#/definitions/Swagger.GetCursoEstudianteSwagger"
                         }
                     },
                     "400": {
@@ -1973,7 +1973,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/SwaggerMessages.EvolucionEstudiantePorCompetenciaSwagger"
+                                "$ref": "#/definitions/Swagger.EvolucionEstudiantePorCompetenciaSwagger"
                             }
                         }
                     },
@@ -2014,7 +2014,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/SwaggerMessages.EvolucionEstudiantePorEvaluacionSwagger"
+                                "$ref": "#/definitions/Swagger.EvolucionEstudiantePorEvaluacionSwagger"
                             }
                         }
                     },
@@ -2046,7 +2046,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/SwaggerMessages.ListEvaluacionesSwagger"
+                                "$ref": "#/definitions/Swagger.ListEvaluacionesSwagger"
                             }
                         }
                     },
@@ -2076,7 +2076,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GetGrupoEstudianteSwagger"
+                            "$ref": "#/definitions/Swagger.GetGrupoEstudianteSwagger"
                         }
                     },
                     "400": {
@@ -2118,7 +2118,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/SwaggerMessages.AuthenticationSwagger"
+                                "$ref": "#/definitions/Swagger.AuthenticationSwagger"
                             }
                         }
                     },
@@ -2148,7 +2148,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GetMyEvaluadorSwagger"
+                            "$ref": "#/definitions/Swagger.GetMyEvaluadorSwagger"
                         }
                     },
                     "400": {
@@ -2186,7 +2186,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.PutMyEvaluadorSwagger"
+                            "$ref": "#/definitions/Swagger.PutMyEvaluadorSwagger"
                         }
                     },
                     "400": {
@@ -2215,7 +2215,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GetCursoEvaluadorSwagger"
+                            "$ref": "#/definitions/Swagger.GetCursoEvaluadorSwagger"
                         }
                     },
                     "400": {
@@ -2255,7 +2255,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GenerarEvaluacionSwagger"
+                            "$ref": "#/definitions/Swagger.GenerarEvaluacionSwagger"
                         }
                     },
                     "400": {
@@ -2284,7 +2284,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GetGrupoEvaluadorSwagger"
+                            "$ref": "#/definitions/Swagger.GetGrupoEvaluadorSwagger"
                         }
                     },
                     "400": {
@@ -2315,7 +2315,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/SwaggerMessages.ListPeriodosSwagger"
+                                "$ref": "#/definitions/Swagger.ListPeriodosSwagger"
                             }
                         }
                     },
@@ -2354,7 +2354,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GetOnePeriodoSwagger"
+                            "$ref": "#/definitions/Swagger.GetOnePeriodoSwagger"
                         }
                     },
                     "400": {
@@ -2385,7 +2385,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/SwaggerMessages.ListRolesSwagger"
+                                "$ref": "#/definitions/Swagger.ListRolesSwagger"
                             }
                         }
                     },
@@ -2424,7 +2424,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/SwaggerMessages.GetOneRolSwagger"
+                            "$ref": "#/definitions/Swagger.GetOneRolSwagger"
                         }
                     },
                     "400": {
@@ -4437,7 +4437,7 @@
                 }
             }
         },
-        "SwaggerMessages.AddNewAdministradorAcademicoSwagger": {
+        "Swagger.AddNewAdministradorAcademicoSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4451,7 +4451,7 @@
                 }
             }
         },
-        "SwaggerMessages.AddNewAdministradorTiSwagger": {
+        "Swagger.AddNewAdministradorTiSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4465,7 +4465,7 @@
                 }
             }
         },
-        "SwaggerMessages.AddNewCursoSwagger": {
+        "Swagger.AddNewCursoSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4479,7 +4479,7 @@
                 }
             }
         },
-        "SwaggerMessages.AddNewEstudianteSwagger": {
+        "Swagger.AddNewEstudianteSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4493,7 +4493,7 @@
                 }
             }
         },
-        "SwaggerMessages.AddNewEvaluadorSwagger": {
+        "Swagger.AddNewEvaluadorSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4507,7 +4507,7 @@
                 }
             }
         },
-        "SwaggerMessages.AddNewGrupoSwagger": {
+        "Swagger.AddNewGrupoSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4521,7 +4521,7 @@
                 }
             }
         },
-        "SwaggerMessages.AddNewPeriodoSwagger": {
+        "Swagger.AddNewPeriodoSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4535,7 +4535,7 @@
                 }
             }
         },
-        "SwaggerMessages.AddNewRolSwagger": {
+        "Swagger.AddNewRolSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4549,7 +4549,7 @@
                 }
             }
         },
-        "SwaggerMessages.AuthenticationSwagger": {
+        "Swagger.AuthenticationSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4563,7 +4563,7 @@
                 }
             }
         },
-        "SwaggerMessages.DeleteAdministradorAcademicoSwagger": {
+        "Swagger.DeleteAdministradorAcademicoSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4577,7 +4577,7 @@
                 }
             }
         },
-        "SwaggerMessages.DeleteAdministradorTiSwagger": {
+        "Swagger.DeleteAdministradorTiSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4591,7 +4591,7 @@
                 }
             }
         },
-        "SwaggerMessages.DeleteCursoSwagger": {
+        "Swagger.DeleteCursoSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4605,7 +4605,7 @@
                 }
             }
         },
-        "SwaggerMessages.DeleteEstudianteSwagger": {
+        "Swagger.DeleteEstudianteSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4619,7 +4619,7 @@
                 }
             }
         },
-        "SwaggerMessages.DeleteEvaluadorSwagger": {
+        "Swagger.DeleteEvaluadorSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4633,7 +4633,7 @@
                 }
             }
         },
-        "SwaggerMessages.DeleteGrupoSwagger": {
+        "Swagger.DeleteGrupoSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4647,7 +4647,7 @@
                 }
             }
         },
-        "SwaggerMessages.DeletePeriodoSwagger": {
+        "Swagger.DeletePeriodoSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4661,7 +4661,7 @@
                 }
             }
         },
-        "SwaggerMessages.DeleteRolSwagger": {
+        "Swagger.DeleteRolSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4675,7 +4675,7 @@
                 }
             }
         },
-        "SwaggerMessages.EvolucionEstudiantePorCompetenciaSwagger": {
+        "Swagger.EvolucionEstudiantePorCompetenciaSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4689,7 +4689,7 @@
                 }
             }
         },
-        "SwaggerMessages.EvolucionEstudiantePorEvaluacionSwagger": {
+        "Swagger.EvolucionEstudiantePorEvaluacionSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4703,7 +4703,7 @@
                 }
             }
         },
-        "SwaggerMessages.GenerarEvaluacionSwagger": {
+        "Swagger.GenerarEvaluacionSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4717,7 +4717,7 @@
                 }
             }
         },
-        "SwaggerMessages.GetCursoEstudianteSwagger": {
+        "Swagger.GetCursoEstudianteSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4731,7 +4731,7 @@
                 }
             }
         },
-        "SwaggerMessages.GetCursoEvaluadorSwagger": {
+        "Swagger.GetCursoEvaluadorSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4745,7 +4745,7 @@
                 }
             }
         },
-        "SwaggerMessages.GetGrupoEstudianteSwagger": {
+        "Swagger.GetGrupoEstudianteSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4759,7 +4759,7 @@
                 }
             }
         },
-        "SwaggerMessages.GetGrupoEvaluadorSwagger": {
+        "Swagger.GetGrupoEvaluadorSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4773,7 +4773,7 @@
                 }
             }
         },
-        "SwaggerMessages.GetMyAdministradorAcademicoSwagger": {
+        "Swagger.GetMyAdministradorAcademicoSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4787,7 +4787,7 @@
                 }
             }
         },
-        "SwaggerMessages.GetMyAdministradorTiSwagger": {
+        "Swagger.GetMyAdministradorTiSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4801,7 +4801,7 @@
                 }
             }
         },
-        "SwaggerMessages.GetMyEstudianteSwagger": {
+        "Swagger.GetMyEstudianteSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4815,7 +4815,7 @@
                 }
             }
         },
-        "SwaggerMessages.GetMyEvaluadorSwagger": {
+        "Swagger.GetMyEvaluadorSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4829,7 +4829,7 @@
                 }
             }
         },
-        "SwaggerMessages.GetOneAdministradorAcademicoSwagger": {
+        "Swagger.GetOneAdministradorAcademicoSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4843,7 +4843,7 @@
                 }
             }
         },
-        "SwaggerMessages.GetOneAdministradorTiSwagger": {
+        "Swagger.GetOneAdministradorTiSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4857,7 +4857,7 @@
                 }
             }
         },
-        "SwaggerMessages.GetOneCursoSwagger": {
+        "Swagger.GetOneCursoSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4871,7 +4871,7 @@
                 }
             }
         },
-        "SwaggerMessages.GetOneEstudianteSwagger": {
+        "Swagger.GetOneEstudianteSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4885,7 +4885,7 @@
                 }
             }
         },
-        "SwaggerMessages.GetOneEvaluadorSwagger": {
+        "Swagger.GetOneEvaluadorSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4899,7 +4899,7 @@
                 }
             }
         },
-        "SwaggerMessages.GetOneGrupoSwagger": {
+        "Swagger.GetOneGrupoSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4913,7 +4913,7 @@
                 }
             }
         },
-        "SwaggerMessages.GetOnePeriodoSwagger": {
+        "Swagger.GetOnePeriodoSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4927,7 +4927,7 @@
                 }
             }
         },
-        "SwaggerMessages.GetOneRolSwagger": {
+        "Swagger.GetOneRolSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4941,7 +4941,7 @@
                 }
             }
         },
-        "SwaggerMessages.ListAdministradoresAcademicosSwagger": {
+        "Swagger.ListAdministradoresAcademicosSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4955,7 +4955,7 @@
                 }
             }
         },
-        "SwaggerMessages.ListAdministradoresTiSwagger": {
+        "Swagger.ListAdministradoresTiSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4969,7 +4969,7 @@
                 }
             }
         },
-        "SwaggerMessages.ListCursosSwagger": {
+        "Swagger.ListCursosSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4983,7 +4983,7 @@
                 }
             }
         },
-        "SwaggerMessages.ListEstudiantesSwagger": {
+        "Swagger.ListEstudiantesSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -4997,7 +4997,7 @@
                 }
             }
         },
-        "SwaggerMessages.ListEvaluacionesSwagger": {
+        "Swagger.ListEvaluacionesSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -5011,7 +5011,7 @@
                 }
             }
         },
-        "SwaggerMessages.ListEvaluadoresSwagger": {
+        "Swagger.ListEvaluadoresSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -5025,7 +5025,7 @@
                 }
             }
         },
-        "SwaggerMessages.ListGruposSwagger": {
+        "Swagger.ListGruposSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -5039,7 +5039,7 @@
                 }
             }
         },
-        "SwaggerMessages.ListPeriodosSwagger": {
+        "Swagger.ListPeriodosSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -5053,7 +5053,7 @@
                 }
             }
         },
-        "SwaggerMessages.ListRolesSwagger": {
+        "Swagger.ListRolesSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -5067,7 +5067,7 @@
                 }
             }
         },
-        "SwaggerMessages.PutMyAdministradorAcademicoSwagger": {
+        "Swagger.PutMyAdministradorAcademicoSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -5081,7 +5081,7 @@
                 }
             }
         },
-        "SwaggerMessages.PutMyAdministradorTiSwagger": {
+        "Swagger.PutMyAdministradorTiSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -5095,7 +5095,7 @@
                 }
             }
         },
-        "SwaggerMessages.PutMyEstudianteSwagger": {
+        "Swagger.PutMyEstudianteSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -5109,7 +5109,7 @@
                 }
             }
         },
-        "SwaggerMessages.PutMyEvaluadorSwagger": {
+        "Swagger.PutMyEvaluadorSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -5123,7 +5123,7 @@
                 }
             }
         },
-        "SwaggerMessages.PutOneAdministradorAcademicoSwagger": {
+        "Swagger.PutOneAdministradorAcademicoSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -5137,7 +5137,7 @@
                 }
             }
         },
-        "SwaggerMessages.PutOneAdministradorTiSwagger": {
+        "Swagger.PutOneAdministradorTiSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -5151,7 +5151,7 @@
                 }
             }
         },
-        "SwaggerMessages.PutOneCursoSwagger": {
+        "Swagger.PutOneCursoSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -5165,7 +5165,7 @@
                 }
             }
         },
-        "SwaggerMessages.PutOneEstudianteSwagger": {
+        "Swagger.PutOneEstudianteSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -5179,7 +5179,7 @@
                 }
             }
         },
-        "SwaggerMessages.PutOneEvaluadorSwagger": {
+        "Swagger.PutOneEvaluadorSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -5193,7 +5193,7 @@
                 }
             }
         },
-        "SwaggerMessages.PutOneGrupoSwagger": {
+        "Swagger.PutOneGrupoSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -5207,7 +5207,7 @@
                 }
             }
         },
-        "SwaggerMessages.PutOnePeriodoSwagger": {
+        "Swagger.PutOnePeriodoSwagger": {
             "type": "object",
             "properties": {
                 "data": {
@@ -5221,7 +5221,7 @@
                 }
             }
         },
-        "SwaggerMessages.PutOneRolSwagger": {
+        "Swagger.PutOneRolSwagger": {
             "type": "object",
             "properties": {
                 "data": {

@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func GetAdministradoresTiInput(u *Request.ListAdministradoresTiPayload) {
+func ListAdministradoresTiInput(u *Request.ListAdministradoresTiPayload) {
 
 }
 

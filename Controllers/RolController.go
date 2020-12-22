@@ -17,7 +17,7 @@ import (
 // @Tags 00 - Rutas públicas
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} SwaggerMessages.ListRolesSwagger "OK"
+// @Success 200 {array} Swagger.ListRolesSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /roles [get]
 func ListRoles(c *gin.Context) {
@@ -32,7 +32,7 @@ func ListRoles(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, Output.GetRolesOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.ListRolesOutput(container))
 }
 
 // @Summary Obtiene un rol
@@ -41,7 +41,7 @@ func ListRoles(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   id_rol     path    string     true        "Id del rol a buscar"
-// @Success 200 {object} SwaggerMessages.GetOneRolSwagger "OK"
+// @Success 200 {object} Swagger.GetOneRolSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /roles/{id_rol} [get]
 func GetOneRol(c *gin.Context) {
@@ -68,7 +68,7 @@ func GetOneRol(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   input_rol     body    Request.AddNewRolPayload     true        "Rol a agregar"
-// @Success 200 {object} SwaggerMessages.AddNewRolSwagger "OK"
+// @Success 200 {object} Swagger.AddNewRolSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/roles [post]
 func AddNewRol(c *gin.Context) {
@@ -107,7 +107,7 @@ func AddNewRol(c *gin.Context) {
 // @Produce  json
 // @Param   id_rol     path    string     true        "Id del rol a modificar"
 // @Param   input_actualiza_rol     body    Request.PutOneRolPayload     true        "Rol a modificar"
-// @Success 200 {object} SwaggerMessages.PutOneRolSwagger "OK"
+// @Success 200 {object} Swagger.PutOneRolSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/roles/{id_rol} [put]
 func PutOneRol(c *gin.Context) {
@@ -159,7 +159,7 @@ func PutOneRol(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   id_rol     path    string     true        "Id del rol a eliminar"
-// @Success 200 {object} SwaggerMessages.DeleteRolSwagger "OK"
+// @Success 200 {object} Swagger.DeleteRolSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/roles/{id_rol} [delete]
 func DeleteRol(c *gin.Context) {

@@ -10,34 +10,34 @@ import (
 	"gorm.io/gorm/clause"
 )
 
-func GetAllCursos(u *[]Models.Curso) (err error) {
-	if err = Config.DB.Preload(clause.Associations).Find(u).Error; err != nil {
+func GetAllCalificacionesEstudiante(u *[]Models.CalificacionEstudiante) (err error) {
+	if err = Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Find(u).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
-func GetOneCurso(u *Models.Curso, id string) (err error) {
+func GetOneCalificacionEstudiante(u *Models.CalificacionEstudiante, id string) (err error) {
 	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("id = ?", id).First(u).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
-func AddNewCurso(u *Models.Curso) (err error) {
+func AddNewCalificacionEstudiante(u *Models.CalificacionEstudiante) (err error) {
 	if err = Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Create(u).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
-func PutOneCurso(u *Models.Curso, id string) (err error) {
+func PutOneCalificacionEstudiante(u *Models.CalificacionEstudiante, id string) (err error) {
 	fmt.Println(u)
 	Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Save(u)
 	return nil
 }
 
-func DeleteCurso(u *Models.Curso, id string) (err error) {
+func DeleteCalificacionEstudiante(u *Models.CalificacionEstudiante, id string) (err error) {
 	Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("id = ?", id).Delete(u)
 	return nil
 }

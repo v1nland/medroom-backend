@@ -5,7 +5,7 @@ import (
 	"medroom-backend/Models"
 )
 
-func GetEvaluadoresOutput(u []Models.Evaluador) (output []Response.ListEvaluadoresResponse) {
+func ListEvaluadoresOutput(u []Models.Evaluador) (output []Response.ListEvaluadoresResponse) {
 	for i := 0; i < len(u); i++ {
 		output = append(output, Response.ListEvaluadoresResponse{
 			Rol_evaluador:                GetOneRolOutput(u[i].Rol_evaluador),

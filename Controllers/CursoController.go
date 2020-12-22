@@ -17,7 +17,7 @@ import (
 // @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} SwaggerMessages.ListCursosSwagger "OK"
+// @Success 200 {array} Swagger.ListCursosSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/cursos [get]
 func ListCursos(c *gin.Context) {
@@ -32,7 +32,7 @@ func ListCursos(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, Output.GetCursosOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.ListCursosOutput(container))
 }
 
 // @Summary Obtiene un curso
@@ -41,7 +41,7 @@ func ListCursos(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   id_curso     path    string     true        "Id del curso a buscar"
-// @Success 200 {object} SwaggerMessages.GetOneCursoSwagger "OK"
+// @Success 200 {object} Swagger.GetOneCursoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/cursos/{id_curso} [get]
 func GetOneCurso(c *gin.Context) {
@@ -68,7 +68,7 @@ func GetOneCurso(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   input_curso     body    Request.AddNewCursoPayload     true        "Curso a agregar"
-// @Success 200 {object} SwaggerMessages.AddNewCursoSwagger "OK"
+// @Success 200 {object} Swagger.AddNewCursoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/cursos [post]
 func AddNewCurso(c *gin.Context) {
@@ -109,7 +109,7 @@ func AddNewCurso(c *gin.Context) {
 // @Produce  json
 // @Param   id_curso     path    string     true        "Id del curso a modificar"
 // @Param   input_actualiza_curso     body    Request.PutOneCursoPayload     true        "Curso a modificar"
-// @Success 200 {object} SwaggerMessages.PutOneCursoSwagger "OK"
+// @Success 200 {object} Swagger.PutOneCursoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/cursos/{id_curso} [put]
 func PutOneCurso(c *gin.Context) {
@@ -170,7 +170,7 @@ func PutOneCurso(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   id_curso     path    string     true        "Id del curso a eliminar"
-// @Success 200 {object} SwaggerMessages.DeleteCursoSwagger "OK"
+// @Success 200 {object} Swagger.DeleteCursoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/cursos/{id_curso} [delete]
 func DeleteCurso(c *gin.Context) {
@@ -203,7 +203,7 @@ func DeleteCurso(c *gin.Context) {
 // @Tags 02 - Estudiantes
 // @Accept  json
 // @Produce  json
-// @Success 200 {object} SwaggerMessages.GetCursoEstudianteSwagger "OK"
+// @Success 200 {object} Swagger.GetCursoEstudianteSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /estudiantes/me/curso [get]
 func GetCursoEstudiante(c *gin.Context) {
@@ -239,7 +239,7 @@ func GetCursoEstudiante(c *gin.Context) {
 // @Tags 03 - Evaluadores
 // @Accept  json
 // @Produce  json
-// @Success 200 {object} SwaggerMessages.GetCursoEvaluadorSwagger "OK"
+// @Success 200 {object} Swagger.GetCursoEvaluadorSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /evaluadores/me/curso [get]
 func GetCursoEvaluador(c *gin.Context) {

@@ -16,7 +16,7 @@ func RolMigrations() {
 	}
 
 	if err := Repositories.AddNewRol(container); err != nil {
-		panic("No se ha migrado rol ESTUDIANTE")
+		panic("NO SE PUDO MIGRAR ROL 'ESTUDIANTE'")
 	}
 
 	Utils.StructToString(container)
@@ -27,7 +27,7 @@ func RolMigrations() {
 	}
 
 	if err := Repositories.AddNewRol(container); err != nil {
-		panic("No se ha migrado rol EVALUADOR")
+		panic("NO SE PUDO MIGRAR ROL 'EVALUADOR'")
 	}
 
 	Utils.StructToString(container)
@@ -38,7 +38,7 @@ func RolMigrations() {
 	}
 
 	if err := Repositories.AddNewRol(container); err != nil {
-		panic("No se ha migrado rol ADMINISTRADOR ACADEMICO")
+		panic("NO SE PUDO MIGRAR ROL 'ADMINISTRADOR ACADEMICO'")
 	}
 
 	Utils.StructToString(container)
@@ -49,7 +49,7 @@ func RolMigrations() {
 	}
 
 	if err := Repositories.AddNewRol(container); err != nil {
-		panic("No se ha migrado rol ADMINISTRADOR TI")
+		panic("NO SE PUDO MIGRAR ROL 'ADMINISTRADOR TI'")
 	}
 
 	Utils.StructToString(container)

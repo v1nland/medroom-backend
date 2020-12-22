@@ -1,4 +1,4 @@
-package SwaggerMessages
+package Swagger
 
 import "medroom-backend/Messages/Response"
 

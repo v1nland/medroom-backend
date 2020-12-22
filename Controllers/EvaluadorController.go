@@ -17,7 +17,7 @@ import (
 // @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} SwaggerMessages.ListEvaluadoresSwagger "OK"
+// @Success 200 {array} Swagger.ListEvaluadoresSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/evaluadores [get]
 func ListEvaluadores(c *gin.Context) {
@@ -32,7 +32,7 @@ func ListEvaluadores(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, Output.GetEvaluadoresOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.ListEvaluadoresOutput(container))
 }
 
 // @Summary Obtiene un evaluador
@@ -41,7 +41,7 @@ func ListEvaluadores(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   uuid_evaluador     path    string     true        "UUID del evaluador a buscar"
-// @Success 200 {object} SwaggerMessages.GetOneEvaluadorSwagger "OK"
+// @Success 200 {object} Swagger.GetOneEvaluadorSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/evaluadores/{uuid_evaluador} [get]
 func GetOneEvaluador(c *gin.Context) {
@@ -68,7 +68,7 @@ func GetOneEvaluador(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   input_evaluador     body    Request.AddNewEvaluadorPayload     true        "Evaluador a agregar"
-// @Success 200 {object} SwaggerMessages.AddNewEvaluadorSwagger "OK"
+// @Success 200 {object} Swagger.AddNewEvaluadorSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/evaluadores [post]
 func AddNewEvaluador(c *gin.Context) {
@@ -116,7 +116,7 @@ func AddNewEvaluador(c *gin.Context) {
 // @Produce  json
 // @Param   uuid_evaluador     path    string     true        "UUID del evaluador a modificar"
 // @Param   input_actualiza_evaluador     body    Request.PutOneEvaluadorPayload     true        "Evaluador a modificar"
-// @Success 200 {object} SwaggerMessages.PutOneEvaluadorSwagger "OK"
+// @Success 200 {object} Swagger.PutOneEvaluadorSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/evaluadores/{uuid_evaluador} [put]
 func PutOneEvaluador(c *gin.Context) {
@@ -184,7 +184,7 @@ func PutOneEvaluador(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   uuid_evaluador     path    string     true        "UUID del evaluador a eliminar"
-// @Success 200 {object} SwaggerMessages.DeleteEvaluadorSwagger "OK"
+// @Success 200 {object} Swagger.DeleteEvaluadorSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/evaluadores/{uuid_evaluador} [delete]
 func DeleteEvaluador(c *gin.Context) {
@@ -217,7 +217,7 @@ func DeleteEvaluador(c *gin.Context) {
 // @Tags 03 - Evaluadores
 // @Accept  json
 // @Produce  json
-// @Success 200 {object} SwaggerMessages.GetMyEvaluadorSwagger "OK"
+// @Success 200 {object} Swagger.GetMyEvaluadorSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /evaluadores/me [get]
 func GetMyEvaluador(c *gin.Context) {
@@ -241,7 +241,7 @@ func GetMyEvaluador(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   input_actualiza_evaluador     body    Request.PutMyEvaluadorPayload     true        "Evaluador a modificar"
-// @Success 200 {object} SwaggerMessages.PutMyEvaluadorSwagger "OK"
+// @Success 200 {object} Swagger.PutMyEvaluadorSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /evaluadores/me [put]
 func PutMyEvaluador(c *gin.Context) {

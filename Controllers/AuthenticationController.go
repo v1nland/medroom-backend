@@ -19,7 +19,7 @@ import (
 // @Accept  json
 // @Produce  json
 // @Param   input_credentials     body    Request.LoginEstudiantePayload     true        "Credenciales de acceso"
-// @Success 200 {array} SwaggerMessages.AuthenticationSwagger "OK"
+// @Success 200 {array} Swagger.AuthenticationSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /estudiantes/login [post]
 func AutenticarEstudiante(c *gin.Context) {
@@ -60,7 +60,7 @@ func AutenticarEstudiante(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   input_credentials     body    Request.LoginEvaluadorPayload     true        "Credenciales de acceso"
-// @Success 200 {array} SwaggerMessages.AuthenticationSwagger "OK"
+// @Success 200 {array} Swagger.AuthenticationSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /evaluadores/login [post]
 func AutenticarEvaluador(c *gin.Context) {
@@ -101,7 +101,7 @@ func AutenticarEvaluador(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   input_credentials     body    Request.LoginAdministradorAcademicoPayload     true        "Credenciales de acceso"
-// @Success 200 {array} SwaggerMessages.AuthenticationSwagger "OK"
+// @Success 200 {array} Swagger.AuthenticationSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-academica/login [post]
 func AutenticarAdministradorAcademico(c *gin.Context) {
@@ -142,7 +142,7 @@ func AutenticarAdministradorAcademico(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   input_credentials     body    Request.LoginAdministradorTiPayload     true        "Credenciales de acceso"
-// @Success 200 {array} SwaggerMessages.AuthenticationSwagger "OK"
+// @Success 200 {array} Swagger.AuthenticationSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/login [post]
 func AutenticarAdministradorTi(c *gin.Context) {

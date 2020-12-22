@@ -5,7 +5,7 @@ import (
 	"medroom-backend/Models"
 )
 
-func GetRolesOutput(u []Models.Rol) (output []Response.ListRolesResponse) {
+func ListRolesOutput(u []Models.Rol) (output []Response.ListRolesResponse) {
 	for i := 0; i < len(u); i++ {
 		output = append(output, Response.ListRolesResponse{
 			Nombre_rol: u[i].Nombre_rol,

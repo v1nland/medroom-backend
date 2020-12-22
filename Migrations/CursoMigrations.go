@@ -12,7 +12,7 @@ func CursoMigrations() {
 
 	var evaluadores []Models.Evaluador
 	if err := Repositories.GetAllEvaluadores(&evaluadores); err != nil {
-		panic("Evaluadores no existe")
+		panic("NO EXISTEN EVALUADORES")
 	}
 
 	container := &Models.Curso{
@@ -43,7 +43,7 @@ func CursoMigrations() {
 	}
 
 	if err := Repositories.AddNewCurso(container); err != nil {
-		panic("No se ha migrado curso")
+		panic("NO SE PUDO MIGRAR CURSO")
 	}
 
 	Utils.StructToString(container)

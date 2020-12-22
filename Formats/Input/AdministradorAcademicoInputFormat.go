@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func GetAdministradoresAcademicosInput(u *Request.ListAdministradoresAcademicosPayload) {
+func ListAdministradoresAcademicosInput(u *Request.ListAdministradoresAcademicosPayload) {
 
 }
 

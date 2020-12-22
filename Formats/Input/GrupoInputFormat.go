@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func GetGruposInput(u *Request.ListGruposPayload) {
+func ListGruposInput(u *Request.ListGruposPayload) {
 
 }
 

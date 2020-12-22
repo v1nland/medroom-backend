@@ -12,7 +12,7 @@ func AdministradorAcademicoMigrations() {
 
 	var rol Models.Rol
 	if err := Repositories.GetOneRol(&rol, "3"); err != nil {
-		panic("Rol administrador académico no existe")
+		panic("ROL ADMINISTRADOR ACADÉMICO NO EXISTE")
 	}
 
 	container := &Models.AdministradorAcademico{
@@ -27,7 +27,7 @@ func AdministradorAcademicoMigrations() {
 	}
 
 	if err := Repositories.AddNewAdministradorAcademico(container); err != nil {
-		panic("No se ha migrado administrador academico")
+		panic("NO SE PUDO MIGRAR ADMINISTRADOR ACADEMICO")
 	}
 
 	Utils.StructToString(container)

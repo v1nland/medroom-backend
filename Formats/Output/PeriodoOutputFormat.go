@@ -5,7 +5,7 @@ import (
 	"medroom-backend/Models"
 )
 
-func GetPeriodosOutput(u []Models.Periodo) (output []Response.ListPeriodosResponse) {
+func ListPeriodosOutput(u []Models.Periodo) (output []Response.ListPeriodosResponse) {
 	for i := 0; i < len(u); i++ {
 		output = append(output, Response.ListPeriodosResponse{
 			Id:             u[i].Id,

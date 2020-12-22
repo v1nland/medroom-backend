@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func GetRolesInput(u *Request.ListRolesPayload) {
+func ListRolesInput(u *Request.ListRolesPayload) {
 
 }
 

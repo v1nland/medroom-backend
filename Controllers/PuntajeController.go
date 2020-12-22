@@ -17,7 +17,7 @@ package Controllers
 // @Tags Puntajes
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} SwaggerMessages.ListPuntajesSwagger "OK"
+// @Success 200 {array} Swagger.ListPuntajesSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /puntajes [get]
 
@@ -42,7 +42,7 @@ func ListPuntajes(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   id_puntaje     path    string     true        "Id del puntaje a buscar"
-// @Success 200 {object} SwaggerMessages.GetOnePuntajeSwagger "OK"
+// @Success 200 {object} Swagger.GetOnePuntajeSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /puntajes/{id_puntaje} [get]
 
@@ -70,7 +70,7 @@ func GetOnePuntaje(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   input_puntaje     body    Request.AddNewPuntajePayload     true        "Puntaje a agregar"
-// @Success 200 {object} SwaggerMessages.AddNewPuntajeSwagger "OK"
+// @Success 200 {object} Swagger.AddNewPuntajeSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /puntajes [post]
 
@@ -113,7 +113,7 @@ func AddNewPuntaje(c *gin.Context) {
 // @Produce  json
 // @Param   id_puntaje     path    string     true        "Id del puntaje a modificar"
 // @Param   input_actualiza_puntaje     body    Request.PutOnePuntajePayload     true        "Puntaje a modificar"
-// @Success 200 {object} SwaggerMessages.PutOnePuntajeSwagger "OK"
+// @Success 200 {object} Swagger.PutOnePuntajeSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /puntajes/{id_puntaje} [put]
 
@@ -175,7 +175,7 @@ func PutOnePuntaje(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   id_puntaje     path    string     true        "Id del puntaje a eliminar"
-// @Success 200 {object} SwaggerMessages.DeletePuntajeSwagger "OK"
+// @Success 200 {object} Swagger.DeletePuntajeSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /puntajes/{id_puntaje} [delete]
 

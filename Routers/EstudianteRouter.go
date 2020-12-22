@@ -37,8 +37,8 @@ func SetupEstudianteRouter(r *gin.Engine) *gin.Engine {
 
 		// my evaluations
 		router.GET("me/evaluaciones", Controllers.ListEvaluacionesEstudiante)
-		router.GET("me/estadisticas/evolucion/evaluacion/:id_evaluacion", Controllers.EvolucionEstudiantePorEvaluacion)
-		router.GET("me/estadisticas/evolucion/competencia/:codigo_competencia", Controllers.EvolucionEstudiantePorCompetencia)
+		// router.GET("me/estadisticas/evolucion/evaluacion/:id_evaluacion", Controllers.EvolucionEstudiantePorEvaluacion)
+		// router.GET("me/estadisticas/evolucion/competencia/:codigo_competencia", Controllers.EvolucionEstudiantePorCompetencia)
 	}
 
 	return r

@@ -18,7 +18,7 @@ import (
 // @Tags Evaluaciones
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} SwaggerMessages.ListEvaluacionesSwagger "OK"
+// @Success 200 {array} Swagger.ListEvaluacionesSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /evaluaciones [get]
 
@@ -43,7 +43,7 @@ func ListEvaluaciones(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   id_evaluacion     path    string     true        "Id del evaluacion a buscar"
-// @Success 200 {object} SwaggerMessages.GetOneEvaluacionSwagger "OK"
+// @Success 200 {object} Swagger.GetOneEvaluacionSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /evaluaciones/{id_evaluacion} [get]
 
@@ -71,7 +71,7 @@ func GetOneEvaluacion(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   input_evaluacion     body    Request.AddNewEvaluacionPayload     true        "Evaluacion a agregar"
-// @Success 200 {object} SwaggerMessages.AddNewEvaluacionSwagger "OK"
+// @Success 200 {object} Swagger.AddNewEvaluacionSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /evaluaciones [post]
 
@@ -122,7 +122,7 @@ func AddNewEvaluacion(c *gin.Context) {
 // @Produce  json
 // @Param   id_evaluacion     path    string     true        "Id del evaluacion a modificar"
 // @Param   input_actualiza_evaluacion     body    Request.PutOneEvaluacionPayload     true        "Evaluacion a modificar"
-// @Success 200 {object} SwaggerMessages.PutOneEvaluacionSwagger "OK"
+// @Success 200 {object} Swagger.PutOneEvaluacionSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /evaluaciones/{id_evaluacion} [put]
 
@@ -200,7 +200,7 @@ func PutOneEvaluacion(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   id_evaluacion     path    string     true        "Id del evaluacion a eliminar"
-// @Success 200 {object} SwaggerMessages.DeleteEvaluacionSwagger "OK"
+// @Success 200 {object} Swagger.DeleteEvaluacionSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /evaluaciones/{id_evaluacion} [delete]
 
@@ -234,7 +234,7 @@ func DeleteEvaluacion(c *gin.Context) {
 // @Tags 02 - Estudiantes
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} SwaggerMessages.ListEvaluacionesSwagger "OK"
+// @Success 200 {array} Swagger.ListEvaluacionesSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /estudiantes/me/evaluaciones [get]
 func ListEvaluacionesEstudiante(c *gin.Context) {
@@ -249,7 +249,7 @@ func ListEvaluacionesEstudiante(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, Output.GetEvaluacionesEstudianteOutput(estudiante.Evaluaciones_estudiante))
+	ApiHelpers.RespondJSON(c, 200, Output.ListEvaluacionesEstudianteOutput(estudiante.Calificaciones_estudiante))
 }
 
 // @Summary Genera una evaluación para un estudiante
@@ -258,7 +258,7 @@ func ListEvaluacionesEstudiante(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   input_evaluacion     body    Request.GenerarEvaluacionPayload     true        "Evaluacion a generar"
-// @Success 200 {object} SwaggerMessages.GenerarEvaluacionSwagger "OK"
+// @Success 200 {object} Swagger.GenerarEvaluacionSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /evaluadores/me/evaluaciones [post]
 func GenerarEvaluacion(c *gin.Context) {
@@ -280,34 +280,34 @@ func GenerarEvaluacion(c *gin.Context) {
 	// validate puntajes_evaluacion enum
 
 	// generate model entity
-	model_container := Models.Evaluacion{
-		Id_estudiante:                           container.Id_estudiante,
-		Id_evaluador:                            id_evaluador,
-		Id_periodo:                              container.Id_periodo,
-		Nombre_evaluacion:                       container.Nombre_evaluacion,
-		Entorno_clinico_evaluacion:              container.Entorno_clinico_evaluacion,
-		Paciente_evaluacion:                     container.Paciente_evaluacion,
-		Asunto_principal_consulta_evaluacion:    container.Asunto_principal_consulta_evaluacion,
-		Complejidad_caso_evaluacion:             container.Complejidad_caso_evaluacion,
-		Numero_observaciones_previas_evaluacion: container.Numero_observaciones_previas_evaluacion,
-		Categoria_observador_evaluacion:         container.Categoria_observador_evaluacion,
-		Observacion_calificacion_evaluacion:     container.Observacion_calificacion_evaluacion,
-		Tiempo_utilizado_evaluacion:             container.Tiempo_utilizado_evaluacion,
+	model_container := Models.CalificacionEstudiante{
+		Id_estudiante: container.Id_estudiante,
+		Id_evaluador:  id_evaluador,
+		Id_periodo:    container.Id_periodo,
+		// Nombre_evaluacion:                       container.Nombre_evaluacion,
+		// Entorno_clinico_evaluacion:              container.Entorno_clinico_evaluacion,
+		// Paciente_evaluacion:                     container.Paciente_evaluacion,
+		// Asunto_principal_consulta_evaluacion:    container.Asunto_principal_consulta_evaluacion,
+		// Complejidad_caso_evaluacion:             container.Complejidad_caso_evaluacion,
+		// Numero_observaciones_previas_evaluacion: container.Numero_observaciones_previas_evaluacion,
+		// Categoria_observador_evaluacion:         container.Categoria_observador_evaluacion,
+		// Observacion_calificacion_evaluacion:     container.Observacion_calificacion_evaluacion,
+		// Tiempo_utilizado_evaluacion:             container.Tiempo_utilizado_evaluacion,
 	}
 
-	// query
-	if err := Repositories.AddNewEvaluacion(&model_container); err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
-	}
+	// // query
+	// if err := Repositories.AddNewEvaluacion(&model_container); err != nil {
+	// 	ApiHelpers.RespondError(c, 500, "default")
+	// 	return
+	// }
 
 	for i := 0; i < len(container.Puntajes_evaluacion); i++ {
 		puntaje := Models.Puntaje{
-			Id_evaluacion:              model_container.Id,
-			Nombre_competencia_puntaje: container.Puntajes_evaluacion[i].Nombre_competencia,
-			Codigo_competencia_puntaje: container.Puntajes_evaluacion[i].Codigo_competencia,
-			Calificacion_puntaje:       container.Puntajes_evaluacion[i].Puntaje_competencia,
-			Feedback_puntaje:           container.Puntajes_evaluacion[i].Feedback_competencia,
+			// Id_evaluacion:              model_container.Id,
+			// Nombre_competencia_puntaje: container.Puntajes_evaluacion[i].Nombre_competencia,
+			// Codigo_competencia_puntaje: container.Puntajes_evaluacion[i].Codigo_competencia,
+			Calificacion_puntaje: container.Puntajes_evaluacion[i].Puntaje_competencia,
+			Feedback_puntaje:     container.Puntajes_evaluacion[i].Feedback_competencia,
 		}
 
 		if err := Repositories.AddNewPuntaje(&puntaje); err != nil {

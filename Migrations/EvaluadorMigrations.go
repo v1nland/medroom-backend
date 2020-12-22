@@ -12,7 +12,7 @@ func EvaluadorMigrations() {
 
 	var rol Models.Rol
 	if err := Repositories.GetOneRol(&rol, "2"); err != nil {
-		panic("Rol evaluador no existe")
+		panic("ROL EVALUADOR NO EXISTE")
 	}
 
 	container := &Models.Evaluador{
@@ -29,7 +29,7 @@ func EvaluadorMigrations() {
 	}
 
 	if err := Repositories.AddNewEvaluador(container); err != nil {
-		panic("No se ha migrado evaluador")
+		panic("NO SE PUDO MIGRAR EVALUADOR")
 	}
 
 	Utils.StructToString(container)

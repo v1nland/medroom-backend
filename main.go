@@ -5,7 +5,9 @@ import (
 	"medroom-backend/Config"
 	"medroom-backend/Migrations"
 	"medroom-backend/Models"
+	"medroom-backend/Repositories"
 	"medroom-backend/Routers"
+	"medroom-backend/Utils"
 	"medroom-backend/docs"
 	"os"
 
@@ -15,8 +17,6 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
-
-var err error
 
 // @title MedRoom API
 // @version 1.0
@@ -32,7 +32,6 @@ var err error
 
 // @BasePath /api/v1
 func main() {
-	// load environment
 	err := godotenv.Load()
 	if err != nil {
 		fmt.Println("status error: ", err)
@@ -47,38 +46,60 @@ func main() {
 		fmt.Println("status error: ", err)
 	}
 
-	// migrations
-	migrate_tables := os.Getenv("MIGRATE_TABLES")
-	migrate_values := os.Getenv("MIGRATE_VALUES")
-
-	if migrate_tables == "1" {
-		Config.DB.AutoMigrate(&Models.Periodo{}, &Models.Rol{},
-			&Models.Evaluador{}, &Models.Curso{}, &Models.Grupo{},
-			&Models.Estudiante{}, &Models.Evaluacion{}, &Models.Puntaje{},
-			&Models.AdministradorAcademico{}, &Models.AdministradorTi{})
+	if os.Getenv("MIGRATE_TABLES") == "1" {
+		Config.DB.AutoMigrate(&Models.Periodo{}, &Models.Rol{}, &Models.AdministradorTi{},
+			&Models.AdministradorAcademico{}, &Models.Evaluador{}, &Models.Competencia{},
+			&Models.Curso{}, &Models.Grupo{}, &Models.CalificacionEstudiante{}, &Models.Estudiante{}, &Models.Puntaje{})
 	}
 
-	if migrate_values == "1" {
-		Migrations.RolMigrations()
+	if os.Getenv("MIGRATE_VALUES") == "1" {
 		Migrations.PeriodoMigrations()
+		Migrations.RolMigrations()
+		Migrations.CompetenciaMigrations()
 		Migrations.AdministradorTiMigrations()
 		Migrations.AdministradorAcademicoMigrations()
 		Migrations.EvaluadorMigrations()
 		Migrations.CursoMigrations()
+		Migrations.EvaluacionMigrations()
 		// Migrations.GrupoMigrations()
 		// Migrations.EstudianteMigrations()
-		Migrations.EvaluacionMigrations()
+		Migrations.CalificacionEstudianteMigrations()
 		// Migrations.PuntajeMigrations()
 	}
 
+	var curso Models.Curso
+	if err := Repositories.GetOneCurso(&curso, "1"); err != nil {
+		panic("Curso no existe")
+	}
+
+	fmt.Println("=============")
+	fmt.Println("=============")
+	Utils.StructToString(curso)
+
+	var grupo Models.Grupo
+	if err := Repositories.GetOneGrupo(&grupo, "1"); err != nil {
+		panic("Grupo no existe")
+	}
+
+	fmt.Println("=============")
+	fmt.Println("=============")
+	Utils.StructToString(grupo)
+
+	var administradores_academicos []Models.AdministradorAcademico
+	if err := Repositories.GetAllAdministradoresAcademicos(&administradores_academicos); err != nil {
+		panic("AdministradorAcademico no existe")
+	}
+
+	fmt.Println("=============")
+	fmt.Println("=============")
+	Utils.StructToString(administradores_academicos[0])
+
+	// setup router
 	r := Routers.SetupRouter()
 
 	// swagger
-	swagger_protocol := os.Getenv("SWAGGER_PROTOCOL")
-	swagger_host := os.Getenv("SWAGGER_HOST")
-
-	docs.SwaggerInfo.Host = swagger_host
-	url := gin_swagger.URL(swagger_protocol + "://" + swagger_host + "/docs/v1/doc.json")
+	docs.SwaggerInfo.Host = os.Getenv("SWAGGER_HOST")
+	url := gin_swagger.URL(os.Getenv("SWAGGER_PROTOCOL") + "://" + os.Getenv("SWAGGER_HOST") + "/docs/v1/doc.json")
 	r.GET("/docs/v1/*any", gin_swagger.WrapHandler(swagger_files.Handler, url))
 
 	// run routes

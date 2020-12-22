@@ -5,7 +5,7 @@ import (
 	"medroom-backend/Models"
 )
 
-func GetAdministradoresAcademicosOutput(u []Models.AdministradorAcademico) (output []Response.ListAdministradoresAcademicosResponse) {
+func ListAdministradoresAcademicosOutput(u []Models.AdministradorAcademico) (output []Response.ListAdministradoresAcademicosResponse) {
 	for i := 0; i < len(u); i++ {
 		output = append(output, Response.ListAdministradoresAcademicosResponse{
 			Rol_administrador_academico:                GetOneRolOutput(u[i].Rol_administrador_academico),

@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func GetCursosInput(u *Request.ListCursosPayload) {
+func ListCursosInput(u *Request.ListCursosPayload) {
 
 }
 

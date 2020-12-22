@@ -5,7 +5,7 @@ import (
 	"medroom-backend/Models"
 )
 
-func GetGruposOutput(u []Models.Grupo) (output []Response.ListGruposResponse) {
+func ListGruposOutput(u []Models.Grupo) (output []Response.ListGruposResponse) {
 	for i := 0; i < len(u); i++ {
 		output = append(output, Response.ListGruposResponse{
 			Id_curso:        u[i].Id_curso,
