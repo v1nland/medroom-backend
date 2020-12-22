@@ -9,7 +9,7 @@ import (
 
 type Estudiante struct {
 	Id                            string       `json:"id" sql:"type:uuid;primary_key;default:uuid_generate_v4()"`
-	Id_rol                        int          `json:"id_rol" sql:"type:int REFERENCES public.roles(id)"`
+	Id_rol                        int          `json:"id_rol"`
 	Rol_estudiante                Rol          `json:"rol_estudiante" gorm:"foreignKey:Id_rol"`
 	Evaluaciones_estudiante       []Evaluacion `json:"evaluaciones_estudiante" gorm:"foreignKey:Id_estudiante"`
 	Grupos_estudiante             []Grupo      `json:"grupos_estudiante" gorm:"many2many:estudiantes_grupos;joinForeignKey:id_estudiante;joinReferences:id_grupo"`

@@ -6,10 +6,10 @@ import (
 
 type Evaluacion struct {
 	Id                                      int       `json:"id"`
-	Id_estudiante                           string    `json:"id_estudiante" sql:"type:uuid REFERENCES public.estudiantes(id)"`
-	Id_evaluador                            string    `json:"id_evaluador" sql:"type:uuid REFERENCES public.evaluadores(id)"`
+	Id_estudiante                           string    `json:"id_estudiante"`
+	Id_evaluador                            string    `json:"id_evaluador"`
 	Evaluador_evaluacion                    Evaluador `json:"evaluador_evaluacion" gorm:"foreignKey:Id_evaluador"`
-	Id_periodo                              int       `json:"id_periodo" sql:"type:int REFERENCES public.periodos(id)"`
+	Id_periodo                              int       `json:"id_periodo"`
 	Periodo_evaluacion                      Periodo   `json:"periodo_evaluacion" gorm:"foreignKey:Id_periodo"`
 	Puntajes_evaluacion                     []Puntaje `json:"puntajes_evaluacion" gorm:"foreignKey:Id_evaluacion"`
 	Nombre_evaluacion                       string    `json:"nombre_evaluacion"`

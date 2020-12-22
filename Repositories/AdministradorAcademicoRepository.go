@@ -41,10 +41,3 @@ func DeleteAdministradorAcademico(u *Models.AdministradorAcademico, id string) (
 	Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("id = ?", id).Delete(u)
 	return nil
 }
-
-func AuthAdministradorAcademico(u *Models.AdministradorAcademico, correo_electronico_administrador_academico string, hash_contrasena_administrador_academico string) (err error) {
-	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("correo_electronico_administrador_academico = ? AND hash_contrasena_administrador_academico = ?", correo_electronico_administrador_academico, hash_contrasena_administrador_academico).First(u).Error; err != nil {
-		return err
-	}
-	return nil
-}

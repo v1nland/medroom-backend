@@ -9,7 +9,7 @@ import (
 
 type AdministradorTi struct {
 	Id                                  string    `json:"id" sql:"type:uuid;primary_key;default:uuid_generate_v4()"`
-	Id_rol                              int       `json:"id_rol" sql:"type:int REFERENCES public.roles(id)"`
+	Id_rol                              int       `json:"id_rol"`
 	Rol_administrador_ti                Rol       `json:"rol_administrador_ti" gorm:"foreignKey:Id_rol"`
 	Rut_administrador_ti                string    `json:"rut_administrador_ti" gorm:"unique;not null"`
 	Nombres_administrador_ti            string    `json:"nombres_administrador_ti"`

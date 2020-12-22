@@ -41,10 +41,3 @@ func DeleteEstudiante(u *Models.Estudiante, id string) (err error) {
 	Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("id = ?", id).Delete(u)
 	return nil
 }
-
-func AuthEstudiante(u *Models.Estudiante, correo_electronico_estudiante string, hash_contrasena_estudiante string) (err error) {
-	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("correo_electronico_estudiante = ? AND hash_contrasena_estudiante = ?", correo_electronico_estudiante, hash_contrasena_estudiante).First(u).Error; err != nil {
-		return err
-	}
-	return nil
-}

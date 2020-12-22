@@ -1,7 +1,7 @@
 package Migrations
 
-import "fmt"
+// import "fmt"
 
-func PuntajeMigrations() {
-	fmt.Println("===== PUNTAJE =====")
-}
+// func PuntajeMigrations() {
+// 	fmt.Println("===== PUNTAJE =====")
+// }

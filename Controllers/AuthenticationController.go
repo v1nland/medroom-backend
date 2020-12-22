@@ -34,7 +34,7 @@ func AutenticarEstudiante(c *gin.Context) {
 
 	Input.FormatLoginEstudianteMessage(&login_message)
 
-	err := Repositories.AuthEstudiante(&estudiante, login_message.Correo_electronico_estudiante, login_message.Hash_contrasena_estudiante)
+	err := Repositories.AuthenticateEstudiante(&estudiante, login_message.Correo_electronico_estudiante, login_message.Hash_contrasena_estudiante)
 	if err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
@@ -75,7 +75,7 @@ func AutenticarEvaluador(c *gin.Context) {
 
 	Input.FormatLoginEvaluadorMessage(&login_message)
 
-	err := Repositories.AuthEvaluador(&evaluador, login_message.Correo_electronico_evaluador, login_message.Hash_contrasena_evaluador)
+	err := Repositories.AuthenticateEvaluador(&evaluador, login_message.Correo_electronico_evaluador, login_message.Hash_contrasena_evaluador)
 	if err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
@@ -116,7 +116,7 @@ func AutenticarAdministradorAcademico(c *gin.Context) {
 
 	Input.FormatLoginAdministradorAcademicoMessage(&login_message)
 
-	err := Repositories.AuthAdministradorAcademico(&administrador_academico, login_message.Correo_electronico_administrador_academico, login_message.Hash_contrasena_administrador_academico)
+	err := Repositories.AuthenticateAdministradorAcademico(&administrador_academico, login_message.Correo_electronico_administrador_academico, login_message.Hash_contrasena_administrador_academico)
 	if err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
@@ -157,7 +157,7 @@ func AutenticarAdministradorTi(c *gin.Context) {
 
 	Input.FormatLoginAdministradorTiMessage(&login_message)
 
-	err := Repositories.AuthAdministradorTi(&administrador_ti, login_message.Correo_electronico_administrador_ti, login_message.Hash_contrasena_administrador_ti)
+	err := Repositories.AuthenticateAdministradorTi(&administrador_ti, login_message.Correo_electronico_administrador_ti, login_message.Hash_contrasena_administrador_ti)
 	if err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return

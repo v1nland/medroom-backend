@@ -65,7 +65,7 @@ func main() {
 		Migrations.AdministradorAcademicoMigrations()
 		Migrations.EvaluadorMigrations()
 		Migrations.CursoMigrations()
-		Migrations.GrupoMigrations()
+		// Migrations.GrupoMigrations()
 		// Migrations.EstudianteMigrations()
 		Migrations.EvaluacionMigrations()
 		// Migrations.PuntajeMigrations()

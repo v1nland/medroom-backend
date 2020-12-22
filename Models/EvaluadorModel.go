@@ -9,7 +9,7 @@ import (
 
 type Evaluador struct {
 	Id                           string    `json:"id" sql:"type:uuid;primary_key;default:uuid_generate_v4()"`
-	Id_rol                       int       `json:"id_rol" sql:"type:int REFERENCES public.roles(id)"`
+	Id_rol                       int       `json:"id_rol"`
 	Rol_evaluador                Rol       `json:"rol_evaluador" gorm:"foreignKey:Id_rol"`
 	Rut_evaluador                string    `json:"rut_evaluador" gorm:"unique;not null"`
 	Nombres_evaluador            string    `json:"nombres_evaluador"`
