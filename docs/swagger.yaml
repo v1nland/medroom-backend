@@ -7,7 +7,7 @@ definitions:
       error:
         type: string
     type: object
-  RequestMessages.AddNewAdministradorAcademicoPayload:
+  Request.AddNewAdministradorAcademicoPayload:
     properties:
       apellidos_administrador_academico:
         type: string
@@ -26,7 +26,7 @@ definitions:
       telefono_fijo_administrador_academico:
         type: string
     type: object
-  RequestMessages.AddNewAdministradorTiPayload:
+  Request.AddNewAdministradorTiPayload:
     properties:
       apellidos_administrador_ti:
         type: string
@@ -47,7 +47,7 @@ definitions:
       telefono_fijo_administrador_ti:
         type: string
     type: object
-  RequestMessages.AddNewCursoPayload:
+  Request.AddNewCursoPayload:
     properties:
       id_periodo:
         type: integer
@@ -56,7 +56,7 @@ definitions:
       sigla_curso:
         type: string
     type: object
-  RequestMessages.AddNewEstudiantePayload:
+  Request.AddNewEstudiantePayload:
     properties:
       apellidos_estudiante:
         type: string
@@ -77,7 +77,7 @@ definitions:
       telefono_fijo_estudiante:
         type: string
     type: object
-  RequestMessages.AddNewEvaluadorPayload:
+  Request.AddNewEvaluadorPayload:
     properties:
       apellidos_evaluador:
         type: string
@@ -100,7 +100,7 @@ definitions:
       telefono_fijo_evaluador:
         type: string
     type: object
-  RequestMessages.AddNewGrupoPayload:
+  Request.AddNewGrupoPayload:
     properties:
       id_curso:
         type: integer
@@ -111,17 +111,17 @@ definitions:
       sigla_grupo:
         type: string
     type: object
-  RequestMessages.AddNewPeriodoPayload:
+  Request.AddNewPeriodoPayload:
     properties:
       nombre_periodo:
         type: string
     type: object
-  RequestMessages.AddNewRolPayload:
+  Request.AddNewRolPayload:
     properties:
       nombre_rol:
         type: string
     type: object
-  RequestMessages.GenerarEvaluacionPayload:
+  Request.GenerarEvaluacionPayload:
     properties:
       asunto_principal_consulta_evaluacion:
         type: string
@@ -147,40 +147,40 @@ definitions:
         type: string
       puntajes_evaluacion:
         items:
-          $ref: '#/definitions/RequestMessages.PuntajesEvaluacion'
+          $ref: '#/definitions/Request.PuntajesEvaluacion'
         type: array
       tiempo_utilizado_evaluacion:
         type: integer
     type: object
-  RequestMessages.LoginAdministradorAcademicoPayload:
+  Request.LoginAdministradorAcademicoPayload:
     properties:
       correo_electronico_administrador_academico:
         type: string
       hash_contrasena_administrador_academico:
         type: string
     type: object
-  RequestMessages.LoginAdministradorTiPayload:
+  Request.LoginAdministradorTiPayload:
     properties:
       correo_electronico_administrador_ti:
         type: string
       hash_contrasena_administrador_ti:
         type: string
     type: object
-  RequestMessages.LoginEstudiantePayload:
+  Request.LoginEstudiantePayload:
     properties:
       correo_electronico_estudiante:
         type: string
       hash_contrasena_estudiante:
         type: string
     type: object
-  RequestMessages.LoginEvaluadorPayload:
+  Request.LoginEvaluadorPayload:
     properties:
       correo_electronico_evaluador:
         type: string
       hash_contrasena_evaluador:
         type: string
     type: object
-  RequestMessages.PuntajesEvaluacion:
+  Request.PuntajesEvaluacion:
     properties:
       codigo_competencia:
         type: string
@@ -191,7 +191,7 @@ definitions:
       puntaje_competencia:
         type: integer
     type: object
-  RequestMessages.PutMyAdministradorAcademicoPayload:
+  Request.PutMyAdministradorAcademicoPayload:
     properties:
       apellidos_administrador_academico:
         type: string
@@ -210,7 +210,7 @@ definitions:
       telefono_fijo_administrador_academico:
         type: string
     type: object
-  RequestMessages.PutMyAdministradorTiPayload:
+  Request.PutMyAdministradorTiPayload:
     properties:
       apellidos_administrador_ti:
         type: string
@@ -231,7 +231,7 @@ definitions:
       telefono_fijo_administrador_ti:
         type: string
     type: object
-  RequestMessages.PutMyEstudiantePayload:
+  Request.PutMyEstudiantePayload:
     properties:
       apellidos_estudiante:
         type: string
@@ -255,7 +255,7 @@ definitions:
         description: solo este
         type: string
     type: object
-  RequestMessages.PutMyEvaluadorPayload:
+  Request.PutMyEvaluadorPayload:
     properties:
       apellidos_evaluador:
         type: string
@@ -278,7 +278,7 @@ definitions:
       telefono_fijo_evaluador:
         type: string
     type: object
-  RequestMessages.PutOneAdministradorAcademicoPayload:
+  Request.PutOneAdministradorAcademicoPayload:
     properties:
       apellidos_administrador_academico:
         type: string
@@ -297,7 +297,7 @@ definitions:
       telefono_fijo_administrador_academico:
         type: string
     type: object
-  RequestMessages.PutOneAdministradorTiPayload:
+  Request.PutOneAdministradorTiPayload:
     properties:
       apellidos_administrador_ti:
         type: string
@@ -318,7 +318,7 @@ definitions:
       telefono_fijo_administrador_ti:
         type: string
     type: object
-  RequestMessages.PutOneCursoPayload:
+  Request.PutOneCursoPayload:
     properties:
       id_periodo:
         type: integer
@@ -327,7 +327,7 @@ definitions:
       sigla_curso:
         type: string
     type: object
-  RequestMessages.PutOneEstudiantePayload:
+  Request.PutOneEstudiantePayload:
     properties:
       apellidos_estudiante:
         type: string
@@ -348,7 +348,7 @@ definitions:
       telefono_fijo_estudiante:
         type: string
     type: object
-  RequestMessages.PutOneEvaluadorPayload:
+  Request.PutOneEvaluadorPayload:
     properties:
       apellidos_evaluador:
         type: string
@@ -371,7 +371,7 @@ definitions:
       telefono_fijo_evaluador:
         type: string
     type: object
-  RequestMessages.PutOneGrupoPayload:
+  Request.PutOneGrupoPayload:
     properties:
       id_curso:
         type: integer
@@ -382,17 +382,17 @@ definitions:
       sigla_grupo:
         type: string
     type: object
-  RequestMessages.PutOnePeriodoPayload:
+  Request.PutOnePeriodoPayload:
     properties:
       nombre_periodo:
         type: string
     type: object
-  RequestMessages.PutOneRolPayload:
+  Request.PutOneRolPayload:
     properties:
       nombre_rol:
         type: string
     type: object
-  ResponseMessages.AddNewAdministradorAcademicoResponse:
+  Response.AddNewAdministradorAcademicoResponse:
     properties:
       apellidos_administrador_academico:
         type: string
@@ -409,7 +409,7 @@ definitions:
       telefono_fijo_administrador_academico:
         type: string
     type: object
-  ResponseMessages.AddNewAdministradorTiResponse:
+  Response.AddNewAdministradorTiResponse:
     properties:
       apellidos_administrador_ti:
         type: string
@@ -426,7 +426,7 @@ definitions:
       telefono_fijo_administrador_ti:
         type: string
     type: object
-  ResponseMessages.AddNewCursoResponse:
+  Response.AddNewCursoResponse:
     properties:
       id_periodo:
         type: integer
@@ -435,7 +435,7 @@ definitions:
       sigla_curso:
         type: string
     type: object
-  ResponseMessages.AddNewEstudianteResponse:
+  Response.AddNewEstudianteResponse:
     properties:
       apellidos_estudiante:
         type: string
@@ -454,7 +454,7 @@ definitions:
       telefono_fijo_estudiante:
         type: string
     type: object
-  ResponseMessages.AddNewEvaluadorResponse:
+  Response.AddNewEvaluadorResponse:
     properties:
       apellidos_evaluador:
         type: string
@@ -475,7 +475,7 @@ definitions:
       telefono_fijo_evaluador:
         type: string
     type: object
-  ResponseMessages.AddNewGrupoResponse:
+  Response.AddNewGrupoResponse:
     properties:
       id_curso:
         type: integer
@@ -486,24 +486,24 @@ definitions:
       sigla_grupo:
         type: string
     type: object
-  ResponseMessages.AddNewPeriodoResponse:
+  Response.AddNewPeriodoResponse:
     properties:
       id:
         type: integer
       nombre_periodo:
         type: string
     type: object
-  ResponseMessages.AddNewRolResponse:
+  Response.AddNewRolResponse:
     properties:
       nombre_rol:
         type: string
     type: object
-  ResponseMessages.Authentication:
+  Response.Authentication:
     properties:
       token:
         type: string
     type: object
-  ResponseMessages.DeleteAdministradorAcademicoResponse:
+  Response.DeleteAdministradorAcademicoResponse:
     properties:
       apellidos_administrador_academico:
         type: string
@@ -520,7 +520,7 @@ definitions:
       telefono_fijo_administrador_academico:
         type: string
     type: object
-  ResponseMessages.DeleteAdministradorTiResponse:
+  Response.DeleteAdministradorTiResponse:
     properties:
       apellidos_administrador_ti:
         type: string
@@ -537,7 +537,7 @@ definitions:
       telefono_fijo_administrador_ti:
         type: string
     type: object
-  ResponseMessages.DeleteCursoResponse:
+  Response.DeleteCursoResponse:
     properties:
       id_periodo:
         type: integer
@@ -546,7 +546,7 @@ definitions:
       sigla_curso:
         type: string
     type: object
-  ResponseMessages.DeleteEstudianteResponse:
+  Response.DeleteEstudianteResponse:
     properties:
       apellidos_estudiante:
         type: string
@@ -565,7 +565,7 @@ definitions:
       telefono_fijo_estudiante:
         type: string
     type: object
-  ResponseMessages.DeleteEvaluadorResponse:
+  Response.DeleteEvaluadorResponse:
     properties:
       apellidos_evaluador:
         type: string
@@ -586,7 +586,7 @@ definitions:
       telefono_fijo_evaluador:
         type: string
     type: object
-  ResponseMessages.DeleteGrupoResponse:
+  Response.DeleteGrupoResponse:
     properties:
       id_curso:
         type: integer
@@ -597,19 +597,19 @@ definitions:
       sigla_grupo:
         type: string
     type: object
-  ResponseMessages.DeletePeriodoResponse:
+  Response.DeletePeriodoResponse:
     properties:
       id:
         type: integer
       nombre_periodo:
         type: string
     type: object
-  ResponseMessages.DeleteRolResponse:
+  Response.DeleteRolResponse:
     properties:
       nombre_rol:
         type: string
     type: object
-  ResponseMessages.EvolucionEstudiantePorCompetenciaResponse:
+  Response.EvolucionEstudiantePorCompetenciaResponse:
     properties:
       nombre_competencia:
         type: string
@@ -620,7 +620,7 @@ definitions:
       promedio_grupo:
         type: number
     type: object
-  ResponseMessages.EvolucionEstudiantePorEvaluacionResponse:
+  Response.EvolucionEstudiantePorEvaluacionResponse:
     properties:
       nombre_evaluacion:
         type: string
@@ -631,7 +631,7 @@ definitions:
       promedio_grupo:
         type: number
     type: object
-  ResponseMessages.GenerarEvaluacionResponse:
+  Response.GenerarEvaluacionResponse:
     properties:
       asunto_principal_consulta_evaluacion:
         type: string
@@ -657,45 +657,45 @@ definitions:
         type: string
       puntajes_evaluacion:
         items:
-          $ref: '#/definitions/ResponseMessages.ListPuntajesResponse'
+          $ref: '#/definitions/Response.ListPuntajesResponse'
         type: array
       tiempo_utilizado_evaluacion:
         type: integer
     type: object
-  ResponseMessages.GetCursoEstudianteResponse:
+  Response.GetCursoEstudianteResponse:
     properties:
       grupos_curso:
         items:
-          $ref: '#/definitions/ResponseMessages.ListGruposResponse'
+          $ref: '#/definitions/Response.ListGruposResponse'
         type: array
       nombre_curso:
         type: string
       periodo_curso:
-        $ref: '#/definitions/ResponseMessages.GetOnePeriodoResponse'
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
       sigla_curso:
         type: string
     type: object
-  ResponseMessages.GetCursoEvaluadorResponse:
+  Response.GetCursoEvaluadorResponse:
     properties:
       grupos_curso:
         items:
-          $ref: '#/definitions/ResponseMessages.ListGruposResponse'
+          $ref: '#/definitions/Response.ListGruposResponse'
         type: array
       nombre_curso:
         type: string
       periodo_curso:
-        $ref: '#/definitions/ResponseMessages.GetOnePeriodoResponse'
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
       sigla_curso:
         type: string
     type: object
-  ResponseMessages.GetGrupoEstudianteResponse:
+  Response.GetGrupoEstudianteResponse:
     properties:
       estudiantes_grupo:
         items:
-          $ref: '#/definitions/ResponseMessages.ListEstudiantesResponse'
+          $ref: '#/definitions/Response.ListEstudiantesResponse'
         type: array
       evaluador_grupo:
-        $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
       id_curso:
         type: integer
       nombre_grupo:
@@ -703,14 +703,14 @@ definitions:
       sigla_grupo:
         type: string
     type: object
-  ResponseMessages.GetGrupoEvaluadorResponse:
+  Response.GetGrupoEvaluadorResponse:
     properties:
       estudiantes_grupo:
         items:
-          $ref: '#/definitions/ResponseMessages.ListEstudiantesResponse'
+          $ref: '#/definitions/Response.ListEstudiantesResponse'
         type: array
       evaluador_grupo:
-        $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
       id_curso:
         type: integer
       nombre_grupo:
@@ -718,7 +718,7 @@ definitions:
       sigla_grupo:
         type: string
     type: object
-  ResponseMessages.GetMyAdministradorAcademicoResponse:
+  Response.GetMyAdministradorAcademicoResponse:
     properties:
       apellidos_administrador_academico:
         type: string
@@ -727,7 +727,7 @@ definitions:
       nombres_administrador_academico:
         type: string
       rol_administrador_academico:
-        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+        $ref: '#/definitions/Response.GetOneRolResponse'
       rut_administrador_academico:
         type: string
       telefono_celular_administrador_academico:
@@ -735,7 +735,7 @@ definitions:
       telefono_fijo_administrador_academico:
         type: string
     type: object
-  ResponseMessages.GetMyAdministradorTiResponse:
+  Response.GetMyAdministradorTiResponse:
     properties:
       apellidos_administrador_ti:
         type: string
@@ -744,7 +744,7 @@ definitions:
       nombres_administrador_ti:
         type: string
       rol_administrador_ti:
-        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+        $ref: '#/definitions/Response.GetOneRolResponse'
       rut_administrador_ti:
         type: string
       telefono_celular_administrador_ti:
@@ -752,7 +752,7 @@ definitions:
       telefono_fijo_administrador_ti:
         type: string
     type: object
-  ResponseMessages.GetMyEstudianteResponse:
+  Response.GetMyEstudianteResponse:
     properties:
       apellidos_estudiante:
         type: string
@@ -760,14 +760,14 @@ definitions:
         type: string
       evaluaciones_estudiante:
         items:
-          $ref: '#/definitions/ResponseMessages.ListEvaluacionesEstudianteResponse'
+          $ref: '#/definitions/Response.ListEvaluacionesEstudianteResponse'
         type: array
       id_grupo:
         type: integer
       nombres_estudiante:
         type: string
       rol_estudiante:
-        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+        $ref: '#/definitions/Response.GetOneRolResponse'
       rut_estudiante:
         type: string
       telefono_celular_estudiante:
@@ -775,7 +775,7 @@ definitions:
       telefono_fijo_estudiante:
         type: string
     type: object
-  ResponseMessages.GetMyEvaluadorResponse:
+  Response.GetMyEvaluadorResponse:
     properties:
       apellidos_evaluador:
         type: string
@@ -788,7 +788,7 @@ definitions:
       recinto_evaluador:
         type: string
       rol_evaluador:
-        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+        $ref: '#/definitions/Response.GetOneRolResponse'
       rut_evaluador:
         type: string
       telefono_celular_evaluador:
@@ -796,7 +796,7 @@ definitions:
       telefono_fijo_evaluador:
         type: string
     type: object
-  ResponseMessages.GetOneAdministradorAcademicoResponse:
+  Response.GetOneAdministradorAcademicoResponse:
     properties:
       apellidos_administrador_academico:
         type: string
@@ -805,7 +805,7 @@ definitions:
       nombres_administrador_academico:
         type: string
       rol_administrador_academico:
-        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+        $ref: '#/definitions/Response.GetOneRolResponse'
       rut_administrador_academico:
         type: string
       telefono_celular_administrador_academico:
@@ -813,7 +813,7 @@ definitions:
       telefono_fijo_administrador_academico:
         type: string
     type: object
-  ResponseMessages.GetOneAdministradorTiResponse:
+  Response.GetOneAdministradorTiResponse:
     properties:
       apellidos_administrador_ti:
         type: string
@@ -822,7 +822,7 @@ definitions:
       nombres_administrador_ti:
         type: string
       rol_administrador_ti:
-        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+        $ref: '#/definitions/Response.GetOneRolResponse'
       rut_administrador_ti:
         type: string
       telefono_celular_administrador_ti:
@@ -830,20 +830,20 @@ definitions:
       telefono_fijo_administrador_ti:
         type: string
     type: object
-  ResponseMessages.GetOneCursoResponse:
+  Response.GetOneCursoResponse:
     properties:
       grupos_curso:
         items:
-          $ref: '#/definitions/ResponseMessages.ListGruposResponse'
+          $ref: '#/definitions/Response.ListGruposResponse'
         type: array
       nombre_curso:
         type: string
       periodo_curso:
-        $ref: '#/definitions/ResponseMessages.GetOnePeriodoResponse'
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
       sigla_curso:
         type: string
     type: object
-  ResponseMessages.GetOneEstudianteResponse:
+  Response.GetOneEstudianteResponse:
     properties:
       apellidos_estudiante:
         type: string
@@ -851,14 +851,14 @@ definitions:
         type: string
       evaluaciones_estudiante:
         items:
-          $ref: '#/definitions/ResponseMessages.ListEvaluacionesEstudianteResponse'
+          $ref: '#/definitions/Response.ListEvaluacionesEstudianteResponse'
         type: array
       id_grupo:
         type: integer
       nombres_estudiante:
         type: string
       rol_estudiante:
-        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+        $ref: '#/definitions/Response.GetOneRolResponse'
       rut_estudiante:
         type: string
       telefono_celular_estudiante:
@@ -866,7 +866,7 @@ definitions:
       telefono_fijo_estudiante:
         type: string
     type: object
-  ResponseMessages.GetOneEvaluadorResponse:
+  Response.GetOneEvaluadorResponse:
     properties:
       apellidos_evaluador:
         type: string
@@ -879,7 +879,7 @@ definitions:
       recinto_evaluador:
         type: string
       rol_evaluador:
-        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+        $ref: '#/definitions/Response.GetOneRolResponse'
       rut_evaluador:
         type: string
       telefono_celular_evaluador:
@@ -887,14 +887,14 @@ definitions:
       telefono_fijo_evaluador:
         type: string
     type: object
-  ResponseMessages.GetOneGrupoResponse:
+  Response.GetOneGrupoResponse:
     properties:
       estudiantes_grupo:
         items:
-          $ref: '#/definitions/ResponseMessages.ListEstudiantesResponse'
+          $ref: '#/definitions/Response.ListEstudiantesResponse'
         type: array
       evaluador_grupo:
-        $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
       id_curso:
         type: integer
       nombre_grupo:
@@ -902,19 +902,19 @@ definitions:
       sigla_grupo:
         type: string
     type: object
-  ResponseMessages.GetOnePeriodoResponse:
+  Response.GetOnePeriodoResponse:
     properties:
       id:
         type: integer
       nombre_periodo:
         type: string
     type: object
-  ResponseMessages.GetOneRolResponse:
+  Response.GetOneRolResponse:
     properties:
       nombre_rol:
         type: string
     type: object
-  ResponseMessages.ListAdministradoresAcademicosResponse:
+  Response.ListAdministradoresAcademicosResponse:
     properties:
       apellidos_administrador_academico:
         type: string
@@ -923,7 +923,7 @@ definitions:
       nombres_administrador_academico:
         type: string
       rol_administrador_academico:
-        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+        $ref: '#/definitions/Response.GetOneRolResponse'
       rut_administrador_academico:
         type: string
       telefono_celular_administrador_academico:
@@ -931,7 +931,7 @@ definitions:
       telefono_fijo_administrador_academico:
         type: string
     type: object
-  ResponseMessages.ListAdministradoresTiResponse:
+  Response.ListAdministradoresTiResponse:
     properties:
       apellidos_administrador_ti:
         type: string
@@ -940,7 +940,7 @@ definitions:
       nombres_administrador_ti:
         type: string
       rol_administrador_ti:
-        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+        $ref: '#/definitions/Response.GetOneRolResponse'
       rut_administrador_ti:
         type: string
       telefono_celular_administrador_ti:
@@ -948,20 +948,20 @@ definitions:
       telefono_fijo_administrador_ti:
         type: string
     type: object
-  ResponseMessages.ListCursosResponse:
+  Response.ListCursosResponse:
     properties:
       grupos_curso:
         items:
-          $ref: '#/definitions/ResponseMessages.ListGruposResponse'
+          $ref: '#/definitions/Response.ListGruposResponse'
         type: array
       nombre_curso:
         type: string
       periodo_curso:
-        $ref: '#/definitions/ResponseMessages.GetOnePeriodoResponse'
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
       sigla_curso:
         type: string
     type: object
-  ResponseMessages.ListEstudiantesResponse:
+  Response.ListEstudiantesResponse:
     properties:
       apellidos_estudiante:
         type: string
@@ -969,7 +969,7 @@ definitions:
         type: string
       evaluaciones_estudiante:
         items:
-          $ref: '#/definitions/ResponseMessages.ListEvaluacionesEstudianteResponse'
+          $ref: '#/definitions/Response.ListEvaluacionesEstudianteResponse'
         type: array
       id:
         type: string
@@ -978,7 +978,7 @@ definitions:
       nombres_estudiante:
         type: string
       rol_estudiante:
-        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+        $ref: '#/definitions/Response.GetOneRolResponse'
       rut_estudiante:
         type: string
       telefono_celular_estudiante:
@@ -986,7 +986,7 @@ definitions:
       telefono_fijo_estudiante:
         type: string
     type: object
-  ResponseMessages.ListEvaluacionesEstudianteResponse:
+  Response.ListEvaluacionesEstudianteResponse:
     properties:
       asunto_principal_consulta_evaluacion:
         type: string
@@ -997,7 +997,7 @@ definitions:
       entorno_clinico_evaluacion:
         type: string
       evaluador_evaluacion:
-        $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
       id_estudiante:
         type: string
       nombre_evaluacion:
@@ -1009,15 +1009,15 @@ definitions:
       paciente_evaluacion:
         type: string
       periodo_evaluacion:
-        $ref: '#/definitions/ResponseMessages.GetOnePeriodoResponse'
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
       puntajes_evaluacion:
         items:
-          $ref: '#/definitions/ResponseMessages.ListPuntajesResponse'
+          $ref: '#/definitions/Response.ListPuntajesResponse'
         type: array
       tiempo_utilizado_evaluacion:
         type: integer
     type: object
-  ResponseMessages.ListEvaluacionesResponse:
+  Response.ListEvaluacionesResponse:
     properties:
       asunto_principal_consulta_evaluacion:
         type: string
@@ -1028,7 +1028,7 @@ definitions:
       entorno_clinico_evaluacion:
         type: string
       evaluador_evaluacion:
-        $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
       id_estudiante:
         type: string
       nombre_evaluacion:
@@ -1040,15 +1040,15 @@ definitions:
       paciente_evaluacion:
         type: string
       periodo_evaluacion:
-        $ref: '#/definitions/ResponseMessages.GetOnePeriodoResponse'
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
       puntajes_evaluacion:
         items:
-          $ref: '#/definitions/ResponseMessages.ListPuntajesResponse'
+          $ref: '#/definitions/Response.ListPuntajesResponse'
         type: array
       tiempo_utilizado_evaluacion:
         type: integer
     type: object
-  ResponseMessages.ListEvaluadoresResponse:
+  Response.ListEvaluadoresResponse:
     properties:
       apellidos_evaluador:
         type: string
@@ -1061,7 +1061,7 @@ definitions:
       recinto_evaluador:
         type: string
       rol_evaluador:
-        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+        $ref: '#/definitions/Response.GetOneRolResponse'
       rut_evaluador:
         type: string
       telefono_celular_evaluador:
@@ -1069,14 +1069,14 @@ definitions:
       telefono_fijo_evaluador:
         type: string
     type: object
-  ResponseMessages.ListGruposResponse:
+  Response.ListGruposResponse:
     properties:
       estudiantes_grupo:
         items:
-          $ref: '#/definitions/ResponseMessages.ListEstudiantesResponse'
+          $ref: '#/definitions/Response.ListEstudiantesResponse'
         type: array
       evaluador_grupo:
-        $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
       id_curso:
         type: integer
       nombre_grupo:
@@ -1084,14 +1084,14 @@ definitions:
       sigla_grupo:
         type: string
     type: object
-  ResponseMessages.ListPeriodosResponse:
+  Response.ListPeriodosResponse:
     properties:
       id:
         type: integer
       nombre_periodo:
         type: string
     type: object
-  ResponseMessages.ListPuntajesResponse:
+  Response.ListPuntajesResponse:
     properties:
       calificacion_puntaje:
         type: integer
@@ -1104,12 +1104,12 @@ definitions:
       nombre_competencia_puntaje:
         type: string
     type: object
-  ResponseMessages.ListRolesResponse:
+  Response.ListRolesResponse:
     properties:
       nombre_rol:
         type: string
     type: object
-  ResponseMessages.PutMyAdministradorAcademicoResponse:
+  Response.PutMyAdministradorAcademicoResponse:
     properties:
       apellidos_administrador_academico:
         type: string
@@ -1128,7 +1128,7 @@ definitions:
       telefono_fijo_administrador_academico:
         type: string
     type: object
-  ResponseMessages.PutMyAdministradorTiResponse:
+  Response.PutMyAdministradorTiResponse:
     properties:
       apellidos_administrador_ti:
         type: string
@@ -1147,7 +1147,7 @@ definitions:
       telefono_fijo_administrador_ti:
         type: string
     type: object
-  ResponseMessages.PutMyEstudianteResponse:
+  Response.PutMyEstudianteResponse:
     properties:
       apellidos_estudiante:
         type: string
@@ -1168,7 +1168,7 @@ definitions:
       telefono_fijo_estudiante:
         type: string
     type: object
-  ResponseMessages.PutMyEvaluadorResponse:
+  Response.PutMyEvaluadorResponse:
     properties:
       apellidos_evaluador:
         type: string
@@ -1191,7 +1191,7 @@ definitions:
       telefono_fijo_evaluador:
         type: string
     type: object
-  ResponseMessages.PutOneAdministradorAcademicoResponse:
+  Response.PutOneAdministradorAcademicoResponse:
     properties:
       apellidos_administrador_academico:
         type: string
@@ -1210,7 +1210,7 @@ definitions:
       telefono_fijo_administrador_academico:
         type: string
     type: object
-  ResponseMessages.PutOneAdministradorTiResponse:
+  Response.PutOneAdministradorTiResponse:
     properties:
       apellidos_administrador_ti:
         type: string
@@ -1229,7 +1229,7 @@ definitions:
       telefono_fijo_administrador_ti:
         type: string
     type: object
-  ResponseMessages.PutOneCursoResponse:
+  Response.PutOneCursoResponse:
     properties:
       id_periodo:
         type: integer
@@ -1238,7 +1238,7 @@ definitions:
       sigla_curso:
         type: string
     type: object
-  ResponseMessages.PutOneEstudianteResponse:
+  Response.PutOneEstudianteResponse:
     properties:
       apellidos_estudiante:
         type: string
@@ -1259,7 +1259,7 @@ definitions:
       telefono_fijo_estudiante:
         type: string
     type: object
-  ResponseMessages.PutOneEvaluadorResponse:
+  Response.PutOneEvaluadorResponse:
     properties:
       apellidos_evaluador:
         type: string
@@ -1282,7 +1282,7 @@ definitions:
       telefono_fijo_evaluador:
         type: string
     type: object
-  ResponseMessages.PutOneGrupoResponse:
+  Response.PutOneGrupoResponse:
     properties:
       id_curso:
         type: integer
@@ -1293,14 +1293,14 @@ definitions:
       sigla_grupo:
         type: string
     type: object
-  ResponseMessages.PutOnePeriodoResponse:
+  Response.PutOnePeriodoResponse:
     properties:
       id:
         type: integer
       nombre_periodo:
         type: string
     type: object
-  ResponseMessages.PutOneRolResponse:
+  Response.PutOneRolResponse:
     properties:
       nombre_rol:
         type: string
@@ -1308,7 +1308,7 @@ definitions:
   SwaggerMessages.AddNewAdministradorAcademicoSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.AddNewAdministradorAcademicoResponse'
+        $ref: '#/definitions/Response.AddNewAdministradorAcademicoResponse'
       meta:
         type: string
       status:
@@ -1317,7 +1317,7 @@ definitions:
   SwaggerMessages.AddNewAdministradorTiSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.AddNewAdministradorTiResponse'
+        $ref: '#/definitions/Response.AddNewAdministradorTiResponse'
       meta:
         type: string
       status:
@@ -1326,7 +1326,7 @@ definitions:
   SwaggerMessages.AddNewCursoSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.AddNewCursoResponse'
+        $ref: '#/definitions/Response.AddNewCursoResponse'
       meta:
         type: string
       status:
@@ -1335,7 +1335,7 @@ definitions:
   SwaggerMessages.AddNewEstudianteSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.AddNewEstudianteResponse'
+        $ref: '#/definitions/Response.AddNewEstudianteResponse'
       meta:
         type: string
       status:
@@ -1344,7 +1344,7 @@ definitions:
   SwaggerMessages.AddNewEvaluadorSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.AddNewEvaluadorResponse'
+        $ref: '#/definitions/Response.AddNewEvaluadorResponse'
       meta:
         type: string
       status:
@@ -1353,7 +1353,7 @@ definitions:
   SwaggerMessages.AddNewGrupoSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.AddNewGrupoResponse'
+        $ref: '#/definitions/Response.AddNewGrupoResponse'
       meta:
         type: string
       status:
@@ -1362,7 +1362,7 @@ definitions:
   SwaggerMessages.AddNewPeriodoSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.AddNewPeriodoResponse'
+        $ref: '#/definitions/Response.AddNewPeriodoResponse'
       meta:
         type: string
       status:
@@ -1371,7 +1371,7 @@ definitions:
   SwaggerMessages.AddNewRolSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.AddNewRolResponse'
+        $ref: '#/definitions/Response.AddNewRolResponse'
       meta:
         type: string
       status:
@@ -1380,7 +1380,7 @@ definitions:
   SwaggerMessages.AuthenticationSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.Authentication'
+        $ref: '#/definitions/Response.Authentication'
       meta:
         type: string
       status:
@@ -1389,7 +1389,7 @@ definitions:
   SwaggerMessages.DeleteAdministradorAcademicoSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.DeleteAdministradorAcademicoResponse'
+        $ref: '#/definitions/Response.DeleteAdministradorAcademicoResponse'
       meta:
         type: string
       status:
@@ -1398,7 +1398,7 @@ definitions:
   SwaggerMessages.DeleteAdministradorTiSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.DeleteAdministradorTiResponse'
+        $ref: '#/definitions/Response.DeleteAdministradorTiResponse'
       meta:
         type: string
       status:
@@ -1407,7 +1407,7 @@ definitions:
   SwaggerMessages.DeleteCursoSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.DeleteCursoResponse'
+        $ref: '#/definitions/Response.DeleteCursoResponse'
       meta:
         type: string
       status:
@@ -1416,7 +1416,7 @@ definitions:
   SwaggerMessages.DeleteEstudianteSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.DeleteEstudianteResponse'
+        $ref: '#/definitions/Response.DeleteEstudianteResponse'
       meta:
         type: string
       status:
@@ -1425,7 +1425,7 @@ definitions:
   SwaggerMessages.DeleteEvaluadorSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.DeleteEvaluadorResponse'
+        $ref: '#/definitions/Response.DeleteEvaluadorResponse'
       meta:
         type: string
       status:
@@ -1434,7 +1434,7 @@ definitions:
   SwaggerMessages.DeleteGrupoSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.DeleteGrupoResponse'
+        $ref: '#/definitions/Response.DeleteGrupoResponse'
       meta:
         type: string
       status:
@@ -1443,7 +1443,7 @@ definitions:
   SwaggerMessages.DeletePeriodoSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.DeletePeriodoResponse'
+        $ref: '#/definitions/Response.DeletePeriodoResponse'
       meta:
         type: string
       status:
@@ -1452,7 +1452,7 @@ definitions:
   SwaggerMessages.DeleteRolSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.DeleteRolResponse'
+        $ref: '#/definitions/Response.DeleteRolResponse'
       meta:
         type: string
       status:
@@ -1461,7 +1461,7 @@ definitions:
   SwaggerMessages.EvolucionEstudiantePorCompetenciaSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.EvolucionEstudiantePorCompetenciaResponse'
+        $ref: '#/definitions/Response.EvolucionEstudiantePorCompetenciaResponse'
       meta:
         type: string
       status:
@@ -1470,7 +1470,7 @@ definitions:
   SwaggerMessages.EvolucionEstudiantePorEvaluacionSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.EvolucionEstudiantePorEvaluacionResponse'
+        $ref: '#/definitions/Response.EvolucionEstudiantePorEvaluacionResponse'
       meta:
         type: string
       status:
@@ -1479,7 +1479,7 @@ definitions:
   SwaggerMessages.GenerarEvaluacionSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.GenerarEvaluacionResponse'
+        $ref: '#/definitions/Response.GenerarEvaluacionResponse'
       meta:
         type: string
       status:
@@ -1488,7 +1488,7 @@ definitions:
   SwaggerMessages.GetCursoEstudianteSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.GetCursoEstudianteResponse'
+        $ref: '#/definitions/Response.GetCursoEstudianteResponse'
       meta:
         type: string
       status:
@@ -1497,7 +1497,7 @@ definitions:
   SwaggerMessages.GetCursoEvaluadorSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.GetCursoEvaluadorResponse'
+        $ref: '#/definitions/Response.GetCursoEvaluadorResponse'
       meta:
         type: string
       status:
@@ -1506,7 +1506,7 @@ definitions:
   SwaggerMessages.GetGrupoEstudianteSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.GetGrupoEstudianteResponse'
+        $ref: '#/definitions/Response.GetGrupoEstudianteResponse'
       meta:
         type: string
       status:
@@ -1515,7 +1515,7 @@ definitions:
   SwaggerMessages.GetGrupoEvaluadorSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.GetGrupoEvaluadorResponse'
+        $ref: '#/definitions/Response.GetGrupoEvaluadorResponse'
       meta:
         type: string
       status:
@@ -1524,7 +1524,7 @@ definitions:
   SwaggerMessages.GetMyAdministradorAcademicoSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.GetMyAdministradorAcademicoResponse'
+        $ref: '#/definitions/Response.GetMyAdministradorAcademicoResponse'
       meta:
         type: string
       status:
@@ -1533,7 +1533,7 @@ definitions:
   SwaggerMessages.GetMyAdministradorTiSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.GetMyAdministradorTiResponse'
+        $ref: '#/definitions/Response.GetMyAdministradorTiResponse'
       meta:
         type: string
       status:
@@ -1542,7 +1542,7 @@ definitions:
   SwaggerMessages.GetMyEstudianteSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.GetMyEstudianteResponse'
+        $ref: '#/definitions/Response.GetMyEstudianteResponse'
       meta:
         type: string
       status:
@@ -1551,7 +1551,7 @@ definitions:
   SwaggerMessages.GetMyEvaluadorSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.GetMyEvaluadorResponse'
+        $ref: '#/definitions/Response.GetMyEvaluadorResponse'
       meta:
         type: string
       status:
@@ -1560,7 +1560,7 @@ definitions:
   SwaggerMessages.GetOneAdministradorAcademicoSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.GetOneAdministradorAcademicoResponse'
+        $ref: '#/definitions/Response.GetOneAdministradorAcademicoResponse'
       meta:
         type: string
       status:
@@ -1569,7 +1569,7 @@ definitions:
   SwaggerMessages.GetOneAdministradorTiSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.GetOneAdministradorTiResponse'
+        $ref: '#/definitions/Response.GetOneAdministradorTiResponse'
       meta:
         type: string
       status:
@@ -1578,7 +1578,7 @@ definitions:
   SwaggerMessages.GetOneCursoSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.GetOneCursoResponse'
+        $ref: '#/definitions/Response.GetOneCursoResponse'
       meta:
         type: string
       status:
@@ -1587,7 +1587,7 @@ definitions:
   SwaggerMessages.GetOneEstudianteSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.GetOneEstudianteResponse'
+        $ref: '#/definitions/Response.GetOneEstudianteResponse'
       meta:
         type: string
       status:
@@ -1596,7 +1596,7 @@ definitions:
   SwaggerMessages.GetOneEvaluadorSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
       meta:
         type: string
       status:
@@ -1605,7 +1605,7 @@ definitions:
   SwaggerMessages.GetOneGrupoSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.GetOneGrupoResponse'
+        $ref: '#/definitions/Response.GetOneGrupoResponse'
       meta:
         type: string
       status:
@@ -1614,7 +1614,7 @@ definitions:
   SwaggerMessages.GetOnePeriodoSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.GetOnePeriodoResponse'
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
       meta:
         type: string
       status:
@@ -1623,7 +1623,7 @@ definitions:
   SwaggerMessages.GetOneRolSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+        $ref: '#/definitions/Response.GetOneRolResponse'
       meta:
         type: string
       status:
@@ -1632,7 +1632,7 @@ definitions:
   SwaggerMessages.ListAdministradoresAcademicosSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.ListAdministradoresAcademicosResponse'
+        $ref: '#/definitions/Response.ListAdministradoresAcademicosResponse'
       meta:
         type: string
       status:
@@ -1641,7 +1641,7 @@ definitions:
   SwaggerMessages.ListAdministradoresTiSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.ListAdministradoresTiResponse'
+        $ref: '#/definitions/Response.ListAdministradoresTiResponse'
       meta:
         type: string
       status:
@@ -1650,7 +1650,7 @@ definitions:
   SwaggerMessages.ListCursosSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.ListCursosResponse'
+        $ref: '#/definitions/Response.ListCursosResponse'
       meta:
         type: string
       status:
@@ -1659,7 +1659,7 @@ definitions:
   SwaggerMessages.ListEstudiantesSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.ListEstudiantesResponse'
+        $ref: '#/definitions/Response.ListEstudiantesResponse'
       meta:
         type: string
       status:
@@ -1668,7 +1668,7 @@ definitions:
   SwaggerMessages.ListEvaluacionesSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.ListEvaluacionesResponse'
+        $ref: '#/definitions/Response.ListEvaluacionesResponse'
       meta:
         type: string
       status:
@@ -1677,7 +1677,7 @@ definitions:
   SwaggerMessages.ListEvaluadoresSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.ListEvaluadoresResponse'
+        $ref: '#/definitions/Response.ListEvaluadoresResponse'
       meta:
         type: string
       status:
@@ -1686,7 +1686,7 @@ definitions:
   SwaggerMessages.ListGruposSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.ListGruposResponse'
+        $ref: '#/definitions/Response.ListGruposResponse'
       meta:
         type: string
       status:
@@ -1695,7 +1695,7 @@ definitions:
   SwaggerMessages.ListPeriodosSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.ListPeriodosResponse'
+        $ref: '#/definitions/Response.ListPeriodosResponse'
       meta:
         type: string
       status:
@@ -1704,7 +1704,7 @@ definitions:
   SwaggerMessages.ListRolesSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.ListRolesResponse'
+        $ref: '#/definitions/Response.ListRolesResponse'
       meta:
         type: string
       status:
@@ -1713,7 +1713,7 @@ definitions:
   SwaggerMessages.PutMyAdministradorAcademicoSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.PutMyAdministradorAcademicoResponse'
+        $ref: '#/definitions/Response.PutMyAdministradorAcademicoResponse'
       meta:
         type: string
       status:
@@ -1722,7 +1722,7 @@ definitions:
   SwaggerMessages.PutMyAdministradorTiSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.PutMyAdministradorTiResponse'
+        $ref: '#/definitions/Response.PutMyAdministradorTiResponse'
       meta:
         type: string
       status:
@@ -1731,7 +1731,7 @@ definitions:
   SwaggerMessages.PutMyEstudianteSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.PutMyEstudianteResponse'
+        $ref: '#/definitions/Response.PutMyEstudianteResponse'
       meta:
         type: string
       status:
@@ -1740,7 +1740,7 @@ definitions:
   SwaggerMessages.PutMyEvaluadorSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.PutMyEvaluadorResponse'
+        $ref: '#/definitions/Response.PutMyEvaluadorResponse'
       meta:
         type: string
       status:
@@ -1749,7 +1749,7 @@ definitions:
   SwaggerMessages.PutOneAdministradorAcademicoSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.PutOneAdministradorAcademicoResponse'
+        $ref: '#/definitions/Response.PutOneAdministradorAcademicoResponse'
       meta:
         type: string
       status:
@@ -1758,7 +1758,7 @@ definitions:
   SwaggerMessages.PutOneAdministradorTiSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.PutOneAdministradorTiResponse'
+        $ref: '#/definitions/Response.PutOneAdministradorTiResponse'
       meta:
         type: string
       status:
@@ -1767,7 +1767,7 @@ definitions:
   SwaggerMessages.PutOneCursoSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.PutOneCursoResponse'
+        $ref: '#/definitions/Response.PutOneCursoResponse'
       meta:
         type: string
       status:
@@ -1776,7 +1776,7 @@ definitions:
   SwaggerMessages.PutOneEstudianteSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.PutOneEstudianteResponse'
+        $ref: '#/definitions/Response.PutOneEstudianteResponse'
       meta:
         type: string
       status:
@@ -1785,7 +1785,7 @@ definitions:
   SwaggerMessages.PutOneEvaluadorSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.PutOneEvaluadorResponse'
+        $ref: '#/definitions/Response.PutOneEvaluadorResponse'
       meta:
         type: string
       status:
@@ -1794,7 +1794,7 @@ definitions:
   SwaggerMessages.PutOneGrupoSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.PutOneGrupoResponse'
+        $ref: '#/definitions/Response.PutOneGrupoResponse'
       meta:
         type: string
       status:
@@ -1803,7 +1803,7 @@ definitions:
   SwaggerMessages.PutOnePeriodoSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.PutOnePeriodoResponse'
+        $ref: '#/definitions/Response.PutOnePeriodoResponse'
       meta:
         type: string
       status:
@@ -1812,7 +1812,7 @@ definitions:
   SwaggerMessages.PutOneRolSwagger:
     properties:
       data:
-        $ref: '#/definitions/ResponseMessages.PutOneRolResponse'
+        $ref: '#/definitions/Response.PutOneRolResponse'
       meta:
         type: string
       status:
@@ -1862,7 +1862,7 @@ paths:
         name: input_grupo
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.AddNewGrupoPayload'
+          $ref: '#/definitions/Request.AddNewGrupoPayload'
       produces:
       - application/json
       responses:
@@ -1883,7 +1883,7 @@ paths:
       - application/json
       description: Elimina un grupo con los datos entregados
       parameters:
-      - description: ID del grupo a eliminar
+      - description: Id del grupo a eliminar
         in: path
         name: id_grupo
         required: true
@@ -1905,9 +1905,9 @@ paths:
     get:
       consumes:
       - application/json
-      description: Obtiene un grupo según su ID
+      description: Obtiene un grupo según su Id
       parameters:
-      - description: ID del grupo a buscar
+      - description: Id del grupo a buscar
         in: path
         name: id_grupo
         required: true
@@ -1931,7 +1931,7 @@ paths:
       - application/json
       description: Modifica un grupo con los datos entregados
       parameters:
-      - description: ID del grupo a modificar
+      - description: Id del grupo a modificar
         in: path
         name: id_grupo
         required: true
@@ -1941,7 +1941,7 @@ paths:
         name: input_actualiza_grupo
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.PutOneGrupoPayload'
+          $ref: '#/definitions/Request.PutOneGrupoPayload'
       produces:
       - application/json
       responses:
@@ -1967,7 +1967,7 @@ paths:
         name: input_credentials
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.LoginAdministradorAcademicoPayload'
+          $ref: '#/definitions/Request.LoginAdministradorAcademicoPayload'
       produces:
       - application/json
       responses:
@@ -2006,14 +2006,15 @@ paths:
     put:
       consumes:
       - application/json
-      description: Modifica el perfil de un administrador_academico con los datos entregados
+      description: Modifica el perfil de un administrador_academico con los datos
+        entregados
       parameters:
       - description: AdministradorAcademico a modificar
         in: body
         name: input_actualiza_administrador_academico
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.PutMyAdministradorAcademicoPayload'
+          $ref: '#/definitions/Request.PutMyAdministradorAcademicoPayload'
       produces:
       - application/json
       responses:
@@ -2059,7 +2060,7 @@ paths:
         name: input_administrador_academico
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.AddNewAdministradorAcademicoPayload'
+          $ref: '#/definitions/Request.AddNewAdministradorAcademicoPayload'
       produces:
       - application/json
       responses:
@@ -2138,7 +2139,7 @@ paths:
         name: input_actualiza_administrador_academico
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.PutOneAdministradorAcademicoPayload'
+          $ref: '#/definitions/Request.PutOneAdministradorAcademicoPayload'
       produces:
       - application/json
       responses:
@@ -2184,7 +2185,7 @@ paths:
         name: input_administrador_ti
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.AddNewAdministradorTiPayload'
+          $ref: '#/definitions/Request.AddNewAdministradorTiPayload'
       produces:
       - application/json
       responses:
@@ -2263,7 +2264,7 @@ paths:
         name: input_actualiza_administrador_ti
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.PutOneAdministradorTiPayload'
+          $ref: '#/definitions/Request.PutOneAdministradorTiPayload'
       produces:
       - application/json
       responses:
@@ -2309,7 +2310,7 @@ paths:
         name: input_curso
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.AddNewCursoPayload'
+          $ref: '#/definitions/Request.AddNewCursoPayload'
       produces:
       - application/json
       responses:
@@ -2330,7 +2331,7 @@ paths:
       - application/json
       description: Elimina un curso con los datos entregados
       parameters:
-      - description: ID del curso a eliminar
+      - description: Id del curso a eliminar
         in: path
         name: id_curso
         required: true
@@ -2352,9 +2353,9 @@ paths:
     get:
       consumes:
       - application/json
-      description: Obtiene un curso según su ID
+      description: Obtiene un curso según su Id
       parameters:
-      - description: ID del curso a buscar
+      - description: Id del curso a buscar
         in: path
         name: id_curso
         required: true
@@ -2378,7 +2379,7 @@ paths:
       - application/json
       description: Modifica un curso con los datos entregados
       parameters:
-      - description: ID del curso a modificar
+      - description: Id del curso a modificar
         in: path
         name: id_curso
         required: true
@@ -2388,7 +2389,7 @@ paths:
         name: input_actualiza_curso
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.PutOneCursoPayload'
+          $ref: '#/definitions/Request.PutOneCursoPayload'
       produces:
       - application/json
       responses:
@@ -2434,7 +2435,7 @@ paths:
         name: input_estudiante
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.AddNewEstudiantePayload'
+          $ref: '#/definitions/Request.AddNewEstudiantePayload'
       produces:
       - application/json
       responses:
@@ -2513,7 +2514,7 @@ paths:
         name: input_actualiza_estudiante
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.PutOneEstudiantePayload'
+          $ref: '#/definitions/Request.PutOneEstudiantePayload'
       produces:
       - application/json
       responses:
@@ -2559,7 +2560,7 @@ paths:
         name: input_evaluador
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.AddNewEvaluadorPayload'
+          $ref: '#/definitions/Request.AddNewEvaluadorPayload'
       produces:
       - application/json
       responses:
@@ -2638,7 +2639,7 @@ paths:
         name: input_actualiza_evaluador
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.PutOneEvaluadorPayload'
+          $ref: '#/definitions/Request.PutOneEvaluadorPayload'
       produces:
       - application/json
       responses:
@@ -2684,7 +2685,7 @@ paths:
         name: input_grupo
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.AddNewGrupoPayload'
+          $ref: '#/definitions/Request.AddNewGrupoPayload'
       produces:
       - application/json
       responses:
@@ -2705,7 +2706,7 @@ paths:
       - application/json
       description: Elimina un grupo con los datos entregados
       parameters:
-      - description: ID del grupo a eliminar
+      - description: Id del grupo a eliminar
         in: path
         name: id_grupo
         required: true
@@ -2727,9 +2728,9 @@ paths:
     get:
       consumes:
       - application/json
-      description: Obtiene un grupo según su ID
+      description: Obtiene un grupo según su Id
       parameters:
-      - description: ID del grupo a buscar
+      - description: Id del grupo a buscar
         in: path
         name: id_grupo
         required: true
@@ -2753,7 +2754,7 @@ paths:
       - application/json
       description: Modifica un grupo con los datos entregados
       parameters:
-      - description: ID del grupo a modificar
+      - description: Id del grupo a modificar
         in: path
         name: id_grupo
         required: true
@@ -2763,7 +2764,7 @@ paths:
         name: input_actualiza_grupo
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.PutOneGrupoPayload'
+          $ref: '#/definitions/Request.PutOneGrupoPayload'
       produces:
       - application/json
       responses:
@@ -2789,7 +2790,7 @@ paths:
         name: input_credentials
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.LoginAdministradorTiPayload'
+          $ref: '#/definitions/Request.LoginAdministradorTiPayload'
       produces:
       - application/json
       responses:
@@ -2835,7 +2836,7 @@ paths:
         name: input_actualiza_administrador_ti
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.PutMyAdministradorTiPayload'
+          $ref: '#/definitions/Request.PutMyAdministradorTiPayload'
       produces:
       - application/json
       responses:
@@ -2861,7 +2862,7 @@ paths:
         name: input_periodo
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.AddNewPeriodoPayload'
+          $ref: '#/definitions/Request.AddNewPeriodoPayload'
       produces:
       - application/json
       responses:
@@ -2882,7 +2883,7 @@ paths:
       - application/json
       description: Elimina un periodo con los datos entregados
       parameters:
-      - description: ID del periodo a eliminar
+      - description: Id del periodo a eliminar
         in: path
         name: id_periodo
         required: true
@@ -2906,7 +2907,7 @@ paths:
       - application/json
       description: Modifica un periodo con los datos entregados
       parameters:
-      - description: ID del periodo a modificar
+      - description: Id del periodo a modificar
         in: path
         name: id_periodo
         required: true
@@ -2916,7 +2917,7 @@ paths:
         name: input_actualiza_periodo
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.PutOnePeriodoPayload'
+          $ref: '#/definitions/Request.PutOnePeriodoPayload'
       produces:
       - application/json
       responses:
@@ -2942,7 +2943,7 @@ paths:
         name: input_rol
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.AddNewRolPayload'
+          $ref: '#/definitions/Request.AddNewRolPayload'
       produces:
       - application/json
       responses:
@@ -2963,7 +2964,7 @@ paths:
       - application/json
       description: Elimina un rol con los datos entregados
       parameters:
-      - description: ID del rol a eliminar
+      - description: Id del rol a eliminar
         in: path
         name: id_rol
         required: true
@@ -2987,7 +2988,7 @@ paths:
       - application/json
       description: Modifica un rol con los datos entregados
       parameters:
-      - description: ID del rol a modificar
+      - description: Id del rol a modificar
         in: path
         name: id_rol
         required: true
@@ -2997,7 +2998,7 @@ paths:
         name: input_actualiza_rol
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.PutOneRolPayload'
+          $ref: '#/definitions/Request.PutOneRolPayload'
       produces:
       - application/json
       responses:
@@ -3023,7 +3024,7 @@ paths:
         name: input_credentials
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.LoginEstudiantePayload'
+          $ref: '#/definitions/Request.LoginEstudiantePayload'
       produces:
       - application/json
       responses:
@@ -3069,7 +3070,7 @@ paths:
         name: input_actualiza_estudiante
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.PutMyEstudiantePayload'
+          $ref: '#/definitions/Request.PutMyEstudiantePayload'
       produces:
       - application/json
       responses:
@@ -3136,7 +3137,7 @@ paths:
       - application/json
       description: Obtiene la evolución de un estudiante según una evaluación
       parameters:
-      - description: ID de la evaluación
+      - description: Id de la evaluación
         in: path
         name: id_evaluacion
         required: true
@@ -3208,7 +3209,7 @@ paths:
         name: input_credentials
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.LoginEvaluadorPayload'
+          $ref: '#/definitions/Request.LoginEvaluadorPayload'
       produces:
       - application/json
       responses:
@@ -3254,7 +3255,7 @@ paths:
         name: input_actualiza_evaluador
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.PutMyEvaluadorPayload'
+          $ref: '#/definitions/Request.PutMyEvaluadorPayload'
       produces:
       - application/json
       responses:
@@ -3299,7 +3300,7 @@ paths:
         name: input_evaluacion
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.GenerarEvaluacionPayload'
+          $ref: '#/definitions/Request.GenerarEvaluacionPayload'
       produces:
       - application/json
       responses:
@@ -3358,9 +3359,9 @@ paths:
     get:
       consumes:
       - application/json
-      description: Obtiene un periodo según su ID
+      description: Obtiene un periodo según su Id
       parameters:
-      - description: ID del periodo a buscar
+      - description: Id del periodo a buscar
         in: path
         name: id_periodo
         required: true
@@ -3404,9 +3405,9 @@ paths:
     get:
       consumes:
       - application/json
-      description: Obtiene un rol según su ID
+      description: Obtiene un rol según su Id
       parameters:
-      - description: ID del rol a buscar
+      - description: Id del rol a buscar
         in: path
         name: id_rol
         required: true

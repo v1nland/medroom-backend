@@ -5,6 +5,7 @@ import (
 )
 
 type Puntaje struct {
+	Id                         int       `json:"id"`
 	Id_evaluacion              int       `json:"id_evaluacion" sql:"type:int REFERENCES public.evaluaciones(id);primary_key"`
 	Nombre_competencia_puntaje string    `json:"nombre_competencia_puntaje" sql:"primary_key"`
 	Codigo_competencia_puntaje string    `json:"codigo_competencia_puntaje" sql:"primary_key"`

@@ -2,9 +2,9 @@ package Controllers
 
 /*import (
 	"medroom-backend/ApiHelpers"
-	"medroom-backend/InputFormats"
+	"medroom-backend/Formats/Input"
 	"medroom-backend/Models"
-	"medroom-backend/OutputFormats"
+	"medroom-backend/Formats/Output"
 	"medroom-backend/Repositories"
 	"medroom-backend/RequestMessages"
 	"medroom-backend/Utils"
@@ -33,15 +33,15 @@ func ListPuntajes(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetPuntajesOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.GetPuntajesOutput(container))
 }
 
 // @Summary Obtiene un puntaje
-// @Description Obtiene un puntaje según su ID
+// @Description Obtiene un puntaje según su Id
 // @Tags Puntajes
 // @Accept  json
 // @Produce  json
-// @Param   id_puntaje     path    string     true        "ID del puntaje a buscar"
+// @Param   id_puntaje     path    string     true        "Id del puntaje a buscar"
 // @Success 200 {object} SwaggerMessages.GetOnePuntajeSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /puntajes/{id_puntaje} [get]
@@ -61,7 +61,7 @@ func GetOnePuntaje(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetOnePuntajeOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.GetOnePuntajeOutput(container))
 }
 
 // @Summary Agrega un nuevo puntaje
@@ -69,14 +69,14 @@ func GetOnePuntaje(c *gin.Context) {
 // @Tags Puntajes
 // @Accept  json
 // @Produce  json
-// @Param   input_puntaje     body    RequestMessages.AddNewPuntajePayload     true        "Puntaje a agregar"
+// @Param   input_puntaje     body    Request.AddNewPuntajePayload     true        "Puntaje a agregar"
 // @Success 200 {object} SwaggerMessages.AddNewPuntajeSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /puntajes [post]
 
 func AddNewPuntaje(c *gin.Context) {
 	// input container
-	var container RequestMessages.AddNewPuntajePayload
+	var container Request.AddNewPuntajePayload
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {
@@ -85,7 +85,7 @@ func AddNewPuntaje(c *gin.Context) {
 	}
 
 	// format input
-	InputFormats.AddNewPuntajeInput(&container)
+	Input.AddNewPuntajeInput(&container)
 
 	// generate model entity
 	model_container := Models.Puntaje{
@@ -103,7 +103,7 @@ func AddNewPuntaje(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.AddNewPuntajeOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.AddNewPuntajeOutput(model_container))
 }
 
 // @Summary Modifica un puntaje
@@ -111,8 +111,8 @@ func AddNewPuntaje(c *gin.Context) {
 // @Tags Puntajes
 // @Accept  json
 // @Produce  json
-// @Param   id_puntaje     path    string     true        "ID del puntaje a modificar"
-// @Param   input_actualiza_puntaje     body    RequestMessages.PutOnePuntajePayload     true        "Puntaje a modificar"
+// @Param   id_puntaje     path    string     true        "Id del puntaje a modificar"
+// @Param   input_actualiza_puntaje     body    Request.PutOnePuntajePayload     true        "Puntaje a modificar"
 // @Success 200 {object} SwaggerMessages.PutOnePuntajeSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /puntajes/{id_puntaje} [put]
@@ -122,7 +122,7 @@ func PutOnePuntaje(c *gin.Context) {
 	id := c.Params.ByName("id")
 
 	// input container
-	var container RequestMessages.PutOnePuntajePayload
+	var container Request.PutOnePuntajePayload
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {
@@ -131,7 +131,7 @@ func PutOnePuntaje(c *gin.Context) {
 	}
 
 	// format input
-	InputFormats.PutOnePuntajeInput(&container)
+	Input.PutOnePuntajeInput(&container)
 
 	// generate model entity
 	var model_container Models.Puntaje
@@ -166,7 +166,7 @@ func PutOnePuntaje(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutOnePuntajeOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.PutOnePuntajeOutput(model_container))
 }
 
 // @Summary Elimina un puntaje
@@ -174,7 +174,7 @@ func PutOnePuntaje(c *gin.Context) {
 // @Tags Puntajes
 // @Accept  json
 // @Produce  json
-// @Param   id_puntaje     path    string     true        "ID del puntaje a eliminar"
+// @Param   id_puntaje     path    string     true        "Id del puntaje a eliminar"
 // @Success 200 {object} SwaggerMessages.DeletePuntajeSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /puntajes/{id_puntaje} [delete]
@@ -201,5 +201,5 @@ func DeletePuntaje(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.DeletePuntajeOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.DeletePuntajeOutput(container))
 } */

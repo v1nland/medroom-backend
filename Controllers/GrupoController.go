@@ -2,11 +2,11 @@ package Controllers
 
 import (
 	"medroom-backend/ApiHelpers"
-	"medroom-backend/InputFormats"
+	"medroom-backend/Formats/Input"
+	"medroom-backend/Formats/Output"
+	"medroom-backend/Messages/Request"
 	"medroom-backend/Models"
-	"medroom-backend/OutputFormats"
 	"medroom-backend/Repositories"
-	"medroom-backend/RequestMessages"
 	"medroom-backend/Utils"
 
 	"github.com/gin-gonic/gin"
@@ -32,7 +32,7 @@ func ListGrupos(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetGruposOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.GetGruposOutput(container))
 }
 
 // @Summary Lista de grupos
@@ -48,11 +48,11 @@ func swaggerDummyListGrupos(c *gin.Context) {
 }
 
 // @Summary Obtiene un grupo
-// @Description Obtiene un grupo según su ID
+// @Description Obtiene un grupo según su Id
 // @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   id_grupo     path    string     true        "ID del grupo a buscar"
+// @Param   id_grupo     path    string     true        "Id del grupo a buscar"
 // @Success 200 {object} SwaggerMessages.GetOneGrupoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/grupos/{id_grupo} [get]
@@ -71,15 +71,15 @@ func GetOneGrupo(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetOneGrupoOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.GetOneGrupoOutput(container))
 }
 
 // @Summary Obtiene un grupo
-// @Description Obtiene un grupo según su ID
+// @Description Obtiene un grupo según su Id
 // @Tags 04 - Administración Academica
 // @Accept  json
 // @Produce  json
-// @Param   id_grupo     path    string     true        "ID del grupo a buscar"
+// @Param   id_grupo     path    string     true        "Id del grupo a buscar"
 // @Success 200 {object} SwaggerMessages.GetOneGrupoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-academica/grupos/{id_grupo} [get]
@@ -92,13 +92,13 @@ func swaggerDummyGetOneGrupo(c *gin.Context) {
 // @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   input_grupo     body    RequestMessages.AddNewGrupoPayload     true        "Grupo a agregar"
+// @Param   input_grupo     body    Request.AddNewGrupoPayload     true        "Grupo a agregar"
 // @Success 200 {object} SwaggerMessages.AddNewGrupoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/grupos [post]
 func AddNewGrupo(c *gin.Context) {
 	// input container
-	var container RequestMessages.AddNewGrupoPayload
+	var container Request.AddNewGrupoPayload
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {
@@ -107,7 +107,7 @@ func AddNewGrupo(c *gin.Context) {
 	}
 
 	// format input
-	InputFormats.AddNewGrupoInput(&container)
+	Input.AddNewGrupoInput(&container)
 
 	// generate model entity
 	model_container := Models.Grupo{
@@ -125,7 +125,7 @@ func AddNewGrupo(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.AddNewGrupoOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.AddNewGrupoOutput(model_container))
 }
 
 // @Summary Agrega un nuevo grupo
@@ -133,7 +133,7 @@ func AddNewGrupo(c *gin.Context) {
 // @Tags 04 - Administración Academica
 // @Accept  json
 // @Produce  json
-// @Param   input_grupo     body    RequestMessages.AddNewGrupoPayload     true        "Grupo a agregar"
+// @Param   input_grupo     body    Request.AddNewGrupoPayload     true        "Grupo a agregar"
 // @Success 200 {object} SwaggerMessages.AddNewGrupoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-academica/grupos [post]
@@ -146,8 +146,8 @@ func swaggerDummyAddNewGrupo(c *gin.Context) {
 // @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   id_grupo     path    string     true        "ID del grupo a modificar"
-// @Param   input_actualiza_grupo     body    RequestMessages.PutOneGrupoPayload     true        "Grupo a modificar"
+// @Param   id_grupo     path    string     true        "Id del grupo a modificar"
+// @Param   input_actualiza_grupo     body    Request.PutOneGrupoPayload     true        "Grupo a modificar"
 // @Success 200 {object} SwaggerMessages.PutOneGrupoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/grupos/{id_grupo} [put]
@@ -156,7 +156,7 @@ func PutOneGrupo(c *gin.Context) {
 	id := c.Params.ByName("id")
 
 	// input container
-	var container RequestMessages.PutOneGrupoPayload
+	var container Request.PutOneGrupoPayload
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {
@@ -165,7 +165,7 @@ func PutOneGrupo(c *gin.Context) {
 	}
 
 	// format input
-	InputFormats.PutOneGrupoInput(&container)
+	Input.PutOneGrupoInput(&container)
 
 	// generate model entity
 	var model_container Models.Grupo
@@ -179,7 +179,7 @@ func PutOneGrupo(c *gin.Context) {
 
 	// replace data in model entity
 	model_container = Models.Grupo{
-		ID:           model_container.ID,
+		Id:           model_container.Id,
 		Id_curso:     Utils.CheckUpdatedInt(container.Id_curso, model_container.Id_curso),
 		Id_evaluador: Utils.CheckUpdatedString(container.Id_evaluador, model_container.Id_evaluador),
 		Nombre_grupo: Utils.CheckUpdatedString(container.Nombre_grupo, model_container.Nombre_grupo),
@@ -201,7 +201,7 @@ func PutOneGrupo(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutOneGrupoOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.PutOneGrupoOutput(model_container))
 }
 
 // @Summary Modifica un grupo
@@ -209,8 +209,8 @@ func PutOneGrupo(c *gin.Context) {
 // @Tags 04 - Administración Academica
 // @Accept  json
 // @Produce  json
-// @Param   id_grupo     path    string     true        "ID del grupo a modificar"
-// @Param   input_actualiza_grupo     body    RequestMessages.PutOneGrupoPayload     true        "Grupo a modificar"
+// @Param   id_grupo     path    string     true        "Id del grupo a modificar"
+// @Param   input_actualiza_grupo     body    Request.PutOneGrupoPayload     true        "Grupo a modificar"
 // @Success 200 {object} SwaggerMessages.PutOneGrupoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-academica/grupos/{id_grupo} [put]
@@ -223,7 +223,7 @@ func swaggerDummyPutOneGrupo(c *gin.Context) {
 // @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   id_grupo     path    string     true        "ID del grupo a eliminar"
+// @Param   id_grupo     path    string     true        "Id del grupo a eliminar"
 // @Success 200 {object} SwaggerMessages.DeleteGrupoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/grupos/{id_grupo} [delete]
@@ -249,7 +249,7 @@ func DeleteGrupo(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.DeleteGrupoOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.DeleteGrupoOutput(container))
 }
 
 // @Summary Elimina un grupo
@@ -257,7 +257,7 @@ func DeleteGrupo(c *gin.Context) {
 // @Tags 04 - Administración Academica
 // @Accept  json
 // @Produce  json
-// @Param   id_grupo     path    string     true        "ID del grupo a eliminar"
+// @Param   id_grupo     path    string     true        "Id del grupo a eliminar"
 // @Success 200 {object} SwaggerMessages.DeleteGrupoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-academica/grupos/{id_grupo} [delete]
@@ -284,15 +284,15 @@ func GetGrupoEstudiante(c *gin.Context) {
 		return
 	}
 
-	// model container
-	var container Models.Grupo
-	if err := Repositories.GetOneGrupo(&container, Utils.ConvertIntToString(estudiante.Id_grupo)); err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
-	}
+	// // model container
+	// var container Models.Grupo
+	// if err := Repositories.GetOneGrupo(&container, Utils.ConvertIntToString(estudiante.Id_grupo)); err != nil {
+	// 	ApiHelpers.RespondError(c, 500, "default")
+	// 	return
+	// }
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetGrupoEstudianteOutput(container))
+	// ApiHelpers.RespondJSON(c, 200, Output.GetGrupoEstudianteOutput(container))
 }
 
 // @Summary Obtiene un grupo de un evaluador
@@ -315,5 +315,5 @@ func GetGrupoEvaluador(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetGrupoEvaluadorOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.GetGrupoEvaluadorOutput(container))
 }

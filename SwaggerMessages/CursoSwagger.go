@@ -1,47 +1,45 @@
 package SwaggerMessages
 
-import (
-	"medroom-backend/ResponseMessages"
-)
+import "medroom-backend/Messages/Response"
 
 type ListCursosSwagger struct {
-	Status bool                                `json:"status"`
-	Meta   string                              `json:"meta"`
-	Data   ResponseMessages.ListCursosResponse `json:"data"`
+	Status bool                        `json:"status"`
+	Meta   string                      `json:"meta"`
+	Data   Response.ListCursosResponse `json:"data"`
 }
 
 type GetOneCursoSwagger struct {
-	Status bool                                 `json:"status"`
-	Meta   string                               `json:"meta"`
-	Data   ResponseMessages.GetOneCursoResponse `json:"data"`
+	Status bool                         `json:"status"`
+	Meta   string                       `json:"meta"`
+	Data   Response.GetOneCursoResponse `json:"data"`
 }
 
 type GetCursoEstudianteSwagger struct {
-	Status bool                                        `json:"status"`
-	Meta   string                                      `json:"meta"`
-	Data   ResponseMessages.GetCursoEstudianteResponse `json:"data"`
+	Status bool                                `json:"status"`
+	Meta   string                              `json:"meta"`
+	Data   Response.GetCursoEstudianteResponse `json:"data"`
 }
 
 type GetCursoEvaluadorSwagger struct {
-	Status bool                                       `json:"status"`
-	Meta   string                                     `json:"meta"`
-	Data   ResponseMessages.GetCursoEvaluadorResponse `json:"data"`
+	Status bool                               `json:"status"`
+	Meta   string                             `json:"meta"`
+	Data   Response.GetCursoEvaluadorResponse `json:"data"`
 }
 
 type AddNewCursoSwagger struct {
-	Status bool                                 `json:"status"`
-	Meta   string                               `json:"meta"`
-	Data   ResponseMessages.AddNewCursoResponse `json:"data"`
+	Status bool                         `json:"status"`
+	Meta   string                       `json:"meta"`
+	Data   Response.AddNewCursoResponse `json:"data"`
 }
 
 type PutOneCursoSwagger struct {
-	Status bool                                 `json:"status"`
-	Meta   string                               `json:"meta"`
-	Data   ResponseMessages.PutOneCursoResponse `json:"data"`
+	Status bool                         `json:"status"`
+	Meta   string                       `json:"meta"`
+	Data   Response.PutOneCursoResponse `json:"data"`
 }
 
 type DeleteCursoSwagger struct {
-	Status bool                                 `json:"status"`
-	Meta   string                               `json:"meta"`
-	Data   ResponseMessages.DeleteCursoResponse `json:"data"`
+	Status bool                         `json:"status"`
+	Meta   string                       `json:"meta"`
+	Data   Response.DeleteCursoResponse `json:"data"`
 }

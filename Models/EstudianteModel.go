@@ -3,17 +3,17 @@ package Models
 import (
 	"time"
 
-	"github.com/jinzhu/gorm"
 	uuid "github.com/satori/go.uuid"
+	"gorm.io/gorm"
 )
 
 type Estudiante struct {
-	ID                            string       `json:"id" sql:"type:uuid;primary_key;default:uuid_generate_v4()"`
+	Id                            string       `json:"id" sql:"type:uuid;primary_key;default:uuid_generate_v4()"`
 	Id_rol                        int          `json:"id_rol" sql:"type:int REFERENCES public.roles(id)"`
 	Rol_estudiante                Rol          `json:"rol_estudiante" gorm:"foreignKey:Id_rol"`
-	Id_grupo                      int          `json:"id_grupo" sql:"type:int REFERENCES public.grupos(id)"`
 	Evaluaciones_estudiante       []Evaluacion `json:"evaluaciones_estudiante" gorm:"foreignKey:Id_estudiante"`
-	Rut_estudiante                string       `json:"rut_estudiante"`
+	Grupos_estudiante             []Grupo      `json:"grupos_estudiante" gorm:"many2many:estudiantes_grupos;joinForeignKey:id_estudiante;joinReferences:id_grupo"`
+	Rut_estudiante                string       `json:"rut_estudiante" gorm:"unique;not null"`
 	Nombres_estudiante            string       `json:"nombres_estudiante"`
 	Apellidos_estudiante          string       `json:"apellidos_estudiante"`
 	Hash_contrasena_estudiante    string       `json:"hash_contrasena_estudiante"`
@@ -28,6 +28,7 @@ func (u *Estudiante) TableName() string {
 	return "public.estudiantes"
 }
 
-func (u *Estudiante) BeforeCreate(scope *gorm.Scope) error {
-	return scope.SetColumn("ID", uuid.NewV4().String())
+func (u *Estudiante) BeforeCreate(tx *gorm.DB) (err error) {
+	u.Id = uuid.NewV4().String()
+	return
 }

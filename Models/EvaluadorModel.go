@@ -3,15 +3,15 @@ package Models
 import (
 	"time"
 
-	"github.com/jinzhu/gorm"
 	uuid "github.com/satori/go.uuid"
+	"gorm.io/gorm"
 )
 
 type Evaluador struct {
-	ID                           string    `json:"id" sql:"type:uuid;primary_key;default:uuid_generate_v4()"`
+	Id                           string    `json:"id" sql:"type:uuid;primary_key;default:uuid_generate_v4()"`
 	Id_rol                       int       `json:"id_rol" sql:"type:int REFERENCES public.roles(id)"`
 	Rol_evaluador                Rol       `json:"rol_evaluador" gorm:"foreignKey:Id_rol"`
-	Rut_evaluador                string    `json:"rut_evaluador"`
+	Rut_evaluador                string    `json:"rut_evaluador" gorm:"unique;not null"`
 	Nombres_evaluador            string    `json:"nombres_evaluador"`
 	Apellidos_evaluador          string    `json:"apellidos_evaluador"`
 	Hash_contrasena_evaluador    string    `json:"hash_contrasena_evaluador"`
@@ -28,6 +28,7 @@ func (u *Evaluador) TableName() string {
 	return "public.evaluadores"
 }
 
-func (u *Evaluador) BeforeCreate(scope *gorm.Scope) error {
-	return scope.SetColumn("ID", uuid.NewV4().String())
+func (u *Evaluador) BeforeCreate(tx *gorm.DB) (err error) {
+	u.Id = uuid.NewV4().String()
+	return
 }

@@ -83,7 +83,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.AddNewGrupoPayload"
+                            "$ref": "#/definitions/Request.AddNewGrupoPayload"
                         }
                     }
                 ],
@@ -105,7 +105,7 @@ var doc = `{
         },
         "/administracion-academica/grupos/{id_grupo}": {
             "get": {
-                "description": "Obtiene un grupo según su ID",
+                "description": "Obtiene un grupo según su Id",
                 "consumes": [
                     "application/json"
                 ],
@@ -119,7 +119,7 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "ID del grupo a buscar",
+                        "description": "Id del grupo a buscar",
                         "name": "id_grupo",
                         "in": "path",
                         "required": true
@@ -155,7 +155,7 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "ID del grupo a modificar",
+                        "description": "Id del grupo a modificar",
                         "name": "id_grupo",
                         "in": "path",
                         "required": true
@@ -166,7 +166,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.PutOneGrupoPayload"
+                            "$ref": "#/definitions/Request.PutOneGrupoPayload"
                         }
                     }
                 ],
@@ -200,7 +200,7 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "ID del grupo a eliminar",
+                        "description": "Id del grupo a eliminar",
                         "name": "id_grupo",
                         "in": "path",
                         "required": true
@@ -242,7 +242,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.LoginAdministradorAcademicoPayload"
+                            "$ref": "#/definitions/Request.LoginAdministradorAcademicoPayload"
                         }
                     }
                 ],
@@ -312,7 +312,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.PutMyAdministradorAcademicoPayload"
+                            "$ref": "#/definitions/Request.PutMyAdministradorAcademicoPayload"
                         }
                     }
                 ],
@@ -382,7 +382,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.AddNewAdministradorAcademicoPayload"
+                            "$ref": "#/definitions/Request.AddNewAdministradorAcademicoPayload"
                         }
                     }
                 ],
@@ -465,7 +465,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.PutOneAdministradorAcademicoPayload"
+                            "$ref": "#/definitions/Request.PutOneAdministradorAcademicoPayload"
                         }
                     }
                 ],
@@ -571,7 +571,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.AddNewAdministradorTiPayload"
+                            "$ref": "#/definitions/Request.AddNewAdministradorTiPayload"
                         }
                     }
                 ],
@@ -654,7 +654,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.PutOneAdministradorTiPayload"
+                            "$ref": "#/definitions/Request.PutOneAdministradorTiPayload"
                         }
                     }
                 ],
@@ -760,7 +760,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.AddNewCursoPayload"
+                            "$ref": "#/definitions/Request.AddNewCursoPayload"
                         }
                     }
                 ],
@@ -782,7 +782,7 @@ var doc = `{
         },
         "/administracion-ti/cursos/{id_curso}": {
             "get": {
-                "description": "Obtiene un curso según su ID",
+                "description": "Obtiene un curso según su Id",
                 "consumes": [
                     "application/json"
                 ],
@@ -796,7 +796,7 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "ID del curso a buscar",
+                        "description": "Id del curso a buscar",
                         "name": "id_curso",
                         "in": "path",
                         "required": true
@@ -832,7 +832,7 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "ID del curso a modificar",
+                        "description": "Id del curso a modificar",
                         "name": "id_curso",
                         "in": "path",
                         "required": true
@@ -843,7 +843,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.PutOneCursoPayload"
+                            "$ref": "#/definitions/Request.PutOneCursoPayload"
                         }
                     }
                 ],
@@ -877,7 +877,7 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "ID del curso a eliminar",
+                        "description": "Id del curso a eliminar",
                         "name": "id_curso",
                         "in": "path",
                         "required": true
@@ -949,7 +949,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.AddNewEstudiantePayload"
+                            "$ref": "#/definitions/Request.AddNewEstudiantePayload"
                         }
                     }
                 ],
@@ -1032,7 +1032,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.PutOneEstudiantePayload"
+                            "$ref": "#/definitions/Request.PutOneEstudiantePayload"
                         }
                     }
                 ],
@@ -1138,7 +1138,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.AddNewEvaluadorPayload"
+                            "$ref": "#/definitions/Request.AddNewEvaluadorPayload"
                         }
                     }
                 ],
@@ -1221,7 +1221,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.PutOneEvaluadorPayload"
+                            "$ref": "#/definitions/Request.PutOneEvaluadorPayload"
                         }
                     }
                 ],
@@ -1327,7 +1327,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.AddNewGrupoPayload"
+                            "$ref": "#/definitions/Request.AddNewGrupoPayload"
                         }
                     }
                 ],
@@ -1349,7 +1349,7 @@ var doc = `{
         },
         "/administracion-ti/grupos/{id_grupo}": {
             "get": {
-                "description": "Obtiene un grupo según su ID",
+                "description": "Obtiene un grupo según su Id",
                 "consumes": [
                     "application/json"
                 ],
@@ -1363,7 +1363,7 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "ID del grupo a buscar",
+                        "description": "Id del grupo a buscar",
                         "name": "id_grupo",
                         "in": "path",
                         "required": true
@@ -1399,7 +1399,7 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "ID del grupo a modificar",
+                        "description": "Id del grupo a modificar",
                         "name": "id_grupo",
                         "in": "path",
                         "required": true
@@ -1410,7 +1410,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.PutOneGrupoPayload"
+                            "$ref": "#/definitions/Request.PutOneGrupoPayload"
                         }
                     }
                 ],
@@ -1444,7 +1444,7 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "ID del grupo a eliminar",
+                        "description": "Id del grupo a eliminar",
                         "name": "id_grupo",
                         "in": "path",
                         "required": true
@@ -1486,7 +1486,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.LoginAdministradorTiPayload"
+                            "$ref": "#/definitions/Request.LoginAdministradorTiPayload"
                         }
                     }
                 ],
@@ -1556,7 +1556,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.PutMyAdministradorTiPayload"
+                            "$ref": "#/definitions/Request.PutMyAdministradorTiPayload"
                         }
                     }
                 ],
@@ -1596,7 +1596,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.AddNewPeriodoPayload"
+                            "$ref": "#/definitions/Request.AddNewPeriodoPayload"
                         }
                     }
                 ],
@@ -1632,7 +1632,7 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "ID del periodo a modificar",
+                        "description": "Id del periodo a modificar",
                         "name": "id_periodo",
                         "in": "path",
                         "required": true
@@ -1643,7 +1643,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.PutOnePeriodoPayload"
+                            "$ref": "#/definitions/Request.PutOnePeriodoPayload"
                         }
                     }
                 ],
@@ -1677,7 +1677,7 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "ID del periodo a eliminar",
+                        "description": "Id del periodo a eliminar",
                         "name": "id_periodo",
                         "in": "path",
                         "required": true
@@ -1719,7 +1719,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.AddNewRolPayload"
+                            "$ref": "#/definitions/Request.AddNewRolPayload"
                         }
                     }
                 ],
@@ -1755,7 +1755,7 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "ID del rol a modificar",
+                        "description": "Id del rol a modificar",
                         "name": "id_rol",
                         "in": "path",
                         "required": true
@@ -1766,7 +1766,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.PutOneRolPayload"
+                            "$ref": "#/definitions/Request.PutOneRolPayload"
                         }
                     }
                 ],
@@ -1800,7 +1800,7 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "ID del rol a eliminar",
+                        "description": "Id del rol a eliminar",
                         "name": "id_rol",
                         "in": "path",
                         "required": true
@@ -1842,7 +1842,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.LoginEstudiantePayload"
+                            "$ref": "#/definitions/Request.LoginEstudiantePayload"
                         }
                     }
                 ],
@@ -1912,7 +1912,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.PutMyEstudiantePayload"
+                            "$ref": "#/definitions/Request.PutMyEstudiantePayload"
                         }
                     }
                 ],
@@ -2018,7 +2018,7 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "ID de la evaluación",
+                        "description": "Id de la evaluación",
                         "name": "id_evaluacion",
                         "in": "path",
                         "required": true
@@ -2124,7 +2124,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.LoginEvaluadorPayload"
+                            "$ref": "#/definitions/Request.LoginEvaluadorPayload"
                         }
                     }
                 ],
@@ -2194,7 +2194,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.PutMyEvaluadorPayload"
+                            "$ref": "#/definitions/Request.PutMyEvaluadorPayload"
                         }
                     }
                 ],
@@ -2263,7 +2263,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RequestMessages.GenerarEvaluacionPayload"
+                            "$ref": "#/definitions/Request.GenerarEvaluacionPayload"
                         }
                     }
                 ],
@@ -2346,7 +2346,7 @@ var doc = `{
         },
         "/periodos/{id_periodo}": {
             "get": {
-                "description": "Obtiene un periodo según su ID",
+                "description": "Obtiene un periodo según su Id",
                 "consumes": [
                     "application/json"
                 ],
@@ -2360,7 +2360,7 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "ID del periodo a buscar",
+                        "description": "Id del periodo a buscar",
                         "name": "id_periodo",
                         "in": "path",
                         "required": true
@@ -2416,7 +2416,7 @@ var doc = `{
         },
         "/roles/{id_rol}": {
             "get": {
-                "description": "Obtiene un rol según su ID",
+                "description": "Obtiene un rol según su Id",
                 "consumes": [
                     "application/json"
                 ],
@@ -2430,7 +2430,7 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "ID del rol a buscar",
+                        "description": "Id del rol a buscar",
                         "name": "id_rol",
                         "in": "path",
                         "required": true
@@ -2465,7 +2465,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.AddNewAdministradorAcademicoPayload": {
+        "Request.AddNewAdministradorAcademicoPayload": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_academico": {
@@ -2494,7 +2494,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.AddNewAdministradorTiPayload": {
+        "Request.AddNewAdministradorTiPayload": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_ti": {
@@ -2526,7 +2526,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.AddNewCursoPayload": {
+        "Request.AddNewCursoPayload": {
             "type": "object",
             "properties": {
                 "id_periodo": {
@@ -2540,7 +2540,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.AddNewEstudiantePayload": {
+        "Request.AddNewEstudiantePayload": {
             "type": "object",
             "properties": {
                 "apellidos_estudiante": {
@@ -2572,7 +2572,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.AddNewEvaluadorPayload": {
+        "Request.AddNewEvaluadorPayload": {
             "type": "object",
             "properties": {
                 "apellidos_evaluador": {
@@ -2607,7 +2607,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.AddNewGrupoPayload": {
+        "Request.AddNewGrupoPayload": {
             "type": "object",
             "properties": {
                 "id_curso": {
@@ -2624,7 +2624,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.AddNewPeriodoPayload": {
+        "Request.AddNewPeriodoPayload": {
             "type": "object",
             "properties": {
                 "nombre_periodo": {
@@ -2632,7 +2632,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.AddNewRolPayload": {
+        "Request.AddNewRolPayload": {
             "type": "object",
             "properties": {
                 "nombre_rol": {
@@ -2640,7 +2640,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.GenerarEvaluacionPayload": {
+        "Request.GenerarEvaluacionPayload": {
             "type": "object",
             "properties": {
                 "asunto_principal_consulta_evaluacion": {
@@ -2679,7 +2679,7 @@ var doc = `{
                 "puntajes_evaluacion": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/RequestMessages.PuntajesEvaluacion"
+                        "$ref": "#/definitions/Request.PuntajesEvaluacion"
                     }
                 },
                 "tiempo_utilizado_evaluacion": {
@@ -2687,7 +2687,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.LoginAdministradorAcademicoPayload": {
+        "Request.LoginAdministradorAcademicoPayload": {
             "type": "object",
             "properties": {
                 "correo_electronico_administrador_academico": {
@@ -2698,7 +2698,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.LoginAdministradorTiPayload": {
+        "Request.LoginAdministradorTiPayload": {
             "type": "object",
             "properties": {
                 "correo_electronico_administrador_ti": {
@@ -2709,7 +2709,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.LoginEstudiantePayload": {
+        "Request.LoginEstudiantePayload": {
             "type": "object",
             "properties": {
                 "correo_electronico_estudiante": {
@@ -2720,7 +2720,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.LoginEvaluadorPayload": {
+        "Request.LoginEvaluadorPayload": {
             "type": "object",
             "properties": {
                 "correo_electronico_evaluador": {
@@ -2731,7 +2731,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.PuntajesEvaluacion": {
+        "Request.PuntajesEvaluacion": {
             "type": "object",
             "properties": {
                 "codigo_competencia": {
@@ -2748,7 +2748,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.PutMyAdministradorAcademicoPayload": {
+        "Request.PutMyAdministradorAcademicoPayload": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_academico": {
@@ -2777,7 +2777,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.PutMyAdministradorTiPayload": {
+        "Request.PutMyAdministradorTiPayload": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_ti": {
@@ -2809,7 +2809,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.PutMyEstudiantePayload": {
+        "Request.PutMyEstudiantePayload": {
             "type": "object",
             "properties": {
                 "apellidos_estudiante": {
@@ -2844,7 +2844,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.PutMyEvaluadorPayload": {
+        "Request.PutMyEvaluadorPayload": {
             "type": "object",
             "properties": {
                 "apellidos_evaluador": {
@@ -2879,7 +2879,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.PutOneAdministradorAcademicoPayload": {
+        "Request.PutOneAdministradorAcademicoPayload": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_academico": {
@@ -2908,7 +2908,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.PutOneAdministradorTiPayload": {
+        "Request.PutOneAdministradorTiPayload": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_ti": {
@@ -2940,7 +2940,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.PutOneCursoPayload": {
+        "Request.PutOneCursoPayload": {
             "type": "object",
             "properties": {
                 "id_periodo": {
@@ -2954,7 +2954,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.PutOneEstudiantePayload": {
+        "Request.PutOneEstudiantePayload": {
             "type": "object",
             "properties": {
                 "apellidos_estudiante": {
@@ -2986,7 +2986,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.PutOneEvaluadorPayload": {
+        "Request.PutOneEvaluadorPayload": {
             "type": "object",
             "properties": {
                 "apellidos_evaluador": {
@@ -3021,7 +3021,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.PutOneGrupoPayload": {
+        "Request.PutOneGrupoPayload": {
             "type": "object",
             "properties": {
                 "id_curso": {
@@ -3038,7 +3038,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.PutOnePeriodoPayload": {
+        "Request.PutOnePeriodoPayload": {
             "type": "object",
             "properties": {
                 "nombre_periodo": {
@@ -3046,7 +3046,7 @@ var doc = `{
                 }
             }
         },
-        "RequestMessages.PutOneRolPayload": {
+        "Request.PutOneRolPayload": {
             "type": "object",
             "properties": {
                 "nombre_rol": {
@@ -3054,7 +3054,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.AddNewAdministradorAcademicoResponse": {
+        "Response.AddNewAdministradorAcademicoResponse": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_academico": {
@@ -3080,7 +3080,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.AddNewAdministradorTiResponse": {
+        "Response.AddNewAdministradorTiResponse": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_ti": {
@@ -3106,7 +3106,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.AddNewCursoResponse": {
+        "Response.AddNewCursoResponse": {
             "type": "object",
             "properties": {
                 "id_periodo": {
@@ -3120,7 +3120,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.AddNewEstudianteResponse": {
+        "Response.AddNewEstudianteResponse": {
             "type": "object",
             "properties": {
                 "apellidos_estudiante": {
@@ -3149,7 +3149,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.AddNewEvaluadorResponse": {
+        "Response.AddNewEvaluadorResponse": {
             "type": "object",
             "properties": {
                 "apellidos_evaluador": {
@@ -3181,7 +3181,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.AddNewGrupoResponse": {
+        "Response.AddNewGrupoResponse": {
             "type": "object",
             "properties": {
                 "id_curso": {
@@ -3198,7 +3198,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.AddNewPeriodoResponse": {
+        "Response.AddNewPeriodoResponse": {
             "type": "object",
             "properties": {
                 "id": {
@@ -3209,7 +3209,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.AddNewRolResponse": {
+        "Response.AddNewRolResponse": {
             "type": "object",
             "properties": {
                 "nombre_rol": {
@@ -3217,7 +3217,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.Authentication": {
+        "Response.Authentication": {
             "type": "object",
             "properties": {
                 "token": {
@@ -3225,7 +3225,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.DeleteAdministradorAcademicoResponse": {
+        "Response.DeleteAdministradorAcademicoResponse": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_academico": {
@@ -3251,7 +3251,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.DeleteAdministradorTiResponse": {
+        "Response.DeleteAdministradorTiResponse": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_ti": {
@@ -3277,7 +3277,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.DeleteCursoResponse": {
+        "Response.DeleteCursoResponse": {
             "type": "object",
             "properties": {
                 "id_periodo": {
@@ -3291,7 +3291,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.DeleteEstudianteResponse": {
+        "Response.DeleteEstudianteResponse": {
             "type": "object",
             "properties": {
                 "apellidos_estudiante": {
@@ -3320,7 +3320,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.DeleteEvaluadorResponse": {
+        "Response.DeleteEvaluadorResponse": {
             "type": "object",
             "properties": {
                 "apellidos_evaluador": {
@@ -3352,7 +3352,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.DeleteGrupoResponse": {
+        "Response.DeleteGrupoResponse": {
             "type": "object",
             "properties": {
                 "id_curso": {
@@ -3369,7 +3369,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.DeletePeriodoResponse": {
+        "Response.DeletePeriodoResponse": {
             "type": "object",
             "properties": {
                 "id": {
@@ -3380,7 +3380,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.DeleteRolResponse": {
+        "Response.DeleteRolResponse": {
             "type": "object",
             "properties": {
                 "nombre_rol": {
@@ -3388,7 +3388,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.EvolucionEstudiantePorCompetenciaResponse": {
+        "Response.EvolucionEstudiantePorCompetenciaResponse": {
             "type": "object",
             "properties": {
                 "nombre_competencia": {
@@ -3405,7 +3405,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.EvolucionEstudiantePorEvaluacionResponse": {
+        "Response.EvolucionEstudiantePorEvaluacionResponse": {
             "type": "object",
             "properties": {
                 "nombre_evaluacion": {
@@ -3422,7 +3422,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.GenerarEvaluacionResponse": {
+        "Response.GenerarEvaluacionResponse": {
             "type": "object",
             "properties": {
                 "asunto_principal_consulta_evaluacion": {
@@ -3461,7 +3461,7 @@ var doc = `{
                 "puntajes_evaluacion": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/ResponseMessages.ListPuntajesResponse"
+                        "$ref": "#/definitions/Response.ListPuntajesResponse"
                     }
                 },
                 "tiempo_utilizado_evaluacion": {
@@ -3469,57 +3469,57 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.GetCursoEstudianteResponse": {
+        "Response.GetCursoEstudianteResponse": {
             "type": "object",
             "properties": {
                 "grupos_curso": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/ResponseMessages.ListGruposResponse"
+                        "$ref": "#/definitions/Response.ListGruposResponse"
                     }
                 },
                 "nombre_curso": {
                     "type": "string"
                 },
                 "periodo_curso": {
-                    "$ref": "#/definitions/ResponseMessages.GetOnePeriodoResponse"
+                    "$ref": "#/definitions/Response.GetOnePeriodoResponse"
                 },
                 "sigla_curso": {
                     "type": "string"
                 }
             }
         },
-        "ResponseMessages.GetCursoEvaluadorResponse": {
+        "Response.GetCursoEvaluadorResponse": {
             "type": "object",
             "properties": {
                 "grupos_curso": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/ResponseMessages.ListGruposResponse"
+                        "$ref": "#/definitions/Response.ListGruposResponse"
                     }
                 },
                 "nombre_curso": {
                     "type": "string"
                 },
                 "periodo_curso": {
-                    "$ref": "#/definitions/ResponseMessages.GetOnePeriodoResponse"
+                    "$ref": "#/definitions/Response.GetOnePeriodoResponse"
                 },
                 "sigla_curso": {
                     "type": "string"
                 }
             }
         },
-        "ResponseMessages.GetGrupoEstudianteResponse": {
+        "Response.GetGrupoEstudianteResponse": {
             "type": "object",
             "properties": {
                 "estudiantes_grupo": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/ResponseMessages.ListEstudiantesResponse"
+                        "$ref": "#/definitions/Response.ListEstudiantesResponse"
                     }
                 },
                 "evaluador_grupo": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
+                    "$ref": "#/definitions/Response.GetOneEvaluadorResponse"
                 },
                 "id_curso": {
                     "type": "integer"
@@ -3532,17 +3532,17 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.GetGrupoEvaluadorResponse": {
+        "Response.GetGrupoEvaluadorResponse": {
             "type": "object",
             "properties": {
                 "estudiantes_grupo": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/ResponseMessages.ListEstudiantesResponse"
+                        "$ref": "#/definitions/Response.ListEstudiantesResponse"
                     }
                 },
                 "evaluador_grupo": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
+                    "$ref": "#/definitions/Response.GetOneEvaluadorResponse"
                 },
                 "id_curso": {
                     "type": "integer"
@@ -3555,7 +3555,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.GetMyAdministradorAcademicoResponse": {
+        "Response.GetMyAdministradorAcademicoResponse": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_academico": {
@@ -3568,7 +3568,7 @@ var doc = `{
                     "type": "string"
                 },
                 "rol_administrador_academico": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                    "$ref": "#/definitions/Response.GetOneRolResponse"
                 },
                 "rut_administrador_academico": {
                     "type": "string"
@@ -3581,7 +3581,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.GetMyAdministradorTiResponse": {
+        "Response.GetMyAdministradorTiResponse": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_ti": {
@@ -3594,7 +3594,7 @@ var doc = `{
                     "type": "string"
                 },
                 "rol_administrador_ti": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                    "$ref": "#/definitions/Response.GetOneRolResponse"
                 },
                 "rut_administrador_ti": {
                     "type": "string"
@@ -3607,7 +3607,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.GetMyEstudianteResponse": {
+        "Response.GetMyEstudianteResponse": {
             "type": "object",
             "properties": {
                 "apellidos_estudiante": {
@@ -3619,7 +3619,7 @@ var doc = `{
                 "evaluaciones_estudiante": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/ResponseMessages.ListEvaluacionesEstudianteResponse"
+                        "$ref": "#/definitions/Response.ListEvaluacionesEstudianteResponse"
                     }
                 },
                 "id_grupo": {
@@ -3629,7 +3629,7 @@ var doc = `{
                     "type": "string"
                 },
                 "rol_estudiante": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                    "$ref": "#/definitions/Response.GetOneRolResponse"
                 },
                 "rut_estudiante": {
                     "type": "string"
@@ -3642,7 +3642,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.GetMyEvaluadorResponse": {
+        "Response.GetMyEvaluadorResponse": {
             "type": "object",
             "properties": {
                 "apellidos_evaluador": {
@@ -3661,7 +3661,7 @@ var doc = `{
                     "type": "string"
                 },
                 "rol_evaluador": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                    "$ref": "#/definitions/Response.GetOneRolResponse"
                 },
                 "rut_evaluador": {
                     "type": "string"
@@ -3674,7 +3674,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.GetOneAdministradorAcademicoResponse": {
+        "Response.GetOneAdministradorAcademicoResponse": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_academico": {
@@ -3687,7 +3687,7 @@ var doc = `{
                     "type": "string"
                 },
                 "rol_administrador_academico": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                    "$ref": "#/definitions/Response.GetOneRolResponse"
                 },
                 "rut_administrador_academico": {
                     "type": "string"
@@ -3700,7 +3700,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.GetOneAdministradorTiResponse": {
+        "Response.GetOneAdministradorTiResponse": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_ti": {
@@ -3713,7 +3713,7 @@ var doc = `{
                     "type": "string"
                 },
                 "rol_administrador_ti": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                    "$ref": "#/definitions/Response.GetOneRolResponse"
                 },
                 "rut_administrador_ti": {
                     "type": "string"
@@ -3726,27 +3726,27 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.GetOneCursoResponse": {
+        "Response.GetOneCursoResponse": {
             "type": "object",
             "properties": {
                 "grupos_curso": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/ResponseMessages.ListGruposResponse"
+                        "$ref": "#/definitions/Response.ListGruposResponse"
                     }
                 },
                 "nombre_curso": {
                     "type": "string"
                 },
                 "periodo_curso": {
-                    "$ref": "#/definitions/ResponseMessages.GetOnePeriodoResponse"
+                    "$ref": "#/definitions/Response.GetOnePeriodoResponse"
                 },
                 "sigla_curso": {
                     "type": "string"
                 }
             }
         },
-        "ResponseMessages.GetOneEstudianteResponse": {
+        "Response.GetOneEstudianteResponse": {
             "type": "object",
             "properties": {
                 "apellidos_estudiante": {
@@ -3758,7 +3758,7 @@ var doc = `{
                 "evaluaciones_estudiante": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/ResponseMessages.ListEvaluacionesEstudianteResponse"
+                        "$ref": "#/definitions/Response.ListEvaluacionesEstudianteResponse"
                     }
                 },
                 "id_grupo": {
@@ -3768,7 +3768,7 @@ var doc = `{
                     "type": "string"
                 },
                 "rol_estudiante": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                    "$ref": "#/definitions/Response.GetOneRolResponse"
                 },
                 "rut_estudiante": {
                     "type": "string"
@@ -3781,7 +3781,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.GetOneEvaluadorResponse": {
+        "Response.GetOneEvaluadorResponse": {
             "type": "object",
             "properties": {
                 "apellidos_evaluador": {
@@ -3800,7 +3800,7 @@ var doc = `{
                     "type": "string"
                 },
                 "rol_evaluador": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                    "$ref": "#/definitions/Response.GetOneRolResponse"
                 },
                 "rut_evaluador": {
                     "type": "string"
@@ -3813,17 +3813,17 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.GetOneGrupoResponse": {
+        "Response.GetOneGrupoResponse": {
             "type": "object",
             "properties": {
                 "estudiantes_grupo": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/ResponseMessages.ListEstudiantesResponse"
+                        "$ref": "#/definitions/Response.ListEstudiantesResponse"
                     }
                 },
                 "evaluador_grupo": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
+                    "$ref": "#/definitions/Response.GetOneEvaluadorResponse"
                 },
                 "id_curso": {
                     "type": "integer"
@@ -3836,7 +3836,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.GetOnePeriodoResponse": {
+        "Response.GetOnePeriodoResponse": {
             "type": "object",
             "properties": {
                 "id": {
@@ -3847,7 +3847,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.GetOneRolResponse": {
+        "Response.GetOneRolResponse": {
             "type": "object",
             "properties": {
                 "nombre_rol": {
@@ -3855,7 +3855,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.ListAdministradoresAcademicosResponse": {
+        "Response.ListAdministradoresAcademicosResponse": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_academico": {
@@ -3868,7 +3868,7 @@ var doc = `{
                     "type": "string"
                 },
                 "rol_administrador_academico": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                    "$ref": "#/definitions/Response.GetOneRolResponse"
                 },
                 "rut_administrador_academico": {
                     "type": "string"
@@ -3881,7 +3881,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.ListAdministradoresTiResponse": {
+        "Response.ListAdministradoresTiResponse": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_ti": {
@@ -3894,7 +3894,7 @@ var doc = `{
                     "type": "string"
                 },
                 "rol_administrador_ti": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                    "$ref": "#/definitions/Response.GetOneRolResponse"
                 },
                 "rut_administrador_ti": {
                     "type": "string"
@@ -3907,27 +3907,27 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.ListCursosResponse": {
+        "Response.ListCursosResponse": {
             "type": "object",
             "properties": {
                 "grupos_curso": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/ResponseMessages.ListGruposResponse"
+                        "$ref": "#/definitions/Response.ListGruposResponse"
                     }
                 },
                 "nombre_curso": {
                     "type": "string"
                 },
                 "periodo_curso": {
-                    "$ref": "#/definitions/ResponseMessages.GetOnePeriodoResponse"
+                    "$ref": "#/definitions/Response.GetOnePeriodoResponse"
                 },
                 "sigla_curso": {
                     "type": "string"
                 }
             }
         },
-        "ResponseMessages.ListEstudiantesResponse": {
+        "Response.ListEstudiantesResponse": {
             "type": "object",
             "properties": {
                 "apellidos_estudiante": {
@@ -3939,7 +3939,7 @@ var doc = `{
                 "evaluaciones_estudiante": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/ResponseMessages.ListEvaluacionesEstudianteResponse"
+                        "$ref": "#/definitions/Response.ListEvaluacionesEstudianteResponse"
                     }
                 },
                 "id": {
@@ -3952,7 +3952,7 @@ var doc = `{
                     "type": "string"
                 },
                 "rol_estudiante": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                    "$ref": "#/definitions/Response.GetOneRolResponse"
                 },
                 "rut_estudiante": {
                     "type": "string"
@@ -3965,7 +3965,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.ListEvaluacionesEstudianteResponse": {
+        "Response.ListEvaluacionesEstudianteResponse": {
             "type": "object",
             "properties": {
                 "asunto_principal_consulta_evaluacion": {
@@ -3981,7 +3981,7 @@ var doc = `{
                     "type": "string"
                 },
                 "evaluador_evaluacion": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
+                    "$ref": "#/definitions/Response.GetOneEvaluadorResponse"
                 },
                 "id_estudiante": {
                     "type": "string"
@@ -3999,12 +3999,12 @@ var doc = `{
                     "type": "string"
                 },
                 "periodo_evaluacion": {
-                    "$ref": "#/definitions/ResponseMessages.GetOnePeriodoResponse"
+                    "$ref": "#/definitions/Response.GetOnePeriodoResponse"
                 },
                 "puntajes_evaluacion": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/ResponseMessages.ListPuntajesResponse"
+                        "$ref": "#/definitions/Response.ListPuntajesResponse"
                     }
                 },
                 "tiempo_utilizado_evaluacion": {
@@ -4012,7 +4012,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.ListEvaluacionesResponse": {
+        "Response.ListEvaluacionesResponse": {
             "type": "object",
             "properties": {
                 "asunto_principal_consulta_evaluacion": {
@@ -4028,7 +4028,7 @@ var doc = `{
                     "type": "string"
                 },
                 "evaluador_evaluacion": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
+                    "$ref": "#/definitions/Response.GetOneEvaluadorResponse"
                 },
                 "id_estudiante": {
                     "type": "string"
@@ -4046,12 +4046,12 @@ var doc = `{
                     "type": "string"
                 },
                 "periodo_evaluacion": {
-                    "$ref": "#/definitions/ResponseMessages.GetOnePeriodoResponse"
+                    "$ref": "#/definitions/Response.GetOnePeriodoResponse"
                 },
                 "puntajes_evaluacion": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/ResponseMessages.ListPuntajesResponse"
+                        "$ref": "#/definitions/Response.ListPuntajesResponse"
                     }
                 },
                 "tiempo_utilizado_evaluacion": {
@@ -4059,7 +4059,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.ListEvaluadoresResponse": {
+        "Response.ListEvaluadoresResponse": {
             "type": "object",
             "properties": {
                 "apellidos_evaluador": {
@@ -4078,7 +4078,7 @@ var doc = `{
                     "type": "string"
                 },
                 "rol_evaluador": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                    "$ref": "#/definitions/Response.GetOneRolResponse"
                 },
                 "rut_evaluador": {
                     "type": "string"
@@ -4091,17 +4091,17 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.ListGruposResponse": {
+        "Response.ListGruposResponse": {
             "type": "object",
             "properties": {
                 "estudiantes_grupo": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/ResponseMessages.ListEstudiantesResponse"
+                        "$ref": "#/definitions/Response.ListEstudiantesResponse"
                     }
                 },
                 "evaluador_grupo": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
+                    "$ref": "#/definitions/Response.GetOneEvaluadorResponse"
                 },
                 "id_curso": {
                     "type": "integer"
@@ -4114,7 +4114,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.ListPeriodosResponse": {
+        "Response.ListPeriodosResponse": {
             "type": "object",
             "properties": {
                 "id": {
@@ -4125,7 +4125,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.ListPuntajesResponse": {
+        "Response.ListPuntajesResponse": {
             "type": "object",
             "properties": {
                 "calificacion_puntaje": {
@@ -4145,7 +4145,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.ListRolesResponse": {
+        "Response.ListRolesResponse": {
             "type": "object",
             "properties": {
                 "nombre_rol": {
@@ -4153,7 +4153,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.PutMyAdministradorAcademicoResponse": {
+        "Response.PutMyAdministradorAcademicoResponse": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_academico": {
@@ -4182,7 +4182,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.PutMyAdministradorTiResponse": {
+        "Response.PutMyAdministradorTiResponse": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_ti": {
@@ -4211,7 +4211,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.PutMyEstudianteResponse": {
+        "Response.PutMyEstudianteResponse": {
             "type": "object",
             "properties": {
                 "apellidos_estudiante": {
@@ -4243,7 +4243,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.PutMyEvaluadorResponse": {
+        "Response.PutMyEvaluadorResponse": {
             "type": "object",
             "properties": {
                 "apellidos_evaluador": {
@@ -4278,7 +4278,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.PutOneAdministradorAcademicoResponse": {
+        "Response.PutOneAdministradorAcademicoResponse": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_academico": {
@@ -4307,7 +4307,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.PutOneAdministradorTiResponse": {
+        "Response.PutOneAdministradorTiResponse": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_ti": {
@@ -4336,7 +4336,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.PutOneCursoResponse": {
+        "Response.PutOneCursoResponse": {
             "type": "object",
             "properties": {
                 "id_periodo": {
@@ -4350,7 +4350,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.PutOneEstudianteResponse": {
+        "Response.PutOneEstudianteResponse": {
             "type": "object",
             "properties": {
                 "apellidos_estudiante": {
@@ -4382,7 +4382,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.PutOneEvaluadorResponse": {
+        "Response.PutOneEvaluadorResponse": {
             "type": "object",
             "properties": {
                 "apellidos_evaluador": {
@@ -4417,7 +4417,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.PutOneGrupoResponse": {
+        "Response.PutOneGrupoResponse": {
             "type": "object",
             "properties": {
                 "id_curso": {
@@ -4434,7 +4434,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.PutOnePeriodoResponse": {
+        "Response.PutOnePeriodoResponse": {
             "type": "object",
             "properties": {
                 "id": {
@@ -4445,7 +4445,7 @@ var doc = `{
                 }
             }
         },
-        "ResponseMessages.PutOneRolResponse": {
+        "Response.PutOneRolResponse": {
             "type": "object",
             "properties": {
                 "nombre_rol": {
@@ -4457,7 +4457,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.AddNewAdministradorAcademicoResponse"
+                    "$ref": "#/definitions/Response.AddNewAdministradorAcademicoResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4471,7 +4471,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.AddNewAdministradorTiResponse"
+                    "$ref": "#/definitions/Response.AddNewAdministradorTiResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4485,7 +4485,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.AddNewCursoResponse"
+                    "$ref": "#/definitions/Response.AddNewCursoResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4499,7 +4499,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.AddNewEstudianteResponse"
+                    "$ref": "#/definitions/Response.AddNewEstudianteResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4513,7 +4513,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.AddNewEvaluadorResponse"
+                    "$ref": "#/definitions/Response.AddNewEvaluadorResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4527,7 +4527,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.AddNewGrupoResponse"
+                    "$ref": "#/definitions/Response.AddNewGrupoResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4541,7 +4541,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.AddNewPeriodoResponse"
+                    "$ref": "#/definitions/Response.AddNewPeriodoResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4555,7 +4555,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.AddNewRolResponse"
+                    "$ref": "#/definitions/Response.AddNewRolResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4569,7 +4569,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.Authentication"
+                    "$ref": "#/definitions/Response.Authentication"
                 },
                 "meta": {
                     "type": "string"
@@ -4583,7 +4583,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.DeleteAdministradorAcademicoResponse"
+                    "$ref": "#/definitions/Response.DeleteAdministradorAcademicoResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4597,7 +4597,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.DeleteAdministradorTiResponse"
+                    "$ref": "#/definitions/Response.DeleteAdministradorTiResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4611,7 +4611,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.DeleteCursoResponse"
+                    "$ref": "#/definitions/Response.DeleteCursoResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4625,7 +4625,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.DeleteEstudianteResponse"
+                    "$ref": "#/definitions/Response.DeleteEstudianteResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4639,7 +4639,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.DeleteEvaluadorResponse"
+                    "$ref": "#/definitions/Response.DeleteEvaluadorResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4653,7 +4653,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.DeleteGrupoResponse"
+                    "$ref": "#/definitions/Response.DeleteGrupoResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4667,7 +4667,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.DeletePeriodoResponse"
+                    "$ref": "#/definitions/Response.DeletePeriodoResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4681,7 +4681,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.DeleteRolResponse"
+                    "$ref": "#/definitions/Response.DeleteRolResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4695,7 +4695,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.EvolucionEstudiantePorCompetenciaResponse"
+                    "$ref": "#/definitions/Response.EvolucionEstudiantePorCompetenciaResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4709,7 +4709,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.EvolucionEstudiantePorEvaluacionResponse"
+                    "$ref": "#/definitions/Response.EvolucionEstudiantePorEvaluacionResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4723,7 +4723,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.GenerarEvaluacionResponse"
+                    "$ref": "#/definitions/Response.GenerarEvaluacionResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4737,7 +4737,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.GetCursoEstudianteResponse"
+                    "$ref": "#/definitions/Response.GetCursoEstudianteResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4751,7 +4751,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.GetCursoEvaluadorResponse"
+                    "$ref": "#/definitions/Response.GetCursoEvaluadorResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4765,7 +4765,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.GetGrupoEstudianteResponse"
+                    "$ref": "#/definitions/Response.GetGrupoEstudianteResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4779,7 +4779,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.GetGrupoEvaluadorResponse"
+                    "$ref": "#/definitions/Response.GetGrupoEvaluadorResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4793,7 +4793,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.GetMyAdministradorAcademicoResponse"
+                    "$ref": "#/definitions/Response.GetMyAdministradorAcademicoResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4807,7 +4807,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.GetMyAdministradorTiResponse"
+                    "$ref": "#/definitions/Response.GetMyAdministradorTiResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4821,7 +4821,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.GetMyEstudianteResponse"
+                    "$ref": "#/definitions/Response.GetMyEstudianteResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4835,7 +4835,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.GetMyEvaluadorResponse"
+                    "$ref": "#/definitions/Response.GetMyEvaluadorResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4849,7 +4849,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneAdministradorAcademicoResponse"
+                    "$ref": "#/definitions/Response.GetOneAdministradorAcademicoResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4863,7 +4863,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneAdministradorTiResponse"
+                    "$ref": "#/definitions/Response.GetOneAdministradorTiResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4877,7 +4877,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneCursoResponse"
+                    "$ref": "#/definitions/Response.GetOneCursoResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4891,7 +4891,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneEstudianteResponse"
+                    "$ref": "#/definitions/Response.GetOneEstudianteResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4905,7 +4905,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneEvaluadorResponse"
+                    "$ref": "#/definitions/Response.GetOneEvaluadorResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4919,7 +4919,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneGrupoResponse"
+                    "$ref": "#/definitions/Response.GetOneGrupoResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4933,7 +4933,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.GetOnePeriodoResponse"
+                    "$ref": "#/definitions/Response.GetOnePeriodoResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4947,7 +4947,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.GetOneRolResponse"
+                    "$ref": "#/definitions/Response.GetOneRolResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4961,7 +4961,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.ListAdministradoresAcademicosResponse"
+                    "$ref": "#/definitions/Response.ListAdministradoresAcademicosResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4975,7 +4975,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.ListAdministradoresTiResponse"
+                    "$ref": "#/definitions/Response.ListAdministradoresTiResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -4989,7 +4989,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.ListCursosResponse"
+                    "$ref": "#/definitions/Response.ListCursosResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -5003,7 +5003,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.ListEstudiantesResponse"
+                    "$ref": "#/definitions/Response.ListEstudiantesResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -5017,7 +5017,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.ListEvaluacionesResponse"
+                    "$ref": "#/definitions/Response.ListEvaluacionesResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -5031,7 +5031,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.ListEvaluadoresResponse"
+                    "$ref": "#/definitions/Response.ListEvaluadoresResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -5045,7 +5045,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.ListGruposResponse"
+                    "$ref": "#/definitions/Response.ListGruposResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -5059,7 +5059,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.ListPeriodosResponse"
+                    "$ref": "#/definitions/Response.ListPeriodosResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -5073,7 +5073,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.ListRolesResponse"
+                    "$ref": "#/definitions/Response.ListRolesResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -5087,7 +5087,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.PutMyAdministradorAcademicoResponse"
+                    "$ref": "#/definitions/Response.PutMyAdministradorAcademicoResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -5101,7 +5101,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.PutMyAdministradorTiResponse"
+                    "$ref": "#/definitions/Response.PutMyAdministradorTiResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -5115,7 +5115,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.PutMyEstudianteResponse"
+                    "$ref": "#/definitions/Response.PutMyEstudianteResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -5129,7 +5129,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.PutMyEvaluadorResponse"
+                    "$ref": "#/definitions/Response.PutMyEvaluadorResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -5143,7 +5143,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.PutOneAdministradorAcademicoResponse"
+                    "$ref": "#/definitions/Response.PutOneAdministradorAcademicoResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -5157,7 +5157,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.PutOneAdministradorTiResponse"
+                    "$ref": "#/definitions/Response.PutOneAdministradorTiResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -5171,7 +5171,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.PutOneCursoResponse"
+                    "$ref": "#/definitions/Response.PutOneCursoResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -5185,7 +5185,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.PutOneEstudianteResponse"
+                    "$ref": "#/definitions/Response.PutOneEstudianteResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -5199,7 +5199,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.PutOneEvaluadorResponse"
+                    "$ref": "#/definitions/Response.PutOneEvaluadorResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -5213,7 +5213,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.PutOneGrupoResponse"
+                    "$ref": "#/definitions/Response.PutOneGrupoResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -5227,7 +5227,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.PutOnePeriodoResponse"
+                    "$ref": "#/definitions/Response.PutOnePeriodoResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -5241,7 +5241,7 @@ var doc = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ResponseMessages.PutOneRolResponse"
+                    "$ref": "#/definitions/Response.PutOneRolResponse"
                 },
                 "meta": {
                     "type": "string"

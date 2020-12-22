@@ -5,32 +5,34 @@ import (
 	"medroom-backend/Config"
 	"medroom-backend/Models"
 
-	_ "github.com/jinzhu/gorm/dialects/postgres"
+	_ "gorm.io/driver/postgres"
+	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 )
 
 func GetAllGrupos(u *[]Models.Grupo) (err error) {
-	if err = Config.DB.Set("gorm:auto_preload", true).Find(u).Error; err != nil {
+	if err = Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Find(u).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
 func GetOneGrupo(u *Models.Grupo, id string) (err error) {
-	if err := Config.DB.Set("gorm:auto_preload", true).Where("id = ?", id).First(u).Error; err != nil {
+	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("id = ?", id).First(u).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
 func GetOneGrupoByEvaluadorId(u *Models.Grupo, id_evaluador string) (err error) {
-	if err := Config.DB.Set("gorm:auto_preload", true).Where("id_evaluador = ?", id_evaluador).First(u).Error; err != nil {
+	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("id_evaluador = ?", id_evaluador).First(u).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
 func AddNewGrupo(u *Models.Grupo) (err error) {
-	if err = Config.DB.Create(u).Error; err != nil {
+	if err = Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Create(u).Error; err != nil {
 		return err
 	}
 	return nil
@@ -38,11 +40,11 @@ func AddNewGrupo(u *Models.Grupo) (err error) {
 
 func PutOneGrupo(u *Models.Grupo, id string) (err error) {
 	fmt.Println(u)
-	Config.DB.Save(u)
+	Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Save(u)
 	return nil
 }
 
 func DeleteGrupo(u *Models.Grupo, id string) (err error) {
-	Config.DB.Where("id = ?", id).Delete(u)
+	Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("id = ?", id).Delete(u)
 	return nil
 }

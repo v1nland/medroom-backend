@@ -2,11 +2,11 @@ package Controllers
 
 import (
 	"medroom-backend/ApiHelpers"
-	"medroom-backend/InputFormats"
+	"medroom-backend/Formats/Input"
+	"medroom-backend/Formats/Output"
+	"medroom-backend/Messages/Request"
 	"medroom-backend/Models"
-	"medroom-backend/OutputFormats"
 	"medroom-backend/Repositories"
-	"medroom-backend/RequestMessages"
 	"medroom-backend/Utils"
 
 	"github.com/gin-gonic/gin"
@@ -32,7 +32,7 @@ func ListEstudiantes(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetEstudiantesOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.GetEstudiantesOutput(container))
 }
 
 // @Summary Obtiene un estudiante
@@ -59,7 +59,7 @@ func GetOneEstudiante(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetOneEstudianteOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.GetOneEstudianteOutput(container))
 }
 
 // @Summary Agrega un nuevo estudiante
@@ -67,13 +67,13 @@ func GetOneEstudiante(c *gin.Context) {
 // @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   input_estudiante     body    RequestMessages.AddNewEstudiantePayload     true        "Estudiante a agregar"
+// @Param   input_estudiante     body    Request.AddNewEstudiantePayload     true        "Estudiante a agregar"
 // @Success 200 {object} SwaggerMessages.AddNewEstudianteSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/estudiantes [post]
 func AddNewEstudiante(c *gin.Context) {
 	// input container
-	var container RequestMessages.AddNewEstudiantePayload
+	var container Request.AddNewEstudiantePayload
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {
@@ -82,12 +82,12 @@ func AddNewEstudiante(c *gin.Context) {
 	}
 
 	// format input
-	InputFormats.AddNewEstudianteInput(&container)
+	Input.AddNewEstudianteInput(&container)
 
 	// generate model entity
 	model_container := Models.Estudiante{
-		Id_rol:                        container.Id_rol,
-		Id_grupo:                      container.Id_grupo,
+		Id_rol: container.Id_rol,
+		// Id_grupo:                      container.Id_grupo,
 		Rut_estudiante:                container.Rut_estudiante,
 		Nombres_estudiante:            container.Nombres_estudiante,
 		Apellidos_estudiante:          container.Apellidos_estudiante,
@@ -105,7 +105,7 @@ func AddNewEstudiante(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.AddNewEstudianteOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.AddNewEstudianteOutput(model_container))
 }
 
 // @Summary Modifica un estudiante
@@ -114,7 +114,7 @@ func AddNewEstudiante(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   uuid_estudiante     path    string     true        "UUID del estudiante a modificar"
-// @Param   input_actualiza_estudiante     body    RequestMessages.PutOneEstudiantePayload     true        "Estudiante a modificar"
+// @Param   input_actualiza_estudiante     body    Request.PutOneEstudiantePayload     true        "Estudiante a modificar"
 // @Success 200 {object} SwaggerMessages.PutOneEstudianteSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/estudiantes/{uuid_estudiante} [put]
@@ -123,7 +123,7 @@ func PutOneEstudiante(c *gin.Context) {
 	id := c.Params.ByName("id")
 
 	// input container
-	var container RequestMessages.PutMyEstudiantePayload
+	var container Request.PutMyEstudiantePayload
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {
@@ -132,7 +132,7 @@ func PutOneEstudiante(c *gin.Context) {
 	}
 
 	// format input
-	InputFormats.PutMyEstudianteInput(&container)
+	Input.PutMyEstudianteInput(&container)
 
 	// generate model entity
 	var model_container Models.Estudiante
@@ -145,9 +145,9 @@ func PutOneEstudiante(c *gin.Context) {
 
 	// replace data in model entity
 	model_container = Models.Estudiante{
-		ID:                            model_container.ID,
-		Id_rol:                        Utils.CheckUpdatedInt(container.Id_rol, model_container.Id_rol),
-		Id_grupo:                      Utils.CheckUpdatedInt(container.Id_grupo, model_container.Id_grupo),
+		Id:     model_container.Id,
+		Id_rol: Utils.CheckUpdatedInt(container.Id_rol, model_container.Id_rol),
+		// Id_grupo:                      Utils.CheckUpdatedInt(container.Id_grupo, model_container.Id_grupo),
 		Rut_estudiante:                Utils.CheckUpdatedString(container.Rut_estudiante, model_container.Rut_estudiante),
 		Nombres_estudiante:            Utils.CheckUpdatedString(container.Nombres_estudiante, model_container.Nombres_estudiante),
 		Apellidos_estudiante:          Utils.CheckUpdatedString(container.Apellidos_estudiante, model_container.Apellidos_estudiante),
@@ -170,7 +170,7 @@ func PutOneEstudiante(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutMyEstudianteOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.PutMyEstudianteOutput(model_container))
 }
 
 // @Summary Elimina un estudiante
@@ -204,7 +204,7 @@ func DeleteEstudiante(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.DeleteEstudianteOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.DeleteEstudianteOutput(container))
 }
 
 // @Summary Obtiene el perfil del estudiante
@@ -230,7 +230,7 @@ func GetMyEstudiante(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetMyEstudianteOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.GetMyEstudianteOutput(container))
 }
 
 // @Summary Modifica mi perfil
@@ -238,7 +238,7 @@ func GetMyEstudiante(c *gin.Context) {
 // @Tags 02 - Estudiantes
 // @Accept  json
 // @Produce  json
-// @Param   input_actualiza_estudiante     body    RequestMessages.PutMyEstudiantePayload     true        "Nuevos datos del estudiante a modificar"
+// @Param   input_actualiza_estudiante     body    Request.PutMyEstudiantePayload     true        "Nuevos datos del estudiante a modificar"
 // @Success 200 {object} SwaggerMessages.PutMyEstudianteSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /estudiantes/me [put]
@@ -247,7 +247,7 @@ func PutMyEstudiante(c *gin.Context) {
 	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
 
 	// input container
-	var container RequestMessages.PutMyEstudiantePayload
+	var container Request.PutMyEstudiantePayload
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {
@@ -256,7 +256,7 @@ func PutMyEstudiante(c *gin.Context) {
 	}
 
 	// format input
-	InputFormats.PutMyEstudianteInput(&container)
+	Input.PutMyEstudianteInput(&container)
 
 	// generate model entity
 	var model_container Models.Estudiante
@@ -270,9 +270,9 @@ func PutMyEstudiante(c *gin.Context) {
 
 	// replace data in model entity
 	model_container = Models.Estudiante{
-		ID:                            model_container.ID,
-		Id_rol:                        Utils.CheckUpdatedInt(container.Id_rol, model_container.Id_rol),
-		Id_grupo:                      Utils.CheckUpdatedInt(container.Id_grupo, model_container.Id_grupo),
+		Id:     model_container.Id,
+		Id_rol: Utils.CheckUpdatedInt(container.Id_rol, model_container.Id_rol),
+		// Id_grupo:                      Utils.CheckUpdatedInt(container.Id_grupo, model_container.Id_grupo),
 		Rut_estudiante:                Utils.CheckUpdatedString(container.Rut_estudiante, model_container.Rut_estudiante),
 		Nombres_estudiante:            Utils.CheckUpdatedString(container.Nombres_estudiante, model_container.Nombres_estudiante),
 		Apellidos_estudiante:          Utils.CheckUpdatedString(container.Apellidos_estudiante, model_container.Apellidos_estudiante),
@@ -297,5 +297,5 @@ func PutMyEstudiante(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutOneEstudianteOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.PutOneEstudianteOutput(model_container))
 }

@@ -2,11 +2,11 @@ package Controllers
 
 import (
 	"medroom-backend/ApiHelpers"
-	"medroom-backend/InputFormats"
+	"medroom-backend/Formats/Input"
+	"medroom-backend/Formats/Output"
+	"medroom-backend/Messages/Request"
 	"medroom-backend/Models"
-	"medroom-backend/OutputFormats"
 	"medroom-backend/Repositories"
-	"medroom-backend/RequestMessages"
 	"medroom-backend/Utils"
 
 	"github.com/gin-gonic/gin"
@@ -34,15 +34,15 @@ func ListEvaluaciones(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetEvaluacionesOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.GetEvaluacionesOutput(container))
 }
 
 // @Summary Obtiene un evaluacion
-// @Description Obtiene un evaluacion según su ID
+// @Description Obtiene un evaluacion según su Id
 // @Tags Evaluaciones
 // @Accept  json
 // @Produce  json
-// @Param   id_evaluacion     path    string     true        "ID del evaluacion a buscar"
+// @Param   id_evaluacion     path    string     true        "Id del evaluacion a buscar"
 // @Success 200 {object} SwaggerMessages.GetOneEvaluacionSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /evaluaciones/{id_evaluacion} [get]
@@ -62,7 +62,7 @@ func GetOneEvaluacion(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetOneEvaluacionOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.GetOneEvaluacionOutput(container))
 }
 
 // @Summary Agrega un nuevo evaluacion
@@ -70,14 +70,14 @@ func GetOneEvaluacion(c *gin.Context) {
 // @Tags Evaluaciones
 // @Accept  json
 // @Produce  json
-// @Param   input_evaluacion     body    RequestMessages.AddNewEvaluacionPayload     true        "Evaluacion a agregar"
+// @Param   input_evaluacion     body    Request.AddNewEvaluacionPayload     true        "Evaluacion a agregar"
 // @Success 200 {object} SwaggerMessages.AddNewEvaluacionSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /evaluaciones [post]
 
 func AddNewEvaluacion(c *gin.Context) {
 	// input container
-	var container RequestMessages.AddNewEvaluacionPayload
+	var container Request.AddNewEvaluacionPayload
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {
@@ -86,7 +86,7 @@ func AddNewEvaluacion(c *gin.Context) {
 	}
 
 	// format input
-	InputFormats.AddNewEvaluacionInput(&container)
+	Input.AddNewEvaluacionInput(&container)
 
 	// generate model entity
 	model_container := Models.Evaluacion{
@@ -112,7 +112,7 @@ func AddNewEvaluacion(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.AddNewEvaluacionOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.AddNewEvaluacionOutput(model_container))
 }
 
 // @Summary Modifica un evaluacion
@@ -120,8 +120,8 @@ func AddNewEvaluacion(c *gin.Context) {
 // @Tags Evaluaciones
 // @Accept  json
 // @Produce  json
-// @Param   id_evaluacion     path    string     true        "ID del evaluacion a modificar"
-// @Param   input_actualiza_evaluacion     body    RequestMessages.PutOneEvaluacionPayload     true        "Evaluacion a modificar"
+// @Param   id_evaluacion     path    string     true        "Id del evaluacion a modificar"
+// @Param   input_actualiza_evaluacion     body    Request.PutOneEvaluacionPayload     true        "Evaluacion a modificar"
 // @Success 200 {object} SwaggerMessages.PutOneEvaluacionSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /evaluaciones/{id_evaluacion} [put]
@@ -131,7 +131,7 @@ func PutOneEvaluacion(c *gin.Context) {
 	id := c.Params.ByName("id")
 
 	// input container
-	var container RequestMessages.PutOneEvaluacionPayload
+	var container Request.PutOneEvaluacionPayload
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {
@@ -140,7 +140,7 @@ func PutOneEvaluacion(c *gin.Context) {
 	}
 
 	// format input
-	InputFormats.PutOneEvaluacionInput(&container)
+	Input.PutOneEvaluacionInput(&container)
 
 	// generate model entity
 	var model_container Models.Evaluacion
@@ -154,7 +154,7 @@ func PutOneEvaluacion(c *gin.Context) {
 
 	// replace data in model entity
 	model_container = Models.Evaluacion{
-		ID:                                      model_container.ID,
+		Id:                                      model_container.Id,
 		Id_estudiante:                           Utils.CheckUpdatedString(container.Id_estudiante, model_container.Id_estudiante),
 		Id_evaluador:                            Utils.CheckUpdatedString(container.Id_evaluador, model_container.Id_evaluador),
 		Id_periodo:                              Utils.CheckUpdatedInt(container.Id_periodo, model_container.Id_periodo),
@@ -191,7 +191,7 @@ func PutOneEvaluacion(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutOneEvaluacionOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.PutOneEvaluacionOutput(model_container))
 }
 
 // @Summary Elimina un evaluacion
@@ -199,7 +199,7 @@ func PutOneEvaluacion(c *gin.Context) {
 // @Tags Evaluaciones
 // @Accept  json
 // @Produce  json
-// @Param   id_evaluacion     path    string     true        "ID del evaluacion a eliminar"
+// @Param   id_evaluacion     path    string     true        "Id del evaluacion a eliminar"
 // @Success 200 {object} SwaggerMessages.DeleteEvaluacionSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /evaluaciones/{id_evaluacion} [delete]
@@ -226,7 +226,7 @@ func DeleteEvaluacion(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.DeleteEvaluacionOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.DeleteEvaluacionOutput(container))
 }*/
 
 // @Summary Lista de evaluaciones de un estudiante
@@ -249,7 +249,7 @@ func ListEvaluacionesEstudiante(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetEvaluacionesEstudianteOutput(estudiante.Evaluaciones_estudiante))
+	ApiHelpers.RespondJSON(c, 200, Output.GetEvaluacionesEstudianteOutput(estudiante.Evaluaciones_estudiante))
 }
 
 // @Summary Genera una evaluación para un estudiante
@@ -257,7 +257,7 @@ func ListEvaluacionesEstudiante(c *gin.Context) {
 // @Tags 03 - Evaluadores
 // @Accept  json
 // @Produce  json
-// @Param   input_evaluacion     body    RequestMessages.GenerarEvaluacionPayload     true        "Evaluacion a generar"
+// @Param   input_evaluacion     body    Request.GenerarEvaluacionPayload     true        "Evaluacion a generar"
 // @Success 200 {object} SwaggerMessages.GenerarEvaluacionSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /evaluadores/me/evaluaciones [post]
@@ -266,7 +266,7 @@ func GenerarEvaluacion(c *gin.Context) {
 	id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
 
 	// input container
-	var container RequestMessages.GenerarEvaluacionPayload
+	var container Request.GenerarEvaluacionPayload
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {
@@ -275,7 +275,7 @@ func GenerarEvaluacion(c *gin.Context) {
 	}
 
 	// format input
-	InputFormats.GenerarEvaluacionInput(&container)
+	Input.GenerarEvaluacionInput(&container)
 
 	// validate puntajes_evaluacion enum
 
@@ -303,7 +303,7 @@ func GenerarEvaluacion(c *gin.Context) {
 
 	for i := 0; i < len(container.Puntajes_evaluacion); i++ {
 		puntaje := Models.Puntaje{
-			Id_evaluacion:              model_container.ID,
+			Id_evaluacion:              model_container.Id,
 			Nombre_competencia_puntaje: container.Puntajes_evaluacion[i].Nombre_competencia,
 			Codigo_competencia_puntaje: container.Puntajes_evaluacion[i].Codigo_competencia,
 			Calificacion_puntaje:       container.Puntajes_evaluacion[i].Puntaje_competencia,
@@ -317,5 +317,5 @@ func GenerarEvaluacion(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GenerarEvaluacionOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.GenerarEvaluacionOutput(model_container))
 }

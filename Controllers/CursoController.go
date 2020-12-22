@@ -2,11 +2,11 @@ package Controllers
 
 import (
 	"medroom-backend/ApiHelpers"
-	"medroom-backend/InputFormats"
+	"medroom-backend/Formats/Input"
+	"medroom-backend/Formats/Output"
+	"medroom-backend/Messages/Request"
 	"medroom-backend/Models"
-	"medroom-backend/OutputFormats"
 	"medroom-backend/Repositories"
-	"medroom-backend/RequestMessages"
 	"medroom-backend/Utils"
 
 	"github.com/gin-gonic/gin"
@@ -32,15 +32,15 @@ func ListCursos(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetCursosOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.GetCursosOutput(container))
 }
 
 // @Summary Obtiene un curso
-// @Description Obtiene un curso según su ID
+// @Description Obtiene un curso según su Id
 // @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   id_curso     path    string     true        "ID del curso a buscar"
+// @Param   id_curso     path    string     true        "Id del curso a buscar"
 // @Success 200 {object} SwaggerMessages.GetOneCursoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/cursos/{id_curso} [get]
@@ -59,7 +59,7 @@ func GetOneCurso(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetOneCursoOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.GetOneCursoOutput(container))
 }
 
 // @Summary Agrega un nuevo curso
@@ -67,13 +67,13 @@ func GetOneCurso(c *gin.Context) {
 // @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   input_curso     body    RequestMessages.AddNewCursoPayload     true        "Curso a agregar"
+// @Param   input_curso     body    Request.AddNewCursoPayload     true        "Curso a agregar"
 // @Success 200 {object} SwaggerMessages.AddNewCursoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/cursos [post]
 func AddNewCurso(c *gin.Context) {
 	// input container
-	var container RequestMessages.AddNewCursoPayload
+	var container Request.AddNewCursoPayload
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {
@@ -82,7 +82,7 @@ func AddNewCurso(c *gin.Context) {
 	}
 
 	// format input
-	InputFormats.AddNewCursoInput(&container)
+	Input.AddNewCursoInput(&container)
 
 	// generate model entity
 	model_container := Models.Curso{
@@ -99,7 +99,7 @@ func AddNewCurso(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.AddNewCursoOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.AddNewCursoOutput(model_container))
 }
 
 // @Summary Modifica un curso
@@ -107,8 +107,8 @@ func AddNewCurso(c *gin.Context) {
 // @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   id_curso     path    string     true        "ID del curso a modificar"
-// @Param   input_actualiza_curso     body    RequestMessages.PutOneCursoPayload     true        "Curso a modificar"
+// @Param   id_curso     path    string     true        "Id del curso a modificar"
+// @Param   input_actualiza_curso     body    Request.PutOneCursoPayload     true        "Curso a modificar"
 // @Success 200 {object} SwaggerMessages.PutOneCursoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/cursos/{id_curso} [put]
@@ -117,7 +117,7 @@ func PutOneCurso(c *gin.Context) {
 	id := c.Params.ByName("id")
 
 	// input container
-	var container RequestMessages.PutOneCursoPayload
+	var container Request.PutOneCursoPayload
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {
@@ -126,7 +126,7 @@ func PutOneCurso(c *gin.Context) {
 	}
 
 	// format input
-	InputFormats.PutOneCursoInput(&container)
+	Input.PutOneCursoInput(&container)
 
 	// generate model entity
 	var model_container Models.Curso
@@ -140,7 +140,7 @@ func PutOneCurso(c *gin.Context) {
 
 	// replace data in model entity
 	model_container = Models.Curso{
-		ID:           model_container.ID,
+		Id:           model_container.Id,
 		Id_periodo:   Utils.CheckUpdatedInt(container.Id_periodo, model_container.Id_periodo),
 		Nombre_curso: Utils.CheckUpdatedString(container.Nombre_curso, model_container.Nombre_curso),
 		Sigla_curso:  Utils.CheckUpdatedString(container.Sigla_curso, model_container.Sigla_curso),
@@ -161,7 +161,7 @@ func PutOneCurso(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutOneCursoOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.PutOneCursoOutput(model_container))
 }
 
 // @Summary Elimina un curso
@@ -169,7 +169,7 @@ func PutOneCurso(c *gin.Context) {
 // @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   id_curso     path    string     true        "ID del curso a eliminar"
+// @Param   id_curso     path    string     true        "Id del curso a eliminar"
 // @Success 200 {object} SwaggerMessages.DeleteCursoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/cursos/{id_curso} [delete]
@@ -195,7 +195,7 @@ func DeleteCurso(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.DeleteCursoOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.DeleteCursoOutput(container))
 }
 
 // @Summary Obtiene un curso de un estudiante
@@ -218,20 +218,20 @@ func GetCursoEstudiante(c *gin.Context) {
 	}
 
 	// model container
-	var container Models.Grupo
-	if err := Repositories.GetOneGrupo(&container, Utils.ConvertIntToString(estudiante.Id_grupo)); err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
-	}
+	// var container Models.Grupo
+	// if err := Repositories.GetOneGrupo(&container, Utils.ConvertIntToString(estudiante.Id_grupo)); err != nil {
+	// 	ApiHelpers.RespondError(c, 500, "default")
+	// 	return
+	// }
 
-	// model container
-	var container_curso Models.Curso
-	if err := Repositories.GetOneCurso(&container_curso, Utils.ConvertIntToString(estudiante.Id_grupo)); err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
-	}
+	// // model container
+	// var container_curso Models.Curso
+	// if err := Repositories.GetOneCurso(&container_curso, Utils.ConvertIntToString(estudiante.Id_grupo)); err != nil {
+	// 	ApiHelpers.RespondError(c, 500, "default")
+	// 	return
+	// }
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetCursoEstudianteOutput(container_curso))
+	// ApiHelpers.RespondJSON(c, 200, Output.GetCursoEstudianteOutput(container_curso))
 }
 
 // @Summary Obtiene un curso de un evaluador
@@ -261,5 +261,5 @@ func GetCursoEvaluador(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetCursoEvaluadorOutput(curso_container))
+	ApiHelpers.RespondJSON(c, 200, Output.GetCursoEvaluadorOutput(curso_container))
 }

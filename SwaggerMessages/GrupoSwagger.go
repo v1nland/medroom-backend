@@ -1,47 +1,45 @@
 package SwaggerMessages
 
-import (
-	"medroom-backend/ResponseMessages"
-)
+import "medroom-backend/Messages/Response"
 
 type ListGruposSwagger struct {
-	Status bool                                `json:"status"`
-	Meta   string                              `json:"meta"`
-	Data   ResponseMessages.ListGruposResponse `json:"data"`
+	Status bool                        `json:"status"`
+	Meta   string                      `json:"meta"`
+	Data   Response.ListGruposResponse `json:"data"`
 }
 
 type GetOneGrupoSwagger struct {
-	Status bool                                 `json:"status"`
-	Meta   string                               `json:"meta"`
-	Data   ResponseMessages.GetOneGrupoResponse `json:"data"`
+	Status bool                         `json:"status"`
+	Meta   string                       `json:"meta"`
+	Data   Response.GetOneGrupoResponse `json:"data"`
 }
 
 type GetGrupoEstudianteSwagger struct {
-	Status bool                                        `json:"status"`
-	Meta   string                                      `json:"meta"`
-	Data   ResponseMessages.GetGrupoEstudianteResponse `json:"data"`
+	Status bool                                `json:"status"`
+	Meta   string                              `json:"meta"`
+	Data   Response.GetGrupoEstudianteResponse `json:"data"`
 }
 
 type GetGrupoEvaluadorSwagger struct {
-	Status bool                                       `json:"status"`
-	Meta   string                                     `json:"meta"`
-	Data   ResponseMessages.GetGrupoEvaluadorResponse `json:"data"`
+	Status bool                               `json:"status"`
+	Meta   string                             `json:"meta"`
+	Data   Response.GetGrupoEvaluadorResponse `json:"data"`
 }
 
 type AddNewGrupoSwagger struct {
-	Status bool                                 `json:"status"`
-	Meta   string                               `json:"meta"`
-	Data   ResponseMessages.AddNewGrupoResponse `json:"data"`
+	Status bool                         `json:"status"`
+	Meta   string                       `json:"meta"`
+	Data   Response.AddNewGrupoResponse `json:"data"`
 }
 
 type PutOneGrupoSwagger struct {
-	Status bool                                 `json:"status"`
-	Meta   string                               `json:"meta"`
-	Data   ResponseMessages.PutOneGrupoResponse `json:"data"`
+	Status bool                         `json:"status"`
+	Meta   string                       `json:"meta"`
+	Data   Response.PutOneGrupoResponse `json:"data"`
 }
 
 type DeleteGrupoSwagger struct {
-	Status bool                                 `json:"status"`
-	Meta   string                               `json:"meta"`
-	Data   ResponseMessages.DeleteGrupoResponse `json:"data"`
+	Status bool                         `json:"status"`
+	Meta   string                       `json:"meta"`
+	Data   Response.DeleteGrupoResponse `json:"data"`
 }

@@ -2,11 +2,11 @@ package Controllers
 
 import (
 	"medroom-backend/ApiHelpers"
-	"medroom-backend/InputFormats"
+	"medroom-backend/Formats/Input"
+	"medroom-backend/Formats/Output"
+	"medroom-backend/Messages/Request"
 	"medroom-backend/Models"
-	"medroom-backend/OutputFormats"
 	"medroom-backend/Repositories"
-	"medroom-backend/RequestMessages"
 	"medroom-backend/Utils"
 
 	"github.com/gin-gonic/gin"
@@ -32,7 +32,7 @@ func ListEvaluadores(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetEvaluadoresOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.GetEvaluadoresOutput(container))
 }
 
 // @Summary Obtiene un evaluador
@@ -59,7 +59,7 @@ func GetOneEvaluador(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetOneEvaluadorOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.GetOneEvaluadorOutput(container))
 }
 
 // @Summary Agrega un nuevo evaluador
@@ -67,13 +67,13 @@ func GetOneEvaluador(c *gin.Context) {
 // @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   input_evaluador     body    RequestMessages.AddNewEvaluadorPayload     true        "Evaluador a agregar"
+// @Param   input_evaluador     body    Request.AddNewEvaluadorPayload     true        "Evaluador a agregar"
 // @Success 200 {object} SwaggerMessages.AddNewEvaluadorSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/evaluadores [post]
 func AddNewEvaluador(c *gin.Context) {
 	// input container
-	var container RequestMessages.AddNewEvaluadorPayload
+	var container Request.AddNewEvaluadorPayload
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {
@@ -82,7 +82,7 @@ func AddNewEvaluador(c *gin.Context) {
 	}
 
 	// format input
-	InputFormats.AddNewEvaluadorInput(&container)
+	Input.AddNewEvaluadorInput(&container)
 
 	// generate model entity
 	model_container := Models.Evaluador{
@@ -106,7 +106,7 @@ func AddNewEvaluador(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.AddNewEvaluadorOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.AddNewEvaluadorOutput(model_container))
 }
 
 // @Summary Modifica un evaluador
@@ -115,7 +115,7 @@ func AddNewEvaluador(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   uuid_evaluador     path    string     true        "UUID del evaluador a modificar"
-// @Param   input_actualiza_evaluador     body    RequestMessages.PutOneEvaluadorPayload     true        "Evaluador a modificar"
+// @Param   input_actualiza_evaluador     body    Request.PutOneEvaluadorPayload     true        "Evaluador a modificar"
 // @Success 200 {object} SwaggerMessages.PutOneEvaluadorSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/evaluadores/{uuid_evaluador} [put]
@@ -124,7 +124,7 @@ func PutOneEvaluador(c *gin.Context) {
 	id := c.Params.ByName("id")
 
 	// input container
-	var container RequestMessages.PutOneEvaluadorPayload
+	var container Request.PutOneEvaluadorPayload
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {
@@ -133,7 +133,7 @@ func PutOneEvaluador(c *gin.Context) {
 	}
 
 	// format input
-	InputFormats.PutOneEvaluadorInput(&container)
+	Input.PutOneEvaluadorInput(&container)
 
 	// generate model entity
 	var model_container Models.Evaluador
@@ -147,7 +147,7 @@ func PutOneEvaluador(c *gin.Context) {
 
 	// replace data in model entity
 	model_container = Models.Evaluador{
-		ID:                           model_container.ID,
+		Id:                           model_container.Id,
 		Id_rol:                       Utils.CheckUpdatedInt(container.Id_rol, model_container.Id_rol),
 		Rut_evaluador:                Utils.CheckUpdatedString(container.Rut_evaluador, model_container.Rut_evaluador),
 		Nombres_evaluador:            Utils.CheckUpdatedString(container.Nombres_evaluador, model_container.Nombres_evaluador),
@@ -175,7 +175,7 @@ func PutOneEvaluador(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutOneEvaluadorOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.PutOneEvaluadorOutput(model_container))
 }
 
 // @Summary Elimina un evaluador
@@ -209,7 +209,7 @@ func DeleteEvaluador(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.DeleteEvaluadorOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.DeleteEvaluadorOutput(container))
 }
 
 // @Summary Obtiene el perfil del evaluador
@@ -232,7 +232,7 @@ func GetMyEvaluador(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetMyEvaluadorOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.GetMyEvaluadorOutput(container))
 }
 
 // @Summary Modifica mi perfil
@@ -240,7 +240,7 @@ func GetMyEvaluador(c *gin.Context) {
 // @Tags 03 - Evaluadores
 // @Accept  json
 // @Produce  json
-// @Param   input_actualiza_evaluador     body    RequestMessages.PutMyEvaluadorPayload     true        "Evaluador a modificar"
+// @Param   input_actualiza_evaluador     body    Request.PutMyEvaluadorPayload     true        "Evaluador a modificar"
 // @Success 200 {object} SwaggerMessages.PutMyEvaluadorSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /evaluadores/me [put]
@@ -249,7 +249,7 @@ func PutMyEvaluador(c *gin.Context) {
 	id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
 
 	// input container
-	var container RequestMessages.PutMyEvaluadorPayload
+	var container Request.PutMyEvaluadorPayload
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {
@@ -258,7 +258,7 @@ func PutMyEvaluador(c *gin.Context) {
 	}
 
 	// format input
-	InputFormats.PutMyEvaluadorInput(&container)
+	Input.PutMyEvaluadorInput(&container)
 
 	// generate model entity
 	var model_container Models.Evaluador
@@ -272,7 +272,7 @@ func PutMyEvaluador(c *gin.Context) {
 
 	// replace data in model entity
 	model_container = Models.Evaluador{
-		ID:                           model_container.ID,
+		Id:                           model_container.Id,
 		Id_rol:                       Utils.CheckUpdatedInt(container.Id_rol, model_container.Id_rol),
 		Rut_evaluador:                Utils.CheckUpdatedString(container.Rut_evaluador, model_container.Rut_evaluador),
 		Nombres_evaluador:            Utils.CheckUpdatedString(container.Nombres_evaluador, model_container.Nombres_evaluador),
@@ -300,5 +300,5 @@ func PutMyEvaluador(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutMyEvaluadorOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.PutMyEvaluadorOutput(model_container))
 }

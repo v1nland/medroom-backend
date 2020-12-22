@@ -2,11 +2,11 @@ package Controllers
 
 import (
 	"medroom-backend/ApiHelpers"
-	"medroom-backend/InputFormats"
+	"medroom-backend/Formats/Input"
+	"medroom-backend/Formats/Output"
+	"medroom-backend/Messages/Request"
 	"medroom-backend/Models"
-	"medroom-backend/OutputFormats"
 	"medroom-backend/Repositories"
-	"medroom-backend/RequestMessages"
 	"medroom-backend/Utils"
 
 	"github.com/gin-gonic/gin"
@@ -32,7 +32,7 @@ func ListAdministradoresTi(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetAdministradoresTiOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.GetAdministradoresTiOutput(container))
 }
 
 // @Summary Obtiene un administrador_ti
@@ -59,7 +59,7 @@ func GetOneAdministradorTi(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetOneAdministradorTiOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.GetOneAdministradorTiOutput(container))
 }
 
 // @Summary Agrega un nuevo administrador_ti
@@ -67,13 +67,13 @@ func GetOneAdministradorTi(c *gin.Context) {
 // @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   input_administrador_ti     body    RequestMessages.AddNewAdministradorTiPayload     true        "AdministradorTi a agregar"
+// @Param   input_administrador_ti     body    Request.AddNewAdministradorTiPayload     true        "AdministradorTi a agregar"
 // @Success 200 {object} SwaggerMessages.AddNewAdministradorTiSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/administradores-ti [post]
 func AddNewAdministradorTi(c *gin.Context) {
 	// input container
-	var container RequestMessages.AddNewAdministradorTiPayload
+	var container Request.AddNewAdministradorTiPayload
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {
@@ -82,11 +82,11 @@ func AddNewAdministradorTi(c *gin.Context) {
 	}
 
 	// format input
-	InputFormats.AddNewAdministradorTiInput(&container)
+	Input.AddNewAdministradorTiInput(&container)
 
 	// generate model entity
 	model_container := Models.AdministradorTi{
-		Id_rol:                              container.Id_rol,
+		// Id_rol:                              container.Id_rol,
 		Rut_administrador_ti:                container.Rut_administrador_ti,
 		Nombres_administrador_ti:            container.Nombres_administrador_ti,
 		Apellidos_administrador_ti:          container.Apellidos_administrador_ti,
@@ -104,7 +104,7 @@ func AddNewAdministradorTi(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.AddNewAdministradorTiOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.AddNewAdministradorTiOutput(model_container))
 }
 
 // @Summary Modifica un administrador_ti
@@ -113,7 +113,7 @@ func AddNewAdministradorTi(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   uuid_administrador_ti     path    string     true        "UUID del administrador_ti a modificar"
-// @Param   input_actualiza_administrador_ti     body    RequestMessages.PutOneAdministradorTiPayload     true        "AdministradorTi a modificar"
+// @Param   input_actualiza_administrador_ti     body    Request.PutOneAdministradorTiPayload     true        "AdministradorTi a modificar"
 // @Success 200 {object} SwaggerMessages.PutOneAdministradorTiSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/administradores-ti/{uuid_administrador_ti} [put]
@@ -122,7 +122,7 @@ func PutOneAdministradorTi(c *gin.Context) {
 	id := c.Params.ByName("id")
 
 	// input container
-	var container RequestMessages.PutOneAdministradorTiPayload
+	var container Request.PutOneAdministradorTiPayload
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {
@@ -131,7 +131,7 @@ func PutOneAdministradorTi(c *gin.Context) {
 	}
 
 	// format input
-	InputFormats.PutOneAdministradorTiInput(&container)
+	Input.PutOneAdministradorTiInput(&container)
 
 	// generate model entity
 	var model_container Models.AdministradorTi
@@ -145,8 +145,8 @@ func PutOneAdministradorTi(c *gin.Context) {
 
 	// replace data in model entity
 	model_container = Models.AdministradorTi{
-		ID:                                  model_container.ID,
-		Id_rol:                              Utils.CheckUpdatedInt(container.Id_rol, model_container.Id_rol),
+		Id: model_container.Id,
+		// Id_rol:                              Utils.CheckUpdatedInt(container.Id_rol, model_container.Id_rol),
 		Rut_administrador_ti:                Utils.CheckUpdatedString(container.Rut_administrador_ti, model_container.Rut_administrador_ti),
 		Nombres_administrador_ti:            Utils.CheckUpdatedString(container.Nombres_administrador_ti, model_container.Nombres_administrador_ti),
 		Apellidos_administrador_ti:          Utils.CheckUpdatedString(container.Apellidos_administrador_ti, model_container.Apellidos_administrador_ti),
@@ -157,11 +157,11 @@ func PutOneAdministradorTi(c *gin.Context) {
 	}
 
 	// update foreign entity
-	err = Repositories.GetOneRol(&model_container.Rol_administrador_ti, Utils.ConvertIntToString(model_container.Id_rol))
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
-	}
+	// err = Repositories.GetOneRol(&model_container.Rol_administrador_ti, Utils.ConvertIntToString(model_container.Id_rol))
+	// if err != nil {
+	// 	ApiHelpers.RespondError(c, 500, "default")
+	// 	return
+	// }
 
 	// put query
 	err = Repositories.PutOneAdministradorTi(&model_container, id)
@@ -171,7 +171,7 @@ func PutOneAdministradorTi(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutOneAdministradorTiOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.PutOneAdministradorTiOutput(model_container))
 }
 
 // @Summary Elimina un administrador_ti
@@ -205,7 +205,7 @@ func DeleteAdministradorTi(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.DeleteAdministradorTiOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.DeleteAdministradorTiOutput(container))
 }
 
 // @Summary Obtiene el perfil del administrador ti
@@ -231,7 +231,7 @@ func GetMyAdministradorTi(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetMyAdministradorTiOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.GetMyAdministradorTiOutput(container))
 }
 
 // @Summary Modifica mi perfil
@@ -239,7 +239,7 @@ func GetMyAdministradorTi(c *gin.Context) {
 // @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   input_actualiza_administrador_ti     body    RequestMessages.PutMyAdministradorTiPayload     true        "AdministradorTi a modificar"
+// @Param   input_actualiza_administrador_ti     body    Request.PutMyAdministradorTiPayload     true        "AdministradorTi a modificar"
 // @Success 200 {object} SwaggerMessages.PutMyAdministradorTiSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/me [put]
@@ -248,7 +248,7 @@ func PutMyAdministradorTi(c *gin.Context) {
 	id_administrador_ti := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_TI")
 
 	// input container
-	var container RequestMessages.PutMyAdministradorTiPayload
+	var container Request.PutMyAdministradorTiPayload
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {
@@ -257,7 +257,7 @@ func PutMyAdministradorTi(c *gin.Context) {
 	}
 
 	// format input
-	InputFormats.PutMyAdministradorTiInput(&container)
+	Input.PutMyAdministradorTiInput(&container)
 
 	// generate model entity
 	var model_container Models.AdministradorTi
@@ -271,8 +271,8 @@ func PutMyAdministradorTi(c *gin.Context) {
 
 	// replace data in model entity
 	model_container = Models.AdministradorTi{
-		ID:                                  model_container.ID,
-		Id_rol:                              Utils.CheckUpdatedInt(container.Id_rol, model_container.Id_rol),
+		Id: model_container.Id,
+		// Id_rol:                              Utils.CheckUpdatedInt(container.Id_rol, model_container.Id_rol),
 		Rut_administrador_ti:                Utils.CheckUpdatedString(container.Rut_administrador_ti, model_container.Rut_administrador_ti),
 		Nombres_administrador_ti:            Utils.CheckUpdatedString(container.Nombres_administrador_ti, model_container.Nombres_administrador_ti),
 		Apellidos_administrador_ti:          Utils.CheckUpdatedString(container.Apellidos_administrador_ti, model_container.Apellidos_administrador_ti),
@@ -283,11 +283,11 @@ func PutMyAdministradorTi(c *gin.Context) {
 	}
 
 	// update foreign entity
-	err = Repositories.GetOneRol(&model_container.Rol_administrador_ti, Utils.ConvertIntToString(model_container.Id_rol))
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
-	}
+	// err = Repositories.GetOneRol(&model_container.Rol_administrador_ti, Utils.ConvertIntToString(model_container.Id_rol))
+	// if err != nil {
+	// 	ApiHelpers.RespondError(c, 500, "default")
+	// 	return
+	// }
 
 	// put query
 	err = Repositories.PutOneAdministradorTi(&model_container, id_administrador_ti)
@@ -297,5 +297,5 @@ func PutMyAdministradorTi(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutMyAdministradorTiOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.PutMyAdministradorTiOutput(model_container))
 }
