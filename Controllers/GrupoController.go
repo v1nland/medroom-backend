@@ -305,14 +305,14 @@ func GetGrupoEstudiante(c *gin.Context) {
 // @Router /evaluadores/me/grupo [get]
 func GetGrupoEvaluador(c *gin.Context) {
 	// params
-	id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
+	// id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
 
 	// model container
 	var container Models.Grupo
-	if err := Repositories.GetOneGrupoByEvaluadorId(&container, id_evaluador); err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
-	}
+	// if err := Repositories.GetOneGrupoByEvaluadorId(&container, id_evaluador); err != nil {
+	// 	ApiHelpers.RespondError(c, 500, "default")
+	// 	return
+	// }
 
 	// output
 	ApiHelpers.RespondJSON(c, 200, Output.GetGrupoEvaluadorOutput(container))

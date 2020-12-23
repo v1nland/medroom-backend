@@ -33,7 +33,7 @@ func SetupEvaluadorRouter(r *gin.Engine) *gin.Engine {
 		router.GET("me/grupo", Controllers.GetGrupoEvaluador)
 
 		// my course routes
-		router.GET("me/curso", Controllers.GetCursoEvaluador)
+		router.GET("me/cursos", Controllers.GetCursosEvaluador)
 
 		// make evaluation routes
 		// call 'me/group' to list students and it's ramos

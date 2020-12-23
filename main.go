@@ -5,9 +5,7 @@ import (
 	"medroom-backend/Config"
 	"medroom-backend/Migrations"
 	"medroom-backend/Models"
-	"medroom-backend/Repositories"
 	"medroom-backend/Routers"
-	"medroom-backend/Utils"
 	"medroom-backend/docs"
 	"os"
 
@@ -67,32 +65,32 @@ func main() {
 		// Migrations.PuntajeMigrations()
 	}
 
-	var curso Models.Curso
-	if err := Repositories.GetOneCurso(&curso, "1"); err != nil {
-		panic("Curso no existe")
-	}
+	// var curso Models.Curso
+	// if err := Repositories.GetOneCurso(&curso, "1"); err != nil {
+	// 	panic("Curso no existe")
+	// }
 
-	fmt.Println("=============")
-	fmt.Println("=============")
-	Utils.StructToString(curso)
+	// fmt.Println("=============")
+	// fmt.Println("=============")
+	// Utils.StructToString(curso)
 
-	var grupo Models.Grupo
-	if err := Repositories.GetOneGrupo(&grupo, "1"); err != nil {
-		panic("Grupo no existe")
-	}
+	// var grupo Models.Grupo
+	// if err := Repositories.GetOneGrupo(&grupo, "1"); err != nil {
+	// 	panic("Grupo no existe")
+	// }
 
-	fmt.Println("=============")
-	fmt.Println("=============")
-	Utils.StructToString(grupo)
+	// fmt.Println("=============")
+	// fmt.Println("=============")
+	// Utils.StructToString(grupo)
 
-	var administradores_academicos []Models.AdministradorAcademico
-	if err := Repositories.GetAllAdministradoresAcademicos(&administradores_academicos); err != nil {
-		panic("AdministradorAcademico no existe")
-	}
+	// var administradores_academicos []Models.AdministradorAcademico
+	// if err := Repositories.GetAllAdministradoresAcademicos(&administradores_academicos); err != nil {
+	// 	panic("AdministradorAcademico no existe")
+	// }
 
-	fmt.Println("=============")
-	fmt.Println("=============")
-	Utils.StructToString(administradores_academicos[0])
+	// fmt.Println("=============")
+	// fmt.Println("=============")
+	// Utils.StructToString(administradores_academicos[0])
 
 	// setup router
 	r := Routers.SetupRouter()

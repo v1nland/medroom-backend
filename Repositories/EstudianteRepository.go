@@ -1,7 +1,6 @@
 package Repositories
 
 import (
-	"fmt"
 	"medroom-backend/Config"
 	"medroom-backend/Models"
 
@@ -10,6 +9,7 @@ import (
 	"gorm.io/gorm/clause"
 )
 
+// .Preload("Calificaciones_estudiante.Puntajes_calificacion_estudiante.Competencia_puntaje").Preload("Calificaciones_estudiante.Evaluacion_calificacion_estudiante").Preload("Calificaciones_estudiante.Periodo_calificacion_estudiante").Preload("Calificaciones_estudiante.Evaluador_calificacion_estudiante.Rol_evaluador")
 func GetAllEstudiantes(u *[]Models.Estudiante) (err error) {
 	if err = Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Find(u).Error; err != nil {
 		return err
@@ -32,7 +32,6 @@ func AddNewEstudiante(u *Models.Estudiante) (err error) {
 }
 
 func PutOneEstudiante(u *Models.Estudiante, id string) (err error) {
-	fmt.Println(u)
 	Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Save(u)
 	return nil
 }

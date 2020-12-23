@@ -24,8 +24,8 @@ func GetOneGrupo(u *Models.Grupo, id string) (err error) {
 	return nil
 }
 
-func GetOneGrupoByEvaluadorId(u *Models.Grupo, id_evaluador string) (err error) {
-	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("id_evaluador = ?", id_evaluador).First(u).Error; err != nil {
+func GetAllGruposByEvaluadorId(u *[]Models.Grupo, id_evaluador string) (err error) {
+	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("id_evaluador = ?", id_evaluador).Find(u).Error; err != nil {
 		return err
 	}
 	return nil
