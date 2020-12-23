@@ -209,12 +209,12 @@ func DeleteCurso(c *gin.Context) {
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /estudiantes/me/cursos [get]
 func GetCursosEstudiante(c *gin.Context) {
-	id := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
+	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
 
-	var estudiante Models.Estudiante
-	if err := Repositories.GetOneEstudiante(&estudiante, id); err != nil {
+	var cursos []Models.Curso
+	if err := Repositories.GetCursosEstudiante(&cursos, id_estudiante); err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
-			ApiHelpers.RespondJSON(c, 200, "Estudiante not found")
+			ApiHelpers.RespondJSON(c, 200, "Curso not found")
 		} else {
 			ApiHelpers.RespondError(c, 500, "default")
 		}
@@ -222,18 +222,62 @@ func GetCursosEstudiante(c *gin.Context) {
 		return
 	}
 
-	var cursos []Models.Curso
-	for i := 0; i < len(estudiante.Grupos_estudiante); i++ {
-		var curso Models.Curso
-		if err := Repositories.GetOneCurso(&curso, Utils.ConvertIntToString(estudiante.Grupos_estudiante[i].Id_curso)); err != nil {
+	// ApiHelpers.RespondJSON(c, 200, Output.GetCursoEstudianteOutput(cursos))
+	ApiHelpers.RespondJSON(c, 200, cursos)
+}
+
+// @Summary Obtiene un curso de un estudiante
+// @Description Obtiene un curso de un estudiante según su token
+// @Tags 02 - Estudiantes
+// @Accept  json
+// @Produce  json
+// @Param   id_curso     path    string     true        "Id del curso a buscar"
+// @Success 200 {object} Swagger.GetOneCursoEstudianteSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /estudiantes/me/cursos/{id_curso} [get]
+func GetOneCursoEstudiante(c *gin.Context) {
+	id_curso := c.Params.ByName("id_curso")
+	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
+
+	var curso Models.Curso
+	if err := Repositories.GetOneCursoEstudiante(&curso, id_curso, id_estudiante); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Curso not found")
+		} else {
 			ApiHelpers.RespondError(c, 500, "default")
-			return
 		}
 
-		cursos = append(cursos, curso)
+		return
 	}
 
 	// ApiHelpers.RespondJSON(c, 200, Output.GetCursoEstudianteOutput(cursos))
+	ApiHelpers.RespondJSON(c, 200, curso)
+}
+
+// @Summary Obtiene los cursos de un evaluador
+// @Description Obtiene los cursos de un evaluador según su token
+// @Tags 03 - Evaluadores
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} Swagger.GetCursosEvaluadorSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /evaluadores/me/cursos [get]
+func GetCursosEvaluador(c *gin.Context) {
+	// params
+	id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
+
+	var cursos []Models.Curso
+	if err := Repositories.GetCursosEvaluador(&cursos, id_evaluador); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Curso not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
+		return
+	}
+
+	// ApiHelpers.RespondJSON(c, 200, Output.GetCursoEvaluadorOutput(cursos))
 	ApiHelpers.RespondJSON(c, 200, cursos)
 }
 
@@ -242,30 +286,25 @@ func GetCursosEstudiante(c *gin.Context) {
 // @Tags 03 - Evaluadores
 // @Accept  json
 // @Produce  json
-// @Success 200 {object} Swagger.GetCursoEvaluadorSwagger "OK"
+// @Param   id_curso     path    string     true        "Id del curso a buscar"
+// @Success 200 {object} Swagger.GetOneCursoEvaluadorSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /evaluadores/me/cursos [get]
-func GetCursosEvaluador(c *gin.Context) {
-	// params
-	id := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
+// @Router /evaluadores/me/cursos/{id_curso} [get]
+func GetOneCursoEvaluador(c *gin.Context) {
+	id_curso := c.Params.ByName("id_curso")
+	id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
 
-	var grupos []Models.Grupo
-	if err := Repositories.GetAllGruposByEvaluadorId(&grupos, id); err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
+	var curso Models.Curso
+	if err := Repositories.GetOneCursoEvaluador(&curso, id_curso, id_evaluador); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Curso not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
 		return
 	}
 
-	var cursos []Models.Curso
-	for i := 0; i < len(grupos); i++ {
-		var curso Models.Curso
-		if err := Repositories.GetOneCurso(&curso, Utils.ConvertIntToString(grupos[i].Id_curso)); err != nil {
-			ApiHelpers.RespondError(c, 500, "default")
-			return
-		}
-
-		cursos = append(cursos, curso)
-	}
-
-	// ApiHelpers.RespondJSON(c, 200, Output.GetCursoEvaluadorOutput(cursos))
-	ApiHelpers.RespondJSON(c, 200, cursos)
+	// ApiHelpers.RespondJSON(c, 200, Output.GetCursoEstudianteOutput(cursos))
+	ApiHelpers.RespondJSON(c, 200, curso)
 }

@@ -1,6 +1,7 @@
 package Controllers
 
 import (
+	"errors"
 	"medroom-backend/ApiHelpers"
 	"medroom-backend/Formats/Input"
 	"medroom-backend/Formats/Output"
@@ -10,6 +11,7 @@ import (
 	"medroom-backend/Utils"
 
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
 // @Summary Lista de grupos
@@ -295,25 +297,115 @@ func GetGrupoEstudiante(c *gin.Context) {
 	// ApiHelpers.RespondJSON(c, 200, Output.GetGrupoEstudianteOutput(container))
 }
 
+// @Summary Obtiene los grupos de un estudiante
+// @Description Obtiene los grupos de un estudiante según su token
+// @Tags 02 - Estudiantes
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} Swagger.GetGruposEstudianteSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /estudiantes/me/grupos [get]
+func GetGruposEstudiante(c *gin.Context) {
+	id_curso := c.Params.ByName("id_curso")
+	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
+
+	var grupos []Models.Grupo
+	if err := Repositories.GetGruposEstudiante(&grupos, id_curso, id_estudiante); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Grupo not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
+		return
+	}
+
+	// ApiHelpers.RespondJSON(c, 200, Output.GetGrupoEstudianteOutput(grupos))
+	ApiHelpers.RespondJSON(c, 200, grupos)
+}
+
+// @Summary Obtiene un grupo de un estudiante
+// @Description Obtiene un grupo de un estudiante según su token
+// @Tags 02 - Estudiantes
+// @Accept  json
+// @Produce  json
+// @Param   id_grupo     path    string     true        "Id del grupo a buscar"
+// @Success 200 {object} Swagger.GetOneGrupoEstudianteSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /estudiantes/me/grupos/{id_grupo} [get]
+func GetOneGrupoEstudiante(c *gin.Context) {
+	id := c.Params.ByName("id")
+	id_curso := c.Params.ByName("id_curso")
+	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
+
+	var grupo Models.Grupo
+	if err := Repositories.GetOneGrupoEstudiante(&grupo, id, id_curso, id_estudiante); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Grupo not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
+		return
+	}
+
+	// ApiHelpers.RespondJSON(c, 200, Output.GetGrupoEstudianteOutput(grupos))
+	ApiHelpers.RespondJSON(c, 200, grupo)
+}
+
+// @Summary Obtiene los grupos de un evaluador
+// @Description Obtiene los grupos de un evaluador según su token
+// @Tags 03 - Evaluadores
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} Swagger.GetGruposEvaluadorSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /evaluadores/me/grupos [get]
+func GetGruposEvaluador(c *gin.Context) {
+	// params
+	id_curso := c.Params.ByName("id_curso")
+	id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
+
+	var grupos []Models.Grupo
+	if err := Repositories.GetGruposEvaluador(&grupos, id_curso, id_evaluador); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Grupo not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
+		return
+	}
+
+	// ApiHelpers.RespondJSON(c, 200, Output.GetGrupoEvaluadorOutput(grupos))
+	ApiHelpers.RespondJSON(c, 200, grupos)
+}
+
 // @Summary Obtiene un grupo de un evaluador
 // @Description Obtiene un grupo de un evaluador según su token
 // @Tags 03 - Evaluadores
 // @Accept  json
 // @Produce  json
-// @Success 200 {object} Swagger.GetGrupoEvaluadorSwagger "OK"
+// @Param   id_grupo     path    string     true        "Id del grupo a buscar"
+// @Success 200 {object} Swagger.GetOneGrupoEvaluadorSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /evaluadores/me/grupo [get]
-func GetGrupoEvaluador(c *gin.Context) {
-	// params
-	// id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
+// @Router /evaluadores/me/grupos/{id_grupo} [get]
+func GetOneGrupoEvaluador(c *gin.Context) {
+	id := c.Params.ByName("id")
+	id_curso := c.Params.ByName("id_curso")
+	id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
 
-	// model container
-	var container Models.Grupo
-	// if err := Repositories.GetOneGrupoByEvaluadorId(&container, id_evaluador); err != nil {
-	// 	ApiHelpers.RespondError(c, 500, "default")
-	// 	return
-	// }
+	var grupo Models.Grupo
+	if err := Repositories.GetOneGrupoEvaluador(&grupo, id, id_curso, id_evaluador); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Grupo not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, Output.GetGrupoEvaluadorOutput(container))
+		return
+	}
+
+	// ApiHelpers.RespondJSON(c, 200, Output.GetGrupoEstudianteOutput(grupos))
+	ApiHelpers.RespondJSON(c, 200, grupo)
 }

@@ -24,6 +24,34 @@ func GetOneCurso(u *Models.Curso, id string) (err error) {
 	return nil
 }
 
+func GetCursosEstudiante(u *[]Models.Curso, id_estudiante string) (err error) {
+	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Table("estudiantes").Select("c.*").Joins("JOIN estudiantes_grupos eg ON eg.id_estudiante = estudiantes.id").Joins("JOIN grupos g ON eg.id_grupo = g.id").Joins("JOIN cursos c ON g.id_curso = c.id").Where("estudiantes.id = ?", id_estudiante).First(u).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
+func GetOneCursoEstudiante(u *Models.Curso, id string, id_estudiante string) (err error) {
+	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Table("estudiantes").Select("c.*").Joins("JOIN estudiantes_grupos eg ON eg.id_estudiante = estudiantes.id").Joins("JOIN grupos g ON eg.id_grupo = g.id").Joins("JOIN cursos c ON g.id_curso = c.id").Where("c.id = ? AND estudiantes.id = ?", id, id_estudiante).First(u).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
+func GetCursosEvaluador(u *[]Models.Curso, id_evaluador string) (err error) {
+	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Table("evaluadores").Select("c.*").Joins("JOIN grupos g ON g.id_evaluador = evaluadores.id").Joins("JOIN cursos c ON g.id_curso = c.id").Where("evaluadores.id = ?", id_evaluador).First(u).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
+func GetOneCursoEvaluador(u *Models.Curso, id string, id_evaluador string) (err error) {
+	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Table("evaluadores").Select("c.*").Joins("JOIN grupos g ON g.id_evaluador = evaluadores.id").Joins("JOIN cursos c ON g.id_curso = c.id").Where("c.id = ? AND evaluadores.id = ?", id, id_evaluador).First(u).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
 func AddNewCurso(u *Models.Curso) (err error) {
 	if err = Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Create(u).Error; err != nil {
 		return err

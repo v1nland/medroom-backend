@@ -1,15 +1,16 @@
 package Controllers
 
 import (
+	"errors"
 	"medroom-backend/ApiHelpers"
 	"medroom-backend/Formats/Input"
-	"medroom-backend/Formats/Output"
 	"medroom-backend/Messages/Request"
 	"medroom-backend/Models"
 	"medroom-backend/Repositories"
 	"medroom-backend/Utils"
 
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
 // @Summary Lista de evaluadores
@@ -23,16 +24,18 @@ import (
 func ListEvaluadores(c *gin.Context) {
 	// model container
 	var container []Models.Evaluador
+	if err := Repositories.GetAllEvaluadores(&container); err != nil {
+		if errors.Is(err, gorm.ErrEmptySlice) {
+			ApiHelpers.RespondJSON(c, 200, container)
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
 
-	// query
-	err := Repositories.GetAllEvaluadores(&container)
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, Output.ListEvaluadoresOutput(container))
+	// ApiHelpers.RespondJSON(c, 200, Output.ListEvaluadoresOutput(container))
+	ApiHelpers.RespondJSON(c, 200, container)
 }
 
 // @Summary Obtiene un evaluador
@@ -45,21 +48,22 @@ func ListEvaluadores(c *gin.Context) {
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/evaluadores/{uuid_evaluador} [get]
 func GetOneEvaluador(c *gin.Context) {
-	// params
 	id := c.Params.ByName("id")
 
 	// model container
 	var container Models.Evaluador
+	if err := Repositories.GetOneEvaluador(&container, id); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Estudiante not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
 
-	// query
-	err := Repositories.GetOneEvaluador(&container, id)
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, Output.GetOneEvaluadorOutput(container))
+	// ApiHelpers.RespondJSON(c, 200, Output.GetOneEvaluadorOutput(container))
+	ApiHelpers.RespondJSON(c, 200, container)
 }
 
 // @Summary Agrega un nuevo evaluador
@@ -72,41 +76,35 @@ func GetOneEvaluador(c *gin.Context) {
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/evaluadores [post]
 func AddNewEvaluador(c *gin.Context) {
-	// input container
-	var container Request.AddNewEvaluadorPayload
-
-	// input bind
-	if err := c.ShouldBind(&container); err != nil {
+	var input Request.AddNewEvaluadorPayload
+	if err := c.ShouldBind(&input); err != nil {
 		ApiHelpers.RespondError(c, 400, "default")
 		return
 	}
 
-	// format input
-	Input.AddNewEvaluadorInput(&container)
+	Input.AddNewEvaluadorInput(&input)
 
-	// generate model entity
-	model_container := Models.Evaluador{
-		Id_rol:                       container.Id_rol,
-		Rut_evaluador:                container.Rut_evaluador,
-		Nombres_evaluador:            container.Nombres_evaluador,
-		Apellidos_evaluador:          container.Apellidos_evaluador,
-		Hash_contrasena_evaluador:    container.Hash_contrasena_evaluador,
-		Correo_electronico_evaluador: container.Correo_electronico_evaluador,
-		Telefono_fijo_evaluador:      container.Telefono_fijo_evaluador,
-		Telefono_celular_evaluador:   container.Telefono_celular_evaluador,
-		Recinto_evaluador:            container.Recinto_evaluador,
-		Cargo_evaluador:              container.Cargo_evaluador,
+	model := Models.Evaluador{
+		Id_rol:                       *input.Id_rol,
+		Rut_evaluador:                *input.Rut_evaluador,
+		Nombres_evaluador:            *input.Nombres_evaluador,
+		Apellidos_evaluador:          *input.Apellidos_evaluador,
+		Hash_contrasena_evaluador:    *input.Hash_contrasena_evaluador,
+		Correo_electronico_evaluador: *input.Correo_electronico_evaluador,
+		Telefono_fijo_evaluador:      *input.Telefono_fijo_evaluador,
+		Telefono_celular_evaluador:   *input.Telefono_celular_evaluador,
+		Recinto_evaluador:            *input.Recinto_evaluador,
+		Cargo_evaluador:              *input.Cargo_evaluador,
 	}
 
-	// query
-	err := Repositories.AddNewEvaluador(&model_container)
+	err := Repositories.AddNewEvaluador(&model)
 	if err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, Output.AddNewEvaluadorOutput(model_container))
+	// ApiHelpers.RespondJSON(c, 200, Output.AddNewEvaluadorOutput(model))
+	ApiHelpers.RespondJSON(c, 200, model)
 }
 
 // @Summary Modifica un evaluador
@@ -123,59 +121,57 @@ func PutOneEvaluador(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
 
-	// input container
-	var container Request.PutOneEvaluadorPayload
-
 	// input bind
-	if err := c.ShouldBind(&container); err != nil {
+	var input Request.PutOneEvaluadorPayload
+	if err := c.ShouldBind(&input); err != nil {
 		ApiHelpers.RespondError(c, 400, "default")
 		return
 	}
 
 	// format input
-	Input.PutOneEvaluadorInput(&container)
+	Input.PutOneEvaluadorInput(&input)
 
 	// generate model entity
-	var model_container Models.Evaluador
+	var model Models.Evaluador
+	if err := Repositories.GetOneEvaluador(&model, id); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Evaluador not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
 
-	// get query
-	err := Repositories.GetOneEvaluador(&model_container, id)
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
 	// replace data in model entity
-	model_container = Models.Evaluador{
-		Id:                           model_container.Id,
-		Id_rol:                       Utils.CheckUpdatedInt(container.Id_rol, model_container.Id_rol),
-		Rut_evaluador:                Utils.CheckUpdatedString(container.Rut_evaluador, model_container.Rut_evaluador),
-		Nombres_evaluador:            Utils.CheckUpdatedString(container.Nombres_evaluador, model_container.Nombres_evaluador),
-		Apellidos_evaluador:          Utils.CheckUpdatedString(container.Apellidos_evaluador, model_container.Apellidos_evaluador),
-		Hash_contrasena_evaluador:    Utils.CheckUpdatedString(container.Hash_contrasena_evaluador, model_container.Hash_contrasena_evaluador),
-		Correo_electronico_evaluador: Utils.CheckUpdatedString(container.Correo_electronico_evaluador, model_container.Correo_electronico_evaluador),
-		Telefono_fijo_evaluador:      Utils.CheckUpdatedString(container.Telefono_fijo_evaluador, model_container.Telefono_fijo_evaluador),
-		Telefono_celular_evaluador:   Utils.CheckUpdatedString(container.Telefono_celular_evaluador, model_container.Telefono_celular_evaluador),
-		Recinto_evaluador:            Utils.CheckUpdatedString(container.Recinto_evaluador, model_container.Recinto_evaluador),
-		Cargo_evaluador:              Utils.CheckUpdatedString(container.Cargo_evaluador, model_container.Cargo_evaluador),
-	}
-
-	// update foreign entity
-	err = Repositories.GetOneRol(&model_container.Rol_evaluador, Utils.ConvertIntToString(model_container.Id_rol))
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
+	model = Models.Evaluador{
+		Id:                           model.Id,
+		Id_rol:                       model.Id_rol,
+		Rol_evaluador:                model.Rol_evaluador,
+		Rut_evaluador:                Utils.CheckNullString(input.Rut_evaluador, model.Rut_evaluador),
+		Nombres_evaluador:            Utils.CheckNullString(input.Nombres_evaluador, model.Nombres_evaluador),
+		Apellidos_evaluador:          Utils.CheckNullString(input.Apellidos_evaluador, model.Apellidos_evaluador),
+		Hash_contrasena_evaluador:    Utils.CheckNullString(input.Hash_contrasena_evaluador, model.Hash_contrasena_evaluador),
+		Correo_electronico_evaluador: Utils.CheckNullString(input.Correo_electronico_evaluador, model.Correo_electronico_evaluador),
+		Telefono_fijo_evaluador:      Utils.CheckNullString(input.Telefono_fijo_evaluador, model.Telefono_fijo_evaluador),
+		Telefono_celular_evaluador:   Utils.CheckNullString(input.Telefono_celular_evaluador, model.Telefono_celular_evaluador),
+		Recinto_evaluador:            Utils.CheckNullString(input.Recinto_evaluador, model.Recinto_evaluador),
+		Cargo_evaluador:              Utils.CheckNullString(input.Cargo_evaluador, model.Cargo_evaluador),
 	}
 
 	// put query
-	err = Repositories.PutOneEvaluador(&model_container, id)
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
+	if err := Repositories.PutOneEvaluador(&model, id); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Estudiante not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
 		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, Output.PutOneEvaluadorOutput(model_container))
+	// ApiHelpers.RespondJSON(c, 200, Output.PutOneEvaluadorOutput(model))
+	ApiHelpers.RespondJSON(c, 200, model)
 }
 
 // @Summary Elimina un evaluador
@@ -193,23 +189,28 @@ func DeleteEvaluador(c *gin.Context) {
 
 	// model container
 	var container Models.Evaluador
+	if err := Repositories.GetOneEvaluador(&container, id); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Estudiante not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
 
-	// get query
-	err := Repositories.GetOneEvaluador(&container, id)
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// query
-	err = Repositories.DeleteEvaluador(&container, id)
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
+	if err := Repositories.DeleteEvaluador(&container, id); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Estudiante not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
 		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, Output.DeleteEvaluadorOutput(container))
+	// ApiHelpers.RespondJSON(c, 200, Output.DeleteEvaluadorOutput(container))
+	ApiHelpers.RespondJSON(c, 200, container)
 }
 
 // @Summary Obtiene el perfil del evaluador
@@ -227,12 +228,17 @@ func GetMyEvaluador(c *gin.Context) {
 	// model container
 	var container Models.Evaluador
 	if err := Repositories.GetOneEvaluador(&container, id_evaluador); err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Estudiante not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
 		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, Output.GetMyEvaluadorOutput(container))
+	// ApiHelpers.RespondJSON(c, 200, Output.GetMyEvaluadorOutput(container))
+	ApiHelpers.RespondJSON(c, 200, container)
 }
 
 // @Summary Modifica mi perfil
@@ -246,12 +252,10 @@ func GetMyEvaluador(c *gin.Context) {
 // @Router /evaluadores/me [put]
 func PutMyEvaluador(c *gin.Context) {
 	// params
-	id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
-
-	// input container
-	var container Request.PutMyEvaluadorPayload
+	id := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
 
 	// input bind
+	var container Request.PutMyEvaluadorPayload
 	if err := c.ShouldBind(&container); err != nil {
 		ApiHelpers.RespondError(c, 400, "default")
 		return
@@ -260,45 +264,45 @@ func PutMyEvaluador(c *gin.Context) {
 	// format input
 	Input.PutMyEvaluadorInput(&container)
 
-	// generate model entity
-	var model_container Models.Evaluador
+	// get model entity
+	var model Models.Evaluador
+	if err := Repositories.GetOneEvaluador(&model, id); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Estudiante not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
 
-	// get query
-	err := Repositories.GetOneEvaluador(&model_container, id_evaluador)
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
 	// replace data in model entity
-	model_container = Models.Evaluador{
-		Id:                           model_container.Id,
-		Id_rol:                       Utils.CheckUpdatedInt(container.Id_rol, model_container.Id_rol),
-		Rut_evaluador:                Utils.CheckUpdatedString(container.Rut_evaluador, model_container.Rut_evaluador),
-		Nombres_evaluador:            Utils.CheckUpdatedString(container.Nombres_evaluador, model_container.Nombres_evaluador),
-		Apellidos_evaluador:          Utils.CheckUpdatedString(container.Apellidos_evaluador, model_container.Apellidos_evaluador),
-		Hash_contrasena_evaluador:    Utils.CheckUpdatedString(container.Hash_contrasena_evaluador, model_container.Hash_contrasena_evaluador),
-		Correo_electronico_evaluador: Utils.CheckUpdatedString(container.Correo_electronico_evaluador, model_container.Correo_electronico_evaluador),
-		Telefono_fijo_evaluador:      Utils.CheckUpdatedString(container.Telefono_fijo_evaluador, model_container.Telefono_fijo_evaluador),
-		Telefono_celular_evaluador:   Utils.CheckUpdatedString(container.Telefono_celular_evaluador, model_container.Telefono_celular_evaluador),
-		Recinto_evaluador:            Utils.CheckUpdatedString(container.Recinto_evaluador, model_container.Recinto_evaluador),
-		Cargo_evaluador:              Utils.CheckUpdatedString(container.Cargo_evaluador, model_container.Cargo_evaluador),
-	}
-
-	// update foreign entity
-	err = Repositories.GetOneRol(&model_container.Rol_evaluador, Utils.ConvertIntToString(model_container.Id_rol))
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
+	model = Models.Evaluador{
+		Id:                           model.Id,
+		Id_rol:                       model.Id_rol,
+		Rol_evaluador:                model.Rol_evaluador,
+		Rut_evaluador:                model.Rut_evaluador,
+		Nombres_evaluador:            model.Nombres_evaluador,
+		Apellidos_evaluador:          model.Apellidos_evaluador,
+		Hash_contrasena_evaluador:    Utils.CheckNullString(container.Hash_contrasena_evaluador, model.Hash_contrasena_evaluador),
+		Correo_electronico_evaluador: model.Correo_electronico_evaluador,
+		Telefono_fijo_evaluador:      Utils.CheckNullString(container.Telefono_fijo_evaluador, model.Telefono_fijo_evaluador),
+		Telefono_celular_evaluador:   Utils.CheckNullString(container.Telefono_celular_evaluador, model.Telefono_celular_evaluador),
+		Recinto_evaluador:            model.Recinto_evaluador,
+		Cargo_evaluador:              Utils.CheckNullString(container.Cargo_evaluador, model.Cargo_evaluador),
 	}
 
 	// put query
-	err = Repositories.PutOneEvaluador(&model_container, id_evaluador)
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
+	if err := Repositories.PutOneEvaluador(&model, id); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Estudiante not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
 		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, Output.PutMyEvaluadorOutput(model_container))
+	// ApiHelpers.RespondJSON(c, 200, Output.PutMyEvaluadorOutput(model))
+	ApiHelpers.RespondJSON(c, 200, model)
 }

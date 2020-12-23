@@ -24,8 +24,29 @@ func GetOneGrupo(u *Models.Grupo, id string) (err error) {
 	return nil
 }
 
-func GetAllGruposByEvaluadorId(u *[]Models.Grupo, id_evaluador string) (err error) {
-	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("id_evaluador = ?", id_evaluador).Find(u).Error; err != nil {
+func GetGruposEstudiante(u *[]Models.Grupo, id_curso string, id_estudiante string) (err error) {
+	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Table("estudiantes").Select("g.*").Joins("JOIN estudiantes_grupos eg ON eg.id_estudiante = estudiantes.id").Joins("JOIN grupos g ON eg.id_grupo = g.id").Joins("JOIN cursos c ON g.id_curso = c.id").Where("c.id = ? AND estudiantes.id = ?", id_curso, id_estudiante).First(u).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
+func GetOneGrupoEstudiante(u *Models.Grupo, id string, id_curso string, id_estudiante string) (err error) {
+	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Table("estudiantes").Select("g.*").Joins("JOIN estudiantes_grupos eg ON eg.id_estudiante = estudiantes.id").Joins("JOIN grupos g ON eg.id_grupo = g.id").Joins("JOIN cursos c ON g.id_curso = c.id").Where("g.id = ? AND c.id = ? AND estudiantes.id = ?", id, id_curso, id_estudiante).First(u).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
+func GetGruposEvaluador(u *[]Models.Grupo, id_curso string, id_evaluador string) (err error) {
+	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Table("evaluadores").Select("g.*").Joins("JOIN grupos g ON g.id_evaluador = evaluadores.id").Joins("JOIN cursos c ON g.id_curso = c.id").Where("c.id = ? AND evaluadores.id = ?", id_curso, id_evaluador).First(u).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
+func GetOneGrupoEvaluador(u *Models.Grupo, id string, id_curso string, id_evaluador string) (err error) {
+	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Table("evaluadores").Select("g.*").Joins("JOIN grupos g ON g.id_evaluador = evaluadores.id").Joins("JOIN cursos c ON g.id_curso = c.id").Where("g.id = ? AND c.id = ? AND evaluadores.id = ?", id, id_curso, id_evaluador).First(u).Error; err != nil {
 		return err
 	}
 	return nil

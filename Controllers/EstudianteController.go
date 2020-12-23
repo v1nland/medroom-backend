@@ -34,7 +34,6 @@ func ListEstudiantes(c *gin.Context) {
 		return
 	}
 
-	// output
 	// ApiHelpers.RespondJSON(c, 200, Output.ListEstudiantesOutput(container))
 	ApiHelpers.RespondJSON(c, 200, container)
 }
