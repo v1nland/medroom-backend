@@ -11,16 +11,13 @@ type GetOnePeriodoResponse struct {
 }
 
 type AddNewPeriodoResponse struct {
-	Id             int    `json:"id"`
-	Nombre_periodo string `json:"nombre_periodo"`
+	Id int `json:"id"`
 }
 
 type PutOnePeriodoResponse struct {
-	Id             int    `json:"id"`
-	Nombre_periodo string `json:"nombre_periodo"`
+	Id int `json:"id"`
 }
 
 type DeletePeriodoResponse struct {
-	Id             int    `json:"id"`
-	Nombre_periodo string `json:"nombre_periodo"`
+	Id int `json:"id"`
 }

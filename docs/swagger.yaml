@@ -47,6 +47,33 @@ definitions:
       telefono_fijo_administrador_ti:
         type: string
     type: object
+  Request.AddNewCalificacionEstudiantePayload:
+    properties:
+      asunto_principal_consulta_calificacion_estudiante:
+        type: string
+      categoria_observador_calificacion_estudiante:
+        type: string
+      complejidad_caso_calificacion_estudiante:
+        type: string
+      entorno_clinico_calificacion_estudiante:
+        type: string
+      id_periodo:
+        type: integer
+      nombre_calificacion_estudiante:
+        type: string
+      numero_observaciones_previas_calificacion_estudiante:
+        type: string
+      observacion_calificacion_calificacion_estudiante:
+        type: string
+      paciente_calificacion_estudiante:
+        type: string
+      puntajes_calificacion_estudiante:
+        items:
+          $ref: '#/definitions/Request.PuntajesCalificacionEstudiante'
+        type: array
+      tiempo_utilizado_calificacion_estudiante:
+        type: integer
+    type: object
   Request.AddNewCursoPayload:
     properties:
       id_periodo:
@@ -64,8 +91,6 @@ definitions:
         type: string
       hash_contrasena_estudiante:
         type: string
-      id_grupo:
-        type: integer
       id_rol:
         type: integer
       nombres_estudiante:
@@ -75,6 +100,11 @@ definitions:
       telefono_celular_estudiante:
         type: string
       telefono_fijo_estudiante:
+        type: string
+    type: object
+  Request.AddNewEvaluacionPayload:
+    properties:
+      nombre_evaluacion:
         type: string
     type: object
   Request.AddNewEvaluadorPayload:
@@ -121,37 +151,6 @@ definitions:
       nombre_rol:
         type: string
     type: object
-  Request.GenerarEvaluacionPayload:
-    properties:
-      asunto_principal_consulta_evaluacion:
-        type: string
-      categoria_observador_evaluacion:
-        type: string
-      complejidad_caso_evaluacion:
-        type: string
-      entorno_clinico_evaluacion:
-        type: string
-      id_estudiante:
-        type: string
-      id_evaluador:
-        type: string
-      id_periodo:
-        type: integer
-      nombre_evaluacion:
-        type: string
-      numero_observaciones_previas_evaluacion:
-        type: string
-      observacion_calificacion_evaluacion:
-        type: string
-      paciente_evaluacion:
-        type: string
-      puntajes_evaluacion:
-        items:
-          $ref: '#/definitions/Request.PuntajesEvaluacion'
-        type: array
-      tiempo_utilizado_evaluacion:
-        type: integer
-    type: object
   Request.LoginAdministradorAcademicoPayload:
     properties:
       correo_electronico_administrador_academico:
@@ -180,16 +179,14 @@ definitions:
       hash_contrasena_evaluador:
         type: string
     type: object
-  Request.PuntajesEvaluacion:
+  Request.PuntajesCalificacionEstudiante:
     properties:
-      codigo_competencia:
-        type: string
-      feedback_competencia:
-        type: string
-      nombre_competencia:
-        type: string
-      puntaje_competencia:
+      calificacion_puntaje:
         type: integer
+      feedback_puntaje:
+        type: string
+      id_competencia:
+        type: string
     type: object
   Request.PutMyAdministradorAcademicoPayload:
     properties:
@@ -233,45 +230,18 @@ definitions:
     type: object
   Request.PutMyEstudiantePayload:
     properties:
-      apellidos_estudiante:
-        type: string
-      correo_electronico_estudiante:
-        type: string
       hash_contrasena_estudiante:
-        description: solo este
-        type: string
-      id_grupo:
-        type: integer
-      id_rol:
-        type: integer
-      nombres_estudiante:
-        type: string
-      rut_estudiante:
         type: string
       telefono_celular_estudiante:
-        description: solo este
         type: string
       telefono_fijo_estudiante:
-        description: solo este
         type: string
     type: object
   Request.PutMyEvaluadorPayload:
     properties:
-      apellidos_evaluador:
-        type: string
       cargo_evaluador:
         type: string
-      correo_electronico_evaluador:
-        type: string
       hash_contrasena_evaluador:
-        type: string
-      id_rol:
-        type: integer
-      nombres_evaluador:
-        type: string
-      recinto_evaluador:
-        type: string
-      rut_evaluador:
         type: string
       telefono_celular_evaluador:
         type: string
@@ -335,10 +305,6 @@ definitions:
         type: string
       hash_contrasena_estudiante:
         type: string
-      id_grupo:
-        type: integer
-      id_rol:
-        type: integer
       nombres_estudiante:
         type: string
       rut_estudiante:
@@ -358,8 +324,6 @@ definitions:
         type: string
       hash_contrasena_evaluador:
         type: string
-      id_rol:
-        type: integer
       nombres_evaluador:
         type: string
       recinto_evaluador:
@@ -394,109 +358,53 @@ definitions:
     type: object
   Response.AddNewAdministradorAcademicoResponse:
     properties:
-      apellidos_administrador_academico:
-        type: string
-      correo_electronico_administrador_academico:
-        type: string
-      id_rol:
-        type: integer
-      nombres_administrador_academico:
-        type: string
-      rut_administrador_academico:
-        type: string
-      telefono_celular_administrador_academico:
-        type: string
-      telefono_fijo_administrador_academico:
+      id:
         type: string
     type: object
   Response.AddNewAdministradorTiResponse:
     properties:
-      apellidos_administrador_ti:
+      id:
         type: string
-      correo_electronico_administrador_ti:
-        type: string
-      id_rol:
+    type: object
+  Response.AddNewCalificacionEstudianteResponse:
+    properties:
+      id:
         type: integer
-      nombres_administrador_ti:
-        type: string
-      rut_administrador_ti:
-        type: string
-      telefono_celular_administrador_ti:
-        type: string
-      telefono_fijo_administrador_ti:
-        type: string
     type: object
   Response.AddNewCursoResponse:
     properties:
-      id_periodo:
+      id:
         type: integer
-      nombre_curso:
-        type: string
-      sigla_curso:
-        type: string
     type: object
   Response.AddNewEstudianteResponse:
     properties:
-      apellidos_estudiante:
+      id:
         type: string
-      correo_electronico_estudiante:
-        type: string
-      id_grupo:
+    type: object
+  Response.AddNewEvaluacionResponse:
+    properties:
+      id:
         type: integer
-      id_rol:
-        type: integer
-      nombres_estudiante:
-        type: string
-      rut_estudiante:
-        type: string
-      telefono_celular_estudiante:
-        type: string
-      telefono_fijo_estudiante:
-        type: string
     type: object
   Response.AddNewEvaluadorResponse:
     properties:
-      apellidos_evaluador:
-        type: string
-      cargo_evaluador:
-        type: string
-      correo_electronico_evaluador:
-        type: string
-      id_rol:
-        type: integer
-      nombres_evaluador:
-        type: string
-      recinto_evaluador:
-        type: string
-      rut_evaluador:
-        type: string
-      telefono_celular_evaluador:
-        type: string
-      telefono_fijo_evaluador:
+      id:
         type: string
     type: object
   Response.AddNewGrupoResponse:
     properties:
-      id_curso:
+      id:
         type: integer
-      id_evaluador:
-        type: string
-      nombre_grupo:
-        type: string
-      sigla_grupo:
-        type: string
     type: object
   Response.AddNewPeriodoResponse:
     properties:
       id:
         type: integer
-      nombre_periodo:
-        type: string
     type: object
   Response.AddNewRolResponse:
     properties:
-      nombre_rol:
-        type: string
+      id:
+        type: integer
     type: object
   Response.Authentication:
     properties:
@@ -505,169 +413,52 @@ definitions:
     type: object
   Response.DeleteAdministradorAcademicoResponse:
     properties:
-      apellidos_administrador_academico:
-        type: string
-      correo_electronico_administrador_academico:
-        type: string
-      id_rol:
-        type: integer
-      nombres_administrador_academico:
-        type: string
-      rut_administrador_academico:
-        type: string
-      telefono_celular_administrador_academico:
-        type: string
-      telefono_fijo_administrador_academico:
+      id:
         type: string
     type: object
   Response.DeleteAdministradorTiResponse:
     properties:
-      apellidos_administrador_ti:
-        type: string
-      correo_electronico_administrador_ti:
-        type: string
-      id_rol:
-        type: integer
-      nombres_administrador_ti:
-        type: string
-      rut_administrador_ti:
-        type: string
-      telefono_celular_administrador_ti:
-        type: string
-      telefono_fijo_administrador_ti:
+      id:
         type: string
     type: object
   Response.DeleteCursoResponse:
     properties:
-      id_periodo:
+      id:
         type: integer
-      nombre_curso:
-        type: string
-      sigla_curso:
-        type: string
     type: object
   Response.DeleteEstudianteResponse:
     properties:
-      apellidos_estudiante:
-        type: string
-      correo_electronico_estudiante:
-        type: string
-      id_grupo:
-        type: integer
-      id_rol:
-        type: integer
-      nombres_estudiante:
-        type: string
-      rut_estudiante:
-        type: string
-      telefono_celular_estudiante:
-        type: string
-      telefono_fijo_estudiante:
+      id:
         type: string
     type: object
   Response.DeleteEvaluadorResponse:
     properties:
-      apellidos_evaluador:
-        type: string
-      cargo_evaluador:
-        type: string
-      correo_electronico_evaluador:
-        type: string
-      id_rol:
-        type: integer
-      nombres_evaluador:
-        type: string
-      recinto_evaluador:
-        type: string
-      rut_evaluador:
-        type: string
-      telefono_celular_evaluador:
-        type: string
-      telefono_fijo_evaluador:
+      id:
         type: string
     type: object
   Response.DeleteGrupoResponse:
     properties:
-      id_curso:
+      id:
         type: integer
-      id_evaluador:
-        type: string
-      nombre_grupo:
-        type: string
-      sigla_grupo:
-        type: string
     type: object
   Response.DeletePeriodoResponse:
     properties:
       id:
         type: integer
-      nombre_periodo:
-        type: string
     type: object
   Response.DeleteRolResponse:
     properties:
-      nombre_rol:
-        type: string
-    type: object
-  Response.EvolucionEstudiantePorCompetenciaResponse:
-    properties:
-      nombre_competencia:
-        type: string
-      promedio_curso:
-        type: number
-      promedio_estudiante:
-        type: number
-      promedio_grupo:
-        type: number
-    type: object
-  Response.EvolucionEstudiantePorEvaluacionResponse:
-    properties:
-      nombre_evaluacion:
-        type: string
-      promedio_curso:
-        type: number
-      promedio_estudiante:
-        type: number
-      promedio_grupo:
-        type: number
-    type: object
-  Response.GenerarEvaluacionResponse:
-    properties:
-      asunto_principal_consulta_evaluacion:
-        type: string
-      categoria_observador_evaluacion:
-        type: string
-      complejidad_caso_evaluacion:
-        type: string
-      entorno_clinico_evaluacion:
-        type: string
-      id_estudiante:
-        type: string
-      id_evaluador:
-        type: string
-      id_periodo:
-        type: integer
-      nombre_evaluacion:
-        type: string
-      numero_observaciones_previas_evaluacion:
-        type: string
-      observacion_calificacion_evaluacion:
-        type: string
-      paciente_evaluacion:
-        type: string
-      puntajes_evaluacion:
-        items:
-          $ref: '#/definitions/Response.ListPuntajesResponse'
-        type: array
-      tiempo_utilizado_evaluacion:
+      id:
         type: integer
     type: object
-  Response.GetCursoEstudianteResponse:
+  Response.GetCursosEstudianteResponse:
     properties:
       grupos_curso:
         items:
           $ref: '#/definitions/Response.ListGruposResponse'
         type: array
+      id:
+        type: integer
       nombre_curso:
         type: string
       periodo_curso:
@@ -675,12 +466,14 @@ definitions:
       sigla_curso:
         type: string
     type: object
-  Response.GetCursoEvaluadorResponse:
+  Response.GetCursosEvaluadorResponse:
     properties:
       grupos_curso:
         items:
           $ref: '#/definitions/Response.ListGruposResponse'
         type: array
+      id:
+        type: integer
       nombre_curso:
         type: string
       periodo_curso:
@@ -688,7 +481,7 @@ definitions:
       sigla_curso:
         type: string
     type: object
-  Response.GetGrupoEstudianteResponse:
+  Response.GetGruposEstudianteResponse:
     properties:
       estudiantes_grupo:
         items:
@@ -696,6 +489,8 @@ definitions:
         type: array
       evaluador_grupo:
         $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      id:
+        type: integer
       id_curso:
         type: integer
       nombre_grupo:
@@ -703,7 +498,7 @@ definitions:
       sigla_grupo:
         type: string
     type: object
-  Response.GetGrupoEvaluadorResponse:
+  Response.GetGruposEvaluadorResponse:
     properties:
       estudiantes_grupo:
         items:
@@ -711,6 +506,8 @@ definitions:
         type: array
       evaluador_grupo:
         $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      id:
+        type: integer
       id_curso:
         type: integer
       nombre_grupo:
@@ -723,6 +520,8 @@ definitions:
       apellidos_administrador_academico:
         type: string
       correo_electronico_administrador_academico:
+        type: string
+      id:
         type: string
       nombres_administrador_academico:
         type: string
@@ -740,6 +539,8 @@ definitions:
       apellidos_administrador_ti:
         type: string
       correo_electronico_administrador_ti:
+        type: string
+      id:
         type: string
       nombres_administrador_ti:
         type: string
@@ -762,6 +563,8 @@ definitions:
         items:
           $ref: '#/definitions/Response.ListEvaluacionesEstudianteResponse'
         type: array
+      id:
+        type: string
       id_grupo:
         type: integer
       nombres_estudiante:
@@ -783,6 +586,8 @@ definitions:
         type: string
       correo_electronico_evaluador:
         type: string
+      id:
+        type: string
       nombres_evaluador:
         type: string
       recinto_evaluador:
@@ -802,6 +607,8 @@ definitions:
         type: string
       correo_electronico_administrador_academico:
         type: string
+      id:
+        type: string
       nombres_administrador_academico:
         type: string
       rol_administrador_academico:
@@ -819,6 +626,8 @@ definitions:
         type: string
       correo_electronico_administrador_ti:
         type: string
+      id:
+        type: string
       nombres_administrador_ti:
         type: string
       rol_administrador_ti:
@@ -830,12 +639,44 @@ definitions:
       telefono_fijo_administrador_ti:
         type: string
     type: object
+  Response.GetOneCursoEstudianteResponse:
+    properties:
+      grupos_curso:
+        items:
+          $ref: '#/definitions/Response.ListGruposResponse'
+        type: array
+      id:
+        type: integer
+      nombre_curso:
+        type: string
+      periodo_curso:
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
+      sigla_curso:
+        type: string
+    type: object
+  Response.GetOneCursoEvaluadorResponse:
+    properties:
+      grupos_curso:
+        items:
+          $ref: '#/definitions/Response.ListGruposResponse'
+        type: array
+      id:
+        type: integer
+      nombre_curso:
+        type: string
+      periodo_curso:
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
+      sigla_curso:
+        type: string
+    type: object
   Response.GetOneCursoResponse:
     properties:
       grupos_curso:
         items:
           $ref: '#/definitions/Response.ListGruposResponse'
         type: array
+      id:
+        type: integer
       nombre_curso:
         type: string
       periodo_curso:
@@ -853,6 +694,8 @@ definitions:
         items:
           $ref: '#/definitions/Response.ListEvaluacionesEstudianteResponse'
         type: array
+      id:
+        type: string
       id_grupo:
         type: integer
       nombres_estudiante:
@@ -874,6 +717,8 @@ definitions:
         type: string
       correo_electronico_evaluador:
         type: string
+      id:
+        type: string
       nombres_evaluador:
         type: string
       recinto_evaluador:
@@ -887,6 +732,40 @@ definitions:
       telefono_fijo_evaluador:
         type: string
     type: object
+  Response.GetOneGrupoEstudianteResponse:
+    properties:
+      estudiantes_grupo:
+        items:
+          $ref: '#/definitions/Response.ListEstudiantesResponse'
+        type: array
+      evaluador_grupo:
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      id:
+        type: integer
+      id_curso:
+        type: integer
+      nombre_grupo:
+        type: string
+      sigla_grupo:
+        type: string
+    type: object
+  Response.GetOneGrupoEvaluadorResponse:
+    properties:
+      estudiantes_grupo:
+        items:
+          $ref: '#/definitions/Response.ListEstudiantesResponse'
+        type: array
+      evaluador_grupo:
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      id:
+        type: integer
+      id_curso:
+        type: integer
+      nombre_grupo:
+        type: string
+      sigla_grupo:
+        type: string
+    type: object
   Response.GetOneGrupoResponse:
     properties:
       estudiantes_grupo:
@@ -895,6 +774,8 @@ definitions:
         type: array
       evaluador_grupo:
         $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      id:
+        type: integer
       id_curso:
         type: integer
       nombre_grupo:
@@ -911,6 +792,8 @@ definitions:
     type: object
   Response.GetOneRolResponse:
     properties:
+      id:
+        type: integer
       nombre_rol:
         type: string
     type: object
@@ -919,6 +802,8 @@ definitions:
       apellidos_administrador_academico:
         type: string
       correo_electronico_administrador_academico:
+        type: string
+      id:
         type: string
       nombres_administrador_academico:
         type: string
@@ -937,6 +822,8 @@ definitions:
         type: string
       correo_electronico_administrador_ti:
         type: string
+      id:
+        type: string
       nombres_administrador_ti:
         type: string
       rol_administrador_ti:
@@ -954,6 +841,8 @@ definitions:
         items:
           $ref: '#/definitions/Response.ListGruposResponse'
         type: array
+      id:
+        type: integer
       nombre_curso:
         type: string
       periodo_curso:
@@ -998,6 +887,74 @@ definitions:
         type: string
       evaluador_evaluacion:
         $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      id:
+        type: integer
+      id_estudiante:
+        type: string
+      nombre_evaluacion:
+        type: string
+      numero_observaciones_previas_evaluacion:
+        type: string
+      observacion_calificacion_evaluacion:
+        type: string
+      paciente_evaluacion:
+        type: string
+      periodo_evaluacion:
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
+      puntajes_evaluacion:
+        items:
+          $ref: '#/definitions/Response.ListPuntajesResponse'
+        type: array
+      tiempo_utilizado_evaluacion:
+        type: integer
+    type: object
+  Response.ListEvaluacionesGrupoEstudianteResponse:
+    properties:
+      asunto_principal_consulta_evaluacion:
+        type: string
+      categoria_observador_evaluacion:
+        type: string
+      complejidad_caso_evaluacion:
+        type: string
+      entorno_clinico_evaluacion:
+        type: string
+      evaluador_evaluacion:
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      id:
+        type: integer
+      id_estudiante:
+        type: string
+      nombre_evaluacion:
+        type: string
+      numero_observaciones_previas_evaluacion:
+        type: string
+      observacion_calificacion_evaluacion:
+        type: string
+      paciente_evaluacion:
+        type: string
+      periodo_evaluacion:
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
+      puntajes_evaluacion:
+        items:
+          $ref: '#/definitions/Response.ListPuntajesResponse'
+        type: array
+      tiempo_utilizado_evaluacion:
+        type: integer
+    type: object
+  Response.ListEvaluacionesGrupoEvaluadorResponse:
+    properties:
+      asunto_principal_consulta_evaluacion:
+        type: string
+      categoria_observador_evaluacion:
+        type: string
+      complejidad_caso_evaluacion:
+        type: string
+      entorno_clinico_evaluacion:
+        type: string
+      evaluador_evaluacion:
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      id:
+        type: integer
       id_estudiante:
         type: string
       nombre_evaluacion:
@@ -1029,6 +986,8 @@ definitions:
         type: string
       evaluador_evaluacion:
         $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      id:
+        type: integer
       id_estudiante:
         type: string
       nombre_evaluacion:
@@ -1056,6 +1015,8 @@ definitions:
         type: string
       correo_electronico_evaluador:
         type: string
+      id:
+        type: string
       nombres_evaluador:
         type: string
       recinto_evaluador:
@@ -1077,6 +1038,8 @@ definitions:
         type: array
       evaluador_grupo:
         $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      id:
+        type: integer
       id_curso:
         type: integer
       nombre_grupo:
@@ -1099,6 +1062,8 @@ definitions:
         type: string
       feedback_puntaje:
         type: string
+      id:
+        type: integer
       id_evaluacion:
         type: integer
       nombre_competencia_puntaje:
@@ -1106,204 +1071,70 @@ definitions:
     type: object
   Response.ListRolesResponse:
     properties:
+      id:
+        type: integer
       nombre_rol:
         type: string
     type: object
   Response.PutMyAdministradorAcademicoResponse:
     properties:
-      apellidos_administrador_academico:
-        type: string
-      correo_electronico_administrador_academico:
-        type: string
-      hash_contrasena_administrador_academico:
-        type: string
-      id_rol:
-        type: integer
-      nombres_administrador_academico:
-        type: string
-      rut_administrador_academico:
-        type: string
-      telefono_celular_administrador_academico:
-        type: string
-      telefono_fijo_administrador_academico:
+      id:
         type: string
     type: object
   Response.PutMyAdministradorTiResponse:
     properties:
-      apellidos_administrador_ti:
-        type: string
-      correo_electronico_administrador_ti:
-        type: string
-      hash_contrasena_administrador_ti:
-        type: string
-      id_rol:
-        type: integer
-      nombres_administrador_ti:
-        type: string
-      rut_administrador_ti:
-        type: string
-      telefono_celular_administrador_ti:
-        type: string
-      telefono_fijo_administrador_ti:
+      id:
         type: string
     type: object
   Response.PutMyEstudianteResponse:
     properties:
-      apellidos_estudiante:
-        type: string
-      correo_electronico_estudiante:
-        type: string
-      hash_contrasena_estudiante:
-        type: string
-      id_grupo:
-        type: integer
-      id_rol:
-        type: integer
-      nombres_estudiante:
-        type: string
-      rut_estudiante:
-        type: string
-      telefono_celular_estudiante:
-        type: string
-      telefono_fijo_estudiante:
+      id:
         type: string
     type: object
   Response.PutMyEvaluadorResponse:
     properties:
-      apellidos_evaluador:
-        type: string
-      cargo_evaluador:
-        type: string
-      correo_electronico_evaluador:
-        type: string
-      hash_contrasena_evaluador:
-        type: string
-      id_rol:
-        type: integer
-      nombres_evaluador:
-        type: string
-      recinto_evaluador:
-        type: string
-      rut_evaluador:
-        type: string
-      telefono_celular_evaluador:
-        type: string
-      telefono_fijo_evaluador:
+      id:
         type: string
     type: object
   Response.PutOneAdministradorAcademicoResponse:
     properties:
-      apellidos_administrador_academico:
-        type: string
-      correo_electronico_administrador_academico:
-        type: string
-      hash_contrasena_administrador_academico:
-        type: string
-      id_rol:
-        type: integer
-      nombres_administrador_academico:
-        type: string
-      rut_administrador_academico:
-        type: string
-      telefono_celular_administrador_academico:
-        type: string
-      telefono_fijo_administrador_academico:
+      id:
         type: string
     type: object
   Response.PutOneAdministradorTiResponse:
     properties:
-      apellidos_administrador_ti:
-        type: string
-      correo_electronico_administrador_ti:
-        type: string
-      hash_contrasena_administrador_ti:
-        type: string
-      id_rol:
-        type: integer
-      nombres_administrador_ti:
-        type: string
-      rut_administrador_ti:
-        type: string
-      telefono_celular_administrador_ti:
-        type: string
-      telefono_fijo_administrador_ti:
+      id:
         type: string
     type: object
   Response.PutOneCursoResponse:
     properties:
-      id_periodo:
+      id:
         type: integer
-      nombre_curso:
-        type: string
-      sigla_curso:
-        type: string
     type: object
   Response.PutOneEstudianteResponse:
     properties:
-      apellidos_estudiante:
-        type: string
-      correo_electronico_estudiante:
-        type: string
-      hash_contrasena_estudiante:
-        type: string
-      id_grupo:
-        type: integer
-      id_rol:
-        type: integer
-      nombres_estudiante:
-        type: string
-      rut_estudiante:
-        type: string
-      telefono_celular_estudiante:
-        type: string
-      telefono_fijo_estudiante:
+      id:
         type: string
     type: object
   Response.PutOneEvaluadorResponse:
     properties:
-      apellidos_evaluador:
-        type: string
-      cargo_evaluador:
-        type: string
-      correo_electronico_evaluador:
-        type: string
-      hash_contrasena_evaluador:
-        type: string
-      id_rol:
-        type: integer
-      nombres_evaluador:
-        type: string
-      recinto_evaluador:
-        type: string
-      rut_evaluador:
-        type: string
-      telefono_celular_evaluador:
-        type: string
-      telefono_fijo_evaluador:
+      id:
         type: string
     type: object
   Response.PutOneGrupoResponse:
     properties:
-      id_curso:
+      id:
         type: integer
-      id_evaluador:
-        type: string
-      nombre_grupo:
-        type: string
-      sigla_grupo:
-        type: string
     type: object
   Response.PutOnePeriodoResponse:
     properties:
       id:
         type: integer
-      nombre_periodo:
-        type: string
     type: object
   Response.PutOneRolResponse:
     properties:
-      nombre_rol:
-        type: string
+      id:
+        type: integer
     type: object
   Swagger.AddNewAdministradorAcademicoSwagger:
     properties:
@@ -1323,6 +1154,15 @@ definitions:
       status:
         type: boolean
     type: object
+  Swagger.AddNewCalificacionEstudianteSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.AddNewCalificacionEstudianteResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
   Swagger.AddNewCursoSwagger:
     properties:
       data:
@@ -1336,6 +1176,15 @@ definitions:
     properties:
       data:
         $ref: '#/definitions/Response.AddNewEstudianteResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.AddNewEvaluacionSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.AddNewEvaluacionResponse'
       meta:
         type: string
       status:
@@ -1458,64 +1307,37 @@ definitions:
       status:
         type: boolean
     type: object
-  Swagger.EvolucionEstudiantePorCompetenciaSwagger:
+  Swagger.GetCursosEstudianteSwagger:
     properties:
       data:
-        $ref: '#/definitions/Response.EvolucionEstudiantePorCompetenciaResponse'
+        $ref: '#/definitions/Response.GetCursosEstudianteResponse'
       meta:
         type: string
       status:
         type: boolean
     type: object
-  Swagger.EvolucionEstudiantePorEvaluacionSwagger:
+  Swagger.GetCursosEvaluadorSwagger:
     properties:
       data:
-        $ref: '#/definitions/Response.EvolucionEstudiantePorEvaluacionResponse'
+        $ref: '#/definitions/Response.GetCursosEvaluadorResponse'
       meta:
         type: string
       status:
         type: boolean
     type: object
-  Swagger.GenerarEvaluacionSwagger:
+  Swagger.GetGruposEstudianteSwagger:
     properties:
       data:
-        $ref: '#/definitions/Response.GenerarEvaluacionResponse'
+        $ref: '#/definitions/Response.GetGruposEstudianteResponse'
       meta:
         type: string
       status:
         type: boolean
     type: object
-  Swagger.GetCursoEstudianteSwagger:
+  Swagger.GetGruposEvaluadorSwagger:
     properties:
       data:
-        $ref: '#/definitions/Response.GetCursoEstudianteResponse'
-      meta:
-        type: string
-      status:
-        type: boolean
-    type: object
-  Swagger.GetCursoEvaluadorSwagger:
-    properties:
-      data:
-        $ref: '#/definitions/Response.GetCursoEvaluadorResponse'
-      meta:
-        type: string
-      status:
-        type: boolean
-    type: object
-  Swagger.GetGrupoEstudianteSwagger:
-    properties:
-      data:
-        $ref: '#/definitions/Response.GetGrupoEstudianteResponse'
-      meta:
-        type: string
-      status:
-        type: boolean
-    type: object
-  Swagger.GetGrupoEvaluadorSwagger:
-    properties:
-      data:
-        $ref: '#/definitions/Response.GetGrupoEvaluadorResponse'
+        $ref: '#/definitions/Response.GetGruposEvaluadorResponse'
       meta:
         type: string
       status:
@@ -1575,6 +1397,24 @@ definitions:
       status:
         type: boolean
     type: object
+  Swagger.GetOneCursoEstudianteSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetOneCursoEstudianteResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetOneCursoEvaluadorSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetOneCursoEvaluadorResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
   Swagger.GetOneCursoSwagger:
     properties:
       data:
@@ -1597,6 +1437,24 @@ definitions:
     properties:
       data:
         $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetOneGrupoEstudianteSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetOneGrupoEstudianteResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetOneGrupoEvaluadorSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetOneGrupoEvaluadorResponse'
       meta:
         type: string
       status:
@@ -1660,6 +1518,24 @@ definitions:
     properties:
       data:
         $ref: '#/definitions/Response.ListEstudiantesResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.ListEvaluacionesGrupoEstudianteSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.ListEvaluacionesGrupoEstudianteResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.ListEvaluacionesGrupoEvaluadorSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.ListEvaluacionesGrupoEvaluadorResponse'
       meta:
         type: string
       status:
@@ -1831,131 +1707,6 @@ info:
   title: MedRoom API
   version: "1.0"
 paths:
-  /administracion-academica/grupos:
-    get:
-      consumes:
-      - application/json
-      description: Lista todos los grupos
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            items:
-              $ref: '#/definitions/Swagger.ListGruposSwagger'
-            type: array
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Lista de grupos
-      tags:
-      - 04 - Administración Academica
-    post:
-      consumes:
-      - application/json
-      description: Genera un nuevo grupo con los datos entregados
-      parameters:
-      - description: Grupo a agregar
-        in: body
-        name: input_grupo
-        required: true
-        schema:
-          $ref: '#/definitions/Request.AddNewGrupoPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/Swagger.AddNewGrupoSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Agrega un nuevo grupo
-      tags:
-      - 04 - Administración Academica
-  /administracion-academica/grupos/{id_grupo}:
-    delete:
-      consumes:
-      - application/json
-      description: Elimina un grupo con los datos entregados
-      parameters:
-      - description: Id del grupo a eliminar
-        in: path
-        name: id_grupo
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/Swagger.DeleteGrupoSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Elimina un grupo
-      tags:
-      - 04 - Administración Academica
-    get:
-      consumes:
-      - application/json
-      description: Obtiene un grupo según su Id
-      parameters:
-      - description: Id del grupo a buscar
-        in: path
-        name: id_grupo
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/Swagger.GetOneGrupoSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Obtiene un grupo
-      tags:
-      - 04 - Administración Academica
-    put:
-      consumes:
-      - application/json
-      description: Modifica un grupo con los datos entregados
-      parameters:
-      - description: Id del grupo a modificar
-        in: path
-        name: id_grupo
-        required: true
-        type: string
-      - description: Grupo a modificar
-        in: body
-        name: input_actualiza_grupo
-        required: true
-        schema:
-          $ref: '#/definitions/Request.PutOneGrupoPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/Swagger.PutOneGrupoSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Modifica un grupo
-      tags:
-      - 04 - Administración Academica
   /administracion-academica/login:
     post:
       consumes:
@@ -3085,18 +2836,43 @@ paths:
       summary: Modifica mi perfil
       tags:
       - 02 - Estudiantes
-  /estudiantes/me/curso:
+  /estudiantes/me/cursos:
     get:
       consumes:
       - application/json
-      description: Obtiene un curso de un estudiante según su token
+      description: Obtiene los cursos de un estudiante según su token
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/Swagger.GetCursoEstudianteSwagger'
+            $ref: '#/definitions/Swagger.GetCursosEstudianteSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene los cursos de un estudiante
+      tags:
+      - 02 - Estudiantes
+  /estudiantes/me/cursos/{id_curso}:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un curso de un estudiante según su token
+      parameters:
+      - description: Id del curso a buscar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetOneCursoEstudianteSwagger'
         "400":
           description: Bad request
           schema:
@@ -3104,15 +2880,76 @@ paths:
       summary: Obtiene un curso de un estudiante
       tags:
       - 02 - Estudiantes
-  /estudiantes/me/estadisticas/evolucion/competencia/{codigo_competencia}:
+  /estudiantes/me/cursos/{id_curso}/grupos:
     get:
       consumes:
       - application/json
-      description: Obtiene la evolución de un estudiante según una competencia
+      description: Obtiene los grupos de un estudiante según su token
       parameters:
-      - description: Código de la competencia
+      - description: Id del curso a buscar
         in: path
-        name: codigo_competencia
+        name: id_curso
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetGruposEstudianteSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene los grupos de un estudiante
+      tags:
+      - 02 - Estudiantes
+  /estudiantes/me/cursos/{id_curso}/grupos/{id_grupo}:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un grupo de un estudiante según su token
+      parameters:
+      - description: Id del curso a buscar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: Id del grupo a buscar
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetOneGrupoEstudianteSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un grupo de un estudiante
+      tags:
+      - 02 - Estudiantes
+  /estudiantes/me/cursos/{id_curso}/grupos/{id_grupo}/evaluaciones:
+    get:
+      consumes:
+      - application/json
+      description: Lista todas los evaluaciones disponibles de un estudiante de un
+        grupo
+      parameters:
+      - description: Id del curso
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: Id del grupo
+        in: path
+        name: id_grupo
         required: true
         type: string
       produces:
@@ -3122,47 +2959,36 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/Swagger.EvolucionEstudiantePorCompetenciaSwagger'
+              $ref: '#/definitions/Swagger.ListEvaluacionesGrupoEstudianteSwagger'
             type: array
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Evolución por competencia
+      summary: Lista de evaluaciones de un grupo
       tags:
       - 02 - Estudiantes
-  /estudiantes/me/estadisticas/evolucion/evaluacion/{id_evaluacion}:
+  /estudiantes/me/cursos/{id_curso}/grupos/{id_grupo}/evaluaciones/{id_evaluacion}/calificacion:
     get:
       consumes:
       - application/json
-      description: Obtiene la evolución de un estudiante según una evaluación
+      description: Obtiene una calificación de un estudiante
       parameters:
-      - description: Id de la evaluación
+      - description: Id del curso
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: Id del grupo
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      - description: Id de la evaluacion
         in: path
         name: id_evaluacion
         required: true
         type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            items:
-              $ref: '#/definitions/Swagger.EvolucionEstudiantePorEvaluacionSwagger'
-            type: array
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Evolución por evaluación
-      tags:
-      - 02 - Estudiantes
-  /estudiantes/me/evaluaciones:
-    get:
-      consumes:
-      - application/json
-      description: Lista todos los evaluaciones de un estudiante
       produces:
       - application/json
       responses:
@@ -3176,26 +3002,7 @@ paths:
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Lista de evaluaciones de un estudiante
-      tags:
-      - 02 - Estudiantes
-  /estudiantes/me/grupo:
-    get:
-      consumes:
-      - application/json
-      description: Obtiene un grupo de un estudiante según su token
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/Swagger.GetGrupoEstudianteSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Obtiene un grupo de un estudiante
+      summary: Obtiene una calificación
       tags:
       - 02 - Estudiantes
   /evaluadores/login:
@@ -3270,18 +3077,43 @@ paths:
       summary: Modifica mi perfil
       tags:
       - 03 - Evaluadores
-  /evaluadores/me/curso:
+  /evaluadores/me/cursos:
     get:
       consumes:
       - application/json
-      description: Obtiene un curso de un evaluador según su token
+      description: Obtiene los cursos de un evaluador según su token
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/Swagger.GetCursoEvaluadorSwagger'
+            $ref: '#/definitions/Swagger.GetCursosEvaluadorSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene los cursos de un evaluador
+      tags:
+      - 03 - Evaluadores
+  /evaluadores/me/cursos/{id_curso}:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un curso de un evaluador según su token
+      parameters:
+      - description: Id del curso a buscar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetOneCursoEvaluadorSwagger'
         "400":
           description: Bad request
           schema:
@@ -3289,49 +3121,177 @@ paths:
       summary: Obtiene un curso de un evaluador
       tags:
       - 03 - Evaluadores
-  /evaluadores/me/evaluaciones:
-    post:
+  /evaluadores/me/cursos/{id_curso}/grupos:
+    get:
       consumes:
       - application/json
-      description: Genera una nueva evaluación de un estudiante con los datos entregados
+      description: Obtiene los grupos de un evaluador según su token
       parameters:
-      - description: Evaluacion a generar
-        in: body
-        name: input_evaluacion
+      - description: Id del curso a buscar
+        in: path
+        name: id_curso
         required: true
-        schema:
-          $ref: '#/definitions/Request.GenerarEvaluacionPayload'
+        type: string
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/Swagger.GenerarEvaluacionSwagger'
+            $ref: '#/definitions/Swagger.GetGruposEvaluadorSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Genera una evaluación para un estudiante
+      summary: Obtiene los grupos de un evaluador
       tags:
       - 03 - Evaluadores
-  /evaluadores/me/grupo:
+  /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}:
     get:
       consumes:
       - application/json
       description: Obtiene un grupo de un evaluador según su token
+      parameters:
+      - description: Id del curso a buscar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: Id del grupo a buscar
+        in: path
+        name: id_grupo
+        required: true
+        type: string
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/Swagger.GetGrupoEvaluadorSwagger'
+            $ref: '#/definitions/Swagger.GetOneGrupoEvaluadorSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Obtiene un grupo de un evaluador
+      tags:
+      - 03 - Evaluadores
+  /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/estudiantes/{id_estudiante}/evaluaciones/{id_evaluacion}/calificacion:
+    post:
+      consumes:
+      - application/json
+      description: Genera una calificación para un estudiante
+      parameters:
+      - description: Id del curso
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: Id del grupo
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      - description: Id del estudiante
+        in: path
+        name: id_estudiante
+        required: true
+        type: string
+      - description: Id de la evaluacion
+        in: path
+        name: id_evaluacion
+        required: true
+        type: string
+      - description: CalificacionEstudiante a agregar
+        in: body
+        name: input_calificacion_estudiante
+        required: true
+        schema:
+          $ref: '#/definitions/Request.AddNewCalificacionEstudiantePayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.AddNewCalificacionEstudianteSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Califica un estudiante
+      tags:
+      - 03 - Evaluadores
+  /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/evaluaciones:
+    get:
+      consumes:
+      - application/json
+      description: Lista todas los evaluaciones disponibles de un evaluador de un
+        grupo
+      parameters:
+      - description: Id del curso
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: Id del grupo
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.ListEvaluacionesGrupoEvaluadorSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de evaluaciones de un grupo
+      tags:
+      - 03 - Evaluadores
+    post:
+      consumes:
+      - application/json
+      description: Genera una evaluación para un grupo
+      parameters:
+      - description: Id del curso
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: Id del grupo
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      - description: Evaluacion a agregar
+        in: body
+        name: input_evaluacion
+        required: true
+        schema:
+          $ref: '#/definitions/Request.AddNewEvaluacionPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.AddNewEvaluacionSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Agrega una evaluación
       tags:
       - 03 - Evaluadores
   /periodos:

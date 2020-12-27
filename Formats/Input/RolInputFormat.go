@@ -7,11 +7,9 @@ import (
 )
 
 func ListRolesInput(u *Request.ListRolesPayload) {
-
 }
 
 func GetOneRolInput(u *Request.GetOneRolPayload) {
-
 }
 
 func AddNewRolInput(u *Request.AddNewRolPayload) {
@@ -27,5 +25,4 @@ func PutOneRolInput(u *Request.PutOneRolPayload) {
 }
 
 func DeleteRolInput(u *Request.DeleteRolPayload) {
-
 }

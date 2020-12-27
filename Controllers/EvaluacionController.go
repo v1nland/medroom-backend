@@ -1,15 +1,16 @@
 package Controllers
 
 import (
+	"errors"
 	"medroom-backend/ApiHelpers"
 	"medroom-backend/Formats/Input"
-	"medroom-backend/Formats/Output"
 	"medroom-backend/Messages/Request"
 	"medroom-backend/Models"
 	"medroom-backend/Repositories"
 	"medroom-backend/Utils"
 
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
 /*
@@ -229,93 +230,100 @@ func DeleteEvaluacion(c *gin.Context) {
 	ApiHelpers.RespondJSON(c, 200, Output.DeleteEvaluacionOutput(container))
 }*/
 
-// @Summary Lista de evaluaciones de un estudiante
-// @Description Lista todos los evaluaciones de un estudiante
+// @Summary Lista de evaluaciones de un grupo
+// @Description Lista todas los evaluaciones disponibles de un estudiante de un grupo
 // @Tags 02 - Estudiantes
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} Swagger.ListEvaluacionesSwagger "OK"
+// @Param   id_curso     path    string     true        "Id del curso"
+// @Param   id_grupo     path    string     true        "Id del grupo"
+// @Success 200 {array} Swagger.ListEvaluacionesGrupoEstudianteSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /estudiantes/me/evaluaciones [get]
-func ListEvaluacionesEstudiante(c *gin.Context) {
-	// params
+// @Router /estudiantes/me/cursos/{id_curso}/grupos/{id_grupo}/evaluaciones [get]
+func ListEvaluacionesGrupoEstudiante(c *gin.Context) {
+	id_grupo := c.Params.ByName("id_grupo")
+	id_curso := c.Params.ByName("id_curso")
 	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
 
-	// model container
-	var estudiante Models.Estudiante
-	if err := Repositories.GetOneEstudiante(&estudiante, id_estudiante); err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
+	var grupo Models.Grupo
+	if err := Repositories.GetOneGrupoEstudiante(&grupo, id_grupo, id_curso, id_estudiante); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Grupo not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
 		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, Output.ListEvaluacionesEstudianteOutput(estudiante.Calificaciones_estudiante))
+	// ApiHelpers.RespondJSON(c, 200, Output.ListEvaluacionesEstudianteOutput(grupo.Evaluaciones_grupo))
+	ApiHelpers.RespondJSON(c, 200, grupo.Evaluaciones_grupo)
 }
 
-// @Summary Genera una evaluación para un estudiante
-// @Description Genera una nueva evaluación de un estudiante con los datos entregados
+// @Summary Lista de evaluaciones de un grupo
+// @Description Lista todas los evaluaciones disponibles de un evaluador de un grupo
 // @Tags 03 - Evaluadores
 // @Accept  json
 // @Produce  json
-// @Param   input_evaluacion     body    Request.GenerarEvaluacionPayload     true        "Evaluacion a generar"
-// @Success 200 {object} Swagger.GenerarEvaluacionSwagger "OK"
+// @Param   id_curso     path    string     true        "Id del curso"
+// @Param   id_grupo     path    string     true        "Id del grupo"
+// @Success 200 {array} Swagger.ListEvaluacionesGrupoEvaluadorSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /evaluadores/me/evaluaciones [post]
-func GenerarEvaluacion(c *gin.Context) {
-	// params
+// @Router /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/evaluaciones [get]
+func ListEvaluacionesGrupoEvaluador(c *gin.Context) {
+	id_grupo := c.Params.ByName("id_grupo")
+	id_curso := c.Params.ByName("id_curso")
 	id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
 
-	// input container
-	var container Request.GenerarEvaluacionPayload
+	var grupo Models.Grupo
+	if err := Repositories.GetOneGrupoEvaluador(&grupo, id_grupo, id_curso, id_evaluador); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Grupo not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
 
-	// input bind
-	if err := c.ShouldBind(&container); err != nil {
+		return
+	}
+
+	// ApiHelpers.RespondJSON(c, 200, Output.ListEvaluacionesEstudianteOutput(grupo.Evaluaciones_grupo))
+	ApiHelpers.RespondJSON(c, 200, grupo.Evaluaciones_grupo)
+}
+
+// @Summary Agrega una evaluación
+// @Description Genera una evaluación para un grupo
+// @Tags 03 - Evaluadores
+// @Accept  json
+// @Produce  json
+// @Param   id_curso     path    string     true        "Id del curso"
+// @Param   id_grupo     path    string     true        "Id del grupo"
+// @Param   input_evaluacion     body    Request.AddNewEvaluacionPayload     true        "Evaluacion a agregar"
+// @Success 200 {array} Swagger.AddNewEvaluacionSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/evaluaciones [post]
+func AddNewEvaluacion(c *gin.Context) {
+	// id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
+	// id_curso := c.Params.ByName("id_curso")
+	id_grupo := c.Params.ByName("id_grupo")
+
+	var input Request.AddNewEvaluacionPayload
+	if err := c.ShouldBind(&input); err != nil {
 		ApiHelpers.RespondError(c, 400, "default")
 		return
 	}
 
-	// format input
-	Input.GenerarEvaluacionInput(&container)
+	Input.AddNewEvaluacionInput(&input)
 
-	// validate puntajes_evaluacion enum
-
-	// generate model entity
-	model_container := Models.CalificacionEstudiante{
-		Id_estudiante: container.Id_estudiante,
-		Id_evaluador:  id_evaluador,
-		Id_periodo:    container.Id_periodo,
-		// Nombre_evaluacion:                       container.Nombre_evaluacion,
-		// Entorno_clinico_evaluacion:              container.Entorno_clinico_evaluacion,
-		// Paciente_evaluacion:                     container.Paciente_evaluacion,
-		// Asunto_principal_consulta_evaluacion:    container.Asunto_principal_consulta_evaluacion,
-		// Complejidad_caso_evaluacion:             container.Complejidad_caso_evaluacion,
-		// Numero_observaciones_previas_evaluacion: container.Numero_observaciones_previas_evaluacion,
-		// Categoria_observador_evaluacion:         container.Categoria_observador_evaluacion,
-		// Observacion_calificacion_evaluacion:     container.Observacion_calificacion_evaluacion,
-		// Tiempo_utilizado_evaluacion:             container.Tiempo_utilizado_evaluacion,
+	model := Models.Evaluacion{
+		Id_grupo:          Utils.ConvertStringToInt(id_grupo),
+		Nombre_evaluacion: *input.Nombre_evaluacion,
 	}
 
-	// // query
-	// if err := Repositories.AddNewEvaluacion(&model_container); err != nil {
-	// 	ApiHelpers.RespondError(c, 500, "default")
-	// 	return
-	// }
-
-	for i := 0; i < len(container.Puntajes_evaluacion); i++ {
-		puntaje := Models.Puntaje{
-			// Id_evaluacion:              model_container.Id,
-			// Nombre_competencia_puntaje: container.Puntajes_evaluacion[i].Nombre_competencia,
-			// Codigo_competencia_puntaje: container.Puntajes_evaluacion[i].Codigo_competencia,
-			Calificacion_puntaje: container.Puntajes_evaluacion[i].Puntaje_competencia,
-			Feedback_puntaje:     container.Puntajes_evaluacion[i].Feedback_competencia,
-		}
-
-		if err := Repositories.AddNewPuntaje(&puntaje); err != nil {
-			ApiHelpers.RespondError(c, 500, "default")
-			return
-		}
+	if err := Repositories.AddNewEvaluacion(&model); err != nil {
+		ApiHelpers.RespondError(c, 500, "default")
+		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, Output.GenerarEvaluacionOutput(model_container))
+	// ApiHelpers.RespondJSON(c, 200, Output.ListEvaluacionesEstudianteOutput(model))
+	ApiHelpers.RespondJSON(c, 200, model)
 }

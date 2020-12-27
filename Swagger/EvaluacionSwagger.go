@@ -1,6 +1,20 @@
 package Swagger
 
-import "medroom-backend/Messages/Response"
+import (
+	"medroom-backend/Messages/Response"
+)
+
+type ListEvaluacionesGrupoEstudianteSwagger struct {
+	Status bool                                             `json:"status"`
+	Meta   string                                           `json:"meta"`
+	Data   Response.ListEvaluacionesGrupoEstudianteResponse `json:"data"`
+}
+
+type ListEvaluacionesGrupoEvaluadorSwagger struct {
+	Status bool                                            `json:"status"`
+	Meta   string                                          `json:"meta"`
+	Data   Response.ListEvaluacionesGrupoEvaluadorResponse `json:"data"`
+}
 
 type ListEvaluacionesSwagger struct {
 	Status bool                              `json:"status"`
@@ -18,12 +32,6 @@ type AddNewEvaluacionSwagger struct {
 	Status bool                              `json:"status"`
 	Meta   string                            `json:"meta"`
 	Data   Response.AddNewEvaluacionResponse `json:"data"`
-}
-
-type GenerarEvaluacionSwagger struct {
-	Status bool                               `json:"status"`
-	Meta   string                             `json:"meta"`
-	Data   Response.GenerarEvaluacionResponse `json:"data"`
 }
 
 type PutOneEvaluacionSwagger struct {

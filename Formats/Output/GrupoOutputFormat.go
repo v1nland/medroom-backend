@@ -29,49 +29,64 @@ func GetOneGrupoOutput(u Models.Grupo) (output Response.GetOneGrupoResponse) {
 	}
 }
 
-func GetGrupoEstudianteOutput(u Models.Grupo) (output Response.GetGrupoEstudianteResponse) {
-	return Response.GetGrupoEstudianteResponse{
+func GetOneGrupoEstudianteOutput(u Models.Grupo) (output Response.GetOneGrupoEstudianteResponse) {
+	return Response.GetOneGrupoEstudianteResponse{
 		Id_curso:        u.Id_curso,
 		Evaluador_grupo: GetOneEvaluadorOutput(u.Evaluador_grupo),
-		// Estudiantes_grupo: GetEstudiantesOutput(u.Estudiantes_grupo),
-		Nombre_grupo: u.Nombre_grupo,
-		Sigla_grupo:  u.Sigla_grupo,
+		Nombre_grupo:    u.Nombre_grupo,
+		Sigla_grupo:     u.Sigla_grupo,
 	}
 }
 
-func GetGrupoEvaluadorOutput(u Models.Grupo) (output Response.GetGrupoEvaluadorResponse) {
-	return Response.GetGrupoEvaluadorResponse{
+func GetGruposEstudianteOutput(u []Models.Grupo) (output []Response.GetGruposEstudianteResponse) {
+	for i := 0; i < len(u); i++ {
+		output = append(output, Response.GetGruposEstudianteResponse{
+			Id_curso:        u[i].Id_curso,
+			Evaluador_grupo: GetOneEvaluadorOutput(u[i].Evaluador_grupo),
+			Nombre_grupo:    u[i].Nombre_grupo,
+			Sigla_grupo:     u[i].Sigla_grupo,
+		})
+	}
+
+	return output
+}
+
+func GetOneGrupoEvaluadorOutput(u Models.Grupo) (output Response.GetOneGrupoEvaluadorResponse) {
+	return Response.GetOneGrupoEvaluadorResponse{
 		Id_curso:        u.Id_curso,
 		Evaluador_grupo: GetOneEvaluadorOutput(u.Evaluador_grupo),
-		// Estudiantes_grupo: GetEstudiantesOutput(u.Estudiantes_grupo),
-		Nombre_grupo: u.Nombre_grupo,
-		Sigla_grupo:  u.Sigla_grupo,
+		Nombre_grupo:    u.Nombre_grupo,
+		Sigla_grupo:     u.Sigla_grupo,
 	}
+}
+
+func GetGruposEvaluadorOutput(u []Models.Grupo) (output []Response.GetGruposEvaluadorResponse) {
+	for i := 0; i < len(u); i++ {
+		output = append(output, Response.GetGruposEvaluadorResponse{
+			Id_curso:        u[i].Id_curso,
+			Evaluador_grupo: GetOneEvaluadorOutput(u[i].Evaluador_grupo),
+			Nombre_grupo:    u[i].Nombre_grupo,
+			Sigla_grupo:     u[i].Sigla_grupo,
+		})
+	}
+
+	return output
 }
 
 func AddNewGrupoOutput(u Models.Grupo) (output Response.AddNewGrupoResponse) {
 	return Response.AddNewGrupoResponse{
-		Id_curso:     u.Id_curso,
-		Id_evaluador: u.Id_evaluador,
-		Nombre_grupo: u.Nombre_grupo,
-		Sigla_grupo:  u.Sigla_grupo,
+		Id: u.Id,
 	}
 }
 
 func PutOneGrupoOutput(u Models.Grupo) (output Response.PutOneGrupoResponse) {
 	return Response.PutOneGrupoResponse{
-		Id_curso:     u.Id_curso,
-		Id_evaluador: u.Id_evaluador,
-		Nombre_grupo: u.Nombre_grupo,
-		Sigla_grupo:  u.Sigla_grupo,
+		Id: u.Id,
 	}
 }
 
 func DeleteGrupoOutput(u Models.Grupo) (output Response.DeleteGrupoResponse) {
 	return Response.DeleteGrupoResponse{
-		Id_curso:     u.Id_curso,
-		Id_evaluador: u.Id_evaluador,
-		Nombre_grupo: u.Nombre_grupo,
-		Sigla_grupo:  u.Sigla_grupo,
+		Id: u.Id,
 	}
 }

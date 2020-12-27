@@ -7,19 +7,21 @@ import (
 )
 
 func ListCursosInput(u *Request.ListCursosPayload) {
-
 }
 
 func GetOneCursoInput(u *Request.GetOneCursoPayload) {
-
 }
 
-func GetCursoEstudianteInput(u *Request.GetCursoEstudiantePayload) {
-
+func GetOneCursoEstudianteInput(u *Request.GetOneCursoEstudiantePayload) {
 }
 
-func GetCursoEvaluadorInput(u *Request.GetCursoEvaluadorPayload) {
+func GetCursosEstudianteInput(u *Request.GetCursosEstudiantePayload) {
+}
 
+func GetOneCursoEvaluadorInput(u *Request.GetOneCursoEvaluadorPayload) {
+}
+
+func GetCursosEvaluadorInput(u *Request.GetCursosEvaluadorPayload) {
 }
 
 func AddNewCursoInput(u *Request.AddNewCursoPayload) {

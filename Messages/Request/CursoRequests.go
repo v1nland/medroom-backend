@@ -6,10 +6,16 @@ type ListCursosPayload struct {
 type GetOneCursoPayload struct {
 }
 
-type GetCursoEstudiantePayload struct {
+type GetCursosEstudiantePayload struct {
 }
 
-type GetCursoEvaluadorPayload struct {
+type GetOneCursoEstudiantePayload struct {
+}
+
+type GetCursosEvaluadorPayload struct {
+}
+
+type GetOneCursoEvaluadorPayload struct {
 }
 
 type AddNewCursoPayload struct {

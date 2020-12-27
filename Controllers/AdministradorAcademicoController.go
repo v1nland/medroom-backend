@@ -21,17 +21,13 @@ import (
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/administradores-academicos [get]
 func ListAdministradoresAcademicos(c *gin.Context) {
-	// model container
 	var container []Models.AdministradorAcademico
 
-	// query
-	err := Repositories.GetAllAdministradoresAcademicos(&container)
-	if err != nil {
+	if err := Repositories.GetAllAdministradoresAcademicos(&container); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// output
 	ApiHelpers.RespondJSON(c, 200, Output.ListAdministradoresAcademicosOutput(container))
 }
 
@@ -45,20 +41,14 @@ func ListAdministradoresAcademicos(c *gin.Context) {
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/administradores-academicos/{uuid_administrador_academico} [get]
 func GetOneAdministradorAcademico(c *gin.Context) {
-	// params
 	id := c.Params.ByName("id")
 
-	// model container
 	var container Models.AdministradorAcademico
-
-	// query
-	err := Repositories.GetOneAdministradorAcademico(&container, id)
-	if err != nil {
+	if err := Repositories.GetOneAdministradorAcademico(&container, id); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// output
 	ApiHelpers.RespondJSON(c, 200, Output.GetOneAdministradorAcademicoOutput(container))
 }
 
@@ -72,16 +62,13 @@ func GetOneAdministradorAcademico(c *gin.Context) {
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/administradores-academicos [post]
 func AddNewAdministradorAcademico(c *gin.Context) {
-	// input container
 	var container Request.AddNewAdministradorAcademicoPayload
 
-	// input bind
 	if err := c.ShouldBind(&container); err != nil {
 		ApiHelpers.RespondError(c, 400, "default")
 		return
 	}
 
-	// format input
 	Input.AddNewAdministradorAcademicoInput(&container)
 
 	// generate model entity

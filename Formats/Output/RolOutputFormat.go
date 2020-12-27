@@ -23,18 +23,18 @@ func GetOneRolOutput(u Models.Rol) (output Response.GetOneRolResponse) {
 
 func AddNewRolOutput(u Models.Rol) (output Response.AddNewRolResponse) {
 	return Response.AddNewRolResponse{
-		Nombre_rol: u.Nombre_rol,
+		Id: u.Id,
 	}
 }
 
 func PutOneRolOutput(u Models.Rol) (output Response.PutOneRolResponse) {
 	return Response.PutOneRolResponse{
-		Nombre_rol: u.Nombre_rol,
+		Id: u.Id,
 	}
 }
 
 func DeleteRolOutput(u Models.Rol) (output Response.DeleteRolResponse) {
 	return Response.DeleteRolResponse{
-		Nombre_rol: u.Nombre_rol,
+		Id: u.Id,
 	}
 }

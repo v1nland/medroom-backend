@@ -14,16 +14,28 @@ type GetOneGrupoSwagger struct {
 	Data   Response.GetOneGrupoResponse `json:"data"`
 }
 
-type GetGrupoEstudianteSwagger struct {
-	Status bool                                `json:"status"`
-	Meta   string                              `json:"meta"`
-	Data   Response.GetGrupoEstudianteResponse `json:"data"`
+type GetOneGrupoEstudianteSwagger struct {
+	Status bool                                   `json:"status"`
+	Meta   string                                 `json:"meta"`
+	Data   Response.GetOneGrupoEstudianteResponse `json:"data"`
 }
 
-type GetGrupoEvaluadorSwagger struct {
-	Status bool                               `json:"status"`
-	Meta   string                             `json:"meta"`
-	Data   Response.GetGrupoEvaluadorResponse `json:"data"`
+type GetGruposEstudianteSwagger struct {
+	Status bool                                 `json:"status"`
+	Meta   string                               `json:"meta"`
+	Data   Response.GetGruposEstudianteResponse `json:"data"`
+}
+
+type GetOneGrupoEvaluadorSwagger struct {
+	Status bool                                  `json:"status"`
+	Meta   string                                `json:"meta"`
+	Data   Response.GetOneGrupoEvaluadorResponse `json:"data"`
+}
+
+type GetGruposEvaluadorSwagger struct {
+	Status bool                                `json:"status"`
+	Meta   string                              `json:"meta"`
+	Data   Response.GetGruposEvaluadorResponse `json:"data"`
 }
 
 type AddNewGrupoSwagger struct {

@@ -31,30 +31,18 @@ func GetOnePuntajeOutput(u Models.Puntaje) (output Response.GetOnePuntajeRespons
 
 func AddNewPuntajeOutput(u Models.Puntaje) (output Response.AddNewPuntajeResponse) {
 	return Response.AddNewPuntajeResponse{
-		// Id_evaluacion:              u.Id_evaluacion,
-		// Nombre_competencia_puntaje: u.Nombre_competencia_puntaje,
-		// Codigo_competencia_puntaje: u.Codigo_competencia_puntaje,
-		// Calificacion_puntaje:       u.Calificacion_puntaje,
-		// Feedback_puntaje:           u.Feedback_puntaje,
+		Id: u.Id,
 	}
 }
 
 func PutOnePuntajeOutput(u Models.Puntaje) (output Response.PutOnePuntajeResponse) {
 	return Response.PutOnePuntajeResponse{
-		// Id_evaluacion:              u.Id_evaluacion,
-		// Nombre_competencia_puntaje: u.Nombre_competencia_puntaje,
-		// Codigo_competencia_puntaje: u.Codigo_competencia_puntaje,
-		// Calificacion_puntaje:       u.Calificacion_puntaje,
-		// Feedback_puntaje:           u.Feedback_puntaje,
+		Id: u.Id,
 	}
 }
 
 func DeletePuntajeOutput(u Models.Puntaje) (output Response.DeletePuntajeResponse) {
 	return Response.DeletePuntajeResponse{
-		// Id_evaluacion:              u.Id_evaluacion,
-		// Nombre_competencia_puntaje: u.Nombre_competencia_puntaje,
-		// Codigo_competencia_puntaje: u.Codigo_competencia_puntaje,
-		// Calificacion_puntaje:       u.Calificacion_puntaje,
-		// Feedback_puntaje:           u.Feedback_puntaje,
+		Id: u.Id,
 	}
 }

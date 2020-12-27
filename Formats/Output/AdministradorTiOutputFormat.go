@@ -47,48 +47,24 @@ func GetMyAdministradorTiOutput(u Models.AdministradorTi) (output Response.GetMy
 
 func AddNewAdministradorTiOutput(u Models.AdministradorTi) (output Response.AddNewAdministradorTiResponse) {
 	return Response.AddNewAdministradorTiResponse{
-		// Id_rol:                              u.Id_rol,
-		Rut_administrador_ti:                u.Rut_administrador_ti,
-		Nombres_administrador_ti:            u.Nombres_administrador_ti,
-		Apellidos_administrador_ti:          u.Apellidos_administrador_ti,
-		Correo_electronico_administrador_ti: u.Correo_electronico_administrador_ti,
-		Telefono_fijo_administrador_ti:      u.Telefono_fijo_administrador_ti,
-		Telefono_celular_administrador_ti:   u.Telefono_celular_administrador_ti,
+		Id: u.Id,
 	}
 }
 
 func PutOneAdministradorTiOutput(u Models.AdministradorTi) (output Response.PutOneAdministradorTiResponse) {
 	return Response.PutOneAdministradorTiResponse{
-		// Id_rol:                              u.Id_rol,
-		Nombres_administrador_ti:            u.Nombres_administrador_ti,
-		Apellidos_administrador_ti:          u.Apellidos_administrador_ti,
-		Hash_contrasena_administrador_ti:    u.Hash_contrasena_administrador_ti,
-		Correo_electronico_administrador_ti: u.Correo_electronico_administrador_ti,
-		Telefono_fijo_administrador_ti:      u.Telefono_fijo_administrador_ti,
-		Telefono_celular_administrador_ti:   u.Telefono_celular_administrador_ti,
+		Id: u.Id,
 	}
 }
 
 func PutMyAdministradorTiOutput(u Models.AdministradorTi) (output Response.PutMyAdministradorTiResponse) {
 	return Response.PutMyAdministradorTiResponse{
-		// Id_rol:                              u.Id_rol,
-		Nombres_administrador_ti:            u.Nombres_administrador_ti,
-		Apellidos_administrador_ti:          u.Apellidos_administrador_ti,
-		Hash_contrasena_administrador_ti:    u.Hash_contrasena_administrador_ti,
-		Correo_electronico_administrador_ti: u.Correo_electronico_administrador_ti,
-		Telefono_fijo_administrador_ti:      u.Telefono_fijo_administrador_ti,
-		Telefono_celular_administrador_ti:   u.Telefono_celular_administrador_ti,
+		Id: u.Id,
 	}
 }
 
 func DeleteAdministradorTiOutput(u Models.AdministradorTi) (output Response.DeleteAdministradorTiResponse) {
 	return Response.DeleteAdministradorTiResponse{
-		// Id_rol:                              u.Id_rol,
-		Rut_administrador_ti:                u.Rut_administrador_ti,
-		Nombres_administrador_ti:            u.Nombres_administrador_ti,
-		Apellidos_administrador_ti:          u.Apellidos_administrador_ti,
-		Correo_electronico_administrador_ti: u.Correo_electronico_administrador_ti,
-		Telefono_fijo_administrador_ti:      u.Telefono_fijo_administrador_ti,
-		Telefono_celular_administrador_ti:   u.Telefono_celular_administrador_ti,
+		Id: u.Id,
 	}
 }

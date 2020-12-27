@@ -14,16 +14,28 @@ type GetOneCursoSwagger struct {
 	Data   Response.GetOneCursoResponse `json:"data"`
 }
 
-type GetCursoEstudianteSwagger struct {
-	Status bool                                `json:"status"`
-	Meta   string                              `json:"meta"`
-	Data   Response.GetCursoEstudianteResponse `json:"data"`
+type GetCursosEstudianteSwagger struct {
+	Status bool                                 `json:"status"`
+	Meta   string                               `json:"meta"`
+	Data   Response.GetCursosEstudianteResponse `json:"data"`
 }
 
-type GetCursoEvaluadorSwagger struct {
-	Status bool                               `json:"status"`
-	Meta   string                             `json:"meta"`
-	Data   Response.GetCursoEvaluadorResponse `json:"data"`
+type GetOneCursoEstudianteSwagger struct {
+	Status bool                                   `json:"status"`
+	Meta   string                                 `json:"meta"`
+	Data   Response.GetOneCursoEstudianteResponse `json:"data"`
+}
+
+type GetCursosEvaluadorSwagger struct {
+	Status bool                                `json:"status"`
+	Meta   string                              `json:"meta"`
+	Data   Response.GetCursosEvaluadorResponse `json:"data"`
+}
+
+type GetOneCursoEvaluadorSwagger struct {
+	Status bool                                  `json:"status"`
+	Meta   string                                `json:"meta"`
+	Data   Response.GetOneCursoEvaluadorResponse `json:"data"`
 }
 
 type AddNewCursoSwagger struct {

@@ -25,21 +25,18 @@ func GetOnePeriodoOutput(u Models.Periodo) (output Response.GetOnePeriodoRespons
 
 func AddNewPeriodoOutput(u Models.Periodo) (output Response.AddNewPeriodoResponse) {
 	return Response.AddNewPeriodoResponse{
-		Id:             u.Id,
-		Nombre_periodo: u.Nombre_periodo,
+		Id: u.Id,
 	}
 }
 
 func PutOnePeriodoOutput(u Models.Periodo) (output Response.PutOnePeriodoResponse) {
 	return Response.PutOnePeriodoResponse{
-		Id:             u.Id,
-		Nombre_periodo: u.Nombre_periodo,
+		Id: u.Id,
 	}
 }
 
 func DeletePeriodoOutput(u Models.Periodo) (output Response.DeletePeriodoResponse) {
 	return Response.DeletePeriodoResponse{
-		Id:             u.Id,
-		Nombre_periodo: u.Nombre_periodo,
+		Id: u.Id,
 	}
 }

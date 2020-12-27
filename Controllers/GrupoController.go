@@ -37,18 +37,6 @@ func ListGrupos(c *gin.Context) {
 	ApiHelpers.RespondJSON(c, 200, Output.ListGruposOutput(container))
 }
 
-// @Summary Lista de grupos
-// @Description Lista todos los grupos
-// @Tags 04 - Administración Academica
-// @Accept  json
-// @Produce  json
-// @Success 200 {array} Swagger.ListGruposSwagger "OK"
-// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /administracion-academica/grupos [get]
-func swaggerDummyListGrupos(c *gin.Context) {
-	ListGrupos(c)
-}
-
 // @Summary Obtiene un grupo
 // @Description Obtiene un grupo según su Id
 // @Tags 05 - Administración Ti
@@ -76,19 +64,6 @@ func GetOneGrupo(c *gin.Context) {
 	ApiHelpers.RespondJSON(c, 200, Output.GetOneGrupoOutput(container))
 }
 
-// @Summary Obtiene un grupo
-// @Description Obtiene un grupo según su Id
-// @Tags 04 - Administración Academica
-// @Accept  json
-// @Produce  json
-// @Param   id_grupo     path    string     true        "Id del grupo a buscar"
-// @Success 200 {object} Swagger.GetOneGrupoSwagger "OK"
-// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /administracion-academica/grupos/{id_grupo} [get]
-func swaggerDummyGetOneGrupo(c *gin.Context) {
-	GetOneGrupo(c)
-}
-
 // @Summary Agrega un nuevo grupo
 // @Description Genera un nuevo grupo con los datos entregados
 // @Tags 05 - Administración Ti
@@ -113,10 +88,10 @@ func AddNewGrupo(c *gin.Context) {
 
 	// generate model entity
 	model_container := Models.Grupo{
-		Id_curso:     container.Id_curso,
-		Id_evaluador: container.Id_evaluador,
-		Nombre_grupo: container.Nombre_grupo,
-		Sigla_grupo:  container.Sigla_grupo,
+		Id_curso:     *container.Id_curso,
+		Id_evaluador: *container.Id_evaluador,
+		Nombre_grupo: *container.Nombre_grupo,
+		Sigla_grupo:  *container.Sigla_grupo,
 	}
 
 	// query
@@ -128,19 +103,6 @@ func AddNewGrupo(c *gin.Context) {
 
 	// output
 	ApiHelpers.RespondJSON(c, 200, Output.AddNewGrupoOutput(model_container))
-}
-
-// @Summary Agrega un nuevo grupo
-// @Description Genera un nuevo grupo con los datos entregados
-// @Tags 04 - Administración Academica
-// @Accept  json
-// @Produce  json
-// @Param   input_grupo     body    Request.AddNewGrupoPayload     true        "Grupo a agregar"
-// @Success 200 {object} Swagger.AddNewGrupoSwagger "OK"
-// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /administracion-academica/grupos [post]
-func swaggerDummyAddNewGrupo(c *gin.Context) {
-	AddNewGrupo(c)
 }
 
 // @Summary Modifica un grupo
@@ -182,10 +144,10 @@ func PutOneGrupo(c *gin.Context) {
 	// replace data in model entity
 	model_container = Models.Grupo{
 		Id:           model_container.Id,
-		Id_curso:     Utils.CheckUpdatedInt(container.Id_curso, model_container.Id_curso),
-		Id_evaluador: Utils.CheckUpdatedString(container.Id_evaluador, model_container.Id_evaluador),
-		Nombre_grupo: Utils.CheckUpdatedString(container.Nombre_grupo, model_container.Nombre_grupo),
-		Sigla_grupo:  Utils.CheckUpdatedString(container.Sigla_grupo, model_container.Sigla_grupo),
+		Id_curso:     Utils.CheckUpdatedInt(*container.Id_curso, model_container.Id_curso),
+		Id_evaluador: Utils.CheckUpdatedString(*container.Id_evaluador, model_container.Id_evaluador),
+		Nombre_grupo: Utils.CheckUpdatedString(*container.Nombre_grupo, model_container.Nombre_grupo),
+		Sigla_grupo:  Utils.CheckUpdatedString(*container.Sigla_grupo, model_container.Sigla_grupo),
 	}
 
 	// update foreign entity
@@ -204,20 +166,6 @@ func PutOneGrupo(c *gin.Context) {
 
 	// output
 	ApiHelpers.RespondJSON(c, 200, Output.PutOneGrupoOutput(model_container))
-}
-
-// @Summary Modifica un grupo
-// @Description Modifica un grupo con los datos entregados
-// @Tags 04 - Administración Academica
-// @Accept  json
-// @Produce  json
-// @Param   id_grupo     path    string     true        "Id del grupo a modificar"
-// @Param   input_actualiza_grupo     body    Request.PutOneGrupoPayload     true        "Grupo a modificar"
-// @Success 200 {object} Swagger.PutOneGrupoSwagger "OK"
-// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /administracion-academica/grupos/{id_grupo} [put]
-func swaggerDummyPutOneGrupo(c *gin.Context) {
-	PutOneGrupo(c)
 }
 
 // @Summary Elimina un grupo
@@ -254,57 +202,15 @@ func DeleteGrupo(c *gin.Context) {
 	ApiHelpers.RespondJSON(c, 200, Output.DeleteGrupoOutput(container))
 }
 
-// @Summary Elimina un grupo
-// @Description Elimina un grupo con los datos entregados
-// @Tags 04 - Administración Academica
-// @Accept  json
-// @Produce  json
-// @Param   id_grupo     path    string     true        "Id del grupo a eliminar"
-// @Success 200 {object} Swagger.DeleteGrupoSwagger "OK"
-// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /administracion-academica/grupos/{id_grupo} [delete]
-func swaggerDummyDeleteGrupo(c *gin.Context) {
-	DeleteGrupo(c)
-}
-
-// @Summary Obtiene un grupo de un estudiante
-// @Description Obtiene un grupo de un estudiante según su token
-// @Tags 02 - Estudiantes
-// @Accept  json
-// @Produce  json
-// @Success 200 {object} Swagger.GetGrupoEstudianteSwagger "OK"
-// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /estudiantes/me/grupo [get]
-func GetGrupoEstudiante(c *gin.Context) {
-	// params
-	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
-
-	// model container
-	var estudiante Models.Estudiante
-	if err := Repositories.GetOneEstudiante(&estudiante, id_estudiante); err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
-	}
-
-	// // model container
-	// var container Models.Grupo
-	// if err := Repositories.GetOneGrupo(&container, Utils.ConvertIntToString(estudiante.Id_grupo)); err != nil {
-	// 	ApiHelpers.RespondError(c, 500, "default")
-	// 	return
-	// }
-
-	// output
-	// ApiHelpers.RespondJSON(c, 200, Output.GetGrupoEstudianteOutput(container))
-}
-
 // @Summary Obtiene los grupos de un estudiante
 // @Description Obtiene los grupos de un estudiante según su token
 // @Tags 02 - Estudiantes
 // @Accept  json
 // @Produce  json
+// @Param   id_curso     path    string     true        "Id del curso a buscar"
 // @Success 200 {object} Swagger.GetGruposEstudianteSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /estudiantes/me/grupos [get]
+// @Router /estudiantes/me/cursos/{id_curso}/grupos [get]
 func GetGruposEstudiante(c *gin.Context) {
 	id_curso := c.Params.ByName("id_curso")
 	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
@@ -329,17 +235,18 @@ func GetGruposEstudiante(c *gin.Context) {
 // @Tags 02 - Estudiantes
 // @Accept  json
 // @Produce  json
+// @Param   id_curso     path    string     true        "Id del curso a buscar"
 // @Param   id_grupo     path    string     true        "Id del grupo a buscar"
 // @Success 200 {object} Swagger.GetOneGrupoEstudianteSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /estudiantes/me/grupos/{id_grupo} [get]
+// @Router /estudiantes/me/cursos/{id_curso}/grupos/{id_grupo} [get]
 func GetOneGrupoEstudiante(c *gin.Context) {
-	id := c.Params.ByName("id")
+	id_grupo := c.Params.ByName("id_grupo")
 	id_curso := c.Params.ByName("id_curso")
 	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
 
 	var grupo Models.Grupo
-	if err := Repositories.GetOneGrupoEstudiante(&grupo, id, id_curso, id_estudiante); err != nil {
+	if err := Repositories.GetOneGrupoEstudiante(&grupo, id_grupo, id_curso, id_estudiante); err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			ApiHelpers.RespondJSON(c, 200, "Grupo not found")
 		} else {
@@ -358,9 +265,10 @@ func GetOneGrupoEstudiante(c *gin.Context) {
 // @Tags 03 - Evaluadores
 // @Accept  json
 // @Produce  json
+// @Param   id_curso     path    string     true        "Id del curso a buscar"
 // @Success 200 {object} Swagger.GetGruposEvaluadorSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /evaluadores/me/grupos [get]
+// @Router /evaluadores/me/cursos/{id_curso}/grupos [get]
 func GetGruposEvaluador(c *gin.Context) {
 	// params
 	id_curso := c.Params.ByName("id_curso")
@@ -386,17 +294,18 @@ func GetGruposEvaluador(c *gin.Context) {
 // @Tags 03 - Evaluadores
 // @Accept  json
 // @Produce  json
+// @Param   id_curso     path    string     true        "Id del curso a buscar"
 // @Param   id_grupo     path    string     true        "Id del grupo a buscar"
 // @Success 200 {object} Swagger.GetOneGrupoEvaluadorSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /evaluadores/me/grupos/{id_grupo} [get]
+// @Router /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo} [get]
 func GetOneGrupoEvaluador(c *gin.Context) {
-	id := c.Params.ByName("id")
+	id_grupo := c.Params.ByName("id_grupo")
 	id_curso := c.Params.ByName("id_curso")
 	id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
 
 	var grupo Models.Grupo
-	if err := Repositories.GetOneGrupoEvaluador(&grupo, id, id_curso, id_evaluador); err != nil {
+	if err := Repositories.GetOneGrupoEvaluador(&grupo, id_grupo, id_curso, id_evaluador); err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			ApiHelpers.RespondJSON(c, 200, "Grupo not found")
 		} else {

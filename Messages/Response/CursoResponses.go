@@ -1,6 +1,7 @@
 package Response
 
 type ListCursosResponse struct {
+	Id            int                   `json:"id"`
 	Periodo_curso GetOnePeriodoResponse `json:"periodo_curso"`
 	Grupos_curso  []ListGruposResponse  `json:"grupos_curso"`
 	Nombre_curso  string                `json:"nombre_curso"`
@@ -8,20 +9,39 @@ type ListCursosResponse struct {
 }
 
 type GetOneCursoResponse struct {
+	Id            int                   `json:"id"`
 	Periodo_curso GetOnePeriodoResponse `json:"periodo_curso"`
 	Grupos_curso  []ListGruposResponse  `json:"grupos_curso"`
 	Nombre_curso  string                `json:"nombre_curso"`
 	Sigla_curso   string                `json:"sigla_curso"`
 }
 
-type GetCursoEstudianteResponse struct {
+type GetCursosEstudianteResponse struct {
+	Id            int                   `json:"id"`
 	Periodo_curso GetOnePeriodoResponse `json:"periodo_curso"`
 	Grupos_curso  []ListGruposResponse  `json:"grupos_curso"`
 	Nombre_curso  string                `json:"nombre_curso"`
 	Sigla_curso   string                `json:"sigla_curso"`
 }
 
-type GetCursoEvaluadorResponse struct {
+type GetOneCursoEstudianteResponse struct {
+	Id            int                   `json:"id"`
+	Periodo_curso GetOnePeriodoResponse `json:"periodo_curso"`
+	Grupos_curso  []ListGruposResponse  `json:"grupos_curso"`
+	Nombre_curso  string                `json:"nombre_curso"`
+	Sigla_curso   string                `json:"sigla_curso"`
+}
+
+type GetCursosEvaluadorResponse struct {
+	Id            int                   `json:"id"`
+	Periodo_curso GetOnePeriodoResponse `json:"periodo_curso"`
+	Grupos_curso  []ListGruposResponse  `json:"grupos_curso"`
+	Nombre_curso  string                `json:"nombre_curso"`
+	Sigla_curso   string                `json:"sigla_curso"`
+}
+
+type GetOneCursoEvaluadorResponse struct {
+	Id            int                   `json:"id"`
 	Periodo_curso GetOnePeriodoResponse `json:"periodo_curso"`
 	Grupos_curso  []ListGruposResponse  `json:"grupos_curso"`
 	Nombre_curso  string                `json:"nombre_curso"`
@@ -29,19 +49,13 @@ type GetCursoEvaluadorResponse struct {
 }
 
 type AddNewCursoResponse struct {
-	Id_periodo   int    `json:"id_periodo"`
-	Nombre_curso string `json:"nombre_curso"`
-	Sigla_curso  string `json:"sigla_curso"`
+	Id int `json:"id"`
 }
 
 type PutOneCursoResponse struct {
-	Id_periodo   int    `json:"id_periodo"`
-	Nombre_curso string `json:"nombre_curso"`
-	Sigla_curso  string `json:"sigla_curso"`
+	Id int `json:"id"`
 }
 
 type DeleteCursoResponse struct {
-	Id_periodo   int    `json:"id_periodo"`
-	Nombre_curso string `json:"nombre_curso"`
-	Sigla_curso  string `json:"sigla_curso"`
+	Id int `json:"id"`
 }
