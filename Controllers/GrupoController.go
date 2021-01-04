@@ -150,13 +150,6 @@ func PutOneGrupo(c *gin.Context) {
 		Sigla_grupo:  Utils.CheckUpdatedString(*container.Sigla_grupo, model_container.Sigla_grupo),
 	}
 
-	// update foreign entity
-	err = Repositories.GetOneEvaluador(&model_container.Evaluador_grupo, model_container.Id_evaluador)
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
-	}
-
 	// put query
 	err = Repositories.PutOneGrupo(&model_container, id)
 	if err != nil {

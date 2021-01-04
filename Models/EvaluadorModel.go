@@ -11,6 +11,7 @@ type Evaluador struct {
 	Id                           string    `json:"id" sql:"type:uuid;primary_key;default:uuid_generate_v4()"`
 	Id_rol                       int       `json:"id_rol"`
 	Rol_evaluador                Rol       `json:"rol_evaluador" gorm:"foreignKey:Id_rol"`
+	Grupos_evaluador             []Grupo   `json:"grupos_evaluador" gorm:"many2many:evaluadores_grupos;joinForeignKey:id_evaluador;joinReferences:id_grupo"`
 	Rut_evaluador                string    `json:"rut_evaluador" gorm:"unique;not null"`
 	Nombres_evaluador            string    `json:"nombres_evaluador"`
 	Apellidos_evaluador          string    `json:"apellidos_evaluador"`
