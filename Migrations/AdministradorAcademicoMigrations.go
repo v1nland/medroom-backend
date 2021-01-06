@@ -20,7 +20,7 @@ func AdministradorAcademicoMigrations() {
 		Rut_administrador_academico:                "44.444.444-4",
 		Nombres_administrador_academico:            "NOMBRE ADMINISTRADOR",
 		Apellidos_administrador_academico:          "APELLIDO ACADEMICO",
-		Hash_contrasena_administrador_academico:    "hash",
+		Hash_contrasena_administrador_academico:    "d04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa",
 		Correo_electronico_administrador_academico: "administrador.academico@udp.cl",
 		Telefono_fijo_administrador_academico:      "12345678",
 		Telefono_celular_administrador_academico:   "12345678",
