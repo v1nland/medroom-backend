@@ -25,7 +25,7 @@ func GetOneCalificacionEstudiante(u *Models.CalificacionEstudiante, id string) (
 }
 
 func GetOneCalificacionEstudianteByIdEvaluacion(u *Models.CalificacionEstudiante, id_evaluacion string, id_estudiante string) (err error) {
-	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("id_evaluacion = ? AND id_estudiante = ?", id_evaluacion, id_estudiante).First(u).Error; err != nil {
+	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Preload("Puntajes_calificacion_estudiante.Competencia_puntaje").Where("id_evaluacion = ? AND id_estudiante = ?", id_evaluacion, id_estudiante).First(u).Error; err != nil {
 		return err
 	}
 	return nil
