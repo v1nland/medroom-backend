@@ -11,7 +11,7 @@ import (
 )
 
 func GetAllEvaluadores(u *[]Models.Evaluador) (err error) {
-	if err = Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Find(u).Error; err != nil {
+	if err = Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Order("created_at asc").Find(u).Error; err != nil {
 		return err
 	}
 	return nil

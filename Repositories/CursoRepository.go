@@ -11,7 +11,7 @@ import (
 )
 
 func GetAllCursos(u *[]Models.Curso) (err error) {
-	if err = Config.DB.Preload(clause.Associations).Find(u).Error; err != nil {
+	if err = Config.DB.Preload(clause.Associations).Order("created_at asc").Find(u).Error; err != nil {
 		return err
 	}
 	return nil
