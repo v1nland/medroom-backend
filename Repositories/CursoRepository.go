@@ -25,7 +25,7 @@ func GetOneCurso(u *Models.Curso, id string) (err error) {
 }
 
 func GetCursosEstudiante(u *[]Models.Curso, id_estudiante string) (err error) {
-	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Table("estudiantes").Select("c.*").Joins("JOIN estudiantes_grupos eg ON eg.id_estudiante = estudiantes.id").Joins("JOIN grupos g ON eg.id_grupo = g.id").Joins("JOIN cursos c ON g.id_curso = c.id").Where("estudiantes.id = ?", id_estudiante).Find(u).Error; err != nil {
+	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Table("estudiantes").Select("c.*").Joins("JOIN estudiantes_grupos eg ON eg.id_estudiante = estudiantes.id").Joins("JOIN grupos g ON eg.id_grupo = g.id").Joins("JOIN cursos c ON g.id_curso = c.id").Where("estudiantes.id = ?", id_estudiante).Group("c.id").Find(u).Error; err != nil {
 		return err
 	}
 	return nil
@@ -39,7 +39,7 @@ func GetOneCursoEstudiante(u *Models.Curso, id string, id_estudiante string) (er
 }
 
 func GetCursosEvaluador(u *[]Models.Curso, id_evaluador string) (err error) {
-	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Table("evaluadores").Select("c.*").Joins("JOIN evaluadores_grupos eg ON eg.id_evaluador = evaluadores.id").Joins("JOIN grupos g ON eg.id_grupo = g.id").Joins("JOIN cursos c ON g.id_curso = c.id").Where("evaluadores.id = ?", id_evaluador).Find(u).Error; err != nil {
+	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Table("evaluadores").Select("c.*").Joins("JOIN evaluadores_grupos eg ON eg.id_evaluador = evaluadores.id").Joins("JOIN grupos g ON eg.id_grupo = g.id").Joins("JOIN cursos c ON g.id_curso = c.id").Where("evaluadores.id = ?", id_evaluador).Group("c.id").Find(u).Error; err != nil {
 		return err
 	}
 	return nil
