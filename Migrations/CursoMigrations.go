@@ -10,11 +10,6 @@ import (
 func CursoMigrations() {
 	fmt.Println("===== CURSO =====")
 
-	// var evaluadores []Models.Evaluador
-	// if err := Repositories.GetAllEvaluadores(&evaluadores); err != nil {
-	// 	panic("NO EXISTEN EVALUADORES")
-	// }
-
 	container := &Models.Curso{
 		Id_periodo: 1,
 		Grupos_curso: []Models.Grupo{
@@ -101,6 +96,12 @@ func CursoMigrations() {
 		panic("NO SE PUDO MIGRAR CURSO 'NINJUTSU'")
 	}
 
+	// add another evaluador
+	var evaluadores []Models.Evaluador
+	if err := Repositories.GetAllEvaluadores(&evaluadores); err != nil {
+		panic("NO EXISTEN EVALUADORES")
+	}
+
 	container = &Models.Curso{
 		Id_periodo: 1,
 		Grupos_curso: []Models.Grupo{
@@ -119,6 +120,7 @@ func CursoMigrations() {
 						Recinto_evaluador:            "ACADEMIA NINJA DE KONOHA",
 						Cargo_evaluador:              "SENSEI",
 					},
+					evaluadores[0],
 				},
 				Estudiantes_grupo: []Models.Estudiante{
 					{
@@ -164,6 +166,8 @@ func CursoMigrations() {
 	if err := Repositories.AddNewCurso(container); err != nil {
 		panic("NO SE PUDO MIGRAR CURSO 'NINJUTSU AVANZADO'")
 	}
+
+	// Config.DB.Model(&container.Grupos_curso[0]).Association("Evaluadores_grupo").Append([]Models.Evaluador{evaluadores[0]})
 
 	container = &Models.Curso{
 		Id_periodo: 1,

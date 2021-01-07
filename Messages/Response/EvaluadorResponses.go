@@ -1,7 +1,9 @@
 package Response
 
+import "github.com/google/uuid"
+
 type ListEvaluadoresResponse struct {
-	Id                           string            `json:"id"`
+	Id                           uuid.UUID         `json:"id"`
 	Rol_evaluador                GetOneRolResponse `json:"rol_evaluador"`
 	Rut_evaluador                string            `json:"rut_evaluador"`
 	Nombres_evaluador            string            `json:"nombres_evaluador"`
@@ -14,7 +16,7 @@ type ListEvaluadoresResponse struct {
 }
 
 type GetOneEvaluadorResponse struct {
-	Id                           string            `json:"id"`
+	Id                           uuid.UUID         `json:"id"`
 	Rol_evaluador                GetOneRolResponse `json:"rol_evaluador"`
 	Rut_evaluador                string            `json:"rut_evaluador"`
 	Nombres_evaluador            string            `json:"nombres_evaluador"`
@@ -27,7 +29,7 @@ type GetOneEvaluadorResponse struct {
 }
 
 type GetMyEvaluadorResponse struct {
-	Id                           string            `json:"id"`
+	Id                           uuid.UUID         `json:"id"`
 	Rol_evaluador                GetOneRolResponse `json:"rol_evaluador"`
 	Rut_evaluador                string            `json:"rut_evaluador"`
 	Nombres_evaluador            string            `json:"nombres_evaluador"`
@@ -40,17 +42,17 @@ type GetMyEvaluadorResponse struct {
 }
 
 type AddNewEvaluadorResponse struct {
-	Id string `json:"id"`
+	Id uuid.UUID `json:"id"`
 }
 
 type PutOneEvaluadorResponse struct {
-	Id string `json:"id"`
+	Id uuid.UUID `json:"id"`
 }
 
 type DeleteEvaluadorResponse struct {
-	Id string `json:"id"`
+	Id uuid.UUID `json:"id"`
 }
 
 type PutMyEvaluadorResponse struct {
-	Id string `json:"id"`
+	Id uuid.UUID `json:"id"`
 }

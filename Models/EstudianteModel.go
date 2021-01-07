@@ -3,12 +3,11 @@ package Models
 import (
 	"time"
 
-	uuid "github.com/satori/go.uuid"
-	"gorm.io/gorm"
+	"github.com/google/uuid"
 )
 
 type Estudiante struct {
-	Id                            string                   `json:"id" sql:"type:uuid;primary_key;default:uuid_generate_v4()"`
+	Id                            uuid.UUID                `json:"id" gorm:"type:uuid;primary_key;default:uuid_generate_v4()"`
 	Id_rol                        int                      `json:"id_rol"`
 	Rol_estudiante                Rol                      `json:"rol_estudiante" gorm:"foreignKey:Id_rol"`
 	Calificaciones_estudiante     []CalificacionEstudiante `json:"calificaciones_estudiante" gorm:"foreignKey:Id_estudiante;references:id"`
@@ -28,7 +27,7 @@ func (u *Estudiante) TableName() string {
 	return "public.estudiantes"
 }
 
-func (u *Estudiante) BeforeCreate(tx *gorm.DB) (err error) {
-	u.Id = uuid.NewV4().String()
-	return
-}
+// func (u *Estudiante) BeforeCreate(tx *gorm.DB) (err error) {
+// 	u.Id = uuid.NewV4().String()
+// 	return
+// }

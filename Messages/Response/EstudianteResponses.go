@@ -1,7 +1,9 @@
 package Response
 
+import "github.com/google/uuid"
+
 type ListEstudiantesResponse struct {
-	Id                            string                               `json:"id"`
+	Id                            uuid.UUID                            `json:"id"`
 	Rol_estudiante                GetOneRolResponse                    `json:"rol_estudiante"`
 	Evaluaciones_estudiante       []ListEvaluacionesEstudianteResponse `json:"evaluaciones_estudiante"`
 	Id_grupo                      int                                  `json:"id_grupo"`
@@ -14,7 +16,7 @@ type ListEstudiantesResponse struct {
 }
 
 type GetOneEstudianteResponse struct {
-	Id                            string                               `json:"id"`
+	Id                            uuid.UUID                            `json:"id"`
 	Rol_estudiante                GetOneRolResponse                    `json:"rol_estudiante"`
 	Evaluaciones_estudiante       []ListEvaluacionesEstudianteResponse `json:"evaluaciones_estudiante"`
 	Id_grupo                      int                                  `json:"id_grupo"`
@@ -27,7 +29,7 @@ type GetOneEstudianteResponse struct {
 }
 
 type GetMyEstudianteResponse struct {
-	Id                            string                               `json:"id"`
+	Id                            uuid.UUID                            `json:"id"`
 	Rol_estudiante                GetOneRolResponse                    `json:"rol_estudiante"`
 	Evaluaciones_estudiante       []ListEvaluacionesEstudianteResponse `json:"evaluaciones_estudiante"`
 	Id_grupo                      int                                  `json:"id_grupo"`
@@ -40,17 +42,17 @@ type GetMyEstudianteResponse struct {
 }
 
 type AddNewEstudianteResponse struct {
-	Id string `json:"id"`
+	Id uuid.UUID `json:"id"`
 }
 
 type PutOneEstudianteResponse struct {
-	Id string `json:"id"`
+	Id uuid.UUID `json:"id"`
 }
 
 type DeleteEstudianteResponse struct {
-	Id string `json:"id"`
+	Id uuid.UUID `json:"id"`
 }
 
 type PutMyEstudianteResponse struct {
-	Id string `json:"id"`
+	Id uuid.UUID `json:"id"`
 }

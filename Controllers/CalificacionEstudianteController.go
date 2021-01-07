@@ -10,6 +10,7 @@ import (
 	"medroom-backend/Utils"
 
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
 
@@ -88,11 +89,11 @@ func AddNewCalificacionEstudiante(c *gin.Context) {
 	}
 
 	model := Models.CalificacionEstudiante{
-		Id_evaluador:                                         id_evaluador,
+		Id_evaluador:                                         uuid.MustParse(id_evaluador),
 		Id_periodo:                                           *input.Id_periodo,
 		Id_evaluacion:                                        Utils.ConvertStringToInt(id_evaluacion),
 		Puntajes_calificacion_estudiante:                     puntajes_calificacion_estudiante,
-		Id_estudiante:                                        id_estudiante,
+		Id_estudiante:                                        uuid.MustParse(id_estudiante),
 		Nombre_calificacion_estudiante:                       *input.Nombre_calificacion_estudiante,
 		Entorno_clinico_calificacion_estudiante:              *input.Entorno_clinico_calificacion_estudiante,
 		Paciente_calificacion_estudiante:                     *input.Paciente_calificacion_estudiante,

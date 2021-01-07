@@ -1,7 +1,9 @@
 package Response
 
+import "github.com/google/uuid"
+
 type ListAdministradoresAcademicosResponse struct {
-	Id                                         string            `json:"id"`
+	Id                                         uuid.UUID         `json:"id"`
 	Rol_administrador_academico                GetOneRolResponse `json:"rol_administrador_academico"`
 	Rut_administrador_academico                string            `json:"rut_administrador_academico"`
 	Nombres_administrador_academico            string            `json:"nombres_administrador_academico"`
@@ -12,7 +14,7 @@ type ListAdministradoresAcademicosResponse struct {
 }
 
 type GetOneAdministradorAcademicoResponse struct {
-	Id                                         string            `json:"id"`
+	Id                                         uuid.UUID         `json:"id"`
 	Rol_administrador_academico                GetOneRolResponse `json:"rol_administrador_academico"`
 	Rut_administrador_academico                string            `json:"rut_administrador_academico"`
 	Nombres_administrador_academico            string            `json:"nombres_administrador_academico"`
@@ -23,7 +25,7 @@ type GetOneAdministradorAcademicoResponse struct {
 }
 
 type GetMyAdministradorAcademicoResponse struct {
-	Id                                         string            `json:"id"`
+	Id                                         uuid.UUID         `json:"id"`
 	Rol_administrador_academico                GetOneRolResponse `json:"rol_administrador_academico"`
 	Rut_administrador_academico                string            `json:"rut_administrador_academico"`
 	Nombres_administrador_academico            string            `json:"nombres_administrador_academico"`
@@ -34,17 +36,17 @@ type GetMyAdministradorAcademicoResponse struct {
 }
 
 type AddNewAdministradorAcademicoResponse struct {
-	Id string `json:"id"`
+	Id uuid.UUID `json:"id"`
 }
 
 type PutOneAdministradorAcademicoResponse struct {
-	Id string `json:"id"`
+	Id uuid.UUID `json:"id"`
 }
 
 type PutMyAdministradorAcademicoResponse struct {
-	Id string `json:"id"`
+	Id uuid.UUID `json:"id"`
 }
 
 type DeleteAdministradorAcademicoResponse struct {
-	Id string `json:"id"`
+	Id uuid.UUID `json:"id"`
 }

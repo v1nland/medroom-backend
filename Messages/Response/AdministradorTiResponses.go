@@ -1,7 +1,9 @@
 package Response
 
+import "github.com/google/uuid"
+
 type ListAdministradoresTiResponse struct {
-	Id                                  string            `json:"id"`
+	Id                                  uuid.UUID         `json:"id"`
 	Rol_administrador_ti                GetOneRolResponse `json:"rol_administrador_ti"`
 	Rut_administrador_ti                string            `json:"rut_administrador_ti"`
 	Nombres_administrador_ti            string            `json:"nombres_administrador_ti"`
@@ -12,7 +14,7 @@ type ListAdministradoresTiResponse struct {
 }
 
 type GetOneAdministradorTiResponse struct {
-	Id                                  string            `json:"id"`
+	Id                                  uuid.UUID         `json:"id"`
 	Rol_administrador_ti                GetOneRolResponse `json:"rol_administrador_ti"`
 	Rut_administrador_ti                string            `json:"rut_administrador_ti"`
 	Nombres_administrador_ti            string            `json:"nombres_administrador_ti"`
@@ -23,7 +25,7 @@ type GetOneAdministradorTiResponse struct {
 }
 
 type GetMyAdministradorTiResponse struct {
-	Id                                  string            `json:"id"`
+	Id                                  uuid.UUID         `json:"id"`
 	Rol_administrador_ti                GetOneRolResponse `json:"rol_administrador_ti"`
 	Rut_administrador_ti                string            `json:"rut_administrador_ti"`
 	Nombres_administrador_ti            string            `json:"nombres_administrador_ti"`
@@ -34,17 +36,17 @@ type GetMyAdministradorTiResponse struct {
 }
 
 type AddNewAdministradorTiResponse struct {
-	Id string `json:"id"`
+	Id uuid.UUID `json:"id"`
 }
 
 type PutOneAdministradorTiResponse struct {
-	Id string `json:"id"`
+	Id uuid.UUID `json:"id"`
 }
 
 type PutMyAdministradorTiResponse struct {
-	Id string `json:"id"`
+	Id uuid.UUID `json:"id"`
 }
 
 type DeleteAdministradorTiResponse struct {
-	Id string `json:"id"`
+	Id uuid.UUID `json:"id"`
 }

@@ -3,12 +3,11 @@ package Models
 import (
 	"time"
 
-	uuid "github.com/satori/go.uuid"
-	"gorm.io/gorm"
+	"github.com/google/uuid"
 )
 
 type AdministradorTi struct {
-	Id                                  string    `json:"id" sql:"type:uuid;primary_key;default:uuid_generate_v4()"`
+	Id                                  uuid.UUID `json:"id" gorm:"type:uuid;primary_key;default:uuid_generate_v4()"`
 	Id_rol                              int       `json:"id_rol"`
 	Rol_administrador_ti                Rol       `json:"rol_administrador_ti" gorm:"foreignKey:Id_rol"`
 	Rut_administrador_ti                string    `json:"rut_administrador_ti" gorm:"unique;not null"`
@@ -24,9 +23,4 @@ type AdministradorTi struct {
 
 func (u *AdministradorTi) TableName() string {
 	return "public.administradores_ti"
-}
-
-func (u *AdministradorTi) BeforeCreate(tx *gorm.DB) (err error) {
-	u.Id = uuid.NewV4().String()
-	return
 }
