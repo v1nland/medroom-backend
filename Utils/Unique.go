@@ -4,7 +4,16 @@ import (
 	"medroom-backend/Messages/Query"
 )
 
-func BuildUniqueEvaluaciones(result []Query.CalificacionesEstudiantePorCompetencia) []string {
+func BuildUniqueEvaluacionesCompetencia(result []Query.CalificacionesEstudiantePorCompetencia) []string {
+	var nombres_evaluaciones []string
+	for i := 0; i < len(result); i++ {
+		nombres_evaluaciones = append(nombres_evaluaciones, result[i].Nombre_evaluacion)
+	}
+
+	return Unique(nombres_evaluaciones)
+}
+
+func BuildUniqueEvaluacionesEvaluacion(result []Query.CalificacionesEstudiantePorEvaluacion) []string {
 	var nombres_evaluaciones []string
 	for i := 0; i < len(result); i++ {
 		nombres_evaluaciones = append(nombres_evaluaciones, result[i].Nombre_evaluacion)

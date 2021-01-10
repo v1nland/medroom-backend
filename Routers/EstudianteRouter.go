@@ -43,7 +43,7 @@ func SetupEstudianteRouter(r *gin.Engine) *gin.Engine {
 
 		// reports
 		router.GET("me/cursos/:id_curso/grupos/:id_grupo/estadisticas/evolucion-por-competencia", Controllers.EvolucionEstudiantePorCompetencia)
-		// router.GET("me/cursos/:id_curso/grupos/:id_grupo/estadisticas/evolucion/competencia/:id_competencia", Controllers.EvolucionEstudiantePorCompetencia)
+		router.GET("me/cursos/:id_curso/grupos/:id_grupo/estadisticas/evolucion-por-evaluacion", Controllers.EvolucionEstudiantePorEvaluacion)
 	}
 
 	return r

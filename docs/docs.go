@@ -1941,6 +1941,54 @@ var doc = `{
                 }
             }
         },
+        "/estudiantes/me/cursos/{id_curso}/grupos/{id_grupo}/estadisticas/evolucion-por-evaluacion": {
+            "get": {
+                "description": "Obtiene la evolución de un estudiante según evaluacion",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "02 - Estudiantes"
+                ],
+                "summary": "Evolución por evaluacion",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id del curso",
+                        "name": "id_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Id del grupo",
+                        "name": "id_grupo",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Swagger.EvolucionEstudiantePorEvaluacionSwagger"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
         "/estudiantes/me/cursos/{id_curso}/grupos/{id_grupo}/evaluaciones": {
             "get": {
                 "description": "Lista todas los evaluaciones disponibles de un estudiante de un grupo",
@@ -3354,6 +3402,40 @@ var doc = `{
                 }
             }
         },
+        "Response.EvolucionEstudiantePorEvaluacionResponse": {
+            "type": "object",
+            "properties": {
+                "eje_x": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "eje_y": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "valores": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "promedio_estudiante": {
+                                    "type": "number"
+                                },
+                                "promedio_grupo": {
+                                    "type": "number"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "Response.GetCursosEstudianteResponse": {
             "type": "object",
             "properties": {
@@ -4675,6 +4757,20 @@ var doc = `{
             "properties": {
                 "data": {
                     "$ref": "#/definitions/Response.EvolucionEstudiantePorCompetenciaResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "Swagger.EvolucionEstudiantePorEvaluacionSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/Response.EvolucionEstudiantePorEvaluacionResponse"
                 },
                 "meta": {
                     "type": "string"

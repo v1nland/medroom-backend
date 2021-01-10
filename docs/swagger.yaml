@@ -473,6 +473,28 @@ definitions:
           type: array
         type: object
     type: object
+  Response.EvolucionEstudiantePorEvaluacionResponse:
+    properties:
+      eje_x:
+        items:
+          type: string
+        type: array
+      eje_y:
+        items:
+          type: integer
+        type: array
+      valores:
+        additionalProperties:
+          items:
+            properties:
+              promedio_estudiante:
+                type: number
+              promedio_grupo:
+                type: number
+            type: object
+          type: array
+        type: object
+    type: object
   Response.GetCursosEstudianteResponse:
     properties:
       grupos_curso:
@@ -1333,6 +1355,15 @@ definitions:
     properties:
       data:
         $ref: '#/definitions/Response.EvolucionEstudiantePorCompetenciaResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.EvolucionEstudiantePorEvaluacionSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.EvolucionEstudiantePorEvaluacionResponse'
       meta:
         type: string
       status:
@@ -2996,6 +3027,38 @@ paths:
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Evolución por competencia
+      tags:
+      - 02 - Estudiantes
+  /estudiantes/me/cursos/{id_curso}/grupos/{id_grupo}/estadisticas/evolucion-por-evaluacion:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene la evolución de un estudiante según evaluacion
+      parameters:
+      - description: Id del curso
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: Id del grupo
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.EvolucionEstudiantePorEvaluacionSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Evolución por evaluacion
       tags:
       - 02 - Estudiantes
   /estudiantes/me/cursos/{id_curso}/grupos/{id_grupo}/evaluaciones:
