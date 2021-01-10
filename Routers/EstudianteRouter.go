@@ -42,7 +42,7 @@ func SetupEstudianteRouter(r *gin.Engine) *gin.Engine {
 		router.GET("me/cursos/:id_curso/grupos/:id_grupo/evaluaciones/:id_evaluacion/calificacion", Controllers.GetOneCalificacionEstudiante)
 
 		// reports
-		router.GET("me/cursos/:id_curso/grupos/:id_grupo/estadisticas/evolucion/evaluacion/:id_evaluacion", Controllers.EvolucionEstudiantePorEvaluacion)
+		router.GET("me/cursos/:id_curso/grupos/:id_grupo/estadisticas/evolucion-por-competencia", Controllers.EvolucionEstudiantePorCompetencia)
 		// router.GET("me/cursos/:id_curso/grupos/:id_grupo/estadisticas/evolucion/competencia/:id_competencia", Controllers.EvolucionEstudiantePorCompetencia)
 	}
 

@@ -1,129 +1,93 @@
 package Controllers
 
 import (
+	"errors"
 	"medroom-backend/ApiHelpers"
 	"medroom-backend/Messages/Query"
 	"medroom-backend/Messages/Response"
 	"medroom-backend/Repositories"
+	"medroom-backend/Utils"
 
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
-// @Summary Evolución por evaluación
-// @Description Obtiene la evolución de un estudiante según una evaluación
+// @Summary Evolución por competencia
+// @Description Obtiene la evolución de un estudiante según competencia
 // @Tags 02 - Estudiantes
 // @Accept  json
 // @Produce  json
-// @Param   id_evaluacion     path    string     true        "Id de la evaluación"
-// @Success 200 {array} Swagger.EvolucionEstudiantePorEvaluacionSwagger "OK"
+// @Param   id_curso     path    string     true        "Id del curso"
+// @Param   id_grupo     path    string     true        "Id del grupo"
+// @Success 200 {array} Swagger.EvolucionEstudiantePorCompetenciaSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /estudiantes/me/estadisticas/evolucion/evaluacion/{id_evaluacion} [get]
-func EvolucionEstudiantePorEvaluacion(c *gin.Context) {
+// @Router /estudiantes/me/cursos/{id_curso}/grupos/{id_grupo}/estadisticas/evolucion-por-competencia [get]
+func EvolucionEstudiantePorCompetencia(c *gin.Context) {
 	// params
-	// id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
+	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
 	// id_curso := c.Params.ByName("id_curso")
 	id_grupo := c.Params.ByName("id_grupo")
-	id_evaluacion := c.Params.ByName("id_evaluacion")
 
-	var promedios []Query.PromedioCalificacionEvaluacion
-	if err := Repositories.PromedioCalificacionEvaluacion(&promedios, id_evaluacion, id_grupo); err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
+	var calificaciones_estudiante []Query.CalificacionesEstudiantePorCompetencia
+	if err := Repositories.CalificacionesEstudiantePorCompetencia(&calificaciones_estudiante, id_grupo, id_estudiante); err != nil {
+		if !errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondError(c, 500, "default")
+			return
+		}
 	}
 
-	var response []Response.PromedioCalificacionEvaluacionResponse
-	for i := 0; i < len(promedios); i++ {
-		response = append(response)
+	// initialize response
+	response_container := &Response.EvolucionEstudiantePorCompetenciaResponse{
+		Eje_x: Utils.BuildUniqueEvaluaciones(calificaciones_estudiante),
+		Eje_y: []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
+		Valores: map[string][]struct {
+			Puntaje_estudiante int     `json:"puntaje_estudiante"`
+			Promedio_grupo     float64 `json:"promedio_grupo"`
+		}{},
+	}
+
+	// para cada elemento del eje x
+	for i := 0; i < len(calificaciones_estudiante); i++ {
+		response_container.Valores[calificaciones_estudiante[i].Id_competencia] = append(response_container.Valores[calificaciones_estudiante[i].Id_competencia], struct {
+			Puntaje_estudiante int     `json:"puntaje_estudiante"`
+			Promedio_grupo     float64 `json:"promedio_grupo"`
+		}{
+			calificaciones_estudiante[i].Calificacion_puntaje,
+			calificaciones_estudiante[i].Promedio_calificacion_puntaje,
+		})
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, promedios)
+	ApiHelpers.RespondJSON(c, 200, response_container)
 }
 
-// // @Summary Evolución por competencia
-// // @Description Obtiene la evolución de un estudiante según una competencia
-// // @Tags 02 - Estudiantes
-// // @Accept  json
-// // @Produce  json
-// // @Param   codigo_competencia     path    string     true        "Código de la competencia"
-// // @Success 200 {array} Swagger.EvolucionEstudiantePorCompetenciaSwagger "OK"
-// // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// // @Router /estudiantes/me/estadisticas/evolucion/competencia/{codigo_competencia} [get]
-// func EvolucionEstudiantePorCompetencia(c *gin.Context) {
+// @Summary Evolución por competencia
+// @Description Obtiene la evolución de un estudiante según una competencia
+// @Tags 02 - Estudiantes
+// @Accept  json
+// @Produce  json
+// @Param   codigo_competencia     path    string     true        "Código de la competencia"
+// @Success 200 {array} Swagger.EvolucionEstudiantePorCompetenciaSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /estudiantes/me/estadisticas/evolucion/competencia/{codigo_competencia} [get]
+// func EvolucionEstudiantePorEvaluacion(c *gin.Context) {
 // 	// params
-// 	codigo_competencia := c.Params.ByName("codigo_competencia")
-// 	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
+// 	// id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
+// 	// id_curso := c.Params.ByName("id_curso")
+// 	id_grupo := c.Params.ByName("id_grupo")
+// 	id_evaluacion := c.Params.ByName("id_evaluacion")
 
-// 	// model estudiante
-// 	var estudiante Models.Estudiante
-// 	if err := Repositories.GetOneEstudiante(&estudiante, id_estudiante); err != nil {
+// 	var promedios []Query.PromedioCalificacionEvaluacion
+// 	if err := Repositories.PromedioCalificacionEvaluacion(&promedios, id_evaluacion, id_grupo); err != nil {
 // 		ApiHelpers.RespondError(c, 500, "default")
 // 		return
 // 	}
 
-// 	// model grupo estudiante
-// 	// var grupo_estudiante Models.Grupo
-// 	// if err := Repositories.GetOneGrupo(&grupo_estudiante, Utils.ConvertIntToString(estudiante.Id_grupo)); err != nil {
-// 	// 	ApiHelpers.RespondError(c, 500, "default")
-// 	// 	return
-// 	// }
-
-// 	// // model curso estudiante
-// 	// var curso_estudiante Models.Curso
-// 	// if err := Repositories.GetOneCurso(&curso_estudiante, Utils.ConvertIntToString(grupo_estudiante.Id_curso)); err != nil {
-// 	// 	ApiHelpers.RespondError(c, 500, "default")
-// 	// 	return
-// 	// }
-
-// 	// calculate promedio estudiante
-// 	suma_notas_estudiante := 0.0
-// 	contador_estudiante := 0.0
-// 	for k := 0; k < len(estudiante.Evaluaciones_estudiante); k++ {
-// 		for m := 0; m < len(estudiante.Evaluaciones_estudiante[k].Puntajes_evaluacion); m++ {
-// 			if estudiante.Evaluaciones_estudiante[k].Puntajes_evaluacion[m].Codigo_competencia_puntaje == codigo_competencia {
-// 				suma_notas_estudiante += float64(estudiante.Evaluaciones_estudiante[k].Puntajes_evaluacion[m].Calificacion_puntaje)
-// 				contador_estudiante++
-// 			}
-// 		}
-// 	}
-
-// 	// // calculate promedio grupo
-// 	// suma_notas_grupo := 0.0
-// 	// contador_grupo := 0.0
-// 	// for j := 0; j < len(grupo_estudiante.Estudiantes_grupo); j++ {
-// 	// 	for k := 0; k < len(grupo_estudiante.Estudiantes_grupo[j].Evaluaciones_estudiante); k++ {
-// 	// 		for m := 0; m < len(grupo_estudiante.Estudiantes_grupo[j].Evaluaciones_estudiante[k].Puntajes_evaluacion); m++ {
-// 	// 			if grupo_estudiante.Estudiantes_grupo[j].Evaluaciones_estudiante[k].Puntajes_evaluacion[m].Codigo_competencia_puntaje == codigo_competencia {
-// 	// 				suma_notas_grupo += float64(grupo_estudiante.Estudiantes_grupo[j].Evaluaciones_estudiante[k].Puntajes_evaluacion[m].Calificacion_puntaje)
-// 	// 				contador_grupo++
-// 	// 			}
-// 	// 		}
-// 	// 	}
-// 	// }
-
-// 	// // calculate promedio curso
-// 	// suma_notas_curso := 0.0
-// 	// contador_curso := 0.0
-// 	// for i := 0; i < len(curso_estudiante.Grupos_curso); i++ {
-// 	// 	for j := 0; j < len(curso_estudiante.Grupos_curso[i].Estudiantes_grupo); j++ {
-// 	// 		for k := 0; k < len(curso_estudiante.Grupos_curso[i].Estudiantes_grupo[j].Evaluaciones_estudiante); k++ {
-// 	// 			for m := 0; m < len(curso_estudiante.Grupos_curso[i].Estudiantes_grupo[j].Evaluaciones_estudiante[k].Puntajes_evaluacion); m++ {
-// 	// 				if curso_estudiante.Grupos_curso[i].Estudiantes_grupo[j].Evaluaciones_estudiante[k].Puntajes_evaluacion[m].Codigo_competencia_puntaje == codigo_competencia {
-// 	// 					suma_notas_curso += float64(curso_estudiante.Grupos_curso[i].Estudiantes_grupo[j].Evaluaciones_estudiante[k].Puntajes_evaluacion[m].Calificacion_puntaje)
-// 	// 					contador_curso++
-// 	// 				}
-// 	// 			}
-// 	// 		}
-// 	// 	}
-// 	// }
-
-// 	response := &Response.EvolucionEstudiantePorCompetenciaResponse{
-// 		// Nombre_competencia:  codigo_competencia,
-// 		// Promedio_estudiante: float64(suma_notas_estudiante / contador_estudiante),
-// 		// Promedio_grupo:      float64(suma_notas_grupo / contador_grupo),
-// 		// Promedio_curso:      float64(suma_notas_curso / contador_curso),
+// 	var response []Response.PromedioCalificacionEvaluacionResponse
+// 	for i := 0; i < len(promedios); i++ {
+// 		response = append(response)
 // 	}
 
 // 	// output
-// 	ApiHelpers.RespondJSON(c, 200, response)
+// 	ApiHelpers.RespondJSON(c, 200, promedios)
 // }
