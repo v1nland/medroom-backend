@@ -1,248 +1,310 @@
 package Controllers
 
 import (
-	"github.com/gin-gonic/gin"
+	"errors"
 	"medroom-backend/ApiHelpers"
-	"medroom-backend/InputFormats"
+	"medroom-backend/Formats/Input"
+	"medroom-backend/Formats/Output"
+	"medroom-backend/Messages/Request"
 	"medroom-backend/Models"
-	"medroom-backend/OutputFormats"
 	"medroom-backend/Repositories"
-	"medroom-backend/RequestMessages"
 	"medroom-backend/Utils"
-)
 
-/*
-	*
-	*  FUNCIÓN ListCurso
-	*
-    *
-	*
-	*
-    *
-*/
+	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
+)
 
 // @Summary Lista de cursos
 // @Description Lista todos los cursos
-// @Tags Cursos
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} ResponseMessages.ListCursosResponse "OK"
+// @Success 200 {array} Swagger.ListCursosSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /cursos [get]
+// @Router /administracion-ti/cursos [get]
 func ListCursos(c *gin.Context) {
 	// model container
 	var container []Models.Curso
+	if err := Repositories.GetAllCursos(&container); err != nil {
+		if errors.Is(err, gorm.ErrEmptySlice) {
+			ApiHelpers.RespondJSON(c, 200, container)
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
 
-	// query
-	err := Repositories.GetAllCursos(&container)
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetCursosOutput(container))
+	// ApiHelpers.RespondJSON(c, 200, Output.ListCursosOutput(container))
+	ApiHelpers.RespondJSON(c, 200, container)
 }
 
-/*
-	*
-	*  FUNCIÓN GetOneCurso
-	*
-    *
-	*
-	*
-    *
-*/
-
 // @Summary Obtiene un curso
-// @Description Obtiene un curso según su UUID
-// @Tags Cursos
+// @Description Obtiene un curso según su Id
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   uuid_curso     path    string     true        "UUID del curso a buscar"
-// @Success 200 {object} ResponseMessages.GetOneCursoResponse "OK"
+// @Param   id_curso     path    string     true        "Id del curso a buscar"
+// @Success 200 {object} Swagger.GetOneCursoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /cursos/{uuid_curso} [get]
+// @Router /administracion-ti/cursos/{id_curso} [get]
 func GetOneCurso(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
 
 	// model container
 	var container Models.Curso
+	if err := Repositories.GetOneCurso(&container, id); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Curso not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
 
-	// query
-	err := Repositories.GetOneCurso(&container, id)
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetOneCursoOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.GetOneCursoOutput(container))
 }
-
-/*
-	*
-	*  FUNCIÓN AddNewCurso
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Agrega un nuevo curso
 // @Description Genera un nuevo curso con los datos entregados
-// @Tags Cursos
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   input_curso     body    RequestMessages.AddNewCursoPayload     true        "Curso a agregar"
-// @Success 200 {object} ResponseMessages.AddNewCursoResponse "OK"
+// @Param   input_curso     body    Request.AddNewCursoPayload     true        "Curso a agregar"
+// @Success 200 {object} Swagger.AddNewCursoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /cursos [post]
+// @Router /administracion-ti/cursos [post]
 func AddNewCurso(c *gin.Context) {
-	// input container
-	var container RequestMessages.AddNewCursoPayload
-
-	// input bind
-	if err := c.ShouldBind(&container); err != nil {
+	var input Request.AddNewCursoPayload
+	if err := c.ShouldBind(&input); err != nil {
 		ApiHelpers.RespondError(c, 400, "default")
 		return
 	}
 
-	// format input
-	InputFormats.AddNewCursoInput(&container)
+	Input.AddNewCursoInput(&input)
 
-	// generate model entity
-	model_container := Models.Curso{
-		Id_periodo:   container.Id_periodo,
-		Nombre_curso: container.Nombre_curso,
-		Sigla_curso:  container.Sigla_curso,
+	model := Models.Curso{
+		Id_periodo:   *input.Id_periodo,
+		Nombre_curso: *input.Nombre_curso,
+		Sigla_curso:  *input.Sigla_curso,
+		Estado_curso: true,
 	}
 
-	// query
-	err := Repositories.AddNewCurso(&model_container)
-	if err != nil {
+	if err := Repositories.AddNewCurso(&model); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.AddNewCursoOutput(model_container))
+	// ApiHelpers.RespondJSON(c, 200, Output.AddNewCursoOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, model)
 }
-
-/*
-	*
-	*  FUNCIÓN PutOneCurso
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Modifica un curso
 // @Description Modifica un curso con los datos entregados
-// @Tags Cursos
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   uuid_curso     path    string     true        "UUID del curso a modificar"
-// @Param   input_actualiza_curso     body    RequestMessages.PutOneCursoPayload     true        "Curso a modificar"
-// @Success 200 {object} ResponseMessages.PutOneCursoResponse "OK"
+// @Param   id_curso     path    string     true        "Id del curso a modificar"
+// @Param   input_actualiza_curso     body    Request.PutOneCursoPayload     true        "Curso a modificar"
+// @Success 200 {object} Swagger.PutOneCursoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /cursos/{uuid_curso} [put]
+// @Router /administracion-ti/cursos/{id_curso} [put]
 func PutOneCurso(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
 
-	// input container
-	var container RequestMessages.PutOneCursoPayload
-
-	// input bind
-	if err := c.ShouldBind(&container); err != nil {
+	// input input
+	var input Request.PutOneCursoPayload
+	if err := c.ShouldBind(&input); err != nil {
 		ApiHelpers.RespondError(c, 400, "default")
 		return
 	}
 
 	// format input
-	InputFormats.PutOneCursoInput(&container)
+	Input.PutOneCursoInput(&input)
 
 	// generate model entity
-	var model_container Models.Curso
+	var model Models.Curso
+	if err := Repositories.GetOneCurso(&model, id); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Curso not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
 
-	// get query
-	err := Repositories.GetOneCurso(&model_container, id)
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
 	// replace data in model entity
-	model_container = Models.Curso{
-		ID:           model_container.ID,
-		Id_periodo:   Utils.CheckUpdatedInt(container.Id_periodo, model_container.Id_periodo),
-		Nombre_curso: Utils.CheckUpdatedString(container.Nombre_curso, model_container.Nombre_curso),
-		Sigla_curso:  Utils.CheckUpdatedString(container.Sigla_curso, model_container.Sigla_curso),
+	model = Models.Curso{
+		Id:           model.Id,
+		Id_periodo:   Utils.CheckNullInt(input.Id_periodo, model.Id_periodo),
+		Nombre_curso: Utils.CheckNullString(input.Nombre_curso, model.Nombre_curso),
+		Sigla_curso:  Utils.CheckNullString(input.Sigla_curso, model.Sigla_curso),
 	}
 
-	// update foreign entity
-	err = Repositories.GetOnePeriodo(&model_container.Periodo_curso, Utils.ConvertIntToString(model_container.Id_periodo))
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
+	if err := Repositories.PutOneCurso(&model, id); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Curso not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
 		return
 	}
 
-	// put query
-	err = Repositories.PutOneCurso(&model_container, id)
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
-	}
-
-	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutOneCursoOutput(model_container))
+	// ApiHelpers.RespondJSON(c, 200, Output.PutOneCursoOutput(model))
+	ApiHelpers.RespondJSON(c, 200, model)
 }
-
-/*
-	*
-	*  FUNCIÓN DeleteCurso
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Elimina un curso
 // @Description Elimina un curso con los datos entregados
-// @Tags Cursos
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   uuid_curso     path    string     true        "UUID del curso a eliminar"
-// @Success 200 {object} ResponseMessages.DeleteCursoResponse "OK"
+// @Param   id_curso     path    string     true        "Id del curso a eliminar"
+// @Success 200 {object} Swagger.DeleteCursoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /cursos/{uuid_curso} [delete]
+// @Router /administracion-ti/cursos/{id_curso} [delete]
 func DeleteCurso(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
 
-	// model container
 	var container Models.Curso
+	if err := Repositories.GetOneCurso(&container, id); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Curso not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
 
-	// get query
-	err := Repositories.GetOneCurso(&container, id)
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// query
-	err = Repositories.DeleteCurso(&container, id)
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
+	if err := Repositories.DeleteCurso(&container, id); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Curso not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
 		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.DeleteCursoOutput(container))
+	// ApiHelpers.RespondJSON(c, 200, Output.DeleteCursoOutput(container))
+	ApiHelpers.RespondJSON(c, 200, container)
+}
+
+// @Summary Obtiene los cursos de un estudiante
+// @Description Obtiene los cursos de un estudiante según su token
+// @Tags 02 - Estudiantes
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} Swagger.GetCursosEstudianteSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /estudiantes/me/cursos [get]
+func GetCursosEstudiante(c *gin.Context) {
+	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
+
+	var cursos []Models.Curso
+	if err := Repositories.GetCursosEstudiante(&cursos, id_estudiante); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Curso not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
+		return
+	}
+
+	// ApiHelpers.RespondJSON(c, 200, Output.GetCursoEstudianteOutput(cursos))
+	ApiHelpers.RespondJSON(c, 200, cursos)
+}
+
+// @Summary Obtiene un curso de un estudiante
+// @Description Obtiene un curso de un estudiante según su token
+// @Tags 02 - Estudiantes
+// @Accept  json
+// @Produce  json
+// @Param   id_curso     path    string     true        "Id del curso a buscar"
+// @Success 200 {object} Swagger.GetOneCursoEstudianteSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /estudiantes/me/cursos/{id_curso} [get]
+func GetOneCursoEstudiante(c *gin.Context) {
+	id_curso := c.Params.ByName("id_curso")
+	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
+
+	var curso Models.Curso
+	if err := Repositories.GetOneCursoEstudiante(&curso, id_curso, id_estudiante); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Curso not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
+		return
+	}
+
+	// ApiHelpers.RespondJSON(c, 200, Output.GetCursoEstudianteOutput(cursos))
+	ApiHelpers.RespondJSON(c, 200, curso)
+}
+
+// @Summary Obtiene los cursos de un evaluador
+// @Description Obtiene los cursos de un evaluador según su token
+// @Tags 03 - Evaluadores
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} Swagger.GetCursosEvaluadorSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /evaluadores/me/cursos [get]
+func GetCursosEvaluador(c *gin.Context) {
+	// params
+	id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
+
+	var cursos []Models.Curso
+	if err := Repositories.GetCursosEvaluador(&cursos, id_evaluador); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Curso not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
+		return
+	}
+
+	// ApiHelpers.RespondJSON(c, 200, Output.GetCursoEvaluadorOutput(cursos))
+	ApiHelpers.RespondJSON(c, 200, cursos)
+}
+
+// @Summary Obtiene un curso de un evaluador
+// @Description Obtiene un curso de un evaluador según su token
+// @Tags 03 - Evaluadores
+// @Accept  json
+// @Produce  json
+// @Param   id_curso     path    string     true        "Id del curso a buscar"
+// @Success 200 {object} Swagger.GetOneCursoEvaluadorSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /evaluadores/me/cursos/{id_curso} [get]
+func GetOneCursoEvaluador(c *gin.Context) {
+	id_curso := c.Params.ByName("id_curso")
+	id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
+
+	var curso Models.Curso
+	if err := Repositories.GetOneCursoEvaluador(&curso, id_curso, id_evaluador); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Curso not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
+		return
+	}
+
+	// ApiHelpers.RespondJSON(c, 200, Output.GetCursoEstudianteOutput(cursos))
+	ApiHelpers.RespondJSON(c, 200, curso)
 }

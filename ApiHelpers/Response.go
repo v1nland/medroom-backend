@@ -2,23 +2,15 @@ package ApiHelpers
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"medroom-backend/Utils"
+
+	"github.com/gin-gonic/gin"
 )
 
-/*
-*
-*
-*
-*	RESPONSE: JSON
-*
-*
-*
- */
 type ResponseData struct {
-	Status bool
-	Meta   string
-	Data   interface{}
+	Status bool        `json:"status"`
+	Meta   string      `json:"meta"`
+	Data   interface{} `json:"data"`
 }
 
 func RespondJSON(w *gin.Context, status int, payload interface{}) {
@@ -37,15 +29,6 @@ func RespondJSON(w *gin.Context, status int, payload interface{}) {
 	w.JSON(200, res)
 }
 
-/*
-*
-*
-*
-*	RESPONSE: ERROR
-*
-*
-*
- */
 type ResponseError struct {
 	Error       string
 	Description string

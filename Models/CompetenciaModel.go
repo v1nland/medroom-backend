@@ -1,14 +1,8 @@
 package Models
 
-import (
-	"time"
-)
-
 type Competencia struct {
-	ID                 int       `json:"id"`
-	Nombre_competencia string    `json:"nombre_competencia"`
-	CreatedAt          time.Time `json:"created_at"`
-	UpdatedAt          time.Time `json:"updated_at"`
+	Id                 string `json:"id" sql:"primary_key" gorm:"primaryKey:unique;not null"`
+	Nombre_competencia string `json:"nombre_competencia" gorm:"unique;not null"`
 }
 
 func (u *Competencia) TableName() string {

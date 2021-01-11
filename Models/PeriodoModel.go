@@ -5,8 +5,8 @@ import (
 )
 
 type Periodo struct {
-	ID             int       `json:"id"`
-	Nombre_periodo string    `json:"nombre_periodo"`
+	Id             int       `json:"id"`
+	Nombre_periodo string    `json:"nombre_periodo" gorm:"unique;not null"`
 	CreatedAt      time.Time `json:"created_at"`
 	UpdatedAt      time.Time `json:"updated_at"`
 }

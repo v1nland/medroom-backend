@@ -7,12 +7,74 @@ definitions:
       error:
         type: string
     type: object
-  RequestMessages.AddNewCompetenciaPayload:
+  Request.AddNewAdministradorAcademicoPayload:
     properties:
-      nombre_competencia:
+      apellidos_administrador_academico:
+        type: string
+      correo_electronico_administrador_academico:
+        type: string
+      hash_contrasena_administrador_academico:
+        type: string
+      id_rol:
+        type: integer
+      nombres_administrador_academico:
+        type: string
+      rut_administrador_academico:
+        type: string
+      telefono_celular_administrador_academico:
+        type: string
+      telefono_fijo_administrador_academico:
         type: string
     type: object
-  RequestMessages.AddNewCursoPayload:
+  Request.AddNewAdministradorTiPayload:
+    properties:
+      apellidos_administrador_ti:
+        type: string
+      correo_electronico_administrador_ti:
+        type: string
+      hash_contrasena_administrador_ti:
+        type: string
+      id_grupo:
+        type: integer
+      id_rol:
+        type: integer
+      nombres_administrador_ti:
+        type: string
+      rut_administrador_ti:
+        type: string
+      telefono_celular_administrador_ti:
+        type: string
+      telefono_fijo_administrador_ti:
+        type: string
+    type: object
+  Request.AddNewCalificacionEstudiantePayload:
+    properties:
+      asunto_principal_consulta_calificacion_estudiante:
+        type: string
+      categoria_observador_calificacion_estudiante:
+        type: string
+      complejidad_caso_calificacion_estudiante:
+        type: string
+      entorno_clinico_calificacion_estudiante:
+        type: string
+      id_periodo:
+        type: integer
+      nombre_calificacion_estudiante:
+        type: string
+      numero_observaciones_previas_calificacion_estudiante:
+        type: string
+      observacion_calificacion_calificacion_estudiante:
+        type: string
+      paciente_calificacion_estudiante:
+        type: string
+      puntajes_calificacion_estudiante:
+        items:
+          $ref: '#/definitions/Request.PuntajesCalificacionEstudiante'
+        type: array
+      tiempo_utilizado_calificacion_estudiante:
+        type: integer
+    type: object
+  Request.AddNewCursoPayload:
     properties:
       id_periodo:
         type: integer
@@ -21,7 +83,7 @@ definitions:
       sigla_curso:
         type: string
     type: object
-  RequestMessages.AddNewEstudiantePayload:
+  Request.AddNewEstudiantePayload:
     properties:
       apellidos_estudiante:
         type: string
@@ -29,8 +91,6 @@ definitions:
         type: string
       hash_contrasena_estudiante:
         type: string
-      id_grupo:
-        type: integer
       id_rol:
         type: integer
       nombres_estudiante:
@@ -42,36 +102,12 @@ definitions:
       telefono_fijo_estudiante:
         type: string
     type: object
-  RequestMessages.AddNewEvaluacionPayload:
+  Request.AddNewEvaluacionPayload:
     properties:
-      asunto_principal_consulta_evaluacion:
-        type: string
-      categoria_observador_evaluacion:
-        type: string
-      complejidad_caso_evaluacion:
-        type: string
-      entorno_clinico_evaluacion:
-        type: string
-      id_competencia:
-        type: integer
-      id_estudiante:
-        type: string
-      id_evaluador:
-        type: string
-      id_periodo:
-        type: integer
       nombre_evaluacion:
         type: string
-      numero_observaciones_previas_evaluacion:
-        type: string
-      observacion_calificacion_evaluacion:
-        type: string
-      paciente_evaluacion:
-        type: string
-      tiempo_utilizado_evaluacion:
-        type: integer
     type: object
-  RequestMessages.AddNewEvaluadorPayload:
+  Request.AddNewEvaluadorPayload:
     properties:
       apellidos_evaluador:
         type: string
@@ -94,7 +130,7 @@ definitions:
       telefono_fijo_evaluador:
         type: string
     type: object
-  RequestMessages.AddNewGrupoPayload:
+  Request.AddNewGrupoPayload:
     properties:
       id_curso:
         type: integer
@@ -105,33 +141,154 @@ definitions:
       sigla_grupo:
         type: string
     type: object
-  RequestMessages.AddNewPeriodoPayload:
+  Request.AddNewPeriodoPayload:
     properties:
       nombre_periodo:
         type: string
     type: object
-  RequestMessages.AddNewPuntajePayload:
-    properties:
-      calificacion_puntaje:
-        type: integer
-      id_competencia:
-        type: integer
-      id_evaluacion:
-        type: integer
-      nivel_logro_puntaje:
-        type: string
-    type: object
-  RequestMessages.AddNewRolPayload:
+  Request.AddNewRolPayload:
     properties:
       nombre_rol:
         type: string
     type: object
-  RequestMessages.PutOneCompetenciaPayload:
+  Request.LoginAdministradorAcademicoPayload:
     properties:
-      nombre_competencia:
+      correo_electronico_administrador_academico:
+        type: string
+      hash_contrasena_administrador_academico:
         type: string
     type: object
-  RequestMessages.PutOneCursoPayload:
+  Request.LoginAdministradorTiPayload:
+    properties:
+      correo_electronico_administrador_ti:
+        type: string
+      hash_contrasena_administrador_ti:
+        type: string
+    type: object
+  Request.LoginEstudiantePayload:
+    properties:
+      correo_electronico_estudiante:
+        type: string
+      hash_contrasena_estudiante:
+        type: string
+    type: object
+  Request.LoginEvaluadorPayload:
+    properties:
+      correo_electronico_evaluador:
+        type: string
+      hash_contrasena_evaluador:
+        type: string
+    type: object
+  Request.PuntajesCalificacionEstudiante:
+    properties:
+      calificacion_puntaje:
+        type: integer
+      feedback_puntaje:
+        type: string
+      id_competencia:
+        type: string
+    type: object
+  Request.PutMyAdministradorAcademicoPayload:
+    properties:
+      apellidos_administrador_academico:
+        type: string
+      correo_electronico_administrador_academico:
+        type: string
+      hash_contrasena_administrador_academico:
+        type: string
+      id_rol:
+        type: integer
+      nombres_administrador_academico:
+        type: string
+      rut_administrador_academico:
+        type: string
+      telefono_celular_administrador_academico:
+        type: string
+      telefono_fijo_administrador_academico:
+        type: string
+    type: object
+  Request.PutMyAdministradorTiPayload:
+    properties:
+      apellidos_administrador_ti:
+        type: string
+      correo_electronico_administrador_ti:
+        type: string
+      hash_contrasena_administrador_ti:
+        type: string
+      id_grupo:
+        type: integer
+      id_rol:
+        type: integer
+      nombres_administrador_ti:
+        type: string
+      rut_administrador_ti:
+        type: string
+      telefono_celular_administrador_ti:
+        type: string
+      telefono_fijo_administrador_ti:
+        type: string
+    type: object
+  Request.PutMyEstudiantePayload:
+    properties:
+      hash_contrasena_estudiante:
+        type: string
+      telefono_celular_estudiante:
+        type: string
+      telefono_fijo_estudiante:
+        type: string
+    type: object
+  Request.PutMyEvaluadorPayload:
+    properties:
+      cargo_evaluador:
+        type: string
+      hash_contrasena_evaluador:
+        type: string
+      telefono_celular_evaluador:
+        type: string
+      telefono_fijo_evaluador:
+        type: string
+    type: object
+  Request.PutOneAdministradorAcademicoPayload:
+    properties:
+      apellidos_administrador_academico:
+        type: string
+      correo_electronico_administrador_academico:
+        type: string
+      hash_contrasena_administrador_academico:
+        type: string
+      id_rol:
+        type: integer
+      nombres_administrador_academico:
+        type: string
+      rut_administrador_academico:
+        type: string
+      telefono_celular_administrador_academico:
+        type: string
+      telefono_fijo_administrador_academico:
+        type: string
+    type: object
+  Request.PutOneAdministradorTiPayload:
+    properties:
+      apellidos_administrador_ti:
+        type: string
+      correo_electronico_administrador_ti:
+        type: string
+      hash_contrasena_administrador_ti:
+        type: string
+      id_grupo:
+        type: integer
+      id_rol:
+        type: integer
+      nombres_administrador_ti:
+        type: string
+      rut_administrador_ti:
+        type: string
+      telefono_celular_administrador_ti:
+        type: string
+      telefono_fijo_administrador_ti:
+        type: string
+    type: object
+  Request.PutOneCursoPayload:
     properties:
       id_periodo:
         type: integer
@@ -140,7 +297,7 @@ definitions:
       sigla_curso:
         type: string
     type: object
-  RequestMessages.PutOneEstudiantePayload:
+  Request.PutOneEstudiantePayload:
     properties:
       apellidos_estudiante:
         type: string
@@ -148,10 +305,6 @@ definitions:
         type: string
       hash_contrasena_estudiante:
         type: string
-      id_grupo:
-        type: integer
-      id_rol:
-        type: integer
       nombres_estudiante:
         type: string
       rut_estudiante:
@@ -161,36 +314,7 @@ definitions:
       telefono_fijo_estudiante:
         type: string
     type: object
-  RequestMessages.PutOneEvaluacionPayload:
-    properties:
-      asunto_principal_consulta_evaluacion:
-        type: string
-      categoria_observador_evaluacion:
-        type: string
-      complejidad_caso_evaluacion:
-        type: string
-      entorno_clinico_evaluacion:
-        type: string
-      id_competencia:
-        type: integer
-      id_estudiante:
-        type: string
-      id_evaluador:
-        type: string
-      id_periodo:
-        type: integer
-      nombre_evaluacion:
-        type: string
-      numero_observaciones_previas_evaluacion:
-        type: string
-      observacion_calificacion_evaluacion:
-        type: string
-      paciente_evaluacion:
-        type: string
-      tiempo_utilizado_evaluacion:
-        type: integer
-    type: object
-  RequestMessages.PutOneEvaluadorPayload:
+  Request.PutOneEvaluadorPayload:
     properties:
       apellidos_evaluador:
         type: string
@@ -200,8 +324,6 @@ definitions:
         type: string
       hash_contrasena_evaluador:
         type: string
-      id_rol:
-        type: integer
       nombres_evaluador:
         type: string
       recinto_evaluador:
@@ -213,7 +335,7 @@ definitions:
       telefono_fijo_evaluador:
         type: string
     type: object
-  RequestMessages.PutOneGrupoPayload:
+  Request.PutOneGrupoPayload:
     properties:
       id_curso:
         type: integer
@@ -224,283 +346,275 @@ definitions:
       sigla_grupo:
         type: string
     type: object
-  RequestMessages.PutOnePeriodoPayload:
+  Request.PutOnePeriodoPayload:
     properties:
       nombre_periodo:
         type: string
     type: object
-  RequestMessages.PutOnePuntajePayload:
-    properties:
-      calificacion_puntaje:
-        type: integer
-      id_competencia:
-        type: integer
-      id_evaluacion:
-        type: integer
-      nivel_logro_puntaje:
-        type: string
-    type: object
-  RequestMessages.PutOneRolPayload:
+  Request.PutOneRolPayload:
     properties:
       nombre_rol:
         type: string
     type: object
-  ResponseMessages.AddNewCompetenciaResponse:
+  Response.AddNewAdministradorAcademicoResponse:
     properties:
-      nombre_competencia:
+      id:
         type: string
     type: object
-  ResponseMessages.AddNewCursoResponse:
+  Response.AddNewAdministradorTiResponse:
     properties:
-      id_periodo:
-        type: integer
-      nombre_curso:
-        type: string
-      sigla_curso:
+      id:
         type: string
     type: object
-  ResponseMessages.AddNewEstudianteResponse:
+  Response.AddNewCalificacionEstudianteResponse:
     properties:
-      apellidos_estudiante:
-        type: string
-      correo_electronico_estudiante:
-        type: string
-      id_grupo:
-        type: integer
-      id_rol:
-        type: integer
-      nombres_estudiante:
-        type: string
-      rut_estudiante:
-        type: string
-      telefono_celular_estudiante:
-        type: string
-      telefono_fijo_estudiante:
-        type: string
-    type: object
-  ResponseMessages.AddNewEvaluacionResponse:
-    properties:
-      asunto_principal_consulta_evaluacion:
-        type: string
-      categoria_observador_evaluacion:
-        type: string
-      complejidad_caso_evaluacion:
-        type: string
-      entorno_clinico_evaluacion:
-        type: string
-      id_competencia:
-        type: integer
-      id_curso:
-        type: string
-      id_evaluador:
-        type: string
-      id_periodo:
-        type: integer
-      nombre_evaluacion:
-        type: string
-      numero_observaciones_previas_evaluacion:
-        type: string
-      observacion_calificacion_evaluacion:
-        type: string
-      paciente_evaluacion:
-        type: string
-      tiempo_utilizado_evaluacion:
+      id:
         type: integer
     type: object
-  ResponseMessages.AddNewEvaluadorResponse:
+  Response.AddNewCursoResponse:
     properties:
-      apellidos_evaluador:
-        type: string
-      cargo_evaluador:
-        type: string
-      correo_electronico_evaluador:
-        type: string
-      id_rol:
-        type: integer
-      nombres_evaluador:
-        type: string
-      recinto_evaluador:
-        type: string
-      rut_evaluador:
-        type: string
-      telefono_celular_evaluador:
-        type: string
-      telefono_fijo_evaluador:
-        type: string
-    type: object
-  ResponseMessages.AddNewGrupoResponse:
-    properties:
-      id_curso:
-        type: integer
-      id_evaluador:
-        type: string
-      nombre_grupo:
-        type: string
-      sigla_grupo:
-        type: string
-    type: object
-  ResponseMessages.AddNewPeriodoResponse:
-    properties:
-      nombre_periodo:
-        type: string
-    type: object
-  ResponseMessages.AddNewPuntajeResponse:
-    properties:
-      calificacion_puntaje:
-        type: integer
-      id_competencia:
-        type: integer
-      id_evaluacion:
-        type: integer
-      nivel_logro_puntaje:
-        type: string
-    type: object
-  ResponseMessages.AddNewRolResponse:
-    properties:
-      nombre_rol:
-        type: string
-    type: object
-  ResponseMessages.DeleteCompetenciaResponse:
-    properties:
-      nombre_competencia:
-        type: string
-    type: object
-  ResponseMessages.DeleteCursoResponse:
-    properties:
-      id_periodo:
-        type: integer
-      nombre_curso:
-        type: string
-      sigla_curso:
-        type: string
-    type: object
-  ResponseMessages.DeleteEstudianteResponse:
-    properties:
-      apellidos_estudiante:
-        type: string
-      correo_electronico_estudiante:
-        type: string
-      id_grupo:
-        type: integer
-      id_rol:
-        type: integer
-      nombres_estudiante:
-        type: string
-      rut_estudiante:
-        type: string
-      telefono_celular_estudiante:
-        type: string
-      telefono_fijo_estudiante:
-        type: string
-    type: object
-  ResponseMessages.DeleteEvaluacionResponse:
-    properties:
-      asunto_principal_consulta_evaluacion:
-        type: string
-      categoria_observador_evaluacion:
-        type: string
-      complejidad_caso_evaluacion:
-        type: string
-      entorno_clinico_evaluacion:
-        type: string
-      id_competencia:
-        type: integer
-      id_curso:
-        type: string
-      id_evaluador:
-        type: string
-      id_periodo:
-        type: integer
-      nombre_evaluacion:
-        type: string
-      numero_observaciones_previas_evaluacion:
-        type: string
-      observacion_calificacion_evaluacion:
-        type: string
-      paciente_evaluacion:
-        type: string
-      tiempo_utilizado_evaluacion:
+      id:
         type: integer
     type: object
-  ResponseMessages.DeleteEvaluadorResponse:
+  Response.AddNewEstudianteResponse:
     properties:
-      apellidos_evaluador:
+      id:
         type: string
-      cargo_evaluador:
-        type: string
-      correo_electronico_evaluador:
-        type: string
-      id_rol:
+    type: object
+  Response.AddNewEvaluacionResponse:
+    properties:
+      id:
         type: integer
-      nombres_evaluador:
-        type: string
-      recinto_evaluador:
-        type: string
-      rut_evaluador:
-        type: string
-      telefono_celular_evaluador:
-        type: string
-      telefono_fijo_evaluador:
+    type: object
+  Response.AddNewEvaluadorResponse:
+    properties:
+      id:
         type: string
     type: object
-  ResponseMessages.DeleteGrupoResponse:
+  Response.AddNewGrupoResponse:
     properties:
-      id_curso:
+      id:
         type: integer
-      id_evaluador:
-        type: string
-      nombre_grupo:
-        type: string
-      sigla_grupo:
-        type: string
     type: object
-  ResponseMessages.DeletePeriodoResponse:
+  Response.AddNewPeriodoResponse:
     properties:
-      nombre_periodo:
-        type: string
-    type: object
-  ResponseMessages.DeletePuntajeResponse:
-    properties:
-      calificacion_puntaje:
+      id:
         type: integer
-      id_competencia:
+    type: object
+  Response.AddNewRolResponse:
+    properties:
+      id:
         type: integer
-      id_evaluacion:
+    type: object
+  Response.Authentication:
+    properties:
+      token:
+        type: string
+    type: object
+  Response.DeleteAdministradorAcademicoResponse:
+    properties:
+      id:
+        type: string
+    type: object
+  Response.DeleteAdministradorTiResponse:
+    properties:
+      id:
+        type: string
+    type: object
+  Response.DeleteCursoResponse:
+    properties:
+      id:
         type: integer
-      nivel_logro_puntaje:
+    type: object
+  Response.DeleteEstudianteResponse:
+    properties:
+      id:
         type: string
     type: object
-  ResponseMessages.DeleteRolResponse:
+  Response.DeleteEvaluadorResponse:
     properties:
-      nombre_rol:
+      id:
         type: string
     type: object
-  ResponseMessages.GetOneCompetenciaResponse:
+  Response.DeleteGrupoResponse:
     properties:
-      nombre_competencia:
-        type: string
+      id:
+        type: integer
     type: object
-  ResponseMessages.GetOneCursoResponse:
+  Response.DeletePeriodoResponse:
     properties:
+      id:
+        type: integer
+    type: object
+  Response.DeleteRolResponse:
+    properties:
+      id:
+        type: integer
+    type: object
+  Response.EvolucionEstudiantePorCompetenciaResponse:
+    properties:
+      eje_x:
+        items:
+          type: string
+        type: array
+      eje_y:
+        items:
+          type: integer
+        type: array
+      valores:
+        additionalProperties:
+          items:
+            properties:
+              promedio_grupo:
+                type: number
+              puntaje_estudiante:
+                type: integer
+            type: object
+          type: array
+        type: object
+    type: object
+  Response.EvolucionEstudiantePorEvaluacionResponse:
+    properties:
+      eje_x:
+        items:
+          type: string
+        type: array
+      eje_y:
+        items:
+          type: integer
+        type: array
+      valores:
+        additionalProperties:
+          items:
+            properties:
+              promedio_estudiante:
+                type: number
+              promedio_grupo:
+                type: number
+            type: object
+          type: array
+        type: object
+    type: object
+  Response.GetCursosEstudianteResponse:
+    properties:
+      grupos_curso:
+        items:
+          $ref: '#/definitions/Response.ListGruposResponse'
+        type: array
+      id:
+        type: integer
       nombre_curso:
         type: string
       periodo_curso:
-        $ref: '#/definitions/ResponseMessages.GetOnePeriodoResponse'
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
       sigla_curso:
         type: string
     type: object
-  ResponseMessages.GetOneEstudianteResponse:
+  Response.GetCursosEvaluadorResponse:
+    properties:
+      grupos_curso:
+        items:
+          $ref: '#/definitions/Response.ListGruposResponse'
+        type: array
+      id:
+        type: integer
+      nombre_curso:
+        type: string
+      periodo_curso:
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
+      sigla_curso:
+        type: string
+    type: object
+  Response.GetGruposEstudianteResponse:
+    properties:
+      estudiantes_grupo:
+        items:
+          $ref: '#/definitions/Response.ListEstudiantesResponse'
+        type: array
+      evaluador_grupo:
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      id:
+        type: integer
+      id_curso:
+        type: integer
+      nombre_grupo:
+        type: string
+      sigla_grupo:
+        type: string
+    type: object
+  Response.GetGruposEvaluadorResponse:
+    properties:
+      estudiantes_grupo:
+        items:
+          $ref: '#/definitions/Response.ListEstudiantesResponse'
+        type: array
+      evaluador_grupo:
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      id:
+        type: integer
+      id_curso:
+        type: integer
+      nombre_grupo:
+        type: string
+      sigla_grupo:
+        type: string
+    type: object
+  Response.GetMyAdministradorAcademicoResponse:
+    properties:
+      apellidos_administrador_academico:
+        type: string
+      correo_electronico_administrador_academico:
+        type: string
+      id:
+        type: string
+      nombres_administrador_academico:
+        type: string
+      rol_administrador_academico:
+        $ref: '#/definitions/Response.GetOneRolResponse'
+      rut_administrador_academico:
+        type: string
+      telefono_celular_administrador_academico:
+        type: string
+      telefono_fijo_administrador_academico:
+        type: string
+    type: object
+  Response.GetMyAdministradorTiResponse:
+    properties:
+      apellidos_administrador_ti:
+        type: string
+      correo_electronico_administrador_ti:
+        type: string
+      id:
+        type: string
+      nombres_administrador_ti:
+        type: string
+      rol_administrador_ti:
+        $ref: '#/definitions/Response.GetOneRolResponse'
+      rut_administrador_ti:
+        type: string
+      telefono_celular_administrador_ti:
+        type: string
+      telefono_fijo_administrador_ti:
+        type: string
+    type: object
+  Response.GetMyEstudianteResponse:
     properties:
       apellidos_estudiante:
         type: string
       correo_electronico_estudiante:
         type: string
-      grupo_estudiante:
-        $ref: '#/definitions/ResponseMessages.GetOneGrupoResponse'
+      evaluaciones_estudiante:
+        items:
+          $ref: '#/definitions/Response.ListEvaluacionesEstudianteResponse'
+        type: array
+      id:
+        type: string
+      id_grupo:
+        type: integer
       nombres_estudiante:
         type: string
       rol_estudiante:
-        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+        $ref: '#/definitions/Response.GetOneRolResponse'
       rut_estudiante:
         type: string
       telefono_celular_estudiante:
@@ -508,22 +622,319 @@ definitions:
       telefono_fijo_estudiante:
         type: string
     type: object
-  ResponseMessages.GetOneEvaluacionResponse:
+  Response.GetMyEvaluadorResponse:
+    properties:
+      apellidos_evaluador:
+        type: string
+      cargo_evaluador:
+        type: string
+      correo_electronico_evaluador:
+        type: string
+      id:
+        type: string
+      nombres_evaluador:
+        type: string
+      recinto_evaluador:
+        type: string
+      rol_evaluador:
+        $ref: '#/definitions/Response.GetOneRolResponse'
+      rut_evaluador:
+        type: string
+      telefono_celular_evaluador:
+        type: string
+      telefono_fijo_evaluador:
+        type: string
+    type: object
+  Response.GetOneAdministradorAcademicoResponse:
+    properties:
+      apellidos_administrador_academico:
+        type: string
+      correo_electronico_administrador_academico:
+        type: string
+      id:
+        type: string
+      nombres_administrador_academico:
+        type: string
+      rol_administrador_academico:
+        $ref: '#/definitions/Response.GetOneRolResponse'
+      rut_administrador_academico:
+        type: string
+      telefono_celular_administrador_academico:
+        type: string
+      telefono_fijo_administrador_academico:
+        type: string
+    type: object
+  Response.GetOneAdministradorTiResponse:
+    properties:
+      apellidos_administrador_ti:
+        type: string
+      correo_electronico_administrador_ti:
+        type: string
+      id:
+        type: string
+      nombres_administrador_ti:
+        type: string
+      rol_administrador_ti:
+        $ref: '#/definitions/Response.GetOneRolResponse'
+      rut_administrador_ti:
+        type: string
+      telefono_celular_administrador_ti:
+        type: string
+      telefono_fijo_administrador_ti:
+        type: string
+    type: object
+  Response.GetOneCursoEstudianteResponse:
+    properties:
+      grupos_curso:
+        items:
+          $ref: '#/definitions/Response.ListGruposResponse'
+        type: array
+      id:
+        type: integer
+      nombre_curso:
+        type: string
+      periodo_curso:
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
+      sigla_curso:
+        type: string
+    type: object
+  Response.GetOneCursoEvaluadorResponse:
+    properties:
+      grupos_curso:
+        items:
+          $ref: '#/definitions/Response.ListGruposResponse'
+        type: array
+      id:
+        type: integer
+      nombre_curso:
+        type: string
+      periodo_curso:
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
+      sigla_curso:
+        type: string
+    type: object
+  Response.GetOneCursoResponse:
+    properties:
+      grupos_curso:
+        items:
+          $ref: '#/definitions/Response.ListGruposResponse'
+        type: array
+      id:
+        type: integer
+      nombre_curso:
+        type: string
+      periodo_curso:
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
+      sigla_curso:
+        type: string
+    type: object
+  Response.GetOneEstudianteResponse:
+    properties:
+      apellidos_estudiante:
+        type: string
+      correo_electronico_estudiante:
+        type: string
+      evaluaciones_estudiante:
+        items:
+          $ref: '#/definitions/Response.ListEvaluacionesEstudianteResponse'
+        type: array
+      id:
+        type: string
+      id_grupo:
+        type: integer
+      nombres_estudiante:
+        type: string
+      rol_estudiante:
+        $ref: '#/definitions/Response.GetOneRolResponse'
+      rut_estudiante:
+        type: string
+      telefono_celular_estudiante:
+        type: string
+      telefono_fijo_estudiante:
+        type: string
+    type: object
+  Response.GetOneEvaluadorResponse:
+    properties:
+      apellidos_evaluador:
+        type: string
+      cargo_evaluador:
+        type: string
+      correo_electronico_evaluador:
+        type: string
+      id:
+        type: string
+      nombres_evaluador:
+        type: string
+      recinto_evaluador:
+        type: string
+      rol_evaluador:
+        $ref: '#/definitions/Response.GetOneRolResponse'
+      rut_evaluador:
+        type: string
+      telefono_celular_evaluador:
+        type: string
+      telefono_fijo_evaluador:
+        type: string
+    type: object
+  Response.GetOneGrupoEstudianteResponse:
+    properties:
+      estudiantes_grupo:
+        items:
+          $ref: '#/definitions/Response.ListEstudiantesResponse'
+        type: array
+      evaluador_grupo:
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      id:
+        type: integer
+      id_curso:
+        type: integer
+      nombre_grupo:
+        type: string
+      sigla_grupo:
+        type: string
+    type: object
+  Response.GetOneGrupoEvaluadorResponse:
+    properties:
+      estudiantes_grupo:
+        items:
+          $ref: '#/definitions/Response.ListEstudiantesResponse'
+        type: array
+      evaluador_grupo:
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      id:
+        type: integer
+      id_curso:
+        type: integer
+      nombre_grupo:
+        type: string
+      sigla_grupo:
+        type: string
+    type: object
+  Response.GetOneGrupoResponse:
+    properties:
+      estudiantes_grupo:
+        items:
+          $ref: '#/definitions/Response.ListEstudiantesResponse'
+        type: array
+      evaluador_grupo:
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      id:
+        type: integer
+      id_curso:
+        type: integer
+      nombre_grupo:
+        type: string
+      sigla_grupo:
+        type: string
+    type: object
+  Response.GetOnePeriodoResponse:
+    properties:
+      id:
+        type: integer
+      nombre_periodo:
+        type: string
+    type: object
+  Response.GetOneRolResponse:
+    properties:
+      id:
+        type: integer
+      nombre_rol:
+        type: string
+    type: object
+  Response.ListAdministradoresAcademicosResponse:
+    properties:
+      apellidos_administrador_academico:
+        type: string
+      correo_electronico_administrador_academico:
+        type: string
+      id:
+        type: string
+      nombres_administrador_academico:
+        type: string
+      rol_administrador_academico:
+        $ref: '#/definitions/Response.GetOneRolResponse'
+      rut_administrador_academico:
+        type: string
+      telefono_celular_administrador_academico:
+        type: string
+      telefono_fijo_administrador_academico:
+        type: string
+    type: object
+  Response.ListAdministradoresTiResponse:
+    properties:
+      apellidos_administrador_ti:
+        type: string
+      correo_electronico_administrador_ti:
+        type: string
+      id:
+        type: string
+      nombres_administrador_ti:
+        type: string
+      rol_administrador_ti:
+        $ref: '#/definitions/Response.GetOneRolResponse'
+      rut_administrador_ti:
+        type: string
+      telefono_celular_administrador_ti:
+        type: string
+      telefono_fijo_administrador_ti:
+        type: string
+    type: object
+  Response.ListCursosResponse:
+    properties:
+      grupos_curso:
+        items:
+          $ref: '#/definitions/Response.ListGruposResponse'
+        type: array
+      id:
+        type: integer
+      nombre_curso:
+        type: string
+      periodo_curso:
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
+      sigla_curso:
+        type: string
+    type: object
+  Response.ListEstudiantesResponse:
+    properties:
+      apellidos_estudiante:
+        type: string
+      correo_electronico_estudiante:
+        type: string
+      evaluaciones_estudiante:
+        items:
+          $ref: '#/definitions/Response.ListEvaluacionesEstudianteResponse'
+        type: array
+      id:
+        type: string
+      id_grupo:
+        type: integer
+      nombres_estudiante:
+        type: string
+      rol_estudiante:
+        $ref: '#/definitions/Response.GetOneRolResponse'
+      rut_estudiante:
+        type: string
+      telefono_celular_estudiante:
+        type: string
+      telefono_fijo_estudiante:
+        type: string
+    type: object
+  Response.ListEvaluacionesEstudianteResponse:
     properties:
       asunto_principal_consulta_evaluacion:
         type: string
       categoria_observador_evaluacion:
         type: string
-      competencia_evaluacion:
-        $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
       complejidad_caso_evaluacion:
         type: string
-      curso_evaluacion:
-        $ref: '#/definitions/ResponseMessages.GetOneEstudianteResponse'
       entorno_clinico_evaluacion:
         type: string
       evaluador_evaluacion:
-        $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      id:
+        type: integer
+      id_estudiante:
+        type: string
       nombre_evaluacion:
         type: string
       numero_observaciones_previas_evaluacion:
@@ -533,115 +944,30 @@ definitions:
       paciente_evaluacion:
         type: string
       periodo_evaluacion:
-        $ref: '#/definitions/ResponseMessages.GetOnePeriodoResponse'
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
       puntajes_evaluacion:
         items:
-          $ref: '#/definitions/ResponseMessages.ListPuntajesResponse'
+          $ref: '#/definitions/Response.ListPuntajesResponse'
         type: array
       tiempo_utilizado_evaluacion:
         type: integer
     type: object
-  ResponseMessages.GetOneEvaluadorResponse:
-    properties:
-      apellidos_evaluador:
-        type: string
-      cargo_evaluador:
-        type: string
-      correo_electronico_evaluador:
-        type: string
-      nombres_evaluador:
-        type: string
-      recinto_evaluador:
-        type: string
-      rol_evaluador:
-        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
-      rut_evaluador:
-        type: string
-      telefono_celular_evaluador:
-        type: string
-      telefono_fijo_evaluador:
-        type: string
-    type: object
-  ResponseMessages.GetOneGrupoResponse:
-    properties:
-      curso_grupo:
-        $ref: '#/definitions/ResponseMessages.GetOneCursoResponse'
-      evaluador_grupo:
-        $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
-      nombre_grupo:
-        type: string
-      sigla_grupo:
-        type: string
-    type: object
-  ResponseMessages.GetOnePeriodoResponse:
-    properties:
-      nombre_periodo:
-        type: string
-    type: object
-  ResponseMessages.GetOnePuntajeResponse:
-    properties:
-      calificacion_puntaje:
-        type: integer
-      competencia_puntaje:
-        $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
-        description: Evaluacion_puntaje   GetOneEvaluacionResponse  `json:"evaluacion_puntaje"`
-      nivel_logro_puntaje:
-        type: string
-    type: object
-  ResponseMessages.GetOneRolResponse:
-    properties:
-      nombre_rol:
-        type: string
-    type: object
-  ResponseMessages.ListCompetenciasResponse:
-    properties:
-      nombre_competencia:
-        type: string
-    type: object
-  ResponseMessages.ListCursosResponse:
-    properties:
-      nombre_curso:
-        type: string
-      periodo_curso:
-        $ref: '#/definitions/ResponseMessages.GetOnePeriodoResponse'
-      sigla_curso:
-        type: string
-    type: object
-  ResponseMessages.ListEstudiantesResponse:
-    properties:
-      apellidos_estudiante:
-        type: string
-      correo_electronico_estudiante:
-        type: string
-      grupo_estudiante:
-        $ref: '#/definitions/ResponseMessages.GetOneGrupoResponse'
-      nombres_estudiante:
-        type: string
-      rol_estudiante:
-        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
-      rut_estudiante:
-        type: string
-      telefono_celular_estudiante:
-        type: string
-      telefono_fijo_estudiante:
-        type: string
-    type: object
-  ResponseMessages.ListEvaluacionsResponse:
+  Response.ListEvaluacionesGrupoEstudianteResponse:
     properties:
       asunto_principal_consulta_evaluacion:
         type: string
       categoria_observador_evaluacion:
         type: string
-      competencia_evaluacion:
-        $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
       complejidad_caso_evaluacion:
         type: string
-      curso_evaluacion:
-        $ref: '#/definitions/ResponseMessages.GetOneEstudianteResponse'
       entorno_clinico_evaluacion:
         type: string
       evaluador_evaluacion:
-        $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      id:
+        type: integer
+      id_estudiante:
+        type: string
       nombre_evaluacion:
         type: string
       numero_observaciones_previas_evaluacion:
@@ -651,102 +977,15 @@ definitions:
       paciente_evaluacion:
         type: string
       periodo_evaluacion:
-        $ref: '#/definitions/ResponseMessages.GetOnePeriodoResponse'
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
       puntajes_evaluacion:
         items:
-          $ref: '#/definitions/ResponseMessages.ListPuntajesResponse'
+          $ref: '#/definitions/Response.ListPuntajesResponse'
         type: array
       tiempo_utilizado_evaluacion:
         type: integer
     type: object
-  ResponseMessages.ListEvaluadorsResponse:
-    properties:
-      apellidos_evaluador:
-        type: string
-      cargo_evaluador:
-        type: string
-      correo_electronico_evaluador:
-        type: string
-      nombres_evaluador:
-        type: string
-      recinto_evaluador:
-        type: string
-      rol_evaluador:
-        $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
-      rut_evaluador:
-        type: string
-      telefono_celular_evaluador:
-        type: string
-      telefono_fijo_evaluador:
-        type: string
-    type: object
-  ResponseMessages.ListGruposResponse:
-    properties:
-      curso_grupo:
-        $ref: '#/definitions/ResponseMessages.GetOneCursoResponse'
-      evaluador_grupo:
-        $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
-      nombre_grupo:
-        type: string
-      sigla_grupo:
-        type: string
-    type: object
-  ResponseMessages.ListPeriodosResponse:
-    properties:
-      nombre_periodo:
-        type: string
-    type: object
-  ResponseMessages.ListPuntajesResponse:
-    properties:
-      calificacion_puntaje:
-        type: integer
-      competencia_puntaje:
-        $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
-        description: Evaluacion_puntaje   GetOneEvaluacionResponse  `json:"evaluacion_puntaje"`
-      nivel_logro_puntaje:
-        type: string
-    type: object
-  ResponseMessages.ListRolsResponse:
-    properties:
-      nombre_rol:
-        type: string
-    type: object
-  ResponseMessages.PutOneCompetenciaResponse:
-    properties:
-      nombre_competencia:
-        type: string
-    type: object
-  ResponseMessages.PutOneCursoResponse:
-    properties:
-      id_periodo:
-        type: integer
-      nombre_curso:
-        type: string
-      sigla_curso:
-        type: string
-    type: object
-  ResponseMessages.PutOneEstudianteResponse:
-    properties:
-      apellidos_estudiante:
-        type: string
-      correo_electronico_estudiante:
-        type: string
-      hash_contrasena_estudiante:
-        type: string
-      id_grupo:
-        type: integer
-      id_rol:
-        type: integer
-      nombres_estudiante:
-        type: string
-      rut_estudiante:
-        type: string
-      telefono_celular_estudiante:
-        type: string
-      telefono_fijo_estudiante:
-        type: string
-    type: object
-  ResponseMessages.PutOneEvaluacionResponse:
+  Response.ListEvaluacionesGrupoEvaluadorResponse:
     properties:
       asunto_principal_consulta_evaluacion:
         type: string
@@ -756,14 +995,12 @@ definitions:
         type: string
       entorno_clinico_evaluacion:
         type: string
-      id_competencia:
+      evaluador_evaluacion:
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      id:
         type: integer
-      id_curso:
+      id_estudiante:
         type: string
-      id_evaluador:
-        type: string
-      id_periodo:
-        type: integer
       nombre_evaluacion:
         type: string
       numero_observaciones_previas_evaluacion:
@@ -772,10 +1009,49 @@ definitions:
         type: string
       paciente_evaluacion:
         type: string
+      periodo_evaluacion:
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
+      puntajes_evaluacion:
+        items:
+          $ref: '#/definitions/Response.ListPuntajesResponse'
+        type: array
       tiempo_utilizado_evaluacion:
         type: integer
     type: object
-  ResponseMessages.PutOneEvaluadorResponse:
+  Response.ListEvaluacionesResponse:
+    properties:
+      asunto_principal_consulta_evaluacion:
+        type: string
+      categoria_observador_evaluacion:
+        type: string
+      complejidad_caso_evaluacion:
+        type: string
+      entorno_clinico_evaluacion:
+        type: string
+      evaluador_evaluacion:
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      id:
+        type: integer
+      id_estudiante:
+        type: string
+      nombre_evaluacion:
+        type: string
+      numero_observaciones_previas_evaluacion:
+        type: string
+      observacion_calificacion_evaluacion:
+        type: string
+      paciente_evaluacion:
+        type: string
+      periodo_evaluacion:
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
+      puntajes_evaluacion:
+        items:
+          $ref: '#/definitions/Response.ListPuntajesResponse'
+        type: array
+      tiempo_utilizado_evaluacion:
+        type: integer
+    type: object
+  Response.ListEvaluadoresResponse:
     properties:
       apellidos_evaluador:
         type: string
@@ -783,14 +1059,14 @@ definitions:
         type: string
       correo_electronico_evaluador:
         type: string
-      hash_contrasena_evaluador:
+      id:
         type: string
-      id_rol:
-        type: integer
       nombres_evaluador:
         type: string
       recinto_evaluador:
         type: string
+      rol_evaluador:
+        $ref: '#/definitions/Response.GetOneRolResponse'
       rut_evaluador:
         type: string
       telefono_celular_evaluador:
@@ -798,39 +1074,688 @@ definitions:
       telefono_fijo_evaluador:
         type: string
     type: object
-  ResponseMessages.PutOneGrupoResponse:
+  Response.ListGruposResponse:
     properties:
+      estudiantes_grupo:
+        items:
+          $ref: '#/definitions/Response.ListEstudiantesResponse'
+        type: array
+      evaluador_grupo:
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      id:
+        type: integer
       id_curso:
         type: integer
-      id_evaluador:
-        type: string
       nombre_grupo:
         type: string
       sigla_grupo:
         type: string
     type: object
-  ResponseMessages.PutOnePeriodoResponse:
+  Response.ListPeriodosResponse:
     properties:
+      id:
+        type: integer
       nombre_periodo:
         type: string
     type: object
-  ResponseMessages.PutOnePuntajeResponse:
+  Response.ListPuntajesResponse:
     properties:
       calificacion_puntaje:
         type: integer
-      id_competencia:
+      codigo_competencia_puntaje:
+        type: string
+      feedback_puntaje:
+        type: string
+      id:
         type: integer
       id_evaluacion:
         type: integer
-      nivel_logro_puntaje:
+      nombre_competencia_puntaje:
         type: string
     type: object
-  ResponseMessages.PutOneRolResponse:
+  Response.ListRolesResponse:
     properties:
+      id:
+        type: integer
       nombre_rol:
         type: string
     type: object
-host: localhost:8080
+  Response.PutMyAdministradorAcademicoResponse:
+    properties:
+      id:
+        type: string
+    type: object
+  Response.PutMyAdministradorTiResponse:
+    properties:
+      id:
+        type: string
+    type: object
+  Response.PutMyEstudianteResponse:
+    properties:
+      id:
+        type: string
+    type: object
+  Response.PutMyEvaluadorResponse:
+    properties:
+      id:
+        type: string
+    type: object
+  Response.PutOneAdministradorAcademicoResponse:
+    properties:
+      id:
+        type: string
+    type: object
+  Response.PutOneAdministradorTiResponse:
+    properties:
+      id:
+        type: string
+    type: object
+  Response.PutOneCursoResponse:
+    properties:
+      id:
+        type: integer
+    type: object
+  Response.PutOneEstudianteResponse:
+    properties:
+      id:
+        type: string
+    type: object
+  Response.PutOneEvaluadorResponse:
+    properties:
+      id:
+        type: string
+    type: object
+  Response.PutOneGrupoResponse:
+    properties:
+      id:
+        type: integer
+    type: object
+  Response.PutOnePeriodoResponse:
+    properties:
+      id:
+        type: integer
+    type: object
+  Response.PutOneRolResponse:
+    properties:
+      id:
+        type: integer
+    type: object
+  Swagger.AddNewAdministradorAcademicoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.AddNewAdministradorAcademicoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.AddNewAdministradorTiSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.AddNewAdministradorTiResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.AddNewCalificacionEstudianteSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.AddNewCalificacionEstudianteResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.AddNewCursoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.AddNewCursoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.AddNewEstudianteSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.AddNewEstudianteResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.AddNewEvaluacionSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.AddNewEvaluacionResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.AddNewEvaluadorSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.AddNewEvaluadorResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.AddNewGrupoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.AddNewGrupoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.AddNewPeriodoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.AddNewPeriodoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.AddNewRolSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.AddNewRolResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.AuthenticationSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.Authentication'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.DeleteAdministradorAcademicoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.DeleteAdministradorAcademicoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.DeleteAdministradorTiSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.DeleteAdministradorTiResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.DeleteCursoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.DeleteCursoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.DeleteEstudianteSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.DeleteEstudianteResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.DeleteEvaluadorSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.DeleteEvaluadorResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.DeleteGrupoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.DeleteGrupoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.DeletePeriodoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.DeletePeriodoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.DeleteRolSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.DeleteRolResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.EvolucionEstudiantePorCompetenciaSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.EvolucionEstudiantePorCompetenciaResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.EvolucionEstudiantePorEvaluacionSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.EvolucionEstudiantePorEvaluacionResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetCursosEstudianteSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetCursosEstudianteResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetCursosEvaluadorSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetCursosEvaluadorResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetGruposEstudianteSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetGruposEstudianteResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetGruposEvaluadorSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetGruposEvaluadorResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetMyAdministradorAcademicoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetMyAdministradorAcademicoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetMyAdministradorTiSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetMyAdministradorTiResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetMyEstudianteSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetMyEstudianteResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetMyEvaluadorSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetMyEvaluadorResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetOneAdministradorAcademicoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetOneAdministradorAcademicoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetOneAdministradorTiSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetOneAdministradorTiResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetOneCursoEstudianteSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetOneCursoEstudianteResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetOneCursoEvaluadorSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetOneCursoEvaluadorResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetOneCursoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetOneCursoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetOneEstudianteSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetOneEstudianteResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetOneEvaluadorSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetOneGrupoEstudianteSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetOneGrupoEstudianteResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetOneGrupoEvaluadorSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetOneGrupoEvaluadorResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetOneGrupoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetOneGrupoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetOnePeriodoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetOneRolSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetOneRolResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.ListAdministradoresAcademicosSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.ListAdministradoresAcademicosResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.ListAdministradoresTiSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.ListAdministradoresTiResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.ListCursosSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.ListCursosResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.ListEstudiantesSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.ListEstudiantesResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.ListEvaluacionesGrupoEstudianteSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.ListEvaluacionesGrupoEstudianteResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.ListEvaluacionesGrupoEvaluadorSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.ListEvaluacionesGrupoEvaluadorResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.ListEvaluacionesSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.ListEvaluacionesResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.ListEvaluadoresSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.ListEvaluadoresResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.ListGruposSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.ListGruposResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.ListPeriodosSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.ListPeriodosResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.ListRolesSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.ListRolesResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.PutMyAdministradorAcademicoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.PutMyAdministradorAcademicoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.PutMyAdministradorTiSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.PutMyAdministradorTiResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.PutMyEstudianteSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.PutMyEstudianteResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.PutMyEvaluadorSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.PutMyEvaluadorResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.PutOneAdministradorAcademicoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.PutOneAdministradorAcademicoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.PutOneAdministradorTiSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.PutOneAdministradorTiResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.PutOneCursoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.PutOneCursoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.PutOneEstudianteSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.PutOneEstudianteResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.PutOneEvaluadorSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.PutOneEvaluadorResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.PutOneGrupoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.PutOneGrupoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.PutOnePeriodoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.PutOnePeriodoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.PutOneRolSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.PutOneRolResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
 info:
   contact:
     email: martin.saavedra@mail.udp.cl
@@ -844,11 +1769,18 @@ info:
   title: MedRoom API
   version: "1.0"
 paths:
-  /competencias:
-    get:
+  /administracion-academica/login:
+    post:
       consumes:
       - application/json
-      description: Lista todos los competencias
+      description: Ingresa usuario y contraseña para iniciar sesión
+      parameters:
+      - description: Credenciales de acceso
+        in: body
+        name: input_credentials
+        required: true
+        schema:
+          $ref: '#/definitions/Request.LoginAdministradorAcademicoPayload'
       produces:
       - application/json
       responses:
@@ -856,120 +1788,311 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/ResponseMessages.ListCompetenciasResponse'
+              $ref: '#/definitions/Swagger.AuthenticationSwagger'
             type: array
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Lista de competencias
+      summary: Autenticación de administrador académico
       tags:
-      - Competencias
-    post:
-      consumes:
-      - application/json
-      description: Genera un nuevo competencia con los datos entregados
-      parameters:
-      - description: Competencia a agregar
-        in: body
-        name: input_competencia
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.AddNewCompetenciaPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/ResponseMessages.AddNewCompetenciaResponse'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Agrega un nuevo competencia
-      tags:
-      - Competencias
-  /competencias/{uuid_competencia}:
-    delete:
-      consumes:
-      - application/json
-      description: Elimina un competencia con los datos entregados
-      parameters:
-      - description: UUID del competencia a eliminar
-        in: path
-        name: uuid_competencia
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/ResponseMessages.DeleteCompetenciaResponse'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Elimina un competencia
-      tags:
-      - Competencias
+      - 01 - Autenticación
+  /administracion-academica/me:
     get:
       consumes:
       - application/json
-      description: Obtiene un competencia según su UUID
-      parameters:
-      - description: UUID del competencia a buscar
-        in: path
-        name: uuid_competencia
-        required: true
-        type: string
+      description: Obtiene el perfil del administrador academico según su token
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.GetOneCompetenciaResponse'
+            $ref: '#/definitions/Swagger.GetMyAdministradorAcademicoSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Obtiene un competencia
+      summary: Obtiene el perfil del administrador academico
       tags:
-      - Competencias
+      - 04 - Administración Academica
     put:
       consumes:
       - application/json
-      description: Modifica un competencia con los datos entregados
+      description: Modifica el perfil de un administrador_academico con los datos
+        entregados
       parameters:
-      - description: UUID del competencia a modificar
-        in: path
-        name: uuid_competencia
-        required: true
-        type: string
-      - description: Competencia a modificar
+      - description: AdministradorAcademico a modificar
         in: body
-        name: input_actualiza_competencia
+        name: input_actualiza_administrador_academico
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.PutOneCompetenciaPayload'
+          $ref: '#/definitions/Request.PutMyAdministradorAcademicoPayload'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.PutOneCompetenciaResponse'
+            $ref: '#/definitions/Swagger.PutMyAdministradorAcademicoSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Modifica un competencia
+      summary: Modifica mi perfil
       tags:
-      - Competencias
-  /cursos:
+      - 04 - Administración Academica
+  /administracion-ti/administradores-academicos:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los administradores-academicos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.ListAdministradoresAcademicosSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de administradores-academicos
+      tags:
+      - 05 - Administración Ti
+    post:
+      consumes:
+      - application/json
+      description: Genera un nuevo administrador_academico con los datos entregados
+      parameters:
+      - description: AdministradorAcademico a agregar
+        in: body
+        name: input_administrador_academico
+        required: true
+        schema:
+          $ref: '#/definitions/Request.AddNewAdministradorAcademicoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.AddNewAdministradorAcademicoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Agrega un nuevo administrador_academico
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/administradores-academicos/{uuid_administrador_academico}:
+    delete:
+      consumes:
+      - application/json
+      description: Elimina un administrador_academico con los datos entregados
+      parameters:
+      - description: UUID del administrador_academico a eliminar
+        in: path
+        name: uuid_administrador_academico
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.DeleteAdministradorAcademicoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Elimina un administrador_academico
+      tags:
+      - 05 - Administración Ti
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un administrador_academico según su UUID
+      parameters:
+      - description: UUID del administrador_academico a buscar
+        in: path
+        name: uuid_administrador_academico
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetOneAdministradorAcademicoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un administrador_academico
+      tags:
+      - 05 - Administración Ti
+    put:
+      consumes:
+      - application/json
+      description: Modifica un administrador_academico con los datos entregados
+      parameters:
+      - description: UUID del administrador_academico a modificar
+        in: path
+        name: uuid_administrador_academico
+        required: true
+        type: string
+      - description: AdministradorAcademico a modificar
+        in: body
+        name: input_actualiza_administrador_academico
+        required: true
+        schema:
+          $ref: '#/definitions/Request.PutOneAdministradorAcademicoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.PutOneAdministradorAcademicoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica un administrador_academico
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/administradores-ti:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los administradores-ti
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.ListAdministradoresTiSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de administradores-ti
+      tags:
+      - 05 - Administración Ti
+    post:
+      consumes:
+      - application/json
+      description: Genera un nuevo administrador_ti con los datos entregados
+      parameters:
+      - description: AdministradorTi a agregar
+        in: body
+        name: input_administrador_ti
+        required: true
+        schema:
+          $ref: '#/definitions/Request.AddNewAdministradorTiPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.AddNewAdministradorTiSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Agrega un nuevo administrador_ti
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/administradores-ti/{uuid_administrador_ti}:
+    delete:
+      consumes:
+      - application/json
+      description: Elimina un administrador_ti con los datos entregados
+      parameters:
+      - description: UUID del administrador_ti a eliminar
+        in: path
+        name: uuid_administrador_ti
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.DeleteAdministradorTiSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Elimina un administrador_ti
+      tags:
+      - 05 - Administración Ti
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un administrador_ti según su UUID
+      parameters:
+      - description: UUID del administrador_ti a buscar
+        in: path
+        name: uuid_administrador_ti
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetOneAdministradorTiSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un administrador_ti
+      tags:
+      - 05 - Administración Ti
+    put:
+      consumes:
+      - application/json
+      description: Modifica un administrador_ti con los datos entregados
+      parameters:
+      - description: UUID del administrador_ti a modificar
+        in: path
+        name: uuid_administrador_ti
+        required: true
+        type: string
+      - description: AdministradorTi a modificar
+        in: body
+        name: input_actualiza_administrador_ti
+        required: true
+        schema:
+          $ref: '#/definitions/Request.PutOneAdministradorTiPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.PutOneAdministradorTiSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica un administrador_ti
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/cursos:
     get:
       consumes:
       - application/json
@@ -981,7 +2104,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/ResponseMessages.ListCursosResponse'
+              $ref: '#/definitions/Swagger.ListCursosSwagger'
             type: array
         "400":
           description: Bad request
@@ -989,7 +2112,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Lista de cursos
       tags:
-      - Cursos
+      - 05 - Administración Ti
     post:
       consumes:
       - application/json
@@ -1000,30 +2123,30 @@ paths:
         name: input_curso
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.AddNewCursoPayload'
+          $ref: '#/definitions/Request.AddNewCursoPayload'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.AddNewCursoResponse'
+            $ref: '#/definitions/Swagger.AddNewCursoSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Agrega un nuevo curso
       tags:
-      - Cursos
-  /cursos/{uuid_curso}:
+      - 05 - Administración Ti
+  /administracion-ti/cursos/{id_curso}:
     delete:
       consumes:
       - application/json
       description: Elimina un curso con los datos entregados
       parameters:
-      - description: UUID del curso a eliminar
+      - description: Id del curso a eliminar
         in: path
-        name: uuid_curso
+        name: id_curso
         required: true
         type: string
       produces:
@@ -1032,22 +2155,22 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.DeleteCursoResponse'
+            $ref: '#/definitions/Swagger.DeleteCursoSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Elimina un curso
       tags:
-      - Cursos
+      - 05 - Administración Ti
     get:
       consumes:
       - application/json
-      description: Obtiene un curso según su UUID
+      description: Obtiene un curso según su Id
       parameters:
-      - description: UUID del curso a buscar
+      - description: Id del curso a buscar
         in: path
-        name: uuid_curso
+        name: id_curso
         required: true
         type: string
       produces:
@@ -1056,22 +2179,22 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.GetOneCursoResponse'
+            $ref: '#/definitions/Swagger.GetOneCursoSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Obtiene un curso
       tags:
-      - Cursos
+      - 05 - Administración Ti
     put:
       consumes:
       - application/json
       description: Modifica un curso con los datos entregados
       parameters:
-      - description: UUID del curso a modificar
+      - description: Id del curso a modificar
         in: path
-        name: uuid_curso
+        name: id_curso
         required: true
         type: string
       - description: Curso a modificar
@@ -1079,26 +2202,26 @@ paths:
         name: input_actualiza_curso
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.PutOneCursoPayload'
+          $ref: '#/definitions/Request.PutOneCursoPayload'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.PutOneCursoResponse'
+            $ref: '#/definitions/Swagger.PutOneCursoSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Modifica un curso
       tags:
-      - Cursos
-  /estudiantes:
+      - 05 - Administración Ti
+  /administracion-ti/estudiantes:
     get:
       consumes:
       - application/json
-      description: Lista todos los estudiantes
+      description: Lista todos los estudiantes existentes
       produces:
       - application/json
       responses:
@@ -1106,7 +2229,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/ResponseMessages.ListEstudiantesResponse'
+              $ref: '#/definitions/Swagger.ListEstudiantesSwagger'
             type: array
         "400":
           description: Bad request
@@ -1114,7 +2237,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Lista de estudiantes
       tags:
-      - Estudiantes
+      - 05 - Administración Ti
     post:
       consumes:
       - application/json
@@ -1125,22 +2248,22 @@ paths:
         name: input_estudiante
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.AddNewEstudiantePayload'
+          $ref: '#/definitions/Request.AddNewEstudiantePayload'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.AddNewEstudianteResponse'
+            $ref: '#/definitions/Swagger.AddNewEstudianteSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Agrega un nuevo estudiante
       tags:
-      - Estudiantes
-  /estudiantes/{uuid_estudiante}:
+      - 05 - Administración Ti
+  /administracion-ti/estudiantes/{uuid_estudiante}:
     delete:
       consumes:
       - application/json
@@ -1157,14 +2280,14 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.DeleteEstudianteResponse'
+            $ref: '#/definitions/Swagger.DeleteEstudianteSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Elimina un estudiante
       tags:
-      - Estudiantes
+      - 05 - Administración Ti
     get:
       consumes:
       - application/json
@@ -1181,14 +2304,14 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.GetOneEstudianteResponse'
+            $ref: '#/definitions/Swagger.GetOneEstudianteSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Obtiene un estudiante
       tags:
-      - Estudiantes
+      - 05 - Administración Ti
     put:
       consumes:
       - application/json
@@ -1204,26 +2327,26 @@ paths:
         name: input_actualiza_estudiante
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.PutOneEstudiantePayload'
+          $ref: '#/definitions/Request.PutOneEstudiantePayload'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.PutOneEstudianteResponse'
+            $ref: '#/definitions/Swagger.PutOneEstudianteSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Modifica un estudiante
       tags:
-      - Estudiantes
-  /evaluacions:
+      - 05 - Administración Ti
+  /administracion-ti/evaluadores:
     get:
       consumes:
       - application/json
-      description: Lista todos los evaluacions
+      description: Lista todos los evaluadores
       produces:
       - application/json
       responses:
@@ -1231,140 +2354,15 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/ResponseMessages.ListEvaluacionsResponse'
+              $ref: '#/definitions/Swagger.ListEvaluadoresSwagger'
             type: array
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Lista de evaluacions
+      summary: Lista de evaluadores
       tags:
-      - Evaluacions
-    post:
-      consumes:
-      - application/json
-      description: Genera un nuevo evaluacion con los datos entregados
-      parameters:
-      - description: Evaluacion a agregar
-        in: body
-        name: input_evaluacion
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.AddNewEvaluacionPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/ResponseMessages.AddNewEvaluacionResponse'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Agrega un nuevo evaluacion
-      tags:
-      - Evaluacions
-  /evaluacions/{uuid_evaluacion}:
-    delete:
-      consumes:
-      - application/json
-      description: Elimina un evaluacion con los datos entregados
-      parameters:
-      - description: UUID del evaluacion a eliminar
-        in: path
-        name: uuid_evaluacion
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/ResponseMessages.DeleteEvaluacionResponse'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Elimina un evaluacion
-      tags:
-      - Evaluacions
-    get:
-      consumes:
-      - application/json
-      description: Obtiene un evaluacion según su UUID
-      parameters:
-      - description: UUID del evaluacion a buscar
-        in: path
-        name: uuid_evaluacion
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/ResponseMessages.GetOneEvaluacionResponse'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Obtiene un evaluacion
-      tags:
-      - Evaluacions
-    put:
-      consumes:
-      - application/json
-      description: Modifica un evaluacion con los datos entregados
-      parameters:
-      - description: UUID del evaluacion a modificar
-        in: path
-        name: uuid_evaluacion
-        required: true
-        type: string
-      - description: Evaluacion a modificar
-        in: body
-        name: input_actualiza_evaluacion
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.PutOneEvaluacionPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/ResponseMessages.PutOneEvaluacionResponse'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Modifica un evaluacion
-      tags:
-      - Evaluacions
-  /evaluadors:
-    get:
-      consumes:
-      - application/json
-      description: Lista todos los evaluadors
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            items:
-              $ref: '#/definitions/ResponseMessages.ListEvaluadorsResponse'
-            type: array
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Lista de evaluadors
-      tags:
-      - Evaluadors
+      - 05 - Administración Ti
     post:
       consumes:
       - application/json
@@ -1375,22 +2373,22 @@ paths:
         name: input_evaluador
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.AddNewEvaluadorPayload'
+          $ref: '#/definitions/Request.AddNewEvaluadorPayload'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.AddNewEvaluadorResponse'
+            $ref: '#/definitions/Swagger.AddNewEvaluadorSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Agrega un nuevo evaluador
       tags:
-      - Evaluadors
-  /evaluadors/{uuid_evaluador}:
+      - 05 - Administración Ti
+  /administracion-ti/evaluadores/{uuid_evaluador}:
     delete:
       consumes:
       - application/json
@@ -1407,14 +2405,14 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.DeleteEvaluadorResponse'
+            $ref: '#/definitions/Swagger.DeleteEvaluadorSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Elimina un evaluador
       tags:
-      - Evaluadors
+      - 05 - Administración Ti
     get:
       consumes:
       - application/json
@@ -1431,14 +2429,14 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.GetOneEvaluadorResponse'
+            $ref: '#/definitions/Swagger.GetOneEvaluadorSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Obtiene un evaluador
       tags:
-      - Evaluadors
+      - 05 - Administración Ti
     put:
       consumes:
       - application/json
@@ -1454,22 +2452,22 @@ paths:
         name: input_actualiza_evaluador
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.PutOneEvaluadorPayload'
+          $ref: '#/definitions/Request.PutOneEvaluadorPayload'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.PutOneEvaluadorResponse'
+            $ref: '#/definitions/Swagger.PutOneEvaluadorSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Modifica un evaluador
       tags:
-      - Evaluadors
-  /grupos:
+      - 05 - Administración Ti
+  /administracion-ti/grupos:
     get:
       consumes:
       - application/json
@@ -1481,7 +2479,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/ResponseMessages.ListGruposResponse'
+              $ref: '#/definitions/Swagger.ListGruposSwagger'
             type: array
         "400":
           description: Bad request
@@ -1489,7 +2487,7 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Lista de grupos
       tags:
-      - Grupos
+      - 05 - Administración Ti
     post:
       consumes:
       - application/json
@@ -1500,30 +2498,30 @@ paths:
         name: input_grupo
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.AddNewGrupoPayload'
+          $ref: '#/definitions/Request.AddNewGrupoPayload'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.AddNewGrupoResponse'
+            $ref: '#/definitions/Swagger.AddNewGrupoSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Agrega un nuevo grupo
       tags:
-      - Grupos
-  /grupos/{uuid_grupo}:
+      - 05 - Administración Ti
+  /administracion-ti/grupos/{id_grupo}:
     delete:
       consumes:
       - application/json
       description: Elimina un grupo con los datos entregados
       parameters:
-      - description: UUID del grupo a eliminar
+      - description: Id del grupo a eliminar
         in: path
-        name: uuid_grupo
+        name: id_grupo
         required: true
         type: string
       produces:
@@ -1532,22 +2530,22 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.DeleteGrupoResponse'
+            $ref: '#/definitions/Swagger.DeleteGrupoSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Elimina un grupo
       tags:
-      - Grupos
+      - 05 - Administración Ti
     get:
       consumes:
       - application/json
-      description: Obtiene un grupo según su UUID
+      description: Obtiene un grupo según su Id
       parameters:
-      - description: UUID del grupo a buscar
+      - description: Id del grupo a buscar
         in: path
-        name: uuid_grupo
+        name: id_grupo
         required: true
         type: string
       produces:
@@ -1556,22 +2554,22 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.GetOneGrupoResponse'
+            $ref: '#/definitions/Swagger.GetOneGrupoSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Obtiene un grupo
       tags:
-      - Grupos
+      - 05 - Administración Ti
     put:
       consumes:
       - application/json
       description: Modifica un grupo con los datos entregados
       parameters:
-      - description: UUID del grupo a modificar
+      - description: Id del grupo a modificar
         in: path
-        name: uuid_grupo
+        name: id_grupo
         required: true
         type: string
       - description: Grupo a modificar
@@ -1579,21 +2577,849 @@ paths:
         name: input_actualiza_grupo
         required: true
         schema:
-          $ref: '#/definitions/RequestMessages.PutOneGrupoPayload'
+          $ref: '#/definitions/Request.PutOneGrupoPayload'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.PutOneGrupoResponse'
+            $ref: '#/definitions/Swagger.PutOneGrupoSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Modifica un grupo
       tags:
-      - Grupos
+      - 05 - Administración Ti
+  /administracion-ti/login:
+    post:
+      consumes:
+      - application/json
+      description: Ingresa usuario y contraseña para iniciar sesión
+      parameters:
+      - description: Credenciales de acceso
+        in: body
+        name: input_credentials
+        required: true
+        schema:
+          $ref: '#/definitions/Request.LoginAdministradorTiPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.AuthenticationSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Autenticación de administrador ti
+      tags:
+      - 01 - Autenticación
+  /administracion-ti/me:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene el perfil del administrador ti según su token
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetMyAdministradorTiSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene el perfil del administrador ti
+      tags:
+      - 05 - Administración Ti
+    put:
+      consumes:
+      - application/json
+      description: Modifica el perfil de un administrador_ti con los datos entregados
+      parameters:
+      - description: AdministradorTi a modificar
+        in: body
+        name: input_actualiza_administrador_ti
+        required: true
+        schema:
+          $ref: '#/definitions/Request.PutMyAdministradorTiPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.PutMyAdministradorTiSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica mi perfil
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/periodos:
+    post:
+      consumes:
+      - application/json
+      description: Genera un nuevo periodo con los datos entregados
+      parameters:
+      - description: Periodo a agregar
+        in: body
+        name: input_periodo
+        required: true
+        schema:
+          $ref: '#/definitions/Request.AddNewPeriodoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.AddNewPeriodoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Agrega un nuevo periodo
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/periodos/{id_periodo}:
+    delete:
+      consumes:
+      - application/json
+      description: Elimina un periodo con los datos entregados
+      parameters:
+      - description: Id del periodo a eliminar
+        in: path
+        name: id_periodo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.DeletePeriodoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Elimina un periodo
+      tags:
+      - 05 - Administración Ti
+    put:
+      consumes:
+      - application/json
+      description: Modifica un periodo con los datos entregados
+      parameters:
+      - description: Id del periodo a modificar
+        in: path
+        name: id_periodo
+        required: true
+        type: string
+      - description: Periodo a modificar
+        in: body
+        name: input_actualiza_periodo
+        required: true
+        schema:
+          $ref: '#/definitions/Request.PutOnePeriodoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.PutOnePeriodoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica un periodo
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/roles:
+    post:
+      consumes:
+      - application/json
+      description: Genera un nuevo rol con los datos entregados
+      parameters:
+      - description: Rol a agregar
+        in: body
+        name: input_rol
+        required: true
+        schema:
+          $ref: '#/definitions/Request.AddNewRolPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.AddNewRolSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Agrega un nuevo rol
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/roles/{id_rol}:
+    delete:
+      consumes:
+      - application/json
+      description: Elimina un rol con los datos entregados
+      parameters:
+      - description: Id del rol a eliminar
+        in: path
+        name: id_rol
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.DeleteRolSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Elimina un rol
+      tags:
+      - 05 - Administración Ti
+    put:
+      consumes:
+      - application/json
+      description: Modifica un rol con los datos entregados
+      parameters:
+      - description: Id del rol a modificar
+        in: path
+        name: id_rol
+        required: true
+        type: string
+      - description: Rol a modificar
+        in: body
+        name: input_actualiza_rol
+        required: true
+        schema:
+          $ref: '#/definitions/Request.PutOneRolPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.PutOneRolSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica un rol
+      tags:
+      - 05 - Administración Ti
+  /estudiantes/login:
+    post:
+      consumes:
+      - application/json
+      description: Ingresa usuario y contraseña para iniciar sesión
+      parameters:
+      - description: Credenciales de acceso
+        in: body
+        name: input_credentials
+        required: true
+        schema:
+          $ref: '#/definitions/Request.LoginEstudiantePayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.AuthenticationSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Autenticación de estudiante
+      tags:
+      - 01 - Autenticación
+  /estudiantes/me:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene el perfil del estudiante según su token
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetMyEstudianteSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene el perfil del estudiante
+      tags:
+      - 02 - Estudiantes
+    put:
+      consumes:
+      - application/json
+      description: Modifica el perfil del propio estudiante con los datos entregados
+      parameters:
+      - description: Nuevos datos del estudiante a modificar
+        in: body
+        name: input_actualiza_estudiante
+        required: true
+        schema:
+          $ref: '#/definitions/Request.PutMyEstudiantePayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.PutMyEstudianteSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica mi perfil
+      tags:
+      - 02 - Estudiantes
+  /estudiantes/me/cursos:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene los cursos de un estudiante según su token
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetCursosEstudianteSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene los cursos de un estudiante
+      tags:
+      - 02 - Estudiantes
+  /estudiantes/me/cursos/{id_curso}:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un curso de un estudiante según su token
+      parameters:
+      - description: Id del curso a buscar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetOneCursoEstudianteSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un curso de un estudiante
+      tags:
+      - 02 - Estudiantes
+  /estudiantes/me/cursos/{id_curso}/grupos:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene los grupos de un estudiante según su token
+      parameters:
+      - description: Id del curso a buscar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetGruposEstudianteSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene los grupos de un estudiante
+      tags:
+      - 02 - Estudiantes
+  /estudiantes/me/cursos/{id_curso}/grupos/{id_grupo}:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un grupo de un estudiante según su token
+      parameters:
+      - description: Id del curso a buscar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: Id del grupo a buscar
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetOneGrupoEstudianteSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un grupo de un estudiante
+      tags:
+      - 02 - Estudiantes
+  /estudiantes/me/cursos/{id_curso}/grupos/{id_grupo}/estadisticas/evolucion-por-competencia:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene la evolución de un estudiante según competencia
+      parameters:
+      - description: Id del curso
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: Id del grupo
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.EvolucionEstudiantePorCompetenciaSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Evolución por competencia
+      tags:
+      - 02 - Estudiantes
+  /estudiantes/me/cursos/{id_curso}/grupos/{id_grupo}/estadisticas/evolucion-por-evaluacion:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene la evolución de un estudiante según evaluacion
+      parameters:
+      - description: Id del curso
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: Id del grupo
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.EvolucionEstudiantePorEvaluacionSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Evolución por evaluacion
+      tags:
+      - 02 - Estudiantes
+  /estudiantes/me/cursos/{id_curso}/grupos/{id_grupo}/evaluaciones:
+    get:
+      consumes:
+      - application/json
+      description: Lista todas los evaluaciones disponibles de un estudiante de un
+        grupo
+      parameters:
+      - description: Id del curso
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: Id del grupo
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.ListEvaluacionesGrupoEstudianteSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de evaluaciones de un grupo
+      tags:
+      - 02 - Estudiantes
+  /estudiantes/me/cursos/{id_curso}/grupos/{id_grupo}/evaluaciones/{id_evaluacion}/calificacion:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene una calificación de un estudiante
+      parameters:
+      - description: Id del curso
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: Id del grupo
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      - description: Id de la evaluacion
+        in: path
+        name: id_evaluacion
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.ListEvaluacionesSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene una calificación
+      tags:
+      - 02 - Estudiantes
+  /evaluadores/login:
+    post:
+      consumes:
+      - application/json
+      description: Ingresa usuario y contraseña para iniciar sesión
+      parameters:
+      - description: Credenciales de acceso
+        in: body
+        name: input_credentials
+        required: true
+        schema:
+          $ref: '#/definitions/Request.LoginEvaluadorPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.AuthenticationSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Autenticación de evaluador
+      tags:
+      - 01 - Autenticación
+  /evaluadores/me:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene el perfil del evaluador según su token
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetMyEvaluadorSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene el perfil del evaluador
+      tags:
+      - 03 - Evaluadores
+    put:
+      consumes:
+      - application/json
+      description: Modifica el perfil del propio evaluador con los datos entregados
+      parameters:
+      - description: Evaluador a modificar
+        in: body
+        name: input_actualiza_evaluador
+        required: true
+        schema:
+          $ref: '#/definitions/Request.PutMyEvaluadorPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.PutMyEvaluadorSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica mi perfil
+      tags:
+      - 03 - Evaluadores
+  /evaluadores/me/cursos:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene los cursos de un evaluador según su token
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetCursosEvaluadorSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene los cursos de un evaluador
+      tags:
+      - 03 - Evaluadores
+  /evaluadores/me/cursos/{id_curso}:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un curso de un evaluador según su token
+      parameters:
+      - description: Id del curso a buscar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetOneCursoEvaluadorSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un curso de un evaluador
+      tags:
+      - 03 - Evaluadores
+  /evaluadores/me/cursos/{id_curso}/grupos:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene los grupos de un evaluador según su token
+      parameters:
+      - description: Id del curso a buscar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetGruposEvaluadorSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene los grupos de un evaluador
+      tags:
+      - 03 - Evaluadores
+  /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un grupo de un evaluador según su token
+      parameters:
+      - description: Id del curso a buscar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: Id del grupo a buscar
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetOneGrupoEvaluadorSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un grupo de un evaluador
+      tags:
+      - 03 - Evaluadores
+  /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/estudiantes/{id_estudiante}/evaluaciones/{id_evaluacion}/calificacion:
+    post:
+      consumes:
+      - application/json
+      description: Genera una calificación para un estudiante
+      parameters:
+      - description: Id del curso
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: Id del grupo
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      - description: Id del estudiante
+        in: path
+        name: id_estudiante
+        required: true
+        type: string
+      - description: Id de la evaluacion
+        in: path
+        name: id_evaluacion
+        required: true
+        type: string
+      - description: CalificacionEstudiante a agregar
+        in: body
+        name: input_calificacion_estudiante
+        required: true
+        schema:
+          $ref: '#/definitions/Request.AddNewCalificacionEstudiantePayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.AddNewCalificacionEstudianteSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Califica un estudiante
+      tags:
+      - 03 - Evaluadores
+  /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/evaluaciones:
+    get:
+      consumes:
+      - application/json
+      description: Lista todas los evaluaciones disponibles de un evaluador de un
+        grupo
+      parameters:
+      - description: Id del curso
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: Id del grupo
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.ListEvaluacionesGrupoEvaluadorSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de evaluaciones de un grupo
+      tags:
+      - 03 - Evaluadores
+    post:
+      consumes:
+      - application/json
+      description: Genera una evaluación para un grupo
+      parameters:
+      - description: Id del curso
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: Id del grupo
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      - description: Evaluacion a agregar
+        in: body
+        name: input_evaluacion
+        required: true
+        schema:
+          $ref: '#/definitions/Request.AddNewEvaluacionPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.AddNewEvaluacionSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Agrega una evaluación
+      tags:
+      - 03 - Evaluadores
   /periodos:
     get:
       consumes:
@@ -1606,7 +3432,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/ResponseMessages.ListPeriodosResponse'
+              $ref: '#/definitions/Swagger.ListPeriodosSwagger'
             type: array
         "400":
           description: Bad request
@@ -1614,65 +3440,16 @@ paths:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Lista de periodos
       tags:
-      - Periodos
-    post:
-      consumes:
-      - application/json
-      description: Genera un nuevo periodo con los datos entregados
-      parameters:
-      - description: Periodo a agregar
-        in: body
-        name: input_periodo
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.AddNewPeriodoPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/ResponseMessages.AddNewPeriodoResponse'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Agrega un nuevo periodo
-      tags:
-      - Periodos
-  /periodos/{uuid_periodo}:
-    delete:
-      consumes:
-      - application/json
-      description: Elimina un periodo con los datos entregados
-      parameters:
-      - description: UUID del periodo a eliminar
-        in: path
-        name: uuid_periodo
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/ResponseMessages.DeletePeriodoResponse'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Elimina un periodo
-      tags:
-      - Periodos
+      - 00 - Rutas públicas
+  /periodos/{id_periodo}:
     get:
       consumes:
       - application/json
-      description: Obtiene un periodo según su UUID
+      description: Obtiene un periodo según su Id
       parameters:
-      - description: UUID del periodo a buscar
+      - description: Id del periodo a buscar
         in: path
-        name: uuid_periodo
+        name: id_periodo
         required: true
         type: string
       produces:
@@ -1681,49 +3458,19 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.GetOnePeriodoResponse'
+            $ref: '#/definitions/Swagger.GetOnePeriodoSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Obtiene un periodo
       tags:
-      - Periodos
-    put:
-      consumes:
-      - application/json
-      description: Modifica un periodo con los datos entregados
-      parameters:
-      - description: UUID del periodo a modificar
-        in: path
-        name: uuid_periodo
-        required: true
-        type: string
-      - description: Periodo a modificar
-        in: body
-        name: input_actualiza_periodo
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.PutOnePeriodoPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/ResponseMessages.PutOnePeriodoResponse'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Modifica un periodo
-      tags:
-      - Periodos
-  /puntajes:
+      - 00 - Rutas públicas
+  /roles:
     get:
       consumes:
       - application/json
-      description: Lista todos los puntajes
+      description: Lista todos los roles
       produces:
       - application/json
       responses:
@@ -1731,73 +3478,24 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/ResponseMessages.ListPuntajesResponse'
+              $ref: '#/definitions/Swagger.ListRolesSwagger'
             type: array
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Lista de puntajes
+      summary: Lista de roles
       tags:
-      - Puntajes
-    post:
-      consumes:
-      - application/json
-      description: Genera un nuevo puntaje con los datos entregados
-      parameters:
-      - description: Puntaje a agregar
-        in: body
-        name: input_puntaje
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.AddNewPuntajePayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/ResponseMessages.AddNewPuntajeResponse'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Agrega un nuevo puntaje
-      tags:
-      - Puntajes
-  /puntajes/{uuid_puntaje}:
-    delete:
-      consumes:
-      - application/json
-      description: Elimina un puntaje con los datos entregados
-      parameters:
-      - description: UUID del puntaje a eliminar
-        in: path
-        name: uuid_puntaje
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/ResponseMessages.DeletePuntajeResponse'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Elimina un puntaje
-      tags:
-      - Puntajes
+      - 00 - Rutas públicas
+  /roles/{id_rol}:
     get:
       consumes:
       - application/json
-      description: Obtiene un puntaje según su UUID
+      description: Obtiene un rol según su Id
       parameters:
-      - description: UUID del puntaje a buscar
+      - description: Id del rol a buscar
         in: path
-        name: uuid_puntaje
+        name: id_rol
         required: true
         type: string
       produces:
@@ -1806,167 +3504,12 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/ResponseMessages.GetOnePuntajeResponse'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Obtiene un puntaje
-      tags:
-      - Puntajes
-    put:
-      consumes:
-      - application/json
-      description: Modifica un puntaje con los datos entregados
-      parameters:
-      - description: UUID del puntaje a modificar
-        in: path
-        name: uuid_puntaje
-        required: true
-        type: string
-      - description: Puntaje a modificar
-        in: body
-        name: input_actualiza_puntaje
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.PutOnePuntajePayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/ResponseMessages.PutOnePuntajeResponse'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Modifica un puntaje
-      tags:
-      - Puntajes
-  /rols:
-    get:
-      consumes:
-      - application/json
-      description: Lista todos los rols
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            items:
-              $ref: '#/definitions/ResponseMessages.ListRolsResponse'
-            type: array
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Lista de rols
-      tags:
-      - Rols
-    post:
-      consumes:
-      - application/json
-      description: Genera un nuevo rol con los datos entregados
-      parameters:
-      - description: Rol a agregar
-        in: body
-        name: input_rol
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.AddNewRolPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/ResponseMessages.AddNewRolResponse'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Agrega un nuevo rol
-      tags:
-      - Rols
-  /rols/{uuid_rol}:
-    delete:
-      consumes:
-      - application/json
-      description: Elimina un rol con los datos entregados
-      parameters:
-      - description: UUID del rol a eliminar
-        in: path
-        name: uuid_rol
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/ResponseMessages.DeleteRolResponse'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Elimina un rol
-      tags:
-      - Rols
-    get:
-      consumes:
-      - application/json
-      description: Obtiene un rol según su UUID
-      parameters:
-      - description: UUID del rol a buscar
-        in: path
-        name: uuid_rol
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/ResponseMessages.GetOneRolResponse'
+            $ref: '#/definitions/Swagger.GetOneRolSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Obtiene un rol
       tags:
-      - Rols
-    put:
-      consumes:
-      - application/json
-      description: Modifica un rol con los datos entregados
-      parameters:
-      - description: UUID del rol a modificar
-        in: path
-        name: uuid_rol
-        required: true
-        type: string
-      - description: Rol a modificar
-        in: body
-        name: input_actualiza_rol
-        required: true
-        schema:
-          $ref: '#/definitions/RequestMessages.PutOneRolPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/ResponseMessages.PutOneRolResponse'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Modifica un rol
-      tags:
-      - Rols
+      - 00 - Rutas públicas
 swagger: "2.0"

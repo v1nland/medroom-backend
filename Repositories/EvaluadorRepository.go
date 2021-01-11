@@ -2,27 +2,30 @@ package Repositories
 
 import (
 	"fmt"
-	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"medroom-backend/Config"
 	"medroom-backend/Models"
+
+	_ "gorm.io/driver/postgres"
+	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 )
 
-func GetAllEvaluadors(u *[]Models.Evaluador) (err error) {
-	if err = Config.DB.Set("gorm:auto_preload", true).Find(u).Error; err != nil {
+func GetAllEvaluadores(u *[]Models.Evaluador) (err error) {
+	if err = Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Order("created_at asc").Find(u).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
 func GetOneEvaluador(u *Models.Evaluador, id string) (err error) {
-	if err := Config.DB.Set("gorm:auto_preload", true).Where("id = ?", id).First(u).Error; err != nil {
+	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("id = ?", id).First(u).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
 func AddNewEvaluador(u *Models.Evaluador) (err error) {
-	if err = Config.DB.Create(u).Error; err != nil {
+	if err = Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Create(u).Error; err != nil {
 		return err
 	}
 	return nil
@@ -30,11 +33,11 @@ func AddNewEvaluador(u *Models.Evaluador) (err error) {
 
 func PutOneEvaluador(u *Models.Evaluador, id string) (err error) {
 	fmt.Println(u)
-	Config.DB.Save(u)
+	Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Save(u)
 	return nil
 }
 
 func DeleteEvaluador(u *Models.Evaluador, id string) (err error) {
-	Config.DB.Where("id = ?", id).Delete(u)
+	Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("id = ?", id).Delete(u)
 	return nil
 }

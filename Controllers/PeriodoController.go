@@ -1,32 +1,23 @@
 package Controllers
 
 import (
-	"github.com/gin-gonic/gin"
 	"medroom-backend/ApiHelpers"
-	"medroom-backend/InputFormats"
+	"medroom-backend/Formats/Input"
+	"medroom-backend/Formats/Output"
+	"medroom-backend/Messages/Request"
 	"medroom-backend/Models"
-	"medroom-backend/OutputFormats"
 	"medroom-backend/Repositories"
-	"medroom-backend/RequestMessages"
 	"medroom-backend/Utils"
-)
 
-/*
-	*
-	*  FUNCIÓN ListPeriodo
-	*
-    *
-	*
-	*
-    *
-*/
+	"github.com/gin-gonic/gin"
+)
 
 // @Summary Lista de periodos
 // @Description Lista todos los periodos
-// @Tags Periodos
+// @Tags 00 - Rutas públicas
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} ResponseMessages.ListPeriodosResponse "OK"
+// @Success 200 {array} Swagger.ListPeriodosSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /periodos [get]
 func ListPeriodos(c *gin.Context) {
@@ -41,28 +32,18 @@ func ListPeriodos(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetPeriodosOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.ListPeriodosOutput(container))
 }
 
-/*
-	*
-	*  FUNCIÓN GetOnePeriodo
-	*
-    *
-	*
-	*
-    *
-*/
-
 // @Summary Obtiene un periodo
-// @Description Obtiene un periodo según su UUID
-// @Tags Periodos
+// @Description Obtiene un periodo según su Id
+// @Tags 00 - Rutas públicas
 // @Accept  json
 // @Produce  json
-// @Param   uuid_periodo     path    string     true        "UUID del periodo a buscar"
-// @Success 200 {object} ResponseMessages.GetOnePeriodoResponse "OK"
+// @Param   id_periodo     path    string     true        "Id del periodo a buscar"
+// @Success 200 {object} Swagger.GetOnePeriodoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /periodos/{uuid_periodo} [get]
+// @Router /periodos/{id_periodo} [get]
 func GetOnePeriodo(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -78,31 +59,21 @@ func GetOnePeriodo(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.GetOnePeriodoOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.GetOnePeriodoOutput(container))
 }
-
-/*
-	*
-	*  FUNCIÓN AddNewPeriodo
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Agrega un nuevo periodo
 // @Description Genera un nuevo periodo con los datos entregados
-// @Tags Periodos
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   input_periodo     body    RequestMessages.AddNewPeriodoPayload     true        "Periodo a agregar"
-// @Success 200 {object} ResponseMessages.AddNewPeriodoResponse "OK"
+// @Param   input_periodo     body    Request.AddNewPeriodoPayload     true        "Periodo a agregar"
+// @Success 200 {object} Swagger.AddNewPeriodoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /periodos [post]
+// @Router /administracion-ti/periodos [post]
 func AddNewPeriodo(c *gin.Context) {
 	// input container
-	var container RequestMessages.AddNewPeriodoPayload
+	var container Request.AddNewPeriodoPayload
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {
@@ -111,7 +82,7 @@ func AddNewPeriodo(c *gin.Context) {
 	}
 
 	// format input
-	InputFormats.AddNewPeriodoInput(&container)
+	Input.AddNewPeriodoInput(&container)
 
 	// generate model entity
 	model_container := Models.Periodo{
@@ -126,35 +97,25 @@ func AddNewPeriodo(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.AddNewPeriodoOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.AddNewPeriodoOutput(model_container))
 }
-
-/*
-	*
-	*  FUNCIÓN PutOnePeriodo
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Modifica un periodo
 // @Description Modifica un periodo con los datos entregados
-// @Tags Periodos
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   uuid_periodo     path    string     true        "UUID del periodo a modificar"
-// @Param   input_actualiza_periodo     body    RequestMessages.PutOnePeriodoPayload     true        "Periodo a modificar"
-// @Success 200 {object} ResponseMessages.PutOnePeriodoResponse "OK"
+// @Param   id_periodo     path    string     true        "Id del periodo a modificar"
+// @Param   input_actualiza_periodo     body    Request.PutOnePeriodoPayload     true        "Periodo a modificar"
+// @Success 200 {object} Swagger.PutOnePeriodoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /periodos/{uuid_periodo} [put]
+// @Router /administracion-ti/periodos/{id_periodo} [put]
 func PutOnePeriodo(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
 
 	// input container
-	var container RequestMessages.PutOnePeriodoPayload
+	var container Request.PutOnePeriodoPayload
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {
@@ -163,7 +124,7 @@ func PutOnePeriodo(c *gin.Context) {
 	}
 
 	// format input
-	InputFormats.PutOnePeriodoInput(&container)
+	Input.PutOnePeriodoInput(&container)
 
 	// generate model entity
 	var model_container Models.Periodo
@@ -177,7 +138,7 @@ func PutOnePeriodo(c *gin.Context) {
 
 	// replace data in model entity
 	model_container = Models.Periodo{
-		ID:             model_container.ID,
+		Id:             model_container.Id,
 		Nombre_periodo: Utils.CheckUpdatedString(container.Nombre_periodo, model_container.Nombre_periodo),
 	}
 
@@ -196,28 +157,18 @@ func PutOnePeriodo(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.PutOnePeriodoOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.PutOnePeriodoOutput(model_container))
 }
-
-/*
-	*
-	*  FUNCIÓN DeletePeriodo
-	*
-    *
-	*
-	*
-    *
-*/
 
 // @Summary Elimina un periodo
 // @Description Elimina un periodo con los datos entregados
-// @Tags Periodos
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   uuid_periodo     path    string     true        "UUID del periodo a eliminar"
-// @Success 200 {object} ResponseMessages.DeletePeriodoResponse "OK"
+// @Param   id_periodo     path    string     true        "Id del periodo a eliminar"
+// @Success 200 {object} Swagger.DeletePeriodoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
-// @Router /periodos/{uuid_periodo} [delete]
+// @Router /administracion-ti/periodos/{id_periodo} [delete]
 func DeletePeriodo(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
@@ -240,5 +191,5 @@ func DeletePeriodo(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, OutputFormats.DeletePeriodoOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.DeletePeriodoOutput(container))
 }

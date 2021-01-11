@@ -5,8 +5,8 @@ import (
 )
 
 type Rol struct {
-	ID         int       `json:"id"`
-	Nombre_rol string    `json:"nombre_rol"`
+	Id         int       `json:"id"`
+	Nombre_rol string    `json:"nombre_rol" gorm:"unique;not null"`
 	CreatedAt  time.Time `json:"created_at"`
 	UpdatedAt  time.Time `json:"updated_at"`
 }

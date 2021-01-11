@@ -2,18 +2,19 @@ package main
 
 import (
 	"fmt"
-	"github.com/jinzhu/gorm"
+	"medroom-backend/Config"
+	"medroom-backend/Migrations"
+	"medroom-backend/Models"
+	"medroom-backend/Routers"
+	"medroom-backend/docs"
+	"os"
+
 	"github.com/joho/godotenv"
 	swagger_files "github.com/swaggo/files"
 	gin_swagger "github.com/swaggo/gin-swagger"
-	"medroom-backend/Config"
-	"medroom-backend/Models"
-	"medroom-backend/Routers"
-	_ "medroom-backend/docs"
-	"os"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
-
-var err error
 
 // @title MedRoom API
 // @version 1.0
@@ -27,7 +28,6 @@ var err error
 // @license.name Apache 2.0
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 
-// @host localhost:8080
 // @BasePath /api/v1
 func main() {
 	err := godotenv.Load()
@@ -35,31 +35,71 @@ func main() {
 		fmt.Println("status error: ", err)
 	}
 
+	// connection string
 	connection_string := os.Getenv("POSTGRESQL_CONNECTION_STRING")
-	should_automigrate := os.Getenv("SHOULD_AUTOMIGRATE")
-	swagger_url := os.Getenv("SWAGGER_URL")
 
-	Config.DB, err = gorm.Open("postgres", connection_string)
+	// open db
+	Config.DB, err = gorm.Open(postgres.Open(connection_string), &gorm.Config{})
 	if err != nil {
 		fmt.Println("status error: ", err)
 	}
-	defer Config.DB.Close()
 
-	if should_automigrate == "1" {
-		// Inicialización de tablas en DB
-		Config.DB.AutoMigrate(&Models.Competencia{}, &Models.Periodo{}, &Models.Rol{}, &Models.Evaluador{}, &Models.Curso{}, &Models.Grupo{}, &Models.Estudiante{}, &Models.Evaluacion{}, &Models.Puntaje{})
-
-		// // Las FK de las relaciones N - N con datos adicionales se deben aplicar manualmente de la siguiente forma
-		// // Para relaciones 1 - N y 1 - 1, se deben especificar únicamente en el Model.go
-		// Config.DB.Model(&Models.EvaluacionPuntaje{}).AddForeignKey("id_evaluacion", "public.evaluaciones(id)", "CASCADE", "CASCADE")
-		// Config.DB.Model(&Models.EvaluacionPuntaje{}).AddForeignKey("id_puntaje", "public.puntajes(id)", "CASCADE", "CASCADE")
+	if os.Getenv("MIGRATE_TABLES") == "1" {
+		Config.DB.AutoMigrate(&Models.Periodo{}, &Models.Rol{}, &Models.AdministradorTi{},
+			&Models.AdministradorAcademico{}, &Models.Evaluador{}, &Models.Competencia{},
+			&Models.Curso{}, &Models.Grupo{}, &Models.CalificacionEstudiante{}, &Models.Estudiante{}, &Models.Puntaje{})
 	}
 
+	if os.Getenv("MIGRATE_VALUES") == "1" {
+		Migrations.PeriodoMigrations()
+		Migrations.RolMigrations()
+		Migrations.CompetenciaMigrations()
+		Migrations.AdministradorTiMigrations()
+		Migrations.AdministradorAcademicoMigrations()
+		Migrations.EvaluadorMigrations()
+		Migrations.CursoMigrations()
+		Migrations.EvaluacionMigrations()
+		// Migrations.GrupoMigrations()
+		// Migrations.EstudianteMigrations()
+		Migrations.CalificacionEstudianteMigrations()
+		// Migrations.PuntajeMigrations()
+	}
+
+	// var curso Models.Curso
+	// if err := Repositories.GetOneCurso(&curso, "1"); err != nil {
+	// 	panic("Curso no existe")
+	// }
+
+	// fmt.Println("=============")
+	// fmt.Println("=============")
+	// Utils.StructToString(curso)
+
+	// var grupo Models.Grupo
+	// if err := Repositories.GetOneGrupo(&grupo, "1"); err != nil {
+	// 	panic("Grupo no existe")
+	// }
+
+	// fmt.Println("=============")
+	// fmt.Println("=============")
+	// Utils.StructToString(grupo)
+
+	// var administradores_academicos []Models.AdministradorAcademico
+	// if err := Repositories.GetAllAdministradoresAcademicos(&administradores_academicos); err != nil {
+	// 	panic("AdministradorAcademico no existe")
+	// }
+
+	// fmt.Println("=============")
+	// fmt.Println("=============")
+	// Utils.StructToString(administradores_academicos[0])
+
+	// setup router
 	r := Routers.SetupRouter()
 
-	// auto swagger configuration
-	url := gin_swagger.URL(swagger_url + "/docs/v1/doc.json")
+	// swagger
+	docs.SwaggerInfo.Host = os.Getenv("SWAGGER_HOST")
+	url := gin_swagger.URL(os.Getenv("SWAGGER_PROTOCOL") + "://" + os.Getenv("SWAGGER_HOST") + "/docs/v1/doc.json")
 	r.GET("/docs/v1/*any", gin_swagger.WrapHandler(swagger_files.Handler, url))
 
+	// run routes
 	r.Run()
 }
