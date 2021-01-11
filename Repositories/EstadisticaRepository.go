@@ -6,13 +6,14 @@ import (
 )
 
 func CalificacionesEstudiantePorCompetencia(u *[]Query.CalificacionesEstudiantePorCompetencia, id_grupo string, id_estudiante string) (err error) {
-	if err := Config.DB.Raw(`select t1.*, coalesce(t2.calificacion_puntaje, 0) as calificacion_puntaje_estudiante
+	if err := Config.DB.Raw(`
+													select t1.*, coalesce(t2.calificacion_puntaje, 0) as calificacion_puntaje_estudiante
 													from 
 														(select 
 															ev.id as id_evaluacion,
 															ev.nombre_evaluacion,
 															p.id_competencia,
-															avg(p.calificacion_puntaje) as promedio_calificacion_puntaje
+															avg(p.calificacion_puntaje) as promedio_calificacion_puntaje_grupo
 														from 
 															evaluaciones ev
 															left outer join calificaciones_estudiantes ce on ev.id = ce.id_evaluacion 
@@ -44,7 +45,8 @@ func CalificacionesEstudiantePorCompetencia(u *[]Query.CalificacionesEstudianteP
 }
 
 func CalificacionesEstudiantePorEvaluacion(u *[]Query.CalificacionesEstudiantePorEvaluacion, id_grupo string, id_estudiante string) (err error) {
-	if err := Config.DB.Raw(`select t1.*, coalesce(t2.calificacion_puntaje, 0) as promedio_calificacion_puntaje_estudiante
+	if err := Config.DB.Raw(`
+													select t1.*, coalesce(t2.calificacion_puntaje, 0) as promedio_calificacion_puntaje_estudiante
 													from 
 														(select 
 															ev.id as id_evaluacion,
