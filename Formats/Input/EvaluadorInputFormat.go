@@ -125,3 +125,7 @@ func PutMyEvaluadorInput(u *Request.PutMyEvaluadorPayload) {
 		*u.Cargo_evaluador = Utils.RemoveAccents(*u.Cargo_evaluador)
 	}
 }
+
+func AddEvaluadorToGrupoInput(u *Request.AddEvaluadorToGrupoPayload) {
+
+}

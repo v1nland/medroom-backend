@@ -100,3 +100,7 @@ func PutMyEstudianteInput(u *Request.PutMyEstudiantePayload) {
 		*u.Telefono_celular_estudiante = Utils.RemoveAccents(*u.Telefono_celular_estudiante)
 	}
 }
+
+func AddEstudianteToGrupoInput(u *Request.AddEstudianteToGrupoPayload) {
+
+}

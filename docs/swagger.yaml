@@ -7,6 +7,20 @@ definitions:
       error:
         type: string
     type: object
+  Request.AddEstudianteToGrupoPayload:
+    properties:
+      id_grupos:
+        items:
+          type: integer
+        type: array
+    type: object
+  Request.AddEvaluadorToGrupoPayload:
+    properties:
+      id_grupos:
+        items:
+          type: integer
+        type: array
+    type: object
   Request.AddNewAdministradorAcademicoPayload:
     properties:
       apellidos_administrador_academico:
@@ -354,6 +368,16 @@ definitions:
   Request.PutOneRolPayload:
     properties:
       nombre_rol:
+        type: string
+    type: object
+  Response.AddEstudianteToGrupoResponse:
+    properties:
+      id:
+        type: string
+    type: object
+  Response.AddEvaluadorToGrupoResponse:
+    properties:
+      id:
         type: string
     type: object
   Response.AddNewAdministradorAcademicoResponse:
@@ -1179,6 +1203,24 @@ definitions:
     properties:
       id:
         type: integer
+    type: object
+  Swagger.AddEstudianteToGrupoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.AddEstudianteToGrupoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.AddEvaluadorToGrupoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.AddEvaluadorToGrupoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
     type: object
   Swagger.AddNewAdministradorAcademicoSwagger:
     properties:
@@ -2342,6 +2384,37 @@ paths:
       summary: Modifica un estudiante
       tags:
       - 05 - Administración Ti
+  /administracion-ti/estudiantes/{uuid_estudiante}/grupos:
+    put:
+      consumes:
+      - application/json
+      description: Modifica los grupos de un estudiante con los datos entregados
+      parameters:
+      - description: UUID del estudiante a modificar
+        in: path
+        name: uuid_estudiante
+        required: true
+        type: string
+      - description: Estudiante a modificar
+        in: body
+        name: input_actualiza_estudiante
+        required: true
+        schema:
+          $ref: '#/definitions/Request.AddEstudianteToGrupoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.AddEstudianteToGrupoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica los grupos de un estudiante
+      tags:
+      - 05 - Administración Ti
   /administracion-ti/evaluadores:
     get:
       consumes:
@@ -2465,6 +2538,37 @@ paths:
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Modifica un evaluador
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/evaluadores/{uuid_evaluador}/grupos:
+    put:
+      consumes:
+      - application/json
+      description: Modifica los grupos de un evaluador con los datos entregados
+      parameters:
+      - description: UUID del evaluador a modificar
+        in: path
+        name: uuid_evaluador
+        required: true
+        type: string
+      - description: Estudiante a modificar
+        in: body
+        name: input_actualiza_evaluador
+        required: true
+        schema:
+          $ref: '#/definitions/Request.AddEvaluadorToGrupoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.AddEvaluadorToGrupoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica los grupos de un evaluador
       tags:
       - 05 - Administración Ti
   /administracion-ti/grupos:

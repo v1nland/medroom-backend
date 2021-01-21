@@ -306,3 +306,70 @@ func PutMyEvaluador(c *gin.Context) {
 	// ApiHelpers.RespondJSON(c, 200, Output.PutMyEvaluadorOutput(model))
 	ApiHelpers.RespondJSON(c, 200, model)
 }
+
+// @Summary Modifica los grupos de un evaluador
+// @Description Modifica los grupos de un evaluador con los datos entregados
+// @Tags 05 - Administración Ti
+// @Accept  json
+// @Produce  json
+// @Param   uuid_evaluador     path    string     true        "UUID del evaluador a modificar"
+// @Param   input_actualiza_evaluador     body    Request.AddEvaluadorToGrupoPayload     true        "Estudiante a modificar"
+// @Success 200 {object} Swagger.AddEvaluadorToGrupoSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /administracion-ti/evaluadores/{uuid_evaluador}/grupos [put]
+func AddEvaluadorToGrupo(c *gin.Context) {
+	// params
+	id := c.Params.ByName("id")
+
+	// input bind
+	var input Request.AddEvaluadorToGrupoPayload
+	if err := c.ShouldBind(&input); err != nil {
+		ApiHelpers.RespondError(c, 400, "default")
+		return
+	}
+
+	// format input
+	Input.AddEvaluadorToGrupoInput(&input)
+
+	// get evaluador entity
+	var evaluador Models.Evaluador
+	if err := Repositories.GetOneEvaluador(&evaluador, id); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Evaluador not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
+		return
+	}
+
+	// update entities
+	for i := 0; i < len(input.Id_grupos); i++ {
+		var grupo Models.Grupo
+		if err := Repositories.GetOneGrupo(&grupo, Utils.ConvertIntToString(input.Id_grupos[i])); err != nil {
+			if errors.Is(err, gorm.ErrRecordNotFound) {
+				ApiHelpers.RespondJSON(c, 200, "Grupo not found")
+			} else {
+				ApiHelpers.RespondError(c, 500, "default")
+			}
+
+			return
+		}
+
+		evaluador.Grupos_evaluador = append(evaluador.Grupos_evaluador, grupo)
+	}
+
+	// put query
+	if err := Repositories.PutOneEvaluador(&evaluador, id); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Evaluador not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
+		return
+	}
+
+	// ApiHelpers.RespondJSON(c, 200, Output.PutOneEvaluadorOutput(model))
+	ApiHelpers.RespondJSON(c, 200, evaluador)
+}

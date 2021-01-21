@@ -297,3 +297,70 @@ func PutMyEstudiante(c *gin.Context) {
 	// ApiHelpers.RespondJSON(c, 200, Output.PutMyEstudianteOutput(model))
 	ApiHelpers.RespondJSON(c, 200, model)
 }
+
+// @Summary Modifica los grupos de un estudiante
+// @Description Modifica los grupos de un estudiante con los datos entregados
+// @Tags 05 - Administración Ti
+// @Accept  json
+// @Produce  json
+// @Param   uuid_estudiante     path    string     true        "UUID del estudiante a modificar"
+// @Param   input_actualiza_estudiante     body    Request.AddEstudianteToGrupoPayload     true        "Estudiante a modificar"
+// @Success 200 {object} Swagger.AddEstudianteToGrupoSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /administracion-ti/estudiantes/{uuid_estudiante}/grupos [put]
+func AddEstudianteToGrupo(c *gin.Context) {
+	// params
+	id := c.Params.ByName("id")
+
+	// input bind
+	var input Request.AddEstudianteToGrupoPayload
+	if err := c.ShouldBind(&input); err != nil {
+		ApiHelpers.RespondError(c, 400, "default")
+		return
+	}
+
+	// format input
+	Input.AddEstudianteToGrupoInput(&input)
+
+	// get estudiante entity
+	var estudiante Models.Estudiante
+	if err := Repositories.GetOneEstudiante(&estudiante, id); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Estudiante not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
+		return
+	}
+
+	// update entities
+	for i := 0; i < len(input.Id_grupos); i++ {
+		var grupo Models.Grupo
+		if err := Repositories.GetOneGrupo(&grupo, Utils.ConvertIntToString(input.Id_grupos[i])); err != nil {
+			if errors.Is(err, gorm.ErrRecordNotFound) {
+				ApiHelpers.RespondJSON(c, 200, "Grupo not found")
+			} else {
+				ApiHelpers.RespondError(c, 500, "default")
+			}
+
+			return
+		}
+
+		estudiante.Grupos_estudiante = append(estudiante.Grupos_estudiante, grupo)
+	}
+
+	// put query
+	if err := Repositories.PutOneEstudiante(&estudiante, id); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Estudiante not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
+		return
+	}
+
+	// ApiHelpers.RespondJSON(c, 200, Output.PutOneEstudianteOutput(model))
+	ApiHelpers.RespondJSON(c, 200, estudiante)
+}

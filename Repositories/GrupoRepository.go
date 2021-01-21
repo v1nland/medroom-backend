@@ -11,7 +11,7 @@ import (
 )
 
 func GetAllGrupos(u *[]Models.Grupo) (err error) {
-	if err = Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Order("created_at asc").Find(u).Error; err != nil {
+	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Order("created_at asc").Find(u).Error; err != nil {
 		return err
 	}
 	return nil
@@ -53,7 +53,7 @@ func GetOneGrupoEvaluador(u *Models.Grupo, id string, id_curso string, id_evalua
 }
 
 func AddNewGrupo(u *Models.Grupo) (err error) {
-	if err = Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Create(u).Error; err != nil {
+	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Create(u).Error; err != nil {
 		return err
 	}
 	return nil

@@ -35,6 +35,7 @@ func SetupAdministradorTiRouter(r *gin.Engine) *gin.Engine {
 			estudiantes.GET(":id", Controllers.GetOneEstudiante)
 			estudiantes.POST("", Controllers.AddNewEstudiante)
 			estudiantes.PUT(":id", Controllers.PutOneEstudiante)
+			estudiantes.PUT(":id/grupos", Controllers.AddEstudianteToGrupo)
 			estudiantes.DELETE(":id", Controllers.DeleteEstudiante)
 		}
 
@@ -44,6 +45,7 @@ func SetupAdministradorTiRouter(r *gin.Engine) *gin.Engine {
 			evaluadores.GET(":id", Controllers.GetOneEvaluador)
 			evaluadores.POST("", Controllers.AddNewEvaluador)
 			evaluadores.PUT(":id", Controllers.PutOneEvaluador)
+			evaluadores.PUT(":id/grupos", Controllers.AddEvaluadorToGrupo)
 			evaluadores.DELETE(":id", Controllers.DeleteEvaluador)
 		}
 

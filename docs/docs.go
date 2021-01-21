@@ -899,6 +899,53 @@ var doc = `{
                 }
             }
         },
+        "/administracion-ti/estudiantes/{uuid_estudiante}/grupos": {
+            "put": {
+                "description": "Modifica los grupos de un estudiante con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Modifica los grupos de un estudiante",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del estudiante a modificar",
+                        "name": "uuid_estudiante",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Estudiante a modificar",
+                        "name": "input_actualiza_estudiante",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Request.AddEstudianteToGrupoPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Swagger.AddEstudianteToGrupoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
         "/administracion-ti/evaluadores": {
             "get": {
                 "description": "Lista todos los evaluadores",
@@ -1077,6 +1124,53 @@ var doc = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/Swagger.DeleteEvaluadorSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-ti/evaluadores/{uuid_evaluador}/grupos": {
+            "put": {
+                "description": "Modifica los grupos de un evaluador con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Modifica los grupos de un evaluador",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del evaluador a modificar",
+                        "name": "uuid_evaluador",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Estudiante a modificar",
+                        "name": "input_actualiza_evaluador",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Request.AddEvaluadorToGrupoPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Swagger.AddEvaluadorToGrupoSwagger"
                         }
                     },
                     "400": {
@@ -2679,6 +2773,28 @@ var doc = `{
                 }
             }
         },
+        "Request.AddEstudianteToGrupoPayload": {
+            "type": "object",
+            "properties": {
+                "id_grupos": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        "Request.AddEvaluadorToGrupoPayload": {
+            "type": "object",
+            "properties": {
+                "id_grupos": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
         "Request.AddNewAdministradorAcademicoPayload": {
             "type": "object",
             "properties": {
@@ -3212,6 +3328,22 @@ var doc = `{
             "type": "object",
             "properties": {
                 "nombre_rol": {
+                    "type": "string"
+                }
+            }
+        },
+        "Response.AddEstudianteToGrupoResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "Response.AddEvaluadorToGrupoResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
                     "type": "string"
                 }
             }
@@ -4483,6 +4615,34 @@ var doc = `{
             "properties": {
                 "id": {
                     "type": "integer"
+                }
+            }
+        },
+        "Swagger.AddEstudianteToGrupoSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/Response.AddEstudianteToGrupoResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "Swagger.AddEvaluadorToGrupoSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/Response.AddEvaluadorToGrupoResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
                 }
             }
         },

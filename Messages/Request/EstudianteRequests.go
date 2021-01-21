@@ -38,3 +38,7 @@ type PutMyEstudiantePayload struct {
 	Telefono_fijo_estudiante    *string `json:"telefono_fijo_estudiante"`
 	Telefono_celular_estudiante *string `json:"telefono_celular_estudiante"`
 }
+
+type AddEstudianteToGrupoPayload struct {
+	Id_grupos []int `json:"id_grupos"`
+}

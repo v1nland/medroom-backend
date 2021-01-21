@@ -1,6 +1,7 @@
 package Controllers
 
 import (
+	"errors"
 	"medroom-backend/ApiHelpers"
 	"medroom-backend/Formats/Input"
 	"medroom-backend/Formats/Output"
@@ -10,6 +11,7 @@ import (
 	"medroom-backend/Utils"
 
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
 // @Summary Lista de administradores-academicos
@@ -24,11 +26,17 @@ func ListAdministradoresAcademicos(c *gin.Context) {
 	var container []Models.AdministradorAcademico
 
 	if err := Repositories.GetAllAdministradoresAcademicos(&container); err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
+		if errors.Is(err, gorm.ErrEmptySlice) {
+			ApiHelpers.RespondJSON(c, 200, container)
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
 		return
 	}
 
-	ApiHelpers.RespondJSON(c, 200, Output.ListAdministradoresAcademicosOutput(container))
+	// ApiHelpers.RespondJSON(c, 200, Output.ListAdministradoresAcademicosOutput(container))
+	ApiHelpers.RespondJSON(c, 200, container)
 }
 
 // @Summary Obtiene un administrador_academico
@@ -45,11 +53,15 @@ func GetOneAdministradorAcademico(c *gin.Context) {
 
 	var container Models.AdministradorAcademico
 	if err := Repositories.GetOneAdministradorAcademico(&container, id); err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
-		return
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Estudiante not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
 	}
 
-	ApiHelpers.RespondJSON(c, 200, Output.GetOneAdministradorAcademicoOutput(container))
+	// ApiHelpers.RespondJSON(c, 200, Output.GetOneAdministradorAcademicoOutput(container))
+	ApiHelpers.RespondJSON(c, 200, container)
 }
 
 // @Summary Agrega un nuevo administrador_academico
@@ -62,25 +74,26 @@ func GetOneAdministradorAcademico(c *gin.Context) {
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/administradores-academicos [post]
 func AddNewAdministradorAcademico(c *gin.Context) {
-	var container Request.AddNewAdministradorAcademicoPayload
+	var input Request.AddNewAdministradorAcademicoPayload
 
-	if err := c.ShouldBind(&container); err != nil {
+	if err := c.ShouldBind(&input); err != nil {
 		ApiHelpers.RespondError(c, 400, "default")
 		return
 	}
 
-	Input.AddNewAdministradorAcademicoInput(&container)
+	// format
+	Input.AddNewAdministradorAcademicoInput(&input)
 
 	// generate model entity
 	model_container := Models.AdministradorAcademico{
-		// Id_rol:                                     container.Id_rol,
-		Rut_administrador_academico:                container.Rut_administrador_academico,
-		Nombres_administrador_academico:            container.Nombres_administrador_academico,
-		Apellidos_administrador_academico:          container.Apellidos_administrador_academico,
-		Hash_contrasena_administrador_academico:    container.Hash_contrasena_administrador_academico,
-		Correo_electronico_administrador_academico: container.Correo_electronico_administrador_academico,
-		Telefono_fijo_administrador_academico:      container.Telefono_fijo_administrador_academico,
-		Telefono_celular_administrador_academico:   container.Telefono_celular_administrador_academico,
+		Id_rol:                                     *input.Id_rol,
+		Rut_administrador_academico:                *input.Rut_administrador_academico,
+		Nombres_administrador_academico:            *input.Nombres_administrador_academico,
+		Apellidos_administrador_academico:          *input.Apellidos_administrador_academico,
+		Hash_contrasena_administrador_academico:    *input.Hash_contrasena_administrador_academico,
+		Correo_electronico_administrador_academico: *input.Correo_electronico_administrador_academico,
+		Telefono_fijo_administrador_academico:      *input.Telefono_fijo_administrador_academico,
+		Telefono_celular_administrador_academico:   *input.Telefono_celular_administrador_academico,
 	}
 
 	// query
@@ -121,44 +134,32 @@ func PutOneAdministradorAcademico(c *gin.Context) {
 	Input.PutOneAdministradorAcademicoInput(&container)
 
 	// generate model entity
-	var model_container Models.AdministradorAcademico
-
-	// get query
-	err := Repositories.GetOneAdministradorAcademico(&model_container, id)
-	if err != nil {
+	var model Models.AdministradorAcademico
+	if err := Repositories.GetOneAdministradorAcademico(&model, id); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
 	// replace data in model entity
-	model_container = Models.AdministradorAcademico{
-		Id: model_container.Id,
-		// Id_rol:                                  Utils.CheckUpdatedInt(container.Id_rol, model_container.Id_rol),
-		Rut_administrador_academico:                Utils.CheckUpdatedString(container.Rut_administrador_academico, model_container.Rut_administrador_academico),
-		Nombres_administrador_academico:            Utils.CheckUpdatedString(container.Nombres_administrador_academico, model_container.Nombres_administrador_academico),
-		Apellidos_administrador_academico:          Utils.CheckUpdatedString(container.Apellidos_administrador_academico, model_container.Apellidos_administrador_academico),
-		Hash_contrasena_administrador_academico:    Utils.CheckUpdatedString(container.Hash_contrasena_administrador_academico, model_container.Hash_contrasena_administrador_academico),
-		Correo_electronico_administrador_academico: Utils.CheckUpdatedString(container.Correo_electronico_administrador_academico, model_container.Correo_electronico_administrador_academico),
-		Telefono_fijo_administrador_academico:      Utils.CheckUpdatedString(container.Telefono_fijo_administrador_academico, model_container.Telefono_fijo_administrador_academico),
-		Telefono_celular_administrador_academico:   Utils.CheckUpdatedString(container.Telefono_celular_administrador_academico, model_container.Telefono_celular_administrador_academico),
+	model = Models.AdministradorAcademico{
+		Id:                                      model.Id,
+		Id_rol:                                  model.Id_rol,
+		Rut_administrador_academico:             Utils.CheckNullString(container.Rut_administrador_academico, model.Rut_administrador_academico),
+		Nombres_administrador_academico:         Utils.CheckNullString(container.Nombres_administrador_academico, model.Nombres_administrador_academico),
+		Apellidos_administrador_academico:       Utils.CheckNullString(container.Apellidos_administrador_academico, model.Apellidos_administrador_academico),
+		Hash_contrasena_administrador_academico: Utils.CheckNullString(container.Hash_contrasena_administrador_academico, model.Hash_contrasena_administrador_academico),
+		Correo_electronico_administrador_academico: Utils.CheckNullString(container.Correo_electronico_administrador_academico, model.Correo_electronico_administrador_academico),
+		Telefono_fijo_administrador_academico:      Utils.CheckNullString(container.Telefono_fijo_administrador_academico, model.Telefono_fijo_administrador_academico),
+		Telefono_celular_administrador_academico:   Utils.CheckNullString(container.Telefono_celular_administrador_academico, model.Telefono_celular_administrador_academico),
 	}
 
-	// update foreign entity
-	// err = Repositories.GetOneRol(&model_container.Rol_administrador_academico, Utils.ConvertIntToString(model_container.Id_rol))
-	// if err != nil {
-	// 	ApiHelpers.RespondError(c, 500, "default")
-	// 	return
-	// }
-
-	// put query
-	err = Repositories.PutOneAdministradorAcademico(&model_container, id)
-	if err != nil {
+	if err := Repositories.PutOneAdministradorAcademico(&model, id); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, Output.PutOneAdministradorAcademicoOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.PutOneAdministradorAcademicoOutput(model))
 }
 
 // @Summary Elimina un administrador_academico
@@ -234,55 +235,52 @@ func PutMyAdministradorAcademico(c *gin.Context) {
 	// params
 	id_administrador_academico := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_ACADEMICO")
 
-	// input container
-	var container Request.PutMyAdministradorAcademicoPayload
-
-	// input bind
-	if err := c.ShouldBind(&container); err != nil {
+	// input input
+	var input Request.PutMyAdministradorAcademicoPayload
+	if err := c.ShouldBind(&input); err != nil {
 		ApiHelpers.RespondError(c, 400, "default")
 		return
 	}
 
 	// format input
-	Input.PutMyAdministradorAcademicoInput(&container)
+	Input.PutMyAdministradorAcademicoInput(&input)
 
 	// generate model entity
-	var model_container Models.AdministradorAcademico
+	var model Models.AdministradorAcademico
+	if err := Repositories.GetOneAdministradorAcademico(&model, id_administrador_academico); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Administrador académico not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
 
-	// get query
-	err := Repositories.GetOneAdministradorAcademico(&model_container, id_administrador_academico)
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
 	// replace data in model entity
-	model_container = Models.AdministradorAcademico{
-		Id: model_container.Id,
-		// Id_rol:                                  Utils.CheckUpdatedInt(container.Id_rol, model_container.Id_rol),
-		Rut_administrador_academico:                Utils.CheckUpdatedString(container.Rut_administrador_academico, model_container.Rut_administrador_academico),
-		Nombres_administrador_academico:            Utils.CheckUpdatedString(container.Nombres_administrador_academico, model_container.Nombres_administrador_academico),
-		Apellidos_administrador_academico:          Utils.CheckUpdatedString(container.Apellidos_administrador_academico, model_container.Apellidos_administrador_academico),
-		Hash_contrasena_administrador_academico:    Utils.CheckUpdatedString(container.Hash_contrasena_administrador_academico, model_container.Hash_contrasena_administrador_academico),
-		Correo_electronico_administrador_academico: Utils.CheckUpdatedString(container.Correo_electronico_administrador_academico, model_container.Correo_electronico_administrador_academico),
-		Telefono_fijo_administrador_academico:      Utils.CheckUpdatedString(container.Telefono_fijo_administrador_academico, model_container.Telefono_fijo_administrador_academico),
-		Telefono_celular_administrador_academico:   Utils.CheckUpdatedString(container.Telefono_celular_administrador_academico, model_container.Telefono_celular_administrador_academico),
+	model = Models.AdministradorAcademico{
+		Id:                                      model.Id,
+		Id_rol:                                  model.Id_rol,
+		Rut_administrador_academico:             model.Rut_administrador_academico,
+		Nombres_administrador_academico:         model.Nombres_administrador_academico,
+		Apellidos_administrador_academico:       model.Apellidos_administrador_academico,
+		Hash_contrasena_administrador_academico: Utils.CheckNullString(input.Hash_contrasena_administrador_academico, model.Hash_contrasena_administrador_academico),
+		Correo_electronico_administrador_academico: Utils.CheckNullString(input.Correo_electronico_administrador_academico, model.Correo_electronico_administrador_academico),
+		Telefono_fijo_administrador_academico:      Utils.CheckNullString(input.Telefono_fijo_administrador_academico, model.Telefono_fijo_administrador_academico),
+		Telefono_celular_administrador_academico:   Utils.CheckNullString(input.Telefono_celular_administrador_academico, model.Telefono_celular_administrador_academico),
 	}
 
-	// update foreign entity
-	// err = Repositories.GetOneRol(&model_container.Rol_administrador_academico, Utils.ConvertIntToString(model_container.Id_rol))
-	// if err != nil {
-	// 	ApiHelpers.RespondError(c, 500, "default")
-	// 	return
-	// }
-
 	// put query
-	err = Repositories.PutOneAdministradorAcademico(&model_container, id_administrador_academico)
-	if err != nil {
-		ApiHelpers.RespondError(c, 500, "default")
+	if err := Repositories.PutOneAdministradorAcademico(&model, id_administrador_academico); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Administrador académico not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
 		return
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, Output.PutMyAdministradorAcademicoOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.PutMyAdministradorAcademicoOutput(model))
 }
