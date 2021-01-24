@@ -29,6 +29,12 @@ func SetupAdministradorAcademicoRouter(r *gin.Engine) *gin.Engine {
 		router.GET("me", Controllers.GetMyAdministradorAcademico)
 		router.PUT("me", Controllers.PutMyAdministradorAcademico)
 
+		estudiantes := router.Group("/estudiantes")
+		{
+			estudiantes.GET("", Controllers.ListEstudiantes)
+			estudiantes.GET(":id", Controllers.GetOneEstudiante)
+		}
+
 		grupos := router.Group("/grupos")
 		{
 			grupos.GET("", Controllers.ListGrupos)
