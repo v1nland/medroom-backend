@@ -35,6 +35,18 @@ func SetupAdministradorAcademicoRouter(r *gin.Engine) *gin.Engine {
 			estudiantes.GET(":id", Controllers.GetOneEstudiante)
 		}
 
+		evaluadores := router.Group("/evaluadores")
+		{
+			evaluadores.GET("", Controllers.ListEvaluadores)
+			evaluadores.GET(":id", Controllers.GetOneEvaluador)
+		}
+
+		cursos := router.Group("/cursos")
+		{
+			cursos.GET("", Controllers.ListCursos)
+			cursos.GET(":id", Controllers.GetOneCurso)
+		}
+
 		grupos := router.Group("/grupos")
 		{
 			grupos.GET("", Controllers.ListGrupos)

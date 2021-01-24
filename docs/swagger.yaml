@@ -7,13 +7,6 @@ definitions:
       error:
         type: string
     type: object
-  Request.AddEvaluadorToGrupoPayload:
-    properties:
-      id_grupos:
-        items:
-          type: integer
-        type: array
-    type: object
   Request.AddNewAdministradorAcademicoPayload:
     properties:
       apellidos_administrador_academico:
@@ -373,10 +366,15 @@ definitions:
       id:
         type: integer
     type: object
+  Response.AddEvaluadorToCursoResponse:
+    properties:
+      id:
+        type: integer
+    type: object
   Response.AddEvaluadorToGrupoResponse:
     properties:
       id:
-        type: string
+        type: integer
     type: object
   Response.AddNewAdministradorAcademicoResponse:
     properties:
@@ -1220,6 +1218,15 @@ definitions:
       status:
         type: boolean
     type: object
+  Swagger.AddEvaluadorToCursoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.AddEvaluadorToCursoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
   Swagger.AddEvaluadorToGrupoSwagger:
     properties:
       data:
@@ -1818,6 +1825,201 @@ info:
   title: MedRoom API
   version: "1.0"
 paths:
+  /administracion-academica/cursos/{id_curso}/grupos/{id_grupo}/estudiantes/{uuid_estudiante}:
+    put:
+      consumes:
+      - application/json
+      description: Modifica los grupos de un estudiante con los datos entregados
+      parameters:
+      - description: ID del curso a modificar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: ID del grupo a modificar
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      - description: UUID del estudiante a asociar
+        in: path
+        name: uuid_estudiante
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.AddEstudianteToGrupoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica los grupos de un estudiante
+      tags:
+      - 05 - Administración Académica
+  /administracion-academica/cursos/{id_curso}/grupos/{id_grupo}/evaluadores/{uuid_evaluador}:
+    put:
+      consumes:
+      - application/json
+      description: Modifica los grupos de un evaluador con los datos entregados
+      parameters:
+      - description: ID del curso a modificar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: ID del grupo a modificar
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      - description: UUID del evaluador a asociar
+        in: path
+        name: uuid_evaluador
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.AddEvaluadorToGrupoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica los grupos de un evaluador
+      tags:
+      - 05 - Administración Académica
+  /administracion-academica/grupos:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los grupos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.ListGruposSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de grupos
+      tags:
+      - 05 - Administración Académica
+    post:
+      consumes:
+      - application/json
+      description: Genera un nuevo grupo con los datos entregados
+      parameters:
+      - description: Grupo a agregar
+        in: body
+        name: input_grupo
+        required: true
+        schema:
+          $ref: '#/definitions/Request.AddNewGrupoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.AddNewGrupoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Agrega un nuevo grupo
+      tags:
+      - 05 - Administración Académica
+  /administracion-academica/grupos/{id_grupo}:
+    delete:
+      consumes:
+      - application/json
+      description: Elimina un grupo con los datos entregados
+      parameters:
+      - description: Id del grupo a eliminar
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.DeleteGrupoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Elimina un grupo
+      tags:
+      - 05 - Administración Académica
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un grupo según su Id
+      parameters:
+      - description: Id del grupo a buscar
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetOneGrupoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Obtiene un grupo
+      tags:
+      - 05 - Administración Académica
+    put:
+      consumes:
+      - application/json
+      description: Modifica un grupo con los datos entregados
+      parameters:
+      - description: Id del grupo a modificar
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      - description: Grupo a modificar
+        in: body
+        name: input_actualiza_grupo
+        required: true
+        schema:
+          $ref: '#/definitions/Request.PutOneGrupoPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.PutOneGrupoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica un grupo
+      tags:
+      - 05 - Administración Académica
   /administracion-academica/login:
     post:
       consumes:
@@ -2296,25 +2498,20 @@ paths:
       summary: Modifica los cursos de un estudiante
       tags:
       - 05 - Administración Ti
-  /administracion-ti/cursos/{id_curso}/grupos/{id_grupo}/estudiantes/{uuid_estudiante}:
+  /administracion-ti/cursos/{id_curso}/evaluadores/{uuid_evaluador}:
     put:
       consumes:
       - application/json
-      description: Modifica los grupos de un estudiante con los datos entregados
+      description: Modifica los cursos de un evaluador con los datos entregados
       parameters:
       - description: ID del curso a modificar
         in: path
         name: id_curso
         required: true
         type: string
-      - description: ID del grupo a modificar
+      - description: UUID del evaluador a asociar
         in: path
-        name: id_grupo
-        required: true
-        type: string
-      - description: UUID del estudiante a asociar
-        in: path
-        name: uuid_estudiante
+        name: uuid_evaluador
         required: true
         type: string
       produces:
@@ -2323,12 +2520,12 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/Swagger.AddEstudianteToGrupoSwagger'
+            $ref: '#/definitions/Swagger.AddEvaluadorToCursoSwagger'
         "400":
           description: Bad request
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Modifica los grupos de un estudiante
+      summary: Modifica los cursos de un evaluador
       tags:
       - 05 - Administración Ti
   /administracion-ti/estudiantes:
@@ -2579,162 +2776,6 @@ paths:
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Modifica un evaluador
-      tags:
-      - 05 - Administración Ti
-  /administracion-ti/evaluadores/{uuid_evaluador}/grupos:
-    put:
-      consumes:
-      - application/json
-      description: Modifica los grupos de un evaluador con los datos entregados
-      parameters:
-      - description: UUID del evaluador a modificar
-        in: path
-        name: uuid_evaluador
-        required: true
-        type: string
-      - description: Estudiante a modificar
-        in: body
-        name: input_actualiza_evaluador
-        required: true
-        schema:
-          $ref: '#/definitions/Request.AddEvaluadorToGrupoPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/Swagger.AddEvaluadorToGrupoSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Modifica los grupos de un evaluador
-      tags:
-      - 05 - Administración Ti
-  /administracion-ti/grupos:
-    get:
-      consumes:
-      - application/json
-      description: Lista todos los grupos
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            items:
-              $ref: '#/definitions/Swagger.ListGruposSwagger'
-            type: array
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Lista de grupos
-      tags:
-      - 05 - Administración Ti
-    post:
-      consumes:
-      - application/json
-      description: Genera un nuevo grupo con los datos entregados
-      parameters:
-      - description: Grupo a agregar
-        in: body
-        name: input_grupo
-        required: true
-        schema:
-          $ref: '#/definitions/Request.AddNewGrupoPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/Swagger.AddNewGrupoSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Agrega un nuevo grupo
-      tags:
-      - 05 - Administración Ti
-  /administracion-ti/grupos/{id_grupo}:
-    delete:
-      consumes:
-      - application/json
-      description: Elimina un grupo con los datos entregados
-      parameters:
-      - description: Id del grupo a eliminar
-        in: path
-        name: id_grupo
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/Swagger.DeleteGrupoSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Elimina un grupo
-      tags:
-      - 05 - Administración Ti
-    get:
-      consumes:
-      - application/json
-      description: Obtiene un grupo según su Id
-      parameters:
-      - description: Id del grupo a buscar
-        in: path
-        name: id_grupo
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/Swagger.GetOneGrupoSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Obtiene un grupo
-      tags:
-      - 05 - Administración Ti
-    put:
-      consumes:
-      - application/json
-      description: Modifica un grupo con los datos entregados
-      parameters:
-      - description: Id del grupo a modificar
-        in: path
-        name: id_grupo
-        required: true
-        type: string
-      - description: Grupo a modificar
-        in: body
-        name: input_actualiza_grupo
-        required: true
-        schema:
-          $ref: '#/definitions/Request.PutOneGrupoPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/Swagger.PutOneGrupoSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Modifica un grupo
       tags:
       - 05 - Administración Ti
   /administracion-ti/login:
