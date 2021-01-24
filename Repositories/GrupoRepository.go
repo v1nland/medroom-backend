@@ -76,3 +76,10 @@ func DeleteEstudianteGrupo(id_grupo string, id_estudiante string) (err error) {
 	}
 	return nil
 }
+
+func DeleteEvaluadorGrupo(id_grupo string, id_evaluador string) (err error) {
+	if err := Config.DB.Debug().Exec(`DELETE FROM public.evaluadores_grupos WHERE evaluadores_grupos.id_grupo = ? AND evaluadores_grupos.id_evaluador = ?`, id_grupo, id_evaluador).Error; err != nil {
+		return err
+	}
+	return nil
+}
