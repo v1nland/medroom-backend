@@ -35,7 +35,7 @@ func SetupAdministradorTiRouter(r *gin.Engine) *gin.Engine {
 			estudiantes.GET(":id", Controllers.GetOneEstudiante)
 			estudiantes.POST("", Controllers.AddNewEstudiante)
 			estudiantes.PUT(":id", Controllers.PutOneEstudiante)
-			estudiantes.PUT(":id/grupos", Controllers.AddEstudianteToGrupo)
+			// estudiantes.PUT(":id/grupos", Controllers.AddEstudianteToGrupo)
 			estudiantes.DELETE(":id", Controllers.DeleteEstudiante)
 		}
 
@@ -45,7 +45,7 @@ func SetupAdministradorTiRouter(r *gin.Engine) *gin.Engine {
 			evaluadores.GET(":id", Controllers.GetOneEvaluador)
 			evaluadores.POST("", Controllers.AddNewEvaluador)
 			evaluadores.PUT(":id", Controllers.PutOneEvaluador)
-			evaluadores.PUT(":id/grupos", Controllers.AddEvaluadorToGrupo)
+			// evaluadores.PUT(":id/grupos", Controllers.AddEvaluadorToGrupo)
 			evaluadores.DELETE(":id", Controllers.DeleteEvaluador)
 		}
 
@@ -73,6 +73,7 @@ func SetupAdministradorTiRouter(r *gin.Engine) *gin.Engine {
 			cursos.GET(":id", Controllers.GetOneCurso)
 			cursos.POST("", Controllers.AddNewCurso)
 			cursos.PUT(":id", Controllers.PutOneCurso)
+			cursos.PUT(":id/estudiantes/:id_estudiante", Controllers.AddEstudianteToCurso)
 			cursos.DELETE(":id", Controllers.DeleteCurso)
 		}
 
@@ -82,6 +83,7 @@ func SetupAdministradorTiRouter(r *gin.Engine) *gin.Engine {
 			grupos.GET(":id", Controllers.GetOneGrupo)
 			grupos.POST("", Controllers.AddNewGrupo)
 			grupos.PUT(":id", Controllers.PutOneGrupo)
+			cursos.PUT(":id/grupos/:id_grupo/estudiantes/:id_estudiante", Controllers.AddEstudianteToGrupo)
 			grupos.DELETE(":id", Controllers.DeleteGrupo)
 		}
 

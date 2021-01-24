@@ -56,7 +56,3 @@ type DeleteEstudianteResponse struct {
 type PutMyEstudianteResponse struct {
 	Id uuid.UUID `json:"id"`
 }
-
-type AddEstudianteToGrupoResponse struct {
-	Id uuid.UUID `json:"id"`
-}

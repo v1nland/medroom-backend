@@ -42,3 +42,6 @@ type PutMyEstudiantePayload struct {
 type AddEstudianteToGrupoPayload struct {
 	Id_grupos []int `json:"id_grupos"`
 }
+
+type AddEstudianteToCursoPayload struct {
+}

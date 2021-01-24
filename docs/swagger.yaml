@@ -7,13 +7,6 @@ definitions:
       error:
         type: string
     type: object
-  Request.AddEstudianteToGrupoPayload:
-    properties:
-      id_grupos:
-        items:
-          type: integer
-        type: array
-    type: object
   Request.AddEvaluadorToGrupoPayload:
     properties:
       id_grupos:
@@ -370,10 +363,15 @@ definitions:
       nombre_rol:
         type: string
     type: object
+  Response.AddEstudianteToCursoResponse:
+    properties:
+      id:
+        type: integer
+    type: object
   Response.AddEstudianteToGrupoResponse:
     properties:
       id:
-        type: string
+        type: integer
     type: object
   Response.AddEvaluadorToGrupoResponse:
     properties:
@@ -1203,6 +1201,15 @@ definitions:
     properties:
       id:
         type: integer
+    type: object
+  Swagger.AddEstudianteToCursoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.AddEstudianteToCursoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
     type: object
   Swagger.AddEstudianteToGrupoSwagger:
     properties:
@@ -2259,6 +2266,71 @@ paths:
       summary: Modifica un curso
       tags:
       - 05 - Administración Ti
+  /administracion-ti/cursos/{id_curso}/estudiantes/{uuid_estudiante}:
+    put:
+      consumes:
+      - application/json
+      description: Modifica los cursos de un estudiante con los datos entregados
+      parameters:
+      - description: ID del curso a modificar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: UUID del estudiante a asociar
+        in: path
+        name: uuid_estudiante
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.AddEstudianteToCursoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica los cursos de un estudiante
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/cursos/{id_curso}/grupos/{id_grupo}/estudiantes/{uuid_estudiante}:
+    put:
+      consumes:
+      - application/json
+      description: Modifica los grupos de un estudiante con los datos entregados
+      parameters:
+      - description: ID del curso a modificar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: ID del grupo a modificar
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      - description: UUID del estudiante a asociar
+        in: path
+        name: uuid_estudiante
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.AddEstudianteToGrupoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Modifica los grupos de un estudiante
+      tags:
+      - 05 - Administración Ti
   /administracion-ti/estudiantes:
     get:
       consumes:
@@ -2382,37 +2454,6 @@ paths:
           schema:
             $ref: '#/definitions/ApiHelpers.ResponseError'
       summary: Modifica un estudiante
-      tags:
-      - 05 - Administración Ti
-  /administracion-ti/estudiantes/{uuid_estudiante}/grupos:
-    put:
-      consumes:
-      - application/json
-      description: Modifica los grupos de un estudiante con los datos entregados
-      parameters:
-      - description: UUID del estudiante a modificar
-        in: path
-        name: uuid_estudiante
-        required: true
-        type: string
-      - description: Estudiante a modificar
-        in: body
-        name: input_actualiza_estudiante
-        required: true
-        schema:
-          $ref: '#/definitions/Request.AddEstudianteToGrupoPayload'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/Swagger.AddEstudianteToGrupoSwagger'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
-      summary: Modifica los grupos de un estudiante
       tags:
       - 05 - Administración Ti
   /administracion-ti/evaluadores:

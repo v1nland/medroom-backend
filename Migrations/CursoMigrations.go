@@ -14,6 +14,13 @@ func CursoMigrations() {
 		Id_periodo: 1,
 		Grupos_curso: []Models.Grupo{
 			{
+				Evaluaciones_grupo: []Models.Evaluacion{},
+				Evaluadores_grupo:  []Models.Evaluador{},
+				Estudiantes_grupo:  []Models.Estudiante{},
+				Nombre_grupo:       "SIN GRUPO",
+				Sigla_grupo:        "SG",
+			},
+			{
 				Evaluadores_grupo: []Models.Evaluador{
 					{
 						Id_rol:                       2,
@@ -95,15 +102,16 @@ func CursoMigrations() {
 		panic("NO SE PUDO MIGRAR CURSO 'NINJUTSU'")
 	}
 
-	// add another evaluador
-	var evaluadores []Models.Evaluador
-	if err := Repositories.GetAllEvaluadores(&evaluadores); err != nil {
-		panic("NO EXISTEN EVALUADORES")
-	}
-
 	container = &Models.Curso{
 		Id_periodo: 1,
 		Grupos_curso: []Models.Grupo{
+			{
+				Evaluaciones_grupo: []Models.Evaluacion{},
+				Evaluadores_grupo:  []Models.Evaluador{},
+				Estudiantes_grupo:  []Models.Estudiante{},
+				Nombre_grupo:       "SIN GRUPO",
+				Sigla_grupo:        "SG",
+			},
 			{
 				Evaluadores_grupo: []Models.Evaluador{
 					{
@@ -154,36 +162,6 @@ func CursoMigrations() {
 				Nombre_grupo: "EQUIPO 1",
 				Sigla_grupo:  "E-01",
 			},
-			{
-				Id_curso: 1,
-				Evaluadores_grupo: []Models.Evaluador{
-					evaluadores[0],
-				},
-				Estudiantes_grupo: []Models.Estudiante{
-					{
-						Id_rol:                        1,
-						Rut_estudiante:                "66.666.666-2",
-						Nombres_estudiante:            "OBITO",
-						Apellidos_estudiante:          "UCHIHA",
-						Hash_contrasena_estudiante:    "d04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa",
-						Correo_electronico_estudiante: "obito.uchiha@mail.udp.cl",
-						Telefono_fijo_estudiante:      "12345678",
-						Telefono_celular_estudiante:   "12345678",
-					},
-					{
-						Id_rol:                        1,
-						Rut_estudiante:                "77.777.777-2",
-						Nombres_estudiante:            "RIN",
-						Apellidos_estudiante:          "NOHARA",
-						Hash_contrasena_estudiante:    "d04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa",
-						Correo_electronico_estudiante: "rin.nohara@mail.udp.cl",
-						Telefono_fijo_estudiante:      "12345678",
-						Telefono_celular_estudiante:   "12345678",
-					},
-				},
-				Nombre_grupo: "EQUIPO KAKASHI",
-				Sigla_grupo:  "E-KK",
-			},
 		},
 		Nombre_curso: "NINJUTSU AVANZADO",
 		Sigla_curso:  "CIT-1001",
@@ -197,6 +175,13 @@ func CursoMigrations() {
 	container = &Models.Curso{
 		Id_periodo: 1,
 		Grupos_curso: []Models.Grupo{
+			{
+				Evaluaciones_grupo: []Models.Evaluacion{},
+				Evaluadores_grupo:  []Models.Evaluador{},
+				Estudiantes_grupo:  []Models.Estudiante{},
+				Nombre_grupo:       "SIN GRUPO",
+				Sigla_grupo:        "SG",
+			},
 			{
 				Evaluadores_grupo: []Models.Evaluador{
 					{

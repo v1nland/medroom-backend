@@ -710,6 +710,103 @@ var doc = `{
                 }
             }
         },
+        "/administracion-ti/cursos/{id_curso}/estudiantes/{uuid_estudiante}": {
+            "put": {
+                "description": "Modifica los cursos de un estudiante con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Modifica los cursos de un estudiante",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID del curso a modificar",
+                        "name": "id_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "UUID del estudiante a asociar",
+                        "name": "uuid_estudiante",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Swagger.AddEstudianteToCursoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-ti/cursos/{id_curso}/grupos/{id_grupo}/estudiantes/{uuid_estudiante}": {
+            "put": {
+                "description": "Modifica los grupos de un estudiante con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Modifica los grupos de un estudiante",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID del curso a modificar",
+                        "name": "id_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "ID del grupo a modificar",
+                        "name": "id_grupo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "UUID del estudiante a asociar",
+                        "name": "uuid_estudiante",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Swagger.AddEstudianteToGrupoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
         "/administracion-ti/estudiantes": {
             "get": {
                 "description": "Lista todos los estudiantes existentes",
@@ -888,53 +985,6 @@ var doc = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/Swagger.DeleteEstudianteSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            }
-        },
-        "/administracion-ti/estudiantes/{uuid_estudiante}/grupos": {
-            "put": {
-                "description": "Modifica los grupos de un estudiante con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "05 - Administración Ti"
-                ],
-                "summary": "Modifica los grupos de un estudiante",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "UUID del estudiante a modificar",
-                        "name": "uuid_estudiante",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "description": "Estudiante a modificar",
-                        "name": "input_actualiza_estudiante",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/Request.AddEstudianteToGrupoPayload"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Swagger.AddEstudianteToGrupoSwagger"
                         }
                     },
                     "400": {
@@ -2773,17 +2823,6 @@ var doc = `{
                 }
             }
         },
-        "Request.AddEstudianteToGrupoPayload": {
-            "type": "object",
-            "properties": {
-                "id_grupos": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                }
-            }
-        },
         "Request.AddEvaluadorToGrupoPayload": {
             "type": "object",
             "properties": {
@@ -3332,11 +3371,19 @@ var doc = `{
                 }
             }
         },
+        "Response.AddEstudianteToCursoResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                }
+            }
+        },
         "Response.AddEstudianteToGrupoResponse": {
             "type": "object",
             "properties": {
                 "id": {
-                    "type": "string"
+                    "type": "integer"
                 }
             }
         },
@@ -4615,6 +4662,20 @@ var doc = `{
             "properties": {
                 "id": {
                     "type": "integer"
+                }
+            }
+        },
+        "Swagger.AddEstudianteToCursoSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/Response.AddEstudianteToCursoResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
                 }
             }
         },

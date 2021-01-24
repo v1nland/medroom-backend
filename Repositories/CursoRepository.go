@@ -69,3 +69,10 @@ func DeleteCurso(u *Models.Curso, id string) (err error) {
 	Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("id = ?", id).Delete(u)
 	return nil
 }
+
+func GetGrupoSinGrupo(u *Models.Curso, id string) (err error) {
+	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("id = ?", id).Joins("JOIN grupos ON cursos.id = grupos.id_curso").First(u).Error; err != nil {
+		return err
+	}
+	return nil
+}

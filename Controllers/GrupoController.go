@@ -3,6 +3,7 @@ package Controllers
 import (
 	"errors"
 	"medroom-backend/ApiHelpers"
+	"medroom-backend/Config"
 	"medroom-backend/Formats/Input"
 	"medroom-backend/Formats/Output"
 	"medroom-backend/Messages/Request"
@@ -309,5 +310,66 @@ func GetOneGrupoEvaluador(c *gin.Context) {
 	}
 
 	// ApiHelpers.RespondJSON(c, 200, Output.GetGrupoEstudianteOutput(grupos))
+	ApiHelpers.RespondJSON(c, 200, grupo)
+}
+
+// @Summary Modifica los grupos de un estudiante
+// @Description Modifica los grupos de un estudiante con los datos entregados
+// @Tags 05 - Administración Ti
+// @Accept  json
+// @Produce  json
+// @Param   id_curso     path    string     true        "ID del curso a modificar"
+// @Param   id_grupo     path    string     true        "ID del grupo a modificar"
+// @Param   uuid_estudiante     path    string     true        "UUID del estudiante a asociar"
+// @Success 200 {object} Swagger.AddEstudianteToGrupoSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /administracion-ti/cursos/{id_curso}/grupos/{id_grupo}/estudiantes/{uuid_estudiante} [put]
+func AddEstudianteToGrupo(c *gin.Context) {
+	// params
+	id_curso := c.Params.ByName("id")
+	id_grupo := c.Params.ByName("id_grupo")
+	id_estudiante := c.Params.ByName("id_estudiante")
+
+	var curso Models.Curso
+	if err := Repositories.GetOneCurso(&curso, id_curso); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Curso not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
+		return
+	}
+
+	var grupo Models.Grupo
+	if err := Repositories.GetOneGrupo(&grupo, id_grupo); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Grupo not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
+		return
+	}
+
+	var estudiante Models.Estudiante
+	if err := Repositories.GetOneEstudiante(&estudiante, id_estudiante); err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			ApiHelpers.RespondJSON(c, 200, "Estudiante not found")
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
+		return
+	}
+
+	Config.DB.Model(&grupo).Association("Estudiantes_grupo").Append([]Models.Estudiante{estudiante})
+
+	found, id_grupo_sg := Utils.SearchIdGrupoBySigla(curso.Grupos_curso, "SG")
+	if found {
+		// delete from sg group
+		Repositories.DeleteEstudianteGrupo(Utils.ConvertIntToString(id_grupo_sg), id_estudiante)
+	}
+
 	ApiHelpers.RespondJSON(c, 200, grupo)
 }

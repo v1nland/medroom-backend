@@ -32,7 +32,7 @@ func AddNewEstudianteInput(u *Request.AddNewEstudiantePayload) {
 	}
 	if u.Correo_electronico_estudiante != nil {
 		*u.Correo_electronico_estudiante = strings.TrimSpace(*u.Correo_electronico_estudiante)
-		*u.Correo_electronico_estudiante = strings.ToUpper(*u.Correo_electronico_estudiante)
+		// *u.Correo_electronico_estudiante = strings.ToUpper(*u.Correo_electronico_estudiante)
 		*u.Correo_electronico_estudiante = Utils.RemoveAccents(*u.Correo_electronico_estudiante)
 	}
 	if u.Telefono_fijo_estudiante != nil {
@@ -65,7 +65,7 @@ func PutOneEstudianteInput(u *Request.PutOneEstudiantePayload) {
 	}
 	if u.Correo_electronico_estudiante != nil {
 		*u.Correo_electronico_estudiante = strings.TrimSpace(*u.Correo_electronico_estudiante)
-		*u.Correo_electronico_estudiante = strings.ToUpper(*u.Correo_electronico_estudiante)
+		// *u.Correo_electronico_estudiante = strings.ToUpper(*u.Correo_electronico_estudiante)
 		*u.Correo_electronico_estudiante = Utils.RemoveAccents(*u.Correo_electronico_estudiante)
 	}
 	if u.Telefono_fijo_estudiante != nil {
@@ -102,5 +102,9 @@ func PutMyEstudianteInput(u *Request.PutMyEstudiantePayload) {
 }
 
 func AddEstudianteToGrupoInput(u *Request.AddEstudianteToGrupoPayload) {
+
+}
+
+func AddEstudianteToCursoInput(u *Request.AddEstudianteToCursoPayload) {
 
 }

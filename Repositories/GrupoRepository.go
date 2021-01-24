@@ -69,3 +69,10 @@ func DeleteGrupo(u *Models.Grupo, id string) (err error) {
 	Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("id = ?", id).Delete(u)
 	return nil
 }
+
+func DeleteEstudianteGrupo(id_grupo string, id_estudiante string) (err error) {
+	if err := Config.DB.Debug().Exec(`DELETE FROM public.estudiantes_grupos WHERE estudiantes_grupos.id_grupo = ? AND estudiantes_grupos.id_estudiante = ?`, id_grupo, id_estudiante).Error; err != nil {
+		return err
+	}
+	return nil
+}

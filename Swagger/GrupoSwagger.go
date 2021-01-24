@@ -55,3 +55,9 @@ type DeleteGrupoSwagger struct {
 	Meta   string                       `json:"meta"`
 	Data   Response.DeleteGrupoResponse `json:"data"`
 }
+
+type AddEstudianteToGrupoSwagger struct {
+	Status bool                                  `json:"status"`
+	Meta   string                                `json:"meta"`
+	Data   Response.AddEstudianteToGrupoResponse `json:"data"`
+}

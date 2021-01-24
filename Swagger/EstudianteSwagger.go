@@ -43,9 +43,3 @@ type PutMyEstudianteSwagger struct {
 	Meta   string                           `json:"meta"`
 	Data   Response.PutMyEstudianteResponse `json:"data"`
 }
-
-type AddEstudianteToGrupoSwagger struct {
-	Status bool                                  `json:"status"`
-	Meta   string                                `json:"meta"`
-	Data   Response.AddEstudianteToGrupoResponse `json:"data"`
-}

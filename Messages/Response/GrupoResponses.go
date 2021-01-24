@@ -65,3 +65,7 @@ type PutOneGrupoResponse struct {
 type DeleteGrupoResponse struct {
 	Id int `json:"id"`
 }
+
+type AddEstudianteToGrupoResponse struct {
+	Id int `json:"id"`
+}
