@@ -56,7 +56,3 @@ type DeleteEvaluadorResponse struct {
 type PutMyEvaluadorResponse struct {
 	Id uuid.UUID `json:"id"`
 }
-
-type AddEvaluadorToGrupoResponse struct {
-	Id uuid.UUID `json:"id"`
-}

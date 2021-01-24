@@ -43,9 +43,3 @@ type PutMyEvaluadorSwagger struct {
 	Meta   string                          `json:"meta"`
 	Data   Response.PutMyEvaluadorResponse `json:"data"`
 }
-
-type AddEvaluadorToGrupoSwagger struct {
-	Status bool                                 `json:"status"`
-	Meta   string                               `json:"meta"`
-	Data   Response.AddEvaluadorToGrupoResponse `json:"data"`
-}

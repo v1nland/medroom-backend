@@ -63,3 +63,7 @@ type DeleteCursoResponse struct {
 type AddEstudianteToCursoResponse struct {
 	Id int `json:"id"`
 }
+
+type AddEvaluadorToCursoResponse struct {
+	Id int `json:"id"`
+}

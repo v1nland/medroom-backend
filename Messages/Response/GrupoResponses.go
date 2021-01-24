@@ -69,3 +69,7 @@ type DeleteGrupoResponse struct {
 type AddEstudianteToGrupoResponse struct {
 	Id int `json:"id"`
 }
+
+type AddEvaluadorToGrupoResponse struct {
+	Id int `json:"id"`
+}
