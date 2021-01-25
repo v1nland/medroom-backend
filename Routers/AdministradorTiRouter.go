@@ -25,7 +25,6 @@ func SetupAdministradorTiRouter(r *gin.Engine) *gin.Engine {
 	router := r.Group("api/v1/administracion-ti")
 	router.Use(administradorTiAuthMiddleware)
 	{
-		// profile routes
 		router.GET("me", Controllers.GetMyAdministradorTi)
 		router.PUT("me", Controllers.PutMyAdministradorTi)
 
