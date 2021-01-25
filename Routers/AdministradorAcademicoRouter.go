@@ -45,6 +45,8 @@ func SetupAdministradorAcademicoRouter(r *gin.Engine) *gin.Engine {
 		{
 			cursos.GET("", Controllers.ListCursos)
 			cursos.GET(":id", Controllers.GetOneCurso)
+			cursos.PUT(":id/grupos/:id_grupo/estudiantes/:id_estudiante", Controllers.AddEstudianteToGrupo)
+			cursos.PUT(":id/grupos/:id_grupo/evaluadores/:id_evaluador", Controllers.AddEvaluadorToGrupo)
 		}
 
 		grupos := router.Group("/grupos")
@@ -53,8 +55,6 @@ func SetupAdministradorAcademicoRouter(r *gin.Engine) *gin.Engine {
 			grupos.GET(":id", Controllers.GetOneGrupo)
 			grupos.POST("", Controllers.AddNewGrupo)
 			grupos.PUT(":id", Controllers.PutOneGrupo)
-			grupos.PUT(":id/grupos/:id_grupo/estudiantes/:id_estudiante", Controllers.AddEstudianteToGrupo)
-			grupos.PUT(":id/grupos/:id_grupo/evaluadores/:id_evaluador", Controllers.AddEvaluadorToGrupo)
 			grupos.DELETE(":id", Controllers.DeleteGrupo)
 		}
 
