@@ -5,7 +5,6 @@ import (
 	"medroom-backend/ApiHelpers"
 	"medroom-backend/Config"
 	"medroom-backend/Formats/Input"
-	"medroom-backend/Formats/Output"
 	"medroom-backend/Messages/Request"
 	"medroom-backend/Models"
 	"medroom-backend/Repositories"
@@ -35,7 +34,7 @@ func ListGrupos(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, Output.ListGruposOutput(container))
+	ApiHelpers.RespondJSON(c, 200, container)
 }
 
 // @Summary Obtiene un grupo
@@ -62,7 +61,7 @@ func GetOneGrupo(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, Output.GetOneGrupoOutput(container))
+	ApiHelpers.RespondJSON(c, 200, container)
 }
 
 // @Summary Agrega un nuevo grupo
@@ -103,7 +102,7 @@ func AddNewGrupo(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, Output.AddNewGrupoOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, model_container)
 }
 
 // @Summary Modifica un grupo
@@ -159,7 +158,7 @@ func PutOneGrupo(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, Output.PutOneGrupoOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, model_container)
 }
 
 // @Summary Elimina un grupo
@@ -193,7 +192,7 @@ func DeleteGrupo(c *gin.Context) {
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, Output.DeleteGrupoOutput(container))
+	ApiHelpers.RespondJSON(c, 200, container)
 }
 
 // @Summary Obtiene los grupos de un estudiante
