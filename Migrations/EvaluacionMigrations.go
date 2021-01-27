@@ -15,7 +15,7 @@ func EvaluacionMigrations() {
 
 	// control 1
 	container := &Models.Evaluacion{
-		Id_grupo:          grupos[0].Id,
+		Id_grupo:          grupos[1].Id,
 		Nombre_evaluacion: "CONTROL NUMERO 1",
 	}
 	if err := Repositories.AddNewEvaluacion(container); err != nil {
@@ -25,7 +25,7 @@ func EvaluacionMigrations() {
 
 	// control 2
 	container = &Models.Evaluacion{
-		Id_grupo:          grupos[0].Id,
+		Id_grupo:          grupos[1].Id,
 		Nombre_evaluacion: "CONTROL NUMERO 2",
 	}
 	if err := Repositories.AddNewEvaluacion(container); err != nil {

@@ -16,8 +16,8 @@ func CalificacionEstudianteMigrations() {
 	}
 
 	container := &Models.CalificacionEstudiante{
-		Id_estudiante: grupos[0].Estudiantes_grupo[0].Id,
-		Id_evaluador:  grupos[0].Evaluadores_grupo[0].Id,
+		Id_estudiante: grupos[1].Estudiantes_grupo[0].Id,
+		Id_evaluador:  grupos[1].Evaluadores_grupo[0].Id,
 		Id_evaluacion: 1,
 		Id_periodo:    1,
 		Puntajes_calificacion_estudiante: []Models.Puntaje{

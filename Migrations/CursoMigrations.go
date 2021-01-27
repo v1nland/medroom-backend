@@ -14,6 +14,13 @@ func CursoMigrations() {
 		Id_periodo: 1,
 		Grupos_curso: []Models.Grupo{
 			{
+				Evaluaciones_grupo: []Models.Evaluacion{},
+				Evaluadores_grupo:  []Models.Evaluador{},
+				Estudiantes_grupo:  []Models.Estudiante{},
+				Nombre_grupo:       "SIN GRUPO",
+				Sigla_grupo:        "SG",
+			},
+			{
 				Evaluadores_grupo: []Models.Evaluador{
 					{
 						Id_rol:                       2,
@@ -21,7 +28,7 @@ func CursoMigrations() {
 						Nombres_evaluador:            "KAKASHI",
 						Apellidos_evaluador:          "HATAKE",
 						Hash_contrasena_evaluador:    "d04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa",
-						Correo_electronico_evaluador: "kakashi.hatake@mail.udp.cl",
+						Correo_electronico_evaluador: "KAKASHI.HATAKE@MAIL.UDP.CL",
 						Telefono_fijo_evaluador:      "1234567",
 						Telefono_celular_evaluador:   "1234567",
 						Recinto_evaluador:            "ACADEMIA NINJA DE KONOHA",
@@ -33,7 +40,7 @@ func CursoMigrations() {
 						Nombres_evaluador:            "TENZO",
 						Apellidos_evaluador:          "YAMATO",
 						Hash_contrasena_evaluador:    "d04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa",
-						Correo_electronico_evaluador: "tenso.yamato@mail.udp.cl",
+						Correo_electronico_evaluador: "TENSO.YAMATO@MAIL.UDP.CL",
 						Telefono_fijo_evaluador:      "1234567",
 						Telefono_celular_evaluador:   "1234567",
 						Recinto_evaluador:            "ACADEMIA NINJA DE KONOHA",
@@ -47,7 +54,7 @@ func CursoMigrations() {
 						Nombres_estudiante:            "NARUTO",
 						Apellidos_estudiante:          "UZUMAKI",
 						Hash_contrasena_estudiante:    "d04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa",
-						Correo_electronico_estudiante: "naruto.uzumaki@mail.udp.cl",
+						Correo_electronico_estudiante: "NARUTO.UZUMAKI@MAIL.UDP.CL",
 						Telefono_fijo_estudiante:      "12345678",
 						Telefono_celular_estudiante:   "12345678",
 					},
@@ -57,7 +64,7 @@ func CursoMigrations() {
 						Nombres_estudiante:            "SASUKE",
 						Apellidos_estudiante:          "UCHIHA",
 						Hash_contrasena_estudiante:    "d04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa",
-						Correo_electronico_estudiante: "sasuke.uchiha@mail.udp.cl",
+						Correo_electronico_estudiante: "SASUKE.UCHIHA@MAIL.UDP.CL",
 						Telefono_fijo_estudiante:      "12345678",
 						Telefono_celular_estudiante:   "12345678",
 					},
@@ -67,7 +74,7 @@ func CursoMigrations() {
 						Nombres_estudiante:            "SAKURA",
 						Apellidos_estudiante:          "HARUNO",
 						Hash_contrasena_estudiante:    "d04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa",
-						Correo_electronico_estudiante: "sakura.haruno@mail.udp.cl",
+						Correo_electronico_estudiante: "SAKURA.HARUNO@MAIL.UDP.CL",
 						Telefono_fijo_estudiante:      "12345678",
 						Telefono_celular_estudiante:   "12345678",
 					},
@@ -77,7 +84,7 @@ func CursoMigrations() {
 						Nombres_estudiante:            "SAI",
 						Apellidos_estudiante:          "YAMANAKA",
 						Hash_contrasena_estudiante:    "d04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa",
-						Correo_electronico_estudiante: "sai.yamanaka@mail.udp.cl",
+						Correo_electronico_estudiante: "SAI.YAMANAKA@MAIL.UDP.CL",
 						Telefono_fijo_estudiante:      "12345678",
 						Telefono_celular_estudiante:   "12345678",
 					},
@@ -95,15 +102,16 @@ func CursoMigrations() {
 		panic("NO SE PUDO MIGRAR CURSO 'NINJUTSU'")
 	}
 
-	// add another evaluador
-	var evaluadores []Models.Evaluador
-	if err := Repositories.GetAllEvaluadores(&evaluadores); err != nil {
-		panic("NO EXISTEN EVALUADORES")
-	}
-
 	container = &Models.Curso{
 		Id_periodo: 1,
 		Grupos_curso: []Models.Grupo{
+			{
+				Evaluaciones_grupo: []Models.Evaluacion{},
+				Evaluadores_grupo:  []Models.Evaluador{},
+				Estudiantes_grupo:  []Models.Estudiante{},
+				Nombre_grupo:       "SIN GRUPO",
+				Sigla_grupo:        "SG",
+			},
 			{
 				Evaluadores_grupo: []Models.Evaluador{
 					{
@@ -112,7 +120,7 @@ func CursoMigrations() {
 						Nombres_evaluador:            "MIGHT",
 						Apellidos_evaluador:          "GAI",
 						Hash_contrasena_evaluador:    "d04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa",
-						Correo_electronico_evaluador: "might.gai@mail.udp.cl",
+						Correo_electronico_evaluador: "MIGHT.GAI@MAIL.UDP.CL",
 						Telefono_fijo_evaluador:      "1234567",
 						Telefono_celular_evaluador:   "1234567",
 						Recinto_evaluador:            "ACADEMIA NINJA DE KONOHA",
@@ -126,7 +134,7 @@ func CursoMigrations() {
 						Nombres_estudiante:            "ROCK",
 						Apellidos_estudiante:          "LEE",
 						Hash_contrasena_estudiante:    "d04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa",
-						Correo_electronico_estudiante: "rock.lee@mail.udp.cl",
+						Correo_electronico_estudiante: "ROCK.LEE@MAIL.UDP.CL",
 						Telefono_fijo_estudiante:      "12345678",
 						Telefono_celular_estudiante:   "12345678",
 					},
@@ -136,7 +144,7 @@ func CursoMigrations() {
 						Nombres_estudiante:            "TEN",
 						Apellidos_estudiante:          "TEN",
 						Hash_contrasena_estudiante:    "d04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa",
-						Correo_electronico_estudiante: "ten.ten@mail.udp.cl",
+						Correo_electronico_estudiante: "TEN.TEN@MAIL.UDP.CL",
 						Telefono_fijo_estudiante:      "12345678",
 						Telefono_celular_estudiante:   "12345678",
 					},
@@ -146,43 +154,13 @@ func CursoMigrations() {
 						Nombres_estudiante:            "NEJI",
 						Apellidos_estudiante:          "HYUGA",
 						Hash_contrasena_estudiante:    "d04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa",
-						Correo_electronico_estudiante: "neji.hyuga@mail.udp.cl",
+						Correo_electronico_estudiante: "NEJI.HYUGA@MAIL.UDP.CL",
 						Telefono_fijo_estudiante:      "12345678",
 						Telefono_celular_estudiante:   "12345678",
 					},
 				},
 				Nombre_grupo: "EQUIPO 1",
 				Sigla_grupo:  "E-01",
-			},
-			{
-				Id_curso: 1,
-				Evaluadores_grupo: []Models.Evaluador{
-					evaluadores[0],
-				},
-				Estudiantes_grupo: []Models.Estudiante{
-					{
-						Id_rol:                        1,
-						Rut_estudiante:                "66.666.666-2",
-						Nombres_estudiante:            "OBITO",
-						Apellidos_estudiante:          "UCHIHA",
-						Hash_contrasena_estudiante:    "d04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa",
-						Correo_electronico_estudiante: "obito.uchiha@mail.udp.cl",
-						Telefono_fijo_estudiante:      "12345678",
-						Telefono_celular_estudiante:   "12345678",
-					},
-					{
-						Id_rol:                        1,
-						Rut_estudiante:                "77.777.777-2",
-						Nombres_estudiante:            "RIN",
-						Apellidos_estudiante:          "NOHARA",
-						Hash_contrasena_estudiante:    "d04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa",
-						Correo_electronico_estudiante: "rin.nohara@mail.udp.cl",
-						Telefono_fijo_estudiante:      "12345678",
-						Telefono_celular_estudiante:   "12345678",
-					},
-				},
-				Nombre_grupo: "EQUIPO KAKASHI",
-				Sigla_grupo:  "E-KK",
 			},
 		},
 		Nombre_curso: "NINJUTSU AVANZADO",
@@ -198,6 +176,13 @@ func CursoMigrations() {
 		Id_periodo: 1,
 		Grupos_curso: []Models.Grupo{
 			{
+				Evaluaciones_grupo: []Models.Evaluacion{},
+				Evaluadores_grupo:  []Models.Evaluador{},
+				Estudiantes_grupo:  []Models.Estudiante{},
+				Nombre_grupo:       "SIN GRUPO",
+				Sigla_grupo:        "SG",
+			},
+			{
 				Evaluadores_grupo: []Models.Evaluador{
 					{
 						Id_rol:                       2,
@@ -205,7 +190,7 @@ func CursoMigrations() {
 						Nombres_evaluador:            "ASUMA",
 						Apellidos_evaluador:          "SARUTOBI",
 						Hash_contrasena_evaluador:    "d04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa",
-						Correo_electronico_evaluador: "asuma.sarutobi@mail.udp.cl",
+						Correo_electronico_evaluador: "ASUMA.SARUTOBI@MAIL.UDP.CL",
 						Telefono_fijo_evaluador:      "1234567",
 						Telefono_celular_evaluador:   "1234567",
 						Recinto_evaluador:            "ACADEMIA NINJA DE KONOHA",
@@ -219,7 +204,7 @@ func CursoMigrations() {
 						Nombres_estudiante:            "CHOJI",
 						Apellidos_estudiante:          "AKIMICHI",
 						Hash_contrasena_estudiante:    "d04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa",
-						Correo_electronico_estudiante: "choji.akimichi@mail.udp.cl",
+						Correo_electronico_estudiante: "CHOJI.AKIMICHI@MAIL.UDP.CL",
 						Telefono_fijo_estudiante:      "12345678",
 						Telefono_celular_estudiante:   "12345678",
 					},
@@ -229,7 +214,7 @@ func CursoMigrations() {
 						Nombres_estudiante:            "SHIKAMARU",
 						Apellidos_estudiante:          "NARA",
 						Hash_contrasena_estudiante:    "d04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa",
-						Correo_electronico_estudiante: "shikamaru.nara@mail.udp.cl",
+						Correo_electronico_estudiante: "SHIKAMARU.NARA@MAIL.UDP.CL",
 						Telefono_fijo_estudiante:      "12345678",
 						Telefono_celular_estudiante:   "12345678",
 					},
@@ -239,7 +224,7 @@ func CursoMigrations() {
 						Nombres_estudiante:            "INO",
 						Apellidos_estudiante:          "YAMANAKA",
 						Hash_contrasena_estudiante:    "d04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa",
-						Correo_electronico_estudiante: "ino.yamanaka@mail.udp.cl",
+						Correo_electronico_estudiante: "INO.YAMANAKA@MAIL.UDP.CL",
 						Telefono_fijo_estudiante:      "12345678",
 						Telefono_celular_estudiante:   "12345678",
 					},

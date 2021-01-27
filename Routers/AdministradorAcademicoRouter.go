@@ -29,14 +29,34 @@ func SetupAdministradorAcademicoRouter(r *gin.Engine) *gin.Engine {
 		router.GET("me", Controllers.GetMyAdministradorAcademico)
 		router.PUT("me", Controllers.PutMyAdministradorAcademico)
 
-		// grupos := router.Group("/grupos")
-		// {
-		// 	grupos.GET("", Controllers.ListGrupos)
-		// 	grupos.GET(":id", Controllers.GetOneGrupo)
-		// 	grupos.POST("", Controllers.AddNewGrupo)
-		// 	grupos.PUT(":id", Controllers.PutOneGrupo)
-		// 	grupos.DELETE(":id", Controllers.DeleteGrupo)
-		// }
+		estudiantes := router.Group("/estudiantes")
+		{
+			estudiantes.GET("", Controllers.ListEstudiantes)
+			estudiantes.GET(":id", Controllers.GetOneEstudiante)
+		}
+
+		evaluadores := router.Group("/evaluadores")
+		{
+			evaluadores.GET("", Controllers.ListEvaluadores)
+			evaluadores.GET(":id", Controllers.GetOneEvaluador)
+		}
+
+		cursos := router.Group("/cursos")
+		{
+			cursos.GET("", Controllers.ListCursos)
+			cursos.GET(":id", Controllers.GetOneCurso)
+			cursos.PUT(":id/grupos/:id_grupo/estudiantes/:id_estudiante", Controllers.AddEstudianteToGrupo)
+			cursos.PUT(":id/grupos/:id_grupo/evaluadores/:id_evaluador", Controllers.AddEvaluadorToGrupo)
+		}
+
+		grupos := router.Group("/grupos")
+		{
+			grupos.GET("", Controllers.ListGrupos)
+			grupos.GET(":id", Controllers.GetOneGrupo)
+			grupos.POST("", Controllers.AddNewGrupo)
+			grupos.PUT(":id", Controllers.PutOneGrupo)
+			grupos.DELETE(":id", Controllers.DeleteGrupo)
+		}
 
 		// cursos routes
 		// router.POST("grupos", Controllers.AddNewGrupo)

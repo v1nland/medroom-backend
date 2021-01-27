@@ -33,6 +33,299 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/administracion-academica/cursos/{id_curso}/grupos/{id_grupo}/estudiantes/{uuid_estudiante}": {
+            "put": {
+                "description": "Modifica los grupos de un estudiante con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Académica"
+                ],
+                "summary": "Modifica los grupos de un estudiante",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID del curso a modificar",
+                        "name": "id_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "ID del grupo a modificar",
+                        "name": "id_grupo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "UUID del estudiante a asociar",
+                        "name": "uuid_estudiante",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Swagger.AddEstudianteToGrupoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-academica/cursos/{id_curso}/grupos/{id_grupo}/evaluadores/{uuid_evaluador}": {
+            "put": {
+                "description": "Modifica los grupos de un evaluador con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Académica"
+                ],
+                "summary": "Modifica los grupos de un evaluador",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID del curso a modificar",
+                        "name": "id_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "ID del grupo a modificar",
+                        "name": "id_grupo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "UUID del evaluador a asociar",
+                        "name": "uuid_evaluador",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Swagger.AddEvaluadorToGrupoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-academica/grupos": {
+            "get": {
+                "description": "Lista todos los grupos",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Académica"
+                ],
+                "summary": "Lista de grupos",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Swagger.ListGruposSwagger"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Genera un nuevo grupo con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Académica"
+                ],
+                "summary": "Agrega un nuevo grupo",
+                "parameters": [
+                    {
+                        "description": "Grupo a agregar",
+                        "name": "input_grupo",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Request.AddNewGrupoPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Swagger.AddNewGrupoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-academica/grupos/{id_grupo}": {
+            "get": {
+                "description": "Obtiene un grupo según su Id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Académica"
+                ],
+                "summary": "Obtiene un grupo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id del grupo a buscar",
+                        "name": "id_grupo",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Swagger.GetOneGrupoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Modifica un grupo con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Académica"
+                ],
+                "summary": "Modifica un grupo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id del grupo a modificar",
+                        "name": "id_grupo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Grupo a modificar",
+                        "name": "input_actualiza_grupo",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Request.PutOneGrupoPayload"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Swagger.PutOneGrupoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Elimina un grupo con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Académica"
+                ],
+                "summary": "Elimina un grupo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id del grupo a eliminar",
+                        "name": "id_grupo",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Swagger.DeleteGrupoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
         "/administracion-academica/login": {
             "post": {
                 "description": "Ingresa usuario y contraseña para iniciar sesión",
@@ -710,6 +1003,96 @@ var doc = `{
                 }
             }
         },
+        "/administracion-ti/cursos/{id_curso}/estudiantes/{uuid_estudiante}": {
+            "put": {
+                "description": "Modifica los cursos de un estudiante con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Modifica los cursos de un estudiante",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID del curso a modificar",
+                        "name": "id_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "UUID del estudiante a asociar",
+                        "name": "uuid_estudiante",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Swagger.AddEstudianteToCursoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-ti/cursos/{id_curso}/evaluadores/{uuid_evaluador}": {
+            "put": {
+                "description": "Modifica los cursos de un evaluador con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Modifica los cursos de un evaluador",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID del curso a modificar",
+                        "name": "id_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "UUID del evaluador a asociar",
+                        "name": "uuid_evaluador",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Swagger.AddEvaluadorToCursoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
         "/administracion-ti/estudiantes": {
             "get": {
                 "description": "Lista todos los estudiantes existentes",
@@ -1077,195 +1460,6 @@ var doc = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/Swagger.DeleteEvaluadorSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            }
-        },
-        "/administracion-ti/grupos": {
-            "get": {
-                "description": "Lista todos los grupos",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "05 - Administración Ti"
-                ],
-                "summary": "Lista de grupos",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Swagger.ListGruposSwagger"
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "description": "Genera un nuevo grupo con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "05 - Administración Ti"
-                ],
-                "summary": "Agrega un nuevo grupo",
-                "parameters": [
-                    {
-                        "description": "Grupo a agregar",
-                        "name": "input_grupo",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/Request.AddNewGrupoPayload"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Swagger.AddNewGrupoSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            }
-        },
-        "/administracion-ti/grupos/{id_grupo}": {
-            "get": {
-                "description": "Obtiene un grupo según su Id",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "05 - Administración Ti"
-                ],
-                "summary": "Obtiene un grupo",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Id del grupo a buscar",
-                        "name": "id_grupo",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Swagger.GetOneGrupoSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "description": "Modifica un grupo con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "05 - Administración Ti"
-                ],
-                "summary": "Modifica un grupo",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Id del grupo a modificar",
-                        "name": "id_grupo",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "description": "Grupo a modificar",
-                        "name": "input_actualiza_grupo",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/Request.PutOneGrupoPayload"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Swagger.PutOneGrupoSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "description": "Elimina un grupo con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "05 - Administración Ti"
-                ],
-                "summary": "Elimina un grupo",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Id del grupo a eliminar",
-                        "name": "id_grupo",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Swagger.DeleteGrupoSwagger"
                         }
                     },
                     "400": {
@@ -3216,6 +3410,38 @@ var doc = `{
                 }
             }
         },
+        "Response.AddEstudianteToCursoResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "Response.AddEstudianteToGrupoResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "Response.AddEvaluadorToCursoResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "Response.AddEvaluadorToGrupoResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                }
+            }
+        },
         "Response.AddNewAdministradorAcademicoResponse": {
             "type": "object",
             "properties": {
@@ -4483,6 +4709,62 @@ var doc = `{
             "properties": {
                 "id": {
                     "type": "integer"
+                }
+            }
+        },
+        "Swagger.AddEstudianteToCursoSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/Response.AddEstudianteToCursoResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "Swagger.AddEstudianteToGrupoSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/Response.AddEstudianteToGrupoResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "Swagger.AddEvaluadorToCursoSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/Response.AddEvaluadorToCursoResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "Swagger.AddEvaluadorToGrupoSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/Response.AddEvaluadorToGrupoResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
                 }
             }
         },

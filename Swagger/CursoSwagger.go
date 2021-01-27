@@ -55,3 +55,15 @@ type DeleteCursoSwagger struct {
 	Meta   string                       `json:"meta"`
 	Data   Response.DeleteCursoResponse `json:"data"`
 }
+
+type AddEstudianteToCursoSwagger struct {
+	Status bool                                  `json:"status"`
+	Meta   string                                `json:"meta"`
+	Data   Response.AddEstudianteToCursoResponse `json:"data"`
+}
+
+type AddEvaluadorToCursoSwagger struct {
+	Status bool                                 `json:"status"`
+	Meta   string                               `json:"meta"`
+	Data   Response.AddEvaluadorToCursoResponse `json:"data"`
+}

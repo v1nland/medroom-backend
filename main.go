@@ -60,7 +60,7 @@ func main() {
 		Migrations.CursoMigrations()
 		Migrations.EvaluacionMigrations()
 		// Migrations.GrupoMigrations()
-		// Migrations.EstudianteMigrations()
+		Migrations.EstudianteMigrations()
 		Migrations.CalificacionEstudianteMigrations()
 		// Migrations.PuntajeMigrations()
 	}

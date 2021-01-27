@@ -43,3 +43,7 @@ type PutMyEvaluadorPayload struct {
 	Telefono_celular_evaluador *string `json:"telefono_celular_evaluador"`
 	Cargo_evaluador            *string `json:"cargo_evaluador"`
 }
+
+type AddEvaluadorToGrupoPayload struct {
+	Id_grupos []int `json:"id_grupos"`
+}

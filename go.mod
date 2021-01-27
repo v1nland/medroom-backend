@@ -25,5 +25,5 @@ require (
 	golang.org/x/tools v0.0.0-20201215192005-fa10ef0b8743 // indirect
 	google.golang.org/protobuf v1.25.0 // indirect
 	gorm.io/driver/postgres v1.0.5
-	gorm.io/gorm v1.20.8
+	gorm.io/gorm v1.20.11
 )
