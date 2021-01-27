@@ -89,7 +89,6 @@ func AddNewGrupo(c *gin.Context) {
 	// generate model entity
 	model_container := Models.Grupo{
 		Id_curso:     *container.Id_curso,
-		Id_evaluador: *container.Id_evaluador,
 		Nombre_grupo: *container.Nombre_grupo,
 		Sigla_grupo:  *container.Sigla_grupo,
 	}
@@ -119,46 +118,39 @@ func PutOneGrupo(c *gin.Context) {
 	// params
 	id := c.Params.ByName("id")
 
-	// input container
-	var container Request.PutOneGrupoPayload
-
-	// input bind
-	if err := c.ShouldBind(&container); err != nil {
+	// input input
+	var input Request.PutOneGrupoPayload
+	if err := c.ShouldBind(&input); err != nil {
 		ApiHelpers.RespondError(c, 400, "default")
 		return
 	}
 
 	// format input
-	Input.PutOneGrupoInput(&container)
+	Input.PutOneGrupoInput(&input)
 
 	// generate model entity
-	var model_container Models.Grupo
-
-	// get query
-	err := Repositories.GetOneGrupo(&model_container, id)
-	if err != nil {
+	var model Models.Grupo
+	if err := Repositories.GetOneGrupo(&model, id); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
 	// replace data in model entity
-	model_container = Models.Grupo{
-		Id:           model_container.Id,
-		Id_curso:     Utils.CheckUpdatedInt(*container.Id_curso, model_container.Id_curso),
-		Id_evaluador: Utils.CheckUpdatedString(*container.Id_evaluador, model_container.Id_evaluador),
-		Nombre_grupo: Utils.CheckUpdatedString(*container.Nombre_grupo, model_container.Nombre_grupo),
-		Sigla_grupo:  Utils.CheckUpdatedString(*container.Sigla_grupo, model_container.Sigla_grupo),
+	model = Models.Grupo{
+		Id:           model.Id,
+		Id_curso:     Utils.CheckNullInt(input.Id_curso, model.Id_curso),
+		Nombre_grupo: Utils.CheckNullString(input.Nombre_grupo, model.Nombre_grupo),
+		Sigla_grupo:  Utils.CheckNullString(input.Sigla_grupo, model.Sigla_grupo),
 	}
 
 	// put query
-	err = Repositories.PutOneGrupo(&model_container, id)
-	if err != nil {
+	if err := Repositories.PutOneGrupo(&model, id); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
 	// output
-	ApiHelpers.RespondJSON(c, 200, model_container)
+	ApiHelpers.RespondJSON(c, 200, model)
 }
 
 // @Summary Elimina un grupo
@@ -219,7 +211,6 @@ func GetGruposEstudiante(c *gin.Context) {
 		return
 	}
 
-	// ApiHelpers.RespondJSON(c, 200, Output.GetGrupoEstudianteOutput(grupos))
 	ApiHelpers.RespondJSON(c, 200, grupos)
 }
 
@@ -249,7 +240,6 @@ func GetOneGrupoEstudiante(c *gin.Context) {
 		return
 	}
 
-	// ApiHelpers.RespondJSON(c, 200, Output.GetGrupoEstudianteOutput(grupos))
 	ApiHelpers.RespondJSON(c, 200, grupo)
 }
 
@@ -263,7 +253,6 @@ func GetOneGrupoEstudiante(c *gin.Context) {
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /evaluadores/me/cursos/{id_curso}/grupos [get]
 func GetGruposEvaluador(c *gin.Context) {
-	// params
 	id_curso := c.Params.ByName("id_curso")
 	id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
 
@@ -278,7 +267,6 @@ func GetGruposEvaluador(c *gin.Context) {
 		return
 	}
 
-	// ApiHelpers.RespondJSON(c, 200, Output.GetGrupoEvaluadorOutput(grupos))
 	ApiHelpers.RespondJSON(c, 200, grupos)
 }
 
@@ -308,7 +296,6 @@ func GetOneGrupoEvaluador(c *gin.Context) {
 		return
 	}
 
-	// ApiHelpers.RespondJSON(c, 200, Output.GetGrupoEstudianteOutput(grupos))
 	ApiHelpers.RespondJSON(c, 200, grupo)
 }
 

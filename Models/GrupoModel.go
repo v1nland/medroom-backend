@@ -5,9 +5,8 @@ import (
 )
 
 type Grupo struct {
-	Id           int    `json:"id"`
-	Id_curso     int    `json:"id_curso"`
-	Id_evaluador string `json:"id_evaluador"`
+	Id       int `json:"id"`
+	Id_curso int `json:"id_curso"`
 	// Evaluador_grupo    Evaluador    `json:"evaluador_grupo" gorm:"foreignKey:Id_evaluador"`
 	Evaluaciones_grupo []Evaluacion `json:"evaluaciones_grupo" gorm:"foreignKey:Id_grupo;references:id"`
 	Evaluadores_grupo  []Evaluador  `json:"evaluadores_grupo" gorm:"many2many:evaluadores_grupos;joinForeignKey:id_grupo;joinReferences:id_evaluador"`
