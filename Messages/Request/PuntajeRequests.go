@@ -1,12 +1,12 @@
 package Request
 
-type ListPuntajesPayload struct {
+type ListPuntajes struct {
 }
 
-type GetOnePuntajePayload struct {
+type GetOnePuntaje struct {
 }
 
-type AddNewPuntajePayload struct {
+type AddNewPuntaje struct {
 	Id_evaluacion              int    `json:"id_evaluacion"`
 	Nombre_competencia_puntaje string `json:"nombre_competencia_puntaje"`
 	Codigo_competencia_puntaje string `json:"codigo_competencia_puntaje"`
@@ -14,7 +14,7 @@ type AddNewPuntajePayload struct {
 	Feedback_puntaje           string `json:"feedback_puntaje"`
 }
 
-type PutOnePuntajePayload struct {
+type PutOnePuntaje struct {
 	Id_evaluacion              int    `json:"id_evaluacion"`
 	Nombre_competencia_puntaje string `json:"nombre_competencia_puntaje"`
 	Codigo_competencia_puntaje string `json:"codigo_competencia_puntaje"`
@@ -22,5 +22,5 @@ type PutOnePuntajePayload struct {
 	Feedback_puntaje           string `json:"feedback_puntaje"`
 }
 
-type DeletePuntajePayload struct {
+type DeletePuntaje struct {
 }

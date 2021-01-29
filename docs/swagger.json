@@ -17,6 +17,70 @@
     },
     "basePath": "/api/v1",
     "paths": {
+        "/administracion-academica/cursos/:id_curso/estudiantes": {
+            "get": {
+                "description": "Lista todos los estudiantes existentes en un curso",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Académica"
+                ],
+                "summary": "Lista de estudiantes de un curso",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Swagger.ListEstudiantesCursoSwagger"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-academica/cursos/:id_curso/estudiantes/sin-grupo": {
+            "get": {
+                "description": "Lista todos los estudiantes existentes en un curso sin grupo",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Académica"
+                ],
+                "summary": "Lista de estudiantes de un curso sin grupo",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Swagger.ListEstudiantesCursoSinGrupoSwagger"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
         "/administracion-academica/cursos/{id_curso}/grupos/{id_grupo}/estudiantes/{uuid_estudiante}": {
             "put": {
                 "description": "Modifica los grupos de un estudiante con los datos entregados",
@@ -171,7 +235,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.AddNewGrupoPayload"
+                            "$ref": "#/definitions/Request.AddNewGrupo"
                         }
                     }
                 ],
@@ -254,7 +318,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.PutOneGrupoPayload"
+                            "$ref": "#/definitions/Request.PutOneGrupo"
                         }
                     }
                 ],
@@ -330,7 +394,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.LoginAdministradorAcademicoPayload"
+                            "$ref": "#/definitions/Request.LoginAdministradorAcademico"
                         }
                     }
                 ],
@@ -400,7 +464,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.PutMyAdministradorAcademicoPayload"
+                            "$ref": "#/definitions/Request.PutMyAdministradorAcademico"
                         }
                     }
                 ],
@@ -470,7 +534,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.AddNewAdministradorAcademicoPayload"
+                            "$ref": "#/definitions/Request.AddNewAdministradorAcademico"
                         }
                     }
                 ],
@@ -553,7 +617,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.PutOneAdministradorAcademicoPayload"
+                            "$ref": "#/definitions/Request.PutOneAdministradorAcademico"
                         }
                     }
                 ],
@@ -659,7 +723,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.AddNewAdministradorTiPayload"
+                            "$ref": "#/definitions/Request.AddNewAdministradorTi"
                         }
                     }
                 ],
@@ -742,7 +806,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.PutOneAdministradorTiPayload"
+                            "$ref": "#/definitions/Request.PutOneAdministradorTi"
                         }
                     }
                 ],
@@ -848,7 +912,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.AddNewCursoPayload"
+                            "$ref": "#/definitions/Request.AddNewCurso"
                         }
                     }
                 ],
@@ -931,7 +995,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.PutOneCursoPayload"
+                            "$ref": "#/definitions/Request.PutOneCurso"
                         }
                     }
                 ],
@@ -1127,7 +1191,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.AddNewEstudiantePayload"
+                            "$ref": "#/definitions/Request.AddNewEstudiante"
                         }
                     }
                 ],
@@ -1210,7 +1274,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.PutOneEstudiantePayload"
+                            "$ref": "#/definitions/Request.PutOneEstudiante"
                         }
                     }
                 ],
@@ -1316,7 +1380,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.AddNewEvaluadorPayload"
+                            "$ref": "#/definitions/Request.AddNewEvaluador"
                         }
                     }
                 ],
@@ -1399,7 +1463,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.PutOneEvaluadorPayload"
+                            "$ref": "#/definitions/Request.PutOneEvaluador"
                         }
                     }
                 ],
@@ -1475,7 +1539,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.LoginAdministradorTiPayload"
+                            "$ref": "#/definitions/Request.LoginAdministradorTi"
                         }
                     }
                 ],
@@ -1545,7 +1609,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.PutMyAdministradorTiPayload"
+                            "$ref": "#/definitions/Request.PutMyAdministradorTi"
                         }
                     }
                 ],
@@ -1585,7 +1649,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.AddNewPeriodoPayload"
+                            "$ref": "#/definitions/Request.AddNewPeriodo"
                         }
                     }
                 ],
@@ -1632,7 +1696,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.PutOnePeriodoPayload"
+                            "$ref": "#/definitions/Request.PutOnePeriodo"
                         }
                     }
                 ],
@@ -1708,7 +1772,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.AddNewRolPayload"
+                            "$ref": "#/definitions/Request.AddNewRol"
                         }
                     }
                 ],
@@ -1755,7 +1819,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.PutOneRolPayload"
+                            "$ref": "#/definitions/Request.PutOneRol"
                         }
                     }
                 ],
@@ -1831,7 +1895,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.LoginEstudiantePayload"
+                            "$ref": "#/definitions/Request.LoginEstudiante"
                         }
                     }
                 ],
@@ -1901,7 +1965,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.PutMyEstudiantePayload"
+                            "$ref": "#/definitions/Request.PutMyEstudiante"
                         }
                     }
                 ],
@@ -2290,7 +2354,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.LoginEvaluadorPayload"
+                            "$ref": "#/definitions/Request.LoginEvaluador"
                         }
                     }
                 ],
@@ -2360,7 +2424,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.PutMyEvaluadorPayload"
+                            "$ref": "#/definitions/Request.PutMyEvaluador"
                         }
                     }
                 ],
@@ -2578,7 +2642,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.AddNewCalificacionEstudiantePayload"
+                            "$ref": "#/definitions/Request.AddNewCalificacionEstudiante"
                         }
                     }
                 ],
@@ -2681,7 +2745,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.AddNewEvaluacionPayload"
+                            "$ref": "#/definitions/Request.AddNewEvaluacion"
                         }
                     }
                 ],
@@ -2857,7 +2921,7 @@
                 }
             }
         },
-        "Request.AddNewAdministradorAcademicoPayload": {
+        "Request.AddNewAdministradorAcademico": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_academico": {
@@ -2886,7 +2950,7 @@
                 }
             }
         },
-        "Request.AddNewAdministradorTiPayload": {
+        "Request.AddNewAdministradorTi": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_ti": {
@@ -2918,7 +2982,7 @@
                 }
             }
         },
-        "Request.AddNewCalificacionEstudiantePayload": {
+        "Request.AddNewCalificacionEstudiante": {
             "type": "object",
             "properties": {
                 "asunto_principal_consulta_calificacion_estudiante": {
@@ -2959,7 +3023,7 @@
                 }
             }
         },
-        "Request.AddNewCursoPayload": {
+        "Request.AddNewCurso": {
             "type": "object",
             "properties": {
                 "id_periodo": {
@@ -2973,7 +3037,7 @@
                 }
             }
         },
-        "Request.AddNewEstudiantePayload": {
+        "Request.AddNewEstudiante": {
             "type": "object",
             "properties": {
                 "apellidos_estudiante": {
@@ -3002,7 +3066,7 @@
                 }
             }
         },
-        "Request.AddNewEvaluacionPayload": {
+        "Request.AddNewEvaluacion": {
             "type": "object",
             "properties": {
                 "nombre_evaluacion": {
@@ -3010,7 +3074,7 @@
                 }
             }
         },
-        "Request.AddNewEvaluadorPayload": {
+        "Request.AddNewEvaluador": {
             "type": "object",
             "properties": {
                 "apellidos_evaluador": {
@@ -3045,7 +3109,7 @@
                 }
             }
         },
-        "Request.AddNewGrupoPayload": {
+        "Request.AddNewGrupo": {
             "type": "object",
             "properties": {
                 "id_curso": {
@@ -3062,7 +3126,7 @@
                 }
             }
         },
-        "Request.AddNewPeriodoPayload": {
+        "Request.AddNewPeriodo": {
             "type": "object",
             "properties": {
                 "nombre_periodo": {
@@ -3070,7 +3134,7 @@
                 }
             }
         },
-        "Request.AddNewRolPayload": {
+        "Request.AddNewRol": {
             "type": "object",
             "properties": {
                 "nombre_rol": {
@@ -3078,7 +3142,7 @@
                 }
             }
         },
-        "Request.LoginAdministradorAcademicoPayload": {
+        "Request.LoginAdministradorAcademico": {
             "type": "object",
             "properties": {
                 "correo_electronico_administrador_academico": {
@@ -3089,7 +3153,7 @@
                 }
             }
         },
-        "Request.LoginAdministradorTiPayload": {
+        "Request.LoginAdministradorTi": {
             "type": "object",
             "properties": {
                 "correo_electronico_administrador_ti": {
@@ -3100,7 +3164,7 @@
                 }
             }
         },
-        "Request.LoginEstudiantePayload": {
+        "Request.LoginEstudiante": {
             "type": "object",
             "properties": {
                 "correo_electronico_estudiante": {
@@ -3111,7 +3175,7 @@
                 }
             }
         },
-        "Request.LoginEvaluadorPayload": {
+        "Request.LoginEvaluador": {
             "type": "object",
             "properties": {
                 "correo_electronico_evaluador": {
@@ -3136,7 +3200,7 @@
                 }
             }
         },
-        "Request.PutMyAdministradorAcademicoPayload": {
+        "Request.PutMyAdministradorAcademico": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_academico": {
@@ -3165,7 +3229,7 @@
                 }
             }
         },
-        "Request.PutMyAdministradorTiPayload": {
+        "Request.PutMyAdministradorTi": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_ti": {
@@ -3197,7 +3261,7 @@
                 }
             }
         },
-        "Request.PutMyEstudiantePayload": {
+        "Request.PutMyEstudiante": {
             "type": "object",
             "properties": {
                 "hash_contrasena_estudiante": {
@@ -3211,7 +3275,7 @@
                 }
             }
         },
-        "Request.PutMyEvaluadorPayload": {
+        "Request.PutMyEvaluador": {
             "type": "object",
             "properties": {
                 "cargo_evaluador": {
@@ -3228,7 +3292,7 @@
                 }
             }
         },
-        "Request.PutOneAdministradorAcademicoPayload": {
+        "Request.PutOneAdministradorAcademico": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_academico": {
@@ -3257,7 +3321,7 @@
                 }
             }
         },
-        "Request.PutOneAdministradorTiPayload": {
+        "Request.PutOneAdministradorTi": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_ti": {
@@ -3289,7 +3353,7 @@
                 }
             }
         },
-        "Request.PutOneCursoPayload": {
+        "Request.PutOneCurso": {
             "type": "object",
             "properties": {
                 "id_periodo": {
@@ -3303,7 +3367,7 @@
                 }
             }
         },
-        "Request.PutOneEstudiantePayload": {
+        "Request.PutOneEstudiante": {
             "type": "object",
             "properties": {
                 "apellidos_estudiante": {
@@ -3329,7 +3393,7 @@
                 }
             }
         },
-        "Request.PutOneEvaluadorPayload": {
+        "Request.PutOneEvaluador": {
             "type": "object",
             "properties": {
                 "apellidos_evaluador": {
@@ -3361,7 +3425,7 @@
                 }
             }
         },
-        "Request.PutOneGrupoPayload": {
+        "Request.PutOneGrupo": {
             "type": "object",
             "properties": {
                 "id_curso": {
@@ -3378,7 +3442,7 @@
                 }
             }
         },
-        "Request.PutOnePeriodoPayload": {
+        "Request.PutOnePeriodo": {
             "type": "object",
             "properties": {
                 "nombre_periodo": {
@@ -3386,7 +3450,7 @@
                 }
             }
         },
-        "Request.PutOneRolPayload": {
+        "Request.PutOneRol": {
             "type": "object",
             "properties": {
                 "nombre_rol": {
@@ -4252,6 +4316,82 @@
                     "$ref": "#/definitions/Response.GetOnePeriodoResponse"
                 },
                 "sigla_curso": {
+                    "type": "string"
+                }
+            }
+        },
+        "Response.ListEstudiantesCursoResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_estudiante": {
+                    "type": "string"
+                },
+                "correo_electronico_estudiante": {
+                    "type": "string"
+                },
+                "evaluaciones_estudiante": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Response.ListEvaluacionesEstudianteResponse"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "id_grupo": {
+                    "type": "integer"
+                },
+                "nombres_estudiante": {
+                    "type": "string"
+                },
+                "rol_estudiante": {
+                    "$ref": "#/definitions/Response.GetOneRolResponse"
+                },
+                "rut_estudiante": {
+                    "type": "string"
+                },
+                "telefono_celular_estudiante": {
+                    "type": "string"
+                },
+                "telefono_fijo_estudiante": {
+                    "type": "string"
+                }
+            }
+        },
+        "Response.ListEstudiantesCursoSinGrupoResponse": {
+            "type": "object",
+            "properties": {
+                "apellidos_estudiante": {
+                    "type": "string"
+                },
+                "correo_electronico_estudiante": {
+                    "type": "string"
+                },
+                "evaluaciones_estudiante": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Response.ListEvaluacionesEstudianteResponse"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "id_grupo": {
+                    "type": "integer"
+                },
+                "nombres_estudiante": {
+                    "type": "string"
+                },
+                "rol_estudiante": {
+                    "$ref": "#/definitions/Response.GetOneRolResponse"
+                },
+                "rut_estudiante": {
+                    "type": "string"
+                },
+                "telefono_celular_estudiante": {
+                    "type": "string"
+                },
+                "telefono_fijo_estudiante": {
                     "type": "string"
                 }
             }
@@ -5359,6 +5499,34 @@
             "properties": {
                 "data": {
                     "$ref": "#/definitions/Response.ListCursosResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "Swagger.ListEstudiantesCursoSinGrupoSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/Response.ListEstudiantesCursoSinGrupoResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "Swagger.ListEstudiantesCursoSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/Response.ListEstudiantesCursoResponse"
                 },
                 "meta": {
                     "type": "string"

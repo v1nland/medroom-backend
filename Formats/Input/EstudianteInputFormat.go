@@ -6,15 +6,13 @@ import (
 	"strings"
 )
 
-func ListEstudiantesInput(u *Request.ListEstudiantesPayload) {
-
+func ListEstudiantes(u *Request.ListEstudiantes) {
 }
 
-func GetOneEstudianteInput(u *Request.GetOneEstudiantePayload) {
-
+func GetOneEstudiante(u *Request.GetOneEstudiante) {
 }
 
-func AddNewEstudianteInput(u *Request.AddNewEstudiantePayload) {
+func AddNewEstudiante(u *Request.AddNewEstudiante) {
 	if u.Rut_estudiante != nil {
 		*u.Rut_estudiante = strings.TrimSpace(*u.Rut_estudiante)
 		*u.Rut_estudiante = strings.ToUpper(*u.Rut_estudiante)
@@ -47,7 +45,7 @@ func AddNewEstudianteInput(u *Request.AddNewEstudiantePayload) {
 	}
 }
 
-func PutOneEstudianteInput(u *Request.PutOneEstudiantePayload) {
+func PutOneEstudiante(u *Request.PutOneEstudiante) {
 	if u.Rut_estudiante != nil {
 		*u.Rut_estudiante = strings.TrimSpace(*u.Rut_estudiante)
 		*u.Rut_estudiante = strings.ToUpper(*u.Rut_estudiante)
@@ -80,15 +78,13 @@ func PutOneEstudianteInput(u *Request.PutOneEstudiantePayload) {
 	}
 }
 
-func DeleteEstudianteInput(u *Request.DeleteEstudiantePayload) {
-
+func DeleteEstudiante(u *Request.DeleteEstudiante) {
 }
 
-func GetMyEstudianteInput(u *Request.GetMyEstudiantePayload) {
-
+func GetMyEstudiante(u *Request.GetMyEstudiante) {
 }
 
-func PutMyEstudianteInput(u *Request.PutMyEstudiantePayload) {
+func PutMyEstudiante(u *Request.PutMyEstudiante) {
 	if u.Telefono_fijo_estudiante != nil {
 		*u.Telefono_fijo_estudiante = strings.TrimSpace(*u.Telefono_fijo_estudiante)
 		*u.Telefono_fijo_estudiante = strings.ToUpper(*u.Telefono_fijo_estudiante)
@@ -101,10 +97,8 @@ func PutMyEstudianteInput(u *Request.PutMyEstudiantePayload) {
 	}
 }
 
-func AddEstudianteToGrupoInput(u *Request.AddEstudianteToGrupoPayload) {
-
+func AddEstudianteToGrupo(u *Request.AddEstudianteToGrupo) {
 }
 
-func AddEstudianteToCursoInput(u *Request.AddEstudianteToCursoPayload) {
-
+func AddEstudianteToCurso(u *Request.AddEstudianteToCurso) {
 }

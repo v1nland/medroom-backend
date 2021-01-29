@@ -1,34 +1,34 @@
 package Request
 
-type ListCursosPayload struct {
+type ListCursos struct {
 }
 
-type GetOneCursoPayload struct {
+type GetOneCurso struct {
 }
 
-type GetCursosEstudiantePayload struct {
+type GetCursosEstudiante struct {
 }
 
-type GetOneCursoEstudiantePayload struct {
+type GetOneCursoEstudiante struct {
 }
 
-type GetCursosEvaluadorPayload struct {
+type GetCursosEvaluador struct {
 }
 
-type GetOneCursoEvaluadorPayload struct {
+type GetOneCursoEvaluador struct {
 }
 
-type AddNewCursoPayload struct {
+type AddNewCurso struct {
 	Id_periodo   *int    `json:"id_periodo"`
 	Nombre_curso *string `json:"nombre_curso"`
 	Sigla_curso  *string `json:"sigla_curso"`
 }
 
-type PutOneCursoPayload struct {
+type PutOneCurso struct {
 	Id_periodo   *int    `json:"id_periodo"`
 	Nombre_curso *string `json:"nombre_curso"`
 	Sigla_curso  *string `json:"sigla_curso"`
 }
 
-type DeleteCursoPayload struct {
+type DeleteCurso struct {
 }

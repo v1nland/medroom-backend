@@ -23,18 +23,14 @@ import (
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-academica/grupos [get]
 func ListGrupos(c *gin.Context) {
-	// model container
-	var container []Models.Grupo
+	var grupos []Models.Grupo
 
-	// query
-	err := Repositories.GetAllGrupos(&container)
-	if err != nil {
+	if err := Repositories.GetAllGrupos(&grupos); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, container)
+	ApiHelpers.RespondJSON(c, 200, grupos)
 }
 
 // @Summary Obtiene un grupo
@@ -47,21 +43,15 @@ func ListGrupos(c *gin.Context) {
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-academica/grupos/{id_grupo} [get]
 func GetOneGrupo(c *gin.Context) {
-	// params
 	id := c.Params.ByName("id")
 
-	// model container
-	var container Models.Grupo
-
-	// query
-	err := Repositories.GetOneGrupo(&container, id)
-	if err != nil {
+	var grupo Models.Grupo
+	if err := Repositories.GetOneGrupo(&grupo, id); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, container)
+	ApiHelpers.RespondJSON(c, 200, grupo)
 }
 
 // @Summary Agrega un nuevo grupo
@@ -69,39 +59,31 @@ func GetOneGrupo(c *gin.Context) {
 // @Tags 05 - Administración Académica
 // @Accept  json
 // @Produce  json
-// @Param   input_grupo     body    Request.AddNewGrupoPayload     true        "Grupo a agregar"
+// @Param   input_grupo     body    Request.AddNewGrupo     true        "Grupo a agregar"
 // @Success 200 {object} Swagger.AddNewGrupoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-academica/grupos [post]
 func AddNewGrupo(c *gin.Context) {
-	// input container
-	var container Request.AddNewGrupoPayload
-
-	// input bind
-	if err := c.ShouldBind(&container); err != nil {
+	var input Request.AddNewGrupo
+	if err := c.ShouldBind(&input); err != nil {
 		ApiHelpers.RespondError(c, 400, "default")
 		return
 	}
 
-	// format input
-	Input.AddNewGrupoInput(&container)
+	Input.AddNewGrupo(&input)
 
-	// generate model entity
-	model_container := Models.Grupo{
-		Id_curso:     *container.Id_curso,
-		Nombre_grupo: *container.Nombre_grupo,
-		Sigla_grupo:  *container.Sigla_grupo,
+	grupo := Models.Grupo{
+		Id_curso:     *input.Id_curso,
+		Nombre_grupo: *input.Nombre_grupo,
+		Sigla_grupo:  *input.Sigla_grupo,
 	}
 
-	// query
-	err := Repositories.AddNewGrupo(&model_container)
-	if err != nil {
+	if err := Repositories.AddNewGrupo(&grupo); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, model_container)
+	ApiHelpers.RespondJSON(c, 200, grupo)
 }
 
 // @Summary Modifica un grupo
@@ -110,47 +92,40 @@ func AddNewGrupo(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   id_grupo     path    string     true        "Id del grupo a modificar"
-// @Param   input_actualiza_grupo     body    Request.PutOneGrupoPayload     true        "Grupo a modificar"
+// @Param   input_actualiza_grupo     body    Request.PutOneGrupo     true        "Grupo a modificar"
 // @Success 200 {object} Swagger.PutOneGrupoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-academica/grupos/{id_grupo} [put]
 func PutOneGrupo(c *gin.Context) {
-	// params
 	id := c.Params.ByName("id")
 
-	// input input
-	var input Request.PutOneGrupoPayload
+	var input Request.PutOneGrupo
 	if err := c.ShouldBind(&input); err != nil {
 		ApiHelpers.RespondError(c, 400, "default")
 		return
 	}
 
-	// format input
-	Input.PutOneGrupoInput(&input)
+	Input.PutOneGrupo(&input)
 
-	// generate model entity
-	var model Models.Grupo
-	if err := Repositories.GetOneGrupo(&model, id); err != nil {
+	var grupo Models.Grupo
+	if err := Repositories.GetOneGrupo(&grupo, id); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// replace data in model entity
-	model = Models.Grupo{
-		Id:           model.Id,
-		Id_curso:     Utils.CheckNullInt(input.Id_curso, model.Id_curso),
-		Nombre_grupo: Utils.CheckNullString(input.Nombre_grupo, model.Nombre_grupo),
-		Sigla_grupo:  Utils.CheckNullString(input.Sigla_grupo, model.Sigla_grupo),
+	grupo = Models.Grupo{
+		Id:           grupo.Id,
+		Id_curso:     Utils.CheckNullInt(input.Id_curso, grupo.Id_curso),
+		Nombre_grupo: Utils.CheckNullString(input.Nombre_grupo, grupo.Nombre_grupo),
+		Sigla_grupo:  Utils.CheckNullString(input.Sigla_grupo, grupo.Sigla_grupo),
 	}
 
-	// put query
-	if err := Repositories.PutOneGrupo(&model, id); err != nil {
+	if err := Repositories.PutOneGrupo(&grupo, id); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, model)
+	ApiHelpers.RespondJSON(c, 200, grupo)
 }
 
 // @Summary Elimina un grupo
@@ -163,28 +138,20 @@ func PutOneGrupo(c *gin.Context) {
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-academica/grupos/{id_grupo} [delete]
 func DeleteGrupo(c *gin.Context) {
-	// params
 	id := c.Params.ByName("id")
 
-	// model container
-	var container Models.Grupo
-
-	// get query
-	err := Repositories.GetOneGrupo(&container, id)
-	if err != nil {
+	var grupo Models.Grupo
+	if err := Repositories.GetOneGrupo(&grupo, id); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// query
-	err = Repositories.DeleteGrupo(&container, id)
-	if err != nil {
+	if err := Repositories.DeleteGrupo(&grupo, id); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, container)
+	ApiHelpers.RespondJSON(c, 200, grupo)
 }
 
 // @Summary Obtiene los grupos de un estudiante
@@ -311,7 +278,6 @@ func GetOneGrupoEvaluador(c *gin.Context) {
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-academica/cursos/{id_curso}/grupos/{id_grupo}/estudiantes/{uuid_estudiante} [put]
 func AddEstudianteToGrupo(c *gin.Context) {
-	// params
 	id_curso := c.Params.ByName("id")
 	id_grupo := c.Params.ByName("id_grupo")
 	id_estudiante := c.Params.ByName("id_estudiante")
@@ -371,7 +337,6 @@ func AddEstudianteToGrupo(c *gin.Context) {
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-academica/cursos/{id_curso}/grupos/{id_grupo}/evaluadores/{uuid_evaluador} [put]
 func AddEvaluadorToGrupo(c *gin.Context) {
-	// params
 	id_curso := c.Params.ByName("id")
 	id_grupo := c.Params.ByName("id_grupo")
 	id_evaluador := c.Params.ByName("id_evaluador")

@@ -1,12 +1,12 @@
 package Request
 
-type ListEvaluadoresPayload struct {
+type ListEvaluadores struct {
 }
 
-type GetOneEvaluadorPayload struct {
+type GetOneEvaluador struct {
 }
 
-type AddNewEvaluadorPayload struct {
+type AddNewEvaluador struct {
 	Id_rol                       *int    `json:"id_rol"`
 	Rut_evaluador                *string `json:"rut_evaluador"`
 	Nombres_evaluador            *string `json:"nombres_evaluador"`
@@ -19,7 +19,7 @@ type AddNewEvaluadorPayload struct {
 	Cargo_evaluador              *string `json:"cargo_evaluador"`
 }
 
-type PutOneEvaluadorPayload struct {
+type PutOneEvaluador struct {
 	Rut_evaluador                *string `json:"rut_evaluador"`
 	Nombres_evaluador            *string `json:"nombres_evaluador"`
 	Apellidos_evaluador          *string `json:"apellidos_evaluador"`
@@ -31,19 +31,19 @@ type PutOneEvaluadorPayload struct {
 	Cargo_evaluador              *string `json:"cargo_evaluador"`
 }
 
-type DeleteEvaluadorPayload struct {
+type DeleteEvaluador struct {
 }
 
-type GetMyEvaluadorPayload struct {
+type GetMyEvaluador struct {
 }
 
-type PutMyEvaluadorPayload struct {
+type PutMyEvaluador struct {
 	Hash_contrasena_evaluador  *string `json:"hash_contrasena_evaluador"`
 	Telefono_fijo_evaluador    *string `json:"telefono_fijo_evaluador"`
 	Telefono_celular_evaluador *string `json:"telefono_celular_evaluador"`
 	Cargo_evaluador            *string `json:"cargo_evaluador"`
 }
 
-type AddEvaluadorToGrupoPayload struct {
+type AddEvaluadorToGrupo struct {
 	Id_grupos []int `json:"id_grupos"`
 }

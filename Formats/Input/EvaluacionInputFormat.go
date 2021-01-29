@@ -6,25 +6,29 @@ import (
 	"strings"
 )
 
-func ListEvaluacionesGrupoEstudianteInput(u *Request.ListEvaluacionesGrupoEstudiantePayload) {
-}
-func ListEvaluacionesGrupoEvaluadorInput(u *Request.ListEvaluacionesGrupoEvaluadorPayload) {
-}
-func ListEvaluacionesInput(u *Request.ListEvaluacionesPayload) {
-}
-func GetEvaluacionesEstudianteInput(u *Request.ListEvaluacionesEstudiantePayload) {
-}
-func GetOneEvaluacionInput(u *Request.GetOneEvaluacionPayload) {
+func ListEvaluacionesGrupoEstudiante(u *Request.ListEvaluacionesGrupoEstudiante) {
 }
 
-func AddNewEvaluacionInput(u *Request.AddNewEvaluacionPayload) {
+func ListEvaluacionesGrupoEvaluador(u *Request.ListEvaluacionesGrupoEvaluador) {
+}
+
+func ListEvaluaciones(u *Request.ListEvaluaciones) {
+}
+
+func GetEvaluacionesEstudiante(u *Request.ListEvaluacionesEstudiante) {
+}
+
+func GetOneEvaluacion(u *Request.GetOneEvaluacion) {
+}
+
+func AddNewEvaluacion(u *Request.AddNewEvaluacion) {
 	if u.Nombre_evaluacion != nil {
 		*u.Nombre_evaluacion = strings.TrimSpace(*u.Nombre_evaluacion)
 		*u.Nombre_evaluacion = strings.ToUpper(*u.Nombre_evaluacion)
 		*u.Nombre_evaluacion = Utils.RemoveAccents(*u.Nombre_evaluacion)
 	}
 }
-func PutOneEvaluacionInput(u *Request.PutOneEvaluacionPayload) {
+func PutOneEvaluacion(u *Request.PutOneEvaluacion) {
 	if u.Nombre_evaluacion != nil {
 		*u.Nombre_evaluacion = strings.TrimSpace(*u.Nombre_evaluacion)
 		*u.Nombre_evaluacion = strings.ToUpper(*u.Nombre_evaluacion)
@@ -32,5 +36,5 @@ func PutOneEvaluacionInput(u *Request.PutOneEvaluacionPayload) {
 	}
 }
 
-func DeleteEvaluacionInput(u *Request.DeleteEvaluacionPayload) {
+func DeleteEvaluacion(u *Request.DeleteEvaluacion) {
 }

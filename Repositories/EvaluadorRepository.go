@@ -17,6 +17,20 @@ func GetAllEvaluadores(u *[]Models.Evaluador) (err error) {
 	return nil
 }
 
+func GetAllEvaluadoresCurso(u *[]Models.Evaluador, id_curso string) (err error) {
+	if err = Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Order("created_at asc").Joins("JOIN evaluadores_grupos eg on eg.id_evaluador = evaluadores.id").Joins("JOIN grupos g on eg.id_grupo = g.id").Joins("join cursos c on g.id_curso = c.id").Where("c.id = ?", id_curso).Find(u).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
+func GetAllEvaluadoresCursoSinGrupo(u *[]Models.Evaluador, id_curso string) (err error) {
+	if err = Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Order("created_at asc").Joins("JOIN evaluadores_grupos eg on eg.id_evaluador = evaluadores.id").Joins("JOIN grupos g on eg.id_grupo = g.id").Joins("join cursos c on g.id_curso = c.id").Where("g.sigla_grupo = 'SG' and c.id = ?", id_curso).Find(u).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
 func GetOneEvaluador(u *Models.Evaluador, id string) (err error) {
 	if err := Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("id = ?", id).First(u).Error; err != nil {
 		return err

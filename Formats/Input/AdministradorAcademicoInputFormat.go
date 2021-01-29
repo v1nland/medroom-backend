@@ -6,19 +6,19 @@ import (
 	"strings"
 )
 
-func ListAdministradoresAcademicosInput(u *Request.ListAdministradoresAcademicosPayload) {
+func ListAdministradoresAcademicos(u *Request.ListAdministradoresAcademicos) {
 
 }
 
-func GetOneAdministradorAcademicoInput(u *Request.GetOneAdministradorAcademicoPayload) {
+func GetOneAdministradorAcademico(u *Request.GetOneAdministradorAcademico) {
 
 }
 
-func GetMyAdministradorAcademicoInput(u *Request.GetMyAdministradorAcademicoPayload) {
+func GetMyAdministradorAcademico(u *Request.GetMyAdministradorAcademico) {
 
 }
 
-func AddNewAdministradorAcademicoInput(u *Request.AddNewAdministradorAcademicoPayload) {
+func AddNewAdministradorAcademico(u *Request.AddNewAdministradorAcademico) {
 	if u.Rut_administrador_academico != nil {
 		*u.Rut_administrador_academico = strings.TrimSpace(*u.Rut_administrador_academico)
 		*u.Rut_administrador_academico = strings.ToUpper(*u.Rut_administrador_academico)
@@ -56,7 +56,7 @@ func AddNewAdministradorAcademicoInput(u *Request.AddNewAdministradorAcademicoPa
 	}
 }
 
-func PutOneAdministradorAcademicoInput(u *Request.PutOneAdministradorAcademicoPayload) {
+func PutOneAdministradorAcademico(u *Request.PutOneAdministradorAcademico) {
 	if u.Rut_administrador_academico != nil {
 		*u.Rut_administrador_academico = strings.TrimSpace(*u.Rut_administrador_academico)
 		*u.Rut_administrador_academico = strings.ToUpper(*u.Rut_administrador_academico)
@@ -94,7 +94,7 @@ func PutOneAdministradorAcademicoInput(u *Request.PutOneAdministradorAcademicoPa
 	}
 }
 
-func PutMyAdministradorAcademicoInput(u *Request.PutMyAdministradorAcademicoPayload) {
+func PutMyAdministradorAcademico(u *Request.PutMyAdministradorAcademico) {
 	if u.Rut_administrador_academico != nil {
 		*u.Rut_administrador_academico = strings.TrimSpace(*u.Rut_administrador_academico)
 		*u.Rut_administrador_academico = strings.ToUpper(*u.Rut_administrador_academico)
@@ -132,6 +132,6 @@ func PutMyAdministradorAcademicoInput(u *Request.PutMyAdministradorAcademicoPayl
 	}
 }
 
-func DeleteAdministradorAcademicoInput(u *Request.DeleteAdministradorAcademicoPayload) {
+func DeleteAdministradorAcademico(u *Request.DeleteAdministradorAcademico) {
 
 }

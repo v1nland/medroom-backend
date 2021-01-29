@@ -1,12 +1,12 @@
 package Request
 
-type ListEstudiantesPayload struct {
+type ListEstudiantes struct {
 }
 
-type GetOneEstudiantePayload struct {
+type GetOneEstudiante struct {
 }
 
-type AddNewEstudiantePayload struct {
+type AddNewEstudiante struct {
 	Id_rol                        *int    `json:"id_rol"`
 	Rut_estudiante                *string `json:"rut_estudiante"`
 	Nombres_estudiante            *string `json:"nombres_estudiante"`
@@ -17,7 +17,7 @@ type AddNewEstudiantePayload struct {
 	Telefono_celular_estudiante   *string `json:"telefono_celular_estudiante"`
 }
 
-type PutOneEstudiantePayload struct {
+type PutOneEstudiante struct {
 	Rut_estudiante                *string `json:"rut_estudiante"`
 	Nombres_estudiante            *string `json:"nombres_estudiante"`
 	Apellidos_estudiante          *string `json:"apellidos_estudiante"`
@@ -27,21 +27,27 @@ type PutOneEstudiantePayload struct {
 	Telefono_celular_estudiante   *string `json:"telefono_celular_estudiante"`
 }
 
-type DeleteEstudiantePayload struct {
+type DeleteEstudiante struct {
 }
 
-type GetMyEstudiantePayload struct {
+type GetMyEstudiante struct {
 }
 
-type PutMyEstudiantePayload struct {
+type PutMyEstudiante struct {
 	Hash_contrasena_estudiante  *string `json:"hash_contrasena_estudiante"`
 	Telefono_fijo_estudiante    *string `json:"telefono_fijo_estudiante"`
 	Telefono_celular_estudiante *string `json:"telefono_celular_estudiante"`
 }
 
-type AddEstudianteToGrupoPayload struct {
+type AddEstudianteToGrupo struct {
 	Id_grupos []int `json:"id_grupos"`
 }
 
-type AddEstudianteToCursoPayload struct {
+type AddEstudianteToCurso struct {
+}
+
+type ListEstudiantesCurso struct {
+}
+
+type ListEstudiantesCursoSinGrupo struct {
 }

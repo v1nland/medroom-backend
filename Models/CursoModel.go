@@ -4,6 +4,7 @@ import (
 	"time"
 )
 
+// agregar Nombre_profesor_asociado_curso
 type Curso struct {
 	Id            int       `json:"id"`
 	Id_periodo    int       `json:"id_periodo"`

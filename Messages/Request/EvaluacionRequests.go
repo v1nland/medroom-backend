@@ -1,23 +1,23 @@
 package Request
 
-type ListEvaluacionesGrupoEstudiantePayload struct {
+type ListEvaluacionesGrupoEstudiante struct {
 }
-type ListEvaluacionesGrupoEvaluadorPayload struct {
+type ListEvaluacionesGrupoEvaluador struct {
 }
-type ListEvaluacionesPayload struct {
+type ListEvaluaciones struct {
 }
-type ListEvaluacionesEstudiantePayload struct {
+type ListEvaluacionesEstudiante struct {
 }
-type GetOneEvaluacionPayload struct {
+type GetOneEvaluacion struct {
 }
 
-type AddNewEvaluacionPayload struct {
+type AddNewEvaluacion struct {
 	Nombre_evaluacion *string `json:"nombre_evaluacion"`
 }
 
-type PutOneEvaluacionPayload struct {
+type PutOneEvaluacion struct {
 	Nombre_evaluacion *string `json:"nombre_evaluacion"`
 }
 
-type DeleteEvaluacionPayload struct {
+type DeleteEvaluacion struct {
 }

@@ -6,23 +6,27 @@ import (
 	"strings"
 )
 
-func ListRolesInput(u *Request.ListRolesPayload) {
+func ListRoles(u *Request.ListRoles) {
 }
 
-func GetOneRolInput(u *Request.GetOneRolPayload) {
+func GetOneRol(u *Request.GetOneRol) {
 }
 
-func AddNewRolInput(u *Request.AddNewRolPayload) {
-	u.Nombre_rol = strings.TrimSpace(u.Nombre_rol)
-	u.Nombre_rol = strings.ToUpper(u.Nombre_rol)
-	u.Nombre_rol = Utils.RemoveAccents(u.Nombre_rol)
+func AddNewRol(u *Request.AddNewRol) {
+	if u.Nombre_rol != nil {
+		*u.Nombre_rol = strings.TrimSpace(*u.Nombre_rol)
+		*u.Nombre_rol = strings.ToUpper(*u.Nombre_rol)
+		*u.Nombre_rol = Utils.RemoveAccents(*u.Nombre_rol)
+	}
 }
 
-func PutOneRolInput(u *Request.PutOneRolPayload) {
-	u.Nombre_rol = strings.TrimSpace(u.Nombre_rol)
-	u.Nombre_rol = strings.ToUpper(u.Nombre_rol)
-	u.Nombre_rol = Utils.RemoveAccents(u.Nombre_rol)
+func PutOneRol(u *Request.PutOneRol) {
+	if u.Nombre_rol != nil {
+		*u.Nombre_rol = strings.TrimSpace(*u.Nombre_rol)
+		*u.Nombre_rol = strings.ToUpper(*u.Nombre_rol)
+		*u.Nombre_rol = Utils.RemoveAccents(*u.Nombre_rol)
+	}
 }
 
-func DeleteRolInput(u *Request.DeleteRolPayload) {
+func DeleteRol(u *Request.DeleteRol) {
 }

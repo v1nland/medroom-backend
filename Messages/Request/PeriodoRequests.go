@@ -1,18 +1,18 @@
 package Request
 
-type ListPeriodosPayload struct {
+type ListPeriodos struct {
 }
 
-type GetOnePeriodoPayload struct {
+type GetOnePeriodo struct {
 }
 
-type AddNewPeriodoPayload struct {
-	Nombre_periodo string `json:"nombre_periodo"`
+type AddNewPeriodo struct {
+	Nombre_periodo *string `json:"nombre_periodo"`
 }
 
-type PutOnePeriodoPayload struct {
-	Nombre_periodo string `json:"nombre_periodo"`
+type PutOnePeriodo struct {
+	Nombre_periodo *string `json:"nombre_periodo"`
 }
 
-type DeletePeriodoPayload struct {
+type DeletePeriodo struct {
 }

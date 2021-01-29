@@ -21,18 +21,14 @@ import (
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /periodos [get]
 func ListPeriodos(c *gin.Context) {
-	// model container
-	var container []Models.Periodo
+	var periodos []Models.Periodo
 
-	// query
-	err := Repositories.GetAllPeriodos(&container)
-	if err != nil {
+	if err := Repositories.GetAllPeriodos(&periodos); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, Output.ListPeriodosOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.ListPeriodosOutput(periodos))
 }
 
 // @Summary Obtiene un periodo
@@ -45,21 +41,15 @@ func ListPeriodos(c *gin.Context) {
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /periodos/{id_periodo} [get]
 func GetOnePeriodo(c *gin.Context) {
-	// params
 	id := c.Params.ByName("id")
 
-	// model container
-	var container Models.Periodo
-
-	// query
-	err := Repositories.GetOnePeriodo(&container, id)
-	if err != nil {
+	var periodo Models.Periodo
+	if err := Repositories.GetOnePeriodo(&periodo, id); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, Output.GetOnePeriodoOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.GetOnePeriodoOutput(periodo))
 }
 
 // @Summary Agrega un nuevo periodo
@@ -67,37 +57,29 @@ func GetOnePeriodo(c *gin.Context) {
 // @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   input_periodo     body    Request.AddNewPeriodoPayload     true        "Periodo a agregar"
+// @Param   input_periodo     body    Request.AddNewPeriodo     true        "Periodo a agregar"
 // @Success 200 {object} Swagger.AddNewPeriodoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/periodos [post]
 func AddNewPeriodo(c *gin.Context) {
-	// input container
-	var container Request.AddNewPeriodoPayload
-
-	// input bind
-	if err := c.ShouldBind(&container); err != nil {
+	var input Request.AddNewPeriodo
+	if err := c.ShouldBind(&input); err != nil {
 		ApiHelpers.RespondError(c, 400, "default")
 		return
 	}
 
-	// format input
-	Input.AddNewPeriodoInput(&container)
+	Input.AddNewPeriodo(&input)
 
-	// generate model entity
-	model_container := Models.Periodo{
-		Nombre_periodo: container.Nombre_periodo,
+	periodo := Models.Periodo{
+		Nombre_periodo: *input.Nombre_periodo,
 	}
 
-	// query
-	err := Repositories.AddNewPeriodo(&model_container)
-	if err != nil {
+	if err := Repositories.AddNewPeriodo(&periodo); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, Output.AddNewPeriodoOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.AddNewPeriodoOutput(periodo))
 }
 
 // @Summary Modifica un periodo
@@ -106,58 +88,38 @@ func AddNewPeriodo(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   id_periodo     path    string     true        "Id del periodo a modificar"
-// @Param   input_actualiza_periodo     body    Request.PutOnePeriodoPayload     true        "Periodo a modificar"
+// @Param   input_actualiza_periodo     body    Request.PutOnePeriodo     true        "Periodo a modificar"
 // @Success 200 {object} Swagger.PutOnePeriodoSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/periodos/{id_periodo} [put]
 func PutOnePeriodo(c *gin.Context) {
-	// params
 	id := c.Params.ByName("id")
 
-	// input container
-	var container Request.PutOnePeriodoPayload
-
-	// input bind
-	if err := c.ShouldBind(&container); err != nil {
+	var input Request.PutOnePeriodo
+	if err := c.ShouldBind(&input); err != nil {
 		ApiHelpers.RespondError(c, 400, "default")
 		return
 	}
 
-	// format input
-	Input.PutOnePeriodoInput(&container)
+	Input.PutOnePeriodo(&input)
 
-	// generate model entity
-	var model_container Models.Periodo
-
-	// get query
-	err := Repositories.GetOnePeriodo(&model_container, id)
-	if err != nil {
+	var periodo Models.Periodo
+	if err := Repositories.GetOnePeriodo(&periodo, id); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// replace data in model entity
-	model_container = Models.Periodo{
-		Id:             model_container.Id,
-		Nombre_periodo: Utils.CheckUpdatedString(container.Nombre_periodo, model_container.Nombre_periodo),
+	periodo = Models.Periodo{
+		Id:             periodo.Id,
+		Nombre_periodo: Utils.CheckNullString(input.Nombre_periodo, periodo.Nombre_periodo),
 	}
 
-	// update foreign entity
-	// err = Repositories.GetOneEvaluador(&model_container.Evaluador_periodo, model_container.Id_evaluador)
-	// if err != nil {
-	// 	ApiHelpers.RespondError(c, 500, "default")
-	// 	return
-	// }
-
-	// put query
-	err = Repositories.PutOnePeriodo(&model_container, id)
-	if err != nil {
+	if err := Repositories.PutOnePeriodo(&periodo, id); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, Output.PutOnePeriodoOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.PutOnePeriodoOutput(periodo))
 }
 
 // @Summary Elimina un periodo
@@ -170,26 +132,18 @@ func PutOnePeriodo(c *gin.Context) {
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/periodos/{id_periodo} [delete]
 func DeletePeriodo(c *gin.Context) {
-	// params
 	id := c.Params.ByName("id")
 
-	// model container
-	var container Models.Periodo
-
-	// get query
-	err := Repositories.GetOnePeriodo(&container, id)
-	if err != nil {
+	var periodo Models.Periodo
+	if err := Repositories.GetOnePeriodo(&periodo, id); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// query
-	err = Repositories.DeletePeriodo(&container, id)
-	if err != nil {
+	if err := Repositories.DeletePeriodo(&periodo, id); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, Output.DeletePeriodoOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.DeletePeriodoOutput(periodo))
 }

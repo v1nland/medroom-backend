@@ -53,7 +53,7 @@ func GetOneCalificacionEstudiante(c *gin.Context) {
 // @Param   id_grupo     path    string     true        "Id del grupo"
 // @Param   id_estudiante     path    string     true        "Id del estudiante"
 // @Param   id_evaluacion     path    string     true        "Id de la evaluacion"
-// @Param   input_calificacion_estudiante     body    Request.AddNewCalificacionEstudiantePayload     true        "CalificacionEstudiante a agregar"
+// @Param   input_calificacion_estudiante     body    Request.AddNewCalificacionEstudiante     true        "CalificacionEstudiante a agregar"
 // @Success 200 {array} Swagger.AddNewCalificacionEstudianteSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/estudiantes/{id_estudiante}/evaluaciones/{id_evaluacion}/calificacion [post]
@@ -64,7 +64,7 @@ func AddNewCalificacionEstudiante(c *gin.Context) {
 	id_estudiante := c.Params.ByName("id_estudiante")
 	id_evaluacion := c.Params.ByName("id_evaluacion")
 
-	var input Request.AddNewCalificacionEstudiantePayload
+	var input Request.AddNewCalificacionEstudiante
 	if err := c.ShouldBind(&input); err != nil {
 		ApiHelpers.RespondError(c, 400, "default")
 		return
@@ -76,7 +76,7 @@ func AddNewCalificacionEstudiante(c *gin.Context) {
 		return
 	}
 
-	Input.AddNewCalificacionEstudianteInput(&input)
+	Input.AddNewCalificacionEstudiante(&input)
 
 	// parameter for calificacion estudiante constructor
 	var puntajes_calificacion_estudiante []Models.Puntaje

@@ -18,13 +18,13 @@ import (
 // @Tags 01 - Autenticación
 // @Accept  json
 // @Produce  json
-// @Param   input_credentials     body    Request.LoginEstudiantePayload     true        "Credenciales de acceso"
+// @Param   input_credentials     body    Request.LoginEstudiante     true        "Credenciales de acceso"
 // @Success 200 {array} Swagger.AuthenticationSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /estudiantes/login [post]
 func AutenticarEstudiante(c *gin.Context) {
 	var estudiante Models.Estudiante
-	var login_message Request.LoginEstudiantePayload
+	var login_message Request.LoginEstudiante
 	var token_response Response.Authentication
 
 	if err := c.ShouldBind(&login_message); err != nil {
@@ -32,7 +32,7 @@ func AutenticarEstudiante(c *gin.Context) {
 		return
 	}
 
-	Input.FormatLoginEstudianteMessage(&login_message)
+	Input.LoginEstudiante(&login_message)
 
 	err := Repositories.AuthenticateEstudiante(&estudiante, login_message.Correo_electronico_estudiante, login_message.Hash_contrasena_estudiante)
 	if err != nil {
@@ -59,13 +59,13 @@ func AutenticarEstudiante(c *gin.Context) {
 // @Tags 01 - Autenticación
 // @Accept  json
 // @Produce  json
-// @Param   input_credentials     body    Request.LoginEvaluadorPayload     true        "Credenciales de acceso"
+// @Param   input_credentials     body    Request.LoginEvaluador     true        "Credenciales de acceso"
 // @Success 200 {array} Swagger.AuthenticationSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /evaluadores/login [post]
 func AutenticarEvaluador(c *gin.Context) {
 	var evaluador Models.Evaluador
-	var login_message Request.LoginEvaluadorPayload
+	var login_message Request.LoginEvaluador
 	var token_response Response.Authentication
 
 	if err := c.ShouldBind(&login_message); err != nil {
@@ -73,7 +73,7 @@ func AutenticarEvaluador(c *gin.Context) {
 		return
 	}
 
-	Input.FormatLoginEvaluadorMessage(&login_message)
+	Input.LoginEvaluador(&login_message)
 
 	err := Repositories.AuthenticateEvaluador(&evaluador, login_message.Correo_electronico_evaluador, login_message.Hash_contrasena_evaluador)
 	if err != nil {
@@ -100,13 +100,13 @@ func AutenticarEvaluador(c *gin.Context) {
 // @Tags 01 - Autenticación
 // @Accept  json
 // @Produce  json
-// @Param   input_credentials     body    Request.LoginAdministradorAcademicoPayload     true        "Credenciales de acceso"
+// @Param   input_credentials     body    Request.LoginAdministradorAcademico     true        "Credenciales de acceso"
 // @Success 200 {array} Swagger.AuthenticationSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-academica/login [post]
 func AutenticarAdministradorAcademico(c *gin.Context) {
 	var administrador_academico Models.AdministradorAcademico
-	var login_message Request.LoginAdministradorAcademicoPayload
+	var login_message Request.LoginAdministradorAcademico
 	var token_response Response.Authentication
 
 	if err := c.ShouldBind(&login_message); err != nil {
@@ -114,7 +114,7 @@ func AutenticarAdministradorAcademico(c *gin.Context) {
 		return
 	}
 
-	Input.FormatLoginAdministradorAcademicoMessage(&login_message)
+	Input.LoginAdministradorAcademico(&login_message)
 
 	err := Repositories.AuthenticateAdministradorAcademico(&administrador_academico, login_message.Correo_electronico_administrador_academico, login_message.Hash_contrasena_administrador_academico)
 	if err != nil {
@@ -141,13 +141,13 @@ func AutenticarAdministradorAcademico(c *gin.Context) {
 // @Tags 01 - Autenticación
 // @Accept  json
 // @Produce  json
-// @Param   input_credentials     body    Request.LoginAdministradorTiPayload     true        "Credenciales de acceso"
+// @Param   input_credentials     body    Request.LoginAdministradorTi     true        "Credenciales de acceso"
 // @Success 200 {array} Swagger.AuthenticationSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/login [post]
 func AutenticarAdministradorTi(c *gin.Context) {
 	var administrador_ti Models.AdministradorTi
-	var login_message Request.LoginAdministradorTiPayload
+	var login_message Request.LoginAdministradorTi
 	var token_response Response.Authentication
 
 	if err := c.ShouldBind(&login_message); err != nil {
@@ -155,7 +155,7 @@ func AutenticarAdministradorTi(c *gin.Context) {
 		return
 	}
 
-	Input.FormatLoginAdministradorTiMessage(&login_message)
+	Input.LoginAdministradorTi(&login_message)
 
 	err := Repositories.AuthenticateAdministradorTi(&administrador_ti, login_message.Correo_electronico_administrador_ti, login_message.Hash_contrasena_administrador_ti)
 	if err != nil {

@@ -9,9 +9,22 @@ import (
 	"gorm.io/gorm/clause"
 )
 
-// .Preload("Calificaciones_estudiante.Puntajes_calificacion_estudiante.Competencia_puntaje").Preload("Calificaciones_estudiante.Evaluacion_calificacion_estudiante").Preload("Calificaciones_estudiante.Periodo_calificacion_estudiante").Preload("Calificaciones_estudiante.Evaluador_calificacion_estudiante.Rol_evaluador")
 func GetAllEstudiantes(u *[]Models.Estudiante) (err error) {
 	if err = Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Order("created_at asc").Find(u).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
+func GetAllEstudiantesCurso(u *[]Models.Estudiante, id_curso string) (err error) {
+	if err = Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Order("created_at asc").Joins("JOIN estudiantes_grupos eg on eg.id_estudiante = estudiantes.id").Joins("JOIN grupos g on eg.id_grupo = g.id").Joins("join cursos c on g.id_curso = c.id").Where("g.sigla_grupo != 'SG' and c.id = ?", id_curso).Find(u).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
+func GetAllEstudiantesCursoSinGrupo(u *[]Models.Estudiante, id_curso string) (err error) {
+	if err = Config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Order("created_at asc").Joins("JOIN estudiantes_grupos eg on eg.id_estudiante = estudiantes.id").Joins("JOIN grupos g on eg.id_grupo = g.id").Joins("join cursos c on g.id_curso = c.id").Where("g.sigla_grupo = 'SG' and c.id = ?", id_curso).Find(u).Error; err != nil {
 		return err
 	}
 	return nil

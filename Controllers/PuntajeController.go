@@ -69,14 +69,14 @@ func GetOnePuntaje(c *gin.Context) {
 // @Tags Puntajes
 // @Accept  json
 // @Produce  json
-// @Param   input_puntaje     body    Request.AddNewPuntajePayload     true        "Puntaje a agregar"
+// @Param   input_puntaje     body    Request.AddNewPuntaje     true        "Puntaje a agregar"
 // @Success 200 {object} Swagger.AddNewPuntajeSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /puntajes [post]
 
 func AddNewPuntaje(c *gin.Context) {
 	// input container
-	var container Request.AddNewPuntajePayload
+	var container Request.AddNewPuntaje
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {
@@ -112,7 +112,7 @@ func AddNewPuntaje(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   id_puntaje     path    string     true        "Id del puntaje a modificar"
-// @Param   input_actualiza_puntaje     body    Request.PutOnePuntajePayload     true        "Puntaje a modificar"
+// @Param   input_actualiza_puntaje     body    Request.PutOnePuntaje     true        "Puntaje a modificar"
 // @Success 200 {object} Swagger.PutOnePuntajeSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /puntajes/{id_puntaje} [put]
@@ -122,7 +122,7 @@ func PutOnePuntaje(c *gin.Context) {
 	id := c.Params.ByName("id")
 
 	// input container
-	var container Request.PutOnePuntajePayload
+	var container Request.PutOnePuntaje
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {

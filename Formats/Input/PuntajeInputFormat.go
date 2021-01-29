@@ -6,15 +6,13 @@ import (
 	"strings"
 )
 
-func ListPuntajesInput(u *Request.ListPuntajesPayload) {
-
+func ListPuntajes(u *Request.ListPuntajes) {
 }
 
-func GetOnePuntajeInput(u *Request.GetOnePuntajePayload) {
-
+func GetOnePuntaje(u *Request.GetOnePuntaje) {
 }
 
-func AddNewPuntajeInput(u *Request.AddNewPuntajePayload) {
+func AddNewPuntaje(u *Request.AddNewPuntaje) {
 	u.Nombre_competencia_puntaje = strings.TrimSpace(u.Nombre_competencia_puntaje)
 	u.Nombre_competencia_puntaje = strings.ToUpper(u.Nombre_competencia_puntaje)
 	u.Nombre_competencia_puntaje = Utils.RemoveAccents(u.Nombre_competencia_puntaje)
@@ -28,7 +26,7 @@ func AddNewPuntajeInput(u *Request.AddNewPuntajePayload) {
 	u.Feedback_puntaje = Utils.RemoveAccents(u.Feedback_puntaje)
 }
 
-func PutOnePuntajeInput(u *Request.PutOnePuntajePayload) {
+func PutOnePuntaje(u *Request.PutOnePuntaje) {
 	u.Nombre_competencia_puntaje = strings.TrimSpace(u.Nombre_competencia_puntaje)
 	u.Nombre_competencia_puntaje = strings.ToUpper(u.Nombre_competencia_puntaje)
 	u.Nombre_competencia_puntaje = Utils.RemoveAccents(u.Nombre_competencia_puntaje)
@@ -42,6 +40,5 @@ func PutOnePuntajeInput(u *Request.PutOnePuntajePayload) {
 	u.Feedback_puntaje = Utils.RemoveAccents(u.Feedback_puntaje)
 }
 
-func DeletePuntajeInput(u *Request.DeletePuntajePayload) {
-
+func DeletePuntaje(u *Request.DeletePuntaje) {
 }

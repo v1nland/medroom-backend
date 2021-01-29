@@ -22,11 +22,10 @@ import (
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/estudiantes [get]
 func ListEstudiantes(c *gin.Context) {
-	// model container
-	var container []Models.Estudiante
-	if err := Repositories.GetAllEstudiantes(&container); err != nil {
+	var estudiantes []Models.Estudiante
+	if err := Repositories.GetAllEstudiantes(&estudiantes); err != nil {
 		if errors.Is(err, gorm.ErrEmptySlice) {
-			ApiHelpers.RespondJSON(c, 200, container)
+			ApiHelpers.RespondJSON(c, 200, estudiantes)
 		} else {
 			ApiHelpers.RespondError(c, 500, "default")
 		}
@@ -35,7 +34,7 @@ func ListEstudiantes(c *gin.Context) {
 	}
 
 	// ApiHelpers.RespondJSON(c, 200, Output.ListEstudiantesOutput(container))
-	ApiHelpers.RespondJSON(c, 200, container)
+	ApiHelpers.RespondJSON(c, 200, estudiantes)
 }
 
 // @Summary Obtiene un estudiante
@@ -50,8 +49,8 @@ func ListEstudiantes(c *gin.Context) {
 func GetOneEstudiante(c *gin.Context) {
 	id := c.Params.ByName("id")
 
-	var container Models.Estudiante
-	if err := Repositories.GetOneEstudiante(&container, id); err != nil {
+	var estudiante Models.Estudiante
+	if err := Repositories.GetOneEstudiante(&estudiante, id); err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			ApiHelpers.RespondJSON(c, 200, "Estudiante not found")
 		} else {
@@ -62,7 +61,7 @@ func GetOneEstudiante(c *gin.Context) {
 	}
 
 	// ApiHelpers.RespondJSON(c, 200, Output.GetOneEstudianteOutput(container))
-	ApiHelpers.RespondJSON(c, 200, container)
+	ApiHelpers.RespondJSON(c, 200, estudiante)
 }
 
 // @Summary Agrega un nuevo estudiante
@@ -70,20 +69,20 @@ func GetOneEstudiante(c *gin.Context) {
 // @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   input_estudiante     body    Request.AddNewEstudiantePayload     true        "Estudiante a agregar"
+// @Param   input_estudiante     body    Request.AddNewEstudiante     true        "Estudiante a agregar"
 // @Success 200 {object} Swagger.AddNewEstudianteSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/estudiantes [post]
 func AddNewEstudiante(c *gin.Context) {
-	var input Request.AddNewEstudiantePayload
+	var input Request.AddNewEstudiante
 	if err := c.ShouldBind(&input); err != nil {
 		ApiHelpers.RespondError(c, 400, "default")
 		return
 	}
 
-	Input.AddNewEstudianteInput(&input)
+	Input.AddNewEstudiante(&input)
 
-	model := Models.Estudiante{
+	estudiante := Models.Estudiante{
 		Id_rol:                        *input.Id_rol,
 		Rut_estudiante:                *input.Rut_estudiante,
 		Nombres_estudiante:            *input.Nombres_estudiante,
@@ -94,13 +93,13 @@ func AddNewEstudiante(c *gin.Context) {
 		Telefono_celular_estudiante:   *input.Telefono_celular_estudiante,
 	}
 
-	if err := Repositories.AddNewEstudiante(&model); err != nil {
+	if err := Repositories.AddNewEstudiante(&estudiante); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
 	// ApiHelpers.RespondJSON(c, 200, Output.AddNewEstudianteOutput(model))
-	ApiHelpers.RespondJSON(c, 200, model)
+	ApiHelpers.RespondJSON(c, 200, estudiante)
 }
 
 // @Summary Modifica un estudiante
@@ -109,27 +108,23 @@ func AddNewEstudiante(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   uuid_estudiante     path    string     true        "UUID del estudiante a modificar"
-// @Param   input_actualiza_estudiante     body    Request.PutOneEstudiantePayload     true        "Estudiante a modificar"
+// @Param   input_actualiza_estudiante     body    Request.PutOneEstudiante     true        "Estudiante a modificar"
 // @Success 200 {object} Swagger.PutOneEstudianteSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/estudiantes/{uuid_estudiante} [put]
 func PutOneEstudiante(c *gin.Context) {
-	// params
 	id := c.Params.ByName("id")
 
-	// input bind
-	var input Request.PutOneEstudiantePayload
+	var input Request.PutOneEstudiante
 	if err := c.ShouldBind(&input); err != nil {
 		ApiHelpers.RespondError(c, 400, "default")
 		return
 	}
 
-	// format input
-	Input.PutOneEstudianteInput(&input)
+	Input.PutOneEstudiante(&input)
 
-	// get model entity
-	var model Models.Estudiante
-	if err := Repositories.GetOneEstudiante(&model, id); err != nil {
+	var estudiante Models.Estudiante
+	if err := Repositories.GetOneEstudiante(&estudiante, id); err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			ApiHelpers.RespondJSON(c, 200, "Estudiante not found")
 		} else {
@@ -139,22 +134,20 @@ func PutOneEstudiante(c *gin.Context) {
 		return
 	}
 
-	// replace new data
-	model = Models.Estudiante{
-		Id:                            model.Id,
-		Id_rol:                        model.Id_rol,
-		Rol_estudiante:                model.Rol_estudiante,
-		Rut_estudiante:                Utils.CheckNullString(input.Rut_estudiante, model.Rut_estudiante),
-		Nombres_estudiante:            Utils.CheckNullString(input.Nombres_estudiante, model.Nombres_estudiante),
-		Apellidos_estudiante:          Utils.CheckNullString(input.Apellidos_estudiante, model.Apellidos_estudiante),
-		Hash_contrasena_estudiante:    Utils.CheckNullString(input.Hash_contrasena_estudiante, model.Hash_contrasena_estudiante),
-		Correo_electronico_estudiante: Utils.CheckNullString(input.Correo_electronico_estudiante, model.Correo_electronico_estudiante),
-		Telefono_fijo_estudiante:      Utils.CheckNullString(input.Telefono_fijo_estudiante, model.Telefono_fijo_estudiante),
-		Telefono_celular_estudiante:   Utils.CheckNullString(input.Telefono_celular_estudiante, model.Telefono_celular_estudiante),
+	estudiante = Models.Estudiante{
+		Id:                            estudiante.Id,
+		Id_rol:                        estudiante.Id_rol,
+		Rol_estudiante:                estudiante.Rol_estudiante,
+		Rut_estudiante:                Utils.CheckNullString(input.Rut_estudiante, estudiante.Rut_estudiante),
+		Nombres_estudiante:            Utils.CheckNullString(input.Nombres_estudiante, estudiante.Nombres_estudiante),
+		Apellidos_estudiante:          Utils.CheckNullString(input.Apellidos_estudiante, estudiante.Apellidos_estudiante),
+		Hash_contrasena_estudiante:    Utils.CheckNullString(input.Hash_contrasena_estudiante, estudiante.Hash_contrasena_estudiante),
+		Correo_electronico_estudiante: Utils.CheckNullString(input.Correo_electronico_estudiante, estudiante.Correo_electronico_estudiante),
+		Telefono_fijo_estudiante:      Utils.CheckNullString(input.Telefono_fijo_estudiante, estudiante.Telefono_fijo_estudiante),
+		Telefono_celular_estudiante:   Utils.CheckNullString(input.Telefono_celular_estudiante, estudiante.Telefono_celular_estudiante),
 	}
 
-	// put query
-	if err := Repositories.PutOneEstudiante(&model, id); err != nil {
+	if err := Repositories.PutOneEstudiante(&estudiante, id); err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			ApiHelpers.RespondJSON(c, 200, "Estudiante not found")
 		} else {
@@ -165,7 +158,7 @@ func PutOneEstudiante(c *gin.Context) {
 	}
 
 	// ApiHelpers.RespondJSON(c, 200, Output.PutOneEstudianteOutput(model))
-	ApiHelpers.RespondJSON(c, 200, model)
+	ApiHelpers.RespondJSON(c, 200, estudiante)
 }
 
 // @Summary Elimina un estudiante
@@ -178,11 +171,10 @@ func PutOneEstudiante(c *gin.Context) {
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/estudiantes/{uuid_estudiante} [delete]
 func DeleteEstudiante(c *gin.Context) {
-	// params
 	id := c.Params.ByName("id")
 
-	var container Models.Estudiante
-	if err := Repositories.GetOneEstudiante(&container, id); err != nil {
+	var estudiante Models.Estudiante
+	if err := Repositories.GetOneEstudiante(&estudiante, id); err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			ApiHelpers.RespondJSON(c, 200, "Estudiante not found")
 		} else {
@@ -192,7 +184,7 @@ func DeleteEstudiante(c *gin.Context) {
 		return
 	}
 
-	if err := Repositories.DeleteEstudiante(&container, id); err != nil {
+	if err := Repositories.DeleteEstudiante(&estudiante, id); err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			ApiHelpers.RespondJSON(c, 200, "Estudiante not found")
 		} else {
@@ -203,7 +195,7 @@ func DeleteEstudiante(c *gin.Context) {
 	}
 
 	// ApiHelpers.RespondJSON(c, 200, Output.DeleteEstudianteOutput(container))
-	ApiHelpers.RespondJSON(c, 200, container)
+	ApiHelpers.RespondJSON(c, 200, estudiante)
 }
 
 // @Summary Obtiene el perfil del estudiante
@@ -215,12 +207,10 @@ func DeleteEstudiante(c *gin.Context) {
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /estudiantes/me [get]
 func GetMyEstudiante(c *gin.Context) {
-	// params
 	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
 
-	// query estudiante
-	var container Models.Estudiante
-	if err := Repositories.GetOneEstudiante(&container, id_estudiante); err != nil {
+	var estudiante Models.Estudiante
+	if err := Repositories.GetOneEstudiante(&estudiante, id_estudiante); err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			ApiHelpers.RespondJSON(c, 200, "Estudiante not found")
 		} else {
@@ -231,7 +221,7 @@ func GetMyEstudiante(c *gin.Context) {
 	}
 
 	// ApiHelpers.RespondJSON(c, 200, Output.GetMyEstudianteOutput(container))
-	ApiHelpers.RespondJSON(c, 200, container)
+	ApiHelpers.RespondJSON(c, 200, estudiante)
 }
 
 // @Summary Modifica mi perfil
@@ -239,27 +229,23 @@ func GetMyEstudiante(c *gin.Context) {
 // @Tags 02 - Estudiantes
 // @Accept  json
 // @Produce  json
-// @Param   input_actualiza_estudiante     body    Request.PutMyEstudiantePayload     true        "Nuevos datos del estudiante a modificar"
+// @Param   input_actualiza_estudiante     body    Request.PutMyEstudiante     true        "Nuevos datos del estudiante a modificar"
 // @Success 200 {object} Swagger.PutMyEstudianteSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /estudiantes/me [put]
 func PutMyEstudiante(c *gin.Context) {
-	// params
 	id := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
 
-	// input bind
-	var input Request.PutMyEstudiantePayload
+	var input Request.PutMyEstudiante
 	if err := c.ShouldBind(&input); err != nil {
 		ApiHelpers.RespondError(c, 400, "default")
 		return
 	}
 
-	// format input
-	Input.PutMyEstudianteInput(&input)
+	Input.PutMyEstudiante(&input)
 
-	// get model entity
-	var model Models.Estudiante
-	if err := Repositories.GetOneEstudiante(&model, id); err != nil {
+	var estudiante Models.Estudiante
+	if err := Repositories.GetOneEstudiante(&estudiante, id); err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			ApiHelpers.RespondJSON(c, 200, "Estudiante not found")
 		} else {
@@ -269,22 +255,20 @@ func PutMyEstudiante(c *gin.Context) {
 		return
 	}
 
-	// replace new data
-	model = Models.Estudiante{
-		Id:                            model.Id,
-		Id_rol:                        model.Id_rol,
-		Rol_estudiante:                model.Rol_estudiante,
-		Rut_estudiante:                model.Rut_estudiante,
-		Nombres_estudiante:            model.Nombres_estudiante,
-		Apellidos_estudiante:          model.Apellidos_estudiante,
-		Hash_contrasena_estudiante:    Utils.CheckNullString(input.Hash_contrasena_estudiante, model.Hash_contrasena_estudiante),
-		Correo_electronico_estudiante: model.Correo_electronico_estudiante,
-		Telefono_fijo_estudiante:      Utils.CheckNullString(input.Telefono_fijo_estudiante, model.Telefono_fijo_estudiante),
-		Telefono_celular_estudiante:   Utils.CheckNullString(input.Telefono_celular_estudiante, model.Telefono_celular_estudiante),
+	estudiante = Models.Estudiante{
+		Id:                            estudiante.Id,
+		Id_rol:                        estudiante.Id_rol,
+		Rol_estudiante:                estudiante.Rol_estudiante,
+		Rut_estudiante:                estudiante.Rut_estudiante,
+		Nombres_estudiante:            estudiante.Nombres_estudiante,
+		Apellidos_estudiante:          estudiante.Apellidos_estudiante,
+		Hash_contrasena_estudiante:    Utils.CheckNullString(input.Hash_contrasena_estudiante, estudiante.Hash_contrasena_estudiante),
+		Correo_electronico_estudiante: estudiante.Correo_electronico_estudiante,
+		Telefono_fijo_estudiante:      Utils.CheckNullString(input.Telefono_fijo_estudiante, estudiante.Telefono_fijo_estudiante),
+		Telefono_celular_estudiante:   Utils.CheckNullString(input.Telefono_celular_estudiante, estudiante.Telefono_celular_estudiante),
 	}
 
-	// put query
-	if err := Repositories.PutOneEstudiante(&model, id); err != nil {
+	if err := Repositories.PutOneEstudiante(&estudiante, id); err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			ApiHelpers.RespondJSON(c, 200, "Estudiante not found")
 		} else {
@@ -295,5 +279,57 @@ func PutMyEstudiante(c *gin.Context) {
 	}
 
 	// ApiHelpers.RespondJSON(c, 200, Output.PutMyEstudianteOutput(model))
-	ApiHelpers.RespondJSON(c, 200, model)
+	ApiHelpers.RespondJSON(c, 200, estudiante)
+}
+
+// @Summary Lista de estudiantes de un curso
+// @Description Lista todos los estudiantes existentes en un curso
+// @Tags 05 - Administración Académica
+// @Accept  json
+// @Produce  json
+// @Success 200 {array} Swagger.ListEstudiantesCursoSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /administracion-academica/cursos/:id_curso/estudiantes [get]
+func ListEstudiantesCurso(c *gin.Context) {
+	// id := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_ACADEMICO")
+	id_curso := c.Params.ByName("id")
+
+	var estudiantes []Models.Estudiante
+	if err := Repositories.GetAllEstudiantesCurso(&estudiantes, id_curso); err != nil {
+		if errors.Is(err, gorm.ErrEmptySlice) {
+			ApiHelpers.RespondJSON(c, 200, estudiantes)
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
+		return
+	}
+
+	ApiHelpers.RespondJSON(c, 200, estudiantes)
+}
+
+// @Summary Lista de estudiantes de un curso sin grupo
+// @Description Lista todos los estudiantes existentes en un curso sin grupo
+// @Tags 05 - Administración Académica
+// @Accept  json
+// @Produce  json
+// @Success 200 {array} Swagger.ListEstudiantesCursoSinGrupoSwagger "OK"
+// @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
+// @Router /administracion-academica/cursos/:id_curso/estudiantes/sin-grupo [get]
+func ListEstudiantesCursoSinGrupo(c *gin.Context) {
+	// id := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_ACADEMICO")
+	id_curso := c.Params.ByName("id")
+
+	var estudiantes []Models.Estudiante
+	if err := Repositories.GetAllEstudiantesCursoSinGrupo(&estudiantes, id_curso); err != nil {
+		if errors.Is(err, gorm.ErrEmptySlice) {
+			ApiHelpers.RespondJSON(c, 200, estudiantes)
+		} else {
+			ApiHelpers.RespondError(c, 500, "default")
+		}
+
+		return
+	}
+
+	ApiHelpers.RespondJSON(c, 200, estudiantes)
 }

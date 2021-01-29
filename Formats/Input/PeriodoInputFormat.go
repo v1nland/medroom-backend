@@ -6,26 +6,27 @@ import (
 	"strings"
 )
 
-func ListPeriodosInput(u *Request.ListPeriodosPayload) {
-
+func ListPeriodos(u *Request.ListPeriodos) {
 }
 
-func GetOnePeriodoInput(u *Request.GetOnePeriodoPayload) {
-
+func GetOnePeriodo(u *Request.GetOnePeriodo) {
 }
 
-func AddNewPeriodoInput(u *Request.AddNewPeriodoPayload) {
-	u.Nombre_periodo = strings.TrimSpace(u.Nombre_periodo)
-	u.Nombre_periodo = strings.ToUpper(u.Nombre_periodo)
-	u.Nombre_periodo = Utils.RemoveAccents(u.Nombre_periodo)
+func AddNewPeriodo(u *Request.AddNewPeriodo) {
+	if u.Nombre_periodo != nil {
+		*u.Nombre_periodo = strings.TrimSpace(*u.Nombre_periodo)
+		*u.Nombre_periodo = strings.ToUpper(*u.Nombre_periodo)
+		*u.Nombre_periodo = Utils.RemoveAccents(*u.Nombre_periodo)
+	}
 }
 
-func PutOnePeriodoInput(u *Request.PutOnePeriodoPayload) {
-	u.Nombre_periodo = strings.TrimSpace(u.Nombre_periodo)
-	u.Nombre_periodo = strings.ToUpper(u.Nombre_periodo)
-	u.Nombre_periodo = Utils.RemoveAccents(u.Nombre_periodo)
+func PutOnePeriodo(u *Request.PutOnePeriodo) {
+	if u.Nombre_periodo != nil {
+		*u.Nombre_periodo = strings.TrimSpace(*u.Nombre_periodo)
+		*u.Nombre_periodo = strings.ToUpper(*u.Nombre_periodo)
+		*u.Nombre_periodo = Utils.RemoveAccents(*u.Nombre_periodo)
+	}
 }
 
-func DeletePeriodoInput(u *Request.DeletePeriodoPayload) {
-
+func DeletePeriodo(u *Request.DeletePeriodo) {
 }

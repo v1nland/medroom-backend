@@ -6,25 +6,25 @@ import (
 	"strings"
 )
 
-func ListCursosInput(u *Request.ListCursosPayload) {
+func ListCursos(u *Request.ListCursos) {
 }
 
-func GetOneCursoInput(u *Request.GetOneCursoPayload) {
+func GetOneCurso(u *Request.GetOneCurso) {
 }
 
-func GetOneCursoEstudianteInput(u *Request.GetOneCursoEstudiantePayload) {
+func GetOneCursoEstudiante(u *Request.GetOneCursoEstudiante) {
 }
 
-func GetCursosEstudianteInput(u *Request.GetCursosEstudiantePayload) {
+func GetCursosEstudiante(u *Request.GetCursosEstudiante) {
 }
 
-func GetOneCursoEvaluadorInput(u *Request.GetOneCursoEvaluadorPayload) {
+func GetOneCursoEvaluador(u *Request.GetOneCursoEvaluador) {
 }
 
-func GetCursosEvaluadorInput(u *Request.GetCursosEvaluadorPayload) {
+func GetCursosEvaluador(u *Request.GetCursosEvaluador) {
 }
 
-func AddNewCursoInput(u *Request.AddNewCursoPayload) {
+func AddNewCurso(u *Request.AddNewCurso) {
 	if u.Nombre_curso != nil {
 		*u.Nombre_curso = strings.TrimSpace(*u.Nombre_curso)
 		*u.Nombre_curso = strings.ToUpper(*u.Nombre_curso)
@@ -37,7 +37,7 @@ func AddNewCursoInput(u *Request.AddNewCursoPayload) {
 	}
 }
 
-func PutOneCursoInput(u *Request.PutOneCursoPayload) {
+func PutOneCurso(u *Request.PutOneCurso) {
 	if u.Nombre_curso != nil {
 		*u.Nombre_curso = strings.TrimSpace(*u.Nombre_curso)
 		*u.Nombre_curso = strings.ToUpper(*u.Nombre_curso)
@@ -50,6 +50,6 @@ func PutOneCursoInput(u *Request.PutOneCursoPayload) {
 	}
 }
 
-func DeleteCursoInput(u *Request.DeleteCursoPayload) {
+func DeleteCurso(u *Request.DeleteCurso) {
 
 }

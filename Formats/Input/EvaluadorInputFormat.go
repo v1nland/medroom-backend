@@ -6,15 +6,13 @@ import (
 	"strings"
 )
 
-func ListEvaluadoresInput(u *Request.ListEvaluadoresPayload) {
-
+func ListEvaluadores(u *Request.ListEvaluadores) {
 }
 
-func GetOneEvaluadorInput(u *Request.GetOneEvaluadorPayload) {
-
+func GetOneEvaluador(u *Request.GetOneEvaluador) {
 }
 
-func AddNewEvaluadorInput(u *Request.AddNewEvaluadorPayload) {
+func AddNewEvaluador(u *Request.AddNewEvaluador) {
 	if u.Rut_evaluador != nil {
 		*u.Rut_evaluador = strings.TrimSpace(*u.Rut_evaluador)
 		*u.Rut_evaluador = strings.ToUpper(*u.Rut_evaluador)
@@ -57,7 +55,7 @@ func AddNewEvaluadorInput(u *Request.AddNewEvaluadorPayload) {
 	}
 }
 
-func PutOneEvaluadorInput(u *Request.PutOneEvaluadorPayload) {
+func PutOneEvaluador(u *Request.PutOneEvaluador) {
 	if u.Rut_evaluador != nil {
 		*u.Rut_evaluador = strings.TrimSpace(*u.Rut_evaluador)
 		*u.Rut_evaluador = strings.ToUpper(*u.Rut_evaluador)
@@ -100,15 +98,13 @@ func PutOneEvaluadorInput(u *Request.PutOneEvaluadorPayload) {
 	}
 }
 
-func DeleteEvaluadorInput(u *Request.DeleteEvaluadorPayload) {
-
+func DeleteEvaluador(u *Request.DeleteEvaluador) {
 }
 
-func GetMyEvaluadorInput(u *Request.GetMyEvaluadorPayload) {
-
+func GetMyEvaluador(u *Request.GetMyEvaluador) {
 }
 
-func PutMyEvaluadorInput(u *Request.PutMyEvaluadorPayload) {
+func PutMyEvaluador(u *Request.PutMyEvaluador) {
 	if u.Telefono_fijo_evaluador != nil {
 		*u.Telefono_fijo_evaluador = strings.TrimSpace(*u.Telefono_fijo_evaluador)
 		*u.Telefono_fijo_evaluador = strings.ToUpper(*u.Telefono_fijo_evaluador)
@@ -126,6 +122,5 @@ func PutMyEvaluadorInput(u *Request.PutMyEvaluadorPayload) {
 	}
 }
 
-func AddEvaluadorToGrupoInput(u *Request.AddEvaluadorToGrupoPayload) {
-
+func AddEvaluadorToGrupo(u *Request.AddEvaluadorToGrupo) {
 }

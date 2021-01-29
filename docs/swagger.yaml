@@ -7,7 +7,7 @@ definitions:
       error:
         type: string
     type: object
-  Request.AddNewAdministradorAcademicoPayload:
+  Request.AddNewAdministradorAcademico:
     properties:
       apellidos_administrador_academico:
         type: string
@@ -26,7 +26,7 @@ definitions:
       telefono_fijo_administrador_academico:
         type: string
     type: object
-  Request.AddNewAdministradorTiPayload:
+  Request.AddNewAdministradorTi:
     properties:
       apellidos_administrador_ti:
         type: string
@@ -47,7 +47,7 @@ definitions:
       telefono_fijo_administrador_ti:
         type: string
     type: object
-  Request.AddNewCalificacionEstudiantePayload:
+  Request.AddNewCalificacionEstudiante:
     properties:
       asunto_principal_consulta_calificacion_estudiante:
         type: string
@@ -74,7 +74,7 @@ definitions:
       tiempo_utilizado_calificacion_estudiante:
         type: integer
     type: object
-  Request.AddNewCursoPayload:
+  Request.AddNewCurso:
     properties:
       id_periodo:
         type: integer
@@ -83,7 +83,7 @@ definitions:
       sigla_curso:
         type: string
     type: object
-  Request.AddNewEstudiantePayload:
+  Request.AddNewEstudiante:
     properties:
       apellidos_estudiante:
         type: string
@@ -102,12 +102,12 @@ definitions:
       telefono_fijo_estudiante:
         type: string
     type: object
-  Request.AddNewEvaluacionPayload:
+  Request.AddNewEvaluacion:
     properties:
       nombre_evaluacion:
         type: string
     type: object
-  Request.AddNewEvaluadorPayload:
+  Request.AddNewEvaluador:
     properties:
       apellidos_evaluador:
         type: string
@@ -130,7 +130,7 @@ definitions:
       telefono_fijo_evaluador:
         type: string
     type: object
-  Request.AddNewGrupoPayload:
+  Request.AddNewGrupo:
     properties:
       id_curso:
         type: integer
@@ -141,38 +141,38 @@ definitions:
       sigla_grupo:
         type: string
     type: object
-  Request.AddNewPeriodoPayload:
+  Request.AddNewPeriodo:
     properties:
       nombre_periodo:
         type: string
     type: object
-  Request.AddNewRolPayload:
+  Request.AddNewRol:
     properties:
       nombre_rol:
         type: string
     type: object
-  Request.LoginAdministradorAcademicoPayload:
+  Request.LoginAdministradorAcademico:
     properties:
       correo_electronico_administrador_academico:
         type: string
       hash_contrasena_administrador_academico:
         type: string
     type: object
-  Request.LoginAdministradorTiPayload:
+  Request.LoginAdministradorTi:
     properties:
       correo_electronico_administrador_ti:
         type: string
       hash_contrasena_administrador_ti:
         type: string
     type: object
-  Request.LoginEstudiantePayload:
+  Request.LoginEstudiante:
     properties:
       correo_electronico_estudiante:
         type: string
       hash_contrasena_estudiante:
         type: string
     type: object
-  Request.LoginEvaluadorPayload:
+  Request.LoginEvaluador:
     properties:
       correo_electronico_evaluador:
         type: string
@@ -188,7 +188,7 @@ definitions:
       id_competencia:
         type: string
     type: object
-  Request.PutMyAdministradorAcademicoPayload:
+  Request.PutMyAdministradorAcademico:
     properties:
       apellidos_administrador_academico:
         type: string
@@ -207,7 +207,7 @@ definitions:
       telefono_fijo_administrador_academico:
         type: string
     type: object
-  Request.PutMyAdministradorTiPayload:
+  Request.PutMyAdministradorTi:
     properties:
       apellidos_administrador_ti:
         type: string
@@ -228,7 +228,7 @@ definitions:
       telefono_fijo_administrador_ti:
         type: string
     type: object
-  Request.PutMyEstudiantePayload:
+  Request.PutMyEstudiante:
     properties:
       hash_contrasena_estudiante:
         type: string
@@ -237,7 +237,7 @@ definitions:
       telefono_fijo_estudiante:
         type: string
     type: object
-  Request.PutMyEvaluadorPayload:
+  Request.PutMyEvaluador:
     properties:
       cargo_evaluador:
         type: string
@@ -248,7 +248,7 @@ definitions:
       telefono_fijo_evaluador:
         type: string
     type: object
-  Request.PutOneAdministradorAcademicoPayload:
+  Request.PutOneAdministradorAcademico:
     properties:
       apellidos_administrador_academico:
         type: string
@@ -267,7 +267,7 @@ definitions:
       telefono_fijo_administrador_academico:
         type: string
     type: object
-  Request.PutOneAdministradorTiPayload:
+  Request.PutOneAdministradorTi:
     properties:
       apellidos_administrador_ti:
         type: string
@@ -288,7 +288,7 @@ definitions:
       telefono_fijo_administrador_ti:
         type: string
     type: object
-  Request.PutOneCursoPayload:
+  Request.PutOneCurso:
     properties:
       id_periodo:
         type: integer
@@ -297,7 +297,7 @@ definitions:
       sigla_curso:
         type: string
     type: object
-  Request.PutOneEstudiantePayload:
+  Request.PutOneEstudiante:
     properties:
       apellidos_estudiante:
         type: string
@@ -314,7 +314,7 @@ definitions:
       telefono_fijo_estudiante:
         type: string
     type: object
-  Request.PutOneEvaluadorPayload:
+  Request.PutOneEvaluador:
     properties:
       apellidos_evaluador:
         type: string
@@ -335,7 +335,7 @@ definitions:
       telefono_fijo_evaluador:
         type: string
     type: object
-  Request.PutOneGrupoPayload:
+  Request.PutOneGrupo:
     properties:
       id_curso:
         type: integer
@@ -346,12 +346,12 @@ definitions:
       sigla_grupo:
         type: string
     type: object
-  Request.PutOnePeriodoPayload:
+  Request.PutOnePeriodo:
     properties:
       nombre_periodo:
         type: string
     type: object
-  Request.PutOneRolPayload:
+  Request.PutOneRol:
     properties:
       nombre_rol:
         type: string
@@ -912,6 +912,56 @@ definitions:
       periodo_curso:
         $ref: '#/definitions/Response.GetOnePeriodoResponse'
       sigla_curso:
+        type: string
+    type: object
+  Response.ListEstudiantesCursoResponse:
+    properties:
+      apellidos_estudiante:
+        type: string
+      correo_electronico_estudiante:
+        type: string
+      evaluaciones_estudiante:
+        items:
+          $ref: '#/definitions/Response.ListEvaluacionesEstudianteResponse'
+        type: array
+      id:
+        type: string
+      id_grupo:
+        type: integer
+      nombres_estudiante:
+        type: string
+      rol_estudiante:
+        $ref: '#/definitions/Response.GetOneRolResponse'
+      rut_estudiante:
+        type: string
+      telefono_celular_estudiante:
+        type: string
+      telefono_fijo_estudiante:
+        type: string
+    type: object
+  Response.ListEstudiantesCursoSinGrupoResponse:
+    properties:
+      apellidos_estudiante:
+        type: string
+      correo_electronico_estudiante:
+        type: string
+      evaluaciones_estudiante:
+        items:
+          $ref: '#/definitions/Response.ListEvaluacionesEstudianteResponse'
+        type: array
+      id:
+        type: string
+      id_grupo:
+        type: integer
+      nombres_estudiante:
+        type: string
+      rol_estudiante:
+        $ref: '#/definitions/Response.GetOneRolResponse'
+      rut_estudiante:
+        type: string
+      telefono_celular_estudiante:
+        type: string
+      telefono_fijo_estudiante:
         type: string
     type: object
   Response.ListEstudiantesResponse:
@@ -1632,6 +1682,24 @@ definitions:
       status:
         type: boolean
     type: object
+  Swagger.ListEstudiantesCursoSinGrupoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.ListEstudiantesCursoSinGrupoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.ListEstudiantesCursoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.ListEstudiantesCursoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
   Swagger.ListEstudiantesSwagger:
     properties:
       data:
@@ -1825,6 +1893,48 @@ info:
   title: MedRoom API
   version: "1.0"
 paths:
+  /administracion-academica/cursos/:id_curso/estudiantes:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los estudiantes existentes en un curso
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.ListEstudiantesCursoSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de estudiantes de un curso
+      tags:
+      - 05 - Administración Académica
+  /administracion-academica/cursos/:id_curso/estudiantes/sin-grupo:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los estudiantes existentes en un curso sin grupo
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.ListEstudiantesCursoSinGrupoSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiHelpers.ResponseError'
+      summary: Lista de estudiantes de un curso sin grupo
+      tags:
+      - 05 - Administración Académica
   /administracion-academica/cursos/{id_curso}/grupos/{id_grupo}/estudiantes/{uuid_estudiante}:
     put:
       consumes:
@@ -1926,7 +2036,7 @@ paths:
         name: input_grupo
         required: true
         schema:
-          $ref: '#/definitions/Request.AddNewGrupoPayload'
+          $ref: '#/definitions/Request.AddNewGrupo'
       produces:
       - application/json
       responses:
@@ -2005,7 +2115,7 @@ paths:
         name: input_actualiza_grupo
         required: true
         schema:
-          $ref: '#/definitions/Request.PutOneGrupoPayload'
+          $ref: '#/definitions/Request.PutOneGrupo'
       produces:
       - application/json
       responses:
@@ -2031,7 +2141,7 @@ paths:
         name: input_credentials
         required: true
         schema:
-          $ref: '#/definitions/Request.LoginAdministradorAcademicoPayload'
+          $ref: '#/definitions/Request.LoginAdministradorAcademico'
       produces:
       - application/json
       responses:
@@ -2078,7 +2188,7 @@ paths:
         name: input_actualiza_administrador_academico
         required: true
         schema:
-          $ref: '#/definitions/Request.PutMyAdministradorAcademicoPayload'
+          $ref: '#/definitions/Request.PutMyAdministradorAcademico'
       produces:
       - application/json
       responses:
@@ -2124,7 +2234,7 @@ paths:
         name: input_administrador_academico
         required: true
         schema:
-          $ref: '#/definitions/Request.AddNewAdministradorAcademicoPayload'
+          $ref: '#/definitions/Request.AddNewAdministradorAcademico'
       produces:
       - application/json
       responses:
@@ -2203,7 +2313,7 @@ paths:
         name: input_actualiza_administrador_academico
         required: true
         schema:
-          $ref: '#/definitions/Request.PutOneAdministradorAcademicoPayload'
+          $ref: '#/definitions/Request.PutOneAdministradorAcademico'
       produces:
       - application/json
       responses:
@@ -2249,7 +2359,7 @@ paths:
         name: input_administrador_ti
         required: true
         schema:
-          $ref: '#/definitions/Request.AddNewAdministradorTiPayload'
+          $ref: '#/definitions/Request.AddNewAdministradorTi'
       produces:
       - application/json
       responses:
@@ -2328,7 +2438,7 @@ paths:
         name: input_actualiza_administrador_ti
         required: true
         schema:
-          $ref: '#/definitions/Request.PutOneAdministradorTiPayload'
+          $ref: '#/definitions/Request.PutOneAdministradorTi'
       produces:
       - application/json
       responses:
@@ -2374,7 +2484,7 @@ paths:
         name: input_curso
         required: true
         schema:
-          $ref: '#/definitions/Request.AddNewCursoPayload'
+          $ref: '#/definitions/Request.AddNewCurso'
       produces:
       - application/json
       responses:
@@ -2453,7 +2563,7 @@ paths:
         name: input_actualiza_curso
         required: true
         schema:
-          $ref: '#/definitions/Request.PutOneCursoPayload'
+          $ref: '#/definitions/Request.PutOneCurso'
       produces:
       - application/json
       responses:
@@ -2559,7 +2669,7 @@ paths:
         name: input_estudiante
         required: true
         schema:
-          $ref: '#/definitions/Request.AddNewEstudiantePayload'
+          $ref: '#/definitions/Request.AddNewEstudiante'
       produces:
       - application/json
       responses:
@@ -2638,7 +2748,7 @@ paths:
         name: input_actualiza_estudiante
         required: true
         schema:
-          $ref: '#/definitions/Request.PutOneEstudiantePayload'
+          $ref: '#/definitions/Request.PutOneEstudiante'
       produces:
       - application/json
       responses:
@@ -2684,7 +2794,7 @@ paths:
         name: input_evaluador
         required: true
         schema:
-          $ref: '#/definitions/Request.AddNewEvaluadorPayload'
+          $ref: '#/definitions/Request.AddNewEvaluador'
       produces:
       - application/json
       responses:
@@ -2763,7 +2873,7 @@ paths:
         name: input_actualiza_evaluador
         required: true
         schema:
-          $ref: '#/definitions/Request.PutOneEvaluadorPayload'
+          $ref: '#/definitions/Request.PutOneEvaluador'
       produces:
       - application/json
       responses:
@@ -2789,7 +2899,7 @@ paths:
         name: input_credentials
         required: true
         schema:
-          $ref: '#/definitions/Request.LoginAdministradorTiPayload'
+          $ref: '#/definitions/Request.LoginAdministradorTi'
       produces:
       - application/json
       responses:
@@ -2835,7 +2945,7 @@ paths:
         name: input_actualiza_administrador_ti
         required: true
         schema:
-          $ref: '#/definitions/Request.PutMyAdministradorTiPayload'
+          $ref: '#/definitions/Request.PutMyAdministradorTi'
       produces:
       - application/json
       responses:
@@ -2861,7 +2971,7 @@ paths:
         name: input_periodo
         required: true
         schema:
-          $ref: '#/definitions/Request.AddNewPeriodoPayload'
+          $ref: '#/definitions/Request.AddNewPeriodo'
       produces:
       - application/json
       responses:
@@ -2916,7 +3026,7 @@ paths:
         name: input_actualiza_periodo
         required: true
         schema:
-          $ref: '#/definitions/Request.PutOnePeriodoPayload'
+          $ref: '#/definitions/Request.PutOnePeriodo'
       produces:
       - application/json
       responses:
@@ -2942,7 +3052,7 @@ paths:
         name: input_rol
         required: true
         schema:
-          $ref: '#/definitions/Request.AddNewRolPayload'
+          $ref: '#/definitions/Request.AddNewRol'
       produces:
       - application/json
       responses:
@@ -2997,7 +3107,7 @@ paths:
         name: input_actualiza_rol
         required: true
         schema:
-          $ref: '#/definitions/Request.PutOneRolPayload'
+          $ref: '#/definitions/Request.PutOneRol'
       produces:
       - application/json
       responses:
@@ -3023,7 +3133,7 @@ paths:
         name: input_credentials
         required: true
         schema:
-          $ref: '#/definitions/Request.LoginEstudiantePayload'
+          $ref: '#/definitions/Request.LoginEstudiante'
       produces:
       - application/json
       responses:
@@ -3069,7 +3179,7 @@ paths:
         name: input_actualiza_estudiante
         required: true
         schema:
-          $ref: '#/definitions/Request.PutMyEstudiantePayload'
+          $ref: '#/definitions/Request.PutMyEstudiante'
       produces:
       - application/json
       responses:
@@ -3328,7 +3438,7 @@ paths:
         name: input_credentials
         required: true
         schema:
-          $ref: '#/definitions/Request.LoginEvaluadorPayload'
+          $ref: '#/definitions/Request.LoginEvaluador'
       produces:
       - application/json
       responses:
@@ -3374,7 +3484,7 @@ paths:
         name: input_actualiza_evaluador
         required: true
         schema:
-          $ref: '#/definitions/Request.PutMyEvaluadorPayload'
+          $ref: '#/definitions/Request.PutMyEvaluador'
       produces:
       - application/json
       responses:
@@ -3519,7 +3629,7 @@ paths:
         name: input_calificacion_estudiante
         required: true
         schema:
-          $ref: '#/definitions/Request.AddNewCalificacionEstudiantePayload'
+          $ref: '#/definitions/Request.AddNewCalificacionEstudiante'
       produces:
       - application/json
       responses:
@@ -3589,7 +3699,7 @@ paths:
         name: input_evaluacion
         required: true
         schema:
-          $ref: '#/definitions/Request.AddNewEvaluacionPayload'
+          $ref: '#/definitions/Request.AddNewEvaluacion'
       produces:
       - application/json
       responses:

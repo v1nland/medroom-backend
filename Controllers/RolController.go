@@ -21,18 +21,14 @@ import (
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /roles [get]
 func ListRoles(c *gin.Context) {
-	// model container
-	var container []Models.Rol
+	var roles []Models.Rol
 
-	// query
-	err := Repositories.GetAllRoles(&container)
-	if err != nil {
+	if err := Repositories.GetAllRoles(&roles); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, Output.ListRolesOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.ListRolesOutput(roles))
 }
 
 // @Summary Obtiene un rol
@@ -45,21 +41,15 @@ func ListRoles(c *gin.Context) {
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /roles/{id_rol} [get]
 func GetOneRol(c *gin.Context) {
-	// params
 	id := c.Params.ByName("id")
 
-	// model container
-	var container Models.Rol
-
-	// query
-	err := Repositories.GetOneRol(&container, id)
-	if err != nil {
+	var rol Models.Rol
+	if err := Repositories.GetOneRol(&rol, id); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, Output.GetOneRolOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.GetOneRolOutput(rol))
 }
 
 // @Summary Agrega un nuevo rol
@@ -67,37 +57,30 @@ func GetOneRol(c *gin.Context) {
 // @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   input_rol     body    Request.AddNewRolPayload     true        "Rol a agregar"
+// @Param   input_rol     body    Request.AddNewRol     true        "Rol a agregar"
 // @Success 200 {object} Swagger.AddNewRolSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/roles [post]
 func AddNewRol(c *gin.Context) {
-	// input container
-	var container Request.AddNewRolPayload
+	var input Request.AddNewRol
 
-	// input bind
-	if err := c.ShouldBind(&container); err != nil {
+	if err := c.ShouldBind(&input); err != nil {
 		ApiHelpers.RespondError(c, 400, "default")
 		return
 	}
 
-	// format input
-	Input.AddNewRolInput(&container)
+	Input.AddNewRol(&input)
 
-	// generate model entity
-	model_container := Models.Rol{
-		Nombre_rol: container.Nombre_rol,
+	rol := Models.Rol{
+		Nombre_rol: *input.Nombre_rol,
 	}
 
-	// query
-	err := Repositories.AddNewRol(&model_container)
-	if err != nil {
+	if err := Repositories.AddNewRol(&rol); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, Output.AddNewRolOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.AddNewRolOutput(rol))
 }
 
 // @Summary Modifica un rol
@@ -106,51 +89,38 @@ func AddNewRol(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   id_rol     path    string     true        "Id del rol a modificar"
-// @Param   input_actualiza_rol     body    Request.PutOneRolPayload     true        "Rol a modificar"
+// @Param   input_actualiza_rol     body    Request.PutOneRol     true        "Rol a modificar"
 // @Success 200 {object} Swagger.PutOneRolSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/roles/{id_rol} [put]
 func PutOneRol(c *gin.Context) {
-	// params
 	id := c.Params.ByName("id")
 
-	// input container
-	var container Request.PutOneRolPayload
-
-	// input bind
-	if err := c.ShouldBind(&container); err != nil {
+	var input Request.PutOneRol
+	if err := c.ShouldBind(&input); err != nil {
 		ApiHelpers.RespondError(c, 400, "default")
 		return
 	}
 
-	// format input
-	Input.PutOneRolInput(&container)
+	Input.PutOneRol(&input)
 
-	// generate model entity
-	var model_container Models.Rol
-
-	// get query
-	err := Repositories.GetOneRol(&model_container, id)
-	if err != nil {
+	var rol Models.Rol
+	if err := Repositories.GetOneRol(&rol, id); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// replace data in model entity
-	model_container = Models.Rol{
-		Id:         model_container.Id,
-		Nombre_rol: Utils.CheckUpdatedString(container.Nombre_rol, model_container.Nombre_rol),
+	rol = Models.Rol{
+		Id:         rol.Id,
+		Nombre_rol: Utils.CheckNullString(input.Nombre_rol, rol.Nombre_rol),
 	}
 
-	// put query
-	err = Repositories.PutOneRol(&model_container, id)
-	if err != nil {
+	if err := Repositories.PutOneRol(&rol, id); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, Output.PutOneRolOutput(model_container))
+	ApiHelpers.RespondJSON(c, 200, Output.PutOneRolOutput(rol))
 }
 
 // @Summary Elimina un rol
@@ -163,26 +133,18 @@ func PutOneRol(c *gin.Context) {
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /administracion-ti/roles/{id_rol} [delete]
 func DeleteRol(c *gin.Context) {
-	// params
 	id := c.Params.ByName("id")
 
-	// model container
-	var container Models.Rol
-
-	// get query
-	err := Repositories.GetOneRol(&container, id)
-	if err != nil {
+	var rol Models.Rol
+	if err := Repositories.GetOneRol(&rol, id); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// query
-	err = Repositories.DeleteRol(&container, id)
-	if err != nil {
+	if err := Repositories.DeleteRol(&rol, id); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
-	// output
-	ApiHelpers.RespondJSON(c, 200, Output.DeleteRolOutput(container))
+	ApiHelpers.RespondJSON(c, 200, Output.DeleteRolOutput(rol))
 }

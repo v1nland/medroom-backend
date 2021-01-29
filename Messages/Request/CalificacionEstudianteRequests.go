@@ -1,8 +1,8 @@
 package Request
 
-type GetOneCalificacionEstudiantePayload struct {
+type GetOneCalificacionEstudiante struct {
 }
-type AddNewCalificacionEstudiantePayload struct {
+type AddNewCalificacionEstudiante struct {
 	Id_periodo                                           *int                             `json:"id_periodo"`
 	Nombre_calificacion_estudiante                       *string                          `json:"nombre_calificacion_estudiante"`
 	Entorno_clinico_calificacion_estudiante              *string                          `json:"entorno_clinico_calificacion_estudiante"`

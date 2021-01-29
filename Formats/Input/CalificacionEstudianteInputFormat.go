@@ -6,9 +6,10 @@ import (
 	"strings"
 )
 
-func GetOneCalificacionEstudianteInput(u *Request.GetOneCalificacionEstudiantePayload) {
+func GetOneCalificacionEstudiante(u *Request.GetOneCalificacionEstudiante) {
 }
-func AddNewCalificacionEstudianteInput(u *Request.AddNewCalificacionEstudiantePayload) {
+
+func AddNewCalificacionEstudiante(u *Request.AddNewCalificacionEstudiante) {
 	if u.Nombre_calificacion_estudiante != nil {
 		*u.Nombre_calificacion_estudiante = strings.TrimSpace(*u.Nombre_calificacion_estudiante)
 		*u.Nombre_calificacion_estudiante = strings.ToUpper(*u.Nombre_calificacion_estudiante)

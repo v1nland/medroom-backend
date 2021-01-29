@@ -1,18 +1,18 @@
 package Request
 
-type ListRolesPayload struct {
+type ListRoles struct {
 }
 
-type GetOneRolPayload struct {
+type GetOneRol struct {
 }
 
-type AddNewRolPayload struct {
-	Nombre_rol string `json:"nombre_rol"`
+type AddNewRol struct {
+	Nombre_rol *string `json:"nombre_rol"`
 }
 
-type PutOneRolPayload struct {
-	Nombre_rol string `json:"nombre_rol"`
+type PutOneRol struct {
+	Nombre_rol *string `json:"nombre_rol"`
 }
 
-type DeleteRolPayload struct {
+type DeleteRol struct {
 }

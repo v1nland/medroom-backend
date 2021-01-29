@@ -71,14 +71,14 @@ func GetOneEvaluacion(c *gin.Context) {
 // @Tags Evaluaciones
 // @Accept  json
 // @Produce  json
-// @Param   input_evaluacion     body    Request.AddNewEvaluacionPayload     true        "Evaluacion a agregar"
+// @Param   input_evaluacion     body    Request.AddNewEvaluacion     true        "Evaluacion a agregar"
 // @Success 200 {object} Swagger.AddNewEvaluacionSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /evaluaciones [post]
 
 func AddNewEvaluacion(c *gin.Context) {
 	// input container
-	var container Request.AddNewEvaluacionPayload
+	var container Request.AddNewEvaluacion
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {
@@ -122,7 +122,7 @@ func AddNewEvaluacion(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param   id_evaluacion     path    string     true        "Id del evaluacion a modificar"
-// @Param   input_actualiza_evaluacion     body    Request.PutOneEvaluacionPayload     true        "Evaluacion a modificar"
+// @Param   input_actualiza_evaluacion     body    Request.PutOneEvaluacion     true        "Evaluacion a modificar"
 // @Success 200 {object} Swagger.PutOneEvaluacionSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /evaluaciones/{id_evaluacion} [put]
@@ -132,7 +132,7 @@ func PutOneEvaluacion(c *gin.Context) {
 	id := c.Params.ByName("id")
 
 	// input container
-	var container Request.PutOneEvaluacionPayload
+	var container Request.PutOneEvaluacion
 
 	// input bind
 	if err := c.ShouldBind(&container); err != nil {
@@ -297,7 +297,7 @@ func ListEvaluacionesGrupoEvaluador(c *gin.Context) {
 // @Produce  json
 // @Param   id_curso     path    string     true        "Id del curso"
 // @Param   id_grupo     path    string     true        "Id del grupo"
-// @Param   input_evaluacion     body    Request.AddNewEvaluacionPayload     true        "Evaluacion a agregar"
+// @Param   input_evaluacion     body    Request.AddNewEvaluacion     true        "Evaluacion a agregar"
 // @Success 200 {array} Swagger.AddNewEvaluacionSwagger "OK"
 // @Failure 400 {object} ApiHelpers.ResponseError "Bad request"
 // @Router /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/evaluaciones [post]
@@ -306,24 +306,24 @@ func AddNewEvaluacion(c *gin.Context) {
 	// id_curso := c.Params.ByName("id_curso")
 	id_grupo := c.Params.ByName("id_grupo")
 
-	var input Request.AddNewEvaluacionPayload
+	var input Request.AddNewEvaluacion
 	if err := c.ShouldBind(&input); err != nil {
 		ApiHelpers.RespondError(c, 400, "default")
 		return
 	}
 
-	Input.AddNewEvaluacionInput(&input)
+	Input.AddNewEvaluacion(&input)
 
-	model := Models.Evaluacion{
+	evaluacion := Models.Evaluacion{
 		Id_grupo:          Utils.ConvertStringToInt(id_grupo),
 		Nombre_evaluacion: *input.Nombre_evaluacion,
 	}
 
-	if err := Repositories.AddNewEvaluacion(&model); err != nil {
+	if err := Repositories.AddNewEvaluacion(&evaluacion); err != nil {
 		ApiHelpers.RespondError(c, 500, "default")
 		return
 	}
 
 	// ApiHelpers.RespondJSON(c, 200, Output.ListEvaluacionesEstudianteOutput(model))
-	ApiHelpers.RespondJSON(c, 200, model)
+	ApiHelpers.RespondJSON(c, 200, evaluacion)
 }

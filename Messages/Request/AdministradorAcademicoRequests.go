@@ -1,15 +1,15 @@
 package Request
 
-type ListAdministradoresAcademicosPayload struct {
+type ListAdministradoresAcademicos struct {
 }
 
-type GetOneAdministradorAcademicoPayload struct {
+type GetOneAdministradorAcademico struct {
 }
 
-type GetMyAdministradorAcademicoPayload struct {
+type GetMyAdministradorAcademico struct {
 }
 
-type AddNewAdministradorAcademicoPayload struct {
+type AddNewAdministradorAcademico struct {
 	Id_rol                                     *int    `json:"id_rol"`
 	Rut_administrador_academico                *string `json:"rut_administrador_academico"`
 	Nombres_administrador_academico            *string `json:"nombres_administrador_academico"`
@@ -20,7 +20,7 @@ type AddNewAdministradorAcademicoPayload struct {
 	Telefono_celular_administrador_academico   *string `json:"telefono_celular_administrador_academico"`
 }
 
-type PutOneAdministradorAcademicoPayload struct {
+type PutOneAdministradorAcademico struct {
 	Id_rol                                     *int    `json:"id_rol"`
 	Rut_administrador_academico                *string `json:"rut_administrador_academico"`
 	Nombres_administrador_academico            *string `json:"nombres_administrador_academico"`
@@ -31,7 +31,7 @@ type PutOneAdministradorAcademicoPayload struct {
 	Telefono_celular_administrador_academico   *string `json:"telefono_celular_administrador_academico"`
 }
 
-type PutMyAdministradorAcademicoPayload struct {
+type PutMyAdministradorAcademico struct {
 	Id_rol                                     *int    `json:"id_rol"`
 	Rut_administrador_academico                *string `json:"rut_administrador_academico"`
 	Nombres_administrador_academico            *string `json:"nombres_administrador_academico"`
@@ -42,5 +42,5 @@ type PutMyAdministradorAcademicoPayload struct {
 	Telefono_celular_administrador_academico   *string `json:"telefono_celular_administrador_academico"`
 }
 
-type DeleteAdministradorAcademicoPayload struct {
+type DeleteAdministradorAcademico struct {
 }

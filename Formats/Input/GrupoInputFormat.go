@@ -6,19 +6,19 @@ import (
 	"strings"
 )
 
-func ListGruposInput(u *Request.ListGruposPayload) {
+func ListGrupos(u *Request.ListGrupos) {
 }
 
-func GetOneGrupoInput(u *Request.GetOneGrupoPayload) {
+func GetOneGrupo(u *Request.GetOneGrupo) {
 }
 
-func GetGrupoEstudianteInput(u *Request.GetGrupoEstudiantePayload) {
+func GetGrupoEstudiante(u *Request.GetGrupoEstudiante) {
 }
 
-func GetGrupoEvaluadorInput(u *Request.GetGrupoEvaluadorPayload) {
+func GetGrupoEvaluador(u *Request.GetGrupoEvaluador) {
 }
 
-func AddNewGrupoInput(u *Request.AddNewGrupoPayload) {
+func AddNewGrupo(u *Request.AddNewGrupo) {
 	if u.Nombre_grupo != nil {
 		*u.Nombre_grupo = strings.TrimSpace(*u.Nombre_grupo)
 		*u.Nombre_grupo = strings.ToUpper(*u.Nombre_grupo)
@@ -31,7 +31,7 @@ func AddNewGrupoInput(u *Request.AddNewGrupoPayload) {
 	}
 }
 
-func PutOneGrupoInput(u *Request.PutOneGrupoPayload) {
+func PutOneGrupo(u *Request.PutOneGrupo) {
 	if u.Nombre_grupo != nil {
 		*u.Nombre_grupo = strings.TrimSpace(*u.Nombre_grupo)
 		*u.Nombre_grupo = strings.ToUpper(*u.Nombre_grupo)
@@ -44,6 +44,6 @@ func PutOneGrupoInput(u *Request.PutOneGrupoPayload) {
 	}
 }
 
-func DeleteGrupoInput(u *Request.DeleteGrupoPayload) {
+func DeleteGrupo(u *Request.DeleteGrupo) {
 
 }

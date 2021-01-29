@@ -1,7 +1,7 @@
 package Request
 
-type EvolucionEstudiantePorEvaluacionPayload struct {
+type EvolucionEstudiantePorEvaluacion struct {
 }
 
-type EvolucionEstudiantePorCompetenciaPayload struct {
+type EvolucionEstudiantePorCompetencia struct {
 }
