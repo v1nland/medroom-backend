@@ -1,10 +1,10 @@
 package curso
 
 import (
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/api_helpers"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -24,13 +24,13 @@ func massive_add_format(u *massive_add_input) {
 		if u.Cursos[i].Nombre_curso != nil {
 			*u.Cursos[i].Nombre_curso = strings.TrimSpace(*u.Cursos[i].Nombre_curso)
 			*u.Cursos[i].Nombre_curso = strings.ToUpper(*u.Cursos[i].Nombre_curso)
-			*u.Cursos[i].Nombre_curso = Utils.RemoveAccents(*u.Cursos[i].Nombre_curso)
+			*u.Cursos[i].Nombre_curso = utils.RemoveAccents(*u.Cursos[i].Nombre_curso)
 		}
 
 		if u.Cursos[i].Sigla_curso != nil {
 			*u.Cursos[i].Sigla_curso = strings.TrimSpace(*u.Cursos[i].Sigla_curso)
 			*u.Cursos[i].Sigla_curso = strings.ToUpper(*u.Cursos[i].Sigla_curso)
-			*u.Cursos[i].Sigla_curso = Utils.RemoveAccents(*u.Cursos[i].Sigla_curso)
+			*u.Cursos[i].Sigla_curso = utils.RemoveAccents(*u.Cursos[i].Sigla_curso)
 		}
 	}
 }

@@ -1,10 +1,10 @@
 package grupo
 
 import (
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/api_helpers"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -24,13 +24,13 @@ func massive_add_format(u *massive_add_input) {
 		if u.Grupos[i].Nombre_grupo != nil {
 			*u.Grupos[i].Nombre_grupo = strings.TrimSpace(*u.Grupos[i].Nombre_grupo)
 			*u.Grupos[i].Nombre_grupo = strings.ToUpper(*u.Grupos[i].Nombre_grupo)
-			*u.Grupos[i].Nombre_grupo = Utils.RemoveAccents(*u.Grupos[i].Nombre_grupo)
+			*u.Grupos[i].Nombre_grupo = utils.RemoveAccents(*u.Grupos[i].Nombre_grupo)
 		}
 
 		if u.Grupos[i].Sigla_grupo != nil {
 			*u.Grupos[i].Sigla_grupo = strings.TrimSpace(*u.Grupos[i].Sigla_grupo)
 			*u.Grupos[i].Sigla_grupo = strings.ToUpper(*u.Grupos[i].Sigla_grupo)
-			*u.Grupos[i].Sigla_grupo = Utils.RemoveAccents(*u.Grupos[i].Sigla_grupo)
+			*u.Grupos[i].Sigla_grupo = utils.RemoveAccents(*u.Grupos[i].Sigla_grupo)
 		}
 	}
 }

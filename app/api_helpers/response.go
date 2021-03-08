@@ -2,7 +2,7 @@ package api_helpers
 
 import (
 	"fmt"
-	"medroom-backend/app/Utils"
+	"medroom-backend/app/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -19,7 +19,7 @@ func RespondJSON(c *gin.Context, status int, payload interface{}) {
 	var res Response
 
 	res.Status = (status == 200)
-	res.Meta = Utils.StatusMessage(status)
+	res.Meta = utils.StatusMessage(status)
 	res.Data = payload
 
 	c.JSON(200, res)

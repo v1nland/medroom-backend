@@ -2,13 +2,13 @@ package administrador_academico
 
 import (
 	"errors"
-	"medroom-backend/app/Messages/Request"
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/api_helpers"
 	"medroom-backend/app/formats/f_input"
 	"medroom-backend/app/formats/f_output"
+	"medroom-backend/app/messages/Request"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -25,7 +25,7 @@ import (
 // @Router /administracion-academica/me [put]
 func PutMyAdministradorAcademico(c *gin.Context) {
 	// params
-	id_administrador_academico := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_ACADEMICO")
+	id_administrador_academico := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_ACADEMICO")
 
 	// input input
 	var input Request.PutMyAdministradorAcademico
@@ -56,10 +56,10 @@ func PutMyAdministradorAcademico(c *gin.Context) {
 		Rut_administrador_academico:             model.Rut_administrador_academico,
 		Nombres_administrador_academico:         model.Nombres_administrador_academico,
 		Apellidos_administrador_academico:       model.Apellidos_administrador_academico,
-		Hash_contrasena_administrador_academico: Utils.CheckNullString(input.Hash_contrasena_administrador_academico, model.Hash_contrasena_administrador_academico),
-		Correo_electronico_administrador_academico: Utils.CheckNullString(input.Correo_electronico_administrador_academico, model.Correo_electronico_administrador_academico),
-		Telefono_fijo_administrador_academico:      Utils.CheckNullString(input.Telefono_fijo_administrador_academico, model.Telefono_fijo_administrador_academico),
-		Telefono_celular_administrador_academico:   Utils.CheckNullString(input.Telefono_celular_administrador_academico, model.Telefono_celular_administrador_academico),
+		Hash_contrasena_administrador_academico: utils.CheckNullString(input.Hash_contrasena_administrador_academico, model.Hash_contrasena_administrador_academico),
+		Correo_electronico_administrador_academico: utils.CheckNullString(input.Correo_electronico_administrador_academico, model.Correo_electronico_administrador_academico),
+		Telefono_fijo_administrador_academico:      utils.CheckNullString(input.Telefono_fijo_administrador_academico, model.Telefono_fijo_administrador_academico),
+		Telefono_celular_administrador_academico:   utils.CheckNullString(input.Telefono_celular_administrador_academico, model.Telefono_celular_administrador_academico),
 	}
 
 	// put query

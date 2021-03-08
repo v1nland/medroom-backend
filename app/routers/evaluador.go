@@ -1,13 +1,13 @@
 package routers
 
 import (
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/api_helpers"
 	"medroom-backend/app/controllers/calificacion_estudiante"
 	"medroom-backend/app/controllers/curso"
 	"medroom-backend/app/controllers/evaluacion"
 	"medroom-backend/app/controllers/evaluador"
 	"medroom-backend/app/controllers/grupo"
+	"medroom-backend/app/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -15,7 +15,7 @@ import (
 func evaluadorAuthMiddleware(c *gin.Context) {
 	authorization := c.GetHeader("authorization")
 
-	if Utils.ValidarToken(authorization, "SECRET_KEY_EVALUADOR") {
+	if utils.ValidarToken(authorization, "SECRET_KEY_EVALUADOR") {
 		c.Next()
 	} else {
 		api_helpers.RespondError(c, 401, "default")

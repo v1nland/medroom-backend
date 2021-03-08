@@ -2,10 +2,10 @@ package grupo
 
 import (
 	"errors"
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/api_helpers"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -22,7 +22,7 @@ import (
 // @Router /estudiantes/me/cursos/{id_curso}/grupos [get]
 func GetGruposEstudiante(c *gin.Context) {
 	id_curso := c.Params.ByName("id_curso")
-	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
+	id_estudiante := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
 
 	var grupos []models.Grupo
 	if err := repositories.GetGruposEstudiante(&grupos, id_curso, id_estudiante); err != nil {

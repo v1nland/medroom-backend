@@ -2,10 +2,10 @@ package evaluacion
 
 import (
 	"errors"
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/api_helpers"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -24,7 +24,7 @@ import (
 func ListEvaluacionesGrupoEstudiante(c *gin.Context) {
 	id_grupo := c.Params.ByName("id_grupo")
 	id_curso := c.Params.ByName("id_curso")
-	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
+	id_estudiante := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
 
 	var grupo models.Grupo
 	if err := repositories.GetOneGrupoEstudiante(&grupo, id_grupo, id_curso, id_estudiante); err != nil {

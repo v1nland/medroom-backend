@@ -1,13 +1,13 @@
 package rol
 
 import (
-	"medroom-backend/app/Messages/Request"
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/api_helpers"
 	"medroom-backend/app/formats/f_input"
 	"medroom-backend/app/formats/f_output"
+	"medroom-backend/app/messages/Request"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -41,7 +41,7 @@ func PutOneRol(c *gin.Context) {
 
 	rol = models.Rol{
 		Id:         rol.Id,
-		Nombre_rol: Utils.CheckNullString(input.Nombre_rol, rol.Nombre_rol),
+		Nombre_rol: utils.CheckNullString(input.Nombre_rol, rol.Nombre_rol),
 	}
 
 	if err := repositories.PutOneRol(&rol, id); err != nil {

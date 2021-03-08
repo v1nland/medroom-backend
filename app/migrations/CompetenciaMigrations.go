@@ -2,9 +2,9 @@ package migrations
 
 import (
 	"fmt"
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 )
 
 func Competenciamigrations() {
@@ -18,7 +18,7 @@ func Competenciamigrations() {
 	if err := repositories.AddNewCompetencia(container); err != nil {
 		panic("NO SE PUDO MIGRAR COMPETENCIA 'ANAMNESIS'")
 	}
-	Utils.StructToString(container)
+	utils.StructToString(container)
 
 	// Exploración física
 	container = &models.Competencia{
@@ -28,7 +28,7 @@ func Competenciamigrations() {
 	if err := repositories.AddNewCompetencia(container); err != nil {
 		panic("NO SE PUDO MIGRAR COMPETENCIA 'EXPLORACION FISICA'")
 	}
-	Utils.StructToString(container)
+	utils.StructToString(container)
 
 	// Profesionalismo
 	container = &models.Competencia{
@@ -38,7 +38,7 @@ func Competenciamigrations() {
 	if err := repositories.AddNewCompetencia(container); err != nil {
 		panic("NO SE PUDO MIGRAR COMPETENCIA 'PROFESIONALISMO'")
 	}
-	Utils.StructToString(container)
+	utils.StructToString(container)
 
 	// Juicio Clínico
 	container = &models.Competencia{
@@ -48,7 +48,7 @@ func Competenciamigrations() {
 	if err := repositories.AddNewCompetencia(container); err != nil {
 		panic("NO SE PUDO MIGRAR COMPETENCIA 'JUICIO CLINICO'")
 	}
-	Utils.StructToString(container)
+	utils.StructToString(container)
 
 	// Habilidades Comunicativas
 	container = &models.Competencia{
@@ -58,7 +58,7 @@ func Competenciamigrations() {
 	if err := repositories.AddNewCompetencia(container); err != nil {
 		panic("NO SE PUDO MIGRAR COMPETENCIA 'HABILIDADES COMUNICATIVAS'")
 	}
-	Utils.StructToString(container)
+	utils.StructToString(container)
 
 	// Organización y Eficiencia
 	container = &models.Competencia{
@@ -68,7 +68,7 @@ func Competenciamigrations() {
 	if err := repositories.AddNewCompetencia(container); err != nil {
 		panic("NO SE PUDO MIGRAR COMPETENCIA 'ORGANIZACION Y EFICIENCIA'")
 	}
-	Utils.StructToString(container)
+	utils.StructToString(container)
 
 	// Valoración Global
 	container = &models.Competencia{
@@ -78,5 +78,5 @@ func Competenciamigrations() {
 	if err := repositories.AddNewCompetencia(container); err != nil {
 		panic("NO SE PUDO MIGRAR COMPETENCIA 'VALORACION GLOBAL'")
 	}
-	Utils.StructToString(container)
+	utils.StructToString(container)
 }

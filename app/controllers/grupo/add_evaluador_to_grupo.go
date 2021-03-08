@@ -2,11 +2,11 @@ package grupo
 
 import (
 	"errors"
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/api_helpers"
 	"medroom-backend/app/config"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -63,9 +63,9 @@ func AddEvaluadorToGrupo(c *gin.Context) {
 
 	config.DB.Model(&grupo).Association("Evaluadores_grupo").Append([]models.Evaluador{evaluador})
 
-	found, id_grupo_sg := Utils.SearchIdGrupoBySigla(curso.Grupos_curso, "SG")
+	found, id_grupo_sg := utils.SearchIdGrupoBySigla(curso.Grupos_curso, "SG")
 	if found {
-		repositories.DeleteEvaluadorGrupo(Utils.ConvertIntToString(id_grupo_sg), id_evaluador)
+		repositories.DeleteEvaluadorGrupo(utils.ConvertIntToString(id_grupo_sg), id_evaluador)
 	}
 
 	api_helpers.RespondJSON(c, 200, grupo)

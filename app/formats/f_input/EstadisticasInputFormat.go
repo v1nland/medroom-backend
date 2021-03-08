@@ -1,6 +1,6 @@
 package f_input
 
-import "medroom-backend/app/Messages/Request"
+import "medroom-backend/app/messages/Request"
 
 func EvolucionEstudiantePorEvaluacion(u *Request.EvolucionEstudiantePorEvaluacion) {
 }

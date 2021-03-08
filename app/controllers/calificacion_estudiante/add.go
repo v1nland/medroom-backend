@@ -1,12 +1,12 @@
 package calificacion_estudiante
 
 import (
-	"medroom-backend/app/Messages/Request"
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/api_helpers"
 	"medroom-backend/app/formats/f_input"
+	"medroom-backend/app/messages/Request"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
@@ -26,7 +26,7 @@ import (
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/estudiantes/{id_estudiante}/evaluaciones/{id_evaluacion}/calificacion [post]
 func AddNewCalificacionEstudiante(c *gin.Context) {
-	id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
+	id_evaluador := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
 	// id_curso := c.Params.ByName("id_curso")
 	// id_grupo := c.Params.ByName("id_grupo")
 	id_estudiante := c.Params.ByName("id_estudiante")
@@ -59,7 +59,7 @@ func AddNewCalificacionEstudiante(c *gin.Context) {
 	model := models.CalificacionEstudiante{
 		Id_evaluador:                                         uuid.MustParse(id_evaluador),
 		Id_periodo:                                           *input.Id_periodo,
-		Id_evaluacion:                                        Utils.ConvertStringToInt(id_evaluacion),
+		Id_evaluacion:                                        utils.ConvertStringToInt(id_evaluacion),
 		Puntajes_calificacion_estudiante:                     puntajes_calificacion_estudiante,
 		Id_estudiante:                                        uuid.MustParse(id_estudiante),
 		Nombre_calificacion_estudiante:                       *input.Nombre_calificacion_estudiante,

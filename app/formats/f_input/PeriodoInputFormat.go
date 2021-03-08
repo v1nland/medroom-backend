@@ -1,8 +1,8 @@
 package f_input
 
 import (
-	"medroom-backend/app/Messages/Request"
-	"medroom-backend/app/Utils"
+	"medroom-backend/app/messages/Request"
+	"medroom-backend/app/utils"
 	"strings"
 )
 
@@ -16,7 +16,7 @@ func AddNewPeriodo(u *Request.AddNewPeriodo) {
 	if u.Nombre_periodo != nil {
 		*u.Nombre_periodo = strings.TrimSpace(*u.Nombre_periodo)
 		*u.Nombre_periodo = strings.ToUpper(*u.Nombre_periodo)
-		*u.Nombre_periodo = Utils.RemoveAccents(*u.Nombre_periodo)
+		*u.Nombre_periodo = utils.RemoveAccents(*u.Nombre_periodo)
 	}
 }
 
@@ -24,7 +24,7 @@ func PutOnePeriodo(u *Request.PutOnePeriodo) {
 	if u.Nombre_periodo != nil {
 		*u.Nombre_periodo = strings.TrimSpace(*u.Nombre_periodo)
 		*u.Nombre_periodo = strings.ToUpper(*u.Nombre_periodo)
-		*u.Nombre_periodo = Utils.RemoveAccents(*u.Nombre_periodo)
+		*u.Nombre_periodo = utils.RemoveAccents(*u.Nombre_periodo)
 	}
 }
 

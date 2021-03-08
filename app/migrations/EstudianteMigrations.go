@@ -2,9 +2,9 @@ package migrations
 
 import (
 	"fmt"
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 )
 
 func Estudiantemigrations() {
@@ -25,5 +25,5 @@ func Estudiantemigrations() {
 		panic("No se ha migrado estudiante")
 	}
 
-	Utils.StructToString(container)
+	utils.StructToString(container)
 }

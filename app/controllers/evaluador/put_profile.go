@@ -2,12 +2,12 @@ package evaluador
 
 import (
 	"errors"
-	"medroom-backend/app/Messages/Request"
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/api_helpers"
 	"medroom-backend/app/formats/f_input"
+	"medroom-backend/app/messages/Request"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -23,7 +23,7 @@ import (
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /evaluadores/me [put]
 func PutMyEvaluador(c *gin.Context) {
-	id := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
+	id := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
 
 	var input Request.PutMyEvaluador
 	if err := c.ShouldBind(&input); err != nil {
@@ -51,12 +51,12 @@ func PutMyEvaluador(c *gin.Context) {
 		Rut_evaluador:                evaluador.Rut_evaluador,
 		Nombres_evaluador:            evaluador.Nombres_evaluador,
 		Apellidos_evaluador:          evaluador.Apellidos_evaluador,
-		Hash_contrasena_evaluador:    Utils.CheckNullString(input.Hash_contrasena_evaluador, evaluador.Hash_contrasena_evaluador),
+		Hash_contrasena_evaluador:    utils.CheckNullString(input.Hash_contrasena_evaluador, evaluador.Hash_contrasena_evaluador),
 		Correo_electronico_evaluador: evaluador.Correo_electronico_evaluador,
-		Telefono_fijo_evaluador:      Utils.CheckNullString(input.Telefono_fijo_evaluador, evaluador.Telefono_fijo_evaluador),
-		Telefono_celular_evaluador:   Utils.CheckNullString(input.Telefono_celular_evaluador, evaluador.Telefono_celular_evaluador),
+		Telefono_fijo_evaluador:      utils.CheckNullString(input.Telefono_fijo_evaluador, evaluador.Telefono_fijo_evaluador),
+		Telefono_celular_evaluador:   utils.CheckNullString(input.Telefono_celular_evaluador, evaluador.Telefono_celular_evaluador),
 		Recinto_evaluador:            evaluador.Recinto_evaluador,
-		Cargo_evaluador:              Utils.CheckNullString(input.Cargo_evaluador, evaluador.Cargo_evaluador),
+		Cargo_evaluador:              utils.CheckNullString(input.Cargo_evaluador, evaluador.Cargo_evaluador),
 	}
 
 	if err := repositories.PutOneEvaluador(&evaluador, id); err != nil {

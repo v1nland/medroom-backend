@@ -2,10 +2,10 @@ package curso
 
 import (
 	"errors"
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/api_helpers"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -21,7 +21,7 @@ import (
 // @Router /administracion-academica/me/cursos [get]
 func GetCursosAdministradorAcademico(c *gin.Context) {
 	// params
-	id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_ACADEMICO")
+	id_evaluador := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_ACADEMICO")
 
 	var cursos []models.Curso
 	if err := repositories.GetCursosAdministradorAcademico(&cursos, id_evaluador); err != nil {

@@ -2,10 +2,10 @@ package curso
 
 import (
 	"errors"
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/api_helpers"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -48,7 +48,7 @@ func AddEvaluadorToCurso(c *gin.Context) {
 	}
 
 	// search grupo "sin grupo" in curso
-	found, index := Utils.SearchIndexGrupoBySigla(curso.Grupos_curso, "SG")
+	found, index := utils.SearchIndexGrupoBySigla(curso.Grupos_curso, "SG")
 	if found {
 		curso.Grupos_curso[index].Evaluadores_grupo = append(curso.Grupos_curso[index].Evaluadores_grupo, evaluador)
 	} else {

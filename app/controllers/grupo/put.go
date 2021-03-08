@@ -1,12 +1,12 @@
 package grupo
 
 import (
-	"medroom-backend/app/Messages/Request"
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/api_helpers"
 	"medroom-backend/app/formats/f_input"
+	"medroom-backend/app/messages/Request"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -40,9 +40,9 @@ func PutOneGrupo(c *gin.Context) {
 
 	grupo = models.Grupo{
 		Id:           grupo.Id,
-		Id_curso:     Utils.CheckNullInt(input.Id_curso, grupo.Id_curso),
-		Nombre_grupo: Utils.CheckNullString(input.Nombre_grupo, grupo.Nombre_grupo),
-		Sigla_grupo:  Utils.CheckNullString(input.Sigla_grupo, grupo.Sigla_grupo),
+		Id_curso:     utils.CheckNullInt(input.Id_curso, grupo.Id_curso),
+		Nombre_grupo: utils.CheckNullString(input.Nombre_grupo, grupo.Nombre_grupo),
+		Sigla_grupo:  utils.CheckNullString(input.Sigla_grupo, grupo.Sigla_grupo),
 	}
 
 	if err := repositories.PutOneGrupo(&grupo, id); err != nil {

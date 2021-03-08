@@ -1,7 +1,6 @@
 package routers
 
 import (
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/api_helpers"
 	"medroom-backend/app/controllers/administrador_academico"
 	"medroom-backend/app/controllers/administrador_ti"
@@ -11,6 +10,7 @@ import (
 	"medroom-backend/app/controllers/grupo"
 	"medroom-backend/app/controllers/periodo"
 	"medroom-backend/app/controllers/rol"
+	"medroom-backend/app/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -18,7 +18,7 @@ import (
 func administradorTiAuthMiddleware(c *gin.Context) {
 	authorization := c.GetHeader("authorization")
 
-	if Utils.ValidarToken(authorization, "SECRET_KEY_ADMINISTRADOR_TI") {
+	if utils.ValidarToken(authorization, "SECRET_KEY_ADMINISTRADOR_TI") {
 		c.Next()
 	} else {
 		api_helpers.RespondError(c, 401, "default")

@@ -19,7 +19,7 @@ import (
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-academica/cursos/:id_curso/estudiantes/sin-grupo [get]
 func ListEstudiantesCursoSinGrupo(c *gin.Context) {
-	// id := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_ACADEMICO")
+	// id := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_ACADEMICO")
 	id_curso := c.Params.ByName("id")
 
 	var estudiantes []models.Estudiante

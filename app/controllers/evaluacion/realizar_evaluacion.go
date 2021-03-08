@@ -1,12 +1,12 @@
 package evaluacion
 
 import (
-	"medroom-backend/app/Messages/Request"
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/api_helpers"
 	"medroom-backend/app/formats/f_input"
+	"medroom-backend/app/messages/Request"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -23,7 +23,7 @@ import (
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/evaluaciones [post]
 func AddNewEvaluacion(c *gin.Context) {
-	// id_evaluador := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
+	// id_evaluador := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
 	// id_curso := c.Params.ByName("id_curso")
 	id_grupo := c.Params.ByName("id_grupo")
 
@@ -36,7 +36,7 @@ func AddNewEvaluacion(c *gin.Context) {
 	f_input.AddNewEvaluacion(&input)
 
 	evaluacion := models.Evaluacion{
-		Id_grupo:          Utils.ConvertStringToInt(id_grupo),
+		Id_grupo:          utils.ConvertStringToInt(id_grupo),
 		Nombre_evaluacion: *input.Nombre_evaluacion,
 	}
 

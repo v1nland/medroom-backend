@@ -1,7 +1,7 @@
 package f_output
 
 import (
-	"medroom-backend/app/Messages/Response"
+	"medroom-backend/app/messages/Response"
 	"medroom-backend/app/models"
 )
 

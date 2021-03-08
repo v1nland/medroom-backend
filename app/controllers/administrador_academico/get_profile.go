@@ -1,11 +1,11 @@
 package administrador_academico
 
 import (
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/api_helpers"
 	"medroom-backend/app/formats/f_output"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -20,7 +20,7 @@ import (
 // @Router /administracion-academica/me [get]
 func GetMyAdministradorAcademico(c *gin.Context) {
 	// params
-	id_administrador_academico := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_ACADEMICO")
+	id_administrador_academico := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_ACADEMICO")
 
 	// model container
 	var container models.AdministradorAcademico

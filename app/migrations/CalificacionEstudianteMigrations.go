@@ -2,9 +2,9 @@ package migrations
 
 import (
 	"fmt"
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 )
 
 func CalificacionEstudiantemigrations() {
@@ -72,5 +72,5 @@ func CalificacionEstudiantemigrations() {
 		panic("NO SE PUDO MIGRAR CALIFICACION ESTUDIANTE")
 	}
 
-	Utils.StructToString(container)
+	utils.StructToString(container)
 }

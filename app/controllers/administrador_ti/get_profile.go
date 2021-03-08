@@ -1,11 +1,11 @@
 package administrador_ti
 
 import (
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/api_helpers"
 	"medroom-backend/app/formats/f_output"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -19,7 +19,7 @@ import (
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/me [get]
 func GetMyAdministradorTi(c *gin.Context) {
-	id := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_TI")
+	id := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_TI")
 
 	var administrador_ti models.AdministradorTi
 	if err := repositories.GetOneAdministradorTi(&administrador_ti, id); err != nil {

@@ -1,9 +1,10 @@
-package Utils
+package utils
 
 import (
+	"unicode"
+
 	"golang.org/x/text/transform"
 	"golang.org/x/text/unicode/norm"
-	"unicode"
 )
 
 /*

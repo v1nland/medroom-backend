@@ -6,8 +6,8 @@ package puntaje
 	"medroom-backend/app/models"
 	"medroom-backend/app/formats/f_output"
 	"medroom-backend/app/repositories"
-	"medroom-backend/app/RequestMessages"
-	"medroom-backend/app/Utils"
+	"medroom-backend/app/Requestmessages"
+	"medroom-backend/app/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -145,14 +145,14 @@ func PutOnePuntaje(c *gin.Context) {
 
 	// replace data in model entity
 	model_container = models.Puntaje{
-		Id_evaluacion:              Utils.CheckUpdatedInt(container.Id_evaluacion, model_container.Id_evaluacion),
-		Nombre_competencia_puntaje: Utils.CheckUpdatedString(container.Nombre_competencia_puntaje, model_container.Nombre_competencia_puntaje),
-		Calificacion_puntaje:       Utils.CheckUpdatedInt(container.Calificacion_puntaje, model_container.Calificacion_puntaje),
-		Feedback_puntaje:           Utils.CheckUpdatedString(container.Feedback_puntaje, model_container.Feedback_puntaje),
+		Id_evaluacion:              utils.CheckUpdatedInt(container.Id_evaluacion, model_container.Id_evaluacion),
+		Nombre_competencia_puntaje: utils.CheckUpdatedString(container.Nombre_competencia_puntaje, model_container.Nombre_competencia_puntaje),
+		Calificacion_puntaje:       utils.CheckUpdatedInt(container.Calificacion_puntaje, model_container.Calificacion_puntaje),
+		Feedback_puntaje:           utils.CheckUpdatedString(container.Feedback_puntaje, model_container.Feedback_puntaje),
 	}
 
 	// update foreign entity
-	// err = repositories.GetOneEvaluacion(&model_container.Evaluacion_puntaje, Utils.ConvertIntToString(model_container.Id_evaluacion))
+	// err = repositories.GetOneEvaluacion(&model_container.Evaluacion_puntaje, utils.ConvertIntToString(model_container.Id_evaluacion))
 	// if err != nil {
 	// 	api_helpers.RespondError(c, 500, "default")
 	// 	return

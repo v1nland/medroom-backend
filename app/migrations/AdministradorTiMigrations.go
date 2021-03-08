@@ -2,9 +2,9 @@ package migrations
 
 import (
 	"fmt"
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 )
 
 func AdministradorTimigrations() {
@@ -30,5 +30,5 @@ func AdministradorTimigrations() {
 		panic("NO SE PUDO MIGRAR ADMINISTRADOR TI")
 	}
 
-	Utils.StructToString(container)
+	utils.StructToString(container)
 }

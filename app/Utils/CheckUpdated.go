@@ -1,4 +1,4 @@
-package Utils
+package utils
 
 func CheckNullString(new *string, old string) string {
 	if new == nil {

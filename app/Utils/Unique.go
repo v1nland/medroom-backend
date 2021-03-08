@@ -1,7 +1,7 @@
-package Utils
+package utils
 
 import (
-	"medroom-backend/app/Messages/Query"
+	"medroom-backend/app/messages/Query"
 )
 
 func BuildUniqueEvaluacionesCompetencia(result []Query.CalificacionesEstudiantePorCompetencia) []string {

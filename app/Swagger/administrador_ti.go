@@ -1,6 +1,6 @@
 package Swagger
 
-import "medroom-backend/app/Messages/Response"
+import "medroom-backend/app/messages/Response"
 
 type ListAdministradoresTiSwagger struct {
 	Status bool                                   `json:"status"`

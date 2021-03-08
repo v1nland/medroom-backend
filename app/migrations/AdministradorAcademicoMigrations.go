@@ -23,5 +23,5 @@ func AdministradorAcademicomigrations() {
 	// 	panic("NO SE PUDO MIGRAR ADMINISTRADOR ACADEMICO")
 	// }
 
-	// Utils.StructToString(container)
+	// utils.StructToString(container)
 }

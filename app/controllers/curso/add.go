@@ -1,9 +1,9 @@
 package curso
 
 import (
-	"medroom-backend/app/Messages/Request"
 	"medroom-backend/app/api_helpers"
 	"medroom-backend/app/formats/f_input"
+	"medroom-backend/app/messages/Request"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
 

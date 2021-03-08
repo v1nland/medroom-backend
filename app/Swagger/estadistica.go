@@ -1,7 +1,7 @@
 package Swagger
 
 import (
-	"medroom-backend/app/Messages/Response"
+	"medroom-backend/app/messages/Response"
 )
 
 type EvolucionEstudiantePorCompetenciaSwagger struct {

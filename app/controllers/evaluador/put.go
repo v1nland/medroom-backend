@@ -2,12 +2,12 @@ package evaluador
 
 import (
 	"errors"
-	"medroom-backend/app/Messages/Request"
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/api_helpers"
 	"medroom-backend/app/formats/f_input"
+	"medroom-backend/app/messages/Request"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -49,15 +49,15 @@ func PutOneEvaluador(c *gin.Context) {
 		Id:                           evaluador.Id,
 		Id_rol:                       evaluador.Id_rol,
 		Rol_evaluador:                evaluador.Rol_evaluador,
-		Rut_evaluador:                Utils.CheckNullString(input.Rut_evaluador, evaluador.Rut_evaluador),
-		Nombres_evaluador:            Utils.CheckNullString(input.Nombres_evaluador, evaluador.Nombres_evaluador),
-		Apellidos_evaluador:          Utils.CheckNullString(input.Apellidos_evaluador, evaluador.Apellidos_evaluador),
-		Hash_contrasena_evaluador:    Utils.CheckNullString(input.Hash_contrasena_evaluador, evaluador.Hash_contrasena_evaluador),
-		Correo_electronico_evaluador: Utils.CheckNullString(input.Correo_electronico_evaluador, evaluador.Correo_electronico_evaluador),
-		Telefono_fijo_evaluador:      Utils.CheckNullString(input.Telefono_fijo_evaluador, evaluador.Telefono_fijo_evaluador),
-		Telefono_celular_evaluador:   Utils.CheckNullString(input.Telefono_celular_evaluador, evaluador.Telefono_celular_evaluador),
-		Recinto_evaluador:            Utils.CheckNullString(input.Recinto_evaluador, evaluador.Recinto_evaluador),
-		Cargo_evaluador:              Utils.CheckNullString(input.Cargo_evaluador, evaluador.Cargo_evaluador),
+		Rut_evaluador:                utils.CheckNullString(input.Rut_evaluador, evaluador.Rut_evaluador),
+		Nombres_evaluador:            utils.CheckNullString(input.Nombres_evaluador, evaluador.Nombres_evaluador),
+		Apellidos_evaluador:          utils.CheckNullString(input.Apellidos_evaluador, evaluador.Apellidos_evaluador),
+		Hash_contrasena_evaluador:    utils.CheckNullString(input.Hash_contrasena_evaluador, evaluador.Hash_contrasena_evaluador),
+		Correo_electronico_evaluador: utils.CheckNullString(input.Correo_electronico_evaluador, evaluador.Correo_electronico_evaluador),
+		Telefono_fijo_evaluador:      utils.CheckNullString(input.Telefono_fijo_evaluador, evaluador.Telefono_fijo_evaluador),
+		Telefono_celular_evaluador:   utils.CheckNullString(input.Telefono_celular_evaluador, evaluador.Telefono_celular_evaluador),
+		Recinto_evaluador:            utils.CheckNullString(input.Recinto_evaluador, evaluador.Recinto_evaluador),
+		Cargo_evaluador:              utils.CheckNullString(input.Cargo_evaluador, evaluador.Cargo_evaluador),
 	}
 
 	if err := repositories.PutOneEvaluador(&evaluador, id); err != nil {

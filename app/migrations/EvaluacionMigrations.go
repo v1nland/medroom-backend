@@ -2,9 +2,9 @@ package migrations
 
 import (
 	"fmt"
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 )
 
 func Evaluacionmigrations() {
@@ -21,7 +21,7 @@ func Evaluacionmigrations() {
 	if err := repositories.AddNewEvaluacion(container); err != nil {
 		panic("NO SE PUDO MIGRAR EVALUACION 'CONTROL 1'")
 	}
-	Utils.StructToString(container)
+	utils.StructToString(container)
 
 	// control 2
 	container = &models.Evaluacion{
@@ -31,5 +31,5 @@ func Evaluacionmigrations() {
 	if err := repositories.AddNewEvaluacion(container); err != nil {
 		panic("NO SE PUDO MIGRAR EVALUACION 'CONTROL 2'")
 	}
-	Utils.StructToString(container)
+	utils.StructToString(container)
 }

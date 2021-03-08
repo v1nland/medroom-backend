@@ -2,10 +2,10 @@ package curso
 
 import (
 	"errors"
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/api_helpers"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -37,14 +37,14 @@ func DeleteCurso(c *gin.Context) {
 	// disociar estudiantes
 	for i := 0; i < len(curso.Grupos_curso); i++ {
 		for j := 0; j < len(curso.Grupos_curso[i].Estudiantes_grupo); j++ {
-			repositories.DeleteEstudianteGrupo(Utils.ConvertIntToString(curso.Grupos_curso[i].Id), curso.Grupos_curso[i].Estudiantes_grupo[j].Id.String())
+			repositories.DeleteEstudianteGrupo(utils.ConvertIntToString(curso.Grupos_curso[i].Id), curso.Grupos_curso[i].Estudiantes_grupo[j].Id.String())
 		}
 	}
 
 	// disociar evaluadores
 	for i := 0; i < len(curso.Grupos_curso); i++ {
 		for j := 0; j < len(curso.Grupos_curso[i].Evaluadores_grupo); j++ {
-			repositories.DeleteEvaluadorGrupo(Utils.ConvertIntToString(curso.Grupos_curso[i].Id), curso.Grupos_curso[i].Evaluadores_grupo[j].Id.String())
+			repositories.DeleteEvaluadorGrupo(utils.ConvertIntToString(curso.Grupos_curso[i].Id), curso.Grupos_curso[i].Evaluadores_grupo[j].Id.String())
 		}
 	}
 

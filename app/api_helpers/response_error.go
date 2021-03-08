@@ -2,7 +2,7 @@ package api_helpers
 
 import (
 	"fmt"
-	"medroom-backend/app/Utils"
+	"medroom-backend/app/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -16,10 +16,10 @@ func RespondError(c *gin.Context, status int, custom_description string) {
 	fmt.Println("status:", status)
 	var res ResponseError
 
-	res.Error = Utils.StatusMessage(status)
+	res.Error = utils.StatusMessage(status)
 
 	if custom_description == "default" {
-		res.Description = Utils.StatusDescription(status)
+		res.Description = utils.StatusDescription(status)
 	} else {
 		res.Description = custom_description
 	}

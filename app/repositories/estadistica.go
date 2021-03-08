@@ -1,8 +1,8 @@
 package repositories
 
 import (
-	"medroom-backend/app/Messages/Query"
 	"medroom-backend/app/config"
+	"medroom-backend/app/messages/Query"
 )
 
 func CalificacionesEstudiantePorCompetencia(u *[]Query.CalificacionesEstudiantePorCompetencia, id_grupo string, id_estudiante string) (err error) {

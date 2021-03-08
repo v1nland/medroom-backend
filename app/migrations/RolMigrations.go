@@ -2,9 +2,9 @@ package migrations
 
 import (
 	"fmt"
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 )
 
 func Rolmigrations() {
@@ -19,7 +19,7 @@ func Rolmigrations() {
 		panic("NO SE PUDO MIGRAR ROL 'ESTUDIANTE'")
 	}
 
-	Utils.StructToString(container)
+	utils.StructToString(container)
 
 	// evaluador
 	container = &models.Rol{
@@ -30,7 +30,7 @@ func Rolmigrations() {
 		panic("NO SE PUDO MIGRAR ROL 'EVALUADOR'")
 	}
 
-	Utils.StructToString(container)
+	utils.StructToString(container)
 
 	// administrador academico
 	container = &models.Rol{
@@ -41,7 +41,7 @@ func Rolmigrations() {
 		panic("NO SE PUDO MIGRAR ROL 'ADMINISTRADOR ACADEMICO'")
 	}
 
-	Utils.StructToString(container)
+	utils.StructToString(container)
 
 	// administrador ti
 	container = &models.Rol{
@@ -52,5 +52,5 @@ func Rolmigrations() {
 		panic("NO SE PUDO MIGRAR ROL 'ADMINISTRADOR TI'")
 	}
 
-	Utils.StructToString(container)
+	utils.StructToString(container)
 }

@@ -1,13 +1,13 @@
 package administrador_ti
 
 import (
-	"medroom-backend/app/Messages/Request"
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/api_helpers"
 	"medroom-backend/app/formats/f_input"
 	"medroom-backend/app/formats/f_output"
+	"medroom-backend/app/messages/Request"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -22,7 +22,7 @@ import (
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/me [put]
 func PutMyAdministradorTi(c *gin.Context) {
-	id := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_TI")
+	id := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_TI")
 
 	var input Request.PutMyAdministradorTi
 	if err := c.ShouldBind(&input); err != nil {
@@ -42,13 +42,13 @@ func PutMyAdministradorTi(c *gin.Context) {
 	administrador_ti = models.AdministradorTi{
 		Id:                                  administrador_ti.Id,
 		Id_rol:                              administrador_ti.Id_rol,
-		Rut_administrador_ti:                Utils.CheckNullString(input.Rut_administrador_ti, administrador_ti.Rut_administrador_ti),
-		Nombres_administrador_ti:            Utils.CheckNullString(input.Nombres_administrador_ti, administrador_ti.Nombres_administrador_ti),
-		Apellidos_administrador_ti:          Utils.CheckNullString(input.Apellidos_administrador_ti, administrador_ti.Apellidos_administrador_ti),
-		Hash_contrasena_administrador_ti:    Utils.CheckNullString(input.Hash_contrasena_administrador_ti, administrador_ti.Hash_contrasena_administrador_ti),
-		Correo_electronico_administrador_ti: Utils.CheckNullString(input.Correo_electronico_administrador_ti, administrador_ti.Correo_electronico_administrador_ti),
-		Telefono_fijo_administrador_ti:      Utils.CheckNullString(input.Telefono_fijo_administrador_ti, administrador_ti.Telefono_fijo_administrador_ti),
-		Telefono_celular_administrador_ti:   Utils.CheckNullString(input.Telefono_celular_administrador_ti, administrador_ti.Telefono_celular_administrador_ti),
+		Rut_administrador_ti:                utils.CheckNullString(input.Rut_administrador_ti, administrador_ti.Rut_administrador_ti),
+		Nombres_administrador_ti:            utils.CheckNullString(input.Nombres_administrador_ti, administrador_ti.Nombres_administrador_ti),
+		Apellidos_administrador_ti:          utils.CheckNullString(input.Apellidos_administrador_ti, administrador_ti.Apellidos_administrador_ti),
+		Hash_contrasena_administrador_ti:    utils.CheckNullString(input.Hash_contrasena_administrador_ti, administrador_ti.Hash_contrasena_administrador_ti),
+		Correo_electronico_administrador_ti: utils.CheckNullString(input.Correo_electronico_administrador_ti, administrador_ti.Correo_electronico_administrador_ti),
+		Telefono_fijo_administrador_ti:      utils.CheckNullString(input.Telefono_fijo_administrador_ti, administrador_ti.Telefono_fijo_administrador_ti),
+		Telefono_celular_administrador_ti:   utils.CheckNullString(input.Telefono_celular_administrador_ti, administrador_ti.Telefono_celular_administrador_ti),
 	}
 
 	if err := repositories.PutOneAdministradorTi(&administrador_ti, id); err != nil {

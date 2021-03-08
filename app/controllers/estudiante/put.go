@@ -2,12 +2,12 @@ package estudiante
 
 import (
 	"errors"
-	"medroom-backend/app/Messages/Request"
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/api_helpers"
 	"medroom-backend/app/formats/f_input"
+	"medroom-backend/app/messages/Request"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -49,13 +49,13 @@ func PutOneEstudiante(c *gin.Context) {
 		Id:                            estudiante.Id,
 		Id_rol:                        estudiante.Id_rol,
 		Rol_estudiante:                estudiante.Rol_estudiante,
-		Rut_estudiante:                Utils.CheckNullString(input.Rut_estudiante, estudiante.Rut_estudiante),
-		Nombres_estudiante:            Utils.CheckNullString(input.Nombres_estudiante, estudiante.Nombres_estudiante),
-		Apellidos_estudiante:          Utils.CheckNullString(input.Apellidos_estudiante, estudiante.Apellidos_estudiante),
-		Hash_contrasena_estudiante:    Utils.CheckNullString(input.Hash_contrasena_estudiante, estudiante.Hash_contrasena_estudiante),
-		Correo_electronico_estudiante: Utils.CheckNullString(input.Correo_electronico_estudiante, estudiante.Correo_electronico_estudiante),
-		Telefono_fijo_estudiante:      Utils.CheckNullString(input.Telefono_fijo_estudiante, estudiante.Telefono_fijo_estudiante),
-		Telefono_celular_estudiante:   Utils.CheckNullString(input.Telefono_celular_estudiante, estudiante.Telefono_celular_estudiante),
+		Rut_estudiante:                utils.CheckNullString(input.Rut_estudiante, estudiante.Rut_estudiante),
+		Nombres_estudiante:            utils.CheckNullString(input.Nombres_estudiante, estudiante.Nombres_estudiante),
+		Apellidos_estudiante:          utils.CheckNullString(input.Apellidos_estudiante, estudiante.Apellidos_estudiante),
+		Hash_contrasena_estudiante:    utils.CheckNullString(input.Hash_contrasena_estudiante, estudiante.Hash_contrasena_estudiante),
+		Correo_electronico_estudiante: utils.CheckNullString(input.Correo_electronico_estudiante, estudiante.Correo_electronico_estudiante),
+		Telefono_fijo_estudiante:      utils.CheckNullString(input.Telefono_fijo_estudiante, estudiante.Telefono_fijo_estudiante),
+		Telefono_celular_estudiante:   utils.CheckNullString(input.Telefono_celular_estudiante, estudiante.Telefono_celular_estudiante),
 	}
 
 	if err := repositories.PutOneEstudiante(&estudiante, id); err != nil {

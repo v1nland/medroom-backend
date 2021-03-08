@@ -1,8 +1,8 @@
 package f_input
 
 import (
-	"medroom-backend/app/Messages/Request"
-	"medroom-backend/app/Utils"
+	"medroom-backend/app/messages/Request"
+	"medroom-backend/app/utils"
 	"strings"
 )
 
@@ -25,14 +25,14 @@ func AddNewEvaluacion(u *Request.AddNewEvaluacion) {
 	if u.Nombre_evaluacion != nil {
 		*u.Nombre_evaluacion = strings.TrimSpace(*u.Nombre_evaluacion)
 		*u.Nombre_evaluacion = strings.ToUpper(*u.Nombre_evaluacion)
-		*u.Nombre_evaluacion = Utils.RemoveAccents(*u.Nombre_evaluacion)
+		*u.Nombre_evaluacion = utils.RemoveAccents(*u.Nombre_evaluacion)
 	}
 }
 func PutOneEvaluacion(u *Request.PutOneEvaluacion) {
 	if u.Nombre_evaluacion != nil {
 		*u.Nombre_evaluacion = strings.TrimSpace(*u.Nombre_evaluacion)
 		*u.Nombre_evaluacion = strings.ToUpper(*u.Nombre_evaluacion)
-		*u.Nombre_evaluacion = Utils.RemoveAccents(*u.Nombre_evaluacion)
+		*u.Nombre_evaluacion = utils.RemoveAccents(*u.Nombre_evaluacion)
 	}
 }
 

@@ -2,11 +2,11 @@ package estadistica
 
 import (
 	"errors"
-	"medroom-backend/app/Messages/Query"
-	"medroom-backend/app/Messages/Response"
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/api_helpers"
+	"medroom-backend/app/messages/Query"
+	"medroom-backend/app/messages/Response"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -24,7 +24,7 @@ import (
 // @Router /estudiantes/me/cursos/{id_curso}/grupos/{id_grupo}/estadisticas/evolucion-por-evaluacion [get]
 func EvolucionEstudiantePorEvaluacion(c *gin.Context) {
 	// params
-	id_estudiante := Utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
+	id_estudiante := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
 	// id_curso := c.Params.ByName("id_curso")
 	id_grupo := c.Params.ByName("id_grupo")
 
@@ -37,7 +37,7 @@ func EvolucionEstudiantePorEvaluacion(c *gin.Context) {
 	}
 
 	response_container := &Response.EvolucionEstudiantePorEvaluacionResponse{
-		Eje_x: Utils.BuildUniqueEvaluacionesEvaluacion(calificaciones_estudiante),
+		Eje_x: utils.BuildUniqueEvaluacionesEvaluacion(calificaciones_estudiante),
 		Eje_y: []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
 		Valores: map[string][]struct {
 			Promedio_estudiante float64 `json:"promedio_estudiante"`

@@ -1,7 +1,7 @@
 package f_input
 
 import (
-	"medroom-backend/app/Messages/Request"
+	"medroom-backend/app/messages/Request"
 	"strings"
 )
 

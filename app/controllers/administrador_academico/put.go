@@ -1,13 +1,13 @@
 package administrador_academico
 
 import (
-	"medroom-backend/app/Messages/Request"
-	"medroom-backend/app/Utils"
 	"medroom-backend/app/api_helpers"
 	"medroom-backend/app/formats/f_input"
 	"medroom-backend/app/formats/f_output"
+	"medroom-backend/app/messages/Request"
 	"medroom-backend/app/models"
 	"medroom-backend/app/repositories"
+	"medroom-backend/app/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -43,13 +43,13 @@ func PutOneAdministradorAcademico(c *gin.Context) {
 	administrador_academico = models.AdministradorAcademico{
 		Id:                                      administrador_academico.Id,
 		Id_rol:                                  administrador_academico.Id_rol,
-		Rut_administrador_academico:             Utils.CheckNullString(input.Rut_administrador_academico, administrador_academico.Rut_administrador_academico),
-		Nombres_administrador_academico:         Utils.CheckNullString(input.Nombres_administrador_academico, administrador_academico.Nombres_administrador_academico),
-		Apellidos_administrador_academico:       Utils.CheckNullString(input.Apellidos_administrador_academico, administrador_academico.Apellidos_administrador_academico),
-		Hash_contrasena_administrador_academico: Utils.CheckNullString(input.Hash_contrasena_administrador_academico, administrador_academico.Hash_contrasena_administrador_academico),
-		Correo_electronico_administrador_academico: Utils.CheckNullString(input.Correo_electronico_administrador_academico, administrador_academico.Correo_electronico_administrador_academico),
-		Telefono_fijo_administrador_academico:      Utils.CheckNullString(input.Telefono_fijo_administrador_academico, administrador_academico.Telefono_fijo_administrador_academico),
-		Telefono_celular_administrador_academico:   Utils.CheckNullString(input.Telefono_celular_administrador_academico, administrador_academico.Telefono_celular_administrador_academico),
+		Rut_administrador_academico:             utils.CheckNullString(input.Rut_administrador_academico, administrador_academico.Rut_administrador_academico),
+		Nombres_administrador_academico:         utils.CheckNullString(input.Nombres_administrador_academico, administrador_academico.Nombres_administrador_academico),
+		Apellidos_administrador_academico:       utils.CheckNullString(input.Apellidos_administrador_academico, administrador_academico.Apellidos_administrador_academico),
+		Hash_contrasena_administrador_academico: utils.CheckNullString(input.Hash_contrasena_administrador_academico, administrador_academico.Hash_contrasena_administrador_academico),
+		Correo_electronico_administrador_academico: utils.CheckNullString(input.Correo_electronico_administrador_academico, administrador_academico.Correo_electronico_administrador_academico),
+		Telefono_fijo_administrador_academico:      utils.CheckNullString(input.Telefono_fijo_administrador_academico, administrador_academico.Telefono_fijo_administrador_academico),
+		Telefono_celular_administrador_academico:   utils.CheckNullString(input.Telefono_celular_administrador_academico, administrador_academico.Telefono_celular_administrador_academico),
 	}
 
 	if err := repositories.PutOneAdministradorAcademico(&administrador_academico, id); err != nil {
