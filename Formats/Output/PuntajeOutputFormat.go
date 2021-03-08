@@ -2,10 +2,10 @@ package Output
 
 import (
 	"medroom-backend/Messages/Response"
-	"medroom-backend/Models"
+	"medroom-backend/models"
 )
 
-func ListPuntajesOutput(u []Models.Puntaje) (output []Response.ListPuntajesResponse) {
+func ListPuntajesOutput(u []models.Puntaje) (output []Response.ListPuntajesResponse) {
 	for i := 0; i < len(u); i++ {
 		output = append(output, Response.ListPuntajesResponse{
 			// Id_evaluacion:              u[i].Id_evaluacion,
@@ -19,7 +19,7 @@ func ListPuntajesOutput(u []Models.Puntaje) (output []Response.ListPuntajesRespo
 	return output
 }
 
-func GetOnePuntajeOutput(u Models.Puntaje) (output Response.GetOnePuntajeResponse) {
+func GetOnePuntajeOutput(u models.Puntaje) (output Response.GetOnePuntajeResponse) {
 	return Response.GetOnePuntajeResponse{
 		// Id_evaluacion:              u.Id_evaluacion,
 		// Nombre_competencia_puntaje: u.Nombre_competencia_puntaje,
@@ -29,19 +29,19 @@ func GetOnePuntajeOutput(u Models.Puntaje) (output Response.GetOnePuntajeRespons
 	}
 }
 
-func AddNewPuntajeOutput(u Models.Puntaje) (output Response.AddNewPuntajeResponse) {
+func AddNewPuntajeOutput(u models.Puntaje) (output Response.AddNewPuntajeResponse) {
 	return Response.AddNewPuntajeResponse{
 		Id: u.Id,
 	}
 }
 
-func PutOnePuntajeOutput(u Models.Puntaje) (output Response.PutOnePuntajeResponse) {
+func PutOnePuntajeOutput(u models.Puntaje) (output Response.PutOnePuntajeResponse) {
 	return Response.PutOnePuntajeResponse{
 		Id: u.Id,
 	}
 }
 
-func DeletePuntajeOutput(u Models.Puntaje) (output Response.DeletePuntajeResponse) {
+func DeletePuntajeOutput(u models.Puntaje) (output Response.DeletePuntajeResponse) {
 	return Response.DeletePuntajeResponse{
 		Id: u.Id,
 	}

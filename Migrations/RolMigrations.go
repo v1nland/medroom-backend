@@ -1,54 +1,54 @@
-package Migrations
+package migrations
 
 import (
 	"fmt"
-	"medroom-backend/Models"
-	"medroom-backend/Repositories"
 	"medroom-backend/Utils"
+	"medroom-backend/models"
+	"medroom-backend/repositories"
 )
 
-func RolMigrations() {
+func Rolmigrations() {
 	fmt.Println("===== ROL =====")
 
 	// estudiante
-	container := &Models.Rol{
+	container := &models.Rol{
 		Nombre_rol: "ESTUDIANTE",
 	}
 
-	if err := Repositories.AddNewRol(container); err != nil {
+	if err := repositories.AddNewRol(container); err != nil {
 		panic("NO SE PUDO MIGRAR ROL 'ESTUDIANTE'")
 	}
 
 	Utils.StructToString(container)
 
 	// evaluador
-	container = &Models.Rol{
+	container = &models.Rol{
 		Nombre_rol: "EVALUADOR",
 	}
 
-	if err := Repositories.AddNewRol(container); err != nil {
+	if err := repositories.AddNewRol(container); err != nil {
 		panic("NO SE PUDO MIGRAR ROL 'EVALUADOR'")
 	}
 
 	Utils.StructToString(container)
 
 	// administrador academico
-	container = &Models.Rol{
+	container = &models.Rol{
 		Nombre_rol: "ADMINISTRADOR ACADEMICO",
 	}
 
-	if err := Repositories.AddNewRol(container); err != nil {
+	if err := repositories.AddNewRol(container); err != nil {
 		panic("NO SE PUDO MIGRAR ROL 'ADMINISTRADOR ACADEMICO'")
 	}
 
 	Utils.StructToString(container)
 
 	// administrador ti
-	container = &Models.Rol{
+	container = &models.Rol{
 		Nombre_rol: "ADMINISTRADOR TI",
 	}
 
-	if err := Repositories.AddNewRol(container); err != nil {
+	if err := repositories.AddNewRol(container); err != nil {
 		panic("NO SE PUDO MIGRAR ROL 'ADMINISTRADOR TI'")
 	}
 

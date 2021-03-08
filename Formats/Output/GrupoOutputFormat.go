@@ -2,10 +2,10 @@ package Output
 
 import (
 	"medroom-backend/Messages/Response"
-	"medroom-backend/Models"
+	"medroom-backend/models"
 )
 
-func ListGruposOutput(u []Models.Grupo) (output []Response.ListGruposResponse) {
+func ListGruposOutput(u []models.Grupo) (output []Response.ListGruposResponse) {
 	for i := 0; i < len(u); i++ {
 		output = append(output, Response.ListGruposResponse{
 			Id_curso: u[i].Id_curso,
@@ -19,7 +19,7 @@ func ListGruposOutput(u []Models.Grupo) (output []Response.ListGruposResponse) {
 	return output
 }
 
-func GetOneGrupoOutput(u Models.Grupo) (output Response.GetOneGrupoResponse) {
+func GetOneGrupoOutput(u models.Grupo) (output Response.GetOneGrupoResponse) {
 	return Response.GetOneGrupoResponse{
 		Id_curso: u.Id_curso,
 		// Evaluador_grupo: GetOneEvaluadorOutput(u.Evaluador_grupo),
@@ -29,7 +29,7 @@ func GetOneGrupoOutput(u Models.Grupo) (output Response.GetOneGrupoResponse) {
 	}
 }
 
-func GetOneGrupoEstudianteOutput(u Models.Grupo) (output Response.GetOneGrupoEstudianteResponse) {
+func GetOneGrupoEstudianteOutput(u models.Grupo) (output Response.GetOneGrupoEstudianteResponse) {
 	return Response.GetOneGrupoEstudianteResponse{
 		Id_curso: u.Id_curso,
 		// Evaluador_grupo: GetOneEvaluadorOutput(u.Evaluador_grupo),
@@ -38,7 +38,7 @@ func GetOneGrupoEstudianteOutput(u Models.Grupo) (output Response.GetOneGrupoEst
 	}
 }
 
-func GetGruposEstudianteOutput(u []Models.Grupo) (output []Response.GetGruposEstudianteResponse) {
+func GetGruposEstudianteOutput(u []models.Grupo) (output []Response.GetGruposEstudianteResponse) {
 	for i := 0; i < len(u); i++ {
 		output = append(output, Response.GetGruposEstudianteResponse{
 			Id_curso: u[i].Id_curso,
@@ -51,7 +51,7 @@ func GetGruposEstudianteOutput(u []Models.Grupo) (output []Response.GetGruposEst
 	return output
 }
 
-func GetOneGrupoEvaluadorOutput(u Models.Grupo) (output Response.GetOneGrupoEvaluadorResponse) {
+func GetOneGrupoEvaluadorOutput(u models.Grupo) (output Response.GetOneGrupoEvaluadorResponse) {
 	return Response.GetOneGrupoEvaluadorResponse{
 		Id_curso: u.Id_curso,
 		// Evaluador_grupo: GetOneEvaluadorOutput(u.Evaluador_grupo),
@@ -60,7 +60,7 @@ func GetOneGrupoEvaluadorOutput(u Models.Grupo) (output Response.GetOneGrupoEval
 	}
 }
 
-func GetGruposEvaluadorOutput(u []Models.Grupo) (output []Response.GetGruposEvaluadorResponse) {
+func GetGruposEvaluadorOutput(u []models.Grupo) (output []Response.GetGruposEvaluadorResponse) {
 	for i := 0; i < len(u); i++ {
 		output = append(output, Response.GetGruposEvaluadorResponse{
 			Id_curso: u[i].Id_curso,
@@ -73,19 +73,19 @@ func GetGruposEvaluadorOutput(u []Models.Grupo) (output []Response.GetGruposEval
 	return output
 }
 
-func AddNewGrupoOutput(u Models.Grupo) (output Response.AddNewGrupoResponse) {
+func AddNewGrupoOutput(u models.Grupo) (output Response.AddNewGrupoResponse) {
 	return Response.AddNewGrupoResponse{
 		Id: u.Id,
 	}
 }
 
-func PutOneGrupoOutput(u Models.Grupo) (output Response.PutOneGrupoResponse) {
+func PutOneGrupoOutput(u models.Grupo) (output Response.PutOneGrupoResponse) {
 	return Response.PutOneGrupoResponse{
 		Id: u.Id,
 	}
 }
 
-func DeleteGrupoOutput(u Models.Grupo) (output Response.DeleteGrupoResponse) {
+func DeleteGrupoOutput(u models.Grupo) (output Response.DeleteGrupoResponse) {
 	return Response.DeleteGrupoResponse{
 		Id: u.Id,
 	}

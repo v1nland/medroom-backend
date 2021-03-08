@@ -2,10 +2,10 @@ package Output
 
 import (
 	"medroom-backend/Messages/Response"
-	"medroom-backend/Models"
+	"medroom-backend/models"
 )
 
-func ListAdministradoresTiOutput(u []Models.AdministradorTi) (output []Response.ListAdministradoresTiResponse) {
+func ListAdministradoresTiOutput(u []models.AdministradorTi) (output []Response.ListAdministradoresTiResponse) {
 	for i := 0; i < len(u); i++ {
 		output = append(output, Response.ListAdministradoresTiResponse{
 			Rol_administrador_ti:                GetOneRolOutput(u[i].Rol_administrador_ti),
@@ -21,7 +21,7 @@ func ListAdministradoresTiOutput(u []Models.AdministradorTi) (output []Response.
 	return output
 }
 
-func GetOneAdministradorTiOutput(u Models.AdministradorTi) (output Response.GetOneAdministradorTiResponse) {
+func GetOneAdministradorTiOutput(u models.AdministradorTi) (output Response.GetOneAdministradorTiResponse) {
 	return Response.GetOneAdministradorTiResponse{
 		Rol_administrador_ti:                GetOneRolOutput(u.Rol_administrador_ti),
 		Rut_administrador_ti:                u.Rut_administrador_ti,
@@ -33,7 +33,7 @@ func GetOneAdministradorTiOutput(u Models.AdministradorTi) (output Response.GetO
 	}
 }
 
-func GetMyAdministradorTiOutput(u Models.AdministradorTi) (output Response.GetMyAdministradorTiResponse) {
+func GetMyAdministradorTiOutput(u models.AdministradorTi) (output Response.GetMyAdministradorTiResponse) {
 	return Response.GetMyAdministradorTiResponse{
 		Rol_administrador_ti:                GetOneRolOutput(u.Rol_administrador_ti),
 		Rut_administrador_ti:                u.Rut_administrador_ti,
@@ -45,25 +45,25 @@ func GetMyAdministradorTiOutput(u Models.AdministradorTi) (output Response.GetMy
 	}
 }
 
-func AddNewAdministradorTiOutput(u Models.AdministradorTi) (output Response.AddNewAdministradorTiResponse) {
+func AddNewAdministradorTiOutput(u models.AdministradorTi) (output Response.AddNewAdministradorTiResponse) {
 	return Response.AddNewAdministradorTiResponse{
 		Id: u.Id,
 	}
 }
 
-func PutOneAdministradorTiOutput(u Models.AdministradorTi) (output Response.PutOneAdministradorTiResponse) {
+func PutOneAdministradorTiOutput(u models.AdministradorTi) (output Response.PutOneAdministradorTiResponse) {
 	return Response.PutOneAdministradorTiResponse{
 		Id: u.Id,
 	}
 }
 
-func PutMyAdministradorTiOutput(u Models.AdministradorTi) (output Response.PutMyAdministradorTiResponse) {
+func PutMyAdministradorTiOutput(u models.AdministradorTi) (output Response.PutMyAdministradorTiResponse) {
 	return Response.PutMyAdministradorTiResponse{
 		Id: u.Id,
 	}
 }
 
-func DeleteAdministradorTiOutput(u Models.AdministradorTi) (output Response.DeleteAdministradorTiResponse) {
+func DeleteAdministradorTiOutput(u models.AdministradorTi) (output Response.DeleteAdministradorTiResponse) {
 	return Response.DeleteAdministradorTiResponse{
 		Id: u.Id,
 	}

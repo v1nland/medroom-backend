@@ -1,10 +1,10 @@
 package Utils
 
 import (
-	"medroom-backend/Models"
+	"medroom-backend/models"
 )
 
-func SearchIndexGrupoBySigla(lista_grupos []Models.Grupo, sigla_grupo string) (bool, int) {
+func SearchIndexGrupoBySigla(lista_grupos []models.Grupo, sigla_grupo string) (bool, int) {
 	for i := 0; i < len(lista_grupos); i++ {
 		if lista_grupos[i].Sigla_grupo == sigla_grupo {
 			return true, i
@@ -14,7 +14,7 @@ func SearchIndexGrupoBySigla(lista_grupos []Models.Grupo, sigla_grupo string) (b
 	return false, -1
 }
 
-func SearchIdGrupoBySigla(lista_grupos []Models.Grupo, sigla_grupo string) (bool, int) {
+func SearchIdGrupoBySigla(lista_grupos []models.Grupo, sigla_grupo string) (bool, int) {
 	for i := 0; i < len(lista_grupos); i++ {
 		if lista_grupos[i].Sigla_grupo == sigla_grupo {
 			return true, lista_grupos[i].Id

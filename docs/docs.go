@@ -59,7 +59,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -91,7 +91,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -143,7 +143,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -195,7 +195,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -227,7 +227,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -265,7 +265,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -303,7 +303,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -348,7 +348,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -384,7 +384,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -427,7 +427,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -456,7 +456,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -494,7 +494,157 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-academica/me/cursos": {
+            "get": {
+                "description": "Obtiene los cursos de un administrador academico según su token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Académica"
+                ],
+                "summary": "Obtiene los cursos de un administrador academico",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Swagger.GetCursosAdministradorAcademicoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-academica/me/cursos/{id_curso}": {
+            "get": {
+                "description": "Obtiene un curso de un administrador academico según su token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Académica"
+                ],
+                "summary": "Obtiene un curso de un administrador academico",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id del curso a buscar",
+                        "name": "id_curso",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Swagger.GetOneCursoAdministradorAcademicoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-academica/me/cursos/{id_curso}/grupos": {
+            "get": {
+                "description": "Obtiene los grupos de un administrador academico según su token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Académica"
+                ],
+                "summary": "Obtiene los grupos de un administrador academico",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id del curso a buscar",
+                        "name": "id_curso",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Swagger.GetGruposAdministradorAcademicoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-academica/me/cursos/{id_curso}/grupos/{id_grupo}": {
+            "get": {
+                "description": "Obtiene un grupo de un administrador academico según su token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Académica"
+                ],
+                "summary": "Obtiene un grupo de un administrador academico",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id del curso a buscar",
+                        "name": "id_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Id del grupo a buscar",
+                        "name": "id_grupo",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Swagger.GetOneGrupoAdministradorAcademicoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -526,7 +676,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -564,7 +714,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -602,7 +752,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -647,7 +797,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -683,7 +833,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -715,7 +865,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -753,7 +903,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -791,7 +941,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -836,7 +986,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -872,7 +1022,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -904,7 +1054,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -942,7 +1092,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -980,7 +1130,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1025,7 +1175,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1061,7 +1211,52 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-ti/cursos/{id_curso}/administradores-academicos/{uuid_administrador_academico}": {
+            "put": {
+                "description": "Modifica los cursos de un administrador_academico con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Modifica los cursos de un administrador_academico",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID del curso a modificar",
+                        "name": "id_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "UUID del administrador_academico a asociar",
+                        "name": "uuid_administrador_academico",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Swagger.AddAdministradorAcademicoToCursoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1106,7 +1301,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1151,7 +1346,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1183,7 +1378,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1221,7 +1416,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1259,7 +1454,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1304,7 +1499,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1340,7 +1535,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1372,7 +1567,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1410,7 +1605,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1448,7 +1643,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1493,7 +1688,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1529,7 +1724,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1572,7 +1767,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1601,7 +1796,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1639,7 +1834,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1679,7 +1874,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1726,7 +1921,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1762,7 +1957,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1802,7 +1997,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1849,7 +2044,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1885,7 +2080,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1928,7 +2123,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1957,7 +2152,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -1995,7 +2190,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -2024,7 +2219,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -2062,7 +2257,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -2100,7 +2295,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -2145,7 +2340,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -2193,7 +2388,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -2241,7 +2436,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -2289,7 +2484,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -2344,7 +2539,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -2387,7 +2582,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -2416,7 +2611,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -2454,7 +2649,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -2483,7 +2678,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -2521,7 +2716,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -2559,7 +2754,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -2604,7 +2799,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -2675,7 +2870,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -2723,7 +2918,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -2778,7 +2973,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -2810,7 +3005,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -2848,7 +3043,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -2880,7 +3075,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -2918,7 +3113,7 @@ var doc = `{
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/ApiHelpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.ResponseError"
                         }
                     }
                 }
@@ -2926,7 +3121,7 @@ var doc = `{
         }
     },
     "definitions": {
-        "ApiHelpers.ResponseError": {
+        "api_helpers.ResponseError": {
             "type": "object",
             "properties": {
                 "description": {
@@ -3474,6 +3669,14 @@ var doc = `{
                 }
             }
         },
+        "Response.AddAdministradorAcademicoToCursoResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                }
+            }
+        },
         "Response.AddEstudianteToCursoResponse": {
             "type": "object",
             "properties": {
@@ -3726,6 +3929,29 @@ var doc = `{
                 }
             }
         },
+        "Response.GetCursosAdministradorAcademicoResponse": {
+            "type": "object",
+            "properties": {
+                "grupos_curso": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Response.ListGruposResponse"
+                    }
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "nombre_curso": {
+                    "type": "string"
+                },
+                "periodo_curso": {
+                    "$ref": "#/definitions/Response.GetOnePeriodoResponse"
+                },
+                "sigla_curso": {
+                    "type": "string"
+                }
+            }
+        },
         "Response.GetCursosEstudianteResponse": {
             "type": "object",
             "properties": {
@@ -3768,6 +3994,32 @@ var doc = `{
                     "$ref": "#/definitions/Response.GetOnePeriodoResponse"
                 },
                 "sigla_curso": {
+                    "type": "string"
+                }
+            }
+        },
+        "Response.GetGruposAdministradorAcademicoResponse": {
+            "type": "object",
+            "properties": {
+                "estudiantes_grupo": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Response.ListEstudiantesResponse"
+                    }
+                },
+                "evaluador_grupo": {
+                    "$ref": "#/definitions/Response.GetOneEvaluadorResponse"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "id_curso": {
+                    "type": "integer"
+                },
+                "nombre_grupo": {
+                    "type": "string"
+                },
+                "sigla_grupo": {
                     "type": "string"
                 }
             }
@@ -4013,6 +4265,29 @@ var doc = `{
                 }
             }
         },
+        "Response.GetOneCursoAdministradorAcademicoResponse": {
+            "type": "object",
+            "properties": {
+                "grupos_curso": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Response.ListGruposResponse"
+                    }
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "nombre_curso": {
+                    "type": "string"
+                },
+                "periodo_curso": {
+                    "$ref": "#/definitions/Response.GetOnePeriodoResponse"
+                },
+                "sigla_curso": {
+                    "type": "string"
+                }
+            }
+        },
         "Response.GetOneCursoEstudianteResponse": {
             "type": "object",
             "properties": {
@@ -4151,6 +4426,32 @@ var doc = `{
                     "type": "string"
                 },
                 "telefono_fijo_evaluador": {
+                    "type": "string"
+                }
+            }
+        },
+        "Response.GetOneGrupoAdministradorAcademicoResponse": {
+            "type": "object",
+            "properties": {
+                "estudiantes_grupo": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Response.ListEstudiantesResponse"
+                    }
+                },
+                "evaluador_grupo": {
+                    "$ref": "#/definitions/Response.GetOneEvaluadorResponse"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "id_curso": {
+                    "type": "integer"
+                },
+                "nombre_grupo": {
+                    "type": "string"
+                },
+                "sigla_grupo": {
                     "type": "string"
                 }
             }
@@ -4852,6 +5153,20 @@ var doc = `{
                 }
             }
         },
+        "Swagger.AddAdministradorAcademicoToCursoSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/Response.AddAdministradorAcademicoToCursoResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
         "Swagger.AddEstudianteToCursoSwagger": {
             "type": "object",
             "properties": {
@@ -5202,6 +5517,20 @@ var doc = `{
                 }
             }
         },
+        "Swagger.GetCursosAdministradorAcademicoSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/Response.GetCursosAdministradorAcademicoResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
         "Swagger.GetCursosEstudianteSwagger": {
             "type": "object",
             "properties": {
@@ -5221,6 +5550,20 @@ var doc = `{
             "properties": {
                 "data": {
                     "$ref": "#/definitions/Response.GetCursosEvaluadorResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "Swagger.GetGruposAdministradorAcademicoSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/Response.GetGruposAdministradorAcademicoResponse"
                 },
                 "meta": {
                     "type": "string"
@@ -5342,6 +5685,20 @@ var doc = `{
                 }
             }
         },
+        "Swagger.GetOneCursoAdministradorAcademicoSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/Response.GetOneCursoAdministradorAcademicoResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
         "Swagger.GetOneCursoEstudianteSwagger": {
             "type": "object",
             "properties": {
@@ -5403,6 +5760,20 @@ var doc = `{
             "properties": {
                 "data": {
                     "$ref": "#/definitions/Response.GetOneEvaluadorResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "Swagger.GetOneGrupoAdministradorAcademicoSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/Response.GetOneGrupoAdministradorAcademicoResponse"
                 },
                 "meta": {
                     "type": "string"

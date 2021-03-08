@@ -1,16 +1,16 @@
-package Migrations
+package migrations
 
 import (
 	"fmt"
-	"medroom-backend/Models"
-	"medroom-backend/Repositories"
 	"medroom-backend/Utils"
+	"medroom-backend/models"
+	"medroom-backend/repositories"
 )
 
-func EstudianteMigrations() {
+func Estudiantemigrations() {
 	fmt.Println("===== ESTUDIANTE =====")
 
-	container := &Models.Estudiante{
+	container := &models.Estudiante{
 		Id_rol:                        1,
 		Rut_estudiante:                "09.090.090-0",
 		Nombres_estudiante:            "PRIMER ESTUDIANTE",
@@ -21,7 +21,7 @@ func EstudianteMigrations() {
 		Telefono_celular_estudiante:   "12345678",
 	}
 
-	if err := Repositories.AddNewEstudiante(container); err != nil {
+	if err := repositories.AddNewEstudiante(container); err != nil {
 		panic("No se ha migrado estudiante")
 	}
 

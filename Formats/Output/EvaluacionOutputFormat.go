@@ -2,10 +2,10 @@ package Output
 
 import (
 	"medroom-backend/Messages/Response"
-	"medroom-backend/Models"
+	"medroom-backend/models"
 )
 
-func ListEvaluacionesGrupoEstudianteOutput(u []Models.CalificacionEstudiante) (output []Response.ListEvaluacionesGrupoEstudianteResponse) {
+func ListEvaluacionesGrupoEstudianteOutput(u []models.CalificacionEstudiante) (output []Response.ListEvaluacionesGrupoEstudianteResponse) {
 	for i := 0; i < len(u); i++ {
 		output = append(output, Response.ListEvaluacionesGrupoEstudianteResponse{
 			// Evaluador_evaluacion:                    GetOneEvaluadorOutput(u[i].Evaluador_evaluacion),
@@ -27,7 +27,7 @@ func ListEvaluacionesGrupoEstudianteOutput(u []Models.CalificacionEstudiante) (o
 	return output
 }
 
-func ListEvaluacionesGrupoEvaluadorOutput(u []Models.CalificacionEstudiante) (output []Response.ListEvaluacionesGrupoEvaluadorResponse) {
+func ListEvaluacionesGrupoEvaluadorOutput(u []models.CalificacionEstudiante) (output []Response.ListEvaluacionesGrupoEvaluadorResponse) {
 	for i := 0; i < len(u); i++ {
 		output = append(output, Response.ListEvaluacionesGrupoEvaluadorResponse{
 			// Evaluador_evaluacion:                    GetOneEvaluadorOutput(u[i].Evaluador_evaluacion),
@@ -49,7 +49,7 @@ func ListEvaluacionesGrupoEvaluadorOutput(u []Models.CalificacionEstudiante) (ou
 	return output
 }
 
-func ListEvaluacionesOutput(u []Models.CalificacionEstudiante) (output []Response.ListEvaluacionesResponse) {
+func ListEvaluacionesOutput(u []models.CalificacionEstudiante) (output []Response.ListEvaluacionesResponse) {
 	for i := 0; i < len(u); i++ {
 		output = append(output, Response.ListEvaluacionesResponse{
 			// Evaluador_evaluacion:                    GetOneEvaluadorOutput(u[i].Evaluador_evaluacion),
@@ -71,7 +71,7 @@ func ListEvaluacionesOutput(u []Models.CalificacionEstudiante) (output []Respons
 	return output
 }
 
-func ListEvaluacionesEstudianteOutput(u []Models.CalificacionEstudiante) (output []Response.ListEvaluacionesEstudianteResponse) {
+func ListEvaluacionesEstudianteOutput(u []models.CalificacionEstudiante) (output []Response.ListEvaluacionesEstudianteResponse) {
 	for i := 0; i < len(u); i++ {
 		output = append(output, Response.ListEvaluacionesEstudianteResponse{
 			// Evaluador_evaluacion:                    GetOneEvaluadorOutput(u[i].Evaluador_evaluacion),
@@ -93,7 +93,7 @@ func ListEvaluacionesEstudianteOutput(u []Models.CalificacionEstudiante) (output
 	return output
 }
 
-func GetOneEvaluacionOutput(u Models.CalificacionEstudiante) (output Response.GetOneEvaluacionResponse) {
+func GetOneEvaluacionOutput(u models.CalificacionEstudiante) (output Response.GetOneEvaluacionResponse) {
 	return Response.GetOneEvaluacionResponse{
 		// Evaluador_evaluacion:                    GetOneEvaluadorOutput(u.Evaluador_evaluacion),
 		// Periodo_evaluacion:                      GetOnePeriodoOutput(u.Periodo_evaluacion),
@@ -110,19 +110,19 @@ func GetOneEvaluacionOutput(u Models.CalificacionEstudiante) (output Response.Ge
 	}
 }
 
-func AddNewEvaluacionOutput(u Models.CalificacionEstudiante) (output Response.AddNewEvaluacionResponse) {
+func AddNewEvaluacionOutput(u models.CalificacionEstudiante) (output Response.AddNewEvaluacionResponse) {
 	return Response.AddNewEvaluacionResponse{
 		Id: u.Id,
 	}
 }
 
-func PutOneEvaluacionOutput(u Models.CalificacionEstudiante) (output Response.PutOneEvaluacionResponse) {
+func PutOneEvaluacionOutput(u models.CalificacionEstudiante) (output Response.PutOneEvaluacionResponse) {
 	return Response.PutOneEvaluacionResponse{
 		Id: u.Id,
 	}
 }
 
-func DeleteEvaluacionOutput(u Models.CalificacionEstudiante) (output Response.DeleteEvaluacionResponse) {
+func DeleteEvaluacionOutput(u models.CalificacionEstudiante) (output Response.DeleteEvaluacionResponse) {
 	return Response.DeleteEvaluacionResponse{
 		Id: u.Id,
 	}

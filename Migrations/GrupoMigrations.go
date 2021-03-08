@@ -1,21 +1,21 @@
-package Migrations
+package migrations
 
 // import (
 // 	"fmt"
 // )
 
-// func GrupoMigrations() {
+// func Grupomigrations() {
 // 	fmt.Println("===== GRUPO =====")
 
-// 	var evaluadores []Models.Evaluador
-// 	if err := Repositories.GetAllEvaluadores(&evaluadores); err != nil {
+// 	var evaluadores []models.Evaluador
+// 	if err := repositories.GetAllEvaluadores(&evaluadores); err != nil {
 // 		panic("Evaluadores no existe")
 // 	}
 
-// 	container := &Models.Grupo{
+// 	container := &models.Grupo{
 // 		Id_curso:     1,
 // 		Id_evaluador: evaluadores[0].Id,
-// 		Estudiantes_grupo: []Models.Estudiante{
+// 		Estudiantes_grupo: []models.Estudiante{
 // 			{
 // 				Id_rol:                        1,
 // 				Rut_estudiante:                "22.222.222-2",
@@ -31,7 +31,7 @@ package Migrations
 // 		Sigla_grupo:  "KAKASHI",
 // 	}
 
-// 	if err := Repositories.AddNewGrupo(container); err != nil {
+// 	if err := repositories.AddNewGrupo(container); err != nil {
 // 		panic("No se ha migrado grupo")
 // 	}
 

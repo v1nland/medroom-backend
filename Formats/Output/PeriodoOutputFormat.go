@@ -2,10 +2,10 @@ package Output
 
 import (
 	"medroom-backend/Messages/Response"
-	"medroom-backend/Models"
+	"medroom-backend/models"
 )
 
-func ListPeriodosOutput(u []Models.Periodo) (output []Response.ListPeriodosResponse) {
+func ListPeriodosOutput(u []models.Periodo) (output []Response.ListPeriodosResponse) {
 	for i := 0; i < len(u); i++ {
 		output = append(output, Response.ListPeriodosResponse{
 			Id:             u[i].Id,
@@ -16,26 +16,26 @@ func ListPeriodosOutput(u []Models.Periodo) (output []Response.ListPeriodosRespo
 	return output
 }
 
-func GetOnePeriodoOutput(u Models.Periodo) (output Response.GetOnePeriodoResponse) {
+func GetOnePeriodoOutput(u models.Periodo) (output Response.GetOnePeriodoResponse) {
 	return Response.GetOnePeriodoResponse{
 		Id:             u.Id,
 		Nombre_periodo: u.Nombre_periodo,
 	}
 }
 
-func AddNewPeriodoOutput(u Models.Periodo) (output Response.AddNewPeriodoResponse) {
+func AddNewPeriodoOutput(u models.Periodo) (output Response.AddNewPeriodoResponse) {
 	return Response.AddNewPeriodoResponse{
 		Id: u.Id,
 	}
 }
 
-func PutOnePeriodoOutput(u Models.Periodo) (output Response.PutOnePeriodoResponse) {
+func PutOnePeriodoOutput(u models.Periodo) (output Response.PutOnePeriodoResponse) {
 	return Response.PutOnePeriodoResponse{
 		Id: u.Id,
 	}
 }
 
-func DeletePeriodoOutput(u Models.Periodo) (output Response.DeletePeriodoResponse) {
+func DeletePeriodoOutput(u models.Periodo) (output Response.DeletePeriodoResponse) {
 	return Response.DeletePeriodoResponse{
 		Id: u.Id,
 	}

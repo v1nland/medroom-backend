@@ -1,40 +1,40 @@
-package Migrations
+package migrations
 
 import (
 	"fmt"
-	"medroom-backend/Models"
-	"medroom-backend/Repositories"
 	"medroom-backend/Utils"
+	"medroom-backend/models"
+	"medroom-backend/repositories"
 )
 
-func PeriodoMigrations() {
+func Periodomigrations() {
 	fmt.Println("===== PERIODO =====")
 
-	container := &Models.Periodo{
+	container := &models.Periodo{
 		Nombre_periodo: "2020-1",
 	}
 
-	if err := Repositories.AddNewPeriodo(container); err != nil {
+	if err := repositories.AddNewPeriodo(container); err != nil {
 		panic("NO SE PUDO MIGRAR PERIODO '2020-1'")
 	}
 
 	Utils.StructToString(container)
 
-	container = &Models.Periodo{
+	container = &models.Periodo{
 		Nombre_periodo: "2020-2",
 	}
 
-	if err := Repositories.AddNewPeriodo(container); err != nil {
+	if err := repositories.AddNewPeriodo(container); err != nil {
 		panic("NO SE PUDO MIGRAR PERIODO '2020-2'")
 	}
 
 	Utils.StructToString(container)
 
-	container = &Models.Periodo{
+	container = &models.Periodo{
 		Nombre_periodo: "2021-1",
 	}
 
-	if err := Repositories.AddNewPeriodo(container); err != nil {
+	if err := repositories.AddNewPeriodo(container); err != nil {
 		panic("NO SE PUDO MIGRAR PERIODO '2021-1'")
 	}
 

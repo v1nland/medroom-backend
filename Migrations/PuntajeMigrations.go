@@ -1,7 +1,7 @@
-package Migrations
+package migrations
 
 // import "fmt"
 
-// func PuntajeMigrations() {
+// func Puntajemigrations() {
 // 	fmt.Println("===== PUNTAJE =====")
 // }

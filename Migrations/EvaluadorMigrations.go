@@ -1,14 +1,14 @@
-package Migrations
+package migrations
 
-func EvaluadorMigrations() {
+func Evaluadormigrations() {
 	// fmt.Println("===== EVALUADOR =====")
 
-	// var rol Models.Rol
-	// if err := Repositories.GetOneRol(&rol, "2"); err != nil {
+	// var rol models.Rol
+	// if err := repositories.GetOneRol(&rol, "2"); err != nil {
 	// 	panic("ROL EVALUADOR NO EXISTE")
 	// }
 
-	// container := &Models.Evaluador{
+	// container := &models.Evaluador{
 	// 	Id_rol:                       2,
 	// 	Rut_evaluador:                "11.111.111-1",
 	// 	Nombres_evaluador:            "KAKASHI",
@@ -21,11 +21,11 @@ func EvaluadorMigrations() {
 	// 	Cargo_evaluador:              "SENSEI",
 	// }
 
-	// if err := Repositories.AddNewEvaluador(container); err != nil {
+	// if err := repositories.AddNewEvaluador(container); err != nil {
 	// 	panic("NO SE PUDO MIGRAR EVALUADOR 'KAKASHI'")
 	// }
 
-	// container = &Models.Evaluador{
+	// container = &models.Evaluador{
 	// 	Id_rol:                       2,
 	// 	Rut_evaluador:                "22.222.222-1",
 	// 	Nombres_evaluador:            "MIGHT",
@@ -38,11 +38,11 @@ func EvaluadorMigrations() {
 	// 	Cargo_evaluador:              "SENSEI",
 	// }
 
-	// if err := Repositories.AddNewEvaluador(container); err != nil {
+	// if err := repositories.AddNewEvaluador(container); err != nil {
 	// 	panic("NO SE PUDO MIGRAR EVALUADOR 'GAI'")
 	// }
 
-	// container = &Models.Evaluador{
+	// container = &models.Evaluador{
 	// 	Id_rol:                       2,
 	// 	Rut_evaluador:                "33.333.333-1",
 	// 	Nombres_evaluador:            "ASUMA",
@@ -55,7 +55,7 @@ func EvaluadorMigrations() {
 	// 	Cargo_evaluador:              "SENSEI",
 	// }
 
-	// if err := Repositories.AddNewEvaluador(container); err != nil {
+	// if err := repositories.AddNewEvaluador(container); err != nil {
 	// 	panic("NO SE PUDO MIGRAR EVALUADOR 'ASUMA'")
 	// }
 

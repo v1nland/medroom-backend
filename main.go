@@ -2,19 +2,19 @@ package main
 
 import (
 	"fmt"
-	"medroom-backend/Config"
-	"medroom-backend/Migrations"
-	"medroom-backend/Models"
-	"medroom-backend/Routers"
+	"medroom-backend/config"
 	"medroom-backend/docs"
-	"os"
+	"medroom-backend/migrations"
+	"medroom-backend/models"
+	"medroom-backend/routers"
 
-	"github.com/joho/godotenv"
 	swagger_files "github.com/swaggo/files"
 	gin_swagger "github.com/swaggo/gin-swagger"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
+
+var err error
 
 // @title MedRoom API
 // @version 1.0
@@ -30,74 +30,42 @@ import (
 
 // @BasePath /api/v1
 func main() {
-	err := godotenv.Load()
+	config.LoadSettings("smartSide", "microservice")
+
+	connection_string := config.GetString("POSTGRESQL_CONNECTION_STRING")
+
+	config.DB, err = gorm.Open(postgres.Open(connection_string), &gorm.Config{})
 	if err != nil {
 		fmt.Println("status error: ", err)
 	}
 
-	// connection string
-	connection_string := os.Getenv("POSTGRESQL_CONNECTION_STRING")
-
-	// open db
-	Config.DB, err = gorm.Open(postgres.Open(connection_string), &gorm.Config{})
-	if err != nil {
-		fmt.Println("status error: ", err)
+	if config.GetBool("MIGRATE_TABLES") {
+		config.DB.AutoMigrate(&models.Periodo{}, &models.Rol{}, &models.AdministradorTi{},
+			&models.AdministradorAcademico{}, &models.Evaluador{}, &models.Competencia{},
+			&models.Curso{}, &models.Grupo{}, &models.CalificacionEstudiante{}, &models.Estudiante{}, &models.Puntaje{})
 	}
 
-	if os.Getenv("MIGRATE_TABLES") == "1" {
-		Config.DB.AutoMigrate(&Models.Periodo{}, &Models.Rol{}, &Models.AdministradorTi{},
-			&Models.AdministradorAcademico{}, &Models.Evaluador{}, &Models.Competencia{},
-			&Models.Curso{}, &Models.Grupo{}, &Models.CalificacionEstudiante{}, &Models.Estudiante{}, &Models.Puntaje{})
+	if config.GetBool("MIGRATE_VALUES") {
+		migrations.Periodomigrations()
+		migrations.Rolmigrations()
+		migrations.Competenciamigrations()
+		migrations.AdministradorTimigrations()
+		migrations.AdministradorAcademicomigrations()
+		migrations.Evaluadormigrations()
+		migrations.Cursomigrations()
+		migrations.Evaluacionmigrations()
+		// migrations.Grupomigrations()
+		migrations.Estudiantemigrations()
+		migrations.CalificacionEstudiantemigrations()
+		// migrations.Puntajemigrations()
 	}
-
-	if os.Getenv("MIGRATE_VALUES") == "1" {
-		Migrations.PeriodoMigrations()
-		Migrations.RolMigrations()
-		Migrations.CompetenciaMigrations()
-		Migrations.AdministradorTiMigrations()
-		Migrations.AdministradorAcademicoMigrations()
-		Migrations.EvaluadorMigrations()
-		Migrations.CursoMigrations()
-		Migrations.EvaluacionMigrations()
-		// Migrations.GrupoMigrations()
-		Migrations.EstudianteMigrations()
-		Migrations.CalificacionEstudianteMigrations()
-		// Migrations.PuntajeMigrations()
-	}
-
-	// var curso Models.Curso
-	// if err := Repositories.GetOneCurso(&curso, "1"); err != nil {
-	// 	panic("Curso no existe")
-	// }
-
-	// fmt.Println("=============")
-	// fmt.Println("=============")
-	// Utils.StructToString(curso)
-
-	// var grupo Models.Grupo
-	// if err := Repositories.GetOneGrupo(&grupo, "1"); err != nil {
-	// 	panic("Grupo no existe")
-	// }
-
-	// fmt.Println("=============")
-	// fmt.Println("=============")
-	// Utils.StructToString(grupo)
-
-	// var administradores_academicos []Models.AdministradorAcademico
-	// if err := Repositories.GetAllAdministradoresAcademicos(&administradores_academicos); err != nil {
-	// 	panic("AdministradorAcademico no existe")
-	// }
-
-	// fmt.Println("=============")
-	// fmt.Println("=============")
-	// Utils.StructToString(administradores_academicos[0])
 
 	// setup router
-	r := Routers.SetupRouter()
+	r := routers.SetupRouter()
 
 	// swagger
-	docs.SwaggerInfo.Host = os.Getenv("SWAGGER_HOST")
-	url := gin_swagger.URL(os.Getenv("SWAGGER_PROTOCOL") + "://" + os.Getenv("SWAGGER_HOST") + "/docs/v1/doc.json")
+	docs.SwaggerInfo.Host = config.GetString("SWAGGER_HOST")
+	url := gin_swagger.URL(config.GetString("SWAGGER_PROTOCOL") + "://" + config.GetString("SWAGGER_HOST") + "/docs/v1/doc.json")
 	r.GET("/docs/v1/*any", gin_swagger.WrapHandler(swagger_files.Handler, url))
 
 	// run routes

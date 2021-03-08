@@ -1,4 +1,4 @@
-package Models
+package models
 
 type Competencia struct {
 	Id                 string `json:"id" sql:"primary_key" gorm:"primaryKey:unique;not null"`

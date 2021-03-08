@@ -1,4 +1,4 @@
-package Models
+package models
 
 import (
 	"time"
@@ -26,8 +26,3 @@ type Estudiante struct {
 func (u *Estudiante) TableName() string {
 	return "public.estudiantes"
 }
-
-// func (u *Estudiante) BeforeCreate(tx *gorm.DB) (err error) {
-// 	u.Id = uuid.NewV4().String()
-// 	return
-// }

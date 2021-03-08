@@ -1,27 +1,39 @@
-package Migrations
+package migrations
 
 import (
 	"fmt"
-	"medroom-backend/Models"
-	"medroom-backend/Repositories"
 	"medroom-backend/Utils"
+	"medroom-backend/models"
+	"medroom-backend/repositories"
 )
 
-func CursoMigrations() {
+func Cursomigrations() {
 	fmt.Println("===== CURSO =====")
 
-	container := &Models.Curso{
+	container := &models.Curso{
 		Id_periodo: 1,
-		Grupos_curso: []Models.Grupo{
+		Administradores_academicos_curso: []models.AdministradorAcademico{
 			{
-				Evaluaciones_grupo: []Models.Evaluacion{},
-				Evaluadores_grupo:  []Models.Evaluador{},
-				Estudiantes_grupo:  []Models.Estudiante{},
+				Id_rol:                                     3,
+				Rut_administrador_academico:                "44.444.444-4",
+				Nombres_administrador_academico:            "NOMBRE ADMINISTRADOR",
+				Apellidos_administrador_academico:          "APELLIDO ACADEMICO",
+				Hash_contrasena_administrador_academico:    "d04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa",
+				Correo_electronico_administrador_academico: "ADMINISTRADOR.ACADEMICO@MAIL.UDP.CL",
+				Telefono_fijo_administrador_academico:      "12345678",
+				Telefono_celular_administrador_academico:   "12345678",
+			},
+		},
+		Grupos_curso: []models.Grupo{
+			{
+				Evaluaciones_grupo: []models.Evaluacion{},
+				Evaluadores_grupo:  []models.Evaluador{},
+				Estudiantes_grupo:  []models.Estudiante{},
 				Nombre_grupo:       "SIN GRUPO",
 				Sigla_grupo:        "SG",
 			},
 			{
-				Evaluadores_grupo: []Models.Evaluador{
+				Evaluadores_grupo: []models.Evaluador{
 					{
 						Id_rol:                       2,
 						Rut_evaluador:                "11.111.111-1",
@@ -47,7 +59,7 @@ func CursoMigrations() {
 						Cargo_evaluador:              "ASISTENTE DE SENSEI",
 					},
 				},
-				Estudiantes_grupo: []Models.Estudiante{
+				Estudiantes_grupo: []models.Estudiante{
 					{
 						Id_rol:                        1,
 						Rut_estudiante:                "44.444.444-1",
@@ -98,22 +110,22 @@ func CursoMigrations() {
 		Estado_curso: true,
 	}
 
-	if err := Repositories.AddNewCurso(container); err != nil {
+	if err := repositories.AddNewCurso(container); err != nil {
 		panic("NO SE PUDO MIGRAR CURSO 'NINJUTSU'")
 	}
 
-	container = &Models.Curso{
+	container = &models.Curso{
 		Id_periodo: 1,
-		Grupos_curso: []Models.Grupo{
+		Grupos_curso: []models.Grupo{
 			{
-				Evaluaciones_grupo: []Models.Evaluacion{},
-				Evaluadores_grupo:  []Models.Evaluador{},
-				Estudiantes_grupo:  []Models.Estudiante{},
+				Evaluaciones_grupo: []models.Evaluacion{},
+				Evaluadores_grupo:  []models.Evaluador{},
+				Estudiantes_grupo:  []models.Estudiante{},
 				Nombre_grupo:       "SIN GRUPO",
 				Sigla_grupo:        "SG",
 			},
 			{
-				Evaluadores_grupo: []Models.Evaluador{
+				Evaluadores_grupo: []models.Evaluador{
 					{
 						Id_rol:                       2,
 						Rut_evaluador:                "22.222.222-1",
@@ -127,7 +139,7 @@ func CursoMigrations() {
 						Cargo_evaluador:              "SENSEI",
 					},
 				},
-				Estudiantes_grupo: []Models.Estudiante{
+				Estudiantes_grupo: []models.Estudiante{
 					{
 						Id_rol:                        1,
 						Rut_estudiante:                "88.888.888-1",
@@ -168,22 +180,22 @@ func CursoMigrations() {
 		Estado_curso: true,
 	}
 
-	if err := Repositories.AddNewCurso(container); err != nil {
+	if err := repositories.AddNewCurso(container); err != nil {
 		panic("NO SE PUDO MIGRAR CURSO 'NINJUTSU AVANZADO'")
 	}
 
-	container = &Models.Curso{
+	container = &models.Curso{
 		Id_periodo: 1,
-		Grupos_curso: []Models.Grupo{
+		Grupos_curso: []models.Grupo{
 			{
-				Evaluaciones_grupo: []Models.Evaluacion{},
-				Evaluadores_grupo:  []Models.Evaluador{},
-				Estudiantes_grupo:  []Models.Estudiante{},
+				Evaluaciones_grupo: []models.Evaluacion{},
+				Evaluadores_grupo:  []models.Evaluador{},
+				Estudiantes_grupo:  []models.Estudiante{},
 				Nombre_grupo:       "SIN GRUPO",
 				Sigla_grupo:        "SG",
 			},
 			{
-				Evaluadores_grupo: []Models.Evaluador{
+				Evaluadores_grupo: []models.Evaluador{
 					{
 						Id_rol:                       2,
 						Rut_evaluador:                "33.333.333-1",
@@ -197,7 +209,7 @@ func CursoMigrations() {
 						Cargo_evaluador:              "SENSEI",
 					},
 				},
-				Estudiantes_grupo: []Models.Estudiante{
+				Estudiantes_grupo: []models.Estudiante{
 					{
 						Id_rol:                        1,
 						Rut_estudiante:                "22.222.222-2",
@@ -238,7 +250,7 @@ func CursoMigrations() {
 		Estado_curso: true,
 	}
 
-	if err := Repositories.AddNewCurso(container); err != nil {
+	if err := repositories.AddNewCurso(container); err != nil {
 		panic("NO SE PUDO MIGRAR CURSO 'NINJUTSU MEDICO'")
 	}
 

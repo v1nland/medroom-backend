@@ -67,3 +67,23 @@ type AddEstudianteToCursoResponse struct {
 type AddEvaluadorToCursoResponse struct {
 	Id int `json:"id"`
 }
+
+type AddAdministradorAcademicoToCursoResponse struct {
+	Id int `json:"id"`
+}
+
+type GetCursosAdministradorAcademicoResponse struct {
+	Id            int                   `json:"id"`
+	Periodo_curso GetOnePeriodoResponse `json:"periodo_curso"`
+	Grupos_curso  []ListGruposResponse  `json:"grupos_curso"`
+	Nombre_curso  string                `json:"nombre_curso"`
+	Sigla_curso   string                `json:"sigla_curso"`
+}
+
+type GetOneCursoAdministradorAcademicoResponse struct {
+	Id            int                   `json:"id"`
+	Periodo_curso GetOnePeriodoResponse `json:"periodo_curso"`
+	Grupos_curso  []ListGruposResponse  `json:"grupos_curso"`
+	Nombre_curso  string                `json:"nombre_curso"`
+	Sigla_curso   string                `json:"sigla_curso"`
+}

@@ -1,26 +1,26 @@
-package Migrations
+package migrations
 
 import (
 	"fmt"
-	"medroom-backend/Models"
-	"medroom-backend/Repositories"
 	"medroom-backend/Utils"
+	"medroom-backend/models"
+	"medroom-backend/repositories"
 )
 
-func CalificacionEstudianteMigrations() {
+func CalificacionEstudiantemigrations() {
 	fmt.Println("===== CALIFICACION ESTUDIANTE =====")
 
-	var grupos []Models.Grupo
-	if err := Repositories.GetAllGrupos(&grupos); err != nil {
+	var grupos []models.Grupo
+	if err := repositories.GetAllGrupos(&grupos); err != nil {
 		panic("NO EXISTEN GRUPOS")
 	}
 
-	container := &Models.CalificacionEstudiante{
+	container := &models.CalificacionEstudiante{
 		Id_estudiante: grupos[1].Estudiantes_grupo[0].Id,
 		Id_evaluador:  grupos[1].Evaluadores_grupo[0].Id,
 		Id_evaluacion: 1,
 		Id_periodo:    1,
-		Puntajes_calificacion_estudiante: []Models.Puntaje{
+		Puntajes_calificacion_estudiante: []models.Puntaje{
 			{
 				Id_competencia:       "ANAM",
 				Calificacion_puntaje: 9,
@@ -68,7 +68,7 @@ func CalificacionEstudianteMigrations() {
 		Tiempo_utilizado_calificacion_estudiante:             10,
 	}
 
-	if err := Repositories.AddNewCalificacionEstudiante(container); err != nil {
+	if err := repositories.AddNewCalificacionEstudiante(container); err != nil {
 		panic("NO SE PUDO MIGRAR CALIFICACION ESTUDIANTE")
 	}
 

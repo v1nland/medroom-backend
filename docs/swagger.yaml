@@ -1,6 +1,6 @@
 basePath: /api/v1
 definitions:
-  ApiHelpers.ResponseError:
+  api_helpers.ResponseError:
     properties:
       description:
         type: string
@@ -356,6 +356,11 @@ definitions:
       nombre_rol:
         type: string
     type: object
+  Response.AddAdministradorAcademicoToCursoResponse:
+    properties:
+      id:
+        type: integer
+    type: object
   Response.AddEstudianteToCursoResponse:
     properties:
       id:
@@ -515,6 +520,21 @@ definitions:
           type: array
         type: object
     type: object
+  Response.GetCursosAdministradorAcademicoResponse:
+    properties:
+      grupos_curso:
+        items:
+          $ref: '#/definitions/Response.ListGruposResponse'
+        type: array
+      id:
+        type: integer
+      nombre_curso:
+        type: string
+      periodo_curso:
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
+      sigla_curso:
+        type: string
+    type: object
   Response.GetCursosEstudianteResponse:
     properties:
       grupos_curso:
@@ -543,6 +563,23 @@ definitions:
       periodo_curso:
         $ref: '#/definitions/Response.GetOnePeriodoResponse'
       sigla_curso:
+        type: string
+    type: object
+  Response.GetGruposAdministradorAcademicoResponse:
+    properties:
+      estudiantes_grupo:
+        items:
+          $ref: '#/definitions/Response.ListEstudiantesResponse'
+        type: array
+      evaluador_grupo:
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      id:
+        type: integer
+      id_curso:
+        type: integer
+      nombre_grupo:
+        type: string
+      sigla_grupo:
         type: string
     type: object
   Response.GetGruposEstudianteResponse:
@@ -703,6 +740,21 @@ definitions:
       telefono_fijo_administrador_ti:
         type: string
     type: object
+  Response.GetOneCursoAdministradorAcademicoResponse:
+    properties:
+      grupos_curso:
+        items:
+          $ref: '#/definitions/Response.ListGruposResponse'
+        type: array
+      id:
+        type: integer
+      nombre_curso:
+        type: string
+      periodo_curso:
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
+      sigla_curso:
+        type: string
+    type: object
   Response.GetOneCursoEstudianteResponse:
     properties:
       grupos_curso:
@@ -794,6 +846,23 @@ definitions:
       telefono_celular_evaluador:
         type: string
       telefono_fijo_evaluador:
+        type: string
+    type: object
+  Response.GetOneGrupoAdministradorAcademicoResponse:
+    properties:
+      estudiantes_grupo:
+        items:
+          $ref: '#/definitions/Response.ListEstudiantesResponse'
+        type: array
+      evaluador_grupo:
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      id:
+        type: integer
+      id_curso:
+        type: integer
+      nombre_grupo:
+        type: string
+      sigla_grupo:
         type: string
     type: object
   Response.GetOneGrupoEstudianteResponse:
@@ -1250,6 +1319,15 @@ definitions:
       id:
         type: integer
     type: object
+  Swagger.AddAdministradorAcademicoToCursoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.AddAdministradorAcademicoToCursoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
   Swagger.AddEstudianteToCursoSwagger:
     properties:
       data:
@@ -1475,6 +1553,15 @@ definitions:
       status:
         type: boolean
     type: object
+  Swagger.GetCursosAdministradorAcademicoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetCursosAdministradorAcademicoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
   Swagger.GetCursosEstudianteSwagger:
     properties:
       data:
@@ -1488,6 +1575,15 @@ definitions:
     properties:
       data:
         $ref: '#/definitions/Response.GetCursosEvaluadorResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetGruposAdministradorAcademicoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetGruposAdministradorAcademicoResponse'
       meta:
         type: string
       status:
@@ -1565,6 +1661,15 @@ definitions:
       status:
         type: boolean
     type: object
+  Swagger.GetOneCursoAdministradorAcademicoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetOneCursoAdministradorAcademicoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
   Swagger.GetOneCursoEstudianteSwagger:
     properties:
       data:
@@ -1605,6 +1710,15 @@ definitions:
     properties:
       data:
         $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetOneGrupoAdministradorAcademicoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetOneGrupoAdministradorAcademicoResponse'
       meta:
         type: string
       status:
@@ -1910,7 +2024,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de estudiantes de un curso
       tags:
       - 05 - Administración Académica
@@ -1931,7 +2045,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de estudiantes de un curso sin grupo
       tags:
       - 05 - Administración Académica
@@ -1966,7 +2080,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica los grupos de un estudiante
       tags:
       - 05 - Administración Académica
@@ -2001,7 +2115,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica los grupos de un evaluador
       tags:
       - 05 - Administración Académica
@@ -2022,7 +2136,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de grupos
       tags:
       - 05 - Administración Académica
@@ -2047,7 +2161,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Agrega un nuevo grupo
       tags:
       - 05 - Administración Académica
@@ -2072,7 +2186,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Elimina un grupo
       tags:
       - 05 - Administración Académica
@@ -2096,7 +2210,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un grupo
       tags:
       - 05 - Administración Académica
@@ -2126,7 +2240,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica un grupo
       tags:
       - 05 - Administración Académica
@@ -2154,7 +2268,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Autenticación de administrador académico
       tags:
       - 01 - Autenticación
@@ -2173,7 +2287,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene el perfil del administrador academico
       tags:
       - 04 - Administración Academica
@@ -2199,10 +2313,109 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica mi perfil
       tags:
       - 04 - Administración Academica
+  /administracion-academica/me/cursos:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene los cursos de un administrador academico según su token
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetCursosAdministradorAcademicoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Obtiene los cursos de un administrador academico
+      tags:
+      - 05 - Administración Académica
+  /administracion-academica/me/cursos/{id_curso}:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un curso de un administrador academico según su token
+      parameters:
+      - description: Id del curso a buscar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetOneCursoAdministradorAcademicoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Obtiene un curso de un administrador academico
+      tags:
+      - 05 - Administración Académica
+  /administracion-academica/me/cursos/{id_curso}/grupos:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene los grupos de un administrador academico según su token
+      parameters:
+      - description: Id del curso a buscar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetGruposAdministradorAcademicoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Obtiene los grupos de un administrador academico
+      tags:
+      - 05 - Administración Académica
+  /administracion-academica/me/cursos/{id_curso}/grupos/{id_grupo}:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un grupo de un administrador academico según su token
+      parameters:
+      - description: Id del curso a buscar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: Id del grupo a buscar
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetOneGrupoAdministradorAcademicoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Obtiene un grupo de un administrador academico
+      tags:
+      - 05 - Administración Académica
   /administracion-ti/administradores-academicos:
     get:
       consumes:
@@ -2220,7 +2433,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de administradores-academicos
       tags:
       - 05 - Administración Ti
@@ -2245,7 +2458,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Agrega un nuevo administrador_academico
       tags:
       - 05 - Administración Ti
@@ -2270,7 +2483,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Elimina un administrador_academico
       tags:
       - 05 - Administración Ti
@@ -2294,7 +2507,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un administrador_academico
       tags:
       - 05 - Administración Ti
@@ -2324,7 +2537,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica un administrador_academico
       tags:
       - 05 - Administración Ti
@@ -2345,7 +2558,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de administradores-ti
       tags:
       - 05 - Administración Ti
@@ -2370,7 +2583,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Agrega un nuevo administrador_ti
       tags:
       - 05 - Administración Ti
@@ -2395,7 +2608,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Elimina un administrador_ti
       tags:
       - 05 - Administración Ti
@@ -2419,7 +2632,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un administrador_ti
       tags:
       - 05 - Administración Ti
@@ -2449,7 +2662,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica un administrador_ti
       tags:
       - 05 - Administración Ti
@@ -2470,7 +2683,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de cursos
       tags:
       - 05 - Administración Ti
@@ -2495,7 +2708,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Agrega un nuevo curso
       tags:
       - 05 - Administración Ti
@@ -2520,7 +2733,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Elimina un curso
       tags:
       - 05 - Administración Ti
@@ -2544,7 +2757,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un curso
       tags:
       - 05 - Administración Ti
@@ -2574,8 +2787,39 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica un curso
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/cursos/{id_curso}/administradores-academicos/{uuid_administrador_academico}:
+    put:
+      consumes:
+      - application/json
+      description: Modifica los cursos de un administrador_academico con los datos
+        entregados
+      parameters:
+      - description: ID del curso a modificar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: UUID del administrador_academico a asociar
+        in: path
+        name: uuid_administrador_academico
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.AddAdministradorAcademicoToCursoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Modifica los cursos de un administrador_academico
       tags:
       - 05 - Administración Ti
   /administracion-ti/cursos/{id_curso}/estudiantes/{uuid_estudiante}:
@@ -2604,7 +2848,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica los cursos de un estudiante
       tags:
       - 05 - Administración Ti
@@ -2634,7 +2878,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica los cursos de un evaluador
       tags:
       - 05 - Administración Ti
@@ -2655,7 +2899,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de estudiantes
       tags:
       - 05 - Administración Ti
@@ -2680,7 +2924,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Agrega un nuevo estudiante
       tags:
       - 05 - Administración Ti
@@ -2705,7 +2949,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Elimina un estudiante
       tags:
       - 05 - Administración Ti
@@ -2729,7 +2973,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un estudiante
       tags:
       - 05 - Administración Ti
@@ -2759,7 +3003,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica un estudiante
       tags:
       - 05 - Administración Ti
@@ -2780,7 +3024,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de evaluadores
       tags:
       - 05 - Administración Ti
@@ -2805,7 +3049,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Agrega un nuevo evaluador
       tags:
       - 05 - Administración Ti
@@ -2830,7 +3074,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Elimina un evaluador
       tags:
       - 05 - Administración Ti
@@ -2854,7 +3098,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un evaluador
       tags:
       - 05 - Administración Ti
@@ -2884,7 +3128,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica un evaluador
       tags:
       - 05 - Administración Ti
@@ -2912,7 +3156,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Autenticación de administrador ti
       tags:
       - 01 - Autenticación
@@ -2931,7 +3175,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene el perfil del administrador ti
       tags:
       - 05 - Administración Ti
@@ -2956,7 +3200,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica mi perfil
       tags:
       - 05 - Administración Ti
@@ -2982,7 +3226,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Agrega un nuevo periodo
       tags:
       - 05 - Administración Ti
@@ -3007,7 +3251,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Elimina un periodo
       tags:
       - 05 - Administración Ti
@@ -3037,7 +3281,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica un periodo
       tags:
       - 05 - Administración Ti
@@ -3063,7 +3307,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Agrega un nuevo rol
       tags:
       - 05 - Administración Ti
@@ -3088,7 +3332,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Elimina un rol
       tags:
       - 05 - Administración Ti
@@ -3118,7 +3362,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica un rol
       tags:
       - 05 - Administración Ti
@@ -3146,7 +3390,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Autenticación de estudiante
       tags:
       - 01 - Autenticación
@@ -3165,7 +3409,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene el perfil del estudiante
       tags:
       - 02 - Estudiantes
@@ -3190,7 +3434,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica mi perfil
       tags:
       - 02 - Estudiantes
@@ -3209,7 +3453,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene los cursos de un estudiante
       tags:
       - 02 - Estudiantes
@@ -3234,7 +3478,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un curso de un estudiante
       tags:
       - 02 - Estudiantes
@@ -3259,7 +3503,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene los grupos de un estudiante
       tags:
       - 02 - Estudiantes
@@ -3289,7 +3533,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un grupo de un estudiante
       tags:
       - 02 - Estudiantes
@@ -3321,7 +3565,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Evolución por competencia
       tags:
       - 02 - Estudiantes
@@ -3353,7 +3597,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Evolución por evaluacion
       tags:
       - 02 - Estudiantes
@@ -3386,7 +3630,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de evaluaciones de un grupo
       tags:
       - 02 - Estudiantes
@@ -3423,7 +3667,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene una calificación
       tags:
       - 02 - Estudiantes
@@ -3451,7 +3695,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Autenticación de evaluador
       tags:
       - 01 - Autenticación
@@ -3470,7 +3714,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene el perfil del evaluador
       tags:
       - 03 - Evaluadores
@@ -3495,7 +3739,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica mi perfil
       tags:
       - 03 - Evaluadores
@@ -3514,7 +3758,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene los cursos de un evaluador
       tags:
       - 03 - Evaluadores
@@ -3539,7 +3783,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un curso de un evaluador
       tags:
       - 03 - Evaluadores
@@ -3564,7 +3808,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene los grupos de un evaluador
       tags:
       - 03 - Evaluadores
@@ -3594,7 +3838,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un grupo de un evaluador
       tags:
       - 03 - Evaluadores
@@ -3642,7 +3886,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Califica un estudiante
       tags:
       - 03 - Evaluadores
@@ -3675,7 +3919,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de evaluaciones de un grupo
       tags:
       - 03 - Evaluadores
@@ -3712,7 +3956,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Agrega una evaluación
       tags:
       - 03 - Evaluadores
@@ -3733,7 +3977,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de periodos
       tags:
       - 00 - Rutas públicas
@@ -3758,7 +4002,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un periodo
       tags:
       - 00 - Rutas públicas
@@ -3779,7 +4023,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de roles
       tags:
       - 00 - Rutas públicas
@@ -3804,7 +4048,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un rol
       tags:
       - 00 - Rutas públicas

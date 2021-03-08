@@ -2,10 +2,10 @@ package Output
 
 import (
 	"medroom-backend/Messages/Response"
-	"medroom-backend/Models"
+	"medroom-backend/models"
 )
 
-func ListEstudiantesOutput(u []Models.Estudiante) (output []Response.ListEstudiantesResponse) {
+func ListEstudiantesOutput(u []models.Estudiante) (output []Response.ListEstudiantesResponse) {
 	for i := 0; i < len(u); i++ {
 		output = append(output, Response.ListEstudiantesResponse{
 			Id:                            u[i].Id,
@@ -23,7 +23,7 @@ func ListEstudiantesOutput(u []Models.Estudiante) (output []Response.ListEstudia
 	return output
 }
 
-func GetOneEstudianteOutput(u Models.Estudiante) (output Response.GetOneEstudianteResponse) {
+func GetOneEstudianteOutput(u models.Estudiante) (output Response.GetOneEstudianteResponse) {
 	return Response.GetOneEstudianteResponse{
 		Rol_estudiante:                GetOneRolOutput(u.Rol_estudiante),
 		Evaluaciones_estudiante:       ListEvaluacionesEstudianteOutput(u.Calificaciones_estudiante),
@@ -36,7 +36,7 @@ func GetOneEstudianteOutput(u Models.Estudiante) (output Response.GetOneEstudian
 	}
 }
 
-func GetMyEstudianteOutput(u Models.Estudiante) (output Response.GetMyEstudianteResponse) {
+func GetMyEstudianteOutput(u models.Estudiante) (output Response.GetMyEstudianteResponse) {
 	return Response.GetMyEstudianteResponse{
 		Rol_estudiante:                GetOneRolOutput(u.Rol_estudiante),
 		Evaluaciones_estudiante:       ListEvaluacionesEstudianteOutput(u.Calificaciones_estudiante),
@@ -49,25 +49,25 @@ func GetMyEstudianteOutput(u Models.Estudiante) (output Response.GetMyEstudiante
 	}
 }
 
-func AddNewEstudianteOutput(u Models.Estudiante) (output Response.AddNewEstudianteResponse) {
+func AddNewEstudianteOutput(u models.Estudiante) (output Response.AddNewEstudianteResponse) {
 	return Response.AddNewEstudianteResponse{
 		Id: u.Id,
 	}
 }
 
-func PutOneEstudianteOutput(u Models.Estudiante) (output Response.PutOneEstudianteResponse) {
+func PutOneEstudianteOutput(u models.Estudiante) (output Response.PutOneEstudianteResponse) {
 	return Response.PutOneEstudianteResponse{
 		Id: u.Id,
 	}
 }
 
-func DeleteEstudianteOutput(u Models.Estudiante) (output Response.DeleteEstudianteResponse) {
+func DeleteEstudianteOutput(u models.Estudiante) (output Response.DeleteEstudianteResponse) {
 	return Response.DeleteEstudianteResponse{
 		Id: u.Id,
 	}
 }
 
-func PutMyEstudianteOutput(u Models.Estudiante) (output Response.PutMyEstudianteResponse) {
+func PutMyEstudianteOutput(u models.Estudiante) (output Response.PutMyEstudianteResponse) {
 	return Response.PutMyEstudianteResponse{
 		Id: u.Id,
 	}

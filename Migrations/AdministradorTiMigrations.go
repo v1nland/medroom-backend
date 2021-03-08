@@ -1,21 +1,21 @@
-package Migrations
+package migrations
 
 import (
 	"fmt"
-	"medroom-backend/Models"
-	"medroom-backend/Repositories"
 	"medroom-backend/Utils"
+	"medroom-backend/models"
+	"medroom-backend/repositories"
 )
 
-func AdministradorTiMigrations() {
+func AdministradorTimigrations() {
 	fmt.Println("===== ADMINISTRADOR TI =====")
 
-	var rol Models.Rol
-	if err := Repositories.GetOneRol(&rol, "4"); err != nil {
+	var rol models.Rol
+	if err := repositories.GetOneRol(&rol, "4"); err != nil {
 		panic("ROL ADMINISTRADOR TI NO EXISTE")
 	}
 
-	container := &Models.AdministradorTi{
+	container := &models.AdministradorTi{
 		Rol_administrador_ti:                rol,
 		Rut_administrador_ti:                "11.111.111-1",
 		Nombres_administrador_ti:            "NOMBRE ADMINISTRADOR",
@@ -26,7 +26,7 @@ func AdministradorTiMigrations() {
 		Telefono_celular_administrador_ti:   "12345678",
 	}
 
-	if err := Repositories.AddNewAdministradorTi(container); err != nil {
+	if err := repositories.AddNewAdministradorTi(container); err != nil {
 		panic("NO SE PUDO MIGRAR ADMINISTRADOR TI")
 	}
 
