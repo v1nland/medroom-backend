@@ -48,6 +48,6 @@ func AddNewCurso(c *gin.Context) {
 		return
 	}
 
-	// api_helpers.RespondJSON(c, 200, Output.AddNewCursoOutput(model_container))
+	// api_helpers.RespondJSON(c, 200, f_output.AddNewCurso(model_container))
 	api_helpers.RespondJSON(c, 200, curso)
 }

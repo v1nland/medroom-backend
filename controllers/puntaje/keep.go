@@ -4,7 +4,7 @@ package puntaje
 	"medroom-backend/api_helpers"
 	"medroom-backend/formats/f_input"
 	"medroom-backend/models"
-	"medroom-backend/formats/Output"
+	"medroom-backend/formats/f_output"
 	"medroom-backend/repositories"
 	"medroom-backend/RequestMessages"
 	"medroom-backend/Utils"
@@ -33,7 +33,7 @@ func ListPuntajes(c *gin.Context) {
 	}
 
 	// output
-	api_helpers.RespondJSON(c, 200, Output.GetPuntajesOutput(container))
+	api_helpers.RespondJSON(c, 200, f_output.GetPuntajes(container))
 }
 
 // @Summary Obtiene un puntaje
@@ -61,7 +61,7 @@ func GetOnePuntaje(c *gin.Context) {
 	}
 
 	// output
-	api_helpers.RespondJSON(c, 200, Output.GetOnePuntajeOutput(container))
+	api_helpers.RespondJSON(c, 200, f_output.GetOnePuntaje(container))
 }
 
 // @Summary Agrega un nuevo puntaje
@@ -103,7 +103,7 @@ func AddNewPuntaje(c *gin.Context) {
 	}
 
 	// output
-	api_helpers.RespondJSON(c, 200, Output.AddNewPuntajeOutput(model_container))
+	api_helpers.RespondJSON(c, 200, f_output.AddNewPuntaje(model_container))
 }
 
 // @Summary Modifica un puntaje
@@ -166,7 +166,7 @@ func PutOnePuntaje(c *gin.Context) {
 	}
 
 	// output
-	api_helpers.RespondJSON(c, 200, Output.PutOnePuntajeOutput(model_container))
+	api_helpers.RespondJSON(c, 200, f_output.PutOnePuntaje(model_container))
 }
 
 // @Summary Elimina un puntaje
@@ -201,5 +201,5 @@ func DeletePuntaje(c *gin.Context) {
 	}
 
 	// output
-	api_helpers.RespondJSON(c, 200, Output.DeletePuntajeOutput(container))
+	api_helpers.RespondJSON(c, 200, f_output.DeletePuntaje(container))
 } */

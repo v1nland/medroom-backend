@@ -78,6 +78,6 @@ func AddNewCalificacionEstudiante(c *gin.Context) {
 		return
 	}
 
-	// api_helpers.RespondJSON(c, 200, Output.ListEvaluacionesEstudianteOutput(model))
+	// api_helpers.RespondJSON(c, 200, f_output.ListEvaluacionesEstudiante(model))
 	api_helpers.RespondJSON(c, 200, model)
 }

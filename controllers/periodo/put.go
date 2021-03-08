@@ -4,8 +4,8 @@ import (
 	"medroom-backend/Messages/Request"
 	"medroom-backend/Utils"
 	"medroom-backend/api_helpers"
-	"medroom-backend/formats/Output"
 	"medroom-backend/formats/f_input"
+	"medroom-backend/formats/f_output"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 
@@ -49,5 +49,5 @@ func PutOnePeriodo(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, Output.PutOnePeriodoOutput(periodo))
+	api_helpers.RespondJSON(c, 200, f_output.PutOnePeriodo(periodo))
 }

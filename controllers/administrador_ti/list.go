@@ -2,7 +2,7 @@ package administrador_ti
 
 import (
 	"medroom-backend/api_helpers"
-	"medroom-backend/formats/Output"
+	"medroom-backend/formats/f_output"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 
@@ -24,5 +24,5 @@ func ListAdministradoresTi(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, Output.ListAdministradoresTiOutput(administradores_ti))
+	api_helpers.RespondJSON(c, 200, f_output.ListAdministradoresTi(administradores_ti))
 }

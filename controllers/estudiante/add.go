@@ -44,6 +44,6 @@ func AddNewEstudiante(c *gin.Context) {
 		return
 	}
 
-	// api_helpers.RespondJSON(c, 200, Output.AddNewEstudianteOutput(model))
+	// api_helpers.RespondJSON(c, 200, f_output.AddNewEstudiante(model))
 	api_helpers.RespondJSON(c, 200, estudiante)
 }

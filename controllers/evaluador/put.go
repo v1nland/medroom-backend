@@ -70,6 +70,6 @@ func PutOneEvaluador(c *gin.Context) {
 		return
 	}
 
-	// api_helpers.RespondJSON(c, 200, Output.PutOneEvaluadorOutput(model))
+	// api_helpers.RespondJSON(c, 200, f_output.PutOneEvaluador(model))
 	api_helpers.RespondJSON(c, 200, evaluador)
 }

@@ -35,6 +35,6 @@ func GetOneCursoAdministradorAcademico(c *gin.Context) {
 		return
 	}
 
-	// api_helpers.RespondJSON(c, 200, Output.GetCursoEstudianteOutput(cursos))
+	// api_helpers.RespondJSON(c, 200, f_output.GetCursoEstudiante(cursos))
 	api_helpers.RespondJSON(c, 200, curso)
 }

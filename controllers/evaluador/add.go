@@ -47,6 +47,6 @@ func AddNewEvaluador(c *gin.Context) {
 		return
 	}
 
-	// api_helpers.RespondJSON(c, 200, Output.AddNewEvaluadorOutput(model))
+	// api_helpers.RespondJSON(c, 200, f_output.AddNewEvaluador(model))
 	api_helpers.RespondJSON(c, 200, model)
 }

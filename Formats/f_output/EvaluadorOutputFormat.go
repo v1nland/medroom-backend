@@ -1,14 +1,14 @@
-package Output
+package f_output
 
 import (
 	"medroom-backend/Messages/Response"
 	"medroom-backend/models"
 )
 
-func ListEvaluadoresOutput(u []models.Evaluador) (output []Response.ListEvaluadoresResponse) {
+func ListEvaluadores(u []models.Evaluador) (output []Response.ListEvaluadoresResponse) {
 	for i := 0; i < len(u); i++ {
 		output = append(output, Response.ListEvaluadoresResponse{
-			Rol_evaluador:                GetOneRolOutput(u[i].Rol_evaluador),
+			Rol_evaluador:                GetOneRol(u[i].Rol_evaluador),
 			Rut_evaluador:                u[i].Rut_evaluador,
 			Nombres_evaluador:            u[i].Nombres_evaluador,
 			Apellidos_evaluador:          u[i].Apellidos_evaluador,
@@ -23,9 +23,9 @@ func ListEvaluadoresOutput(u []models.Evaluador) (output []Response.ListEvaluado
 	return output
 }
 
-func GetOneEvaluadorOutput(u models.Evaluador) (output Response.GetOneEvaluadorResponse) {
+func GetOneEvaluador(u models.Evaluador) (output Response.GetOneEvaluadorResponse) {
 	return Response.GetOneEvaluadorResponse{
-		Rol_evaluador:                GetOneRolOutput(u.Rol_evaluador),
+		Rol_evaluador:                GetOneRol(u.Rol_evaluador),
 		Rut_evaluador:                u.Rut_evaluador,
 		Nombres_evaluador:            u.Nombres_evaluador,
 		Apellidos_evaluador:          u.Apellidos_evaluador,
@@ -37,9 +37,9 @@ func GetOneEvaluadorOutput(u models.Evaluador) (output Response.GetOneEvaluadorR
 	}
 }
 
-func GetMyEvaluadorOutput(u models.Evaluador) (output Response.GetMyEvaluadorResponse) {
+func GetMyEvaluador(u models.Evaluador) (output Response.GetMyEvaluadorResponse) {
 	return Response.GetMyEvaluadorResponse{
-		Rol_evaluador:                GetOneRolOutput(u.Rol_evaluador),
+		Rol_evaluador:                GetOneRol(u.Rol_evaluador),
 		Rut_evaluador:                u.Rut_evaluador,
 		Nombres_evaluador:            u.Nombres_evaluador,
 		Apellidos_evaluador:          u.Apellidos_evaluador,
@@ -51,25 +51,25 @@ func GetMyEvaluadorOutput(u models.Evaluador) (output Response.GetMyEvaluadorRes
 	}
 }
 
-func AddNewEvaluadorOutput(u models.Evaluador) (output Response.AddNewEvaluadorResponse) {
+func AddNewEvaluador(u models.Evaluador) (output Response.AddNewEvaluadorResponse) {
 	return Response.AddNewEvaluadorResponse{
 		Id: u.Id,
 	}
 }
 
-func PutOneEvaluadorOutput(u models.Evaluador) (output Response.PutOneEvaluadorResponse) {
+func PutOneEvaluador(u models.Evaluador) (output Response.PutOneEvaluadorResponse) {
 	return Response.PutOneEvaluadorResponse{
 		Id: u.Id,
 	}
 }
 
-func DeleteEvaluadorOutput(u models.Evaluador) (output Response.DeleteEvaluadorResponse) {
+func DeleteEvaluador(u models.Evaluador) (output Response.DeleteEvaluadorResponse) {
 	return Response.DeleteEvaluadorResponse{
 		Id: u.Id,
 	}
 }
 
-func PutMyEvaluadorOutput(u models.Evaluador) (output Response.PutMyEvaluadorResponse) {
+func PutMyEvaluador(u models.Evaluador) (output Response.PutMyEvaluadorResponse) {
 	return Response.PutMyEvaluadorResponse{
 		Id: u.Id,
 	}

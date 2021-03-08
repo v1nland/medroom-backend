@@ -31,6 +31,6 @@ func GetOneAdministradorAcademico(c *gin.Context) {
 		}
 	}
 
-	// api_helpers.RespondJSON(c, 200, Output.GetOneAdministradorAcademicoOutput(container))
+	// api_helpers.RespondJSON(c, 200, f_output.GetOneAdministradorAcademico(container))
 	api_helpers.RespondJSON(c, 200, container)
 }

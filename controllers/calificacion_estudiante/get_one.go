@@ -37,6 +37,6 @@ func GetOneCalificacionEstudiante(c *gin.Context) {
 		return
 	}
 
-	// api_helpers.RespondJSON(c, 200, Output.ListEvaluacionesEstudianteOutput(calificacion_estudiante))
+	// api_helpers.RespondJSON(c, 200, f_output.ListEvaluacionesEstudiante(calificacion_estudiante))
 	api_helpers.RespondJSON(c, 200, calificacion_estudiante)
 }

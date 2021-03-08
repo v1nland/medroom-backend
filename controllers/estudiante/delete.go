@@ -43,6 +43,6 @@ func DeleteEstudiante(c *gin.Context) {
 		return
 	}
 
-	// api_helpers.RespondJSON(c, 200, Output.DeleteEstudianteOutput(container))
+	// api_helpers.RespondJSON(c, 200, f_output.DeleteEstudiante(container))
 	api_helpers.RespondJSON(c, 200, estudiante)
 }

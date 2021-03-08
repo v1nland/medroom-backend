@@ -4,8 +4,8 @@ import (
 	"medroom-backend/Messages/Request"
 	"medroom-backend/Utils"
 	"medroom-backend/api_helpers"
-	"medroom-backend/formats/Output"
 	"medroom-backend/formats/f_input"
+	"medroom-backend/formats/f_output"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 
@@ -58,5 +58,5 @@ func PutOneAdministradorAcademico(c *gin.Context) {
 	}
 
 	// output
-	api_helpers.RespondJSON(c, 200, Output.PutOneAdministradorAcademicoOutput(administrador_academico))
+	api_helpers.RespondJSON(c, 200, f_output.PutOneAdministradorAcademico(administrador_academico))
 }

@@ -30,6 +30,6 @@ func ListCursos(c *gin.Context) {
 		return
 	}
 
-	// api_helpers.RespondJSON(c, 200, Output.ListCursosOutput(container))
+	// api_helpers.RespondJSON(c, 200, f_output.ListCursos(container))
 	api_helpers.RespondJSON(c, 200, cursos)
 }

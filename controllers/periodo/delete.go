@@ -2,7 +2,7 @@ package periodo
 
 import (
 	"medroom-backend/api_helpers"
-	"medroom-backend/formats/Output"
+	"medroom-backend/formats/f_output"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 
@@ -32,5 +32,5 @@ func DeletePeriodo(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, Output.DeletePeriodoOutput(periodo))
+	api_helpers.RespondJSON(c, 200, f_output.DeletePeriodo(periodo))
 }

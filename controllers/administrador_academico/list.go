@@ -31,6 +31,6 @@ func ListAdministradoresAcademicos(c *gin.Context) {
 		return
 	}
 
-	// api_helpers.RespondJSON(c, 200, Output.ListAdministradoresAcademicosOutput(container))
+	// api_helpers.RespondJSON(c, 200, f_output.ListAdministradoresAcademicos(container))
 	api_helpers.RespondJSON(c, 200, container)
 }

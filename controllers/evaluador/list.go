@@ -30,6 +30,6 @@ func ListEvaluadores(c *gin.Context) {
 		return
 	}
 
-	// api_helpers.RespondJSON(c, 200, Output.ListEvaluadoresOutput(container))
+	// api_helpers.RespondJSON(c, 200, f_output.ListEvaluadores(container))
 	api_helpers.RespondJSON(c, 200, evaluadores)
 }

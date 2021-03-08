@@ -2,7 +2,7 @@ package administrador_academico
 
 import (
 	"medroom-backend/api_helpers"
-	"medroom-backend/formats/Output"
+	"medroom-backend/formats/f_output"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 
@@ -40,5 +40,5 @@ func DeleteAdministradorAcademico(c *gin.Context) {
 	}
 
 	// output
-	api_helpers.RespondJSON(c, 200, Output.DeleteAdministradorAcademicoOutput(container))
+	api_helpers.RespondJSON(c, 200, f_output.DeleteAdministradorAcademico(container))
 }

@@ -1,16 +1,16 @@
-package Output
+package f_output
 
 import (
 	"medroom-backend/Messages/Response"
 	"medroom-backend/models"
 )
 
-func ListEstudiantesOutput(u []models.Estudiante) (output []Response.ListEstudiantesResponse) {
+func ListEstudiantes(u []models.Estudiante) (output []Response.ListEstudiantesResponse) {
 	for i := 0; i < len(u); i++ {
 		output = append(output, Response.ListEstudiantesResponse{
 			Id:                            u[i].Id,
-			Rol_estudiante:                GetOneRolOutput(u[i].Rol_estudiante),
-			Evaluaciones_estudiante:       ListEvaluacionesEstudianteOutput(u[i].Calificaciones_estudiante),
+			Rol_estudiante:                GetOneRol(u[i].Rol_estudiante),
+			Evaluaciones_estudiante:       ListEvaluacionesEstudiante(u[i].Calificaciones_estudiante),
 			Rut_estudiante:                u[i].Rut_estudiante,
 			Nombres_estudiante:            u[i].Nombres_estudiante,
 			Apellidos_estudiante:          u[i].Apellidos_estudiante,
@@ -23,10 +23,10 @@ func ListEstudiantesOutput(u []models.Estudiante) (output []Response.ListEstudia
 	return output
 }
 
-func GetOneEstudianteOutput(u models.Estudiante) (output Response.GetOneEstudianteResponse) {
+func GetOneEstudiante(u models.Estudiante) (output Response.GetOneEstudianteResponse) {
 	return Response.GetOneEstudianteResponse{
-		Rol_estudiante:                GetOneRolOutput(u.Rol_estudiante),
-		Evaluaciones_estudiante:       ListEvaluacionesEstudianteOutput(u.Calificaciones_estudiante),
+		Rol_estudiante:                GetOneRol(u.Rol_estudiante),
+		Evaluaciones_estudiante:       ListEvaluacionesEstudiante(u.Calificaciones_estudiante),
 		Rut_estudiante:                u.Rut_estudiante,
 		Nombres_estudiante:            u.Nombres_estudiante,
 		Apellidos_estudiante:          u.Apellidos_estudiante,
@@ -36,10 +36,10 @@ func GetOneEstudianteOutput(u models.Estudiante) (output Response.GetOneEstudian
 	}
 }
 
-func GetMyEstudianteOutput(u models.Estudiante) (output Response.GetMyEstudianteResponse) {
+func GetMyEstudiante(u models.Estudiante) (output Response.GetMyEstudianteResponse) {
 	return Response.GetMyEstudianteResponse{
-		Rol_estudiante:                GetOneRolOutput(u.Rol_estudiante),
-		Evaluaciones_estudiante:       ListEvaluacionesEstudianteOutput(u.Calificaciones_estudiante),
+		Rol_estudiante:                GetOneRol(u.Rol_estudiante),
+		Evaluaciones_estudiante:       ListEvaluacionesEstudiante(u.Calificaciones_estudiante),
 		Rut_estudiante:                u.Rut_estudiante,
 		Nombres_estudiante:            u.Nombres_estudiante,
 		Apellidos_estudiante:          u.Apellidos_estudiante,
@@ -49,25 +49,25 @@ func GetMyEstudianteOutput(u models.Estudiante) (output Response.GetMyEstudiante
 	}
 }
 
-func AddNewEstudianteOutput(u models.Estudiante) (output Response.AddNewEstudianteResponse) {
+func AddNewEstudiante(u models.Estudiante) (output Response.AddNewEstudianteResponse) {
 	return Response.AddNewEstudianteResponse{
 		Id: u.Id,
 	}
 }
 
-func PutOneEstudianteOutput(u models.Estudiante) (output Response.PutOneEstudianteResponse) {
+func PutOneEstudiante(u models.Estudiante) (output Response.PutOneEstudianteResponse) {
 	return Response.PutOneEstudianteResponse{
 		Id: u.Id,
 	}
 }
 
-func DeleteEstudianteOutput(u models.Estudiante) (output Response.DeleteEstudianteResponse) {
+func DeleteEstudiante(u models.Estudiante) (output Response.DeleteEstudianteResponse) {
 	return Response.DeleteEstudianteResponse{
 		Id: u.Id,
 	}
 }
 
-func PutMyEstudianteOutput(u models.Estudiante) (output Response.PutMyEstudianteResponse) {
+func PutMyEstudiante(u models.Estudiante) (output Response.PutMyEstudianteResponse) {
 	return Response.PutMyEstudianteResponse{
 		Id: u.Id,
 	}

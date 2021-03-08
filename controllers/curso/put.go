@@ -63,6 +63,6 @@ func PutOneCurso(c *gin.Context) {
 		return
 	}
 
-	// api_helpers.RespondJSON(c, 200, Output.PutOneCursoOutput(model))
+	// api_helpers.RespondJSON(c, 200, f_output.PutOneCurso(model))
 	api_helpers.RespondJSON(c, 200, curso)
 }

@@ -33,6 +33,6 @@ func GetOneEstudiante(c *gin.Context) {
 		return
 	}
 
-	// api_helpers.RespondJSON(c, 200, Output.GetOneEstudianteOutput(container))
+	// api_helpers.RespondJSON(c, 200, f_output.GetOneEstudiante(container))
 	api_helpers.RespondJSON(c, 200, estudiante)
 }

@@ -37,6 +37,6 @@ func ListEvaluacionesGrupoEstudiante(c *gin.Context) {
 		return
 	}
 
-	// api_helpers.RespondJSON(c, 200, Output.ListEvaluacionesEstudianteOutput(grupo.Evaluaciones_grupo))
+	// api_helpers.RespondJSON(c, 200, f_output.ListEvaluacionesEstudiante(grupo.Evaluaciones_grupo))
 	api_helpers.RespondJSON(c, 200, grupo.Evaluaciones_grupo)
 }

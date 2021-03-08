@@ -58,6 +58,6 @@ func DeleteCurso(c *gin.Context) {
 		return
 	}
 
-	// api_helpers.RespondJSON(c, 200, Output.DeleteCursoOutput(container))
+	// api_helpers.RespondJSON(c, 200, f_output.DeleteCurso(container))
 	api_helpers.RespondJSON(c, 200, curso)
 }

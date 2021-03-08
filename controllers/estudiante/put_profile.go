@@ -67,6 +67,6 @@ func PutMyEstudiante(c *gin.Context) {
 		return
 	}
 
-	// api_helpers.RespondJSON(c, 200, Output.PutMyEstudianteOutput(model))
+	// api_helpers.RespondJSON(c, 200, f_output.PutMyEstudiante(model))
 	api_helpers.RespondJSON(c, 200, estudiante)
 }

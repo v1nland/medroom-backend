@@ -30,6 +30,6 @@ func ListEstudiantes(c *gin.Context) {
 		return
 	}
 
-	// api_helpers.RespondJSON(c, 200, Output.ListEstudiantesOutput(container))
+	// api_helpers.RespondJSON(c, 200, f_output.ListEstudiantes(container))
 	api_helpers.RespondJSON(c, 200, estudiantes)
 }

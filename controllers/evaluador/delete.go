@@ -43,6 +43,6 @@ func DeleteEvaluador(c *gin.Context) {
 		return
 	}
 
-	// api_helpers.RespondJSON(c, 200, Output.DeleteEvaluadorOutput(container))
+	// api_helpers.RespondJSON(c, 200, f_output.DeleteEvaluador(container))
 	api_helpers.RespondJSON(c, 200, evaluador)
 }

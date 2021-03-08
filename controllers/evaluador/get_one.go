@@ -33,6 +33,6 @@ func GetOneEvaluador(c *gin.Context) {
 		return
 	}
 
-	// api_helpers.RespondJSON(c, 200, Output.GetOneEvaluadorOutput(container))
+	// api_helpers.RespondJSON(c, 200, f_output.GetOneEvaluador(container))
 	api_helpers.RespondJSON(c, 200, evaluador)
 }
