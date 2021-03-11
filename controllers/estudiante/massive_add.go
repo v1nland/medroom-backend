@@ -98,7 +98,7 @@ func AddNewEstudiantes(c *gin.Context) {
 		}
 
 		if err := repositories.AddNewEstudiante(&estudiante); err != nil {
-			estudiantes_error = append(estudiantes_error, *payload.Estudiantes[i].Nombres_estudiante+" "+*payload.Estudiantes[i].Apellidos_estudiante)
+			estudiantes_error = append(estudiantes_error, "["+*payload.Estudiantes[i].Rut_estudiante+"] "+*payload.Estudiantes[i].Nombres_estudiante+" "+*payload.Estudiantes[i].Apellidos_estudiante)
 		}
 	}
 

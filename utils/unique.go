@@ -22,6 +22,24 @@ func BuildUniqueEvaluacionesEvaluacion(result []Query.CalificacionesEstudiantePo
 	return Unique(nombres_evaluaciones)
 }
 
+func BuildUniqueEvaluacionesCompetenciaGrupo(result []Query.CalificacionesGrupoPorCompetencia) []string {
+	var nombres_evaluaciones []string
+	for i := 0; i < len(result); i++ {
+		nombres_evaluaciones = append(nombres_evaluaciones, result[i].Nombre_evaluacion)
+	}
+
+	return Unique(nombres_evaluaciones)
+}
+
+func BuildUniqueEvaluacionesEvaluacionGrupo(result []Query.CalificacionesGrupoPorEvaluacion) []string {
+	var nombres_evaluaciones []string
+	for i := 0; i < len(result); i++ {
+		nombres_evaluaciones = append(nombres_evaluaciones, result[i].Nombre_evaluacion)
+	}
+
+	return Unique(nombres_evaluaciones)
+}
+
 func Unique(slice []string) []string {
 	keys := make(map[string]bool)
 	list := []string{}

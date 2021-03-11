@@ -4,6 +4,7 @@ import (
 	"medroom-backend/api_helpers"
 	"medroom-backend/controllers/calificacion_estudiante"
 	"medroom-backend/controllers/curso"
+	"medroom-backend/controllers/estadistica"
 	"medroom-backend/controllers/evaluacion"
 	"medroom-backend/controllers/evaluador"
 	"medroom-backend/controllers/grupo"
@@ -47,7 +48,8 @@ func SetupEvaluadorRouter(r *gin.Engine) *gin.Engine {
 		router.POST("me/cursos/:id_curso/grupos/:id_grupo/estudiantes/:id_estudiante/evaluaciones/:id_evaluacion/calificacion", calificacion_estudiante.AddNewCalificacionEstudiante)
 
 		// reports
-		// router.GET("me/reports", controllers.GetReportesEvaluador)
+		router.GET("me/cursos/:id_curso/grupos/:id_grupo/evolucion-competencia", estadistica.EvolucionGrupoPorCompetencia)
+		router.GET("me/cursos/:id_curso/grupos/:id_grupo/evolucion-evaluacion", estadistica.EvolucionGrupoPorEvaluacion)
 	}
 
 	return r

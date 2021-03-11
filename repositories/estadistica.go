@@ -81,3 +81,44 @@ func CalificacionesEstudiantePorEvaluacion(u *[]Query.CalificacionesEstudiantePo
 
 	return nil
 }
+
+func CalificacionesGrupoPorCompetencia(u *[]Query.CalificacionesGrupoPorCompetencia, id_grupo string) (err error) {
+	if err := config.DB.Raw(`
+													select 
+														ev.id as id_evaluacion,
+														ev.nombre_evaluacion,
+														p.id_competencia,
+														avg(p.calificacion_puntaje) as promedio_calificacion_puntaje_grupo
+													from 
+														evaluaciones ev
+														join calificaciones_estudiantes ce on ev.id = ce.id_evaluacion 
+														left outer join puntajes p on ce.id = p.id_calificacion_estudiante
+													where 
+														ev.id_grupo = ?
+														group by ev.id, ev.nombre_evaluacion, p.id_competencia
+														order by ev.id`, id_grupo).First(u).Error; err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func CalificacionesGrupoPorEvaluacion(u *[]Query.CalificacionesGrupoPorEvaluacion, id_grupo string) (err error) {
+	if err := config.DB.Raw(`
+													select 
+														ev.id as id_evaluacion,
+														ev.nombre_evaluacion,
+														avg(p.calificacion_puntaje) as promedio_calificacion_puntaje_grupo
+													from 
+														evaluaciones ev
+														left outer join calificaciones_estudiantes ce on ev.id = ce.id_evaluacion 
+														left outer join puntajes p on ce.id = p.id_calificacion_estudiante
+													where 
+														ev.id_grupo = ?
+													group by ev.id, ev.nombre_evaluacion
+													order by ev.id`, id_grupo).First(u).Error; err != nil {
+		return err
+	}
+
+	return nil
+}
