@@ -21,7 +21,7 @@ import (
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-academica/grupos [post]
 func AddNewGrupo(c *gin.Context) {
-	id_curso := c.Params.ByName("id_curso")
+	id_curso := c.Params.ByName("id")
 
 	var input Request.AddNewGrupo
 	if err := c.ShouldBind(&input); err != nil {
