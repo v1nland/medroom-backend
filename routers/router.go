@@ -3,6 +3,7 @@ package routers
 import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"time"
 )
 
 func SetupRouter() *gin.Engine {
