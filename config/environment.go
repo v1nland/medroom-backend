@@ -4,6 +4,9 @@ import (
 	"errors"
 	"fmt"
 	"time"
+	"os"
+	"strings"
+	"strconv"
 
 	"github.com/spf13/viper"
 )
@@ -11,8 +14,14 @@ import (
 const DURATION = time.Second * 5
 
 func LoadSettings(squadName string, appName string) {
-	if err := getConfig(); err != nil {
-		panic("no config found")
+	if os.Getenv("ENVIRONMENT") == "local" {
+		if err := getConfig(); err != nil {
+			panic("no config found")
+		}
+	} else {
+		if err := getHerokuConfig(); err != nil {
+			panic("no config found")
+		}
 	}
 
 	if len(appName) == 0 {
@@ -61,5 +70,32 @@ func getConfig() error {
 	if err != nil {
 		return errors.New(fmt.Sprintf("Fatal error config file: %s \n", err))
 	}
+	return nil
+}
+
+func getHerokuConfig() error {
+	for _, env := range os.Environ() {
+		pair := strings.SplitN(env, "=", 2)
+		key := pair[0]
+		value := pair[1]
+
+		// if value is a number
+		number, err := strconv.Atoi(value)
+		if err == nil {
+			viper.Set(key, number)
+			continue
+		}
+
+		// if value is a boolean
+		boolean, err := strconv.ParseBool(value)
+		if err == nil {
+			viper.Set(key, boolean)
+			continue
+		}
+
+		// if value is a string
+		viper.Set(key, value)
+	}
+
 	return nil
 }
