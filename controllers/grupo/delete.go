@@ -18,7 +18,7 @@ import (
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-academica/grupos/{id_grupo} [delete]
 func DeleteGrupo(c *gin.Context) {
-	id := c.Params.ByName("id")
+	id := c.Params.ByName("id_grupo")
 
 	var grupo models.Grupo
 	if err := repositories.GetOneGrupo(&grupo, id); err != nil {

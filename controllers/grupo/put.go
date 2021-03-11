@@ -22,7 +22,7 @@ import (
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-academica/grupos/{id_grupo} [put]
 func PutOneGrupo(c *gin.Context) {
-	id := c.Params.ByName("id")
+	id := c.Params.ByName("id_grupo")
 
 	var input Request.PutOneGrupo
 	if err := c.ShouldBind(&input); err != nil {

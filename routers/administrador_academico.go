@@ -51,20 +51,15 @@ func SetupAdministradorAcademicoRouter(r *gin.Engine) *gin.Engine {
 			cursos.GET(":id/grupos", grupo.GetGruposAdministradorAcademico)
 			cursos.GET(":id/grupos/:id_grupo", grupo.GetOneGrupoAdministradorAcademico)
 
+			cursos.POST(":id/grupos", grupo.AddNewGrupo)
+			cursos.PUT(":id/grupos/:id_grupo", grupo.PutOneGrupo)
+			cursos.DELETE(":id/grupos/:id_grupo", grupo.DeleteGrupo)
+
 			cursos.PUT(":id/grupos/:id_grupo/estudiantes/:id_estudiante", grupo.AddEstudianteToGrupo)
 			cursos.PUT(":id/grupos/:id_grupo/evaluadores/:id_evaluador", grupo.AddEvaluadorToGrupo)
 
 			cursos.GET(":id/estudiantes", estudiante.ListEstudiantesCurso)
 			cursos.GET(":id/estudiantes/sin-grupo", estudiante.ListEstudiantesCursoSinGrupo)
-		}
-
-		grupos := router.Group("/me/grupos")
-		{
-			// grupos.GET("", controllers.GetGruposAdministradorAcademico)
-			// grupos.GET(":id", controllers.GetOneGrupoAdministradorAcademico)
-			grupos.POST("", grupo.AddNewGrupo)
-			grupos.PUT(":id", grupo.PutOneGrupo)
-			grupos.DELETE(":id", grupo.DeleteGrupo)
 		}
 	}
 

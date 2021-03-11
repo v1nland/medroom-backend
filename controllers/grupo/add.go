@@ -6,6 +6,7 @@ import (
 	"medroom-backend/messages/Request"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
+	"medroom-backend/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -20,6 +21,8 @@ import (
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-academica/grupos [post]
 func AddNewGrupo(c *gin.Context) {
+	id_curso := c.Params.ByName("id_curso")
+
 	var input Request.AddNewGrupo
 	if err := c.ShouldBind(&input); err != nil {
 		api_helpers.RespondError(c, 400, "default")
@@ -29,7 +32,7 @@ func AddNewGrupo(c *gin.Context) {
 	f_input.AddNewGrupo(&input)
 
 	grupo := models.Grupo{
-		Id_curso:     *input.Id_curso,
+		Id_curso:     utils.ConvertStringToInt(id_curso),
 		Nombre_grupo: *input.Nombre_grupo,
 		Sigla_grupo:  *input.Sigla_grupo,
 	}
