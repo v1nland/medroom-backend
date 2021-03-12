@@ -34,9 +34,10 @@ type GetMyEstudiante struct {
 }
 
 type PutMyEstudiante struct {
-	Hash_contrasena_estudiante  *string `json:"hash_contrasena_estudiante"`
-	Telefono_fijo_estudiante    *string `json:"telefono_fijo_estudiante"`
-	Telefono_celular_estudiante *string `json:"telefono_celular_estudiante"`
+	Hash_contrasena_estudiante       *string `json:"hash_contrasena_estudiante"`
+	Hash_nueva_contrasena_estudiante *string `json:"hash_nueva_contrasena_estudiante"`
+	Telefono_fijo_estudiante         *string `json:"telefono_fijo_estudiante"`
+	Telefono_celular_estudiante      *string `json:"telefono_celular_estudiante"`
 }
 
 type AddEstudianteToGrupo struct {

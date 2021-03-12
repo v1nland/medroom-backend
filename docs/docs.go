@@ -3672,6 +3672,9 @@ var doc = `{
                 "hash_contrasena_estudiante": {
                     "type": "string"
                 },
+                "hash_nueva_contrasena_estudiante": {
+                    "type": "string"
+                },
                 "telefono_celular_estudiante": {
                     "type": "string"
                 },

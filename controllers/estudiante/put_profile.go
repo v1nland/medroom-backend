@@ -44,6 +44,10 @@ func PutMyEstudiante(c *gin.Context) {
 		return
 	}
 
+	if estudiante.Hash_contrasena_estudiante == *input.Hash_contrasena_estudiante {
+
+	}
+
 	estudiante = models.Estudiante{
 		Id:                            estudiante.Id,
 		Id_rol:                        estudiante.Id_rol,
@@ -51,7 +55,7 @@ func PutMyEstudiante(c *gin.Context) {
 		Rut_estudiante:                estudiante.Rut_estudiante,
 		Nombres_estudiante:            estudiante.Nombres_estudiante,
 		Apellidos_estudiante:          estudiante.Apellidos_estudiante,
-		Hash_contrasena_estudiante:    utils.CheckNullString(input.Hash_contrasena_estudiante, estudiante.Hash_contrasena_estudiante),
+		Hash_contrasena_estudiante:    utils.CheckNullString(input.Hash_nueva_contrasena_estudiante, estudiante.Hash_contrasena_estudiante),
 		Correo_electronico_estudiante: estudiante.Correo_electronico_estudiante,
 		Telefono_fijo_estudiante:      utils.CheckNullString(input.Telefono_fijo_estudiante, estudiante.Telefono_fijo_estudiante),
 		Telefono_celular_estudiante:   utils.CheckNullString(input.Telefono_celular_estudiante, estudiante.Telefono_celular_estudiante),
