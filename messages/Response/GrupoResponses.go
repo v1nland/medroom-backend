@@ -91,3 +91,7 @@ type GetGruposAdministradorAcademicoResponse struct {
 	Nombre_grupo      string                    `json:"nombre_grupo"`
 	Sigla_grupo       string                    `json:"sigla_grupo"`
 }
+
+type AddNewGruposResponse struct {
+	Id int `json:"id"`
+}

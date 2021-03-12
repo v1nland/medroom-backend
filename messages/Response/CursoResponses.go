@@ -87,3 +87,7 @@ type GetOneCursoAdministradorAcademicoResponse struct {
 	Nombre_curso  string                `json:"nombre_curso"`
 	Sigla_curso   string                `json:"sigla_curso"`
 }
+
+type AddNewCursosResponse struct {
+	Id int `json:"id"`
+}

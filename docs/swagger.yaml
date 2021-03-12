@@ -509,6 +509,46 @@ definitions:
           type: array
         type: object
     type: object
+  Response.EvolucionGrupoPorCompetenciaResponse:
+    properties:
+      eje_x:
+        items:
+          type: string
+        type: array
+      eje_y:
+        items:
+          type: integer
+        type: array
+      valores:
+        additionalProperties:
+          items:
+            properties:
+              promedio_grupo:
+                type: number
+            type: object
+          type: array
+        type: object
+    type: object
+  Response.EvolucionGrupoPorEvaluacionResponse:
+    properties:
+      eje_x:
+        items:
+          type: string
+        type: array
+      eje_y:
+        items:
+          type: integer
+        type: array
+      valores:
+        additionalProperties:
+          items:
+            properties:
+              promedio_grupo:
+                type: number
+            type: object
+          type: array
+        type: object
+    type: object
   Response.GetCursosAdministradorAcademicoResponse:
     properties:
       grupos_curso:
@@ -1542,6 +1582,24 @@ definitions:
       status:
         type: boolean
     type: object
+  Swagger.EvolucionGrupoPorCompetenciaSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.EvolucionGrupoPorCompetenciaResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.EvolucionGrupoPorEvaluacionSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.EvolucionGrupoPorEvaluacionResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
   Swagger.GetCursosAdministradorAcademicoSwagger:
     properties:
       data:
@@ -2028,6 +2086,36 @@ definitions:
             telefono_celular_estudiante:
               type: string
             telefono_fijo_estudiante:
+              type: string
+          type: object
+        type: array
+    type: object
+  evaluador.massive_add_input:
+    properties:
+      evaluadores:
+        items:
+          properties:
+            apellidos_evaluador:
+              type: string
+            cargo_evaluador:
+              type: string
+            correo_electronico_evaluador:
+              type: string
+            hash_contrasena_evaluador:
+              type: string
+            id_grupos:
+              items:
+                type: integer
+              type: array
+            nombres_evaluador:
+              type: string
+            recinto_evaluador:
+              type: string
+            rut_evaluador:
+              type: string
+            telefono_celular_evaluador:
+              type: string
+            telefono_fijo_evaluador:
               type: string
           type: object
         type: array
@@ -3238,6 +3326,32 @@ paths:
       summary: Modifica un evaluador
       tags:
       - 05 - Administración Ti
+  /administracion-ti/evaluadores/carga-masiva:
+    post:
+      consumes:
+      - application/json
+      description: Genera nuevos evaluadores con los datos entregados
+      parameters:
+      - description: Evaluador a agregar
+        in: body
+        name: input_evaluador
+        required: true
+        schema:
+          $ref: '#/definitions/evaluador.massive_add_input'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.AddNewEvaluadorSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Agrega nuevos evaluadores de forma masiva
+      tags:
+      - 05 - Administración Ti
   /administracion-ti/grupos/carga-masiva:
     post:
       consumes:
@@ -3972,6 +4086,38 @@ paths:
           schema:
             $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un grupo de un evaluador
+      tags:
+      - 03 - Evaluadores
+  /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/estadisticas/evolucion-por-evaluacion:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene la evolución de un grupo según evaluacion
+      parameters:
+      - description: Id del curso
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: Id del grupo
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.EvolucionGrupoPorEvaluacionSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Evolución por evaluacion
       tags:
       - 03 - Evaluadores
   /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/estudiantes/{id_estudiante}/evaluaciones/{id_evaluacion}/calificacion:

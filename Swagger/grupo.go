@@ -79,3 +79,9 @@ type GetGruposAdministradorAcademicoSwagger struct {
 	Meta   string                                           `json:"meta"`
 	Data   Response.GetGruposAdministradorAcademicoResponse `json:"data"`
 }
+
+type AddNewGruposSwagger struct {
+	Status bool                          `json:"status"`
+	Meta   string                        `json:"meta"`
+	Data   Response.AddNewGruposResponse `json:"data"`
+}

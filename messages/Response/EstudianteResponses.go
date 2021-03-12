@@ -82,3 +82,7 @@ type ListEstudiantesCursoSinGrupoResponse struct {
 	Telefono_fijo_estudiante      string                               `json:"telefono_fijo_estudiante"`
 	Telefono_celular_estudiante   string                               `json:"telefono_celular_estudiante"`
 }
+
+type AddNewEstudiantesResponse struct {
+	Id uuid.UUID `json:"id"`
+}

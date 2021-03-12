@@ -76,7 +76,7 @@ func massive_add_format(u *massive_add_input) {
 // @Accept  json
 // @Produce  json
 // @Param   input_evaluador     body    massive_add_input     true        "Evaluador a agregar"
-// @Success 200 {object} Swagger.AddNewEvaluadorSwagger "OK"
+// @Success 200 {object} Swagger.AddNewEvaluadoresSwagger "OK"
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/evaluadores/carga-masiva [post]
 func AddNewEvaluadores(c *gin.Context) {

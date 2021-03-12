@@ -64,7 +64,7 @@ func massive_add_format(u *massive_add_input) {
 // @Accept  json
 // @Produce  json
 // @Param   input_estudiante     body    massive_add_input     true        "Estudiante a agregar"
-// @Success 200 {object} Swagger.AddNewEstudianteSwagger "OK"
+// @Success 200 {object} Swagger.AddNewEstudiantesSwagger "OK"
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/estudiantes/carga-masiva [post]
 func AddNewEstudiantes(c *gin.Context) {

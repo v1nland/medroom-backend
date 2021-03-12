@@ -85,3 +85,9 @@ type GetOneCursoAdministradorAcademicoSwagger struct {
 	Meta   string                                             `json:"meta"`
 	Data   Response.GetOneCursoAdministradorAcademicoResponse `json:"data"`
 }
+
+type AddNewCursosSwagger struct {
+	Status bool                          `json:"status"`
+	Meta   string                        `json:"meta"`
+	Data   Response.AddNewCursosResponse `json:"data"`
+}

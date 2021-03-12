@@ -1675,6 +1675,46 @@
                 }
             }
         },
+        "/administracion-ti/evaluadores/carga-masiva": {
+            "post": {
+                "description": "Genera nuevos evaluadores con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Agrega nuevos evaluadores de forma masiva",
+                "parameters": [
+                    {
+                        "description": "Evaluador a agregar",
+                        "name": "input_evaluador",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/evaluador.massive_add_input"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Swagger.AddNewEvaluadorSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
         "/administracion-ti/evaluadores/{uuid_evaluador}": {
             "get": {
                 "description": "Obtiene un evaluador según su UUID",
@@ -2909,6 +2949,54 @@
                 }
             }
         },
+        "/evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/estadisticas/evolucion-por-evaluacion": {
+            "get": {
+                "description": "Obtiene la evolución de un grupo según evaluacion",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "03 - Evaluadores"
+                ],
+                "summary": "Evolución por evaluacion",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id del curso",
+                        "name": "id_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Id del grupo",
+                        "name": "id_grupo",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Swagger.EvolucionGrupoPorEvaluacionSwagger"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
         "/evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/estudiantes/{id_estudiante}/evaluaciones/{id_evaluacion}/calificacion": {
             "post": {
                 "description": "Genera una calificación para un estudiante",
@@ -4007,6 +4095,68 @@
                                 "promedio_estudiante": {
                                     "type": "number"
                                 },
+                                "promedio_grupo": {
+                                    "type": "number"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "Response.EvolucionGrupoPorCompetenciaResponse": {
+            "type": "object",
+            "properties": {
+                "eje_x": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "eje_y": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "valores": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "promedio_grupo": {
+                                    "type": "number"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "Response.EvolucionGrupoPorEvaluacionResponse": {
+            "type": "object",
+            "properties": {
+                "eje_x": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "eje_y": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "valores": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
                                 "promedio_grupo": {
                                     "type": "number"
                                 }
@@ -5604,6 +5754,34 @@
                 }
             }
         },
+        "Swagger.EvolucionGrupoPorCompetenciaSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/Response.EvolucionGrupoPorCompetenciaResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "Swagger.EvolucionGrupoPorEvaluacionSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/Response.EvolucionGrupoPorEvaluacionResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
         "Swagger.GetCursosAdministradorAcademicoSwagger": {
             "type": "object",
             "properties": {
@@ -6359,6 +6537,52 @@
                                 "type": "string"
                             },
                             "telefono_fijo_estudiante": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "evaluador.massive_add_input": {
+            "type": "object",
+            "properties": {
+                "evaluadores": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "apellidos_evaluador": {
+                                "type": "string"
+                            },
+                            "cargo_evaluador": {
+                                "type": "string"
+                            },
+                            "correo_electronico_evaluador": {
+                                "type": "string"
+                            },
+                            "hash_contrasena_evaluador": {
+                                "type": "string"
+                            },
+                            "id_grupos": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer"
+                                }
+                            },
+                            "nombres_evaluador": {
+                                "type": "string"
+                            },
+                            "recinto_evaluador": {
+                                "type": "string"
+                            },
+                            "rut_evaluador": {
+                                "type": "string"
+                            },
+                            "telefono_celular_evaluador": {
+                                "type": "string"
+                            },
+                            "telefono_fijo_evaluador": {
                                 "type": "string"
                             }
                         }
