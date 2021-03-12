@@ -1490,7 +1490,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.AddNewEstudianteSwagger"
+                            "$ref": "#/definitions/Swagger.AddNewEstudiantesSwagger"
                         }
                     },
                     "400": {
@@ -1719,7 +1719,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.AddNewEvaluadorSwagger"
+                            "$ref": "#/definitions/Swagger.AddNewEvaluadoresSwagger"
                         }
                     },
                     "400": {
@@ -3000,7 +3000,7 @@ var doc = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/Swagger.EvolucionGrupoPorEvaluacionSwagger"
+                                "$ref": "#/definitions/Swagger.EvolucionGrupoPorCompetenciaSwagger"
                             }
                         }
                     },
@@ -3940,6 +3940,14 @@ var doc = `{
                 }
             }
         },
+        "Response.AddNewEstudiantesResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
         "Response.AddNewEvaluacionResponse": {
             "type": "object",
             "properties": {
@@ -3949,6 +3957,14 @@ var doc = `{
             }
         },
         "Response.AddNewEvaluadorResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "Response.AddNewEvaluadoresResponse": {
             "type": "object",
             "properties": {
                 "id": {
@@ -5546,6 +5562,20 @@ var doc = `{
                 }
             }
         },
+        "Swagger.AddNewEstudiantesSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/Response.AddNewEstudiantesResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
         "Swagger.AddNewEvaluacionSwagger": {
             "type": "object",
             "properties": {
@@ -5565,6 +5595,20 @@ var doc = `{
             "properties": {
                 "data": {
                     "$ref": "#/definitions/Response.AddNewEvaluadorResponse"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "Swagger.AddNewEvaluadoresSwagger": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/Response.AddNewEvaluadoresResponse"
                 },
                 "meta": {
                     "type": "string"

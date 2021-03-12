@@ -395,12 +395,22 @@ definitions:
       id:
         type: string
     type: object
+  Response.AddNewEstudiantesResponse:
+    properties:
+      id:
+        type: string
+    type: object
   Response.AddNewEvaluacionResponse:
     properties:
       id:
         type: integer
     type: object
   Response.AddNewEvaluadorResponse:
+    properties:
+      id:
+        type: string
+    type: object
+  Response.AddNewEvaluadoresResponse:
     properties:
       id:
         type: string
@@ -1438,6 +1448,15 @@ definitions:
       status:
         type: boolean
     type: object
+  Swagger.AddNewEstudiantesSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.AddNewEstudiantesResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
   Swagger.AddNewEvaluacionSwagger:
     properties:
       data:
@@ -1451,6 +1470,15 @@ definitions:
     properties:
       data:
         $ref: '#/definitions/Response.AddNewEvaluadorResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.AddNewEvaluadoresSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.AddNewEvaluadoresResponse'
       meta:
         type: string
       status:
@@ -3193,7 +3221,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/Swagger.AddNewEstudianteSwagger'
+            $ref: '#/definitions/Swagger.AddNewEstudiantesSwagger'
         "400":
           description: Bad request
           schema:
@@ -3344,7 +3372,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/Swagger.AddNewEvaluadorSwagger'
+            $ref: '#/definitions/Swagger.AddNewEvaluadoresSwagger'
         "400":
           description: Bad request
           schema:
@@ -4111,7 +4139,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/Swagger.EvolucionGrupoPorEvaluacionSwagger'
+              $ref: '#/definitions/Swagger.EvolucionGrupoPorCompetenciaSwagger'
             type: array
         "400":
           description: Bad request
