@@ -36,11 +36,16 @@ func PutMyEvaluador(c *gin.Context) {
 	var evaluador models.Evaluador
 	if err := repositories.GetOneEvaluador(&evaluador, id); err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
-			api_helpers.RespondJSON(c, 200, "Estudiante not found")
+			api_helpers.RespondJSON(c, 200, "Evaluador not found")
 		} else {
 			api_helpers.RespondError(c, 500, "default")
 		}
 
+		return
+	}
+
+	if evaluador.Hash_contrasena_evaluador == *input.Hash_contrasena_evaluador {
+		api_helpers.RespondJSON(c, 403, "Current password mismatch")
 		return
 	}
 
@@ -51,7 +56,7 @@ func PutMyEvaluador(c *gin.Context) {
 		Rut_evaluador:                evaluador.Rut_evaluador,
 		Nombres_evaluador:            evaluador.Nombres_evaluador,
 		Apellidos_evaluador:          evaluador.Apellidos_evaluador,
-		Hash_contrasena_evaluador:    utils.CheckNullString(input.Hash_contrasena_evaluador, evaluador.Hash_contrasena_evaluador),
+		Hash_contrasena_evaluador:    utils.CheckNullString(input.Hash_nueva_contrasena_evaluador, evaluador.Hash_contrasena_evaluador),
 		Correo_electronico_evaluador: evaluador.Correo_electronico_evaluador,
 		Telefono_fijo_evaluador:      utils.CheckNullString(input.Telefono_fijo_evaluador, evaluador.Telefono_fijo_evaluador),
 		Telefono_celular_evaluador:   utils.CheckNullString(input.Telefono_celular_evaluador, evaluador.Telefono_celular_evaluador),

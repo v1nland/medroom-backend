@@ -38,10 +38,11 @@ type GetMyEvaluador struct {
 }
 
 type PutMyEvaluador struct {
-	Hash_contrasena_evaluador  *string `json:"hash_contrasena_evaluador"`
-	Telefono_fijo_evaluador    *string `json:"telefono_fijo_evaluador"`
-	Telefono_celular_evaluador *string `json:"telefono_celular_evaluador"`
-	Cargo_evaluador            *string `json:"cargo_evaluador"`
+	Hash_contrasena_evaluador       *string `json:"hash_contrasena_evaluador"`
+	Hash_nueva_contrasena_evaluador *string `json:"hash_nueva_contrasena_evaluador"`
+	Telefono_fijo_evaluador         *string `json:"telefono_fijo_evaluador"`
+	Telefono_celular_evaluador      *string `json:"telefono_celular_evaluador"`
+	Cargo_evaluador                 *string `json:"cargo_evaluador"`
 }
 
 type AddEvaluadorToGrupo struct {

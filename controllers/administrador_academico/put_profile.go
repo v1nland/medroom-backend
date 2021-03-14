@@ -49,6 +49,11 @@ func PutMyAdministradorAcademico(c *gin.Context) {
 		return
 	}
 
+	if model.Hash_contrasena_administrador_academico == *input.Hash_contrasena_administrador_academico {
+		api_helpers.RespondJSON(c, 403, "Current password mismatch")
+		return
+	}
+
 	// replace data in model entity
 	model = models.AdministradorAcademico{
 		Id:                                      model.Id,
@@ -56,7 +61,7 @@ func PutMyAdministradorAcademico(c *gin.Context) {
 		Rut_administrador_academico:             model.Rut_administrador_academico,
 		Nombres_administrador_academico:         model.Nombres_administrador_academico,
 		Apellidos_administrador_academico:       model.Apellidos_administrador_academico,
-		Hash_contrasena_administrador_academico: utils.CheckNullString(input.Hash_contrasena_administrador_academico, model.Hash_contrasena_administrador_academico),
+		Hash_contrasena_administrador_academico: utils.CheckNullString(input.Hash_nueva_contrasena_administrador_academico, model.Hash_contrasena_administrador_academico),
 		Correo_electronico_administrador_academico: utils.CheckNullString(input.Correo_electronico_administrador_academico, model.Correo_electronico_administrador_academico),
 		Telefono_fijo_administrador_academico:      utils.CheckNullString(input.Telefono_fijo_administrador_academico, model.Telefono_fijo_administrador_academico),
 		Telefono_celular_administrador_academico:   utils.CheckNullString(input.Telefono_celular_administrador_academico, model.Telefono_celular_administrador_academico),

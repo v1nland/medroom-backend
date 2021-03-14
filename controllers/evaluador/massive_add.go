@@ -91,7 +91,7 @@ func AddNewEvaluadores(c *gin.Context) {
 	var evaluadores_error []string
 	for i := 0; i < len(payload.Evaluadores); i++ {
 		evaluador := models.Evaluador{
-			Id_rol:                       1,
+			Id_rol:                       2,
 			Grupos_evaluador:             []models.Grupo{},
 			Rut_evaluador:                *payload.Evaluadores[i].Rut_evaluador,
 			Nombres_evaluador:            *payload.Evaluadores[i].Nombres_evaluador,

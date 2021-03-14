@@ -25,6 +25,7 @@ type CalificacionEstudiante struct {
 	Categoria_observador_calificacion_estudiante         string     `json:"categoria_observador_calificacion_estudiante"`
 	Observacion_calificacion_calificacion_estudiante     string     `json:"observacion_calificacion_calificacion_estudiante"`
 	Tiempo_utilizado_calificacion_estudiante             int        `json:"tiempo_utilizado_calificacion_estudiante"`
+	Valoracion_general_calificacion_estudiante           int        `json:"valoracion_general_calificacion_estudiante"`
 	CreatedAt                                            time.Time  `json:"created_at"`
 	UpdatedAt                                            time.Time  `json:"updated_at"`
 }

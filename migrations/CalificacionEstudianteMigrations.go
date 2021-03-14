@@ -66,6 +66,7 @@ func CalificacionEstudiantemigrations() {
 		Categoria_observador_calificacion_estudiante:         "COMPLEJA",
 		Observacion_calificacion_calificacion_estudiante:     "MUY BIEN LOGRADO",
 		Tiempo_utilizado_calificacion_estudiante:             10,
+		Valoracion_general_calificacion_estudiante:           4,
 	}
 
 	if err := repositories.AddNewCalificacionEstudiante(container); err != nil {

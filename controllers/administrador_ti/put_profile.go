@@ -38,6 +38,11 @@ func PutMyAdministradorTi(c *gin.Context) {
 		return
 	}
 
+	if administrador_ti.Hash_contrasena_administrador_ti == *input.Hash_contrasena_administrador_ti {
+		api_helpers.RespondJSON(c, 403, "Current password mismatch")
+		return
+	}
+
 	// replace data in model entity
 	administrador_ti = models.AdministradorTi{
 		Id:                                  administrador_ti.Id,
@@ -45,7 +50,7 @@ func PutMyAdministradorTi(c *gin.Context) {
 		Rut_administrador_ti:                utils.CheckNullString(input.Rut_administrador_ti, administrador_ti.Rut_administrador_ti),
 		Nombres_administrador_ti:            utils.CheckNullString(input.Nombres_administrador_ti, administrador_ti.Nombres_administrador_ti),
 		Apellidos_administrador_ti:          utils.CheckNullString(input.Apellidos_administrador_ti, administrador_ti.Apellidos_administrador_ti),
-		Hash_contrasena_administrador_ti:    utils.CheckNullString(input.Hash_contrasena_administrador_ti, administrador_ti.Hash_contrasena_administrador_ti),
+		Hash_contrasena_administrador_ti:    utils.CheckNullString(input.Hash_nueva_contrasena_administrador_ti, administrador_ti.Hash_contrasena_administrador_ti),
 		Correo_electronico_administrador_ti: utils.CheckNullString(input.Correo_electronico_administrador_ti, administrador_ti.Correo_electronico_administrador_ti),
 		Telefono_fijo_administrador_ti:      utils.CheckNullString(input.Telefono_fijo_administrador_ti, administrador_ti.Telefono_fijo_administrador_ti),
 		Telefono_celular_administrador_ti:   utils.CheckNullString(input.Telefono_celular_administrador_ti, administrador_ti.Telefono_celular_administrador_ti),

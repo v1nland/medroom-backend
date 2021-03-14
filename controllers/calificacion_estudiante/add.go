@@ -71,6 +71,7 @@ func AddNewCalificacionEstudiante(c *gin.Context) {
 		Categoria_observador_calificacion_estudiante:         *input.Categoria_observador_calificacion_estudiante,
 		Observacion_calificacion_calificacion_estudiante:     *input.Observacion_calificacion_calificacion_estudiante,
 		Tiempo_utilizado_calificacion_estudiante:             *input.Tiempo_utilizado_calificacion_estudiante,
+		Valoracion_general_calificacion_estudiante:           *input.Valoracion_general_calificacion_estudiante,
 	}
 
 	if err := repositories.AddNewCalificacionEstudiante(&model); err != nil {

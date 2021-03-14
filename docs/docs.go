@@ -33,6 +33,46 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/administracion-academica/administradores-academicos/carga-masiva": {
+            "post": {
+                "description": "Genera nuevos administrador_academicos con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Academica"
+                ],
+                "summary": "Agrega nuevos administrador_academicos de forma masiva",
+                "parameters": [
+                    {
+                        "description": "AdministradoresAcademico a agregar",
+                        "name": "input_administrador_academico",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/administrador_academico.massive_add_input"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/administrador_academico.massive_add_input"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
         "/administracion-academica/cursos/:id_curso/estudiantes": {
             "get": {
                 "description": "Lista todos los estudiantes existentes en un curso",
@@ -898,6 +938,46 @@ var doc = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/Swagger.AddNewAdministradorTiSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-ti/administradores-ti/carga-masiva": {
+            "post": {
+                "description": "Genera nuevos administrador_tis con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Agrega nuevos administrador_tis de forma masiva",
+                "parameters": [
+                    {
+                        "description": "AdministradoresTi a agregar",
+                        "name": "input_administrador_ti",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/administrador_ti.massive_add_input"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/administrador_ti.massive_add_input"
                         }
                     },
                     "400": {
@@ -3428,6 +3508,9 @@ var doc = `{
                 },
                 "tiempo_utilizado_calificacion_estudiante": {
                     "type": "integer"
+                },
+                "valoracion_general_calificacion_estudiante": {
+                    "type": "integer"
                 }
             }
         },
@@ -3617,6 +3700,9 @@ var doc = `{
                 "hash_contrasena_administrador_academico": {
                     "type": "string"
                 },
+                "hash_nueva_contrasena_administrador_academico": {
+                    "type": "string"
+                },
                 "id_rol": {
                     "type": "integer"
                 },
@@ -3644,6 +3730,9 @@ var doc = `{
                     "type": "string"
                 },
                 "hash_contrasena_administrador_ti": {
+                    "type": "string"
+                },
+                "hash_nueva_contrasena_administrador_ti": {
                     "type": "string"
                 },
                 "id_grupo": {
@@ -3690,6 +3779,9 @@ var doc = `{
                     "type": "string"
                 },
                 "hash_contrasena_evaluador": {
+                    "type": "string"
+                },
+                "hash_nueva_contrasena_evaluador": {
                     "type": "string"
                 },
                 "telefono_celular_evaluador": {
@@ -6528,6 +6620,80 @@ var doc = `{
                 },
                 "status": {
                     "type": "boolean"
+                }
+            }
+        },
+        "administrador_academico.massive_add_input": {
+            "type": "object",
+            "properties": {
+                "administradores_academicos": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "apellidos_administrador_academico": {
+                                "type": "string"
+                            },
+                            "correo_electronico_administrador_academico": {
+                                "type": "string"
+                            },
+                            "hash_contrasena_administrador_academico": {
+                                "type": "string"
+                            },
+                            "id_cursos": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer"
+                                }
+                            },
+                            "nombres_administrador_academico": {
+                                "type": "string"
+                            },
+                            "rut_administrador_academico": {
+                                "type": "string"
+                            },
+                            "telefono_celular_administrador_academico": {
+                                "type": "string"
+                            },
+                            "telefono_fijo_administrador_academico": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "administrador_ti.massive_add_input": {
+            "type": "object",
+            "properties": {
+                "administradores_ti": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "apellidos_administrador_ti": {
+                                "type": "string"
+                            },
+                            "correo_electronico_administrador_ti": {
+                                "type": "string"
+                            },
+                            "hash_contrasena_administrador_ti": {
+                                "type": "string"
+                            },
+                            "nombres_administrador_ti": {
+                                "type": "string"
+                            },
+                            "rut_administrador_ti": {
+                                "type": "string"
+                            },
+                            "telefono_celular_administrador_ti": {
+                                "type": "string"
+                            },
+                            "telefono_fijo_administrador_ti": {
+                                "type": "string"
+                            }
+                        }
+                    }
                 }
             }
         },
