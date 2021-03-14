@@ -43,7 +43,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Académica"
+                    "04 - Administración Académica"
                 ],
                 "summary": "Agrega nuevos administrador_academicos de forma masiva",
                 "parameters": [
@@ -3080,7 +3080,7 @@ var doc = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/Swagger.EvolucionGrupoPorEvaluacionSwagger"
+                                "$ref": "#/definitions/Swagger.EvolucionGrupoPorCompetenciaSwagger"
                             }
                         }
                     },
