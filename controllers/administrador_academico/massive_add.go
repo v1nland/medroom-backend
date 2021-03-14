@@ -60,13 +60,13 @@ func massive_add_format(u *massive_add_input) {
 
 // @Summary Agrega nuevos administrador_academicos de forma masiva
 // @Description Genera nuevos administrador_academicos con los datos entregados
-// @Tags 04 - Administración Académica
+// @Tags 05 - Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   input_administrador_academico     body    massive_add_input     true        "AdministradoresAcademico a agregar"
 // @Success 200 {object} massive_add_input "OK"
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
-// @Router /administracion-academica/administradores-academicos/carga-masiva [post]
+// @Router /administracion-ti/administradores-academicos/carga-masiva [post]
 func AddNewAdministradoresAcademicos(c *gin.Context) {
 	var payload massive_add_input
 	if err := c.ShouldBind(&payload); err != nil {

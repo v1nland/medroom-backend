@@ -59,6 +59,7 @@ func SetupAdministradorTiRouter(r *gin.Engine) *gin.Engine {
 			administradores_academicos.GET("", administrador_academico.ListAdministradoresAcademicos)
 			administradores_academicos.GET(":id", administrador_academico.GetOneAdministradorAcademico)
 			administradores_academicos.POST("", administrador_academico.AddNewAdministradorAcademico)
+			administradores_academicos.POST("/carga-masiva", administrador_academico.AddNewAdministradoresAcademicos)
 			administradores_academicos.PUT(":id", administrador_academico.PutOneAdministradorAcademico)
 			administradores_academicos.DELETE(":id", administrador_academico.DeleteAdministradorAcademico)
 		}

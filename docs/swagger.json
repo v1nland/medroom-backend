@@ -17,46 +17,6 @@
     },
     "basePath": "/api/v1",
     "paths": {
-        "/administracion-academica/administradores-academicos/carga-masiva": {
-            "post": {
-                "description": "Genera nuevos administrador_academicos con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "04 - Administración Académica"
-                ],
-                "summary": "Agrega nuevos administrador_academicos de forma masiva",
-                "parameters": [
-                    {
-                        "description": "AdministradoresAcademico a agregar",
-                        "name": "input_administrador_academico",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/administrador_academico.massive_add_input"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/administrador_academico.massive_add_input"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
-                        }
-                    }
-                }
-            }
-        },
         "/administracion-academica/cursos/:id_curso/estudiantes": {
             "get": {
                 "description": "Lista todos los estudiantes existentes en un curso",
@@ -733,6 +693,46 @@
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/Swagger.AddNewAdministradorAcademicoSwagger"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-ti/administradores-academicos/carga-masiva": {
+            "post": {
+                "description": "Genera nuevos administrador_academicos con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "05 - Administración Ti"
+                ],
+                "summary": "Agrega nuevos administrador_academicos de forma masiva",
+                "parameters": [
+                    {
+                        "description": "AdministradoresAcademico a agregar",
+                        "name": "input_administrador_academico",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/administrador_academico.massive_add_input"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/administrador_academico.massive_add_input"
                         }
                     },
                     "400": {
@@ -3029,6 +3029,54 @@
                 }
             }
         },
+        "/evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/estadisticas/evolucion-por-competencia": {
+            "get": {
+                "description": "Obtiene la evolución de un grupo según competencia",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "03 - Evaluadores"
+                ],
+                "summary": "Evolución por competencia",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id del curso",
+                        "name": "id_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Id del grupo",
+                        "name": "id_grupo",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Swagger.EvolucionGrupoPorCompetenciaSwagger"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
         "/evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/estadisticas/evolucion-por-evaluacion": {
             "get": {
                 "description": "Obtiene la evolución de un grupo según evaluacion",
@@ -3064,7 +3112,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/Swagger.EvolucionGrupoPorCompetenciaSwagger"
+                                "$ref": "#/definitions/Swagger.EvolucionGrupoPorEvaluacionSwagger"
                             }
                         }
                     },

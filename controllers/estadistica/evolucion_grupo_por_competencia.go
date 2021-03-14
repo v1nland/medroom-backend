@@ -12,8 +12,8 @@ import (
 	"gorm.io/gorm"
 )
 
-// @Summary Evolución por evaluacion
-// @Description Obtiene la evolución de un grupo según evaluacion
+// @Summary Evolución por competencia
+// @Description Obtiene la evolución de un grupo según competencia
 // @Tags 03 - Evaluadores
 // @Accept  json
 // @Produce  json
@@ -21,7 +21,7 @@ import (
 // @Param   id_grupo     path    string     true        "Id del grupo"
 // @Success 200 {array} Swagger.EvolucionGrupoPorCompetenciaSwagger "OK"
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
-// @Router /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/estadisticas/evolucion-por-evaluacion [get]
+// @Router /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/estadisticas/evolucion-por-competencia [get]
 func EvolucionGrupoPorCompetencia(c *gin.Context) {
 	// params
 	// id_evaluador := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")

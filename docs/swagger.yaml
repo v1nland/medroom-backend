@@ -2235,32 +2235,6 @@ info:
   title: MedRoom API
   version: "1.0"
 paths:
-  /administracion-academica/administradores-academicos/carga-masiva:
-    post:
-      consumes:
-      - application/json
-      description: Genera nuevos administrador_academicos con los datos entregados
-      parameters:
-      - description: AdministradoresAcademico a agregar
-        in: body
-        name: input_administrador_academico
-        required: true
-        schema:
-          $ref: '#/definitions/administrador_academico.massive_add_input'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/administrador_academico.massive_add_input'
-        "400":
-          description: Bad request
-          schema:
-            $ref: '#/definitions/api_helpers.ResponseError'
-      summary: Agrega nuevos administrador_academicos de forma masiva
-      tags:
-      - 04 - Administración Académica
   /administracion-academica/cursos/:id_curso/estudiantes:
     get:
       consumes:
@@ -2793,6 +2767,32 @@ paths:
           schema:
             $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica un administrador_academico
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/administradores-academicos/carga-masiva:
+    post:
+      consumes:
+      - application/json
+      description: Genera nuevos administrador_academicos con los datos entregados
+      parameters:
+      - description: AdministradoresAcademico a agregar
+        in: body
+        name: input_administrador_academico
+        required: true
+        schema:
+          $ref: '#/definitions/administrador_academico.massive_add_input'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/administrador_academico.massive_add_input'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Agrega nuevos administrador_academicos de forma masiva
       tags:
       - 05 - Administración Ti
   /administracion-ti/administradores-ti:
@@ -4226,6 +4226,38 @@ paths:
       summary: Obtiene un grupo de un evaluador
       tags:
       - 03 - Evaluadores
+  /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/estadisticas/evolucion-por-competencia:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene la evolución de un grupo según competencia
+      parameters:
+      - description: Id del curso
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: Id del grupo
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.EvolucionGrupoPorCompetenciaSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Evolución por competencia
+      tags:
+      - 03 - Evaluadores
   /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/estadisticas/evolucion-por-evaluacion:
     get:
       consumes:
@@ -4249,7 +4281,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/Swagger.EvolucionGrupoPorCompetenciaSwagger'
+              $ref: '#/definitions/Swagger.EvolucionGrupoPorEvaluacionSwagger'
             type: array
         "400":
           description: Bad request
