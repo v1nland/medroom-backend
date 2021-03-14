@@ -27,7 +27,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Academica"
+                    "05 - Administración Académica"
                 ],
                 "summary": "Agrega nuevos administrador_academicos de forma masiva",
                 "parameters": [
@@ -67,7 +67,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Académica"
+                    "04 - Administración Académica"
                 ],
                 "summary": "Lista de estudiantes de un curso",
                 "responses": {
@@ -99,7 +99,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Académica"
+                    "04 - Administración Académica"
                 ],
                 "summary": "Lista de estudiantes de un curso sin grupo",
                 "responses": {
@@ -131,7 +131,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Académica"
+                    "04 - Administración Académica"
                 ],
                 "summary": "Modifica los grupos de un estudiante",
                 "parameters": [
@@ -183,7 +183,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Académica"
+                    "04 - Administración Académica"
                 ],
                 "summary": "Modifica los grupos de un evaluador",
                 "parameters": [
@@ -235,7 +235,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Académica"
+                    "04 - Administración Académica"
                 ],
                 "summary": "Lista de grupos",
                 "responses": {
@@ -265,7 +265,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Académica"
+                    "04 - Administración Académica"
                 ],
                 "summary": "Agrega un nuevo grupo",
                 "parameters": [
@@ -305,7 +305,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Académica"
+                    "04 - Administración Académica"
                 ],
                 "summary": "Obtiene un grupo",
                 "parameters": [
@@ -341,7 +341,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Académica"
+                    "04 - Administración Académica"
                 ],
                 "summary": "Modifica un grupo",
                 "parameters": [
@@ -386,7 +386,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Académica"
+                    "04 - Administración Académica"
                 ],
                 "summary": "Elimina un grupo",
                 "parameters": [
@@ -467,7 +467,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "04 - Administración Academica"
+                    "04 - Administración Académica"
                 ],
                 "summary": "Obtiene el perfil del administrador academico",
                 "responses": {
@@ -494,7 +494,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "04 - Administración Academica"
+                    "04 - Administración Académica"
                 ],
                 "summary": "Modifica mi perfil",
                 "parameters": [
@@ -534,7 +534,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Académica"
+                    "04 - Administración Académica"
                 ],
                 "summary": "Obtiene los cursos de un administrador academico",
                 "responses": {
@@ -563,7 +563,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Académica"
+                    "04 - Administración Académica"
                 ],
                 "summary": "Obtiene un curso de un administrador academico",
                 "parameters": [
@@ -601,7 +601,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Académica"
+                    "04 - Administración Académica"
                 ],
                 "summary": "Obtiene los grupos de un administrador academico",
                 "parameters": [
@@ -639,7 +639,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Académica"
+                    "04 - Administración Académica"
                 ],
                 "summary": "Obtiene un grupo de un administrador academico",
                 "parameters": [
@@ -3064,7 +3064,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/Swagger.EvolucionGrupoPorCompetenciaSwagger"
+                                "$ref": "#/definitions/Swagger.EvolucionGrupoPorEvaluacionSwagger"
                             }
                         }
                     },

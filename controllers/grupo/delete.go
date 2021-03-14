@@ -10,7 +10,7 @@ import (
 
 // @Summary Elimina un grupo
 // @Description Elimina un grupo con los datos entregados
-// @Tags 05 - Administración Académica
+// @Tags 04 - Administración Académica
 // @Accept  json
 // @Produce  json
 // @Param   id_grupo     path    string     true        "Id del grupo a eliminar"

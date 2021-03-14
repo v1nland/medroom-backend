@@ -60,7 +60,7 @@ func massive_add_format(u *massive_add_input) {
 
 // @Summary Agrega nuevos administrador_academicos de forma masiva
 // @Description Genera nuevos administrador_academicos con los datos entregados
-// @Tags 05 - Administración Academica
+// @Tags 05 - Administración Académica
 // @Accept  json
 // @Produce  json
 // @Param   input_administrador_academico     body    massive_add_input     true        "AdministradoresAcademico a agregar"

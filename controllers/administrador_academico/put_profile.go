@@ -16,7 +16,7 @@ import (
 
 // @Summary Modifica mi perfil
 // @Description Modifica el perfil de un administrador_academico con los datos entregados
-// @Tags 04 - Administración Academica
+// @Tags 04 - Administración Académica
 // @Accept  json
 // @Produce  json
 // @Param   input_actualiza_administrador_academico     body    Request.PutMyAdministradorAcademico     true        "AdministradorAcademico a modificar"

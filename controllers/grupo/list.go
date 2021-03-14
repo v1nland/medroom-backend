@@ -10,7 +10,7 @@ import (
 
 // @Summary Lista de grupos
 // @Description Lista todos los grupos
-// @Tags 05 - Administración Académica
+// @Tags 04 - Administración Académica
 // @Accept  json
 // @Produce  json
 // @Success 200 {array} Swagger.ListGruposSwagger "OK"

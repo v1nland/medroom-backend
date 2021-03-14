@@ -12,7 +12,7 @@ import (
 
 // @Summary Obtiene el perfil del administrador academico
 // @Description Obtiene el perfil del administrador academico según su token
-// @Tags 04 - Administración Academica
+// @Tags 04 - Administración Académica
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} Swagger.GetMyAdministradorAcademicoSwagger "OK"

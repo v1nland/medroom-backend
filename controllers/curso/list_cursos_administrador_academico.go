@@ -13,7 +13,7 @@ import (
 
 // @Summary Obtiene los cursos de un administrador academico
 // @Description Obtiene los cursos de un administrador academico según su token
-// @Tags 05 - Administración Académica
+// @Tags 04 - Administración Académica
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} Swagger.GetCursosAdministradorAcademicoSwagger "OK"

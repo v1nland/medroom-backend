@@ -10,7 +10,7 @@ import (
 
 // @Summary Obtiene un grupo
 // @Description Obtiene un grupo según su Id
-// @Tags 05 - Administración Académica
+// @Tags 04 - Administración Académica
 // @Accept  json
 // @Produce  json
 // @Param   id_grupo     path    string     true        "Id del grupo a buscar"

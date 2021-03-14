@@ -2260,7 +2260,7 @@ paths:
             $ref: '#/definitions/api_helpers.ResponseError'
       summary: Agrega nuevos administrador_academicos de forma masiva
       tags:
-      - 05 - Administración Academica
+      - 05 - Administración Académica
   /administracion-academica/cursos/:id_curso/estudiantes:
     get:
       consumes:
@@ -2281,7 +2281,7 @@ paths:
             $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de estudiantes de un curso
       tags:
-      - 05 - Administración Académica
+      - 04 - Administración Académica
   /administracion-academica/cursos/:id_curso/estudiantes/sin-grupo:
     get:
       consumes:
@@ -2302,7 +2302,7 @@ paths:
             $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de estudiantes de un curso sin grupo
       tags:
-      - 05 - Administración Académica
+      - 04 - Administración Académica
   /administracion-academica/cursos/{id_curso}/grupos/{id_grupo}/estudiantes/{uuid_estudiante}:
     put:
       consumes:
@@ -2337,7 +2337,7 @@ paths:
             $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica los grupos de un estudiante
       tags:
-      - 05 - Administración Académica
+      - 04 - Administración Académica
   /administracion-academica/cursos/{id_curso}/grupos/{id_grupo}/evaluadores/{uuid_evaluador}:
     put:
       consumes:
@@ -2372,7 +2372,7 @@ paths:
             $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica los grupos de un evaluador
       tags:
-      - 05 - Administración Académica
+      - 04 - Administración Académica
   /administracion-academica/grupos:
     get:
       consumes:
@@ -2393,7 +2393,7 @@ paths:
             $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de grupos
       tags:
-      - 05 - Administración Académica
+      - 04 - Administración Académica
     post:
       consumes:
       - application/json
@@ -2418,7 +2418,7 @@ paths:
             $ref: '#/definitions/api_helpers.ResponseError'
       summary: Agrega un nuevo grupo
       tags:
-      - 05 - Administración Académica
+      - 04 - Administración Académica
   /administracion-academica/grupos/{id_grupo}:
     delete:
       consumes:
@@ -2443,7 +2443,7 @@ paths:
             $ref: '#/definitions/api_helpers.ResponseError'
       summary: Elimina un grupo
       tags:
-      - 05 - Administración Académica
+      - 04 - Administración Académica
     get:
       consumes:
       - application/json
@@ -2467,7 +2467,7 @@ paths:
             $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un grupo
       tags:
-      - 05 - Administración Académica
+      - 04 - Administración Académica
     put:
       consumes:
       - application/json
@@ -2497,7 +2497,7 @@ paths:
             $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica un grupo
       tags:
-      - 05 - Administración Académica
+      - 04 - Administración Académica
   /administracion-academica/login:
     post:
       consumes:
@@ -2544,7 +2544,7 @@ paths:
             $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene el perfil del administrador academico
       tags:
-      - 04 - Administración Academica
+      - 04 - Administración Académica
     put:
       consumes:
       - application/json
@@ -2570,7 +2570,7 @@ paths:
             $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica mi perfil
       tags:
-      - 04 - Administración Academica
+      - 04 - Administración Académica
   /administracion-academica/me/cursos:
     get:
       consumes:
@@ -2589,7 +2589,7 @@ paths:
             $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene los cursos de un administrador academico
       tags:
-      - 05 - Administración Académica
+      - 04 - Administración Académica
   /administracion-academica/me/cursos/{id_curso}:
     get:
       consumes:
@@ -2614,7 +2614,7 @@ paths:
             $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un curso de un administrador academico
       tags:
-      - 05 - Administración Académica
+      - 04 - Administración Académica
   /administracion-academica/me/cursos/{id_curso}/grupos:
     get:
       consumes:
@@ -2639,7 +2639,7 @@ paths:
             $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene los grupos de un administrador academico
       tags:
-      - 05 - Administración Académica
+      - 04 - Administración Académica
   /administracion-academica/me/cursos/{id_curso}/grupos/{id_grupo}:
     get:
       consumes:
@@ -2669,7 +2669,7 @@ paths:
             $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un grupo de un administrador academico
       tags:
-      - 05 - Administración Académica
+      - 04 - Administración Académica
   /administracion-ti/administradores-academicos:
     get:
       consumes:
@@ -4249,7 +4249,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/Swagger.EvolucionGrupoPorCompetenciaSwagger'
+              $ref: '#/definitions/Swagger.EvolucionGrupoPorEvaluacionSwagger'
             type: array
         "400":
           description: Bad request

@@ -14,7 +14,7 @@ import (
 
 // @Summary Modifica los grupos de un evaluador
 // @Description Modifica los grupos de un evaluador con los datos entregados
-// @Tags 05 - Administración Académica
+// @Tags 04 - Administración Académica
 // @Accept  json
 // @Produce  json
 // @Param   id_curso     path    string     true        "ID del curso a modificar"

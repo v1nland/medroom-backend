@@ -13,7 +13,7 @@ import (
 
 // @Summary Agrega un nuevo grupo
 // @Description Genera un nuevo grupo con los datos entregados
-// @Tags 05 - Administración Académica
+// @Tags 04 - Administración Académica
 // @Accept  json
 // @Produce  json
 // @Param   input_grupo     body    Request.AddNewGrupo     true        "Grupo a agregar"

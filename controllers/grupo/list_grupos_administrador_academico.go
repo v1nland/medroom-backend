@@ -13,7 +13,7 @@ import (
 
 // @Summary Obtiene los grupos de un administrador academico
 // @Description Obtiene los grupos de un administrador academico según su token
-// @Tags 05 - Administración Académica
+// @Tags 04 - Administración Académica
 // @Accept  json
 // @Produce  json
 // @Param   id_curso     path    string     true        "Id del curso a buscar"

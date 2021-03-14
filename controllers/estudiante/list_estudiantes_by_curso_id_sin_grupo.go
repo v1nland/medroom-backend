@@ -12,7 +12,7 @@ import (
 
 // @Summary Lista de estudiantes de un curso sin grupo
 // @Description Lista todos los estudiantes existentes en un curso sin grupo
-// @Tags 05 - Administración Académica
+// @Tags 04 - Administración Académica
 // @Accept  json
 // @Produce  json
 // @Success 200 {array} Swagger.ListEstudiantesCursoSinGrupoSwagger "OK"
