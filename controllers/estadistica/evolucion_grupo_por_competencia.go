@@ -45,7 +45,7 @@ func EvolucionGrupoPorCompetencia(c *gin.Context) {
 	}
 
 	for i := 0; i < len(calificaciones_grupo); i++ {
-		response_container.Valores[calificaciones_grupo[i].Nombre_evaluacion] = append(response_container.Valores[calificaciones_grupo[i].Nombre_evaluacion], struct {
+		response_container.Valores[calificaciones_grupo[i].Id_competencia] = append(response_container.Valores[calificaciones_grupo[i].Id_competencia], struct {
 			Promedio_grupo float64 `json:"promedio_grupo"`
 		}{
 			calificaciones_grupo[i].Promedio_calificacion_puntaje_grupo,
