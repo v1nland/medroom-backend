@@ -58,6 +58,9 @@ func SetupAdministradorAcademicoRouter(r *gin.Engine) *gin.Engine {
 			cursos.PUT(":id/grupos/:id_grupo/estudiantes/:id_estudiante", grupo.AddEstudianteToGrupo)
 			cursos.PUT(":id/grupos/:id_grupo/evaluadores/:id_evaluador", grupo.AddEvaluadorToGrupo)
 
+			cursos.DELETE(":id/grupos/:id_grupo/estudiantes/:id_estudiante", grupo.RemoveEstudianteFromGrupo)
+			cursos.DELETE(":id/grupos/:id_grupo/evaluadores/:id_evaluador", grupo.RemoveEvaluadorFromGrupo)
+
 			cursos.GET(":id/estudiantes", estudiante.ListEstudiantesCurso)
 			cursos.GET(":id/estudiantes/sin-grupo", estudiante.ListEstudiantesCursoSinGrupo)
 		}

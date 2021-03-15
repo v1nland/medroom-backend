@@ -87,3 +87,10 @@ func DeleteCurso(u *models.Curso, id string) (err error) {
 	config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("id = ?", id).Delete(u)
 	return nil
 }
+
+func DeleteAdministradorAcademicoCurso(id_curso string, id_administrador_academico string) (err error) {
+	if err := config.DB.Debug().Exec(`DELETE FROM public.administradores_academicos_cursos WHERE administradores_academicos_cursos.id_curso = ? AND administradores_academicos_cursos.id_administrador_academico = ?`, id_curso, id_administrador_academico).Error; err != nil {
+		return err
+	}
+	return nil
+}
