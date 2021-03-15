@@ -50,7 +50,7 @@ func PutMyAdministradorAcademico(c *gin.Context) {
 	}
 
 	if model.Hash_contrasena_administrador_academico != *input.Hash_contrasena_administrador_academico {
-		api_helpers.RespondJSON(c, 200, "Current password mismatch")
+		api_helpers.RespondJSON(c, 403, "Current password mismatch")
 		return
 	}
 

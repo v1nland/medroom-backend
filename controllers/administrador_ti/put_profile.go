@@ -39,7 +39,7 @@ func PutMyAdministradorTi(c *gin.Context) {
 	}
 
 	if administrador_ti.Hash_contrasena_administrador_ti != *input.Hash_contrasena_administrador_ti {
-		api_helpers.RespondJSON(c, 200, "Current password mismatch")
+		api_helpers.RespondJSON(c, 403, "Current password mismatch")
 		return
 	}
 
