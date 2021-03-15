@@ -44,7 +44,7 @@ func PutMyEstudiante(c *gin.Context) {
 		return
 	}
 
-	if estudiante.Hash_contrasena_estudiante == *input.Hash_contrasena_estudiante {
+	if estudiante.Hash_contrasena_estudiante != *input.Hash_contrasena_estudiante {
 		api_helpers.RespondJSON(c, 403, "Current password mismatch")
 		return
 	}

@@ -44,8 +44,8 @@ func PutMyEvaluador(c *gin.Context) {
 		return
 	}
 
-	if evaluador.Hash_contrasena_evaluador == *input.Hash_contrasena_evaluador {
-		api_helpers.RespondJSON(c, 403, "Current password mismatch")
+	if evaluador.Hash_contrasena_evaluador != *input.Hash_contrasena_evaluador {
+		api_helpers.RespondJSON(c, 200, "Current password mismatch")
 		return
 	}
 
