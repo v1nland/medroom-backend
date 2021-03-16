@@ -8,6 +8,7 @@ import (
 	"medroom-backend/utils"
 
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
 
@@ -45,6 +46,20 @@ func AddEstudianteToCurso(c *gin.Context) {
 		}
 
 		return
+	}
+
+	// si estudiante ya pertenece a otro grupo de ese curso, error
+	for i := 0; i < len(curso.Grupos_curso); i++ {
+		if curso.Grupos_curso[i].Sigla_grupo != "SG" {
+			var gp models.Grupo
+			if err := repositories.GetOneGrupo(&gp, utils.ConvertIntToString(curso.Grupos_curso[i].Id)); err == nil {
+				for j := 0; j < len(gp.Estudiantes_grupo); j++ {
+					if gp.Estudiantes_grupo[i].Id == uuid.MustParse(id_estudiante) {
+						api_helpers.RespondJSON(c, 403, "Estudiante ya pertenece a otro grupo de ese curso")
+					}
+				}
+			}
+		}
 	}
 
 	// search grupo "sin grupo" in curso

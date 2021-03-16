@@ -72,7 +72,7 @@ func AddEstudianteToGrupo(c *gin.Context) {
 
 	for i := 0; i < len(grupos_este_curso); i++ {
 		if grupos_este_curso[i].Sigla_grupo != "SG" {
-			api_helpers.RespondJSON(c, 200, "Alumno ya pertenece a un grupo de este curso")
+			api_helpers.RespondJSON(c, 400, "Alumno ya pertenece a un grupo de este curso")
 			return
 		}
 	}
