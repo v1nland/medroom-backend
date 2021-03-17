@@ -1368,6 +1368,16 @@ definitions:
       id:
         type: integer
     type: object
+  Response.RemoveEstudianteFromGrupoResponse:
+    properties:
+      id:
+        type: integer
+    type: object
+  Response.RemoveEvaluadorFromGrupoResponse:
+    properties:
+      id:
+        type: integer
+    type: object
   Swagger.AddAdministradorAcademicoToCursoSwagger:
     properties:
       data:
@@ -2079,6 +2089,24 @@ definitions:
       status:
         type: boolean
     type: object
+  Swagger.RemoveEstudianteFromGrupoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.RemoveEstudianteFromGrupoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.RemoveEvaluadorFromGrupoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.RemoveEvaluadorFromGrupoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
   administrador_academico.massive_add_input:
     properties:
       administradores_academicos:
@@ -2278,6 +2306,40 @@ paths:
       tags:
       - 04 - Administración Académica
   /administracion-academica/cursos/{id_curso}/grupos/{id_grupo}/estudiantes/{uuid_estudiante}:
+    delete:
+      consumes:
+      - application/json
+      description: Modifica los grupos de un estudiante con los datos entregados
+      parameters:
+      - description: ID del curso a modificar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: ID del grupo a modificar
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      - description: UUID del estudiante a asociar
+        in: path
+        name: uuid_estudiante
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.RemoveEstudianteFromGrupoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Modifica los grupos de un estudiante
+      tags:
+      - 04 - Administración Académica
     put:
       consumes:
       - application/json
@@ -2340,6 +2402,41 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/Swagger.AddEvaluadorToGrupoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Modifica los grupos de un evaluador
+      tags:
+      - 04 - Administración Académica
+  /administracion-academica/cursos/{id_curso}/grupos/{id_grupo}/evaluadors/{uuid_evaluador}:
+    delete:
+      consumes:
+      - application/json
+      description: Modifica los grupos de un evaluador con los datos entregados
+      parameters:
+      - description: ID del curso a modificar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: ID del grupo a modificar
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      - description: UUID del evaluador a asociar
+        in: path
+        name: uuid_evaluador
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.RemoveEvaluadorFromGrupoSwagger'
         "400":
           description: Bad request
           schema:

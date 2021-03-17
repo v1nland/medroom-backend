@@ -85,3 +85,15 @@ type AddNewGruposSwagger struct {
 	Meta   string                        `json:"meta"`
 	Data   Response.AddNewGruposResponse `json:"data"`
 }
+
+type RemoveEvaluadorFromGrupoSwagger struct {
+	Status bool                                      `json:"status"`
+	Meta   string                                    `json:"meta"`
+	Data   Response.RemoveEvaluadorFromGrupoResponse `json:"data"`
+}
+
+type RemoveEstudianteFromGrupoSwagger struct {
+	Status bool                                       `json:"status"`
+	Meta   string                                     `json:"meta"`
+	Data   Response.RemoveEstudianteFromGrupoResponse `json:"data"`
+}

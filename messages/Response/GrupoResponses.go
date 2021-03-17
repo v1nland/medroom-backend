@@ -95,3 +95,11 @@ type GetGruposAdministradorAcademicoResponse struct {
 type AddNewGruposResponse struct {
 	Id int `json:"id"`
 }
+
+type RemoveEvaluadorFromGrupoResponse struct {
+	Id int `json:"id"`
+}
+
+type RemoveEstudianteFromGrupoResponse struct {
+	Id int `json:"id"`
+}
