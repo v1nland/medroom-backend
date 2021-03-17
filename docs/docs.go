@@ -2842,7 +2842,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "02 - Estudiantes"
+                    "03 - Evaluadores"
                 ],
                 "summary": "Obtiene una calificación",
                 "parameters": [

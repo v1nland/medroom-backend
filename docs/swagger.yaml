@@ -4151,7 +4151,7 @@ paths:
             $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene una calificación
       tags:
-      - 02 - Estudiantes
+      - 03 - Evaluadores
   /evaluadores/login:
     post:
       consumes:
