@@ -48,6 +48,7 @@ func SetupEvaluadorRouter(r *gin.Engine) *gin.Engine {
 		router.GET("me/cursos/:id_curso/grupos/:id_grupo/estudiantes/:id_estudiante/evaluaciones-rendidas", evaluacion.ListEvaluacionesRendidasEstudiante)
 		router.GET("me/cursos/:id_curso/grupos/:id_grupo/estudiantes/:id_estudiante/evaluaciones/:id_evaluacion/calificacion", calificacion_estudiante.GetOneCalificacionEstudianteEvaluador)
 		router.POST("me/cursos/:id_curso/grupos/:id_grupo/estudiantes/:id_estudiante/evaluaciones/:id_evaluacion/calificacion", calificacion_estudiante.AddNewCalificacionEstudiante)
+		router.PUT("me/cursos/:id_curso/grupos/:id_grupo/estudiantes/:id_estudiante/evaluaciones/:id_evaluacion/calificacion", calificacion_estudiante.PutOneCalificacionEstudiante)
 
 		// reports
 		router.GET("me/cursos/:id_curso/grupos/:id_grupo/estadisticas/evolucion-competencia", estadistica.EvolucionGrupoPorCompetencia)
