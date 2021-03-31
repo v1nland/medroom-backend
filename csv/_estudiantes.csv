@@ -1,6 +1,6 @@
-id_grupos,rut,nombres,apellidos,contrasena,correo,telefono_fijo,telefono_celular
-[1,5],1,juan,perez,123,a@mail.udp.cl,123,123
-[2,5],2,juana,perez,123,b@mail.udp.cl,123,123
-[3],3,pedro,juarez,123,c@mail.udp.cl,123,123
-[4],4,oraldo,soto,123,d@mail.udp.cl,123,123
-[5],5,el,bkn,123,e@mail.udp.cl,123,123
+id_grupos;rut;nombres;apellidos;contrasena;correo;telefono_fijo;telefono_celular
+[1,5];1;juan;perez;123;a@mail.udp.cl;123;123
+[2,5];2;juana;perez;123;b@mail.udp.cl;123;123
+[3];3;pedro;juarez;123;c@mail.udp.cl;123;123
+[4];4;oraldo;soto;123;d@mail.udp.cl;123;123
+[5];5;el;bkn;123;e@mail.udp.cl;123;123

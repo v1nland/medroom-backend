@@ -4,6 +4,7 @@ import (
 	"medroom-backend/api_helpers"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
+	"medroom-backend/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -18,7 +19,7 @@ import (
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-academica/grupos/{id_grupo} [delete]
 func DeleteGrupo(c *gin.Context) {
-	id := c.Params.ByName("id_grupo")
+	id := c.Params.ByName("id")
 
 	var grupo models.Grupo
 	if err := repositories.GetOneGrupo(&grupo, id); err != nil {
@@ -26,10 +27,23 @@ func DeleteGrupo(c *gin.Context) {
 		return
 	}
 
-	if err := repositories.DeleteGrupo(&grupo, id); err != nil {
+	// clear grupo associations
+	if err := repositories.ClearGrupo(utils.ConvertIntToString(grupo.Id)); err != nil {
 		api_helpers.RespondError(c, 500, "default")
 		return
 	}
 
+	// clear evaluaciones grupo
+	for _, evaluacion := range grupo.Evaluaciones_grupo {
+		if err := repositories.DeleteEvaluacion(utils.ConvertIntToString(evaluacion.Id)); err != nil {
+			api_helpers.RespondError(c, 500, "default")
+			return
+		}
+	}
+
+	// delete grupo
+	repositories.DeleteGrupo(&grupo)
+
+	// response
 	api_helpers.RespondJSON(c, 200, grupo)
 }

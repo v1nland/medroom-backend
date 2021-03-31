@@ -37,8 +37,27 @@ func PutOneEvaluacion(u *models.Evaluacion, id string) (err error) {
 	return nil
 }
 
-func DeleteEvaluacion(u *models.Evaluacion, id string) (err error) {
-	config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("id = ?", id).Delete(u)
+func DeleteEvaluacion(id string) (err error) {
+	// delete puntajes
+	if err := config.DB.Debug().Exec(`	delete from puntajes 
+																			where id_calificacion_estudiante in (
+																			select ce.id 
+																			from public.calificaciones_estudiantes ce, public.evaluaciones ev 
+																			where ce.id_evaluacion = ev.id 
+																			and ev.id = ?)
+	`, id).Error; err != nil {
+		return err
+	}
+
+	// delete calificaciones_estudiantes
+	if err := config.DB.Debug().Exec(`DELETE FROM public.calificaciones_estudiantes WHERE calificaciones_estudiantes.id_evaluacion = ?`, id).Error; err != nil {
+		return err
+	}
+
+	// delete evaluaciones
+	if err := config.DB.Debug().Exec(`DELETE FROM public.evaluaciones WHERE evaluaciones.id = ?`, id).Error; err != nil {
+		return err
+	}
 	return nil
 }
 

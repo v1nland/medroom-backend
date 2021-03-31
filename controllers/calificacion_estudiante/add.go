@@ -39,8 +39,8 @@ func AddNewCalificacionEstudiante(c *gin.Context) {
 	}
 
 	// TODO: validar que vengan las 7 competencias necesarias
-	if len(input.Puntajes_calificacion_estudiante) != 7 {
-		api_helpers.RespondError(c, 400, "deben venir las 7 competencias")
+	if len(input.Puntajes_calificacion_estudiante) != 6 {
+		api_helpers.RespondError(c, 400, "deben venir las 6 competencias")
 		return
 	}
 
@@ -57,21 +57,14 @@ func AddNewCalificacionEstudiante(c *gin.Context) {
 	}
 
 	model := models.CalificacionEstudiante{
-		Id_evaluador:                                         uuid.MustParse(id_evaluador),
-		Id_periodo:                                           *input.Id_periodo,
-		Id_evaluacion:                                        utils.ConvertStringToInt(id_evaluacion),
-		Puntajes_calificacion_estudiante:                     puntajes_calificacion_estudiante,
-		Id_estudiante:                                        uuid.MustParse(id_estudiante),
-		Nombre_calificacion_estudiante:                       *input.Nombre_calificacion_estudiante,
-		Entorno_clinico_calificacion_estudiante:              *input.Entorno_clinico_calificacion_estudiante,
-		Paciente_calificacion_estudiante:                     *input.Paciente_calificacion_estudiante,
-		Asunto_principal_consulta_calificacion_estudiante:    *input.Asunto_principal_consulta_calificacion_estudiante,
-		Complejidad_caso_calificacion_estudiante:             *input.Complejidad_caso_calificacion_estudiante,
-		Numero_observaciones_previas_calificacion_estudiante: *input.Numero_observaciones_previas_calificacion_estudiante,
-		Categoria_observador_calificacion_estudiante:         *input.Categoria_observador_calificacion_estudiante,
-		Observacion_calificacion_calificacion_estudiante:     *input.Observacion_calificacion_calificacion_estudiante,
-		Tiempo_utilizado_calificacion_estudiante:             *input.Tiempo_utilizado_calificacion_estudiante,
-		Valoracion_general_calificacion_estudiante:           *input.Valoracion_general_calificacion_estudiante,
+		Id_evaluador:                     uuid.MustParse(id_evaluador),
+		Id_periodo:                       *input.Id_periodo,
+		Id_evaluacion:                    utils.ConvertStringToInt(id_evaluacion),
+		Puntajes_calificacion_estudiante: puntajes_calificacion_estudiante,
+		Id_estudiante:                    uuid.MustParse(id_estudiante),
+		Nombre_calificacion_estudiante:   *input.Nombre_calificacion_estudiante,
+		Observacion_calificacion_calificacion_estudiante: *input.Observacion_calificacion_calificacion_estudiante,
+		Valoracion_general_calificacion_estudiante:       *input.Valoracion_general_calificacion_estudiante,
 	}
 
 	if err := repositories.AddNewCalificacionEstudiante(&model); err != nil {

@@ -82,8 +82,8 @@ func PutOneGrupo(u *models.Grupo, id string) (err error) {
 	return nil
 }
 
-func DeleteGrupo(u *models.Grupo, id string) (err error) {
-	config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("id = ?", id).Delete(u)
+func DeleteGrupo(u *models.Grupo) (err error) {
+	config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Delete(u)
 	return nil
 }
 
@@ -96,6 +96,16 @@ func DeleteEstudianteGrupo(id_grupo string, id_estudiante string) (err error) {
 
 func DeleteEvaluadorGrupo(id_grupo string, id_evaluador string) (err error) {
 	if err := config.DB.Debug().Exec(`DELETE FROM public.evaluadores_grupos WHERE evaluadores_grupos.id_grupo = ? AND evaluadores_grupos.id_evaluador = ?`, id_grupo, id_evaluador).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
+func ClearGrupo(id_grupo string) (err error) {
+	if err := config.DB.Debug().Exec(`DELETE FROM public.estudiantes_grupos WHERE estudiantes_grupos.id_grupo = ?`, id_grupo).Error; err != nil {
+		return err
+	}
+	if err := config.DB.Debug().Exec(`DELETE FROM public.evaluadores_grupos WHERE evaluadores_grupos.id_grupo = ?`, id_grupo).Error; err != nil {
 		return err
 	}
 	return nil

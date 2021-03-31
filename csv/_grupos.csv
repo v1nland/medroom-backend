@@ -1,6 +1,6 @@
-id,id_curso,nombre_grupo,sigla_grupo
-1,1,grupomasivo1,cm1
-2,1,grupomasivo2,cm2
-3,1,grupomasivo3,cm3
-4,1,grupomasivo4,cm4
-5,2,grupomasivo5,cm5
+id;id_curso;nombre_grupo;sigla_grupo
+1;1;grupomasivo1;cm1
+2;1;grupomasivo2;cm2
+3;1;grupomasivo3;cm3
+4;1;grupomasivo4;cm4
+5;2;grupomasivo5;cm5

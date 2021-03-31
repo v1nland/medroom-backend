@@ -69,14 +69,4 @@ func Competenciamigrations() {
 		panic("NO SE PUDO MIGRAR COMPETENCIA 'ORGANIZACION Y EFICIENCIA'")
 	}
 	utils.StructToString(container)
-
-	// Valoración Global
-	container = &models.Competencia{
-		Id:                 "VAGL",
-		Nombre_competencia: "VALORACION GLOBAL",
-	}
-	if err := repositories.AddNewCompetencia(container); err != nil {
-		panic("NO SE PUDO MIGRAR COMPETENCIA 'VALORACION GLOBAL'")
-	}
-	utils.StructToString(container)
 }
