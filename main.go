@@ -69,5 +69,5 @@ func main() {
 	r.GET("/docs/v1/*any", gin_swagger.WrapHandler(swagger_files.Handler, url))
 
 	// run routes
-	r.Run(config.GetString("PORT"))
+	r.Run()
 }
