@@ -38,6 +38,13 @@ func GetOneEstudiante(u *models.Estudiante, id string) (err error) {
 	return nil
 }
 
+func GetReporteEstudiante(u *models.Estudiante, id string) (err error) {
+	if err := config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Preload("Calificaciones_estudiante.Puntajes_calificacion_estudiante.Competencia_puntaje").Preload("Calificaciones_estudiante.Evaluador_calificacion_estudiante").Preload("Calificaciones_estudiante.Evaluacion_calificacion_estudiante").Where("id = ?", id).First(u).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
 func AddNewEstudiante(u *models.Estudiante) (err error) {
 	if err = config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Create(u).Error; err != nil {
 		return err

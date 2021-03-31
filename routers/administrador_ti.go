@@ -77,6 +77,7 @@ func SetupAdministradorTiRouter(r *gin.Engine) *gin.Engine {
 		{
 			cursos.GET("", curso.ListCursos)
 			cursos.GET(":id", curso.GetOneCurso)
+			cursos.GET(":id/reporte-notas", curso.GetReporteNotas)
 			cursos.POST("", curso.AddNewCurso)
 			cursos.POST("carga-masiva", curso.AddNewCursos)
 			cursos.PUT(":id", curso.PutOneCurso)
