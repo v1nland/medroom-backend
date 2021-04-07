@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"fmt"
 	"unicode"
 
 	"golang.org/x/text/transform"
@@ -26,7 +27,7 @@ func RemoveAccents(s string) (clean string) {
 	t := transform.Chain(norm.NFD, transform.RemoveFunc(isMn), norm.NFC)
 	nDst, _, e := t.Transform(b, []byte(s), true)
 	if e != nil {
-		panic(e)
+		fmt.Println(e)
 	}
 
 	return string(b[:nDst])

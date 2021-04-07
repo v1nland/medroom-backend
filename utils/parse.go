@@ -21,7 +21,7 @@ func ConvertStringToInt(number string) (number_int int) {
 func StructToString(a interface{}) {
 	out, err := json.Marshal(a)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 
 	fmt.Println(string(out))
