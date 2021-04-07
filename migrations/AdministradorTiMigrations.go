@@ -5,18 +5,16 @@ import (
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 	"medroom-backend/utils"
+
+	"github.com/google/uuid"
 )
 
 func AdministradorTimigrations() {
 	fmt.Println("===== ADMINISTRADOR TI =====")
 
-	var rol models.Rol
-	if err := repositories.GetOneRol(&rol, "4"); err != nil {
-		panic("ROL ADMINISTRADOR TI NO EXISTE")
-	}
-
 	container := &models.AdministradorTi{
-		Rol_administrador_ti:                rol,
+		Id:                                  uuid.MustParse("75895023-f9db-4ccb-9045-c3d858dde28c"),
+		Id_rol:                              4,
 		Rut_administrador_ti:                "11.111.111-1",
 		Nombres_administrador_ti:            "NOMBRE ADMINISTRADOR",
 		Apellidos_administrador_ti:          "APELLIDO TI",
@@ -27,7 +25,7 @@ func AdministradorTimigrations() {
 	}
 
 	if err := repositories.AddNewAdministradorTi(container); err != nil {
-		panic("NO SE PUDO MIGRAR ADMINISTRADOR TI")
+		fmt.Println("NO SE PUDO MIGRAR ADMINISTRADOR TI")
 	}
 
 	utils.StructToString(container)

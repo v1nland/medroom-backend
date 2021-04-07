@@ -16,7 +16,7 @@ func Competenciamigrations() {
 		Nombre_competencia: "ANAMNESIS",
 	}
 	if err := repositories.AddNewCompetencia(container); err != nil {
-		panic("NO SE PUDO MIGRAR COMPETENCIA 'ANAMNESIS'")
+		fmt.Println("NO SE PUDO MIGRAR COMPETENCIA 'ANAMNESIS'")
 	}
 	utils.StructToString(container)
 
@@ -26,7 +26,7 @@ func Competenciamigrations() {
 		Nombre_competencia: "EXPLORACION FISICA",
 	}
 	if err := repositories.AddNewCompetencia(container); err != nil {
-		panic("NO SE PUDO MIGRAR COMPETENCIA 'EXPLORACION FISICA'")
+		fmt.Println("NO SE PUDO MIGRAR COMPETENCIA 'EXPLORACION FISICA'")
 	}
 	utils.StructToString(container)
 
@@ -36,7 +36,7 @@ func Competenciamigrations() {
 		Nombre_competencia: "PROFESIONALISMO",
 	}
 	if err := repositories.AddNewCompetencia(container); err != nil {
-		panic("NO SE PUDO MIGRAR COMPETENCIA 'PROFESIONALISMO'")
+		fmt.Println("NO SE PUDO MIGRAR COMPETENCIA 'PROFESIONALISMO'")
 	}
 	utils.StructToString(container)
 
@@ -46,7 +46,7 @@ func Competenciamigrations() {
 		Nombre_competencia: "JUICIO CLINICO",
 	}
 	if err := repositories.AddNewCompetencia(container); err != nil {
-		panic("NO SE PUDO MIGRAR COMPETENCIA 'JUICIO CLINICO'")
+		fmt.Println("NO SE PUDO MIGRAR COMPETENCIA 'JUICIO CLINICO'")
 	}
 	utils.StructToString(container)
 
@@ -56,7 +56,7 @@ func Competenciamigrations() {
 		Nombre_competencia: "HABILIDADES COMUNICATIVAS",
 	}
 	if err := repositories.AddNewCompetencia(container); err != nil {
-		panic("NO SE PUDO MIGRAR COMPETENCIA 'HABILIDADES COMUNICATIVAS'")
+		fmt.Println("NO SE PUDO MIGRAR COMPETENCIA 'HABILIDADES COMUNICATIVAS'")
 	}
 	utils.StructToString(container)
 
@@ -66,7 +66,7 @@ func Competenciamigrations() {
 		Nombre_competencia: "ORGANIZACION Y EFICIENCIA",
 	}
 	if err := repositories.AddNewCompetencia(container); err != nil {
-		panic("NO SE PUDO MIGRAR COMPETENCIA 'ORGANIZACION Y EFICIENCIA'")
+		fmt.Println("NO SE PUDO MIGRAR COMPETENCIA 'ORGANIZACION Y EFICIENCIA'")
 	}
 	utils.StructToString(container)
 }

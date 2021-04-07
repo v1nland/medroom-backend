@@ -1,6 +1,8 @@
 package routers
 
 import (
+	"time"
+
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
@@ -8,11 +10,16 @@ import (
 func SetupRouter() *gin.Engine {
 	r := gin.Default()
 
-	config := cors.DefaultConfig()
-	config.AllowAllOrigins = true
-	config.AddAllowHeaders("authorization")
+	config := cors.New(cors.Config{
+		AllowOrigins:     []string{"*"},
+		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Authorization"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		MaxAge:           12 * time.Hour,
+	})
 
-	r.Use(cors.New(config))
+	r.Use(config)
 
 	r = SetupPublicRouter(r)
 	r = SetupEstudianteRouter(r)
