@@ -44,7 +44,7 @@ func SetupEstudianteRouter(r *gin.Engine) *gin.Engine {
 
 		// my evaluations
 		router.GET("me/cursos/:id_curso/grupos/:id_grupo/evaluaciones", evaluacion.ListEvaluacionesGrupoEstudiante)
-		router.GET("me/cursos/:id_curso/grupos/:id_grupo/evaluaciones/:id_evaluacion/calificacion", calificacion_estudiante.GetOneCalificacionEstudiante)
+		router.GET("me/cursos/:id_curso/grupos/:id_grupo/evaluaciones/:id_evaluacion/calificacion", calificacion_estudiante.Get)
 
 		// reports
 		router.GET("me/cursos/:id_curso/grupos/:id_grupo/estadisticas/evolucion-por-competencia", estadistica.EvolucionEstudiantePorCompetencia)

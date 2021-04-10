@@ -2,10 +2,10 @@ package curso
 
 import (
 	"errors"
+	"fmt"
 	"medroom-backend/api_helpers"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
-	"medroom-backend/utils"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -42,7 +42,7 @@ type EstudianteReport struct {
 // @Success 200 {object} Swagger.GetOneCursoSwagger "OK"
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/cursos/{id_curso} [get]
-func GetReporteNotas(c *gin.Context) {
+func GetMarksReport(c *gin.Context) {
 	id := c.Params.ByName("id")
 
 	var curso models.Curso
@@ -60,14 +60,15 @@ func GetReporteNotas(c *gin.Context) {
 
 	for _, grupo := range curso.Grupos_curso {
 		var gp models.Grupo
+		fmt.Println(grupo)
 
-		if err := repositories.GetOneGrupo(&gp, utils.ConvertIntToString(grupo.Id)); err != nil {
-			if errors.Is(err, gorm.ErrRecordNotFound) {
-				api_helpers.RespondJSON(c, 200, "Grupo not found")
-			} else {
-				api_helpers.RespondError(c, 500, "default")
-			}
-		}
+		// if err := repositories.GetOneGrupo(&gp, utils.ConvertIntToString(grupo.Id)); err != nil {
+		// 	if errors.Is(err, gorm.ErrRecordNotFound) {
+		// 		api_helpers.RespondJSON(c, 200, "Grupo not found")
+		// 	} else {
+		// 		api_helpers.RespondError(c, 500, "default")
+		// 	}
+		// }
 
 		for _, est := range gp.Estudiantes_grupo {
 			var estudiante models.Estudiante

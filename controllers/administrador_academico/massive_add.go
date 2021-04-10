@@ -10,7 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type massive_add_input struct {
+type massiveAddRequest struct {
 	AdministradoresAcademicos []struct {
 		Id_cursos                                  []*int  `json:"id_cursos"`
 		Rut_administrador_academico                *string `json:"rut_administrador_academico"`
@@ -23,7 +23,7 @@ type massive_add_input struct {
 	} `json:"administradores_academicos"`
 }
 
-func massive_add_format(u *massive_add_input) {
+func massiveAddRequestParse(u *massiveAddRequest) {
 	for i := 0; i < len(u.AdministradoresAcademicos); i++ {
 		if u.AdministradoresAcademicos[i].Rut_administrador_academico != nil {
 			*u.AdministradoresAcademicos[i].Rut_administrador_academico = strings.TrimSpace(*u.AdministradoresAcademicos[i].Rut_administrador_academico)
@@ -67,14 +67,14 @@ func massive_add_format(u *massive_add_input) {
 // @Success 200 {object} massive_add_input "OK"
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/administradores-academicos/carga-masiva [post]
-func AddNewAdministradoresAcademicos(c *gin.Context) {
-	var payload massive_add_input
+func MassiveAdd(c *gin.Context) {
+	var payload massiveAddRequest
 	if err := c.ShouldBind(&payload); err != nil {
 		api_helpers.RespondError(c, 400, err.Error())
 		return
 	}
 
-	massive_add_format(&payload)
+	massiveAddRequestParse(&payload)
 
 	var administradores_academicos_error []string
 	for i := 0; i < len(payload.AdministradoresAcademicos); i++ {
@@ -97,7 +97,7 @@ func AddNewAdministradoresAcademicos(c *gin.Context) {
 			}
 		}
 
-		if err := repositories.AddNewAdministradorAcademico(&administrador_academico); err != nil {
+		if err := repositories.AddAdministradorAcademico(&administrador_academico); err != nil {
 			administradores_academicos_error = append(administradores_academicos_error, "["+*payload.AdministradoresAcademicos[i].Rut_administrador_academico+"] "+*payload.AdministradoresAcademicos[i].Nombres_administrador_academico+" "+*payload.AdministradoresAcademicos[i].Apellidos_administrador_academico)
 		}
 	}
@@ -105,6 +105,6 @@ func AddNewAdministradoresAcademicos(c *gin.Context) {
 	if len(administradores_academicos_error) > 0 {
 		api_helpers.RespondJSON(c, 201, administradores_academicos_error)
 	} else {
-		api_helpers.RespondJSON(c, 200, "ok")
+		api_helpers.RespondJSON(c, 200, "OK")
 	}
 }

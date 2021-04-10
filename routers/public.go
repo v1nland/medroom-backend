@@ -12,10 +12,10 @@ func SetupPublicRouter(r *gin.Engine) *gin.Engine {
 
 	router := r.Group("api/v1")
 	{
-		router.POST("estudiantes/login", auth.AutenticarEstudiante)
-		router.POST("evaluadores/login", auth.AutenticarEvaluador)
-		router.POST("administracion-academica/login", auth.AutenticarAdministradorAcademico)
-		router.POST("administracion-ti/login", auth.AutenticarAdministradorTi)
+		router.POST("estudiantes/login", auth.AuthenticateEstudiante)
+		router.POST("evaluadores/login", auth.AuthenticateEvaluador)
+		router.POST("administracion-academica/login", auth.AuthenticateAdministradorAcademico)
+		router.POST("administracion-ti/login", auth.AuthenticateAdministradorTi)
 
 		periodos := router.Group("/periodos")
 		{

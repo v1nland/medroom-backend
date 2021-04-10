@@ -24,6 +24,13 @@ func GetOnePeriodo(u *models.Periodo, id string) (err error) {
 	return nil
 }
 
+func GetUltimoPeriodo(u *models.Periodo) (err error) {
+	if err := config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Order("created_at desc").Limit(1).First(u).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
 func AddNewPeriodo(u *models.Periodo) (err error) {
 	if err = config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Create(u).Error; err != nil {
 		return err

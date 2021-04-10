@@ -1,13 +1,11 @@
 package administrador_academico
 
 import (
-	"errors"
 	"medroom-backend/api_helpers"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 )
 
 // @Summary Obtiene un administrador_academico
@@ -19,18 +17,14 @@ import (
 // @Success 200 {object} Swagger.GetOneAdministradorAcademicoSwagger "OK"
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/administradores-academicos/{uuid_administrador_academico} [get]
-func GetOneAdministradorAcademico(c *gin.Context) {
+func Get(c *gin.Context) {
 	id := c.Params.ByName("id")
 
-	var container models.AdministradorAcademico
-	if err := repositories.GetOneAdministradorAcademico(&container, id); err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
-			api_helpers.RespondJSON(c, 200, "Estudiante not found")
-		} else {
-			api_helpers.RespondError(c, 500, "default")
-		}
+	var admin models.AdministradorAcademico
+	if err := repositories.GetAdministradorAcademico(&admin, id); err != nil {
+		api_helpers.RespondError(c, 500, err.Error())
+		return
 	}
 
-	// api_helpers.RespondJSON(c, 200, f_output.GetOneAdministradorAcademico(container))
-	api_helpers.RespondJSON(c, 200, container)
+	api_helpers.RespondJSON(c, 200, admin)
 }

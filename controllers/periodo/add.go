@@ -3,7 +3,6 @@ package periodo
 import (
 	"medroom-backend/api_helpers"
 	"medroom-backend/formats/f_input"
-	"medroom-backend/formats/f_output"
 	"medroom-backend/messages/Request"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
@@ -30,7 +29,7 @@ func AddNewPeriodo(c *gin.Context) {
 	f_input.AddNewPeriodo(&input)
 
 	periodo := models.Periodo{
-		Nombre_periodo: *input.Nombre_periodo,
+		Id: *input.Nombre_periodo,
 	}
 
 	if err := repositories.AddNewPeriodo(&periodo); err != nil {
@@ -38,5 +37,5 @@ func AddNewPeriodo(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, f_output.AddNewPeriodo(periodo))
+	api_helpers.RespondJSON(c, 200, periodo)
 }

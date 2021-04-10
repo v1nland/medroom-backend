@@ -2,16 +2,25 @@ package auth
 
 import (
 	"medroom-backend/api_helpers"
-	"medroom-backend/formats/f_input"
-	"medroom-backend/messages/Request"
 	"medroom-backend/messages/Response"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 	"os"
+	"strings"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 )
+
+type authAdministradorTiRequest struct {
+	Correo_electronico_administrador_ti string `json:"correo_electronico_administrador_ti"`
+	Hash_contrasena_administrador_ti    string `json:"hash_contrasena_administrador_ti"`
+}
+
+func authAdministradorTiRequestParse(msg *authAdministradorTiRequest) {
+	msg.Hash_contrasena_administrador_ti = strings.TrimSpace(msg.Hash_contrasena_administrador_ti)
+	msg.Correo_electronico_administrador_ti = strings.ToUpper(msg.Correo_electronico_administrador_ti)
+}
 
 // @Summary Autenticación de administrador ti
 // @Description Ingresa usuario y contraseña para iniciar sesión
@@ -22,21 +31,21 @@ import (
 // @Success 200 {array} Swagger.AuthenticationSwagger "OK"
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/login [post]
-func AutenticarAdministradorTi(c *gin.Context) {
+func AuthenticateAdministradorTi(c *gin.Context) {
 	var administrador_ti models.AdministradorTi
-	var login_message Request.LoginAdministradorTi
+
+	var login_message authAdministradorTiRequest
 	var token_response Response.Authentication
 
 	if err := c.ShouldBind(&login_message); err != nil {
-		api_helpers.RespondError(c, 400, "default")
+		api_helpers.RespondError(c, 400, err.Error())
 		return
 	}
 
-	f_input.LoginAdministradorTi(&login_message)
+	authAdministradorTiRequestParse(&login_message)
 
-	err := repositories.AuthenticateAdministradorTi(&administrador_ti, login_message.Correo_electronico_administrador_ti, login_message.Hash_contrasena_administrador_ti)
-	if err != nil {
-		api_helpers.RespondError(c, 500, "default")
+	if err := repositories.AuthenticateAdministradorTi(&administrador_ti, login_message.Correo_electronico_administrador_ti, login_message.Hash_contrasena_administrador_ti); err != nil {
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	} else {
 		encoder := jwt.New(jwt.SigningMethodHS256)

@@ -11,7 +11,7 @@ type Estudiante struct {
 	Id_rol                        int                      `json:"id_rol"`
 	Rol_estudiante                Rol                      `json:"rol_estudiante" gorm:"foreignKey:Id_rol"`
 	Calificaciones_estudiante     []CalificacionEstudiante `json:"calificaciones_estudiante" gorm:"foreignKey:Id_estudiante;references:id"`
-	Grupos_estudiante             []Grupo                  `json:"grupos_estudiante" gorm:"many2many:estudiantes_grupos;joinForeignKey:id_estudiante;joinReferences:id_grupo"`
+	Grupos_estudiante             []Grupo                  `json:"grupos_estudiante" gorm:"many2many:estudiantes_grupos;joinForeignKey:id_estudiante;joinReferences:sigla_curso,id_periodo_curso,sigla_grupo"`
 	Rut_estudiante                string                   `json:"rut_estudiante" gorm:"unique;not null"`
 	Nombres_estudiante            string                   `json:"nombres_estudiante"`
 	Apellidos_estudiante          string                   `json:"apellidos_estudiante"`

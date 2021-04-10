@@ -3,11 +3,9 @@ package periodo
 import (
 	"medroom-backend/api_helpers"
 	"medroom-backend/formats/f_input"
-	"medroom-backend/formats/f_output"
 	"medroom-backend/messages/Request"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
-	"medroom-backend/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -40,8 +38,8 @@ func PutOnePeriodo(c *gin.Context) {
 	}
 
 	periodo = models.Periodo{
-		Id:             periodo.Id,
-		Nombre_periodo: utils.CheckNullString(input.Nombre_periodo, periodo.Nombre_periodo),
+		Id: periodo.Id,
+		// Id: utils.CheckNullString(input.Id, periodo.Id),
 	}
 
 	if err := repositories.PutOnePeriodo(&periodo, id); err != nil {
@@ -49,5 +47,5 @@ func PutOnePeriodo(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, f_output.PutOnePeriodo(periodo))
+	api_helpers.RespondJSON(c, 200, periodo)
 }

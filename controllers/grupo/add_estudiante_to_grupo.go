@@ -6,7 +6,6 @@ import (
 	"medroom-backend/config"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
-	"medroom-backend/utils"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -80,10 +79,10 @@ func AddEstudianteToGrupo(c *gin.Context) {
 
 	config.DB.Model(&grupo).Association("Estudiantes_grupo").Append([]models.Estudiante{estudiante})
 
-	found, id_grupo_sg := utils.SearchIdGrupoBySigla(curso.Grupos_curso, "SG")
-	if found {
-		repositories.DeleteEstudianteGrupo(utils.ConvertIntToString(id_grupo_sg), id_estudiante)
-	}
+	// found, id_grupo_sg := utils.SearchIdGrupoBySigla(curso.Grupos_curso, "SG")
+	// if found {
+	// 	repositories.DeleteEstudianteGrupo(utils.ConvertIntToString(id_grupo_sg), id_estudiante)
+	// }
 
 	api_helpers.RespondJSON(c, 200, grupo)
 }

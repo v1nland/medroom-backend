@@ -3,7 +3,6 @@ package grupo
 import (
 	"errors"
 	"medroom-backend/api_helpers"
-	"medroom-backend/config"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 	"medroom-backend/utils"
@@ -63,21 +62,21 @@ func RemoveEstudianteFromGrupo(c *gin.Context) {
 
 	repositories.DeleteEstudianteGrupo(utils.ConvertIntToString(utils.ConvertStringToInt(id_grupo)), id_estudiante)
 
-	found, id_grupo_sg := utils.SearchIdGrupoBySigla(curso.Grupos_curso, "SG")
-	if found {
-		var grupo_sg models.Grupo
-		if err := repositories.GetOneGrupo(&grupo_sg, utils.ConvertIntToString(id_grupo_sg)); err != nil {
-			if errors.Is(err, gorm.ErrRecordNotFound) {
-				api_helpers.RespondJSON(c, 200, "Grupo SG not found")
-			} else {
-				api_helpers.RespondError(c, 500, "default")
-			}
+	// found, id_grupo_sg := utils.SearchIdGrupoBySigla(curso.Grupos_curso, "SG")
+	// if found {
+	// 	var grupo_sg models.Grupo
+	// 	if err := repositories.GetOneGrupo(&grupo_sg, utils.ConvertIntToString(id_grupo_sg)); err != nil {
+	// 		if errors.Is(err, gorm.ErrRecordNotFound) {
+	// 			api_helpers.RespondJSON(c, 200, "Grupo SG not found")
+	// 		} else {
+	// 			api_helpers.RespondError(c, 500, "default")
+	// 		}
 
-			return
-		}
+	// 		return
+	// 	}
 
-		config.DB.Model(&grupo_sg).Association("Estudiantes_grupo").Append([]models.Estudiante{estudiante})
-	}
+	// 	config.DB.Model(&grupo_sg).Association("Estudiantes_grupo").Append([]models.Estudiante{estudiante})
+	// }
 
 	api_helpers.RespondJSON(c, 200, grupo)
 }

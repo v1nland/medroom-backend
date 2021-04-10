@@ -11,7 +11,6 @@ func SetupRouter() *gin.Engine {
 	r := gin.Default()
 
 	config := cors.New(cors.Config{
-		AllowOrigins:           []string{"*"},
 		AllowMethods:           []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
 		AllowHeaders:           []string{"Origin", "Authorization"},
 		AllowCredentials:       true,

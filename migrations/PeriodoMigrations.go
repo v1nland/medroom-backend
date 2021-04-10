@@ -11,8 +11,7 @@ func Periodomigrations() {
 	fmt.Println("===== PERIODO =====")
 
 	container := &models.Periodo{
-		Id:             1,
-		Nombre_periodo: "2021-1",
+		Id: "2021-1",
 	}
 
 	if err := repositories.AddNewPeriodo(container); err != nil {

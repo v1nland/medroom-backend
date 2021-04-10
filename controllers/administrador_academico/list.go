@@ -1,13 +1,11 @@
 package administrador_academico
 
 import (
-	"errors"
 	"medroom-backend/api_helpers"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 )
 
 // @Summary Lista de administradores-academicos
@@ -18,19 +16,12 @@ import (
 // @Success 200 {array} Swagger.ListAdministradoresAcademicosSwagger "OK"
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/administradores-academicos [get]
-func ListAdministradoresAcademicos(c *gin.Context) {
-	var container []models.AdministradorAcademico
-
-	if err := repositories.GetAllAdministradoresAcademicos(&container); err != nil {
-		if errors.Is(err, gorm.ErrEmptySlice) {
-			api_helpers.RespondJSON(c, 200, container)
-		} else {
-			api_helpers.RespondError(c, 500, "default")
-		}
-
+func List(c *gin.Context) {
+	var admins []models.AdministradorAcademico
+	if err := repositories.ListAdministradoresAcademicos(&admins); err != nil {
+		api_helpers.RespondJSON(c, 500, err.Error())
 		return
 	}
 
-	// api_helpers.RespondJSON(c, 200, f_output.ListAdministradoresAcademicos(container))
-	api_helpers.RespondJSON(c, 200, container)
+	api_helpers.RespondJSON(c, 200, admins)
 }

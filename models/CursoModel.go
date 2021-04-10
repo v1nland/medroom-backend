@@ -4,15 +4,13 @@ import (
 	"time"
 )
 
-// agregar Nombre_profesor_asociado_curso
 type Curso struct {
-	Id                               int                      `json:"id"`
-	Id_periodo                       int                      `json:"id_periodo"`
-	Administradores_academicos_curso []AdministradorAcademico `json:"administradores_academicos_curso" gorm:"many2many:administradores_academicos_cursos;joinForeignKey:id_curso;joinReferences:id_administrador_academico"`
+	Sigla_curso                      string                   `json:"sigla_curso" gorm:"primaryKey;not null"`
+	Id_periodo                       string                   `json:"id_periodo" gorm:"primaryKey;not null"`
 	Periodo_curso                    Periodo                  `json:"periodo_curso" gorm:"foreignKey:Id_periodo"`
-	Grupos_curso                     []Grupo                  `json:"grupos_curso" gorm:"foreignKey:Id_curso;references:id"`
+	Administradores_academicos_curso []AdministradorAcademico `json:"administradores_academicos_curso" gorm:"many2many:administradores_academicos_cursos;joinForeignKey:Sigla_curso,Id_periodo;joinReferences:id_administrador_academico"`
+	Grupos_curso                     []Grupo                  `json:"grupos_curso" gorm:"ForeignKey:Sigla_curso,Id_periodo_curso;References:Sigla_curso,Id_periodo"`
 	Nombre_curso                     string                   `json:"nombre_curso"`
-	Sigla_curso                      string                   `json:"sigla_curso" gorm:"unique;not null"`
 	Estado_curso                     bool                     `json:"estado_curso"`
 	CreatedAt                        time.Time                `json:"created_at"`
 	UpdatedAt                        time.Time                `json:"updated_at"`

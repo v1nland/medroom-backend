@@ -29,8 +29,8 @@ func SetupAdministradorAcademicoRouter(r *gin.Engine) *gin.Engine {
 	router := r.Group("api/v1/administracion-academica")
 	router.Use(administradorAcademicoAuthMiddleware)
 	{
-		router.GET("me", administrador_academico.GetMyAdministradorAcademico)
-		router.PUT("me", administrador_academico.PutMyAdministradorAcademico)
+		router.GET("me", administrador_academico.Profile)
+		router.PUT("me", administrador_academico.PutProfile)
 
 		estudiantes := router.Group("/estudiantes")
 		{

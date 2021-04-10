@@ -5,7 +5,6 @@ import (
 	"medroom-backend/api_helpers"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
-	"medroom-backend/utils"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -20,7 +19,7 @@ import (
 // @Success 200 {object} Swagger.DeleteCursoSwagger "OK"
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/cursos/{id_curso} [delete]
-func DeleteCurso(c *gin.Context) {
+func Delete(c *gin.Context) {
 	id := c.Params.ByName("id")
 
 	var curso models.Curso
@@ -35,30 +34,30 @@ func DeleteCurso(c *gin.Context) {
 	}
 
 	// clear grupo associations
-	for _, gp := range curso.Grupos_curso {
-		var grupo models.Grupo
-		if err := repositories.GetOneGrupo(&grupo, utils.ConvertIntToString(gp.Id)); err != nil {
-			if errors.Is(err, gorm.ErrRecordNotFound) {
-				api_helpers.RespondJSON(c, 200, "Curso not found")
-			} else {
-				api_helpers.RespondError(c, 500, "default")
-			}
+	// for _, gp := range curso.Grupos_curso {
+	// 	var grupo models.Grupo
+	// 	if err := repositories.GetOneGrupo(&grupo, utils.ConvertIntToString(gp.Id)); err != nil {
+	// 		if errors.Is(err, gorm.ErrRecordNotFound) {
+	// 			api_helpers.RespondJSON(c, 200, "Curso not found")
+	// 		} else {
+	// 			api_helpers.RespondError(c, 500, "default")
+	// 		}
 
-			return
-		}
+	// 		return
+	// 	}
 
-		if err := repositories.ClearGrupo(utils.ConvertIntToString(grupo.Id)); err != nil {
-			api_helpers.RespondError(c, 500, "default")
-			return
-		}
+	// 	if err := repositories.ClearGrupo(utils.ConvertIntToString(grupo.Id)); err != nil {
+	// 		api_helpers.RespondError(c, 500, "default")
+	// 		return
+	// 	}
 
-		for _, evaluacion := range grupo.Evaluaciones_grupo {
-			if err := repositories.DeleteEvaluacion(utils.ConvertIntToString(evaluacion.Id)); err != nil {
-				api_helpers.RespondError(c, 500, "default")
-				return
-			}
-		}
-	}
+	// 	for _, evaluacion := range grupo.Evaluaciones_grupo {
+	// 		if err := repositories.DeleteEvaluacion(utils.ConvertIntToString(evaluacion.Id)); err != nil {
+	// 			api_helpers.RespondError(c, 500, "default")
+	// 			return
+	// 		}
+	// 	}
+	// }
 
 	// eliminar grupos del curso
 	for _, grupo := range curso.Grupos_curso {

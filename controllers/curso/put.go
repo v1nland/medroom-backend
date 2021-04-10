@@ -1,17 +1,33 @@
 package curso
 
 import (
-	"errors"
 	"medroom-backend/api_helpers"
-	"medroom-backend/formats/f_input"
-	"medroom-backend/messages/Request"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 	"medroom-backend/utils"
+	"strings"
 
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 )
+
+type putRequest struct {
+	Id_periodo   *string `json:"id_periodo"`
+	Nombre_curso *string `json:"nombre_curso"`
+	Sigla_curso  *string `json:"sigla_curso"`
+}
+
+func putRequestParse(u *putRequest) {
+	if u.Nombre_curso != nil {
+		*u.Nombre_curso = strings.TrimSpace(*u.Nombre_curso)
+		*u.Nombre_curso = strings.ToUpper(*u.Nombre_curso)
+		*u.Nombre_curso = utils.RemoveAccents(*u.Nombre_curso)
+	}
+	if u.Sigla_curso != nil {
+		*u.Sigla_curso = strings.TrimSpace(*u.Sigla_curso)
+		*u.Sigla_curso = strings.ToUpper(*u.Sigla_curso)
+		*u.Sigla_curso = utils.RemoveAccents(*u.Sigla_curso)
+	}
+}
 
 // @Summary Modifica un curso
 // @Description Modifica un curso con los datos entregados
@@ -19,50 +35,38 @@ import (
 // @Accept  json
 // @Produce  json
 // @Param   id_curso     path    string     true        "Id del curso a modificar"
-// @Param   input_actualiza_curso     body    Request.PutOneCurso     true        "Curso a modificar"
+// @Param   input_actualiza_curso     body    Request.Put     true        "Curso a modificar"
 // @Success 200 {object} Swagger.PutOneCursoSwagger "OK"
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/cursos/{id_curso} [put]
-func PutOneCurso(c *gin.Context) {
+func Put(c *gin.Context) {
 	id := c.Params.ByName("id")
 
-	var input Request.PutOneCurso
+	var input putRequest
 	if err := c.ShouldBind(&input); err != nil {
-		api_helpers.RespondError(c, 400, "default")
+		api_helpers.RespondError(c, 400, err.Error())
 		return
 	}
 
-	f_input.PutOneCurso(&input)
+	putRequestParse(&input)
 
 	var curso models.Curso
 	if err := repositories.GetOneCurso(&curso, id); err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
-			api_helpers.RespondJSON(c, 200, "Curso not found")
-		} else {
-			api_helpers.RespondError(c, 500, "default")
-		}
-
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
 	// replace data in model entity
 	curso = models.Curso{
-		Id:           curso.Id,
-		Id_periodo:   utils.CheckNullInt(input.Id_periodo, curso.Id_periodo),
-		Nombre_curso: utils.CheckNullString(input.Nombre_curso, curso.Nombre_curso),
 		Sigla_curso:  utils.CheckNullString(input.Sigla_curso, curso.Sigla_curso),
+		Id_periodo:   utils.CheckNullString(input.Id_periodo, curso.Id_periodo),
+		Nombre_curso: utils.CheckNullString(input.Nombre_curso, curso.Nombre_curso),
 	}
 
 	if err := repositories.PutOneCurso(&curso, id); err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
-			api_helpers.RespondJSON(c, 200, "Curso not updated")
-		} else {
-			api_helpers.RespondError(c, 500, "default")
-		}
-
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
-	// api_helpers.RespondJSON(c, 200, f_output.PutOneCurso(model))
 	api_helpers.RespondJSON(c, 200, curso)
 }

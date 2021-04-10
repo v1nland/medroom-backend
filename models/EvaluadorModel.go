@@ -10,7 +10,7 @@ type Evaluador struct {
 	Id                           uuid.UUID `json:"id" gorm:"type:uuid;primary_key;default:uuid_generate_v4()"`
 	Id_rol                       int       `json:"id_rol"`
 	Rol_evaluador                Rol       `json:"rol_evaluador" gorm:"foreignKey:Id_rol"`
-	Grupos_evaluador             []Grupo   `json:"grupos_evaluador" gorm:"many2many:evaluadores_grupos;joinForeignKey:id_evaluador;joinReferences:id_grupo"`
+	Grupos_evaluador             []Grupo   `json:"grupos_evaluador" gorm:"many2many:evaluadores_grupos;joinForeignKey:id_evaluador;joinReferences:sigla_curso,id_periodo_curso,sigla_grupo"`
 	Rut_evaluador                string    `json:"rut_evaluador" gorm:"unique;not null"`
 	Nombres_evaluador            string    `json:"nombres_evaluador"`
 	Apellidos_evaluador          string    `json:"apellidos_evaluador"`

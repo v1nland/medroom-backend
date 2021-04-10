@@ -10,7 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type massive_add_input struct {
+type massiveAddRequest struct {
 	Cursos []struct {
 		Id           *int    `json:"id"`
 		Id_periodo   *int    `json:"id_periodo"`
@@ -19,7 +19,7 @@ type massive_add_input struct {
 	} `json:"cursos"`
 }
 
-func massive_add_format(u *massive_add_input) {
+func massiveAddRequestParse(u *massiveAddRequest) {
 	for i := 0; i < len(u.Cursos); i++ {
 		if u.Cursos[i].Nombre_curso != nil {
 			*u.Cursos[i].Nombre_curso = strings.TrimSpace(*u.Cursos[i].Nombre_curso)
@@ -45,21 +45,26 @@ func massive_add_format(u *massive_add_input) {
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/cursos/carga-masiva [post]
 func AddNewCursos(c *gin.Context) {
-	var payload massive_add_input
+	var payload massiveAddRequest
 	if err := c.ShouldBind(&payload); err != nil {
 		api_helpers.RespondError(c, 400, err.Error())
 		return
 	}
 
-	massive_add_format(&payload)
+	massiveAddRequestParse(&payload)
+
+	var periodo models.Periodo
+	if err := repositories.GetUltimoPeriodo(&periodo); err != nil {
+		api_helpers.RespondError(c, 500, "ultimo periodo no encontrado")
+		return
+	}
 
 	var cursos_error []int
 	for i := 0; i < len(payload.Cursos); i++ {
 		curso := models.Curso{
-			Id:           *payload.Cursos[i].Id,
-			Id_periodo:   *payload.Cursos[i].Id_periodo,
-			Nombre_curso: *payload.Cursos[i].Nombre_curso,
 			Sigla_curso:  *payload.Cursos[i].Sigla_curso,
+			Id_periodo:   periodo.Id,
+			Nombre_curso: *payload.Cursos[i].Nombre_curso,
 			Estado_curso: true,
 			Grupos_curso: []models.Grupo{
 				{

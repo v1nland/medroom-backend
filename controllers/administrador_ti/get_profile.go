@@ -2,7 +2,6 @@ package administrador_ti
 
 import (
 	"medroom-backend/api_helpers"
-	"medroom-backend/formats/f_output"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 	"medroom-backend/utils"
@@ -21,11 +20,11 @@ import (
 func GetMyAdministradorTi(c *gin.Context) {
 	id := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_TI")
 
-	var administrador_ti models.AdministradorTi
-	if err := repositories.GetOneAdministradorTi(&administrador_ti, id); err != nil {
-		api_helpers.RespondError(c, 500, "default")
+	var admin models.AdministradorTi
+	if err := repositories.GetOneAdministradorTi(&admin, id); err != nil {
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, f_output.GetMyAdministradorTi(administrador_ti))
+	api_helpers.RespondJSON(c, 200, admin)
 }

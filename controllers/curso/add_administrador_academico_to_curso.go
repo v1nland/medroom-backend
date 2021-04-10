@@ -1,13 +1,11 @@
 package curso
 
 import (
-	"errors"
 	"medroom-backend/api_helpers"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 )
 
 // @Summary Modifica los cursos de un administrador_academico
@@ -25,36 +23,21 @@ func AddAdministradorAcademicoToCurso(c *gin.Context) {
 	id_administrador_academico := c.Params.ByName("id_administrador_academico")
 
 	var administrador_academico models.AdministradorAcademico
-	if err := repositories.GetOneAdministradorAcademico(&administrador_academico, id_administrador_academico); err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
-			api_helpers.RespondJSON(c, 200, "Administrador académico not found")
-		} else {
-			api_helpers.RespondError(c, 500, "default")
-		}
-
+	if err := repositories.GetAdministradorAcademico(&administrador_academico, id_administrador_academico); err != nil {
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
 	var curso models.Curso
 	if err := repositories.GetOneCurso(&curso, id_curso); err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
-			api_helpers.RespondJSON(c, 200, "Curso not found")
-		} else {
-			api_helpers.RespondError(c, 500, "default")
-		}
-
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
 	curso.Administradores_academicos_curso = append(curso.Administradores_academicos_curso, administrador_academico)
 
 	if err := repositories.PutOneCurso(&curso, id_curso); err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
-			api_helpers.RespondJSON(c, 200, "Curso not updated")
-		} else {
-			api_helpers.RespondError(c, 500, "default")
-		}
-
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 

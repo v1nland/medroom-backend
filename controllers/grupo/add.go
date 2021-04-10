@@ -6,7 +6,6 @@ import (
 	"medroom-backend/messages/Request"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
-	"medroom-backend/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -32,7 +31,9 @@ func AddNewGrupo(c *gin.Context) {
 	f_input.AddNewGrupo(&input)
 
 	grupo := models.Grupo{
-		Id_curso:     utils.ConvertStringToInt(id_curso),
+
+		Sigla_curso: id_curso,
+		// add idPeriodoCurso
 		Nombre_grupo: *input.Nombre_grupo,
 		Sigla_grupo:  *input.Sigla_grupo,
 	}

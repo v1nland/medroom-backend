@@ -11,7 +11,10 @@ func Cursomigrations() {
 	fmt.Println("===== CURSO =====")
 
 	container := &models.Curso{
-		Id_periodo: 1,
+		Id_periodo:   "2021-1",
+		Nombre_curso: "NINJUTSU",
+		Sigla_curso:  "CIT-1000",
+		Estado_curso: true,
 		Administradores_academicos_curso: []models.AdministradorAcademico{
 			{
 				Id_rol:                                     3,
@@ -26,6 +29,7 @@ func Cursomigrations() {
 		},
 		Grupos_curso: []models.Grupo{
 			{
+				Sigla_curso:        "CIT-1000",
 				Evaluaciones_grupo: []models.Evaluacion{},
 				Evaluadores_grupo:  []models.Evaluador{},
 				Estudiantes_grupo:  []models.Estudiante{},
@@ -33,6 +37,9 @@ func Cursomigrations() {
 				Sigla_grupo:        "SG",
 			},
 			{
+				Sigla_curso:  "CIT-1000",
+				Nombre_grupo: "EQUIPO 7",
+				Sigla_grupo:  "E-07",
 				Evaluadores_grupo: []models.Evaluador{
 					{
 						Id_rol:                       2,
@@ -101,21 +108,18 @@ func Cursomigrations() {
 						Telefono_celular_estudiante:   "12345678",
 					},
 				},
-				Nombre_grupo: "EQUIPO 7",
-				Sigla_grupo:  "E-07",
 			},
 		},
-		Nombre_curso: "NINJUTSU",
-		Sigla_curso:  "CIT-1000",
-		Estado_curso: true,
 	}
 
 	if err := repositories.AddNewCurso(container); err != nil {
 		panic("NO SE PUDO MIGRAR CURSO 'NINJUTSU'")
 	}
 
+	utils.StructToString(container)
+
 	container = &models.Curso{
-		Id_periodo: 1,
+		Id_periodo: "2021-1",
 		Grupos_curso: []models.Grupo{
 			{
 				Evaluaciones_grupo: []models.Evaluacion{},
@@ -184,8 +188,10 @@ func Cursomigrations() {
 		panic("NO SE PUDO MIGRAR CURSO 'NINJUTSU AVANZADO'")
 	}
 
+	utils.StructToString(container)
+
 	container = &models.Curso{
-		Id_periodo: 1,
+		Id_periodo: "2021-1",
 		Grupos_curso: []models.Grupo{
 			{
 				Evaluaciones_grupo: []models.Evaluacion{},

@@ -6,7 +6,6 @@ import (
 	"medroom-backend/messages/Request"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
-	"medroom-backend/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -25,7 +24,7 @@ import (
 func AddNewEvaluacion(c *gin.Context) {
 	// id_evaluador := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
 	// id_curso := c.Params.ByName("id_curso")
-	id_grupo := c.Params.ByName("id_grupo")
+	sigla_grupo := c.Params.ByName("id_grupo")
 
 	var input Request.AddNewEvaluacion
 	if err := c.ShouldBind(&input); err != nil {
@@ -36,7 +35,7 @@ func AddNewEvaluacion(c *gin.Context) {
 	f_input.AddNewEvaluacion(&input)
 
 	evaluacion := models.Evaluacion{
-		Id_grupo:          utils.ConvertStringToInt(id_grupo),
+		Sigla_grupo:       sigla_grupo,
 		Nombre_evaluacion: *input.Nombre_evaluacion,
 	}
 

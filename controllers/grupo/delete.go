@@ -28,10 +28,10 @@ func DeleteGrupo(c *gin.Context) {
 	}
 
 	// clear grupo associations
-	if err := repositories.ClearGrupo(utils.ConvertIntToString(grupo.Id)); err != nil {
-		api_helpers.RespondError(c, 500, "default")
-		return
-	}
+	// if err := repositories.ClearGrupo(utils.ConvertIntToString(grupo.Id)); err != nil {
+	// 	api_helpers.RespondError(c, 500, "default")
+	// 	return
+	// }
 
 	// clear evaluaciones grupo
 	for _, evaluacion := range grupo.Evaluaciones_grupo {

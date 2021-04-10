@@ -39,8 +39,8 @@ func PutOneGrupo(c *gin.Context) {
 	}
 
 	grupo = models.Grupo{
-		Id:           grupo.Id,
-		Id_curso:     utils.CheckNullInt(input.Id_curso, grupo.Id_curso),
+		// Id:           grupo.Id,
+		Sigla_curso:  utils.CheckNullString(input.Id_curso, grupo.Sigla_curso),
 		Nombre_grupo: utils.CheckNullString(input.Nombre_grupo, grupo.Nombre_grupo),
 		Sigla_grupo:  utils.CheckNullString(input.Sigla_grupo, grupo.Sigla_grupo),
 	}

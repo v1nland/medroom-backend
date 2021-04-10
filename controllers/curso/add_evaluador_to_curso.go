@@ -1,14 +1,12 @@
 package curso
 
 import (
-	"errors"
 	"medroom-backend/api_helpers"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 	"medroom-backend/utils"
 
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 )
 
 // @Summary Modifica los cursos de un evaluador
@@ -27,23 +25,13 @@ func AddEvaluadorToCurso(c *gin.Context) {
 
 	var evaluador models.Evaluador
 	if err := repositories.GetOneEvaluador(&evaluador, id_evaluador); err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
-			api_helpers.RespondJSON(c, 200, "Evaluador not found")
-		} else {
-			api_helpers.RespondError(c, 500, "default")
-		}
-
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
 	var curso models.Curso
 	if err := repositories.GetOneCurso(&curso, id_curso); err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
-			api_helpers.RespondJSON(c, 200, "Curso not found")
-		} else {
-			api_helpers.RespondError(c, 500, "default")
-		}
-
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
@@ -57,12 +45,7 @@ func AddEvaluadorToCurso(c *gin.Context) {
 	}
 
 	if err := repositories.PutOneCurso(&curso, id_curso); err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
-			api_helpers.RespondJSON(c, 200, "Curso not updated")
-		} else {
-			api_helpers.RespondError(c, 500, "default")
-		}
-
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 

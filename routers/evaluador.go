@@ -46,9 +46,9 @@ func SetupEvaluadorRouter(r *gin.Engine) *gin.Engine {
 		router.GET("me/cursos/:id_curso/grupos/:id_grupo/evaluaciones", evaluacion.ListEvaluacionesGrupoEvaluador)
 		router.POST("me/cursos/:id_curso/grupos/:id_grupo/evaluaciones", evaluacion.AddNewEvaluacion)
 		router.GET("me/cursos/:id_curso/grupos/:id_grupo/estudiantes/:id_estudiante/evaluaciones-rendidas", evaluacion.ListEvaluacionesRendidasEstudiante)
-		router.GET("me/cursos/:id_curso/grupos/:id_grupo/estudiantes/:id_estudiante/evaluaciones/:id_evaluacion/calificacion", calificacion_estudiante.GetOneCalificacionEstudianteEvaluador)
-		router.POST("me/cursos/:id_curso/grupos/:id_grupo/estudiantes/:id_estudiante/evaluaciones/:id_evaluacion/calificacion", calificacion_estudiante.AddNewCalificacionEstudiante)
-		router.PUT("me/cursos/:id_curso/grupos/:id_grupo/estudiantes/:id_estudiante/evaluaciones/:id_evaluacion/calificacion", calificacion_estudiante.PutOneCalificacionEstudiante)
+		router.GET("me/cursos/:id_curso/grupos/:id_grupo/estudiantes/:id_estudiante/evaluaciones/:id_evaluacion/calificacion", calificacion_estudiante.GetByEvaluador)
+		router.POST("me/cursos/:id_curso/grupos/:id_grupo/estudiantes/:id_estudiante/evaluaciones/:id_evaluacion/calificacion", calificacion_estudiante.Add)
+		router.PUT("me/cursos/:id_curso/grupos/:id_grupo/estudiantes/:id_estudiante/evaluaciones/:id_evaluacion/calificacion", calificacion_estudiante.Put)
 
 		// reports
 		router.GET("me/cursos/:id_curso/grupos/:id_grupo/estadisticas/evolucion-competencia", estadistica.EvolucionGrupoPorCompetencia)

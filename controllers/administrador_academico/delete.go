@@ -2,7 +2,6 @@ package administrador_academico
 
 import (
 	"medroom-backend/api_helpers"
-	"medroom-backend/formats/f_output"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 
@@ -18,27 +17,19 @@ import (
 // @Success 200 {object} Swagger.DeleteAdministradorAcademicoSwagger "OK"
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/administradores-academicos/{uuid_administrador_academico} [delete]
-func DeleteAdministradorAcademico(c *gin.Context) {
-	// params
+func Delete(c *gin.Context) {
 	id := c.Params.ByName("id")
 
-	// model container
-	var container models.AdministradorAcademico
-
-	// get query
-	err := repositories.GetOneAdministradorAcademico(&container, id)
-	if err != nil {
-		api_helpers.RespondError(c, 500, "default")
+	var admin models.AdministradorAcademico
+	if err := repositories.GetAdministradorAcademico(&admin, id); err != nil {
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
-	// query
-	err = repositories.DeleteAdministradorAcademico(&container, id)
-	if err != nil {
-		api_helpers.RespondError(c, 500, "default")
+	if err := repositories.DeleteAdministradorAcademico(&admin, id); err != nil {
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
-	// output
-	api_helpers.RespondJSON(c, 200, f_output.DeleteAdministradorAcademico(container))
+	api_helpers.RespondJSON(c, 200, "OK")
 }

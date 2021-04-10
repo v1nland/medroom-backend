@@ -7,22 +7,22 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type ResponseError struct {
+type Error struct {
 	Error       string
 	Description string
 }
 
 func RespondError(c *gin.Context, status int, custom_description string) {
 	fmt.Println("status:", status)
-	var res ResponseError
+	var response Error
 
-	res.Error = utils.StatusMessage(status)
+	response.Error = utils.StatusMessage(status)
 
 	if custom_description == "default" {
-		res.Description = utils.StatusDescription(status)
+		response.Description = utils.StatusDescription(status)
 	} else {
-		res.Description = custom_description
+		response.Description = custom_description
 	}
 
-	c.JSON(status, res)
+	c.JSON(status, response)
 }

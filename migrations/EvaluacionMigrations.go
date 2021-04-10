@@ -15,8 +15,10 @@ func Evaluacionmigrations() {
 
 	// control 1
 	container := &models.Evaluacion{
-		Id_grupo:          grupos[1].Id,
-		Nombre_evaluacion: "CONTROL NUMERO 1",
+		Sigla_curso_grupo:      "CIT-1000",
+		Id_periodo_curso_grupo: "2021-1",
+		Sigla_grupo:            "E-07",
+		Nombre_evaluacion:      "EVALUACION NUMERO 1",
 	}
 	if err := repositories.AddNewEvaluacion(container); err != nil {
 		panic("NO SE PUDO MIGRAR EVALUACION 'CONTROL 1'")
@@ -25,8 +27,10 @@ func Evaluacionmigrations() {
 
 	// control 2
 	container = &models.Evaluacion{
-		Id_grupo:          grupos[1].Id,
-		Nombre_evaluacion: "CONTROL NUMERO 2",
+		Sigla_curso_grupo:      "CIT-1000",
+		Id_periodo_curso_grupo: "2021-1",
+		Sigla_grupo:            "E-07",
+		Nombre_evaluacion:      "EVALUACION NUMERO 2",
 	}
 	if err := repositories.AddNewEvaluacion(container); err != nil {
 		panic("NO SE PUDO MIGRAR EVALUACION 'CONTROL 2'")

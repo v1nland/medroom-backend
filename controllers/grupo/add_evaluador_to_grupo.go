@@ -6,7 +6,6 @@ import (
 	"medroom-backend/config"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
-	"medroom-backend/utils"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -63,10 +62,10 @@ func AddEvaluadorToGrupo(c *gin.Context) {
 
 	config.DB.Model(&grupo).Association("Evaluadores_grupo").Append([]models.Evaluador{evaluador})
 
-	found, id_grupo_sg := utils.SearchIdGrupoBySigla(curso.Grupos_curso, "SG")
-	if found {
-		repositories.DeleteEvaluadorGrupo(utils.ConvertIntToString(id_grupo_sg), id_evaluador)
-	}
+	// found, id_grupo_sg := utils.SearchIdGrupoBySigla(curso.Grupos_curso, "SG")
+	// if found {
+	// 	repositories.DeleteEvaluadorGrupo(utils.ConvertIntToString(id_grupo_sg), id_evaluador)
+	// }
 
 	api_helpers.RespondJSON(c, 200, grupo)
 }

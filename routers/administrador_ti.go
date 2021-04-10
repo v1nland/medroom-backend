@@ -33,7 +33,7 @@ func SetupAdministradorTiRouter(r *gin.Engine) *gin.Engine {
 	router.Use(administradorTiAuthMiddleware)
 	{
 		router.GET("me", administrador_ti.GetMyAdministradorTi)
-		router.PUT("me", administrador_ti.PutMyAdministradorTi)
+		router.PUT("me", administrador_ti.PutProfile)
 
 		estudiantes := router.Group("/estudiantes")
 		{
@@ -56,35 +56,35 @@ func SetupAdministradorTiRouter(r *gin.Engine) *gin.Engine {
 
 		administradores_academicos := router.Group("/administradores-academicos")
 		{
-			administradores_academicos.GET("", administrador_academico.ListAdministradoresAcademicos)
-			administradores_academicos.GET(":id", administrador_academico.GetOneAdministradorAcademico)
-			administradores_academicos.POST("", administrador_academico.AddNewAdministradorAcademico)
-			administradores_academicos.POST("/carga-masiva", administrador_academico.AddNewAdministradoresAcademicos)
-			administradores_academicos.PUT(":id", administrador_academico.PutOneAdministradorAcademico)
-			administradores_academicos.DELETE(":id", administrador_academico.DeleteAdministradorAcademico)
+			administradores_academicos.GET("", administrador_academico.List)
+			administradores_academicos.GET(":id", administrador_academico.Get)
+			administradores_academicos.POST("", administrador_academico.Add)
+			administradores_academicos.POST("/carga-masiva", administrador_academico.MassiveAdd)
+			administradores_academicos.PUT(":id", administrador_academico.Put)
+			administradores_academicos.DELETE(":id", administrador_academico.Delete)
 		}
 
 		administradores_ti := router.Group("/administradores-ti")
 		{
-			administradores_ti.GET("", administrador_ti.ListAdministradoresTi)
-			administradores_ti.GET(":id", administrador_ti.GetOneAdministradorTi)
-			administradores_ti.POST("", administrador_ti.AddNewAdministradorTi)
-			administradores_ti.PUT(":id", administrador_ti.PutOneAdministradorTi)
-			administradores_ti.DELETE(":id", administrador_ti.DeleteAdministradorTi)
+			administradores_ti.GET("", administrador_ti.List)
+			administradores_ti.GET(":id", administrador_ti.Get)
+			administradores_ti.POST("", administrador_ti.Add)
+			administradores_ti.PUT(":id", administrador_ti.Put)
+			administradores_ti.DELETE(":id", administrador_ti.Delete)
 		}
 
 		cursos := router.Group("/cursos")
 		{
 			cursos.GET("", curso.ListCursos)
 			cursos.GET(":id", curso.GetOneCurso)
-			cursos.GET(":id/reporte-notas", curso.GetReporteNotas)
-			cursos.POST("", curso.AddNewCurso)
+			cursos.GET(":id/reporte-notas", curso.GetMarksReport)
+			cursos.POST("", curso.Add)
 			cursos.POST("carga-masiva", curso.AddNewCursos)
-			cursos.PUT(":id", curso.PutOneCurso)
+			cursos.PUT(":id", curso.Put)
 			cursos.PUT(":id/estudiantes/:id_estudiante", curso.AddEstudianteToCurso)
 			cursos.PUT(":id/evaluadores/:id_evaluador", curso.AddEvaluadorToCurso)
 			cursos.PUT(":id/administradores-academicos/:id_administrador_academico", curso.AddAdministradorAcademicoToCurso)
-			cursos.DELETE(":id", curso.DeleteCurso)
+			cursos.DELETE(":id", curso.Delete)
 		}
 
 		grupos := router.Group("/grupos")

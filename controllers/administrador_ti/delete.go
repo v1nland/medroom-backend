@@ -2,7 +2,6 @@ package administrador_ti
 
 import (
 	"medroom-backend/api_helpers"
-	"medroom-backend/formats/f_output"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 
@@ -18,20 +17,19 @@ import (
 // @Success 200 {object} Swagger.DeleteAdministradorTiSwagger "OK"
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/administradores-ti/{uuid_administrador_ti} [delete]
-func DeleteAdministradorTi(c *gin.Context) {
+func Delete(c *gin.Context) {
 	id := c.Params.ByName("id")
 
-	var container models.AdministradorTi
-
-	if err := repositories.GetOneAdministradorTi(&container, id); err != nil {
-		api_helpers.RespondError(c, 500, "default")
+	var admin models.AdministradorTi
+	if err := repositories.GetOneAdministradorTi(&admin, id); err != nil {
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
-	if err := repositories.DeleteAdministradorTi(&container, id); err != nil {
-		api_helpers.RespondError(c, 500, "default")
+	if err := repositories.DeleteAdministradorTi(&admin, id); err != nil {
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, f_output.DeleteAdministradorTi(container))
+	api_helpers.RespondJSON(c, 200, admin)
 }

@@ -56,8 +56,8 @@ func AddNewGrupos(c *gin.Context) {
 	var grupos_error []int
 	for i := 0; i < len(payload.Grupos); i++ {
 		grupo := models.Grupo{
-			Id:           *payload.Grupos[i].Id,
-			Id_curso:     *payload.Grupos[i].Id_curso,
+			// Id:           *payload.Grupos[i].Sigla_grupo,
+			Sigla_curso:  utils.ConvertIntToString(*payload.Grupos[i].Id_curso),
 			Nombre_grupo: *payload.Grupos[i].Nombre_grupo,
 			Sigla_grupo:  *payload.Grupos[i].Sigla_grupo,
 		}
