@@ -8,15 +8,6 @@ import (
 	"golang.org/x/text/unicode/norm"
 )
 
-/*
-	*
-	*  FUNCIÓN isMn y RemoveAccents
-	*
-    *  ESTA FUNCIÓN QUITA LOS ACENTOS DE UN STRING
-	*
-	*
-	*
-*/
 func isMn(r rune) bool {
 	return unicode.Is(unicode.Mn, r)
 }

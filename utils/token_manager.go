@@ -7,15 +7,6 @@ import (
 	"github.com/dgrijalva/jwt-go"
 )
 
-/*
-	*
-	*  FUNCIÓN DecodificarToken
-	*
-    *  ESTA FUNCIÓN RETORNA id_tienda EMBEBIDO EN EL TOKEN
-	*  EN CASO DE TOKEN INVALIDO, RETORNA UN ERROR
-	*
-    *
-*/
 func DecodificarToken(token_str string, env_entity string) string {
 	cnt := 0
 	for i := 0; i < len(token_str); i++ {
@@ -44,15 +35,6 @@ func DecodificarToken(token_str string, env_entity string) string {
 	}
 }
 
-/*
-	*
-	*  FUNCIÓN ValidarTokenEstudiante
-	*
-    *  ESTA FUNCIÓN RETORNA true SI ES QUE UN TOKEN RECIBIDO ES VÁLIDO
-	*  Y RETORNA false SI ES QUE ES UN TOKEN INVÁLIDO.
-	*  ESTÁ DISEÑADA PARA USO INTERNO DE LOS PATHS.
-    *
-*/
 func ValidarToken(token_str string, env_entity string) bool {
 	cnt := 0
 	for i := 0; i < len(token_str); i++ {
