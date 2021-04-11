@@ -11,28 +11,43 @@ import (
 )
 
 func GetAllPeriodos(u *[]models.Periodo) (err error) {
-	if err = config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Find(u).Error; err != nil {
+	if err = config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
+		Preload(clause.Associations).
+		Find(u).
+		Error; err != nil {
 		return err
 	}
 	return nil
 }
 
 func GetOnePeriodo(u *models.Periodo, id string) (err error) {
-	if err := config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("id = ?", id).First(u).Error; err != nil {
+	if err := config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
+		Preload(clause.Associations).
+		Where("id = ?", id).
+		First(u).
+		Error; err != nil {
 		return err
 	}
 	return nil
 }
 
 func GetUltimoPeriodo(u *models.Periodo) (err error) {
-	if err := config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Order("created_at desc").Limit(1).First(u).Error; err != nil {
+	if err := config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
+		Preload(clause.Associations).
+		Order("created_at desc").
+		Limit(1).
+		First(u).
+		Error; err != nil {
 		return err
 	}
 	return nil
 }
 
 func AddNewPeriodo(u *models.Periodo) (err error) {
-	if err = config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Create(u).Error; err != nil {
+	if err = config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
+		Preload(clause.Associations).
+		Create(u).
+		Error; err != nil {
 		return err
 	}
 	return nil
@@ -40,11 +55,16 @@ func AddNewPeriodo(u *models.Periodo) (err error) {
 
 func PutOnePeriodo(u *models.Periodo, id string) (err error) {
 	fmt.Println(u)
-	config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Save(u)
+	config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
+		Preload(clause.Associations).
+		Save(u)
 	return nil
 }
 
 func DeletePeriodo(u *models.Periodo, id string) (err error) {
-	config.DB.Session(&gorm.Session{FullSaveAssociations: true}).Preload(clause.Associations).Where("id = ?", id).Delete(u)
+	config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
+		Preload(clause.Associations).
+		Where("id = ?", id).
+		Delete(u)
 	return nil
 }

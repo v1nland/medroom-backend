@@ -4,13 +4,20 @@ import (
 	"errors"
 	"medroom-backend/api_helpers"
 	"medroom-backend/messages/Query"
-	"medroom-backend/messages/Response"
 	"medroom-backend/repositories"
 	"medroom-backend/utils"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
+
+type evolucionGrupoPorCompetenciaResponse struct {
+	Eje_x   []string `json:"eje_x"`
+	Eje_y   []int    `json:"eje_y"`
+	Valores map[string][]struct {
+		Promedio_grupo float64 `json:"promedio_grupo"`
+	} `json:"valores"`
+}
 
 // @Summary Evolución por competencia
 // @Description Obtiene la evolución de un grupo según competencia
@@ -36,7 +43,7 @@ func EvolucionGrupoPorCompetencia(c *gin.Context) {
 		}
 	}
 
-	response_container := &Response.EvolucionGrupoPorCompetenciaResponse{
+	response_container := &evolucionGrupoPorCompetenciaResponse{
 		Eje_x: utils.BuildUniqueEvaluacionesCompetenciaGrupo(calificaciones_grupo),
 		Eje_y: []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
 		Valores: map[string][]struct {

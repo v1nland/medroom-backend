@@ -4,13 +4,21 @@ import (
 	"errors"
 	"medroom-backend/api_helpers"
 	"medroom-backend/messages/Query"
-	"medroom-backend/messages/Response"
 	"medroom-backend/repositories"
 	"medroom-backend/utils"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
+
+type evolucionEstudiantePorCompetenciaResponse struct {
+	Eje_x   []string `json:"eje_x"`
+	Eje_y   []int    `json:"eje_y"`
+	Valores map[string][]struct {
+		Puntaje_estudiante int     `json:"puntaje_estudiante"`
+		Promedio_grupo     float64 `json:"promedio_grupo"`
+	} `json:"valores"`
+}
 
 // @Summary Evolución por competencia
 // @Description Obtiene la evolución de un estudiante según competencia
@@ -36,7 +44,7 @@ func EvolucionEstudiantePorCompetencia(c *gin.Context) {
 		}
 	}
 
-	response_container := &Response.EvolucionEstudiantePorCompetenciaResponse{
+	response_container := &evolucionEstudiantePorCompetenciaResponse{
 		Eje_x: utils.BuildUniqueEvaluacionesCompetencia(calificaciones_estudiante),
 		Eje_y: []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
 		Valores: map[string][]struct {
