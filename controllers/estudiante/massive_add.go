@@ -92,7 +92,7 @@ func AddNewEstudiantes(c *gin.Context) {
 
 		for j := 0; j < len(payload.Estudiantes[i].Id_grupos); j++ {
 			var gp models.Grupo
-			if err := repositories.GetOneGrupo(&gp, utils.ConvertIntToString(*payload.Estudiantes[i].Id_grupos[j])); err == nil {
+			if err := repositories.GetOneGrupo(&gp, utils.IntToString(*payload.Estudiantes[i].Id_grupos[j])); err == nil {
 				estudiante.Grupos_estudiante = append(estudiante.Grupos_estudiante, gp)
 			}
 		}

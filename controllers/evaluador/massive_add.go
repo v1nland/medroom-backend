@@ -106,7 +106,7 @@ func AddNewEvaluadores(c *gin.Context) {
 
 		for j := 0; j < len(payload.Evaluadores[i].Id_grupos); j++ {
 			var gp models.Grupo
-			if err := repositories.GetOneGrupo(&gp, utils.ConvertIntToString(*payload.Evaluadores[i].Id_grupos[j])); err == nil {
+			if err := repositories.GetOneGrupo(&gp, utils.IntToString(*payload.Evaluadores[i].Id_grupos[j])); err == nil {
 				evaluador.Grupos_evaluador = append(evaluador.Grupos_evaluador, gp)
 			}
 		}

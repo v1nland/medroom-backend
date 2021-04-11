@@ -35,7 +35,7 @@ func Delete(c *gin.Context) {
 
 	// clear evaluaciones grupo
 	for _, evaluacion := range grupo.Evaluaciones_grupo {
-		if err := repositories.DeleteEvaluacion(utils.ConvertIntToString(evaluacion.Id)); err != nil {
+		if err := repositories.DeleteEvaluacion(utils.IntToString(evaluacion.Id)); err != nil {
 			api_helpers.RespondError(c, 500, err.Error())
 			return
 		}

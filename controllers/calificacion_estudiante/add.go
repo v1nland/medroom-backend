@@ -145,7 +145,7 @@ func Add(c *gin.Context) {
 	model := models.CalificacionEstudiante{
 		Id_evaluador:                     uuid.MustParse(id_evaluador),
 		Id_periodo:                       *input.Id_periodo,
-		Id_evaluacion:                    utils.ConvertStringToInt(id_evaluacion),
+		Id_evaluacion:                    utils.StringToInt(id_evaluacion),
 		Puntajes_calificacion_estudiante: puntajes_calificacion_estudiante,
 		Id_estudiante:                    uuid.MustParse(id_estudiante),
 		Nombre_calificacion_estudiante:   *input.Nombre_calificacion_estudiante,

@@ -148,7 +148,7 @@ func Put(c *gin.Context) {
 		}
 	}
 
-	if err := repositories.PutOneCalificacionEstudiante(&calificacion_actual, utils.ConvertIntToString(calificacion_actual.Id)); err != nil {
+	if err := repositories.PutOneCalificacionEstudiante(&calificacion_actual, utils.IntToString(calificacion_actual.Id)); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}

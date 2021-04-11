@@ -92,7 +92,7 @@ func MassiveAdd(c *gin.Context) {
 
 		for j := 0; j < len(payload.AdministradoresAcademicos[i].Id_cursos); j++ {
 			var crs models.Curso
-			if err := repositories.GetOneCurso(&crs, utils.ConvertIntToString(*payload.AdministradoresAcademicos[i].Id_cursos[j])); err == nil {
+			if err := repositories.GetOneCurso(&crs, utils.IntToString(*payload.AdministradoresAcademicos[i].Id_cursos[j])); err == nil {
 				administrador_academico.Cursos_administrador_academico = append(administrador_academico.Cursos_administrador_academico, crs)
 			}
 		}

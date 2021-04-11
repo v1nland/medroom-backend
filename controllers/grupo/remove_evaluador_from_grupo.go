@@ -43,7 +43,7 @@ func RemoveEvaluadorFromGrupo(c *gin.Context) {
 		return
 	}
 
-	repositories.DeleteEvaluadorGrupo(utils.ConvertIntToString(utils.ConvertStringToInt(id_grupo)), id_evaluador)
+	repositories.DeleteEvaluadorGrupo(utils.IntToString(utils.StringToInt(id_grupo)), id_evaluador)
 
 	// found, id_grupo_sg := utils.SearchIdGrupoBySigla(curso.Grupos_curso, "SG")
 	// if found {

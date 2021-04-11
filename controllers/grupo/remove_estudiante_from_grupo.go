@@ -43,7 +43,7 @@ func RemoveEstudianteFromGrupo(c *gin.Context) {
 		return
 	}
 
-	repositories.DeleteEstudianteGrupo(utils.ConvertIntToString(utils.ConvertStringToInt(id_grupo)), id_estudiante)
+	repositories.DeleteEstudianteGrupo(utils.IntToString(utils.StringToInt(id_grupo)), id_estudiante)
 
 	// found, id_grupo_sg := utils.SearchIdGrupoBySigla(curso.Grupos_curso, "SG")
 	// if found {
