@@ -19,14 +19,14 @@ func SetupPublicRouter(r *gin.Engine) *gin.Engine {
 
 		periodos := router.Group("/periodos")
 		{
-			periodos.GET("periodos", periodo.ListPeriodos)
-			periodos.GET("periodos/:id", periodo.GetOnePeriodo)
+			periodos.GET("periodos", periodo.List)
+			periodos.GET("periodos/:id", periodo.Get)
 		}
 
 		roles := router.Group("/roles")
 		{
-			roles.GET("roles", rol.ListRoles)
-			roles.GET("roles/:id", rol.GetOneRol)
+			roles.GET("roles", rol.List)
+			roles.GET("roles/:id", rol.Get)
 		}
 	}
 

@@ -1,13 +1,11 @@
 package evaluador
 
 import (
-	"errors"
 	"medroom-backend/api_helpers"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 )
 
 // @Summary Lista de evaluadores
@@ -18,15 +16,10 @@ import (
 // @Success 200 {array} Swagger.ListEvaluadoresSwagger "OK"
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/evaluadores [get]
-func ListEvaluadores(c *gin.Context) {
+func List(c *gin.Context) {
 	var evaluadores []models.Evaluador
 	if err := repositories.GetAllEvaluadores(&evaluadores); err != nil {
-		if errors.Is(err, gorm.ErrEmptySlice) {
-			api_helpers.RespondJSON(c, 200, evaluadores)
-		} else {
-			api_helpers.RespondError(c, 500, "default")
-		}
-
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 

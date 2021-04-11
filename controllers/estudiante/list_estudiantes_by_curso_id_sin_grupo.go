@@ -1,13 +1,11 @@
 package estudiante
 
 import (
-	"errors"
 	"medroom-backend/api_helpers"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 )
 
 // @Summary Lista de estudiantes de un curso sin grupo
@@ -24,12 +22,7 @@ func ListEstudiantesCursoSinGrupo(c *gin.Context) {
 
 	var estudiantes []models.Estudiante
 	if err := repositories.GetAllEstudiantesCursoSinGrupo(&estudiantes, id_curso); err != nil {
-		if errors.Is(err, gorm.ErrEmptySlice) {
-			api_helpers.RespondJSON(c, 200, estudiantes)
-		} else {
-			api_helpers.RespondError(c, 500, "default")
-		}
-
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 

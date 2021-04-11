@@ -18,25 +18,25 @@ import (
 // @Success 200 {object} Swagger.DeleteGrupoSwagger "OK"
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-academica/grupos/{id_grupo} [delete]
-func DeleteGrupo(c *gin.Context) {
+func Delete(c *gin.Context) {
 	id := c.Params.ByName("id")
 
 	var grupo models.Grupo
 	if err := repositories.GetOneGrupo(&grupo, id); err != nil {
-		api_helpers.RespondError(c, 500, "default")
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
 	// clear grupo associations
 	// if err := repositories.ClearGrupo(utils.ConvertIntToString(grupo.Id)); err != nil {
-	// 	api_helpers.RespondError(c, 500, "default")
+	// 	api_helpers.RespondError(c, 500, err.Error())
 	// 	return
 	// }
 
 	// clear evaluaciones grupo
 	for _, evaluacion := range grupo.Evaluaciones_grupo {
 		if err := repositories.DeleteEvaluacion(utils.ConvertIntToString(evaluacion.Id)); err != nil {
-			api_helpers.RespondError(c, 500, "default")
+			api_helpers.RespondError(c, 500, err.Error())
 			return
 		}
 	}

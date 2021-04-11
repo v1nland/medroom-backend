@@ -7,7 +7,7 @@ import (
 	"medroom-backend/utils"
 )
 
-func CalificacionEstudiantemigrations() {
+func CalificacionEstudiante() {
 	fmt.Println("===== CALIFICACION ESTUDIANTE =====")
 
 	var grupos []models.Grupo

@@ -17,12 +17,12 @@ import (
 // @Success 200 {object} Swagger.GetOnePeriodoSwagger "OK"
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /periodos/{id_periodo} [get]
-func GetOnePeriodo(c *gin.Context) {
+func Get(c *gin.Context) {
 	id := c.Params.ByName("id")
 
 	var periodo models.Periodo
 	if err := repositories.GetOnePeriodo(&periodo, id); err != nil {
-		api_helpers.RespondError(c, 500, "default")
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 

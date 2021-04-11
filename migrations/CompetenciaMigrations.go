@@ -7,7 +7,7 @@ import (
 	"medroom-backend/utils"
 )
 
-func Competenciamigrations() {
+func Competencia() {
 	fmt.Println("===== COMPETENCIA =====")
 
 	// Anamnesis

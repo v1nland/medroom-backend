@@ -31,8 +31,8 @@ func SetupEvaluadorRouter(r *gin.Engine) *gin.Engine {
 	router.Use(evaluadorAuthMiddleware)
 	{
 		// profile routes
-		router.GET("me", evaluador.GetMyEvaluador)
-		router.PUT("me", evaluador.PutMyEvaluador)
+		router.GET("me", evaluador.Profile)
+		router.PUT("me", evaluador.PutProfile)
 
 		// my course routes
 		router.GET("me/cursos", curso.GetCursosEvaluador)
@@ -44,7 +44,7 @@ func SetupEvaluadorRouter(r *gin.Engine) *gin.Engine {
 
 		// make evaluation routes
 		router.GET("me/cursos/:id_curso/grupos/:id_grupo/evaluaciones", evaluacion.ListEvaluacionesGrupoEvaluador)
-		router.POST("me/cursos/:id_curso/grupos/:id_grupo/evaluaciones", evaluacion.AddNewEvaluacion)
+		router.POST("me/cursos/:id_curso/grupos/:id_grupo/evaluaciones", evaluacion.Add)
 		router.GET("me/cursos/:id_curso/grupos/:id_grupo/estudiantes/:id_estudiante/evaluaciones-rendidas", evaluacion.ListEvaluacionesRendidasEstudiante)
 		router.GET("me/cursos/:id_curso/grupos/:id_grupo/estudiantes/:id_estudiante/evaluaciones/:id_evaluacion/calificacion", calificacion_estudiante.GetByEvaluador)
 		router.POST("me/cursos/:id_curso/grupos/:id_grupo/estudiantes/:id_estudiante/evaluaciones/:id_evaluacion/calificacion", calificacion_estudiante.Add)

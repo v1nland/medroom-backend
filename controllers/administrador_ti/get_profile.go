@@ -17,7 +17,7 @@ import (
 // @Success 200 {object} Swagger.GetMyAdministradorTiSwagger "OK"
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/me [get]
-func GetMyAdministradorTi(c *gin.Context) {
+func Profile(c *gin.Context) {
 	id := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_TI")
 
 	var admin models.AdministradorTi

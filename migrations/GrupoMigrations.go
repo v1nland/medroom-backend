@@ -1,9 +1,5 @@
 package migrations
 
-// import (
-// 	"fmt"
-// )
-
 // func Grupomigrations() {
 // 	fmt.Println("===== GRUPO =====")
 

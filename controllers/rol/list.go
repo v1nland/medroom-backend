@@ -2,7 +2,6 @@ package rol
 
 import (
 	"medroom-backend/api_helpers"
-	"medroom-backend/formats/f_output"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 
@@ -17,13 +16,13 @@ import (
 // @Success 200 {array} Swagger.ListRolesSwagger "OK"
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /roles [get]
-func ListRoles(c *gin.Context) {
+func List(c *gin.Context) {
 	var roles []models.Rol
 
 	if err := repositories.GetAllRoles(&roles); err != nil {
-		api_helpers.RespondError(c, 500, "default")
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, f_output.ListRoles(roles))
+	api_helpers.RespondJSON(c, 200, roles)
 }

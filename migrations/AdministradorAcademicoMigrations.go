@@ -1,6 +1,6 @@
 package migrations
 
-func AdministradorAcademicomigrations() {
+func AdministradorAcademico() {
 	// fmt.Println("===== ADMINISTRADOR ACADEMICO =====")
 
 	// var rol models.Rol

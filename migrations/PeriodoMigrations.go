@@ -7,7 +7,7 @@ import (
 	"medroom-backend/utils"
 )
 
-func Periodomigrations() {
+func Periodo() {
 	fmt.Println("===== PERIODO =====")
 
 	container := &models.Periodo{

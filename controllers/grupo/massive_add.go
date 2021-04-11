@@ -10,7 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type massive_add_input struct {
+type massiveAddRequest struct {
 	Grupos []struct {
 		Id           *int    `json:"id"`
 		Id_curso     *int    `json:"id_curso"`
@@ -19,7 +19,7 @@ type massive_add_input struct {
 	} `json:"grupos"`
 }
 
-func massive_add_format(u *massive_add_input) {
+func massiveAddRequestParse(u *massiveAddRequest) {
 	for i := 0; i < len(u.Grupos); i++ {
 		if u.Grupos[i].Nombre_grupo != nil {
 			*u.Grupos[i].Nombre_grupo = strings.TrimSpace(*u.Grupos[i].Nombre_grupo)
@@ -45,13 +45,13 @@ func massive_add_format(u *massive_add_input) {
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/grupos/carga-masiva [post]
 func AddNewGrupos(c *gin.Context) {
-	var payload massive_add_input
+	var payload massiveAddRequest
 	if err := c.ShouldBind(&payload); err != nil {
 		api_helpers.RespondError(c, 400, err.Error())
 		return
 	}
 
-	massive_add_format(&payload)
+	massiveAddRequestParse(&payload)
 
 	var grupos_error []int
 	for i := 0; i < len(payload.Grupos); i++ {

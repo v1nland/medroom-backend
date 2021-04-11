@@ -2,7 +2,6 @@ package auth
 
 import (
 	"medroom-backend/api_helpers"
-	"medroom-backend/messages/Response"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 	"os"
@@ -22,6 +21,10 @@ func authEvaluadorRequestParse(msg *authEvaluadorRequest) {
 	msg.Correo_electronico_evaluador = strings.ToUpper(msg.Correo_electronico_evaluador)
 }
 
+type authEvaluadorResponse struct {
+	Token string `json:"token"`
+}
+
 // @Summary Autenticación de evaluador
 // @Description Ingresa usuario y contraseña para iniciar sesión
 // @Tags 01 - Autenticación
@@ -35,7 +38,7 @@ func AuthenticateEvaluador(c *gin.Context) {
 	var evaluador models.Evaluador
 
 	var login_message authEvaluadorRequest
-	var token_response Response.Authentication
+	var login_response authEvaluadorResponse
 
 	if err := c.ShouldBind(&login_message); err != nil {
 		api_helpers.RespondError(c, 400, err.Error())
@@ -56,9 +59,9 @@ func AuthenticateEvaluador(c *gin.Context) {
 		claims["correo_electronico_evaluador"] = evaluador.Correo_electronico_evaluador
 
 		token, _ := encoder.SignedString([]byte(os.Getenv("SECRET_KEY_EVALUADOR")))
-		token_response.Token = token
+		login_response.Token = token
 
-		api_helpers.RespondJSON(c, 200, token_response)
+		api_helpers.RespondJSON(c, 200, login_response)
 		return
 	}
 }

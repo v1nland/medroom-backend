@@ -10,7 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type massive_add_input struct {
+type massiveAddRequest struct {
 	Evaluadores []struct {
 		Id_grupos                    []*int  `json:"id_grupos"`
 		Rut_evaluador                *string `json:"rut_evaluador"`
@@ -25,7 +25,7 @@ type massive_add_input struct {
 	} `json:"evaluadores"`
 }
 
-func massive_add_format(u *massive_add_input) {
+func massiveAddRequestParse(u *massiveAddRequest) {
 	for i := 0; i < len(u.Evaluadores); i++ {
 		if u.Evaluadores[i].Rut_evaluador != nil {
 			*u.Evaluadores[i].Rut_evaluador = strings.TrimSpace(*u.Evaluadores[i].Rut_evaluador)
@@ -80,13 +80,13 @@ func massive_add_format(u *massive_add_input) {
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/evaluadores/carga-masiva [post]
 func AddNewEvaluadores(c *gin.Context) {
-	var payload massive_add_input
+	var payload massiveAddRequest
 	if err := c.ShouldBind(&payload); err != nil {
 		api_helpers.RespondError(c, 400, err.Error())
 		return
 	}
 
-	massive_add_format(&payload)
+	massiveAddRequestParse(&payload)
 
 	var evaluadores_error []string
 	for i := 0; i < len(payload.Evaluadores); i++ {

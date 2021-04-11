@@ -7,7 +7,7 @@ import (
 	"medroom-backend/utils"
 )
 
-func Evaluacionmigrations() {
+func Evaluacion() {
 	fmt.Println("===== EVALUACION =====")
 
 	var grupos []models.Grupo

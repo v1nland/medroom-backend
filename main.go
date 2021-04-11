@@ -16,7 +16,7 @@ import (
 
 var err error
 
-// @title MedRoom API
+// @title medRoom
 // @version 1.0
 // @description Swagger definition for MedRoom backend.
 // @termsOfService https://swagger.io/terms/
@@ -46,13 +46,13 @@ func main() {
 	}
 
 	if config.GetBool("MIGRATE_VALUES") {
-		migrations.Periodomigrations()
-		migrations.Rolmigrations()
-		migrations.Competenciamigrations()
-		migrations.AdministradorTimigrations()
+		migrations.Periodo()
+		migrations.Rol()
+		migrations.Competencia()
+		migrations.AdministradorTi()
 		// migrations.AdministradorAcademicomigrations()
 		// migrations.Evaluadormigrations()
-		migrations.Cursomigrations()
+		migrations.Curso()
 		// migrations.Evaluacionmigrations()
 		// migrations.Grupomigrations()
 		// migrations.Estudiantemigrations()

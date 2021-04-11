@@ -2,7 +2,6 @@ package rol
 
 import (
 	"medroom-backend/api_helpers"
-	"medroom-backend/formats/f_output"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 
@@ -18,19 +17,19 @@ import (
 // @Success 200 {object} Swagger.DeleteRolSwagger "OK"
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/roles/{id_rol} [delete]
-func DeleteRol(c *gin.Context) {
+func Delete(c *gin.Context) {
 	id := c.Params.ByName("id")
 
 	var rol models.Rol
 	if err := repositories.GetOneRol(&rol, id); err != nil {
-		api_helpers.RespondError(c, 500, "default")
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
 	if err := repositories.DeleteRol(&rol, id); err != nil {
-		api_helpers.RespondError(c, 500, "default")
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, f_output.DeleteRol(rol))
+	api_helpers.RespondJSON(c, 200, rol)
 }

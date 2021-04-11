@@ -1,14 +1,12 @@
 package grupo
 
 import (
-	"errors"
 	"medroom-backend/api_helpers"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 	"medroom-backend/utils"
 
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 )
 
 // @Summary Obtiene los grupos de un administrador academico
@@ -26,12 +24,7 @@ func GetGruposAdministradorAcademico(c *gin.Context) {
 
 	var grupos []models.Grupo
 	if err := repositories.GetGruposAdministradorAcademico(&grupos, id_curso, id_administrador_academico); err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
-			api_helpers.RespondJSON(c, 200, "Grupo not found")
-		} else {
-			api_helpers.RespondError(c, 500, "default")
-		}
-
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 

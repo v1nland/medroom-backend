@@ -16,11 +16,11 @@ import (
 // @Success 200 {array} Swagger.ListPeriodosSwagger "OK"
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /periodos [get]
-func ListPeriodos(c *gin.Context) {
+func List(c *gin.Context) {
 	var periodos []models.Periodo
 
 	if err := repositories.GetAllPeriodos(&periodos); err != nil {
-		api_helpers.RespondError(c, 500, "default")
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 

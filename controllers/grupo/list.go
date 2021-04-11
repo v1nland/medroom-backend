@@ -20,7 +20,7 @@ func ListGrupos(c *gin.Context) {
 	var grupos []models.Grupo
 
 	if err := repositories.GetAllGrupos(&grupos); err != nil {
-		api_helpers.RespondError(c, 500, "default")
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 

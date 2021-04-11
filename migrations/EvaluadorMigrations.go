@@ -1,6 +1,6 @@
 package migrations
 
-func Evaluadormigrations() {
+func Evaluador() {
 	// fmt.Println("===== EVALUADOR =====")
 
 	// var rol models.Rol

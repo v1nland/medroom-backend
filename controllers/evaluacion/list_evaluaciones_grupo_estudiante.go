@@ -1,14 +1,12 @@
 package evaluacion
 
 import (
-	"errors"
 	"medroom-backend/api_helpers"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 	"medroom-backend/utils"
 
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 )
 
 // @Summary Lista de evaluaciones de un grupo
@@ -28,12 +26,7 @@ func ListEvaluacionesGrupoEstudiante(c *gin.Context) {
 
 	var grupo models.Grupo
 	if err := repositories.GetOneGrupoEstudiante(&grupo, id_grupo, id_curso, id_estudiante); err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
-			api_helpers.RespondJSON(c, 200, "Grupo not found")
-		} else {
-			api_helpers.RespondError(c, 500, "default")
-		}
-
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 

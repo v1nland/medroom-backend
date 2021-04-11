@@ -2,15 +2,25 @@ package rol
 
 import (
 	"medroom-backend/api_helpers"
-	"medroom-backend/formats/f_input"
-	"medroom-backend/formats/f_output"
-	"medroom-backend/messages/Request"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 	"medroom-backend/utils"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
+
+type putRequest struct {
+	Nombre_rol *string `json:"nombre_rol"`
+}
+
+func putRequestParse(u *putRequest) {
+	if u.Nombre_rol != nil {
+		*u.Nombre_rol = strings.TrimSpace(*u.Nombre_rol)
+		*u.Nombre_rol = strings.ToUpper(*u.Nombre_rol)
+		*u.Nombre_rol = utils.RemoveAccents(*u.Nombre_rol)
+	}
+}
 
 // @Summary Modifica un rol
 // @Description Modifica un rol con los datos entregados
@@ -25,17 +35,17 @@ import (
 func PutOneRol(c *gin.Context) {
 	id := c.Params.ByName("id")
 
-	var input Request.PutOneRol
+	var input putRequest
 	if err := c.ShouldBind(&input); err != nil {
-		api_helpers.RespondError(c, 400, "default")
+		api_helpers.RespondError(c, 400, err.Error())
 		return
 	}
 
-	f_input.PutOneRol(&input)
+	putRequestParse(&input)
 
 	var rol models.Rol
 	if err := repositories.GetOneRol(&rol, id); err != nil {
-		api_helpers.RespondError(c, 500, "default")
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
@@ -45,9 +55,9 @@ func PutOneRol(c *gin.Context) {
 	}
 
 	if err := repositories.PutOneRol(&rol, id); err != nil {
-		api_helpers.RespondError(c, 500, "default")
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, f_output.PutOneRol(rol))
+	api_helpers.RespondJSON(c, 200, rol)
 }

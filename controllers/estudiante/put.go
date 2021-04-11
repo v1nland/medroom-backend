@@ -1,17 +1,57 @@
 package estudiante
 
 import (
-	"errors"
 	"medroom-backend/api_helpers"
-	"medroom-backend/formats/f_input"
-	"medroom-backend/messages/Request"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 	"medroom-backend/utils"
+	"strings"
 
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 )
+
+type putRequest struct {
+	Rut_estudiante                *string `json:"rut_estudiante"`
+	Nombres_estudiante            *string `json:"nombres_estudiante"`
+	Apellidos_estudiante          *string `json:"apellidos_estudiante"`
+	Hash_contrasena_estudiante    *string `json:"hash_contrasena_estudiante"`
+	Correo_electronico_estudiante *string `json:"correo_electronico_estudiante"`
+	Telefono_fijo_estudiante      *string `json:"telefono_fijo_estudiante"`
+	Telefono_celular_estudiante   *string `json:"telefono_celular_estudiante"`
+}
+
+func putRequestParse(u *putRequest) {
+	if u.Rut_estudiante != nil {
+		*u.Rut_estudiante = strings.TrimSpace(*u.Rut_estudiante)
+		*u.Rut_estudiante = strings.ToUpper(*u.Rut_estudiante)
+		*u.Rut_estudiante = utils.RemoveAccents(*u.Rut_estudiante)
+	}
+	if u.Nombres_estudiante != nil {
+		*u.Nombres_estudiante = strings.TrimSpace(*u.Nombres_estudiante)
+		*u.Nombres_estudiante = strings.ToUpper(*u.Nombres_estudiante)
+		*u.Nombres_estudiante = utils.RemoveAccents(*u.Nombres_estudiante)
+	}
+	if u.Apellidos_estudiante != nil {
+		*u.Apellidos_estudiante = strings.TrimSpace(*u.Apellidos_estudiante)
+		*u.Apellidos_estudiante = strings.ToUpper(*u.Apellidos_estudiante)
+		*u.Apellidos_estudiante = utils.RemoveAccents(*u.Apellidos_estudiante)
+	}
+	if u.Correo_electronico_estudiante != nil {
+		*u.Correo_electronico_estudiante = strings.TrimSpace(*u.Correo_electronico_estudiante)
+		*u.Correo_electronico_estudiante = strings.ToUpper(*u.Correo_electronico_estudiante)
+		*u.Correo_electronico_estudiante = utils.RemoveAccents(*u.Correo_electronico_estudiante)
+	}
+	if u.Telefono_fijo_estudiante != nil {
+		*u.Telefono_fijo_estudiante = strings.TrimSpace(*u.Telefono_fijo_estudiante)
+		*u.Telefono_fijo_estudiante = strings.ToUpper(*u.Telefono_fijo_estudiante)
+		*u.Telefono_fijo_estudiante = utils.RemoveAccents(*u.Telefono_fijo_estudiante)
+	}
+	if u.Telefono_celular_estudiante != nil {
+		*u.Telefono_celular_estudiante = strings.TrimSpace(*u.Telefono_celular_estudiante)
+		*u.Telefono_celular_estudiante = strings.ToUpper(*u.Telefono_celular_estudiante)
+		*u.Telefono_celular_estudiante = utils.RemoveAccents(*u.Telefono_celular_estudiante)
+	}
+}
 
 // @Summary Modifica un estudiante
 // @Description Modifica un estudiante con los datos entregados
@@ -19,29 +59,24 @@ import (
 // @Accept  json
 // @Produce  json
 // @Param   uuid_estudiante     path    string     true        "UUID del estudiante a modificar"
-// @Param   input_actualiza_estudiante     body    Request.PutOneEstudiante     true        "Estudiante a modificar"
+// @Param   input_actualiza_estudiante     body    Request.Put     true        "Estudiante a modificar"
 // @Success 200 {object} Swagger.PutOneEstudianteSwagger "OK"
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/estudiantes/{uuid_estudiante} [put]
-func PutOneEstudiante(c *gin.Context) {
+func Put(c *gin.Context) {
 	id := c.Params.ByName("id")
 
-	var input Request.PutOneEstudiante
+	var input putRequest
 	if err := c.ShouldBind(&input); err != nil {
-		api_helpers.RespondError(c, 400, "default")
+		api_helpers.RespondError(c, 400, err.Error())
 		return
 	}
 
-	f_input.PutOneEstudiante(&input)
+	putRequestParse(&input)
 
 	var estudiante models.Estudiante
 	if err := repositories.GetOneEstudiante(&estudiante, id); err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
-			api_helpers.RespondJSON(c, 200, "Estudiante not found")
-		} else {
-			api_helpers.RespondError(c, 500, "default")
-		}
-
+		api_helpers.RespondError(c, 400, err.Error())
 		return
 	}
 
@@ -59,12 +94,7 @@ func PutOneEstudiante(c *gin.Context) {
 	}
 
 	if err := repositories.PutOneEstudiante(&estudiante, id); err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
-			api_helpers.RespondJSON(c, 200, "Estudiante not found")
-		} else {
-			api_helpers.RespondError(c, 500, "default")
-		}
-
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 

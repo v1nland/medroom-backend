@@ -22,7 +22,7 @@ func GetOneGrupo(c *gin.Context) {
 
 	var grupo models.Grupo
 	if err := repositories.GetOneGrupo(&grupo, id); err != nil {
-		api_helpers.RespondError(c, 500, "default")
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 

@@ -32,26 +32,26 @@ func SetupAdministradorTiRouter(r *gin.Engine) *gin.Engine {
 	router := r.Group("api/v1/administracion-ti")
 	router.Use(administradorTiAuthMiddleware)
 	{
-		router.GET("me", administrador_ti.GetMyAdministradorTi)
+		router.GET("me", administrador_ti.Profile)
 		router.PUT("me", administrador_ti.PutProfile)
 
 		estudiantes := router.Group("/estudiantes")
 		{
-			estudiantes.GET("", estudiante.ListEstudiantes)
-			estudiantes.GET(":id", estudiante.GetOneEstudiante)
-			estudiantes.POST("", estudiante.AddNewEstudiante)
+			estudiantes.GET("", estudiante.List)
+			estudiantes.GET(":id", estudiante.Get)
+			estudiantes.POST("", estudiante.Add)
 			estudiantes.POST("carga-masiva", estudiante.AddNewEstudiantes)
-			estudiantes.PUT(":id", estudiante.PutOneEstudiante)
-			estudiantes.DELETE(":id", estudiante.DeleteEstudiante)
+			estudiantes.PUT(":id", estudiante.Put)
+			estudiantes.DELETE(":id", estudiante.Delete)
 		}
 
 		evaluadores := router.Group("/evaluadores")
 		{
-			evaluadores.GET("", evaluador.ListEvaluadores)
-			evaluadores.GET(":id", evaluador.GetOneEvaluador)
-			evaluadores.POST("", evaluador.AddNewEvaluador)
-			evaluadores.PUT(":id", evaluador.PutOneEvaluador)
-			evaluadores.DELETE(":id", evaluador.DeleteEvaluador)
+			evaluadores.GET("", evaluador.List)
+			evaluadores.GET(":id", evaluador.Get)
+			evaluadores.POST("", evaluador.Add)
+			evaluadores.PUT(":id", evaluador.Put)
+			evaluadores.DELETE(":id", evaluador.Delete)
 		}
 
 		administradores_academicos := router.Group("/administradores-academicos")
@@ -91,28 +91,28 @@ func SetupAdministradorTiRouter(r *gin.Engine) *gin.Engine {
 		{
 			grupos.GET("", grupo.ListGrupos)
 			grupos.GET(":id", grupo.GetOneGrupo)
-			grupos.POST("", grupo.AddNewGrupo)
+			grupos.POST("", grupo.Add)
 			grupos.POST("carga-masiva", grupo.AddNewGrupos)
-			grupos.PUT(":id", grupo.PutOneGrupo)
-			grupos.DELETE(":id", grupo.DeleteGrupo)
+			grupos.PUT(":id", grupo.Put)
+			grupos.DELETE(":id", grupo.Delete)
 		}
 
 		periodos := router.Group("/periodos")
 		{
-			periodos.GET("", periodo.ListPeriodos)
-			periodos.GET(":id", periodo.GetOnePeriodo)
-			periodos.POST("", periodo.AddNewPeriodo)
-			periodos.PUT(":id", periodo.PutOnePeriodo)
-			periodos.DELETE(":id", periodo.DeletePeriodo)
+			periodos.GET("", periodo.List)
+			periodos.GET(":id", periodo.Get)
+			periodos.POST("", periodo.Add)
+			periodos.PUT(":id", periodo.Put)
+			periodos.DELETE(":id", periodo.Delete)
 		}
 
 		roles := router.Group("/roles")
 		{
-			roles.GET("", rol.ListRoles)
-			roles.GET(":id", rol.GetOneRol)
-			roles.POST("", rol.AddNewRol)
+			roles.GET("", rol.List)
+			roles.GET(":id", rol.Get)
+			roles.POST("", rol.Add)
 			roles.PUT(":id", rol.PutOneRol)
-			roles.DELETE(":id", rol.DeleteRol)
+			roles.DELETE(":id", rol.Delete)
 		}
 	}
 

@@ -29,34 +29,19 @@ func AddEstudianteToGrupo(c *gin.Context) {
 
 	var curso models.Curso
 	if err := repositories.GetOneCurso(&curso, id_curso); err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
-			api_helpers.RespondJSON(c, 200, "Curso not found")
-		} else {
-			api_helpers.RespondError(c, 500, "default")
-		}
-
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
 	var grupo models.Grupo
 	if err := repositories.GetOneGrupo(&grupo, id_grupo); err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
-			api_helpers.RespondJSON(c, 200, "Grupo not found")
-		} else {
-			api_helpers.RespondError(c, 500, "default")
-		}
-
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
 	var estudiante models.Estudiante
 	if err := repositories.GetOneEstudiante(&estudiante, id_estudiante); err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
-			api_helpers.RespondJSON(c, 200, "Estudiante not found")
-		} else {
-			api_helpers.RespondError(c, 500, "default")
-		}
-
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
@@ -64,7 +49,7 @@ func AddEstudianteToGrupo(c *gin.Context) {
 	var grupos_este_curso []models.Grupo
 	if err := repositories.GetGruposEstudiante(&grupos_este_curso, id_curso, id_estudiante); err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
-			api_helpers.RespondJSON(c, 200, "Alumno no pertenece a este curso")
+			api_helpers.RespondJSON(c, 400, "Alumno no pertenece a este curso")
 			return
 		}
 	}

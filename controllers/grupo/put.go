@@ -2,14 +2,32 @@ package grupo
 
 import (
 	"medroom-backend/api_helpers"
-	"medroom-backend/formats/f_input"
-	"medroom-backend/messages/Request"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 	"medroom-backend/utils"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
+
+type putRequest struct {
+	Id_curso     *string `json:"id_curso"`
+	Nombre_grupo *string `json:"nombre_grupo"`
+	Sigla_grupo  *string `json:"sigla_grupo"`
+}
+
+func putRequestParse(u *putRequest) {
+	if u.Nombre_grupo != nil {
+		*u.Nombre_grupo = strings.TrimSpace(*u.Nombre_grupo)
+		*u.Nombre_grupo = strings.ToUpper(*u.Nombre_grupo)
+		*u.Nombre_grupo = utils.RemoveAccents(*u.Nombre_grupo)
+	}
+	if u.Sigla_grupo != nil {
+		*u.Sigla_grupo = strings.TrimSpace(*u.Sigla_grupo)
+		*u.Sigla_grupo = strings.ToUpper(*u.Sigla_grupo)
+		*u.Sigla_grupo = utils.RemoveAccents(*u.Sigla_grupo)
+	}
+}
 
 // @Summary Modifica un grupo
 // @Description Modifica un grupo con los datos entregados
@@ -17,24 +35,24 @@ import (
 // @Accept  json
 // @Produce  json
 // @Param   id_grupo     path    string     true        "Id del grupo a modificar"
-// @Param   input_actualiza_grupo     body    Request.PutOneGrupo     true        "Grupo a modificar"
+// @Param   input_actualiza_grupo     body    Request.Put     true        "Grupo a modificar"
 // @Success 200 {object} Swagger.PutOneGrupoSwagger "OK"
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-academica/grupos/{id_grupo} [put]
-func PutOneGrupo(c *gin.Context) {
+func Put(c *gin.Context) {
 	id := c.Params.ByName("id_grupo")
 
-	var input Request.PutOneGrupo
+	var input putRequest
 	if err := c.ShouldBind(&input); err != nil {
-		api_helpers.RespondError(c, 400, "default")
+		api_helpers.RespondError(c, 400, err.Error())
 		return
 	}
 
-	f_input.PutOneGrupo(&input)
+	putRequestParse(&input)
 
 	var grupo models.Grupo
 	if err := repositories.GetOneGrupo(&grupo, id); err != nil {
-		api_helpers.RespondError(c, 500, "default")
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
@@ -46,7 +64,7 @@ func PutOneGrupo(c *gin.Context) {
 	}
 
 	if err := repositories.PutOneGrupo(&grupo, id); err != nil {
-		api_helpers.RespondError(c, 500, "default")
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 

@@ -7,7 +7,7 @@ import (
 	"medroom-backend/utils"
 )
 
-func Cursomigrations() {
+func Curso() {
 	fmt.Println("===== CURSO =====")
 
 	container := &models.Curso{

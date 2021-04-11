@@ -34,14 +34,14 @@ func SetupAdministradorAcademicoRouter(r *gin.Engine) *gin.Engine {
 
 		estudiantes := router.Group("/estudiantes")
 		{
-			estudiantes.GET("", estudiante.ListEstudiantes)
-			estudiantes.GET(":id", estudiante.GetOneEstudiante)
+			estudiantes.GET("", estudiante.List)
+			estudiantes.GET(":id", estudiante.Get)
 		}
 
 		evaluadores := router.Group("/evaluadores")
 		{
-			evaluadores.GET("", evaluador.ListEvaluadores)
-			evaluadores.GET(":id", evaluador.GetOneEvaluador)
+			evaluadores.GET("", evaluador.List)
+			evaluadores.GET(":id", evaluador.Get)
 		}
 
 		cursos := router.Group("/me/cursos")
@@ -51,9 +51,9 @@ func SetupAdministradorAcademicoRouter(r *gin.Engine) *gin.Engine {
 			cursos.GET(":id/grupos", grupo.GetGruposAdministradorAcademico)
 			cursos.GET(":id/grupos/:id_grupo", grupo.GetOneGrupoAdministradorAcademico)
 
-			cursos.POST(":id/grupos", grupo.AddNewGrupo)
-			cursos.PUT(":id/grupos/:id_grupo", grupo.PutOneGrupo)
-			cursos.DELETE(":id/grupos/:id_grupo", grupo.DeleteGrupo)
+			cursos.POST(":id/grupos", grupo.Add)
+			cursos.PUT(":id/grupos/:id_grupo", grupo.Put)
+			cursos.DELETE(":id/grupos/:id_grupo", grupo.Delete)
 
 			cursos.PUT(":id/grupos/:id_grupo/estudiantes/:id_estudiante", grupo.AddEstudianteToGrupo)
 			cursos.PUT(":id/grupos/:id_grupo/evaluadores/:id_evaluador", grupo.AddEvaluadorToGrupo)

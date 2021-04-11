@@ -9,7 +9,7 @@ import (
 	"github.com/google/uuid"
 )
 
-func AdministradorTimigrations() {
+func AdministradorTi() {
 	fmt.Println("===== ADMINISTRADOR TI =====")
 
 	container := &models.AdministradorTi{

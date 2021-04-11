@@ -2,7 +2,6 @@ package auth
 
 import (
 	"medroom-backend/api_helpers"
-	"medroom-backend/messages/Response"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 	"os"
@@ -22,6 +21,10 @@ func authAdministradorAcademicoRequestParse(msg *authAdministradorAcademicoReque
 	msg.Correo_electronico_administrador_academico = strings.ToUpper(msg.Correo_electronico_administrador_academico)
 }
 
+type authAdministradorAcademicoResponse struct {
+	Token string `json:"token"`
+}
+
 // @Summary Autenticación de administrador académico
 // @Description Ingresa usuario y contraseña para iniciar sesión
 // @Tags 01 - Autenticación
@@ -35,7 +38,7 @@ func AuthenticateAdministradorAcademico(c *gin.Context) {
 	var administrador_academico models.AdministradorAcademico
 
 	var login_message authAdministradorAcademicoRequest
-	var token_response Response.Authentication
+	var login_response authAdministradorAcademicoResponse
 
 	if err := c.ShouldBind(&login_message); err != nil {
 		api_helpers.RespondError(c, 400, err.Error())
@@ -56,9 +59,9 @@ func AuthenticateAdministradorAcademico(c *gin.Context) {
 		claims["correo_electronico_administrador_academico"] = administrador_academico.Correo_electronico_administrador_academico
 
 		token, _ := encoder.SignedString([]byte(os.Getenv("SECRET_KEY_ADMINISTRADOR_ACADEMICO")))
-		token_response.Token = token
+		login_response.Token = token
 
-		api_helpers.RespondJSON(c, 200, token_response)
+		api_helpers.RespondJSON(c, 200, login_response)
 		return
 	}
 }

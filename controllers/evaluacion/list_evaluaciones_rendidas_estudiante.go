@@ -1,13 +1,11 @@
 package evaluacion
 
 import (
-	"errors"
 	"medroom-backend/api_helpers"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 )
 
 // @Summary Lista de evaluaciones rendidas por un estudiante
@@ -28,12 +26,7 @@ func ListEvaluacionesRendidasEstudiante(c *gin.Context) {
 
 	var evaluaciones []models.Evaluacion
 	if err := repositories.GetEvaluacionesRendidasEstudiante(&evaluaciones, id_estudiante); err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
-			api_helpers.RespondJSON(c, 404, "Evaluaciones not found")
-		} else {
-			api_helpers.RespondError(c, 500, "default")
-		}
-
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 

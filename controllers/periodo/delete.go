@@ -17,17 +17,17 @@ import (
 // @Success 200 {object} Swagger.DeletePeriodoSwagger "OK"
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/periodos/{id_periodo} [delete]
-func DeletePeriodo(c *gin.Context) {
+func Delete(c *gin.Context) {
 	id := c.Params.ByName("id")
 
 	var periodo models.Periodo
 	if err := repositories.GetOnePeriodo(&periodo, id); err != nil {
-		api_helpers.RespondError(c, 500, "default")
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
 	if err := repositories.DeletePeriodo(&periodo, id); err != nil {
-		api_helpers.RespondError(c, 500, "default")
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 

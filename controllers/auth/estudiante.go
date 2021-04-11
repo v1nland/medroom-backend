@@ -2,7 +2,6 @@ package auth
 
 import (
 	"medroom-backend/api_helpers"
-	"medroom-backend/messages/Response"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 	"os"
@@ -22,6 +21,10 @@ func authEstudianteRequestParse(msg *authEstudianteRequest) {
 	msg.Correo_electronico_estudiante = strings.ToUpper(msg.Correo_electronico_estudiante)
 }
 
+type authEstudianteResponse struct {
+	Token string `json:"token"`
+}
+
 // @Summary Autenticación de estudiante
 // @Description Ingresa usuario y contraseña para iniciar sesión
 // @Tags 01 - Autenticación
@@ -35,7 +38,7 @@ func AuthenticateEstudiante(c *gin.Context) {
 	var estudiante models.Estudiante
 
 	var login_message authEstudianteRequest
-	var token_response Response.Authentication
+	var login_response authEstudianteResponse
 
 	if err := c.ShouldBind(&login_message); err != nil {
 		api_helpers.RespondError(c, 400, err.Error())
@@ -56,9 +59,9 @@ func AuthenticateEstudiante(c *gin.Context) {
 		claims["correo_electronico_estudiante"] = estudiante.Correo_electronico_estudiante
 
 		token, _ := encoder.SignedString([]byte(os.Getenv("SECRET_KEY_ESTUDIANTE")))
-		token_response.Token = token
+		login_response.Token = token
 
-		api_helpers.RespondJSON(c, 200, token_response)
+		api_helpers.RespondJSON(c, 200, login_response)
 		return
 	}
 }

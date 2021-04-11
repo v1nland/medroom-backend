@@ -7,7 +7,7 @@ import (
 	"medroom-backend/utils"
 )
 
-func Rolmigrations() {
+func Rol() {
 	fmt.Println("===== ROL =====")
 
 	// estudiante

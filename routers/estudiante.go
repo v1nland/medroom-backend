@@ -31,8 +31,8 @@ func SetupEstudianteRouter(r *gin.Engine) *gin.Engine {
 	router.Use(estudianteAuthMiddleware)
 	{
 		// profile routes
-		router.GET("me", estudiante.GetMyEstudiante)
-		router.PUT("me", estudiante.PutMyEstudiante)
+		router.GET("me", estudiante.Profile)
+		router.PUT("me", estudiante.PutProfile)
 
 		// my course routes
 		router.GET("me/cursos", curso.GetCursosEstudiante)
