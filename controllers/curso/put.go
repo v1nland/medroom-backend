@@ -40,7 +40,8 @@ func putRequestParse(u *putRequest) {
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/cursos/{id_curso} [put]
 func Put(c *gin.Context) {
-	id := c.Params.ByName("id")
+	id_periodo := c.Params.ByName("id_periodo")
+	sigla_curso := c.Params.ByName("id")
 
 	var input putRequest
 	if err := c.ShouldBind(&input); err != nil {
@@ -51,7 +52,7 @@ func Put(c *gin.Context) {
 	putRequestParse(&input)
 
 	var curso models.Curso
-	if err := repositories.GetOneCurso(&curso, id); err != nil {
+	if err := repositories.GetOneCurso(&curso, sigla_curso, id_periodo); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
@@ -63,7 +64,7 @@ func Put(c *gin.Context) {
 		Nombre_curso: utils.CheckNullString(input.Nombre_curso, curso.Nombre_curso),
 	}
 
-	if err := repositories.PutOneCurso(&curso, id); err != nil {
+	if err := repositories.PutOneCurso(&curso, sigla_curso, id_periodo); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}

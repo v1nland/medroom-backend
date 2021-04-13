@@ -14,7 +14,7 @@ func SetupRouter() *gin.Engine {
 		AllowMethods:           []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
 		AllowHeaders:           []string{"Origin", "Authorization", "Content-Type"},
 		AllowCredentials:       true,
-		ExposeHeaders:          []string{"Content-Length", "Content-Type"},
+		ExposeHeaders:          []string{"Content-Length"},
 		MaxAge:                 12 * time.Hour,
 		AllowAllOrigins:        true,
 		AllowWildcard:          false,

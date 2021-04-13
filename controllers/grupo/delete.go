@@ -19,19 +19,21 @@ import (
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-academica/grupos/{id_grupo} [delete]
 func Delete(c *gin.Context) {
-	id := c.Params.ByName("id")
+	id_periodo := c.Params.ByName("id_periodo")
+	sigla_curso := c.Params.ByName("sigla_curso")
+	sigla_grupo := c.Params.ByName("id")
 
 	var grupo models.Grupo
-	if err := repositories.GetOneGrupo(&grupo, id); err != nil {
+	if err := repositories.GetOneGrupo(&grupo, sigla_curso, id_periodo, sigla_grupo); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
 	// clear grupo associations
-	// if err := repositories.ClearGrupo(utils.ConvertIntToString(grupo.Id)); err != nil {
-	// 	api_helpers.RespondError(c, 500, err.Error())
-	// 	return
-	// }
+	if err := repositories.ClearGrupo(sigla_grupo, sigla_curso, id_periodo); err != nil {
+		api_helpers.RespondError(c, 500, err.Error())
+		return
+	}
 
 	// clear evaluaciones grupo
 	for _, evaluacion := range grupo.Evaluaciones_grupo {

@@ -1,7 +1,6 @@
 package repositories
 
 import (
-	"fmt"
 	"medroom-backend/config"
 	"medroom-backend/models"
 
@@ -10,27 +9,26 @@ import (
 	"gorm.io/gorm/clause"
 )
 
-// ADMINISTRADOR TI
-func GetAllCompetencias(u *[]models.Competencia) (err error) {
-	if err = config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
-		Preload(clause.Associations).
-		Find(u).
-		Error; err != nil {
-		return err
-	}
-	return nil
-}
+// func GetAllCompetencias(u *[]models.Competencia) (err error) {
+// 	if err = config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
+// 		Preload(clause.Associations).
+// 		Find(u).
+// 		Error; err != nil {
+// 		return err
+// 	}
+// 	return nil
+// }
 
-func GetOneCompetencia(u *models.Competencia, id string) (err error) {
-	if err := config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
-		Preload(clause.Associations).
-		Where("id = ?", id).
-		First(u).
-		Error; err != nil {
-		return err
-	}
-	return nil
-}
+// func GetOneCompetencia(u *models.Competencia, id string) (err error) {
+// 	if err := config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
+// 		Preload(clause.Associations).
+// 		Where("id = ?", id).
+// 		First(u).
+// 		Error; err != nil {
+// 		return err
+// 	}
+// 	return nil
+// }
 
 func AddNewCompetencia(u *models.Competencia) (err error) {
 	if err = config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
@@ -42,18 +40,18 @@ func AddNewCompetencia(u *models.Competencia) (err error) {
 	return nil
 }
 
-func PutOneCompetencia(u *models.Competencia, id string) (err error) {
-	fmt.Println(u)
-	config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
-		Preload(clause.Associations).
-		Save(u)
-	return nil
-}
+// func PutOneCompetencia(u *models.Competencia, id string) (err error) {
+// 	fmt.Println(u)
+// 	config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
+// 		Preload(clause.Associations).
+// 		Save(u)
+// 	return nil
+// }
 
-func DeleteCompetencia(u *models.Competencia, id string) (err error) {
-	config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
-		Preload(clause.Associations).
-		Where("id = ?", id).
-		Delete(u)
-	return nil
-}
+// func DeleteCompetencia(u *models.Competencia, id string) (err error) {
+// 	config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
+// 		Preload(clause.Associations).
+// 		Where("id = ?", id).
+// 		Delete(u)
+// 	return nil
+// }

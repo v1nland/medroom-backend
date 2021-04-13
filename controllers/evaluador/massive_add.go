@@ -1,6 +1,7 @@
 package evaluador
 
 import (
+	"fmt"
 	"medroom-backend/api_helpers"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
@@ -10,9 +11,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type grupo struct {
+	Sigla_curso *string `json:"sigla_curso"`
+	Periodo     *string `json:"periodo"`
+	Sigla_grupo *string `json:"sigla_grupo"`
+}
+
 type massiveAddRequest struct {
 	Evaluadores []struct {
-		Id_grupos                    []*int  `json:"id_grupos"`
+		Grupos                       []grupo `json:"grupos"`
 		Rut_evaluador                *string `json:"rut_evaluador"`
 		Nombres_evaluador            *string `json:"nombres_evaluador"`
 		Apellidos_evaluador          *string `json:"apellidos_evaluador"`
@@ -104,21 +111,21 @@ func AddNewEvaluadores(c *gin.Context) {
 			Cargo_evaluador:              *payload.Evaluadores[i].Cargo_evaluador,
 		}
 
-		for j := 0; j < len(payload.Evaluadores[i].Id_grupos); j++ {
+		for j := 0; j < len(payload.Evaluadores[i].Grupos); j++ {
 			var gp models.Grupo
-			if err := repositories.GetOneGrupo(&gp, utils.IntToString(*payload.Evaluadores[i].Id_grupos[j])); err == nil {
+			if err := repositories.GetOneGrupo(&gp, *payload.Evaluadores[i].Grupos[j].Sigla_curso, *payload.Evaluadores[i].Grupos[j].Periodo, *payload.Evaluadores[i].Grupos[j].Sigla_grupo); err == nil {
 				evaluador.Grupos_evaluador = append(evaluador.Grupos_evaluador, gp)
 			}
 		}
 
 		if err := repositories.AddNewEvaluador(&evaluador); err != nil {
-			evaluadores_error = append(evaluadores_error, "["+*payload.Evaluadores[i].Rut_evaluador+"] "+*payload.Evaluadores[i].Nombres_evaluador+" "+*payload.Evaluadores[i].Apellidos_evaluador)
+			evaluadores_error = append(evaluadores_error, fmt.Sprintf("[%s] %s %s", *payload.Evaluadores[i].Rut_evaluador, *payload.Evaluadores[i].Nombres_evaluador, *payload.Evaluadores[i].Apellidos_evaluador))
 		}
 	}
 
 	if len(evaluadores_error) > 0 {
 		api_helpers.RespondJSON(c, 201, evaluadores_error)
 	} else {
-		api_helpers.RespondJSON(c, 200, "ok")
+		api_helpers.RespondJSON(c, 200, "OK")
 	}
 }

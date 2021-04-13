@@ -1,5 +1,7 @@
 package repositories
 
+// este falta
+
 import (
 	"medroom-backend/config"
 	"medroom-backend/models"

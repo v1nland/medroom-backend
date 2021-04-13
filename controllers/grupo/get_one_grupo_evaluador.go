@@ -20,12 +20,13 @@ import (
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo} [get]
 func GetOneGrupoEvaluador(c *gin.Context) {
-	id_grupo := c.Params.ByName("id_grupo")
-	id_curso := c.Params.ByName("id_curso")
+	id_periodo := c.Params.ByName("id_periodo")
+	sigla_grupo := c.Params.ByName("id_grupo")
+	sigla_curso := c.Params.ByName("id_curso")
 	id_evaluador := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
 
 	var grupo models.Grupo
-	if err := repositories.GetOneGrupoEvaluador(&grupo, id_grupo, id_curso, id_evaluador); err != nil {
+	if err := repositories.GetOneGrupoEvaluador(&grupo, sigla_grupo, sigla_curso, id_periodo, id_evaluador); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}

@@ -40,7 +40,9 @@ func putRequestParse(u *putRequest) {
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-academica/grupos/{id_grupo} [put]
 func Put(c *gin.Context) {
-	id := c.Params.ByName("id_grupo")
+	id_periodo := c.Params.ByName("id_periodo")
+	sigla_curso := c.Params.ByName("sigla_curso")
+	sigla_grupo := c.Params.ByName("id_grupo")
 
 	var input putRequest
 	if err := c.ShouldBind(&input); err != nil {
@@ -51,19 +53,18 @@ func Put(c *gin.Context) {
 	putRequestParse(&input)
 
 	var grupo models.Grupo
-	if err := repositories.GetOneGrupo(&grupo, id); err != nil {
+	if err := repositories.GetOneGrupo(&grupo, sigla_curso, id_periodo, sigla_grupo); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
 	grupo = models.Grupo{
-		// Id:           grupo.Id,
 		Sigla_curso:  utils.CheckNullString(input.Id_curso, grupo.Sigla_curso),
 		Nombre_grupo: utils.CheckNullString(input.Nombre_grupo, grupo.Nombre_grupo),
 		Sigla_grupo:  utils.CheckNullString(input.Sigla_grupo, grupo.Sigla_grupo),
 	}
 
-	if err := repositories.PutOneGrupo(&grupo, id); err != nil {
+	if err := repositories.PutOneGrupo(&grupo, sigla_grupo, sigla_curso, id_periodo); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}

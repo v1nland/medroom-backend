@@ -10,9 +10,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type grupo struct {
+	Sigla_curso *string `json:"sigla_curso"`
+	Periodo     *string `json:"periodo"`
+	Sigla_grupo *string `json:"sigla_grupo"`
+}
+
 type massiveAddRequest struct {
 	Estudiantes []struct {
-		Id_grupos                     []*int  `json:"id_grupos"`
+		Grupos                        []grupo `json:"grupos"`
 		Rut_estudiante                *string `json:"rut_estudiante"`
 		Nombres_estudiante            *string `json:"nombres_estudiante"`
 		Apellidos_estudiante          *string `json:"apellidos_estudiante"`
@@ -90,9 +96,9 @@ func AddNewEstudiantes(c *gin.Context) {
 			Telefono_celular_estudiante:   *payload.Estudiantes[i].Telefono_celular_estudiante,
 		}
 
-		for j := 0; j < len(payload.Estudiantes[i].Id_grupos); j++ {
+		for j := 0; j < len(payload.Estudiantes[i].Grupos); j++ {
 			var gp models.Grupo
-			if err := repositories.GetOneGrupo(&gp, utils.IntToString(*payload.Estudiantes[i].Id_grupos[j])); err == nil {
+			if err := repositories.GetOneGrupo(&gp, *payload.Estudiantes[i].Grupos[j].Sigla_curso, *payload.Estudiantes[i].Grupos[j].Periodo, *payload.Estudiantes[i].Grupos[j].Sigla_grupo); err == nil {
 				estudiante.Grupos_estudiante = append(estudiante.Grupos_estudiante, gp)
 			}
 		}
@@ -105,6 +111,6 @@ func AddNewEstudiantes(c *gin.Context) {
 	if len(estudiantes_error) > 0 {
 		api_helpers.RespondJSON(c, 201, estudiantes_error)
 	} else {
-		api_helpers.RespondJSON(c, 200, "ok")
+		api_helpers.RespondJSON(c, 200, "OK")
 	}
 }

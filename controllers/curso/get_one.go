@@ -18,10 +18,11 @@ import (
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/cursos/{id_curso} [get]
 func GetOneCurso(c *gin.Context) {
-	id := c.Params.ByName("id")
+	id_periodo := c.Params.ByName("id_periodo")
+	sigla_curso := c.Params.ByName("id")
 
 	var curso models.Curso
-	if err := repositories.GetOneCurso(&curso, id); err != nil {
+	if err := repositories.GetOneCurso(&curso, sigla_curso, id_periodo); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}

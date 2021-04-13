@@ -2,6 +2,7 @@ package grupo
 
 import (
 	"medroom-backend/api_helpers"
+	"medroom-backend/config"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 	"medroom-backend/utils"
@@ -21,18 +22,19 @@ import (
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-academica/cursos/{id_curso}/grupos/{id_grupo}/evaluadors/{uuid_evaluador} [delete]
 func RemoveEvaluadorFromGrupo(c *gin.Context) {
-	id_curso := c.Params.ByName("id")
-	id_grupo := c.Params.ByName("id_grupo")
+	id_periodo := c.Params.ByName("id_periodo")
+	sigla_curso := c.Params.ByName("id")
+	sigla_grupo := c.Params.ByName("id_grupo")
 	id_evaluador := c.Params.ByName("id_evaluador")
 
 	var curso models.Curso
-	if err := repositories.GetOneCurso(&curso, id_curso); err != nil {
+	if err := repositories.GetOneCurso(&curso, sigla_curso, id_periodo); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
 	var grupo models.Grupo
-	if err := repositories.GetOneGrupo(&grupo, id_grupo); err != nil {
+	if err := repositories.GetOneGrupo(&grupo, sigla_curso, id_periodo, sigla_grupo); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
@@ -43,23 +45,18 @@ func RemoveEvaluadorFromGrupo(c *gin.Context) {
 		return
 	}
 
-	repositories.DeleteEvaluadorGrupo(utils.IntToString(utils.StringToInt(id_grupo)), id_evaluador)
+	repositories.DeleteEvaluadorGrupo(sigla_grupo, sigla_curso, id_periodo, id_evaluador)
 
-	// found, id_grupo_sg := utils.SearchIdGrupoBySigla(curso.Grupos_curso, "SG")
-	// if found {
-	// 	var grupo_sg models.Grupo
-	// 	if err := repositories.GetOneGrupo(&grupo_sg, utils.ConvertIntToString(id_grupo_sg)); err != nil {
-	// 		if errors.Is(err, gorm.ErrRecordNotFound) {
-	// 			api_helpers.RespondJSON(c, 200, "Grupo SG not found")
-	// 		} else {
-	// 			api_helpers.RespondError(c, 500, "default")
-	// 		}
+	found, index := utils.SearchIndexGrupoBySigla(curso.Grupos_curso, "SG")
+	if found {
+		var grupo_sg models.Grupo
+		if err := repositories.GetOneGrupo(&grupo_sg, curso.Grupos_curso[index].Sigla_curso, curso.Grupos_curso[index].Id_periodo_curso, curso.Grupos_curso[index].Sigla_grupo); err != nil {
+			api_helpers.RespondError(c, 500, "default")
+			return
+		}
 
-	// 		return
-	// 	}
-
-	// 	config.DB.Model(&grupo_sg).Association("Evaluadores_grupo").Append([]models.Evaluador{evaluador})
-	// }
+		config.DB.Model(&grupo_sg).Association("Evaluadores_grupo").Append([]models.Evaluador{evaluador})
+	}
 
 	api_helpers.RespondJSON(c, 200, grupo)
 }

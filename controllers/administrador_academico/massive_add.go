@@ -10,9 +10,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type curso struct {
+	Sigla   *string `json:"sigla"`
+	Periodo *string `json:"periodo"`
+}
+
 type massiveAddRequest struct {
 	AdministradoresAcademicos []struct {
-		Id_cursos                                  []*int  `json:"id_cursos"`
+		Cursos                                     []curso `json:"cursos"`
 		Rut_administrador_academico                *string `json:"rut_administrador_academico"`
 		Nombres_administrador_academico            *string `json:"nombres_administrador_academico"`
 		Apellidos_administrador_academico          *string `json:"apellidos_administrador_academico"`
@@ -90,9 +95,10 @@ func MassiveAdd(c *gin.Context) {
 			Telefono_celular_administrador_academico:   *payload.AdministradoresAcademicos[i].Telefono_celular_administrador_academico,
 		}
 
-		for j := 0; j < len(payload.AdministradoresAcademicos[i].Id_cursos); j++ {
+		for j := 0; j < len(payload.AdministradoresAcademicos[i].Cursos); j++ {
 			var crs models.Curso
-			if err := repositories.GetOneCurso(&crs, utils.IntToString(*payload.AdministradoresAcademicos[i].Id_cursos[j])); err == nil {
+
+			if err := repositories.GetOneCurso(&crs, *payload.AdministradoresAcademicos[i].Cursos[j].Sigla, *payload.AdministradoresAcademicos[i].Cursos[j].Periodo); err == nil {
 				administrador_academico.Cursos_administrador_academico = append(administrador_academico.Cursos_administrador_academico, crs)
 			}
 		}

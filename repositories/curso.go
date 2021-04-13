@@ -1,5 +1,7 @@
 package repositories
 
+// este falta
+
 import (
 	"fmt"
 	"medroom-backend/config"
@@ -17,25 +19,25 @@ func GetCursosEstudiante(u *[]models.Curso, id_estudiante string) (err error) {
 		Table("estudiantes").
 		Select("c.*").
 		Joins("JOIN estudiantes_grupos eg ON eg.id_estudiante = estudiantes.id").
-		Joins("JOIN grupos g ON eg.id_grupo = g.id").
-		Joins("JOIN cursos c ON g.id_curso = c.id").
+		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_curso AND eg.sigla_curso = g.id_periodo_curso AND eg.id_periodo_curso = g.sigla_grupo").
+		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
 		Where("estudiantes.id = ?", id_estudiante).
-		Group("c.id").
+		Group("c.sigla_grupo, c.id_periodo").
 		Find(u).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
-func GetOneCursoEstudiante(u *models.Curso, id string, id_estudiante string) (err error) {
+func GetOneCursoEstudiante(u *models.Curso, sigla_curso string, id_periodo string, id_estudiante string) (err error) {
 	if err := config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
 		Preload(clause.Associations).
 		Table("estudiantes").
 		Select("c.*").
 		Joins("JOIN estudiantes_grupos eg ON eg.id_estudiante = estudiantes.id").
-		Joins("JOIN grupos g ON eg.id_grupo = g.id").
-		Joins("JOIN cursos c ON g.id_curso = c.id").
-		Where("c.id = ? AND estudiantes.id = ?", id, id_estudiante).
+		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_curso AND eg.sigla_curso = g.id_periodo_curso AND eg.id_periodo_curso = g.sigla_grupo").
+		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
+		Where("c.sigla_grupo = ? AND c.id_periodo = ? AND estudiantes.id = ?", sigla_curso, id_periodo, id_estudiante).
 		First(u).
 		Error; err != nil {
 		return err
@@ -50,10 +52,10 @@ func GetCursosEvaluador(u *[]models.Curso, id_evaluador string) (err error) {
 		Table("evaluadores").
 		Select("c.*").
 		Joins("JOIN evaluadores_grupos eg ON eg.id_evaluador = evaluadores.id").
-		Joins("JOIN grupos g ON eg.id_grupo = g.id").
-		Joins("JOIN cursos c ON g.id_curso = c.id").
+		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_curso AND eg.sigla_curso = g.id_periodo_curso AND eg.id_periodo_curso = g.sigla_grupo").
+		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
 		Where("evaluadores.id = ?", id_evaluador).
-		Group("c.id").
+		Group("c.sigla_curso, c.id_periodo").
 		Find(u).
 		Error; err != nil {
 		return err
@@ -61,15 +63,15 @@ func GetCursosEvaluador(u *[]models.Curso, id_evaluador string) (err error) {
 	return nil
 }
 
-func GetOneCursoEvaluador(u *models.Curso, id string, id_evaluador string) (err error) {
+func GetOneCursoEvaluador(u *models.Curso, sigla_curso string, id_periodo string, id_evaluador string) (err error) {
 	if err := config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
 		Preload(clause.Associations).
 		Table("evaluadores").
 		Select("c.*").
 		Joins("JOIN evaluadores_grupos eg ON eg.id_evaluador = evaluadores.id").
-		Joins("JOIN grupos g ON eg.id_grupo = g.id").
-		Joins("JOIN cursos c ON g.id_curso = c.id").
-		Where("c.id = ? AND evaluadores.id = ?", id, id_evaluador).
+		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_curso AND eg.sigla_curso = g.id_periodo_curso AND eg.id_periodo_curso = g.sigla_grupo").
+		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
+		Where("c.sigla_curso = ? AND c.id_periodo = ? AND evaluadores.id = ?", sigla_curso, id_periodo, id_evaluador).
 		First(u).
 		Error; err != nil {
 		return err
@@ -84,7 +86,7 @@ func GetCursosAdministradorAcademico(u *[]models.Curso, id_administrador_academi
 		Table("administradores_academicos").
 		Select("c.*").
 		Joins("JOIN administradores_academicos_cursos aac ON aac.id_administrador_academico = administradores_academicos.id").
-		Joins("JOIN cursos c ON aac.id_curso = c.id").
+		Joins("JOIN cursos c ON aac.sigla_curso = c.sigla_curso AND aac.id_periodo = c.id_periodo").
 		Where("administradores_academicos.id = ?", id_administrador_academico).
 		Group("c.id").
 		Find(u).
@@ -94,14 +96,14 @@ func GetCursosAdministradorAcademico(u *[]models.Curso, id_administrador_academi
 	return nil
 }
 
-func GetOneCursoAdministradorAcademico(u *models.Curso, id string, id_administrador_academico string) (err error) {
+func GetOneCursoAdministradorAcademico(u *models.Curso, sigla_curso string, id_periodo string, id_administrador_academico string) (err error) {
 	if err := config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
 		Preload(clause.Associations).
 		Table("administradores_academicos").
 		Select("c.*").
 		Joins("JOIN administradores_academicos_cursos aac ON aac.id_administrador_academico = administradores_academicos.id").
-		Joins("JOIN cursos c ON aac.id_curso = c.id").
-		Where("c.id = ? AND administradores_academicos.id = ?", id, id_administrador_academico).
+		Joins("JOIN cursos c ON aac.sigla_curso = c.sigla_curso AND aac.id_periodo = c.id_periodo").
+		Where("c.sigla = ? AND c.id_periodo = ? AND administradores_academicos.id = ?", sigla_curso, id_periodo, id_administrador_academico).
 		First(u).
 		Error; err != nil {
 		return err
@@ -120,10 +122,11 @@ func GetAllCursos(u *[]models.Curso) (err error) {
 	return nil
 }
 
-func GetOneCurso(u *models.Curso, id string) (err error) {
+func GetOneCurso(u *models.Curso, sigla string, id_periodo string) (err error) {
 	if err := config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
 		Preload(clause.Associations).
-		Where("id = ?", id).
+		Where("sigla_curso = ?", sigla).
+		Where("id_periodo = ?", id_periodo).
 		First(u).
 		Error; err != nil {
 		return err
@@ -141,7 +144,7 @@ func AddNewCurso(u *models.Curso) (err error) {
 	return nil
 }
 
-func PutOneCurso(u *models.Curso, id string) (err error) {
+func PutOneCurso(u *models.Curso, sigla string, id_periodo string) (err error) {
 	fmt.Println(u)
 	config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
 		Preload(clause.Associations).
@@ -149,35 +152,41 @@ func PutOneCurso(u *models.Curso, id string) (err error) {
 	return nil
 }
 
-func DeleteCurso(u *models.Curso, id string) (err error) {
+func DeleteCurso(u *models.Curso, sigla string, id_periodo string) (err error) {
 	config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
 		Preload(clause.Associations).
-		Where("id = ?", id).
+		Where("sigla_curso = ?", sigla).
+		Where("id_periodo = ?", id_periodo).
 		Delete(u)
 	return nil
 }
 
-func DeleteAdministradorAcademicoCurso(id_curso string, id_administrador_academico string) (err error) {
+func RemoveAdministradorAcademicoFromCurso(sigla string, id_periodo string, id_administrador_academico string) (err error) {
 	if err := config.DB.Debug().
 		Exec(`DELETE FROM public.administradores_academicos_cursos 
-					WHERE administradores_academicos_cursos.id_curso = ? 
-					AND administradores_academicos_cursos.id_administrador_academico = ?`, id_curso, id_administrador_academico).
+					WHERE administradores_academicos_cursos.sigla_curso = ? 
+					WHERE administradores_academicos_cursos.id_periodo = ? 
+					AND administradores_academicos_cursos.id_administrador_academico = ?`, sigla, id_periodo, id_administrador_academico).
 		Error; err != nil {
 		return err
 	}
 	return nil
 }
 
-func ClearCurso(u *models.Curso, id_curso string) (err error) {
+func ClearCursoAssociations(u *models.Curso, sigla string, id_periodo string) (err error) {
 	if err := config.DB.Debug().
-		Exec(`DELETE FROM public.administradores_academicos_cursos WHERE administradores_academicos_cursos.id_curso = ?`, id_curso).
+		Exec(`DELETE FROM public.administradores_academicos_cursos 
+					WHERE administradores_academicos_cursos.sigla_curso = ?
+					AND administradores_academicos_cursos.id_periodo = ?`, sigla, id_periodo).
 		Error; err != nil {
 		return err
 	}
 
 	config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
 		Preload(clause.Associations).
-		Where("id = ?", id_curso).
+		Where("sigla_curso = ?", sigla).
+		Where("id_periodo = ?", id_periodo).
 		Delete(u)
+
 	return nil
 }

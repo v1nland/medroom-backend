@@ -17,9 +17,10 @@ import (
 // @Param   uuid_administrador_academico     path    string     true        "UUID del administrador_academico a asociar"
 // @Success 200 {object} Swagger.AddAdministradorAcademicoToCursoSwagger "OK"
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
-// @Router /administracion-ti/cursos/{id_curso}/administradores-academicos/{uuid_administrador_academico} [put]
+// @Router /administracion-ti/cursos/{id_periodo}/{sigla_curso}/administradores-academicos/{uuid_administrador_academico} [put]
 func AddAdministradorAcademicoToCurso(c *gin.Context) {
-	id_curso := c.Params.ByName("id")
+	id_periodo := c.Params.ByName("id_periodo")
+	sigla_curso := c.Params.ByName("id")
 	id_administrador_academico := c.Params.ByName("id_administrador_academico")
 
 	var administrador_academico models.AdministradorAcademico
@@ -29,14 +30,14 @@ func AddAdministradorAcademicoToCurso(c *gin.Context) {
 	}
 
 	var curso models.Curso
-	if err := repositories.GetOneCurso(&curso, id_curso); err != nil {
+	if err := repositories.GetOneCurso(&curso, sigla_curso, id_periodo); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
 	curso.Administradores_academicos_curso = append(curso.Administradores_academicos_curso, administrador_academico)
 
-	if err := repositories.PutOneCurso(&curso, id_curso); err != nil {
+	if err := repositories.PutOneCurso(&curso, sigla_curso, id_periodo); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}

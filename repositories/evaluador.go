@@ -1,5 +1,7 @@
 package repositories
 
+// este falta
+
 import (
 	"fmt"
 	"medroom-backend/config"

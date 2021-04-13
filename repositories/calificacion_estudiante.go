@@ -10,26 +10,26 @@ import (
 	"gorm.io/gorm/clause"
 )
 
-func GetAllCalificacionesEstudiante(u *[]models.CalificacionEstudiante) (err error) {
-	if err = config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
-		Preload(clause.Associations).
-		Find(u).
-		Error; err != nil {
-		return err
-	}
-	return nil
-}
+// func GetAllCalificacionesEstudiante(u *[]models.CalificacionEstudiante) (err error) {
+// 	if err = config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
+// 		Preload(clause.Associations).
+// 		Find(u).
+// 		Error; err != nil {
+// 		return err
+// 	}
+// 	return nil
+// }
 
-func GetOneCalificacionEstudiante(u *models.CalificacionEstudiante, id string) (err error) {
-	if err := config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
-		Preload(clause.Associations).
-		Where("id = ?", id).
-		First(u).
-		Error; err != nil {
-		return err
-	}
-	return nil
-}
+// func GetOneCalificacionEstudiante(u *models.CalificacionEstudiante, id string) (err error) {
+// 	if err := config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
+// 		Preload(clause.Associations).
+// 		Where("id = ?", id).
+// 		First(u).
+// 		Error; err != nil {
+// 		return err
+// 	}
+// 	return nil
+// }
 
 func GetOneCalificacionEstudianteByIdEvaluacion(u *models.CalificacionEstudiante, id_evaluacion string, id_estudiante string) (err error) {
 	if err := config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
@@ -62,10 +62,10 @@ func PutOneCalificacionEstudiante(u *models.CalificacionEstudiante, id string) (
 	return nil
 }
 
-func DeleteCalificacionEstudiante(u *models.CalificacionEstudiante, id string) (err error) {
-	config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
-		Preload(clause.Associations).
-		Where("id = ?", id).
-		Delete(u)
-	return nil
-}
+// func DeleteCalificacionEstudiante(u *models.CalificacionEstudiante, id string) (err error) {
+// 	config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
+// 		Preload(clause.Associations).
+// 		Where("id = ?", id).
+// 		Delete(u)
+// 	return nil
+// }

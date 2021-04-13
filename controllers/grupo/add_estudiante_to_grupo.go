@@ -23,18 +23,19 @@ import (
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-academica/cursos/{id_curso}/grupos/{id_grupo}/estudiantes/{uuid_estudiante} [put]
 func AddEstudianteToGrupo(c *gin.Context) {
-	id_curso := c.Params.ByName("id")
-	id_grupo := c.Params.ByName("id_grupo")
+	id_periodo := c.Params.ByName("id_periodo")
+	sigla_curso := c.Params.ByName("id")
+	sigla_grupo := c.Params.ByName("id_grupo")
 	id_estudiante := c.Params.ByName("id_estudiante")
 
 	var curso models.Curso
-	if err := repositories.GetOneCurso(&curso, id_curso); err != nil {
+	if err := repositories.GetOneCurso(&curso, sigla_curso, id_periodo); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
 	var grupo models.Grupo
-	if err := repositories.GetOneGrupo(&grupo, id_grupo); err != nil {
+	if err := repositories.GetOneGrupo(&grupo, sigla_curso, id_periodo, sigla_grupo); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
@@ -47,7 +48,7 @@ func AddEstudianteToGrupo(c *gin.Context) {
 
 	// validar que el estudiante no tenga un grupo ya en ese curso
 	var grupos_este_curso []models.Grupo
-	if err := repositories.GetGruposEstudiante(&grupos_este_curso, id_curso, id_estudiante); err != nil {
+	if err := repositories.GetGruposEstudiante(&grupos_este_curso, sigla_curso, id_periodo, id_estudiante); err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			api_helpers.RespondJSON(c, 400, "Alumno no pertenece a este curso")
 			return

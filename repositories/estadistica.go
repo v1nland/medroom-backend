@@ -5,6 +5,42 @@ import (
 	"medroom-backend/messages/Query"
 )
 
+var _ = `select t1.*, coalesce(t2.calificacion_puntaje, 0) as calificacion_puntaje_estudiante
+from 
+	(select 
+		ev.id as id_evaluacion,
+		ev.nombre_evaluacion,
+		p.id_competencia,
+		avg(p.calificacion_puntaje) as promedio_calificacion_puntaje_grupo
+	from 
+		evaluaciones ev
+		left outer join calificaciones_estudiantes ce on ev.id = ce.id_evaluacion 
+		left outer join puntajes p on ce.id = p.id_calificacion_estudiante
+	where 
+		ev.sigla_curso_grupo = 'CIT-1000'
+		and ev.id_periodo_curso_grupo = '2021-1'
+		and ev.sigla_grupo = 'E-07'
+	group by ev.id, ev.nombre_evaluacion, p.id_competencia
+	order by ev.id) as t1
+	left outer join (select 
+						ev.id as id_evaluacion,
+						ev.nombre_evaluacion,
+						p.id_competencia,
+						p.calificacion_puntaje 
+					from 
+						evaluaciones ev
+						left outer join calificaciones_estudiantes ce on ev.id = ce.id_evaluacion 
+						left outer join puntajes p on ce.id = p.id_calificacion_estudiante
+						join estudiantes e on ce.id_estudiante = e.id 
+					where 
+						ev.sigla_curso_grupo = 'CIT-1000'
+						and ev.id_periodo_curso_grupo = '2021-1'
+						and ev.sigla_grupo = 'E-07'
+						and ce.id_estudiante = '32dabbbd-6f14-40bc-bde3-9af3691e5a65'
+					order by ev.id) as t2
+	on (t1.id_evaluacion = t2.id_evaluacion and t1.id_competencia = t2.id_competencia)
+order by id_evaluacion`
+
 func CalificacionesEstudiantePorCompetencia(u *[]Query.CalificacionesEstudiantePorCompetencia, id_grupo string, id_estudiante string) (err error) {
 	if err := config.DB.Raw(`
 													select t1.*, coalesce(t2.calificacion_puntaje, 0) as calificacion_puntaje_estudiante
@@ -44,6 +80,41 @@ func CalificacionesEstudiantePorCompetencia(u *[]Query.CalificacionesEstudianteP
 	return nil
 }
 
+var _ = `select t1.*, coalesce(t2.calificacion_puntaje, 0) as promedio_calificacion_puntaje_estudiante
+from 
+	(select 
+		ev.id as id_evaluacion,
+		ev.nombre_evaluacion,
+		avg(p.calificacion_puntaje) as promedio_calificacion_puntaje_grupo
+	from 
+		evaluaciones ev
+		left outer join calificaciones_estudiantes ce on ev.id = ce.id_evaluacion 
+		left outer join puntajes p on ce.id = p.id_calificacion_estudiante
+	where 
+		ev.sigla_curso_grupo = 'CIT-1000'
+		and ev.id_periodo_curso_grupo = '2021-1'
+		and ev.sigla_grupo = 'E-07'
+	group by ev.id, ev.nombre_evaluacion
+	order by ev.id) as t1
+	left outer join (select 
+						ev.id as id_evaluacion,
+						ev.nombre_evaluacion,
+						avg(p.calificacion_puntaje) as calificacion_puntaje
+					from 
+						evaluaciones ev
+						left outer join calificaciones_estudiantes ce on ev.id = ce.id_evaluacion 
+						left outer join puntajes p on ce.id = p.id_calificacion_estudiante
+						join estudiantes e on ce.id_estudiante = e.id 
+					where 
+						ev.sigla_curso_grupo = 'CIT-1000'
+						and ev.id_periodo_curso_grupo = '2021-1'
+						and ev.sigla_grupo = 'E-07'
+						and ce.id_estudiante = ?
+					group by ev.id, ev.nombre_evaluacion 
+					order by ev.id) as t2
+	on (t1.id_evaluacion = t2.id_evaluacion)
+order by id_evaluacion`
+
 func CalificacionesEstudiantePorEvaluacion(u *[]Query.CalificacionesEstudiantePorEvaluacion, id_grupo string, id_estudiante string) (err error) {
 	if err := config.DB.Raw(`
 													select t1.*, coalesce(t2.calificacion_puntaje, 0) as promedio_calificacion_puntaje_estudiante
@@ -82,6 +153,22 @@ func CalificacionesEstudiantePorEvaluacion(u *[]Query.CalificacionesEstudiantePo
 	return nil
 }
 
+var _ = `select 
+ev.id as id_evaluacion,
+ev.nombre_evaluacion,
+p.id_competencia,
+avg(p.calificacion_puntaje) as promedio_calificacion_puntaje_grupo
+from 
+evaluaciones ev
+join calificaciones_estudiantes ce on ev.id = ce.id_evaluacion 
+left outer join puntajes p on ce.id = p.id_calificacion_estudiante
+where 
+ev.sigla_curso_grupo = 'CIT-1000'
+and ev.id_periodo_curso_grupo = '2021-1'
+and ev.sigla_grupo = 'E-07'
+group by ev.id, ev.nombre_evaluacion, p.id_competencia
+order by ev.id`
+
 func CalificacionesGrupoPorCompetencia(u *[]Query.CalificacionesGrupoPorCompetencia, id_grupo string) (err error) {
 	if err := config.DB.Raw(`
 													select 
@@ -102,6 +189,21 @@ func CalificacionesGrupoPorCompetencia(u *[]Query.CalificacionesGrupoPorCompeten
 
 	return nil
 }
+
+var _ = `select 
+ev.id as id_evaluacion,
+ev.nombre_evaluacion,
+avg(p.calificacion_puntaje) as promedio_calificacion_puntaje_grupo
+from 
+evaluaciones ev
+left outer join calificaciones_estudiantes ce on ev.id = ce.id_evaluacion 
+left outer join puntajes p on ce.id = p.id_calificacion_estudiante
+where 
+ev.sigla_curso_grupo = 'CIT-1000'
+and ev.id_periodo_curso_grupo = '2021-1'
+and ev.sigla_grupo = 'E-07'
+group by ev.id, ev.nombre_evaluacion
+order by ev.id`
 
 func CalificacionesGrupoPorEvaluacion(u *[]Query.CalificacionesGrupoPorEvaluacion, id_grupo string) (err error) {
 	if err := config.DB.Raw(`

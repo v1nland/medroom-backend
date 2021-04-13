@@ -19,11 +19,12 @@ import (
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-academica/me/cursos/{id_curso} [get]
 func GetOneCursoAdministradorAcademico(c *gin.Context) {
-	id_curso := c.Params.ByName("id")
+	id_periodo := c.Params.ByName("id_periodo")
+	sigla_curso := c.Params.ByName("id")
 	id_evaluador := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_ACADEMICO")
 
 	var curso models.Curso
-	if err := repositories.GetOneCursoAdministradorAcademico(&curso, id_curso, id_evaluador); err != nil {
+	if err := repositories.GetOneCursoAdministradorAcademico(&curso, sigla_curso, id_periodo, id_evaluador); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}

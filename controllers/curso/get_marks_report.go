@@ -43,10 +43,11 @@ type EstudianteReport struct {
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/cursos/{id_curso} [get]
 func GetMarksReport(c *gin.Context) {
-	id := c.Params.ByName("id")
+	id_periodo := c.Params.ByName("id_periodo")
+	sigla_curso := c.Params.ByName("id")
 
 	var curso models.Curso
-	if err := repositories.GetOneCurso(&curso, id); err != nil {
+	if err := repositories.GetOneCurso(&curso, sigla_curso, id_periodo); err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			api_helpers.RespondJSON(c, 200, "Curso not found")
 		} else {
@@ -62,23 +63,15 @@ func GetMarksReport(c *gin.Context) {
 		var gp models.Grupo
 		fmt.Println(grupo)
 
-		// if err := repositories.GetOneGrupo(&gp, utils.ConvertIntToString(grupo.Id)); err != nil {
-		// 	if errors.Is(err, gorm.ErrRecordNotFound) {
-		// 		api_helpers.RespondJSON(c, 200, "Grupo not found")
-		// 	} else {
-		// 		api_helpers.RespondError(c, 500, "default")
-		// 	}
-		// }
+		if err := repositories.GetOneGrupo(&gp, grupo.Sigla_curso, grupo.Id_periodo_curso, gp.Sigla_grupo); err != nil {
+			api_helpers.RespondError(c, 500, err.Error())
+		}
 
 		for _, est := range gp.Estudiantes_grupo {
 			var estudiante models.Estudiante
 
 			if err := repositories.GetReporteEstudiante(&estudiante, est.Id.String()); err != nil {
-				if errors.Is(err, gorm.ErrRecordNotFound) {
-					api_helpers.RespondJSON(c, 200, "Estudiante not found")
-				} else {
-					api_helpers.RespondError(c, 500, "default")
-				}
+				api_helpers.RespondError(c, 500, err.Error())
 			}
 
 			new_reporte := EstudianteReport{

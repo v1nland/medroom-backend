@@ -5,6 +5,7 @@ import (
 	"medroom-backend/api_helpers"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
+	"medroom-backend/utils"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -20,44 +21,35 @@ import (
 // @Failure 400 {object} api_helpers.ResponseError "Bad request"
 // @Router /administracion-ti/cursos/{id_curso} [delete]
 func Delete(c *gin.Context) {
-	id := c.Params.ByName("id")
+	id_periodo := c.Params.ByName("id_periodo")
+	sigla_curso := c.Params.ByName("id")
 
 	var curso models.Curso
-	if err := repositories.GetOneCurso(&curso, id); err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
-			api_helpers.RespondJSON(c, 200, "Curso not found")
-		} else {
-			api_helpers.RespondError(c, 500, "default")
-		}
-
+	if err := repositories.GetOneCurso(&curso, sigla_curso, id_periodo); err != nil {
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
 	// clear grupo associations
-	// for _, gp := range curso.Grupos_curso {
-	// 	var grupo models.Grupo
-	// 	if err := repositories.GetOneGrupo(&grupo, utils.ConvertIntToString(gp.Id)); err != nil {
-	// 		if errors.Is(err, gorm.ErrRecordNotFound) {
-	// 			api_helpers.RespondJSON(c, 200, "Curso not found")
-	// 		} else {
-	// 			api_helpers.RespondError(c, 500, "default")
-	// 		}
+	for _, gp := range curso.Grupos_curso {
+		var grupo models.Grupo
+		if err := repositories.GetOneGrupo(&grupo, gp.Sigla_curso, gp.Id_periodo_curso, gp.Sigla_grupo); err != nil {
+			api_helpers.RespondError(c, 500, err.Error())
+			return
+		}
 
-	// 		return
-	// 	}
+		if err := repositories.ClearGrupo(grupo.Sigla_grupo, grupo.Sigla_curso, grupo.Id_periodo_curso); err != nil {
+			api_helpers.RespondError(c, 500, "default")
+			return
+		}
 
-	// 	if err := repositories.ClearGrupo(utils.ConvertIntToString(grupo.Id)); err != nil {
-	// 		api_helpers.RespondError(c, 500, "default")
-	// 		return
-	// 	}
-
-	// 	for _, evaluacion := range grupo.Evaluaciones_grupo {
-	// 		if err := repositories.DeleteEvaluacion(utils.ConvertIntToString(evaluacion.Id)); err != nil {
-	// 			api_helpers.RespondError(c, 500, "default")
-	// 			return
-	// 		}
-	// 	}
-	// }
+		for _, evaluacion := range grupo.Evaluaciones_grupo {
+			if err := repositories.DeleteEvaluacion(utils.IntToString(evaluacion.Id)); err != nil {
+				api_helpers.RespondError(c, 500, "default")
+				return
+			}
+		}
+	}
 
 	// eliminar grupos del curso
 	for _, grupo := range curso.Grupos_curso {
@@ -65,7 +57,7 @@ func Delete(c *gin.Context) {
 	}
 
 	// eliminar curso
-	if err := repositories.ClearCurso(&curso, id); err != nil {
+	if err := repositories.ClearCursoAssociations(&curso, sigla_curso, id_periodo); err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			api_helpers.RespondJSON(c, 200, "Curso not found")
 		} else {
