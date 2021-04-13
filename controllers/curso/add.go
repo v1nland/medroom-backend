@@ -39,6 +39,8 @@ func addRequestParse(u *addRequest) {
 // @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/cursos/{id_periodo} [post]
 func Add(c *gin.Context) {
+	id_periodo := c.Params.ByName("id_periodo")
+
 	var input addRequest
 	if err := c.ShouldBind(&input); err != nil {
 		api_helpers.RespondError(c, 400, err.Error())
@@ -48,8 +50,12 @@ func Add(c *gin.Context) {
 	addRequestParse(&input)
 
 	var periodo models.Periodo
-	if err := repositories.GetUltimoPeriodo(&periodo); err != nil {
-		api_helpers.RespondError(c, 500, "Last period not found")
+	// if err := repositories.GetUltimoPeriodo(&periodo); err != nil {
+	// 	api_helpers.RespondError(c, 500, "Last period not found")
+	// 	return
+	// }
+	if err := repositories.GetOnePeriodo(&periodo, id_periodo); err != nil {
+		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 

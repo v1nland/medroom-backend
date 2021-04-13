@@ -3091,7 +3091,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Evaluadores"
+                    "Estudiantes"
                 ],
                 "summary": "Obtiene una calificación",
                 "parameters": [

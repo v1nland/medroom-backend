@@ -1,7 +1,5 @@
 package repositories
 
-// este falta
-
 import (
 	"fmt"
 	"medroom-backend/config"
@@ -15,14 +13,15 @@ import (
 // ESTUDIANTE
 func GetCursosEstudiante(u *[]models.Curso, id_estudiante string) (err error) {
 	if err := config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
+		Debug().
 		Preload(clause.Associations).
 		Table("estudiantes").
 		Select("c.*").
 		Joins("JOIN estudiantes_grupos eg ON eg.id_estudiante = estudiantes.id").
-		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_curso AND eg.sigla_curso = g.id_periodo_curso AND eg.id_periodo_curso = g.sigla_grupo").
+		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_grupo AND eg.sigla_curso = g.sigla_curso AND eg.id_periodo_curso = g.id_periodo_curso").
 		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
 		Where("estudiantes.id = ?", id_estudiante).
-		Group("c.sigla_grupo, c.id_periodo").
+		Group("c.sigla_curso, c.id_periodo").
 		Find(u).Error; err != nil {
 		return err
 	}
@@ -35,9 +34,9 @@ func GetOneCursoEstudiante(u *models.Curso, sigla_curso string, id_periodo strin
 		Table("estudiantes").
 		Select("c.*").
 		Joins("JOIN estudiantes_grupos eg ON eg.id_estudiante = estudiantes.id").
-		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_curso AND eg.sigla_curso = g.id_periodo_curso AND eg.id_periodo_curso = g.sigla_grupo").
+		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_grupo AND eg.sigla_curso = g.sigla_curso AND eg.id_periodo_curso = g.id_periodo_curso").
 		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
-		Where("c.sigla_grupo = ? AND c.id_periodo = ? AND estudiantes.id = ?", sigla_curso, id_periodo, id_estudiante).
+		Where("c.sigla_curso = ? AND c.id_periodo = ? AND estudiantes.id = ?", sigla_curso, id_periodo, id_estudiante).
 		First(u).
 		Error; err != nil {
 		return err
@@ -52,7 +51,7 @@ func GetCursosEvaluador(u *[]models.Curso, id_evaluador string) (err error) {
 		Table("evaluadores").
 		Select("c.*").
 		Joins("JOIN evaluadores_grupos eg ON eg.id_evaluador = evaluadores.id").
-		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_curso AND eg.sigla_curso = g.id_periodo_curso AND eg.id_periodo_curso = g.sigla_grupo").
+		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_grupo AND eg.sigla_curso = g.sigla_curso AND eg.id_periodo_curso = g.id_periodo_curso").
 		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
 		Where("evaluadores.id = ?", id_evaluador).
 		Group("c.sigla_curso, c.id_periodo").
@@ -69,7 +68,7 @@ func GetOneCursoEvaluador(u *models.Curso, sigla_curso string, id_periodo string
 		Table("evaluadores").
 		Select("c.*").
 		Joins("JOIN evaluadores_grupos eg ON eg.id_evaluador = evaluadores.id").
-		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_curso AND eg.sigla_curso = g.id_periodo_curso AND eg.id_periodo_curso = g.sigla_grupo").
+		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_grupo AND eg.sigla_curso = g.sigla_curso AND eg.id_periodo_curso = g.id_periodo_curso").
 		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
 		Where("c.sigla_curso = ? AND c.id_periodo = ? AND evaluadores.id = ?", sigla_curso, id_periodo, id_evaluador).
 		First(u).
@@ -88,7 +87,7 @@ func GetCursosAdministradorAcademico(u *[]models.Curso, id_administrador_academi
 		Joins("JOIN administradores_academicos_cursos aac ON aac.id_administrador_academico = administradores_academicos.id").
 		Joins("JOIN cursos c ON aac.sigla_curso = c.sigla_curso AND aac.id_periodo = c.id_periodo").
 		Where("administradores_academicos.id = ?", id_administrador_academico).
-		Group("c.id").
+		Group("c.sigla_curso,c.id_periodo").
 		Find(u).
 		Error; err != nil {
 		return err

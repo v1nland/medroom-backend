@@ -20,10 +20,11 @@ import (
 // @Router /administracion-academica/cursos/{id_periodo}/{sigla_curso}/estudiantes/sin-grupo [get]
 func ListEstudiantesCursoSinGrupo(c *gin.Context) {
 	// id := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_ACADEMICO")
+	id_periodo := c.Params.ByName("id_periodo")
 	sigla_curso := c.Params.ByName("sigla_curso")
 
 	var estudiantes []models.Estudiante
-	if err := repositories.GetAllEstudiantesCursoSinGrupo(&estudiantes, sigla_curso); err != nil {
+	if err := repositories.GetAllEstudiantesCursoSinGrupo(&estudiantes, sigla_curso, id_periodo); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
