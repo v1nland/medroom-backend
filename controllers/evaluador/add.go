@@ -68,12 +68,12 @@ func addRequestParse(u *addRequest) {
 
 // @Summary Agrega un nuevo evaluador
 // @Description Genera un nuevo evaluador con los datos entregados
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   input_evaluador     body    Request.Add     true        "Evaluador a agregar"
-// @Success 200 {object} Swagger.AddNewEvaluadorSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Param   input_evaluador     body    addRequest     true        "Evaluador a agregar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/evaluadores [post]
 func Add(c *gin.Context) {
 	var input addRequest
@@ -103,5 +103,5 @@ func Add(c *gin.Context) {
 	}
 
 	// api_helpers.RespondJSON(c, 200, f_output.AddNewEvaluador(model))
-	api_helpers.RespondJSON(c, 200, evaluador)
+	api_helpers.RespondJson(c, 200, evaluador)
 }

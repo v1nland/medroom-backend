@@ -10,11 +10,11 @@ import (
 
 // @Summary Lista de evaluadores
 // @Description Lista todos los evaluadores
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} Swagger.ListEvaluadoresSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/evaluadores [get]
 func List(c *gin.Context) {
 	var evaluadores []models.Evaluador
@@ -24,5 +24,5 @@ func List(c *gin.Context) {
 	}
 
 	// api_helpers.RespondJSON(c, 200, f_output.ListEvaluadores(container))
-	api_helpers.RespondJSON(c, 200, evaluadores)
+	api_helpers.RespondJson(c, 200, evaluadores)
 }

@@ -11,17 +11,18 @@ import (
 
 // @Summary Modifica los cursos de un evaluador
 // @Description Modifica los cursos de un evaluador con los datos entregados
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   id_curso     path    string     true        "ID del curso a modificar"
+// @Param   id_periodo     path    string     true        "Id del periodo"
+// @Param   sigla_curso     path    string     true        "Sigla del curso a modificar"
 // @Param   uuid_evaluador     path    string     true        "UUID del evaluador a asociar"
-// @Success 200 {object} Swagger.AddEvaluadorToCursoSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
-// @Router /administracion-ti/cursos/{id_curso}/evaluadores/{uuid_evaluador} [put]
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
+// @Router /administracion-ti/cursos/{id_periodo}/{sigla_curso}/evaluadores/{uuid_evaluador} [put]
 func AddEvaluadorToCurso(c *gin.Context) {
 	id_periodo := c.Params.ByName("id_periodo")
-	sigla_curso := c.Params.ByName("id")
+	sigla_curso := c.Params.ByName("sigla_curso")
 	id_evaluador := c.Params.ByName("id_evaluador")
 
 	var evaluador models.Evaluador
@@ -41,7 +42,7 @@ func AddEvaluadorToCurso(c *gin.Context) {
 	if found {
 		curso.Grupos_curso[index].Evaluadores_grupo = append(curso.Grupos_curso[index].Evaluadores_grupo, evaluador)
 	} else {
-		api_helpers.RespondJSON(c, 200, "Grupo 'SIN GRUPO' not found")
+		api_helpers.RespondJson(c, 200, "Grupo 'SIN GRUPO' not found")
 		return
 	}
 
@@ -50,5 +51,5 @@ func AddEvaluadorToCurso(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, curso)
+	api_helpers.RespondJson(c, 200, curso)
 }

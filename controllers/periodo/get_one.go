@@ -10,21 +10,21 @@ import (
 
 // @Summary Obtiene un periodo
 // @Description Obtiene un periodo según su Id
-// @Tags 00 - Rutas públicas
+// @Tags Rutas públicas
 // @Accept  json
 // @Produce  json
 // @Param   id_periodo     path    string     true        "Id del periodo a buscar"
-// @Success 200 {object} Swagger.GetOnePeriodoSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /periodos/{id_periodo} [get]
 func Get(c *gin.Context) {
-	id := c.Params.ByName("id")
+	id_periodo := c.Params.ByName("id_periodo")
 
 	var periodo models.Periodo
-	if err := repositories.GetOnePeriodo(&periodo, id); err != nil {
+	if err := repositories.GetOnePeriodo(&periodo, id_periodo); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, periodo)
+	api_helpers.RespondJson(c, 200, periodo)
 }

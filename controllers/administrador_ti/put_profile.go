@@ -63,15 +63,15 @@ func putProfileRequestParse(u *putProfileRequest) {
 
 // @Summary Modifica mi perfil
 // @Description Modifica el perfil de un administrador_ti con los datos entregados
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   input_actualiza_administrador_ti     body    Request.PutProfile     true        "AdministradorTi a modificar"
-// @Success 200 {object} Swagger.PutMyAdministradorTiSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Param   input_actualiza_administrador_ti     body    putProfileRequest     true        "Administrador Ti a modificar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/me [put]
 func PutProfile(c *gin.Context) {
-	id := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_TI")
+	id_administrador_ti := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_TI")
 
 	var input putProfileRequest
 	if err := c.ShouldBind(&input); err != nil {
@@ -82,13 +82,13 @@ func PutProfile(c *gin.Context) {
 	putProfileRequestParse(&input)
 
 	var administrador_ti models.AdministradorTi
-	if err := repositories.GetOneAdministradorTi(&administrador_ti, id); err != nil {
+	if err := repositories.GetOneAdministradorTi(&administrador_ti, id_administrador_ti); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
 	if administrador_ti.Hash_contrasena_administrador_ti != *input.Hash_contrasena_administrador_ti {
-		api_helpers.RespondJSON(c, 403, "Wrong current password")
+		api_helpers.RespondJson(c, 403, "Wrong current password")
 		return
 	}
 
@@ -105,10 +105,10 @@ func PutProfile(c *gin.Context) {
 		Telefono_celular_administrador_ti:   utils.CheckNullString(input.Telefono_celular_administrador_ti, administrador_ti.Telefono_celular_administrador_ti),
 	}
 
-	if err := repositories.PutOneAdministradorTi(&administrador_ti, id); err != nil {
+	if err := repositories.PutOneAdministradorTi(&administrador_ti, id_administrador_ti); err != nil {
 		api_helpers.RespondError(c, 500, "default")
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, administrador_ti)
+	api_helpers.RespondJson(c, 200, administrador_ti)
 }

@@ -11,16 +11,17 @@ import (
 
 // @Summary Obtiene un curso de un evaluador
 // @Description Obtiene un curso de un evaluador según su token
-// @Tags 03 - Evaluadores
+// @Tags Evaluadores
 // @Accept  json
 // @Produce  json
-// @Param   id_curso     path    string     true        "Id del curso a buscar"
-// @Success 200 {object} Swagger.GetOneCursoEvaluadorSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
-// @Router /evaluadores/me/cursos/{id_curso} [get]
+// @Param   id_periodo     path    string     true        "Id del periodo"
+// @Param   sigla_curso     path    string     true        "Sigla del curso a buscar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
+// @Router /evaluadores/me/cursos/{id_periodo}/{sigla_curso} [get]
 func GetOneCursoEvaluador(c *gin.Context) {
 	id_periodo := c.Params.ByName("id_periodo")
-	sigla_curso := c.Params.ByName("id_curso")
+	sigla_curso := c.Params.ByName("sigla_curso")
 	id_evaluador := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
 
 	var curso models.Curso
@@ -29,5 +30,5 @@ func GetOneCursoEvaluador(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, curso)
+	api_helpers.RespondJson(c, 200, curso)
 }

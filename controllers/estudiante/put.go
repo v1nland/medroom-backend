@@ -55,16 +55,16 @@ func putRequestParse(u *putRequest) {
 
 // @Summary Modifica un estudiante
 // @Description Modifica un estudiante con los datos entregados
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   uuid_estudiante     path    string     true        "UUID del estudiante a modificar"
-// @Param   input_actualiza_estudiante     body    Request.Put     true        "Estudiante a modificar"
-// @Success 200 {object} Swagger.PutOneEstudianteSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Param   input_actualiza_estudiante     body    putRequest     true        "Estudiante a modificar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/estudiantes/{uuid_estudiante} [put]
 func Put(c *gin.Context) {
-	id := c.Params.ByName("id")
+	id_estudiante := c.Params.ByName("id_estudiante")
 
 	var input putRequest
 	if err := c.ShouldBind(&input); err != nil {
@@ -75,7 +75,7 @@ func Put(c *gin.Context) {
 	putRequestParse(&input)
 
 	var estudiante models.Estudiante
-	if err := repositories.GetOneEstudiante(&estudiante, id); err != nil {
+	if err := repositories.GetOneEstudiante(&estudiante, id_estudiante); err != nil {
 		api_helpers.RespondError(c, 400, err.Error())
 		return
 	}
@@ -93,11 +93,11 @@ func Put(c *gin.Context) {
 		Telefono_celular_estudiante:   utils.CheckNullString(input.Telefono_celular_estudiante, estudiante.Telefono_celular_estudiante),
 	}
 
-	if err := repositories.PutOneEstudiante(&estudiante, id); err != nil {
+	if err := repositories.PutOneEstudiante(&estudiante, id_estudiante); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
 	// api_helpers.RespondJSON(c, 200, f_output.PutOneEstudiante(model))
-	api_helpers.RespondJSON(c, 200, estudiante)
+	api_helpers.RespondJson(c, 200, estudiante)
 }

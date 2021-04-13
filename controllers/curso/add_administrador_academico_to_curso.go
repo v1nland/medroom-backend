@@ -10,17 +10,18 @@ import (
 
 // @Summary Modifica los cursos de un administrador_academico
 // @Description Modifica los cursos de un administrador_academico con los datos entregados
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   id_curso     path    string     true        "ID del curso a modificar"
+// @Param   id_periodo     path    string     true        "Id del periodo"
+// @Param   sigla_curso     path    string     true        "Sigla del curso a modificar"
 // @Param   uuid_administrador_academico     path    string     true        "UUID del administrador_academico a asociar"
-// @Success 200 {object} Swagger.AddAdministradorAcademicoToCursoSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/cursos/{id_periodo}/{sigla_curso}/administradores-academicos/{uuid_administrador_academico} [put]
 func AddAdministradorAcademicoToCurso(c *gin.Context) {
 	id_periodo := c.Params.ByName("id_periodo")
-	sigla_curso := c.Params.ByName("id")
+	sigla_curso := c.Params.ByName("sigla_curso")
 	id_administrador_academico := c.Params.ByName("id_administrador_academico")
 
 	var administrador_academico models.AdministradorAcademico
@@ -42,5 +43,5 @@ func AddAdministradorAcademicoToCurso(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, curso)
+	api_helpers.RespondJson(c, 200, curso)
 }

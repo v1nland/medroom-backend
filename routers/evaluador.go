@@ -36,23 +36,23 @@ func SetupEvaluadorRouter(r *gin.Engine) *gin.Engine {
 
 		// my course routes
 		router.GET("me/cursos", curso.GetCursosEvaluador)
-		router.GET("me/cursos/:id_curso", curso.GetOneCursoEvaluador)
+		router.GET("me/cursos/:id_periodo/:sigla_curso", curso.GetOneCursoEvaluador)
 
 		// my group routes
-		router.GET("me/cursos/:id_curso/grupos", grupo.GetGruposEvaluador)
-		router.GET("me/cursos/:id_curso/grupos/:id_grupo", grupo.GetOneGrupoEvaluador)
+		router.GET("me/cursos/:id_periodo/:sigla_curso/grupos", grupo.GetGruposEvaluador)
+		router.GET("me/cursos/:id_periodo/:sigla_curso/grupos/:sigla_grupo", grupo.GetOneGrupoEvaluador)
 
 		// make evaluation routes
-		router.GET("me/cursos/:id_curso/grupos/:id_grupo/evaluaciones", evaluacion.ListEvaluacionesGrupoEvaluador)
-		router.POST("me/cursos/:id_curso/grupos/:id_grupo/evaluaciones", evaluacion.Add)
-		router.GET("me/cursos/:id_curso/grupos/:id_grupo/estudiantes/:id_estudiante/evaluaciones-rendidas", evaluacion.ListEvaluacionesRendidasEstudiante)
-		router.GET("me/cursos/:id_curso/grupos/:id_grupo/estudiantes/:id_estudiante/evaluaciones/:id_evaluacion/calificacion", calificacion_estudiante.GetByEvaluador)
-		router.POST("me/cursos/:id_curso/grupos/:id_grupo/estudiantes/:id_estudiante/evaluaciones/:id_evaluacion/calificacion", calificacion_estudiante.Add)
-		router.PUT("me/cursos/:id_curso/grupos/:id_grupo/estudiantes/:id_estudiante/evaluaciones/:id_evaluacion/calificacion", calificacion_estudiante.Put)
+		router.GET("me/cursos/:id_periodo/:sigla_curso/grupos/:sigla_grupo/evaluaciones", evaluacion.ListEvaluacionesGrupoEvaluador)
+		router.POST("me/cursos/:id_periodo/:sigla_curso/grupos/:sigla_grupo/evaluaciones", evaluacion.Add)
+		router.GET("me/cursos/:id_periodo/:sigla_curso/grupos/:sigla_grupo/estudiantes/:id_estudiante/evaluaciones-rendidas", evaluacion.ListEvaluacionesRendidasEstudiante)
+		router.GET("me/cursos/:id_periodo/:sigla_curso/grupos/:sigla_grupo/estudiantes/:id_estudiante/evaluaciones/:id_evaluacion/calificacion", calificacion_estudiante.GetByEvaluador)
+		router.POST("me/cursos/:id_periodo/:sigla_curso/grupos/:sigla_grupo/estudiantes/:id_estudiante/evaluaciones/:id_evaluacion/calificacion", calificacion_estudiante.Add)
+		router.PUT("me/cursos/:id_periodo/:sigla_curso/grupos/:sigla_grupo/estudiantes/:id_estudiante/evaluaciones/:id_evaluacion/calificacion", calificacion_estudiante.Put)
 
 		// reports
-		router.GET("me/cursos/:id_curso/grupos/:id_grupo/estadisticas/evolucion-competencia", estadistica.EvolucionGrupoPorCompetencia)
-		router.GET("me/cursos/:id_curso/grupos/:id_grupo/estadisticas/evolucion-evaluacion", estadistica.EvolucionGrupoPorEvaluacion)
+		router.GET("me/cursos/:id_periodo/:sigla_curso/grupos/:sigla_grupo/estadisticas/evolucion-competencia", estadistica.EvolucionGrupoPorCompetencia)
+		router.GET("me/cursos/:id_periodo/:sigla_curso/grupos/:sigla_grupo/estadisticas/evolucion-evaluacion", estadistica.EvolucionGrupoPorEvaluacion)
 	}
 
 	return r

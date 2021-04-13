@@ -35,34 +35,35 @@ func SetupAdministradorAcademicoRouter(r *gin.Engine) *gin.Engine {
 		estudiantes := router.Group("/estudiantes")
 		{
 			estudiantes.GET("", estudiante.List)
-			estudiantes.GET(":id", estudiante.Get)
+			estudiantes.GET(":id_estudiante", estudiante.Get)
 		}
 
 		evaluadores := router.Group("/evaluadores")
 		{
 			evaluadores.GET("", evaluador.List)
-			evaluadores.GET(":id", evaluador.Get)
+			evaluadores.GET(":id_evaluador", evaluador.Get)
 		}
 
 		cursos := router.Group("/me/cursos")
 		{
 			cursos.GET("", curso.GetCursosAdministradorAcademico)
-			cursos.GET(":id", curso.GetOneCursoAdministradorAcademico)
-			cursos.GET(":id/grupos", grupo.GetGruposAdministradorAcademico)
-			cursos.GET(":id/grupos/:id_grupo", grupo.GetOneGrupoAdministradorAcademico)
+			cursos.GET(":id_periodo/:sigla_curso", curso.GetOneCursoAdministradorAcademico)
+			cursos.GET(":id_periodo/:sigla_curso/grupos", grupo.GetGruposAdministradorAcademico)
+			cursos.GET(":id_periodo/:sigla_curso/grupos/:sigla_grupo", grupo.GetOneGrupoAdministradorAcademico)
 
-			cursos.POST(":id/grupos", grupo.Add)
-			cursos.PUT(":id/grupos/:id_grupo", grupo.Put)
-			cursos.DELETE(":id/grupos/:id_grupo", grupo.Delete)
+			cursos.POST(":id_periodo/:sigla_curso/grupos", grupo.Add)
 
-			cursos.PUT(":id/grupos/:id_grupo/estudiantes/:id_estudiante", grupo.AddEstudianteToGrupo)
-			cursos.PUT(":id/grupos/:id_grupo/evaluadores/:id_evaluador", grupo.AddEvaluadorToGrupo)
+			cursos.PUT(":id_periodo/:sigla_curso/grupos/:sigla_grupo", grupo.Put)
+			cursos.DELETE(":id_periodo/:sigla_curso/grupos/:sigla_grupo", grupo.Delete)
 
-			cursos.DELETE(":id/grupos/:id_grupo/estudiantes/:id_estudiante", grupo.RemoveEstudianteFromGrupo)
-			cursos.DELETE(":id/grupos/:id_grupo/evaluadores/:id_evaluador", grupo.RemoveEvaluadorFromGrupo)
+			cursos.PUT(":id_periodo/:sigla_curso/grupos/:sigla_grupo/estudiantes/:id_estudiante", grupo.AddEstudianteToGrupo)
+			cursos.PUT(":id_periodo/:sigla_curso/grupos/:sigla_grupo/evaluadores/:id_evaluador", grupo.AddEvaluadorToGrupo)
 
-			cursos.GET(":id/estudiantes", estudiante.ListEstudiantesCurso)
-			cursos.GET(":id/estudiantes/sin-grupo", estudiante.ListEstudiantesCursoSinGrupo)
+			cursos.DELETE(":id_periodo/:sigla_curso/grupos/:sigla_grupo/estudiantes/:id_estudiante", grupo.RemoveEstudianteFromGrupo)
+			cursos.DELETE(":id_periodo/:sigla_curso/grupos/:sigla_grupo/evaluadores/:id_evaluador", grupo.RemoveEvaluadorFromGrupo)
+
+			cursos.GET(":id_periodo/:sigla_curso/estudiantes", estudiante.ListEstudiantesCurso)
+			cursos.GET(":id_periodo/:sigla_curso/estudiantes/sin-grupo", estudiante.ListEstudiantesCursoSinGrupo)
 		}
 	}
 

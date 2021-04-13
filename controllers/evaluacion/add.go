@@ -24,19 +24,20 @@ func addRequestParse(u *addRequest) {
 
 // @Summary Agrega una evaluación
 // @Description Genera una evaluación para un grupo
-// @Tags 03 - Evaluadores
+// @Tags Evaluadores
 // @Accept  json
 // @Produce  json
-// @Param   id_curso     path    string     true        "Id del curso"
-// @Param   id_grupo     path    string     true        "Id del grupo"
-// @Param   input_evaluacion     body    Request.Add     true        "Evaluacion a agregar"
-// @Success 200 {array} Swagger.AddNewEvaluacionSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
-// @Router /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/evaluaciones [post]
+// @Param   id_periodo     path    string     true        "Id del periodo"
+// @Param   sigla_curso     path    string     true        "Sigla del curso"
+// @Param   sigla_grupo     path    string     true        "Sigla del grupo"
+// @Param   input_evaluacion     body    addRequest     true        "Evaluacion a agregar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
+// @Router /evaluadores/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/evaluaciones [post]
 func Add(c *gin.Context) {
 	// id_evaluador := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
 	// id_curso := c.Params.ByName("id_curso")
-	sigla_grupo := c.Params.ByName("id_grupo")
+	sigla_grupo := c.Params.ByName("sigla_grupo")
 
 	var input addRequest
 	if err := c.ShouldBind(&input); err != nil {
@@ -57,5 +58,5 @@ func Add(c *gin.Context) {
 	}
 
 	// api_helpers.RespondJSON(c, 200, f_output.ListEvaluacionesEstudiante(model))
-	api_helpers.RespondJSON(c, 200, evaluacion)
+	api_helpers.RespondJson(c, 200, evaluacion)
 }

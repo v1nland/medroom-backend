@@ -10,18 +10,18 @@ import (
 
 // @Summary Lista de administradores-academicos
 // @Description Lista todos los administradores-academicos
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} Swagger.ListAdministradoresAcademicosSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/administradores-academicos [get]
 func List(c *gin.Context) {
 	var admins []models.AdministradorAcademico
 	if err := repositories.ListAdministradoresAcademicos(&admins); err != nil {
-		api_helpers.RespondJSON(c, 500, err.Error())
+		api_helpers.RespondJson(c, 500, err.Error())
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, admins)
+	api_helpers.RespondJson(c, 200, admins)
 }

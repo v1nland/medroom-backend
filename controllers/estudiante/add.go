@@ -56,12 +56,12 @@ func addRequestParse(u *addRequest) {
 
 // @Summary Agrega un nuevo estudiante
 // @Description Genera un nuevo estudiante con los datos entregados
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   input_estudiante     body    Request.Add     true        "Estudiante a agregar"
-// @Success 200 {object} Swagger.AddNewEstudianteSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Param   input_estudiante     body    addRequest     true        "Estudiante a agregar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/estudiantes [post]
 func Add(c *gin.Context) {
 	var input addRequest
@@ -89,5 +89,5 @@ func Add(c *gin.Context) {
 	}
 
 	// api_helpers.RespondJSON(c, 200, f_output.AddNewEstudiante(model))
-	api_helpers.RespondJSON(c, 200, estudiante)
+	api_helpers.RespondJson(c, 200, estudiante)
 }

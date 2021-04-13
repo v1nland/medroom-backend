@@ -30,13 +30,14 @@ func addRequestParse(u *addRequest) {
 
 // @Summary Agrega un nuevo curso
 // @Description Genera un nuevo curso con los datos entregados
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   input_curso     body    Request.Add     true        "Curso a agregar"
-// @Success 200 {object} Swagger.AddNewCursoSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
-// @Router /administracion-ti/cursos [post]
+// @Param   id_periodo     path    string     true        "Id del periodo"
+// @Param   input_curso     body    addRequest     true        "Curso a agregar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
+// @Router /administracion-ti/cursos/{id_periodo} [post]
 func Add(c *gin.Context) {
 	var input addRequest
 	if err := c.ShouldBind(&input); err != nil {
@@ -72,5 +73,5 @@ func Add(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, curso)
+	api_helpers.RespondJson(c, 200, curso)
 }

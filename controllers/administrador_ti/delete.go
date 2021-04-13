@@ -10,26 +10,26 @@ import (
 
 // @Summary Elimina un administrador_ti
 // @Description Elimina un administrador_ti con los datos entregados
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   uuid_administrador_ti     path    string     true        "UUID del administrador_ti a eliminar"
-// @Success 200 {object} Swagger.DeleteAdministradorTiSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/administradores-ti/{uuid_administrador_ti} [delete]
 func Delete(c *gin.Context) {
-	id := c.Params.ByName("id")
+	id_administrador_ti := c.Params.ByName("id_administrador_ti")
 
 	var admin models.AdministradorTi
-	if err := repositories.GetOneAdministradorTi(&admin, id); err != nil {
+	if err := repositories.GetOneAdministradorTi(&admin, id_administrador_ti); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
-	if err := repositories.DeleteAdministradorTi(&admin, id); err != nil {
+	if err := repositories.DeleteAdministradorTi(&admin, id_administrador_ti); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, admin)
+	api_helpers.RespondJson(c, 200, admin)
 }

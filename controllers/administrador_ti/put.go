@@ -62,16 +62,16 @@ func putRequestParse(u *putRequest) {
 
 // @Summary Modifica un administrador_ti
 // @Description Modifica un administrador_ti con los datos entregados
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   uuid_administrador_ti     path    string     true        "UUID del administrador_ti a modificar"
-// @Param   input_actualiza_administrador_ti     body    Request.Put     true        "AdministradorTi a modificar"
-// @Success 200 {object} Swagger.PutOneAdministradorTiSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Param   input_actualiza_administrador_ti     body    putRequest     true        "Administrador Ti a modificar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/administradores-ti/{uuid_administrador_ti} [put]
 func Put(c *gin.Context) {
-	id := c.Params.ByName("id")
+	id_administrador_ti := c.Params.ByName("id_administrador_ti")
 
 	var input putRequest
 	if err := c.ShouldBind(&input); err != nil {
@@ -82,7 +82,7 @@ func Put(c *gin.Context) {
 	putRequestParse(&input)
 
 	var admin models.AdministradorTi
-	if err := repositories.GetOneAdministradorTi(&admin, id); err != nil {
+	if err := repositories.GetOneAdministradorTi(&admin, id_administrador_ti); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
@@ -99,10 +99,10 @@ func Put(c *gin.Context) {
 		Telefono_celular_administrador_ti:   utils.CheckNullString(input.Telefono_celular_administrador_ti, admin.Telefono_celular_administrador_ti),
 	}
 
-	if err := repositories.PutOneAdministradorTi(&admin, id); err != nil {
+	if err := repositories.PutOneAdministradorTi(&admin, id_administrador_ti); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, admin)
+	api_helpers.RespondJson(c, 200, admin)
 }

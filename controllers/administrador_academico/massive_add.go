@@ -65,12 +65,12 @@ func massiveAddRequestParse(u *massiveAddRequest) {
 
 // @Summary Agrega nuevos administrador_academicos de forma masiva
 // @Description Genera nuevos administrador_academicos con los datos entregados
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   input_administrador_academico     body    massive_add_input     true        "AdministradoresAcademico a agregar"
-// @Success 200 {object} massive_add_input "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Param   input_administrador_academico     body    massiveAddRequest     true        "AdministradoresAcademico a agregar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/administradores-academicos/carga-masiva [post]
 func MassiveAdd(c *gin.Context) {
 	var payload massiveAddRequest
@@ -109,8 +109,8 @@ func MassiveAdd(c *gin.Context) {
 	}
 
 	if len(administradores_academicos_error) > 0 {
-		api_helpers.RespondJSON(c, 201, administradores_academicos_error)
+		api_helpers.RespondJson(c, 201, administradores_academicos_error)
 	} else {
-		api_helpers.RespondJSON(c, 200, "OK")
+		api_helpers.RespondJson(c, 200, "OK")
 	}
 }

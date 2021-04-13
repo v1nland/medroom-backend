@@ -11,11 +11,11 @@ import (
 
 // @Summary Obtiene los cursos de un estudiante
 // @Description Obtiene los cursos de un estudiante según su token
-// @Tags 02 - Estudiantes
+// @Tags Estudiantes
 // @Accept  json
 // @Produce  json
-// @Success 200 {object} Swagger.GetCursosEstudianteSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /estudiantes/me/cursos [get]
 func GetCursosEstudiante(c *gin.Context) {
 	id_estudiante := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
@@ -26,5 +26,5 @@ func GetCursosEstudiante(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, cursos)
+	api_helpers.RespondJson(c, 200, cursos)
 }

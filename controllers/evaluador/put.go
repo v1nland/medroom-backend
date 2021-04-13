@@ -67,16 +67,16 @@ func putRequestParse(u *putRequest) {
 
 // @Summary Modifica un evaluador
 // @Description Modifica un evaluador con los datos entregados
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   uuid_evaluador     path    string     true        "UUID del evaluador a modificar"
-// @Param   input_actualiza_evaluador     body    Request.Put     true        "Evaluador a modificar"
-// @Success 200 {object} Swagger.PutOneEvaluadorSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Param   input_actualiza_evaluador     body    putRequest     true        "Evaluador a modificar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/evaluadores/{uuid_evaluador} [put]
 func Put(c *gin.Context) {
-	id := c.Params.ByName("id")
+	id_evaluador := c.Params.ByName("id_evaluador")
 
 	var input putRequest
 	if err := c.ShouldBind(&input); err != nil {
@@ -87,7 +87,7 @@ func Put(c *gin.Context) {
 	putRequestParse(&input)
 
 	var evaluador models.Evaluador
-	if err := repositories.GetOneEvaluador(&evaluador, id); err != nil {
+	if err := repositories.GetOneEvaluador(&evaluador, id_evaluador); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
@@ -107,11 +107,11 @@ func Put(c *gin.Context) {
 		Cargo_evaluador:              utils.CheckNullString(input.Cargo_evaluador, evaluador.Cargo_evaluador),
 	}
 
-	if err := repositories.PutOneEvaluador(&evaluador, id); err != nil {
+	if err := repositories.PutOneEvaluador(&evaluador, id_evaluador); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
 	// api_helpers.RespondJSON(c, 200, f_output.PutOneEvaluador(model))
-	api_helpers.RespondJSON(c, 200, evaluador)
+	api_helpers.RespondJson(c, 200, evaluador)
 }

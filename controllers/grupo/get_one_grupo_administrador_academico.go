@@ -11,18 +11,19 @@ import (
 
 // @Summary Obtiene un grupo de un administrador academico
 // @Description Obtiene un grupo de un administrador academico según su token
-// @Tags 04 - Administración Académica
+// @Tags Administración Académica
 // @Accept  json
 // @Produce  json
-// @Param   id_curso     path    string     true        "Id del curso a buscar"
-// @Param   id_grupo     path    string     true        "Id del grupo a buscar"
-// @Success 200 {object} Swagger.GetOneGrupoAdministradorAcademicoSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
-// @Router /administracion-academica/me/cursos/{id_curso}/grupos/{id_grupo} [get]
+// @Param   id_periodo     path    string     true        "Id del periodo"
+// @Param   sigla_curso     path    string     true        "Sigla del curso"
+// @Param   sigla_grupo     path    string     true        "Sigla del grupo"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
+// @Router /administracion-academica/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo} [get]
 func GetOneGrupoAdministradorAcademico(c *gin.Context) {
 	id_periodo := c.Params.ByName("id_periodo")
-	sigla_grupo := c.Params.ByName("id_grupo")
-	sigla_curso := c.Params.ByName("id_curso")
+	sigla_curso := c.Params.ByName("sigla_curso")
+	sigla_grupo := c.Params.ByName("sigla_grupo")
 	id_administrador_academico := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_ACADEMICO")
 
 	var grupo models.Grupo
@@ -31,5 +32,5 @@ func GetOneGrupoAdministradorAcademico(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, grupo)
+	api_helpers.RespondJson(c, 200, grupo)
 }

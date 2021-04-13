@@ -22,22 +22,23 @@ type evolucionEstudiantePorEvaluacionResponse struct {
 
 // @Summary Evolución por evaluacion
 // @Description Obtiene la evolución de un estudiante según evaluacion
-// @Tags 02 - Estudiantes
+// @Tags Estudiantes
 // @Accept  json
 // @Produce  json
-// @Param   id_curso     path    string     true        "Id del curso"
-// @Param   id_grupo     path    string     true        "Id del grupo"
-// @Success 200 {array} Swagger.EvolucionEstudiantePorEvaluacionSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
-// @Router /estudiantes/me/cursos/{id_curso}/grupos/{id_grupo}/estadisticas/evolucion-por-evaluacion [get]
+// @Param   id_periodo     path    string     true        "Id del periodo"
+// @Param   sigla_curso     path    string     true        "Sigla del curso"
+// @Param   sigla_grupo     path    string     true        "Sigla del grupo"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
+// @Router /estudiantes/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-por-evaluacion [get]
 func EvolucionEstudiantePorEvaluacion(c *gin.Context) {
 	// params
 	id_estudiante := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
 	// id_curso := c.Params.ByName("id_curso")
-	id_grupo := c.Params.ByName("id_grupo")
+	sigla_grupo := c.Params.ByName("sigla_grupo")
 
 	var calificaciones_estudiante []Query.CalificacionesEstudiantePorEvaluacion
-	if err := repositories.CalificacionesEstudiantePorEvaluacion(&calificaciones_estudiante, id_grupo, id_estudiante); err != nil {
+	if err := repositories.CalificacionesEstudiantePorEvaluacion(&calificaciones_estudiante, sigla_grupo, id_estudiante); err != nil {
 		if !errors.Is(err, gorm.ErrRecordNotFound) {
 			api_helpers.RespondError(c, 500, "default")
 			return
@@ -63,5 +64,5 @@ func EvolucionEstudiantePorEvaluacion(c *gin.Context) {
 		})
 	}
 
-	api_helpers.RespondJSON(c, 200, response_container)
+	api_helpers.RespondJson(c, 200, response_container)
 }

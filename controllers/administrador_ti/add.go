@@ -62,12 +62,12 @@ func addRequestParse(u *addRequest) {
 
 // @Summary Agrega un nuevo administrador_ti
 // @Description Genera un nuevo administrador_ti con los datos entregados
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   input_administrador_ti     body    Request.Add     true        "AdministradorTi a agregar"
-// @Success 200 {object} Swagger.AddNewAdministradorTiSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Param   input_administrador_ti     body    addRequest     true        "Administrador Ti a agregar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/administradores-ti [post]
 func Add(c *gin.Context) {
 	var input addRequest
@@ -94,5 +94,5 @@ func Add(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, admin)
+	api_helpers.RespondJson(c, 200, admin)
 }

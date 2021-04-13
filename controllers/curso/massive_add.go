@@ -37,14 +37,14 @@ func massiveAddRequestParse(u *massiveAddRequest) {
 
 // @Summary Agrega nuevos cursos de forma masiva
 // @Description Genera nuevos cursos con los datos entregados
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   input_curso     body    massive_add_input     true        "Curso a agregar"
-// @Success 200 {object} Swagger.AddNewCursoSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Param   input_curso     body    massiveAddRequest     true        "Curso a agregar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/cursos/carga-masiva [post]
-func AddNewCursos(c *gin.Context) {
+func MassiveAdd(c *gin.Context) {
 	var payload massiveAddRequest
 	if err := c.ShouldBind(&payload); err != nil {
 		api_helpers.RespondError(c, 400, err.Error())
@@ -82,8 +82,8 @@ func AddNewCursos(c *gin.Context) {
 	}
 
 	if len(cursos_error) > 0 {
-		api_helpers.RespondJSON(c, 201, cursos_error)
+		api_helpers.RespondJson(c, 201, cursos_error)
 	} else {
-		api_helpers.RespondJSON(c, 200, "ok")
+		api_helpers.RespondJson(c, 200, "ok")
 	}
 }

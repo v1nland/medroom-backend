@@ -99,17 +99,18 @@ func addRequestParse(u *addRequest) {
 
 // @Summary Califica un estudiante
 // @Description Genera una calificación para un estudiante
-// @Tags 03 - Evaluadores
+// @Tags Evaluadores
 // @Accept  json
 // @Produce  json
-// @Param   id_curso     path    string     true        "Id del curso"
-// @Param   id_grupo     path    string     true        "Id del grupo"
+// @Param   id_periodo     path    string     true        "Id del periodo"
+// @Param   sigla_curso     path    string     true        "Sigla del curso"
+// @Param   sigla_grupo     path    string     true        "Sigla del grupo"
 // @Param   id_estudiante     path    string     true        "Id del estudiante"
 // @Param   id_evaluacion     path    string     true        "Id de la evaluacion"
-// @Param   input_calificacion_estudiante     body    Request.Add     true        "CalificacionEstudiante a agregar"
-// @Success 200 {array} Swagger.AddNewCalificacionEstudianteSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
-// @Router /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/estudiantes/{id_estudiante}/evaluaciones/{id_evaluacion}/calificacion [post]
+// @Param   input_calificacion_estudiante     body    addRequest     true        "CalificacionEstudiante a agregar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
+// @Router /evaluadores/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estudiantes/{id_estudiante}/evaluaciones/{id_evaluacion}/calificacion [post]
 func Add(c *gin.Context) {
 	id_evaluador := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
 	// id_curso := c.Params.ByName("id_curso")
@@ -123,7 +124,7 @@ func Add(c *gin.Context) {
 		return
 	}
 
-	// TODO: validar que vengan las 7 competencias necesarias
+	// TODO: validar que vengan las 6 competencias necesarias
 	if len(input.Puntajes_calificacion_estudiante) != 6 {
 		api_helpers.RespondError(c, 400, "deben venir las 6 competencias")
 		return
@@ -158,5 +159,5 @@ func Add(c *gin.Context) {
 	}
 
 	// api_helpers.RespondJSON(c, 200, f_output.ListEvaluacionesEstudiante(model))
-	api_helpers.RespondJSON(c, 200, model)
+	api_helpers.RespondJson(c, 200, model)
 }

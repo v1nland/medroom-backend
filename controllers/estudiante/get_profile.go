@@ -11,11 +11,11 @@ import (
 
 // @Summary Obtiene el perfil del estudiante
 // @Description Obtiene el perfil del estudiante según su token
-// @Tags 02 - Estudiantes
+// @Tags Estudiantes
 // @Accept  json
 // @Produce  json
-// @Success 200 {object} Swagger.GetMyEstudianteSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /estudiantes/me [get]
 func Profile(c *gin.Context) {
 	id_estudiante := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
@@ -27,5 +27,5 @@ func Profile(c *gin.Context) {
 	}
 
 	// api_helpers.RespondJSON(c, 200, f_output.GetMyEstudiante(container))
-	api_helpers.RespondJSON(c, 200, estudiante)
+	api_helpers.RespondJson(c, 200, estudiante)
 }

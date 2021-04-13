@@ -31,17 +31,18 @@ func putRequestParse(u *putRequest) {
 
 // @Summary Modifica un curso
 // @Description Modifica un curso con los datos entregados
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   id_curso     path    string     true        "Id del curso a modificar"
-// @Param   input_actualiza_curso     body    Request.Put     true        "Curso a modificar"
-// @Success 200 {object} Swagger.PutOneCursoSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
-// @Router /administracion-ti/cursos/{id_curso} [put]
+// @Param   id_periodo     path    string     true        "Id del periodo"
+// @Param   sigla_curso     path    string     true        "Sigla del curso a modificar"
+// @Param   input_actualiza_curso     body    putRequest     true        "Curso a modificar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
+// @Router /administracion-ti/cursos/{id_periodo}/{sigla_curso} [put]
 func Put(c *gin.Context) {
 	id_periodo := c.Params.ByName("id_periodo")
-	sigla_curso := c.Params.ByName("id")
+	sigla_curso := c.Params.ByName("sigla_curso")
 
 	var input putRequest
 	if err := c.ShouldBind(&input); err != nil {
@@ -69,5 +70,5 @@ func Put(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, curso)
+	api_helpers.RespondJson(c, 200, curso)
 }

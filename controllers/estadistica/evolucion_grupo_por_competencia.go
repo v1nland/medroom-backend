@@ -21,22 +21,23 @@ type evolucionGrupoPorCompetenciaResponse struct {
 
 // @Summary Evolución por competencia
 // @Description Obtiene la evolución de un grupo según competencia
-// @Tags 03 - Evaluadores
+// @Tags Evaluadores
 // @Accept  json
 // @Produce  json
-// @Param   id_curso     path    string     true        "Id del curso"
-// @Param   id_grupo     path    string     true        "Id del grupo"
-// @Success 200 {array} Swagger.EvolucionGrupoPorCompetenciaSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
-// @Router /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/estadisticas/evolucion-por-competencia [get]
+// @Param   id_periodo     path    string     true        "Id del periodo"
+// @Param   sigla_curso     path    string     true        "Sigla del curso"
+// @Param   sigla_grupo     path    string     true        "Sigla del grupo"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
+// @Router /evaluadores/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-por-competencia [get]
 func EvolucionGrupoPorCompetencia(c *gin.Context) {
 	// params
 	// id_evaluador := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
 	// id_curso := c.Params.ByName("id_curso")
-	id_grupo := c.Params.ByName("id_grupo")
+	sigla_grupo := c.Params.ByName("sigla_grupo")
 
 	var calificaciones_grupo []Query.CalificacionesGrupoPorCompetencia
-	if err := repositories.CalificacionesGrupoPorCompetencia(&calificaciones_grupo, id_grupo); err != nil {
+	if err := repositories.CalificacionesGrupoPorCompetencia(&calificaciones_grupo, sigla_grupo); err != nil {
 		if !errors.Is(err, gorm.ErrRecordNotFound) {
 			api_helpers.RespondError(c, 500, "default")
 			return
@@ -59,5 +60,5 @@ func EvolucionGrupoPorCompetencia(c *gin.Context) {
 		})
 	}
 
-	api_helpers.RespondJSON(c, 200, response_container)
+	api_helpers.RespondJson(c, 200, response_container)
 }

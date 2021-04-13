@@ -61,16 +61,16 @@ func putRequestFormat(u *putRequest) {
 
 // @Summary Modifica un administrador_academico
 // @Description Modifica un administrador_academico con los datos entregados
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   uuid_administrador_academico     path    string     true        "UUID del administrador_academico a modificar"
-// @Param   input_actualiza_administrador_academico     body    Request.Put     true        "AdministradorAcademico a modificar"
-// @Success 200 {object} Swagger.PutOneAdministradorAcademicoSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Param   input_actualiza_administrador_academico     body    putRequest     true        "Administrador académico a modificar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/administradores-academicos/{uuid_administrador_academico} [put]
 func Put(c *gin.Context) {
-	id := c.Params.ByName("id")
+	id_administrador_academico := c.Params.ByName("id_administrador_academico")
 
 	var input putRequest
 	if err := c.ShouldBind(&input); err != nil {
@@ -81,7 +81,7 @@ func Put(c *gin.Context) {
 	putRequestFormat(&input)
 
 	var admin models.AdministradorAcademico
-	if err := repositories.GetAdministradorAcademico(&admin, id); err != nil {
+	if err := repositories.GetAdministradorAcademico(&admin, id_administrador_academico); err != nil {
 		api_helpers.RespondError(c, 500, "default")
 		return
 	}
@@ -98,10 +98,10 @@ func Put(c *gin.Context) {
 		Telefono_celular_administrador_academico:   utils.CheckNullString(input.Telefono_celular_administrador_academico, admin.Telefono_celular_administrador_academico),
 	}
 
-	if err := repositories.PutAdministradorAcademico(&admin, id); err != nil {
+	if err := repositories.PutAdministradorAcademico(&admin, id_administrador_academico); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, admin)
+	api_helpers.RespondJson(c, 200, admin)
 }

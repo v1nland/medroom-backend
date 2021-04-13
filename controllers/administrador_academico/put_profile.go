@@ -62,15 +62,15 @@ func putProfileRequestFormat(u *putProfileRequest) {
 
 // @Summary Modifica mi perfil
 // @Description Modifica el perfil de un administrador_academico con los datos entregados
-// @Tags 04 - Administración Académica
+// @Tags Administración Académica
 // @Accept  json
 // @Produce  json
-// @Param   input_actualiza_administrador_academico     body    Request.PutProfile     true        "AdministradorAcademico a modificar"
-// @Success 200 {object} Swagger.PutMyAdministradorAcademicoSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Param   input_actualiza_administrador_academico     body    putProfileRequest     true        "Administrador académico a modificar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-academica/me [put]
 func PutProfile(c *gin.Context) {
-	id := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_ACADEMICO")
+	id_administrador_academico := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_ACADEMICO")
 
 	var input putProfileRequest
 	if err := c.ShouldBind(&input); err != nil {
@@ -83,13 +83,13 @@ func PutProfile(c *gin.Context) {
 
 	// generate admin entity
 	var admin models.AdministradorAcademico
-	if err := repositories.GetAdministradorAcademico(&admin, id); err != nil {
+	if err := repositories.GetAdministradorAcademico(&admin, id_administrador_academico); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
 	if admin.Hash_contrasena_administrador_academico != *input.Hash_contrasena_administrador_academico {
-		api_helpers.RespondJSON(c, 403, "Wrong current password")
+		api_helpers.RespondJson(c, 403, "Wrong current password")
 		return
 	}
 
@@ -105,10 +105,10 @@ func PutProfile(c *gin.Context) {
 		Telefono_celular_administrador_academico:   utils.CheckNullString(input.Telefono_celular_administrador_academico, admin.Telefono_celular_administrador_academico),
 	}
 
-	if err := repositories.PutAdministradorAcademico(&admin, id); err != nil {
+	if err := repositories.PutAdministradorAcademico(&admin, id_administrador_academico); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, admin)
+	api_helpers.RespondJson(c, 200, admin)
 }

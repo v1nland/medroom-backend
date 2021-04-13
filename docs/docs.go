@@ -33,7 +33,7 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/administracion-academica/cursos/:id_curso/estudiantes": {
+        "/administracion-academica/cursos/{id_periodo}/{sigla_curso}/estudiantes": {
             "get": {
                 "description": "Lista todos los estudiantes existentes en un curso",
                 "consumes": [
@@ -43,29 +43,42 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "04 - Administración Académica"
+                    "Administración Académica"
                 ],
                 "summary": "Lista de estudiantes de un curso",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Swagger.ListEstudiantesCursoSwagger"
-                            }
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
             }
         },
-        "/administracion-academica/cursos/:id_curso/estudiantes/sin-grupo": {
+        "/administracion-academica/cursos/{id_periodo}/{sigla_curso}/estudiantes/sin-grupo": {
             "get": {
                 "description": "Lista todos los estudiantes existentes en un curso sin grupo",
                 "consumes": [
@@ -75,235 +88,42 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "04 - Administración Académica"
+                    "Administración Académica"
                 ],
                 "summary": "Lista de estudiantes de un curso sin grupo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Swagger.ListEstudiantesCursoSinGrupoSwagger"
-                            }
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
             }
         },
-        "/administracion-academica/cursos/{id_curso}/grupos/{id_grupo}/estudiantes/{uuid_estudiante}": {
-            "put": {
-                "description": "Modifica los grupos de un estudiante con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "04 - Administración Académica"
-                ],
-                "summary": "Modifica los grupos de un estudiante",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "ID del curso a modificar",
-                        "name": "id_curso",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "ID del grupo a modificar",
-                        "name": "id_grupo",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "UUID del estudiante a asociar",
-                        "name": "uuid_estudiante",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Swagger.AddEstudianteToGrupoSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "description": "Modifica los grupos de un estudiante con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "04 - Administración Académica"
-                ],
-                "summary": "Modifica los grupos de un estudiante",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "ID del curso a modificar",
-                        "name": "id_curso",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "ID del grupo a modificar",
-                        "name": "id_grupo",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "UUID del estudiante a asociar",
-                        "name": "uuid_estudiante",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Swagger.RemoveEstudianteFromGrupoSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
-                        }
-                    }
-                }
-            }
-        },
-        "/administracion-academica/cursos/{id_curso}/grupos/{id_grupo}/evaluadores/{uuid_evaluador}": {
-            "put": {
-                "description": "Modifica los grupos de un evaluador con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "04 - Administración Académica"
-                ],
-                "summary": "Modifica los grupos de un evaluador",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "ID del curso a modificar",
-                        "name": "id_curso",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "ID del grupo a modificar",
-                        "name": "id_grupo",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "UUID del evaluador a asociar",
-                        "name": "uuid_evaluador",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Swagger.AddEvaluadorToGrupoSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
-                        }
-                    }
-                }
-            }
-        },
-        "/administracion-academica/cursos/{id_curso}/grupos/{id_grupo}/evaluadors/{uuid_evaluador}": {
-            "delete": {
-                "description": "Modifica los grupos de un evaluador con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "04 - Administración Académica"
-                ],
-                "summary": "Modifica los grupos de un evaluador",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "ID del curso a modificar",
-                        "name": "id_curso",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "ID del grupo a modificar",
-                        "name": "id_grupo",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "UUID del evaluador a asociar",
-                        "name": "uuid_evaluador",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Swagger.RemoveEvaluadorFromGrupoSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
-                        }
-                    }
-                }
-            }
-        },
-        "/administracion-academica/grupos": {
+        "/administracion-academica/cursos/{id_periodo}/{sigla_curso}/grupos": {
             "get": {
                 "description": "Lista todos los grupos",
                 "consumes": [
@@ -313,23 +133,36 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "04 - Administración Académica"
+                    "Administración Académica"
                 ],
                 "summary": "Lista de grupos",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Swagger.ListGruposSwagger"
-                            }
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -343,17 +176,31 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "04 - Administración Académica"
+                    "Administración Académica"
                 ],
                 "summary": "Agrega un nuevo grupo",
                 "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    },
                     {
                         "description": "Grupo a agregar",
                         "name": "input_grupo",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.AddNewGrupo"
+                            "$ref": "#/definitions/grupo.addRequest"
                         }
                     }
                 ],
@@ -361,19 +208,19 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.AddNewGrupoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
             }
         },
-        "/administracion-academica/grupos/{id_grupo}": {
+        "/administracion-academica/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}": {
             "get": {
                 "description": "Obtiene un grupo según su Id",
                 "consumes": [
@@ -383,14 +230,28 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "04 - Administración Académica"
+                    "Administración Académica"
                 ],
                 "summary": "Obtiene un grupo",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id del grupo a buscar",
-                        "name": "id_grupo",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del grupo",
+                        "name": "sigla_grupo",
                         "in": "path",
                         "required": true
                     }
@@ -399,13 +260,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.GetOneGrupoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -419,14 +280,28 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "04 - Administración Académica"
+                    "Administración Académica"
                 ],
                 "summary": "Modifica un grupo",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id del grupo a modificar",
-                        "name": "id_grupo",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del grupo",
+                        "name": "sigla_grupo",
                         "in": "path",
                         "required": true
                     },
@@ -436,7 +311,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.PutOneGrupo"
+                            "$ref": "#/definitions/grupo.putRequest"
                         }
                     }
                 ],
@@ -444,13 +319,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.PutOneGrupoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -464,14 +339,28 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "04 - Administración Académica"
+                    "Administración Académica"
                 ],
                 "summary": "Elimina un grupo",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id del grupo a eliminar",
-                        "name": "id_grupo",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del grupo",
+                        "name": "sigla_grupo",
                         "in": "path",
                         "required": true
                     }
@@ -480,13 +369,247 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.DeleteGrupoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-academica/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estudiantes/{uuid_estudiante}": {
+            "put": {
+                "description": "Modifica los grupos de un estudiante con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Administración Académica"
+                ],
+                "summary": "Modifica los grupos de un estudiante",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del grupo",
+                        "name": "sigla_grupo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "UUID del estudiante a asociar",
+                        "name": "uuid_estudiante",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.Json"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.Error"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Modifica los grupos de un estudiante con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Administración Académica"
+                ],
+                "summary": "Modifica los grupos de un estudiante",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del grupo",
+                        "name": "sigla_grupo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "UUID del estudiante a asociar",
+                        "name": "uuid_estudiante",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.Json"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-academica/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/evaluadores/{uuid_evaluador}": {
+            "put": {
+                "description": "Modifica los grupos de un evaluador con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Administración Académica"
+                ],
+                "summary": "Modifica los grupos de un evaluador",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del grupo",
+                        "name": "sigla_grupo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "UUID del evaluador a asociar",
+                        "name": "uuid_evaluador",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.Json"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-academica/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/evaluadors/{uuid_evaluador}": {
+            "delete": {
+                "description": "Modifica los grupos de un evaluador con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Administración Académica"
+                ],
+                "summary": "Modifica los grupos de un evaluador",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del grupo",
+                        "name": "sigla_grupo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "UUID del evaluador a asociar",
+                        "name": "uuid_evaluador",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.Json"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -502,7 +625,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "01 - Autenticación"
+                    "Autenticación"
                 ],
                 "summary": "Autenticación de administrador académico",
                 "parameters": [
@@ -512,7 +635,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.LoginAdministradorAcademico"
+                            "$ref": "#/definitions/auth.authAdministradorAcademicoRequest"
                         }
                     }
                 ],
@@ -520,16 +643,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Swagger.AuthenticationSwagger"
-                            }
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -545,20 +665,20 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "04 - Administración Académica"
+                    "Administración Académica"
                 ],
                 "summary": "Obtiene el perfil del administrador academico",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.GetMyAdministradorAcademicoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -572,17 +692,17 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "04 - Administración Académica"
+                    "Administración Académica"
                 ],
                 "summary": "Modifica mi perfil",
                 "parameters": [
                     {
-                        "description": "AdministradorAcademico a modificar",
+                        "description": "Administrador académico a modificar",
                         "name": "input_actualiza_administrador_academico",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.PutMyAdministradorAcademico"
+                            "$ref": "#/definitions/administrador_academico.putProfileRequest"
                         }
                     }
                 ],
@@ -590,13 +710,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.PutMyAdministradorAcademicoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -612,26 +732,26 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "04 - Administración Académica"
+                    "Administración Académica"
                 ],
                 "summary": "Obtiene los cursos de un administrador academico",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.GetCursosAdministradorAcademicoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
             }
         },
-        "/administracion-academica/me/cursos/{id_curso}": {
+        "/administracion-academica/me/cursos/{id_periodo}/{sigla_curso}": {
             "get": {
                 "description": "Obtiene un curso de un administrador academico según su token",
                 "consumes": [
@@ -641,14 +761,21 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "04 - Administración Académica"
+                    "Administración Académica"
                 ],
                 "summary": "Obtiene un curso de un administrador academico",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id del curso a buscar",
-                        "name": "id_curso",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso a buscar",
+                        "name": "sigla_curso",
                         "in": "path",
                         "required": true
                     }
@@ -657,19 +784,19 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.GetOneCursoAdministradorAcademicoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
             }
         },
-        "/administracion-academica/me/cursos/{id_curso}/grupos": {
+        "/administracion-academica/me/cursos/{id_periodo}/{sigla_curso}/grupos": {
             "get": {
                 "description": "Obtiene los grupos de un administrador academico según su token",
                 "consumes": [
@@ -679,14 +806,21 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "04 - Administración Académica"
+                    "Administración Académica"
                 ],
                 "summary": "Obtiene los grupos de un administrador academico",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id del curso a buscar",
-                        "name": "id_curso",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
                         "in": "path",
                         "required": true
                     }
@@ -695,19 +829,19 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.GetGruposAdministradorAcademicoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
             }
         },
-        "/administracion-academica/me/cursos/{id_curso}/grupos/{id_grupo}": {
+        "/administracion-academica/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}": {
             "get": {
                 "description": "Obtiene un grupo de un administrador academico según su token",
                 "consumes": [
@@ -717,21 +851,28 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "04 - Administración Académica"
+                    "Administración Académica"
                 ],
                 "summary": "Obtiene un grupo de un administrador academico",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id del curso a buscar",
-                        "name": "id_curso",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
                         "in": "path",
                         "required": true
                     },
                     {
                         "type": "string",
-                        "description": "Id del grupo a buscar",
-                        "name": "id_grupo",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del grupo",
+                        "name": "sigla_grupo",
                         "in": "path",
                         "required": true
                     }
@@ -740,13 +881,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.GetOneGrupoAdministradorAcademicoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -762,23 +903,20 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Lista de administradores-academicos",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Swagger.ListAdministradoresAcademicosSwagger"
-                            }
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -792,7 +930,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Agrega un nuevo administrador_academico",
                 "parameters": [
@@ -802,7 +940,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.AddNewAdministradorAcademico"
+                            "$ref": "#/definitions/administrador_academico.addRequest"
                         }
                     }
                 ],
@@ -810,13 +948,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.AddNewAdministradorAcademicoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -832,7 +970,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Agrega nuevos administrador_academicos de forma masiva",
                 "parameters": [
@@ -842,7 +980,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/administrador_academico.massive_add_input"
+                            "$ref": "#/definitions/administrador_academico.massiveAddRequest"
                         }
                     }
                 ],
@@ -850,13 +988,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/administrador_academico.massive_add_input"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -872,7 +1010,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Obtiene un administrador_academico",
                 "parameters": [
@@ -888,13 +1026,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.GetOneAdministradorAcademicoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -908,7 +1046,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Modifica un administrador_academico",
                 "parameters": [
@@ -920,12 +1058,12 @@ var doc = `{
                         "required": true
                     },
                     {
-                        "description": "AdministradorAcademico a modificar",
+                        "description": "Administrador académico a modificar",
                         "name": "input_actualiza_administrador_academico",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.PutOneAdministradorAcademico"
+                            "$ref": "#/definitions/administrador_academico.putRequest"
                         }
                     }
                 ],
@@ -933,13 +1071,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.PutOneAdministradorAcademicoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -953,7 +1091,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Elimina un administrador_academico",
                 "parameters": [
@@ -969,13 +1107,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.DeleteAdministradorAcademicoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -991,23 +1129,20 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Lista de administradores-ti",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Swagger.ListAdministradoresTiSwagger"
-                            }
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -1021,17 +1156,17 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Agrega un nuevo administrador_ti",
                 "parameters": [
                     {
-                        "description": "AdministradorTi a agregar",
+                        "description": "Administrador Ti a agregar",
                         "name": "input_administrador_ti",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.AddNewAdministradorTi"
+                            "$ref": "#/definitions/administrador_ti.addRequest"
                         }
                     }
                 ],
@@ -1039,13 +1174,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.AddNewAdministradorTiSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -1053,7 +1188,7 @@ var doc = `{
         },
         "/administracion-ti/administradores-ti/carga-masiva": {
             "post": {
-                "description": "Genera nuevos administrador_tis con los datos entregados",
+                "description": "Genera nuevos administrador_ti con los datos entregados",
                 "consumes": [
                     "application/json"
                 ],
@@ -1061,17 +1196,17 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
-                "summary": "Agrega nuevos administrador_tis de forma masiva",
+                "summary": "Agrega nuevos administrador_ti de forma masiva",
                 "parameters": [
                     {
-                        "description": "AdministradoresTi a agregar",
+                        "description": "Administradores Ti a agregar",
                         "name": "input_administrador_ti",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/administrador_ti.massive_add_input"
+                            "$ref": "#/definitions/administrador_ti.massiveAddRequest"
                         }
                     }
                 ],
@@ -1079,13 +1214,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/administrador_ti.massive_add_input"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -1101,7 +1236,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Obtiene un administrador_ti",
                 "parameters": [
@@ -1117,13 +1252,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.GetOneAdministradorTiSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -1137,7 +1272,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Modifica un administrador_ti",
                 "parameters": [
@@ -1149,12 +1284,12 @@ var doc = `{
                         "required": true
                     },
                     {
-                        "description": "AdministradorTi a modificar",
+                        "description": "Administrador Ti a modificar",
                         "name": "input_actualiza_administrador_ti",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.PutOneAdministradorTi"
+                            "$ref": "#/definitions/administrador_ti.putRequest"
                         }
                     }
                 ],
@@ -1162,13 +1297,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.PutOneAdministradorTiSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -1182,7 +1317,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Elimina un administrador_ti",
                 "parameters": [
@@ -1198,13 +1333,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.DeleteAdministradorTiSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -1220,61 +1355,20 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Lista de cursos",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Swagger.ListCursosSwagger"
-                            }
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "description": "Genera un nuevo curso con los datos entregados",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "05 - Administración Ti"
-                ],
-                "summary": "Agrega un nuevo curso",
-                "parameters": [
-                    {
-                        "description": "Curso a agregar",
-                        "name": "input_curso",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/Request.AddNewCurso"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Swagger.AddNewCursoSwagger"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -1290,7 +1384,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Agrega nuevos cursos de forma masiva",
                 "parameters": [
@@ -1300,7 +1394,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/curso.massive_add_input"
+                            "$ref": "#/definitions/curso.massiveAddRequest"
                         }
                     }
                 ],
@@ -1308,19 +1402,66 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.AddNewCursoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
             }
         },
-        "/administracion-ti/cursos/{id_curso}": {
+        "/administracion-ti/cursos/{id_periodo}": {
+            "post": {
+                "description": "Genera un nuevo curso con los datos entregados",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Administración Ti"
+                ],
+                "summary": "Agrega un nuevo curso",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Curso a agregar",
+                        "name": "input_curso",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/curso.addRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.Json"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-ti/cursos/{id_periodo}/{sigla_curso}": {
             "get": {
                 "description": "Obtiene un curso según su Id",
                 "consumes": [
@@ -1330,14 +1471,21 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Obtiene un curso",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id del curso a buscar",
-                        "name": "id_curso",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso a buscar",
+                        "name": "sigla_curso",
                         "in": "path",
                         "required": true
                     }
@@ -1346,13 +1494,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.GetOneCursoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -1366,14 +1514,21 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Modifica un curso",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id del curso a modificar",
-                        "name": "id_curso",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso a modificar",
+                        "name": "sigla_curso",
                         "in": "path",
                         "required": true
                     },
@@ -1383,7 +1538,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.PutOneCurso"
+                            "$ref": "#/definitions/curso.putRequest"
                         }
                     }
                 ],
@@ -1391,13 +1546,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.PutOneCursoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -1411,14 +1566,21 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Elimina un curso",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id del curso a eliminar",
-                        "name": "id_curso",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso a eliminar",
+                        "name": "sigla_curso",
                         "in": "path",
                         "required": true
                     }
@@ -1427,19 +1589,19 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.DeleteCursoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
             }
         },
-        "/administracion-ti/cursos/{id_curso}/administradores-academicos/{uuid_administrador_academico}": {
+        "/administracion-ti/cursos/{id_periodo}/{sigla_curso}/administradores-academicos/{uuid_administrador_academico}": {
             "put": {
                 "description": "Modifica los cursos de un administrador_academico con los datos entregados",
                 "consumes": [
@@ -1449,14 +1611,21 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Modifica los cursos de un administrador_academico",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "ID del curso a modificar",
-                        "name": "id_curso",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso a modificar",
+                        "name": "sigla_curso",
                         "in": "path",
                         "required": true
                     },
@@ -1472,19 +1641,19 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.AddAdministradorAcademicoToCursoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
             }
         },
-        "/administracion-ti/cursos/{id_curso}/estudiantes/{uuid_estudiante}": {
+        "/administracion-ti/cursos/{id_periodo}/{sigla_curso}/estudiantes/{uuid_estudiante}": {
             "put": {
                 "description": "Modifica los cursos de un estudiante con los datos entregados",
                 "consumes": [
@@ -1494,14 +1663,21 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Modifica los cursos de un estudiante",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "ID del curso a modificar",
-                        "name": "id_curso",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso a modificar",
+                        "name": "sigla_curso",
                         "in": "path",
                         "required": true
                     },
@@ -1517,19 +1693,19 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.AddEstudianteToCursoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
             }
         },
-        "/administracion-ti/cursos/{id_curso}/evaluadores/{uuid_evaluador}": {
+        "/administracion-ti/cursos/{id_periodo}/{sigla_curso}/evaluadores/{uuid_evaluador}": {
             "put": {
                 "description": "Modifica los cursos de un evaluador con los datos entregados",
                 "consumes": [
@@ -1539,14 +1715,21 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Modifica los cursos de un evaluador",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "ID del curso a modificar",
-                        "name": "id_curso",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso a modificar",
+                        "name": "sigla_curso",
                         "in": "path",
                         "required": true
                     },
@@ -1562,13 +1745,58 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.AddEvaluadorToCursoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-ti/cursos/{id_periodo}/{sigla_curso}/reporte-notas": {
+            "get": {
+                "description": "Obtiene un reporte de notas según el id de curso",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Administración Ti"
+                ],
+                "summary": "Obtiene un reporte de notas",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso a buscar",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.Json"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -1584,23 +1812,20 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Lista de estudiantes",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Swagger.ListEstudiantesSwagger"
-                            }
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -1614,7 +1839,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Agrega un nuevo estudiante",
                 "parameters": [
@@ -1624,7 +1849,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.AddNewEstudiante"
+                            "$ref": "#/definitions/estudiante.addRequest"
                         }
                     }
                 ],
@@ -1632,13 +1857,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.AddNewEstudianteSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -1654,7 +1879,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Agrega nuevos estudiantes de forma masiva",
                 "parameters": [
@@ -1664,7 +1889,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/estudiante.massive_add_input"
+                            "$ref": "#/definitions/estudiante.massiveAddRequest"
                         }
                     }
                 ],
@@ -1672,13 +1897,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.AddNewEstudiantesSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -1694,7 +1919,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Obtiene un estudiante",
                 "parameters": [
@@ -1710,13 +1935,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.GetOneEstudianteSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -1730,7 +1955,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Modifica un estudiante",
                 "parameters": [
@@ -1747,7 +1972,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.PutOneEstudiante"
+                            "$ref": "#/definitions/estudiante.putRequest"
                         }
                     }
                 ],
@@ -1755,13 +1980,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.PutOneEstudianteSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -1775,7 +2000,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Elimina un estudiante",
                 "parameters": [
@@ -1791,13 +2016,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.DeleteEstudianteSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -1813,23 +2038,20 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Lista de evaluadores",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Swagger.ListEvaluadoresSwagger"
-                            }
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -1843,7 +2065,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Agrega un nuevo evaluador",
                 "parameters": [
@@ -1853,7 +2075,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.AddNewEvaluador"
+                            "$ref": "#/definitions/evaluador.addRequest"
                         }
                     }
                 ],
@@ -1861,13 +2083,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.AddNewEvaluadorSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -1883,7 +2105,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Agrega nuevos evaluadores de forma masiva",
                 "parameters": [
@@ -1893,7 +2115,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/evaluador.massive_add_input"
+                            "$ref": "#/definitions/evaluador.massiveAddRequest"
                         }
                     }
                 ],
@@ -1901,13 +2123,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.AddNewEvaluadoresSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -1923,7 +2145,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Obtiene un evaluador",
                 "parameters": [
@@ -1939,13 +2161,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.GetOneEvaluadorSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -1959,7 +2181,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Modifica un evaluador",
                 "parameters": [
@@ -1976,7 +2198,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.PutOneEvaluador"
+                            "$ref": "#/definitions/evaluador.putRequest"
                         }
                     }
                 ],
@@ -1984,13 +2206,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.PutOneEvaluadorSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -2004,7 +2226,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Elimina un evaluador",
                 "parameters": [
@@ -2020,13 +2242,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.DeleteEvaluadorSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -2042,7 +2264,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Agrega nuevos grupos de forma masiva",
                 "parameters": [
@@ -2052,7 +2274,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/grupo.massive_add_input"
+                            "$ref": "#/definitions/grupo.massiveAddRequest"
                         }
                     }
                 ],
@@ -2060,13 +2282,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.AddNewGrupoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -2082,7 +2304,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "01 - Autenticación"
+                    "Autenticación"
                 ],
                 "summary": "Autenticación de administrador ti",
                 "parameters": [
@@ -2092,7 +2314,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.LoginAdministradorTi"
+                            "$ref": "#/definitions/auth.authAdministradorTiRequest"
                         }
                     }
                 ],
@@ -2100,16 +2322,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Swagger.AuthenticationSwagger"
-                            }
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -2125,20 +2344,20 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Obtiene el perfil del administrador ti",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.GetMyAdministradorTiSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -2152,17 +2371,17 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Modifica mi perfil",
                 "parameters": [
                     {
-                        "description": "AdministradorTi a modificar",
+                        "description": "Administrador Ti a modificar",
                         "name": "input_actualiza_administrador_ti",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.PutMyAdministradorTi"
+                            "$ref": "#/definitions/administrador_ti.putProfileRequest"
                         }
                     }
                 ],
@@ -2170,13 +2389,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.PutMyAdministradorTiSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -2192,7 +2411,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Agrega un nuevo periodo",
                 "parameters": [
@@ -2202,7 +2421,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.AddNewPeriodo"
+                            "$ref": "#/definitions/periodo.addRequest"
                         }
                     }
                 ],
@@ -2210,13 +2429,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.AddNewPeriodoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -2232,7 +2451,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Modifica un periodo",
                 "parameters": [
@@ -2249,7 +2468,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.PutOnePeriodo"
+                            "$ref": "#/definitions/periodo.putRequest"
                         }
                     }
                 ],
@@ -2257,13 +2476,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.PutOnePeriodoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -2277,7 +2496,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Elimina un periodo",
                 "parameters": [
@@ -2293,13 +2512,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.DeletePeriodoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -2315,7 +2534,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Agrega un nuevo rol",
                 "parameters": [
@@ -2325,7 +2544,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.AddNewRol"
+                            "$ref": "#/definitions/rol.addRequest"
                         }
                     }
                 ],
@@ -2333,13 +2552,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.AddNewRolSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -2355,7 +2574,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Modifica un rol",
                 "parameters": [
@@ -2372,7 +2591,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.PutOneRol"
+                            "$ref": "#/definitions/rol.putRequest"
                         }
                     }
                 ],
@@ -2380,13 +2599,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.PutOneRolSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -2400,7 +2619,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "05 - Administración Ti"
+                    "Administración Ti"
                 ],
                 "summary": "Elimina un rol",
                 "parameters": [
@@ -2416,13 +2635,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.DeleteRolSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -2438,7 +2657,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "01 - Autenticación"
+                    "Autenticación"
                 ],
                 "summary": "Autenticación de estudiante",
                 "parameters": [
@@ -2448,7 +2667,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.LoginEstudiante"
+                            "$ref": "#/definitions/auth.authEstudianteRequest"
                         }
                     }
                 ],
@@ -2456,16 +2675,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Swagger.AuthenticationSwagger"
-                            }
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -2481,20 +2697,20 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "02 - Estudiantes"
+                    "Estudiantes"
                 ],
                 "summary": "Obtiene el perfil del estudiante",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.GetMyEstudianteSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -2508,7 +2724,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "02 - Estudiantes"
+                    "Estudiantes"
                 ],
                 "summary": "Modifica mi perfil",
                 "parameters": [
@@ -2518,7 +2734,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.PutMyEstudiante"
+                            "$ref": "#/definitions/estudiante.putProfileRequest"
                         }
                     }
                 ],
@@ -2526,13 +2742,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.PutMyEstudianteSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -2548,26 +2764,26 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "02 - Estudiantes"
+                    "Estudiantes"
                 ],
                 "summary": "Obtiene los cursos de un estudiante",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.GetCursosEstudianteSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
             }
         },
-        "/estudiantes/me/cursos/{id_curso}": {
+        "/estudiantes/me/cursos/{id_periodo}/{sigla_curso}": {
             "get": {
                 "description": "Obtiene un curso de un estudiante según su token",
                 "consumes": [
@@ -2577,14 +2793,21 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "02 - Estudiantes"
+                    "Estudiantes"
                 ],
                 "summary": "Obtiene un curso de un estudiante",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id del curso a buscar",
-                        "name": "id_curso",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso a buscar",
+                        "name": "sigla_curso",
                         "in": "path",
                         "required": true
                     }
@@ -2593,19 +2816,19 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.GetOneCursoEstudianteSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
             }
         },
-        "/estudiantes/me/cursos/{id_curso}/grupos": {
+        "/estudiantes/me/cursos/{id_periodo}/{sigla_curso}/grupos": {
             "get": {
                 "description": "Obtiene los grupos de un estudiante según su token",
                 "consumes": [
@@ -2615,14 +2838,21 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "02 - Estudiantes"
+                    "Estudiantes"
                 ],
                 "summary": "Obtiene los grupos de un estudiante",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id del curso a buscar",
-                        "name": "id_curso",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
                         "in": "path",
                         "required": true
                     }
@@ -2631,19 +2861,19 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.GetGruposEstudianteSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
             }
         },
-        "/estudiantes/me/cursos/{id_curso}/grupos/{id_grupo}": {
+        "/estudiantes/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}": {
             "get": {
                 "description": "Obtiene un grupo de un estudiante según su token",
                 "consumes": [
@@ -2653,21 +2883,28 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "02 - Estudiantes"
+                    "Estudiantes"
                 ],
                 "summary": "Obtiene un grupo de un estudiante",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id del curso a buscar",
-                        "name": "id_curso",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
                         "in": "path",
                         "required": true
                     },
                     {
                         "type": "string",
-                        "description": "Id del grupo a buscar",
-                        "name": "id_grupo",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del grupo",
+                        "name": "sigla_grupo",
                         "in": "path",
                         "required": true
                     }
@@ -2676,19 +2913,19 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.GetOneGrupoEstudianteSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
             }
         },
-        "/estudiantes/me/cursos/{id_curso}/grupos/{id_grupo}/estadisticas/evolucion-por-competencia": {
+        "/estudiantes/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-por-competencia": {
             "get": {
                 "description": "Obtiene la evolución de un estudiante según competencia",
                 "consumes": [
@@ -2698,21 +2935,28 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "02 - Estudiantes"
+                    "Estudiantes"
                 ],
                 "summary": "Evolución por competencia",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id del curso",
-                        "name": "id_curso",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
                         "in": "path",
                         "required": true
                     },
                     {
                         "type": "string",
-                        "description": "Id del grupo",
-                        "name": "id_grupo",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del grupo",
+                        "name": "sigla_grupo",
                         "in": "path",
                         "required": true
                     }
@@ -2721,22 +2965,19 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Swagger.EvolucionEstudiantePorCompetenciaSwagger"
-                            }
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
             }
         },
-        "/estudiantes/me/cursos/{id_curso}/grupos/{id_grupo}/estadisticas/evolucion-por-evaluacion": {
+        "/estudiantes/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-por-evaluacion": {
             "get": {
                 "description": "Obtiene la evolución de un estudiante según evaluacion",
                 "consumes": [
@@ -2746,21 +2987,28 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "02 - Estudiantes"
+                    "Estudiantes"
                 ],
                 "summary": "Evolución por evaluacion",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id del curso",
-                        "name": "id_curso",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
                         "in": "path",
                         "required": true
                     },
                     {
                         "type": "string",
-                        "description": "Id del grupo",
-                        "name": "id_grupo",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del grupo",
+                        "name": "sigla_grupo",
                         "in": "path",
                         "required": true
                     }
@@ -2769,22 +3017,19 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Swagger.EvolucionEstudiantePorEvaluacionSwagger"
-                            }
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
             }
         },
-        "/estudiantes/me/cursos/{id_curso}/grupos/{id_grupo}/evaluaciones": {
+        "/estudiantes/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/evaluaciones": {
             "get": {
                 "description": "Lista todas los evaluaciones disponibles de un estudiante de un grupo",
                 "consumes": [
@@ -2794,21 +3039,28 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "02 - Estudiantes"
+                    "Estudiantes"
                 ],
                 "summary": "Lista de evaluaciones de un grupo",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id del curso",
-                        "name": "id_curso",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
                         "in": "path",
                         "required": true
                     },
                     {
                         "type": "string",
-                        "description": "Id del grupo",
-                        "name": "id_grupo",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del grupo",
+                        "name": "sigla_grupo",
                         "in": "path",
                         "required": true
                     }
@@ -2817,22 +3069,19 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Swagger.ListEvaluacionesGrupoEstudianteSwagger"
-                            }
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
             }
         },
-        "/estudiantes/me/cursos/{id_curso}/grupos/{id_grupo}/evaluaciones/{id_evaluacion}/calificacion": {
+        "/estudiantes/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/evaluaciones/{id_evaluacion}/calificacion": {
             "get": {
                 "description": "Obtiene una calificación de un estudiante",
                 "consumes": [
@@ -2842,21 +3091,28 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "03 - Evaluadores"
+                    "Evaluadores"
                 ],
                 "summary": "Obtiene una calificación",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id del curso",
-                        "name": "id_curso",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
                         "in": "path",
                         "required": true
                     },
                     {
                         "type": "string",
-                        "description": "Id del grupo",
-                        "name": "id_grupo",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del grupo",
+                        "name": "sigla_grupo",
                         "in": "path",
                         "required": true
                     },
@@ -2872,16 +3128,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Swagger.ListEvaluacionesSwagger"
-                            }
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -2897,7 +3150,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "01 - Autenticación"
+                    "Autenticación"
                 ],
                 "summary": "Autenticación de evaluador",
                 "parameters": [
@@ -2907,7 +3160,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.LoginEvaluador"
+                            "$ref": "#/definitions/auth.authEvaluadorRequest"
                         }
                     }
                 ],
@@ -2915,16 +3168,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Swagger.AuthenticationSwagger"
-                            }
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -2940,20 +3190,20 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "03 - Evaluadores"
+                    "Evaluadores"
                 ],
                 "summary": "Obtiene el perfil del evaluador",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.GetMyEvaluadorSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -2967,7 +3217,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "03 - Evaluadores"
+                    "Evaluadores"
                 ],
                 "summary": "Modifica mi perfil",
                 "parameters": [
@@ -2977,7 +3227,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.PutMyEvaluador"
+                            "$ref": "#/definitions/evaluador.putProfileRequest"
                         }
                     }
                 ],
@@ -2985,13 +3235,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.PutMyEvaluadorSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -3007,26 +3257,26 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "03 - Evaluadores"
+                    "Evaluadores"
                 ],
                 "summary": "Obtiene los cursos de un evaluador",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.GetCursosEvaluadorSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
             }
         },
-        "/evaluadores/me/cursos/{id_curso}": {
+        "/evaluadores/me/cursos/{id_periodo}/{sigla_curso}": {
             "get": {
                 "description": "Obtiene un curso de un evaluador según su token",
                 "consumes": [
@@ -3036,14 +3286,21 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "03 - Evaluadores"
+                    "Evaluadores"
                 ],
                 "summary": "Obtiene un curso de un evaluador",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id del curso a buscar",
-                        "name": "id_curso",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso a buscar",
+                        "name": "sigla_curso",
                         "in": "path",
                         "required": true
                     }
@@ -3052,19 +3309,19 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.GetOneCursoEvaluadorSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
             }
         },
-        "/evaluadores/me/cursos/{id_curso}/grupos": {
+        "/evaluadores/me/cursos/{id_periodo}/{sigla_curso}/grupos": {
             "get": {
                 "description": "Obtiene los grupos de un evaluador según su token",
                 "consumes": [
@@ -3074,14 +3331,21 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "03 - Evaluadores"
+                    "Evaluadores"
                 ],
                 "summary": "Obtiene los grupos de un evaluador",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id del curso a buscar",
-                        "name": "id_curso",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
                         "in": "path",
                         "required": true
                     }
@@ -3090,19 +3354,19 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.GetGruposEvaluadorSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
             }
         },
-        "/evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}": {
+        "/evaluadores/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}": {
             "get": {
                 "description": "Obtiene un grupo de un evaluador según su token",
                 "consumes": [
@@ -3112,21 +3376,28 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "03 - Evaluadores"
+                    "Evaluadores"
                 ],
                 "summary": "Obtiene un grupo de un evaluador",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id del curso a buscar",
-                        "name": "id_curso",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
                         "in": "path",
                         "required": true
                     },
                     {
                         "type": "string",
-                        "description": "Id del grupo a buscar",
-                        "name": "id_grupo",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del grupo",
+                        "name": "sigla_grupo",
                         "in": "path",
                         "required": true
                     }
@@ -3135,19 +3406,19 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.GetOneGrupoEvaluadorSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
             }
         },
-        "/evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/estadisticas/evolucion-por-competencia": {
+        "/evaluadores/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-por-competencia": {
             "get": {
                 "description": "Obtiene la evolución de un grupo según competencia",
                 "consumes": [
@@ -3157,21 +3428,28 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "03 - Evaluadores"
+                    "Evaluadores"
                 ],
                 "summary": "Evolución por competencia",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id del curso",
-                        "name": "id_curso",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
                         "in": "path",
                         "required": true
                     },
                     {
                         "type": "string",
-                        "description": "Id del grupo",
-                        "name": "id_grupo",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del grupo",
+                        "name": "sigla_grupo",
                         "in": "path",
                         "required": true
                     }
@@ -3180,22 +3458,19 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Swagger.EvolucionGrupoPorCompetenciaSwagger"
-                            }
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
             }
         },
-        "/evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/estadisticas/evolucion-por-evaluacion": {
+        "/evaluadores/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-por-evaluacion": {
             "get": {
                 "description": "Obtiene la evolución de un grupo según evaluacion",
                 "consumes": [
@@ -3205,21 +3480,28 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "03 - Evaluadores"
+                    "Evaluadores"
                 ],
                 "summary": "Evolución por evaluacion",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id del curso",
-                        "name": "id_curso",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
                         "in": "path",
                         "required": true
                     },
                     {
                         "type": "string",
-                        "description": "Id del grupo",
-                        "name": "id_grupo",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del grupo",
+                        "name": "sigla_grupo",
                         "in": "path",
                         "required": true
                     }
@@ -3228,24 +3510,21 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Swagger.EvolucionGrupoPorEvaluacionSwagger"
-                            }
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
             }
         },
-        "/evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/estudiantes/{id_estudiante}/evaluaciones/{id_evaluacion}/calificacion": {
-            "post": {
-                "description": "Genera una calificación para un estudiante",
+        "/evaluadores/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estudiantes/{id_estudiante}/evaluaciones/{id_evaluacion}/calificacion": {
+            "put": {
+                "description": "Cambia una calificación para un estudiante",
                 "consumes": [
                     "application/json"
                 ],
@@ -3253,21 +3532,28 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "03 - Evaluadores"
+                    "Evaluadores"
                 ],
-                "summary": "Califica un estudiante",
+                "summary": "Cambia la calificación de un estudiante",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id del curso",
-                        "name": "id_curso",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
                         "in": "path",
                         "required": true
                     },
                     {
                         "type": "string",
-                        "description": "Id del grupo",
-                        "name": "id_grupo",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del grupo",
+                        "name": "sigla_grupo",
                         "in": "path",
                         "required": true
                     },
@@ -3291,7 +3577,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.AddNewCalificacionEstudiante"
+                            "$ref": "#/definitions/calificacion_estudiante.putRequest"
                         }
                     }
                 ],
@@ -3299,22 +3585,151 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Swagger.AddNewCalificacionEstudianteSwagger"
-                            }
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Genera una calificación para un estudiante",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Evaluadores"
+                ],
+                "summary": "Califica un estudiante",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del grupo",
+                        "name": "sigla_grupo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Id del estudiante",
+                        "name": "id_estudiante",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Id de la evaluacion",
+                        "name": "id_evaluacion",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "CalificacionEstudiante a agregar",
+                        "name": "input_calificacion_estudiante",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/calificacion_estudiante.addRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.Json"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
             }
         },
-        "/evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/evaluaciones": {
+        "/evaluadores/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estudiantes/{uuid_estudiante}/evaluaciones-rendidas": {
+            "get": {
+                "description": "Lista todas los evaluaciones rendidas de un estudiante",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Estudiantes"
+                ],
+                "summary": "Lista de evaluaciones rendidas por un estudiante",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del grupo",
+                        "name": "sigla_grupo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "UUID del estudiante a eliminar",
+                        "name": "uuid_estudiante",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.Json"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/evaluadores/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/evaluaciones": {
             "get": {
                 "description": "Lista todas los evaluaciones disponibles de un evaluador de un grupo",
                 "consumes": [
@@ -3324,21 +3739,28 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "03 - Evaluadores"
+                    "Evaluadores"
                 ],
                 "summary": "Lista de evaluaciones de un grupo",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id del curso",
-                        "name": "id_curso",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
                         "in": "path",
                         "required": true
                     },
                     {
                         "type": "string",
-                        "description": "Id del grupo",
-                        "name": "id_grupo",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del grupo",
+                        "name": "sigla_grupo",
                         "in": "path",
                         "required": true
                     }
@@ -3347,16 +3769,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Swagger.ListEvaluacionesGrupoEvaluadorSwagger"
-                            }
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -3370,21 +3789,28 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "03 - Evaluadores"
+                    "Evaluadores"
                 ],
                 "summary": "Agrega una evaluación",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id del curso",
-                        "name": "id_curso",
+                        "description": "Id del periodo",
+                        "name": "id_periodo",
                         "in": "path",
                         "required": true
                     },
                     {
                         "type": "string",
-                        "description": "Id del grupo",
-                        "name": "id_grupo",
+                        "description": "Sigla del curso",
+                        "name": "sigla_curso",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sigla del grupo",
+                        "name": "sigla_grupo",
                         "in": "path",
                         "required": true
                     },
@@ -3394,7 +3820,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Request.AddNewEvaluacion"
+                            "$ref": "#/definitions/evaluacion.addRequest"
                         }
                     }
                 ],
@@ -3402,16 +3828,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Swagger.AddNewEvaluacionSwagger"
-                            }
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -3427,23 +3850,20 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "00 - Rutas públicas"
+                    "Rutas públicas"
                 ],
                 "summary": "Lista de periodos",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Swagger.ListPeriodosSwagger"
-                            }
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -3459,7 +3879,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "00 - Rutas públicas"
+                    "Rutas públicas"
                 ],
                 "summary": "Obtiene un periodo",
                 "parameters": [
@@ -3475,13 +3895,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.GetOnePeriodoSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -3497,23 +3917,20 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "00 - Rutas públicas"
+                    "Rutas públicas"
                 ],
                 "summary": "Lista de roles",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Swagger.ListRolesSwagger"
-                            }
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -3529,7 +3946,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "00 - Rutas públicas"
+                    "Rutas públicas"
                 ],
                 "summary": "Obtiene un rol",
                 "parameters": [
@@ -3545,13 +3962,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Swagger.GetOneRolSwagger"
+                            "$ref": "#/definitions/api_helpers.Json"
                         }
                     },
                     "400": {
                         "description": "Bad request",
                         "schema": {
-                            "$ref": "#/definitions/api_helpers.ResponseError"
+                            "$ref": "#/definitions/api_helpers.Error"
                         }
                     }
                 }
@@ -3559,7 +3976,7 @@ var doc = `{
         }
     },
     "definitions": {
-        "Request.AddNewAdministradorAcademico": {
+        "administrador_academico.addRequest": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_academico": {
@@ -3588,257 +4005,58 @@ var doc = `{
                 }
             }
         },
-        "Request.AddNewAdministradorTi": {
+        "administrador_academico.curso": {
             "type": "object",
             "properties": {
-                "apellidos_administrador_ti": {
+                "periodo": {
                     "type": "string"
                 },
-                "correo_electronico_administrador_ti": {
-                    "type": "string"
-                },
-                "hash_contrasena_administrador_ti": {
-                    "type": "string"
-                },
-                "id_grupo": {
-                    "type": "integer"
-                },
-                "id_rol": {
-                    "type": "integer"
-                },
-                "nombres_administrador_ti": {
-                    "type": "string"
-                },
-                "rut_administrador_ti": {
-                    "type": "string"
-                },
-                "telefono_celular_administrador_ti": {
-                    "type": "string"
-                },
-                "telefono_fijo_administrador_ti": {
+                "sigla": {
                     "type": "string"
                 }
             }
         },
-        "Request.AddNewCalificacionEstudiante": {
+        "administrador_academico.massiveAddRequest": {
             "type": "object",
             "properties": {
-                "asunto_principal_consulta_calificacion_estudiante": {
-                    "type": "string"
-                },
-                "categoria_observador_calificacion_estudiante": {
-                    "type": "string"
-                },
-                "complejidad_caso_calificacion_estudiante": {
-                    "type": "string"
-                },
-                "entorno_clinico_calificacion_estudiante": {
-                    "type": "string"
-                },
-                "id_periodo": {
-                    "type": "integer"
-                },
-                "nombre_calificacion_estudiante": {
-                    "type": "string"
-                },
-                "numero_observaciones_previas_calificacion_estudiante": {
-                    "type": "string"
-                },
-                "observacion_calificacion_calificacion_estudiante": {
-                    "type": "string"
-                },
-                "paciente_calificacion_estudiante": {
-                    "type": "string"
-                },
-                "puntajes_calificacion_estudiante": {
+                "administradores_academicos": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/Request.PuntajesCalificacionEstudiante"
+                        "type": "object",
+                        "properties": {
+                            "apellidos_administrador_academico": {
+                                "type": "string"
+                            },
+                            "correo_electronico_administrador_academico": {
+                                "type": "string"
+                            },
+                            "cursos": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/administrador_academico.curso"
+                                }
+                            },
+                            "hash_contrasena_administrador_academico": {
+                                "type": "string"
+                            },
+                            "nombres_administrador_academico": {
+                                "type": "string"
+                            },
+                            "rut_administrador_academico": {
+                                "type": "string"
+                            },
+                            "telefono_celular_administrador_academico": {
+                                "type": "string"
+                            },
+                            "telefono_fijo_administrador_academico": {
+                                "type": "string"
+                            }
+                        }
                     }
-                },
-                "tiempo_utilizado_calificacion_estudiante": {
-                    "type": "integer"
-                },
-                "valoracion_general_calificacion_estudiante": {
-                    "type": "integer"
                 }
             }
         },
-        "Request.AddNewCurso": {
-            "type": "object",
-            "properties": {
-                "id_periodo": {
-                    "type": "integer"
-                },
-                "nombre_curso": {
-                    "type": "string"
-                },
-                "sigla_curso": {
-                    "type": "string"
-                }
-            }
-        },
-        "Request.AddNewEstudiante": {
-            "type": "object",
-            "properties": {
-                "apellidos_estudiante": {
-                    "type": "string"
-                },
-                "correo_electronico_estudiante": {
-                    "type": "string"
-                },
-                "hash_contrasena_estudiante": {
-                    "type": "string"
-                },
-                "id_rol": {
-                    "type": "integer"
-                },
-                "nombres_estudiante": {
-                    "type": "string"
-                },
-                "rut_estudiante": {
-                    "type": "string"
-                },
-                "telefono_celular_estudiante": {
-                    "type": "string"
-                },
-                "telefono_fijo_estudiante": {
-                    "type": "string"
-                }
-            }
-        },
-        "Request.AddNewEvaluacion": {
-            "type": "object",
-            "properties": {
-                "nombre_evaluacion": {
-                    "type": "string"
-                }
-            }
-        },
-        "Request.AddNewEvaluador": {
-            "type": "object",
-            "properties": {
-                "apellidos_evaluador": {
-                    "type": "string"
-                },
-                "cargo_evaluador": {
-                    "type": "string"
-                },
-                "correo_electronico_evaluador": {
-                    "type": "string"
-                },
-                "hash_contrasena_evaluador": {
-                    "type": "string"
-                },
-                "id_rol": {
-                    "type": "integer"
-                },
-                "nombres_evaluador": {
-                    "type": "string"
-                },
-                "recinto_evaluador": {
-                    "type": "string"
-                },
-                "rut_evaluador": {
-                    "type": "string"
-                },
-                "telefono_celular_evaluador": {
-                    "type": "string"
-                },
-                "telefono_fijo_evaluador": {
-                    "type": "string"
-                }
-            }
-        },
-        "Request.AddNewGrupo": {
-            "type": "object",
-            "properties": {
-                "id_curso": {
-                    "type": "integer"
-                },
-                "nombre_grupo": {
-                    "type": "string"
-                },
-                "sigla_grupo": {
-                    "type": "string"
-                }
-            }
-        },
-        "Request.AddNewPeriodo": {
-            "type": "object",
-            "properties": {
-                "nombre_periodo": {
-                    "type": "string"
-                }
-            }
-        },
-        "Request.AddNewRol": {
-            "type": "object",
-            "properties": {
-                "nombre_rol": {
-                    "type": "string"
-                }
-            }
-        },
-        "Request.LoginAdministradorAcademico": {
-            "type": "object",
-            "properties": {
-                "correo_electronico_administrador_academico": {
-                    "type": "string"
-                },
-                "hash_contrasena_administrador_academico": {
-                    "type": "string"
-                }
-            }
-        },
-        "Request.LoginAdministradorTi": {
-            "type": "object",
-            "properties": {
-                "correo_electronico_administrador_ti": {
-                    "type": "string"
-                },
-                "hash_contrasena_administrador_ti": {
-                    "type": "string"
-                }
-            }
-        },
-        "Request.LoginEstudiante": {
-            "type": "object",
-            "properties": {
-                "correo_electronico_estudiante": {
-                    "type": "string"
-                },
-                "hash_contrasena_estudiante": {
-                    "type": "string"
-                }
-            }
-        },
-        "Request.LoginEvaluador": {
-            "type": "object",
-            "properties": {
-                "correo_electronico_evaluador": {
-                    "type": "string"
-                },
-                "hash_contrasena_evaluador": {
-                    "type": "string"
-                }
-            }
-        },
-        "Request.PuntajesCalificacionEstudiante": {
-            "type": "object",
-            "properties": {
-                "calificacion_puntaje": {
-                    "type": "integer"
-                },
-                "feedback_puntaje": {
-                    "type": "string"
-                },
-                "id_competencia": {
-                    "type": "string"
-                }
-            }
-        },
-        "Request.PutMyAdministradorAcademico": {
+        "administrador_academico.putProfileRequest": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_academico": {
@@ -3870,7 +4088,102 @@ var doc = `{
                 }
             }
         },
-        "Request.PutMyAdministradorTi": {
+        "administrador_academico.putRequest": {
+            "type": "object",
+            "properties": {
+                "apellidos_administrador_academico": {
+                    "type": "string"
+                },
+                "correo_electronico_administrador_academico": {
+                    "type": "string"
+                },
+                "hash_contrasena_administrador_academico": {
+                    "type": "string"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_administrador_academico": {
+                    "type": "string"
+                },
+                "rut_administrador_academico": {
+                    "type": "string"
+                },
+                "telefono_celular_administrador_academico": {
+                    "type": "string"
+                },
+                "telefono_fijo_administrador_academico": {
+                    "type": "string"
+                }
+            }
+        },
+        "administrador_ti.addRequest": {
+            "type": "object",
+            "properties": {
+                "apellidos_administrador_ti": {
+                    "type": "string"
+                },
+                "correo_electronico_administrador_ti": {
+                    "type": "string"
+                },
+                "hash_contrasena_administrador_ti": {
+                    "type": "string"
+                },
+                "id_grupo": {
+                    "type": "integer"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_administrador_ti": {
+                    "type": "string"
+                },
+                "rut_administrador_ti": {
+                    "type": "string"
+                },
+                "telefono_celular_administrador_ti": {
+                    "type": "string"
+                },
+                "telefono_fijo_administrador_ti": {
+                    "type": "string"
+                }
+            }
+        },
+        "administrador_ti.massiveAddRequest": {
+            "type": "object",
+            "properties": {
+                "administradores_ti": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "apellidos_administrador_ti": {
+                                "type": "string"
+                            },
+                            "correo_electronico_administrador_ti": {
+                                "type": "string"
+                            },
+                            "hash_contrasena_administrador_ti": {
+                                "type": "string"
+                            },
+                            "nombres_administrador_ti": {
+                                "type": "string"
+                            },
+                            "rut_administrador_ti": {
+                                "type": "string"
+                            },
+                            "telefono_celular_administrador_ti": {
+                                "type": "string"
+                            },
+                            "telefono_fijo_administrador_ti": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "administrador_ti.putProfileRequest": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_ti": {
@@ -3905,73 +4218,7 @@ var doc = `{
                 }
             }
         },
-        "Request.PutMyEstudiante": {
-            "type": "object",
-            "properties": {
-                "hash_contrasena_estudiante": {
-                    "type": "string"
-                },
-                "hash_nueva_contrasena_estudiante": {
-                    "type": "string"
-                },
-                "telefono_celular_estudiante": {
-                    "type": "string"
-                },
-                "telefono_fijo_estudiante": {
-                    "type": "string"
-                }
-            }
-        },
-        "Request.PutMyEvaluador": {
-            "type": "object",
-            "properties": {
-                "cargo_evaluador": {
-                    "type": "string"
-                },
-                "hash_contrasena_evaluador": {
-                    "type": "string"
-                },
-                "hash_nueva_contrasena_evaluador": {
-                    "type": "string"
-                },
-                "telefono_celular_evaluador": {
-                    "type": "string"
-                },
-                "telefono_fijo_evaluador": {
-                    "type": "string"
-                }
-            }
-        },
-        "Request.PutOneAdministradorAcademico": {
-            "type": "object",
-            "properties": {
-                "apellidos_administrador_academico": {
-                    "type": "string"
-                },
-                "correo_electronico_administrador_academico": {
-                    "type": "string"
-                },
-                "hash_contrasena_administrador_academico": {
-                    "type": "string"
-                },
-                "id_rol": {
-                    "type": "integer"
-                },
-                "nombres_administrador_academico": {
-                    "type": "string"
-                },
-                "rut_administrador_academico": {
-                    "type": "string"
-                },
-                "telefono_celular_administrador_academico": {
-                    "type": "string"
-                },
-                "telefono_fijo_administrador_academico": {
-                    "type": "string"
-                }
-            }
-        },
-        "Request.PutOneAdministradorTi": {
+        "administrador_ti.putRequest": {
             "type": "object",
             "properties": {
                 "apellidos_administrador_ti": {
@@ -4003,11 +4250,232 @@ var doc = `{
                 }
             }
         },
-        "Request.PutOneCurso": {
+        "api_helpers.Error": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "api_helpers.Json": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object"
+                },
+                "meta": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "auth.authAdministradorAcademicoRequest": {
+            "type": "object",
+            "properties": {
+                "correo_electronico_administrador_academico": {
+                    "type": "string"
+                },
+                "hash_contrasena_administrador_academico": {
+                    "type": "string"
+                }
+            }
+        },
+        "auth.authAdministradorTiRequest": {
+            "type": "object",
+            "properties": {
+                "correo_electronico_administrador_ti": {
+                    "type": "string"
+                },
+                "hash_contrasena_administrador_ti": {
+                    "type": "string"
+                }
+            }
+        },
+        "auth.authEstudianteRequest": {
+            "type": "object",
+            "properties": {
+                "correo_electronico_estudiante": {
+                    "type": "string"
+                },
+                "hash_contrasena_estudiante": {
+                    "type": "string"
+                }
+            }
+        },
+        "auth.authEvaluadorRequest": {
+            "type": "object",
+            "properties": {
+                "correo_electronico_evaluador": {
+                    "type": "string"
+                },
+                "hash_contrasena_evaluador": {
+                    "type": "string"
+                }
+            }
+        },
+        "calificacion_estudiante.addPuntaje": {
+            "type": "object",
+            "properties": {
+                "calificacion_puntaje": {
+                    "type": "integer"
+                },
+                "feedback_puntaje": {
+                    "type": "string"
+                },
+                "id_competencia": {
+                    "type": "string"
+                }
+            }
+        },
+        "calificacion_estudiante.addRequest": {
+            "type": "object",
+            "properties": {
+                "asunto_principal_consulta_calificacion_estudiante": {
+                    "type": "string"
+                },
+                "categoria_observador_calificacion_estudiante": {
+                    "type": "string"
+                },
+                "complejidad_caso_calificacion_estudiante": {
+                    "type": "string"
+                },
+                "entorno_clinico_calificacion_estudiante": {
+                    "type": "string"
+                },
+                "id_periodo": {
+                    "type": "integer"
+                },
+                "nombre_calificacion_estudiante": {
+                    "type": "string"
+                },
+                "numero_observaciones_previas_calificacion_estudiante": {
+                    "type": "string"
+                },
+                "observacion_calificacion_calificacion_estudiante": {
+                    "type": "string"
+                },
+                "paciente_calificacion_estudiante": {
+                    "type": "string"
+                },
+                "puntajes_calificacion_estudiante": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/calificacion_estudiante.addPuntaje"
+                    }
+                },
+                "tiempo_utilizado_calificacion_estudiante": {
+                    "type": "integer"
+                },
+                "valoracion_general_calificacion_estudiante": {
+                    "type": "integer"
+                }
+            }
+        },
+        "calificacion_estudiante.putPuntaje": {
+            "type": "object",
+            "properties": {
+                "calificacion_puntaje": {
+                    "type": "integer"
+                },
+                "feedback_puntaje": {
+                    "type": "string"
+                },
+                "id_competencia": {
+                    "type": "string"
+                }
+            }
+        },
+        "calificacion_estudiante.putRequest": {
+            "type": "object",
+            "properties": {
+                "asunto_principal_consulta_calificacion_estudiante": {
+                    "type": "string"
+                },
+                "categoria_observador_calificacion_estudiante": {
+                    "type": "string"
+                },
+                "complejidad_caso_calificacion_estudiante": {
+                    "type": "string"
+                },
+                "entorno_clinico_calificacion_estudiante": {
+                    "type": "string"
+                },
+                "id_periodo": {
+                    "type": "integer"
+                },
+                "nombre_calificacion_estudiante": {
+                    "type": "string"
+                },
+                "numero_observaciones_previas_calificacion_estudiante": {
+                    "type": "string"
+                },
+                "observacion_calificacion_calificacion_estudiante": {
+                    "type": "string"
+                },
+                "paciente_calificacion_estudiante": {
+                    "type": "string"
+                },
+                "puntajes_calificacion_estudiante": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/calificacion_estudiante.putPuntaje"
+                    }
+                },
+                "tiempo_utilizado_calificacion_estudiante": {
+                    "type": "integer"
+                },
+                "valoracion_general_calificacion_estudiante": {
+                    "type": "integer"
+                }
+            }
+        },
+        "curso.addRequest": {
+            "type": "object",
+            "properties": {
+                "nombre_curso": {
+                    "type": "string"
+                },
+                "sigla_curso": {
+                    "type": "string"
+                }
+            }
+        },
+        "curso.massiveAddRequest": {
+            "type": "object",
+            "properties": {
+                "cursos": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "id_periodo": {
+                                "type": "integer"
+                            },
+                            "nombre_curso": {
+                                "type": "string"
+                            },
+                            "sigla_curso": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "curso.putRequest": {
             "type": "object",
             "properties": {
                 "id_periodo": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "nombre_curso": {
                     "type": "string"
@@ -4017,7 +4485,107 @@ var doc = `{
                 }
             }
         },
-        "Request.PutOneEstudiante": {
+        "estudiante.addRequest": {
+            "type": "object",
+            "properties": {
+                "apellidos_estudiante": {
+                    "type": "string"
+                },
+                "correo_electronico_estudiante": {
+                    "type": "string"
+                },
+                "hash_contrasena_estudiante": {
+                    "type": "string"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_estudiante": {
+                    "type": "string"
+                },
+                "rut_estudiante": {
+                    "type": "string"
+                },
+                "telefono_celular_estudiante": {
+                    "type": "string"
+                },
+                "telefono_fijo_estudiante": {
+                    "type": "string"
+                }
+            }
+        },
+        "estudiante.grupo": {
+            "type": "object",
+            "properties": {
+                "periodo": {
+                    "type": "string"
+                },
+                "sigla_curso": {
+                    "type": "string"
+                },
+                "sigla_grupo": {
+                    "type": "string"
+                }
+            }
+        },
+        "estudiante.massiveAddRequest": {
+            "type": "object",
+            "properties": {
+                "estudiantes": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "apellidos_estudiante": {
+                                "type": "string"
+                            },
+                            "correo_electronico_estudiante": {
+                                "type": "string"
+                            },
+                            "grupos": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/estudiante.grupo"
+                                }
+                            },
+                            "hash_contrasena_estudiante": {
+                                "type": "string"
+                            },
+                            "nombres_estudiante": {
+                                "type": "string"
+                            },
+                            "rut_estudiante": {
+                                "type": "string"
+                            },
+                            "telefono_celular_estudiante": {
+                                "type": "string"
+                            },
+                            "telefono_fijo_estudiante": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "estudiante.putProfileRequest": {
+            "type": "object",
+            "properties": {
+                "hash_contrasena_estudiante": {
+                    "type": "string"
+                },
+                "hash_nueva_contrasena_estudiante": {
+                    "type": "string"
+                },
+                "telefono_celular_estudiante": {
+                    "type": "string"
+                },
+                "telefono_fijo_estudiante": {
+                    "type": "string"
+                }
+            }
+        },
+        "estudiante.putRequest": {
             "type": "object",
             "properties": {
                 "apellidos_estudiante": {
@@ -4043,7 +4611,130 @@ var doc = `{
                 }
             }
         },
-        "Request.PutOneEvaluador": {
+        "evaluacion.addRequest": {
+            "type": "object",
+            "properties": {
+                "nombre_evaluacion": {
+                    "type": "string"
+                }
+            }
+        },
+        "evaluador.addRequest": {
+            "type": "object",
+            "properties": {
+                "apellidos_evaluador": {
+                    "type": "string"
+                },
+                "cargo_evaluador": {
+                    "type": "string"
+                },
+                "correo_electronico_evaluador": {
+                    "type": "string"
+                },
+                "hash_contrasena_evaluador": {
+                    "type": "string"
+                },
+                "id_rol": {
+                    "type": "integer"
+                },
+                "nombres_evaluador": {
+                    "type": "string"
+                },
+                "recinto_evaluador": {
+                    "type": "string"
+                },
+                "rut_evaluador": {
+                    "type": "string"
+                },
+                "telefono_celular_evaluador": {
+                    "type": "string"
+                },
+                "telefono_fijo_evaluador": {
+                    "type": "string"
+                }
+            }
+        },
+        "evaluador.grupo": {
+            "type": "object",
+            "properties": {
+                "periodo": {
+                    "type": "string"
+                },
+                "sigla_curso": {
+                    "type": "string"
+                },
+                "sigla_grupo": {
+                    "type": "string"
+                }
+            }
+        },
+        "evaluador.massiveAddRequest": {
+            "type": "object",
+            "properties": {
+                "evaluadores": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "apellidos_evaluador": {
+                                "type": "string"
+                            },
+                            "cargo_evaluador": {
+                                "type": "string"
+                            },
+                            "correo_electronico_evaluador": {
+                                "type": "string"
+                            },
+                            "grupos": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/evaluador.grupo"
+                                }
+                            },
+                            "hash_contrasena_evaluador": {
+                                "type": "string"
+                            },
+                            "nombres_evaluador": {
+                                "type": "string"
+                            },
+                            "recinto_evaluador": {
+                                "type": "string"
+                            },
+                            "rut_evaluador": {
+                                "type": "string"
+                            },
+                            "telefono_celular_evaluador": {
+                                "type": "string"
+                            },
+                            "telefono_fijo_evaluador": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "evaluador.putProfileRequest": {
+            "type": "object",
+            "properties": {
+                "cargo_evaluador": {
+                    "type": "string"
+                },
+                "hash_contrasena_evaluador": {
+                    "type": "string"
+                },
+                "hash_nueva_contrasena_evaluador": {
+                    "type": "string"
+                },
+                "telefono_celular_evaluador": {
+                    "type": "string"
+                },
+                "telefono_fijo_evaluador": {
+                    "type": "string"
+                }
+            }
+        },
+        "evaluador.putRequest": {
             "type": "object",
             "properties": {
                 "apellidos_evaluador": {
@@ -4075,2945 +4766,21 @@ var doc = `{
                 }
             }
         },
-        "Request.PutOneGrupo": {
+        "grupo.addRequest": {
             "type": "object",
             "properties": {
-                "id_curso": {
-                    "type": "integer"
-                },
                 "nombre_grupo": {
                     "type": "string"
-                },
-                "sigla_grupo": {
-                    "type": "string"
-                }
-            }
-        },
-        "Request.PutOnePeriodo": {
-            "type": "object",
-            "properties": {
-                "nombre_periodo": {
-                    "type": "string"
-                }
-            }
-        },
-        "Request.PutOneRol": {
-            "type": "object",
-            "properties": {
-                "nombre_rol": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.AddAdministradorAcademicoToCursoResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Response.AddEstudianteToCursoResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Response.AddEstudianteToGrupoResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Response.AddEvaluadorToCursoResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Response.AddEvaluadorToGrupoResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Response.AddNewAdministradorAcademicoResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.AddNewAdministradorTiResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.AddNewCalificacionEstudianteResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Response.AddNewCursoResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Response.AddNewEstudianteResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.AddNewEstudiantesResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.AddNewEvaluacionResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Response.AddNewEvaluadorResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.AddNewEvaluadoresResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.AddNewGrupoResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Response.AddNewPeriodoResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Response.AddNewRolResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Response.Authentication": {
-            "type": "object",
-            "properties": {
-                "token": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.DeleteAdministradorAcademicoResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.DeleteAdministradorTiResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.DeleteCursoResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Response.DeleteEstudianteResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.DeleteEvaluadorResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.DeleteGrupoResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Response.DeletePeriodoResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Response.DeleteRolResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Response.EvolucionEstudiantePorCompetenciaResponse": {
-            "type": "object",
-            "properties": {
-                "eje_x": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "eje_y": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                "valores": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "promedio_grupo": {
-                                    "type": "number"
-                                },
-                                "puntaje_estudiante": {
-                                    "type": "integer"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "Response.EvolucionEstudiantePorEvaluacionResponse": {
-            "type": "object",
-            "properties": {
-                "eje_x": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "eje_y": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                "valores": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "promedio_estudiante": {
-                                    "type": "number"
-                                },
-                                "promedio_grupo": {
-                                    "type": "number"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "Response.EvolucionGrupoPorCompetenciaResponse": {
-            "type": "object",
-            "properties": {
-                "eje_x": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "eje_y": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                "valores": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "promedio_grupo": {
-                                    "type": "number"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "Response.EvolucionGrupoPorEvaluacionResponse": {
-            "type": "object",
-            "properties": {
-                "eje_x": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "eje_y": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                "valores": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "promedio_grupo": {
-                                    "type": "number"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "Response.GetCursosAdministradorAcademicoResponse": {
-            "type": "object",
-            "properties": {
-                "grupos_curso": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListGruposResponse"
-                    }
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "nombre_curso": {
-                    "type": "string"
-                },
-                "periodo_curso": {
-                    "$ref": "#/definitions/Response.GetOnePeriodoResponse"
                 },
                 "sigla_curso": {
                     "type": "string"
-                }
-            }
-        },
-        "Response.GetCursosEstudianteResponse": {
-            "type": "object",
-            "properties": {
-                "grupos_curso": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListGruposResponse"
-                    }
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "nombre_curso": {
-                    "type": "string"
-                },
-                "periodo_curso": {
-                    "$ref": "#/definitions/Response.GetOnePeriodoResponse"
-                },
-                "sigla_curso": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.GetCursosEvaluadorResponse": {
-            "type": "object",
-            "properties": {
-                "grupos_curso": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListGruposResponse"
-                    }
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "nombre_curso": {
-                    "type": "string"
-                },
-                "periodo_curso": {
-                    "$ref": "#/definitions/Response.GetOnePeriodoResponse"
-                },
-                "sigla_curso": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.GetGruposAdministradorAcademicoResponse": {
-            "type": "object",
-            "properties": {
-                "estudiantes_grupo": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListEstudiantesResponse"
-                    }
-                },
-                "evaluador_grupo": {
-                    "$ref": "#/definitions/Response.GetOneEvaluadorResponse"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "id_curso": {
-                    "type": "integer"
-                },
-                "nombre_grupo": {
-                    "type": "string"
                 },
                 "sigla_grupo": {
                     "type": "string"
                 }
             }
         },
-        "Response.GetGruposEstudianteResponse": {
-            "type": "object",
-            "properties": {
-                "estudiantes_grupo": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListEstudiantesResponse"
-                    }
-                },
-                "evaluador_grupo": {
-                    "$ref": "#/definitions/Response.GetOneEvaluadorResponse"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "id_curso": {
-                    "type": "integer"
-                },
-                "nombre_grupo": {
-                    "type": "string"
-                },
-                "sigla_grupo": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.GetGruposEvaluadorResponse": {
-            "type": "object",
-            "properties": {
-                "estudiantes_grupo": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListEstudiantesResponse"
-                    }
-                },
-                "evaluador_grupo": {
-                    "$ref": "#/definitions/Response.GetOneEvaluadorResponse"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "id_curso": {
-                    "type": "integer"
-                },
-                "nombre_grupo": {
-                    "type": "string"
-                },
-                "sigla_grupo": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.GetMyAdministradorAcademicoResponse": {
-            "type": "object",
-            "properties": {
-                "apellidos_administrador_academico": {
-                    "type": "string"
-                },
-                "correo_electronico_administrador_academico": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "nombres_administrador_academico": {
-                    "type": "string"
-                },
-                "rol_administrador_academico": {
-                    "$ref": "#/definitions/Response.GetOneRolResponse"
-                },
-                "rut_administrador_academico": {
-                    "type": "string"
-                },
-                "telefono_celular_administrador_academico": {
-                    "type": "string"
-                },
-                "telefono_fijo_administrador_academico": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.GetMyAdministradorTiResponse": {
-            "type": "object",
-            "properties": {
-                "apellidos_administrador_ti": {
-                    "type": "string"
-                },
-                "correo_electronico_administrador_ti": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "nombres_administrador_ti": {
-                    "type": "string"
-                },
-                "rol_administrador_ti": {
-                    "$ref": "#/definitions/Response.GetOneRolResponse"
-                },
-                "rut_administrador_ti": {
-                    "type": "string"
-                },
-                "telefono_celular_administrador_ti": {
-                    "type": "string"
-                },
-                "telefono_fijo_administrador_ti": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.GetMyEstudianteResponse": {
-            "type": "object",
-            "properties": {
-                "apellidos_estudiante": {
-                    "type": "string"
-                },
-                "correo_electronico_estudiante": {
-                    "type": "string"
-                },
-                "evaluaciones_estudiante": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListEvaluacionesEstudianteResponse"
-                    }
-                },
-                "id": {
-                    "type": "string"
-                },
-                "id_grupo": {
-                    "type": "integer"
-                },
-                "nombres_estudiante": {
-                    "type": "string"
-                },
-                "rol_estudiante": {
-                    "$ref": "#/definitions/Response.GetOneRolResponse"
-                },
-                "rut_estudiante": {
-                    "type": "string"
-                },
-                "telefono_celular_estudiante": {
-                    "type": "string"
-                },
-                "telefono_fijo_estudiante": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.GetMyEvaluadorResponse": {
-            "type": "object",
-            "properties": {
-                "apellidos_evaluador": {
-                    "type": "string"
-                },
-                "cargo_evaluador": {
-                    "type": "string"
-                },
-                "correo_electronico_evaluador": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "nombres_evaluador": {
-                    "type": "string"
-                },
-                "recinto_evaluador": {
-                    "type": "string"
-                },
-                "rol_evaluador": {
-                    "$ref": "#/definitions/Response.GetOneRolResponse"
-                },
-                "rut_evaluador": {
-                    "type": "string"
-                },
-                "telefono_celular_evaluador": {
-                    "type": "string"
-                },
-                "telefono_fijo_evaluador": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.GetOneAdministradorAcademicoResponse": {
-            "type": "object",
-            "properties": {
-                "apellidos_administrador_academico": {
-                    "type": "string"
-                },
-                "correo_electronico_administrador_academico": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "nombres_administrador_academico": {
-                    "type": "string"
-                },
-                "rol_administrador_academico": {
-                    "$ref": "#/definitions/Response.GetOneRolResponse"
-                },
-                "rut_administrador_academico": {
-                    "type": "string"
-                },
-                "telefono_celular_administrador_academico": {
-                    "type": "string"
-                },
-                "telefono_fijo_administrador_academico": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.GetOneAdministradorTiResponse": {
-            "type": "object",
-            "properties": {
-                "apellidos_administrador_ti": {
-                    "type": "string"
-                },
-                "correo_electronico_administrador_ti": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "nombres_administrador_ti": {
-                    "type": "string"
-                },
-                "rol_administrador_ti": {
-                    "$ref": "#/definitions/Response.GetOneRolResponse"
-                },
-                "rut_administrador_ti": {
-                    "type": "string"
-                },
-                "telefono_celular_administrador_ti": {
-                    "type": "string"
-                },
-                "telefono_fijo_administrador_ti": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.GetOneCursoAdministradorAcademicoResponse": {
-            "type": "object",
-            "properties": {
-                "grupos_curso": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListGruposResponse"
-                    }
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "nombre_curso": {
-                    "type": "string"
-                },
-                "periodo_curso": {
-                    "$ref": "#/definitions/Response.GetOnePeriodoResponse"
-                },
-                "sigla_curso": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.GetOneCursoEstudianteResponse": {
-            "type": "object",
-            "properties": {
-                "grupos_curso": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListGruposResponse"
-                    }
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "nombre_curso": {
-                    "type": "string"
-                },
-                "periodo_curso": {
-                    "$ref": "#/definitions/Response.GetOnePeriodoResponse"
-                },
-                "sigla_curso": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.GetOneCursoEvaluadorResponse": {
-            "type": "object",
-            "properties": {
-                "grupos_curso": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListGruposResponse"
-                    }
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "nombre_curso": {
-                    "type": "string"
-                },
-                "periodo_curso": {
-                    "$ref": "#/definitions/Response.GetOnePeriodoResponse"
-                },
-                "sigla_curso": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.GetOneCursoResponse": {
-            "type": "object",
-            "properties": {
-                "grupos_curso": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListGruposResponse"
-                    }
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "nombre_curso": {
-                    "type": "string"
-                },
-                "periodo_curso": {
-                    "$ref": "#/definitions/Response.GetOnePeriodoResponse"
-                },
-                "sigla_curso": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.GetOneEstudianteResponse": {
-            "type": "object",
-            "properties": {
-                "apellidos_estudiante": {
-                    "type": "string"
-                },
-                "correo_electronico_estudiante": {
-                    "type": "string"
-                },
-                "evaluaciones_estudiante": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListEvaluacionesEstudianteResponse"
-                    }
-                },
-                "id": {
-                    "type": "string"
-                },
-                "id_grupo": {
-                    "type": "integer"
-                },
-                "nombres_estudiante": {
-                    "type": "string"
-                },
-                "rol_estudiante": {
-                    "$ref": "#/definitions/Response.GetOneRolResponse"
-                },
-                "rut_estudiante": {
-                    "type": "string"
-                },
-                "telefono_celular_estudiante": {
-                    "type": "string"
-                },
-                "telefono_fijo_estudiante": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.GetOneEvaluadorResponse": {
-            "type": "object",
-            "properties": {
-                "apellidos_evaluador": {
-                    "type": "string"
-                },
-                "cargo_evaluador": {
-                    "type": "string"
-                },
-                "correo_electronico_evaluador": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "nombres_evaluador": {
-                    "type": "string"
-                },
-                "recinto_evaluador": {
-                    "type": "string"
-                },
-                "rol_evaluador": {
-                    "$ref": "#/definitions/Response.GetOneRolResponse"
-                },
-                "rut_evaluador": {
-                    "type": "string"
-                },
-                "telefono_celular_evaluador": {
-                    "type": "string"
-                },
-                "telefono_fijo_evaluador": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.GetOneGrupoAdministradorAcademicoResponse": {
-            "type": "object",
-            "properties": {
-                "estudiantes_grupo": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListEstudiantesResponse"
-                    }
-                },
-                "evaluador_grupo": {
-                    "$ref": "#/definitions/Response.GetOneEvaluadorResponse"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "id_curso": {
-                    "type": "integer"
-                },
-                "nombre_grupo": {
-                    "type": "string"
-                },
-                "sigla_grupo": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.GetOneGrupoEstudianteResponse": {
-            "type": "object",
-            "properties": {
-                "estudiantes_grupo": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListEstudiantesResponse"
-                    }
-                },
-                "evaluador_grupo": {
-                    "$ref": "#/definitions/Response.GetOneEvaluadorResponse"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "id_curso": {
-                    "type": "integer"
-                },
-                "nombre_grupo": {
-                    "type": "string"
-                },
-                "sigla_grupo": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.GetOneGrupoEvaluadorResponse": {
-            "type": "object",
-            "properties": {
-                "estudiantes_grupo": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListEstudiantesResponse"
-                    }
-                },
-                "evaluador_grupo": {
-                    "$ref": "#/definitions/Response.GetOneEvaluadorResponse"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "id_curso": {
-                    "type": "integer"
-                },
-                "nombre_grupo": {
-                    "type": "string"
-                },
-                "sigla_grupo": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.GetOneGrupoResponse": {
-            "type": "object",
-            "properties": {
-                "estudiantes_grupo": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListEstudiantesResponse"
-                    }
-                },
-                "evaluador_grupo": {
-                    "$ref": "#/definitions/Response.GetOneEvaluadorResponse"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "id_curso": {
-                    "type": "integer"
-                },
-                "nombre_grupo": {
-                    "type": "string"
-                },
-                "sigla_grupo": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.GetOnePeriodoResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                },
-                "nombre_periodo": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.GetOneRolResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                },
-                "nombre_rol": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.ListAdministradoresAcademicosResponse": {
-            "type": "object",
-            "properties": {
-                "apellidos_administrador_academico": {
-                    "type": "string"
-                },
-                "correo_electronico_administrador_academico": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "nombres_administrador_academico": {
-                    "type": "string"
-                },
-                "rol_administrador_academico": {
-                    "$ref": "#/definitions/Response.GetOneRolResponse"
-                },
-                "rut_administrador_academico": {
-                    "type": "string"
-                },
-                "telefono_celular_administrador_academico": {
-                    "type": "string"
-                },
-                "telefono_fijo_administrador_academico": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.ListAdministradoresTiResponse": {
-            "type": "object",
-            "properties": {
-                "apellidos_administrador_ti": {
-                    "type": "string"
-                },
-                "correo_electronico_administrador_ti": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "nombres_administrador_ti": {
-                    "type": "string"
-                },
-                "rol_administrador_ti": {
-                    "$ref": "#/definitions/Response.GetOneRolResponse"
-                },
-                "rut_administrador_ti": {
-                    "type": "string"
-                },
-                "telefono_celular_administrador_ti": {
-                    "type": "string"
-                },
-                "telefono_fijo_administrador_ti": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.ListCursosResponse": {
-            "type": "object",
-            "properties": {
-                "grupos_curso": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListGruposResponse"
-                    }
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "nombre_curso": {
-                    "type": "string"
-                },
-                "periodo_curso": {
-                    "$ref": "#/definitions/Response.GetOnePeriodoResponse"
-                },
-                "sigla_curso": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.ListEstudiantesCursoResponse": {
-            "type": "object",
-            "properties": {
-                "apellidos_estudiante": {
-                    "type": "string"
-                },
-                "correo_electronico_estudiante": {
-                    "type": "string"
-                },
-                "evaluaciones_estudiante": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListEvaluacionesEstudianteResponse"
-                    }
-                },
-                "id": {
-                    "type": "string"
-                },
-                "id_grupo": {
-                    "type": "integer"
-                },
-                "nombres_estudiante": {
-                    "type": "string"
-                },
-                "rol_estudiante": {
-                    "$ref": "#/definitions/Response.GetOneRolResponse"
-                },
-                "rut_estudiante": {
-                    "type": "string"
-                },
-                "telefono_celular_estudiante": {
-                    "type": "string"
-                },
-                "telefono_fijo_estudiante": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.ListEstudiantesCursoSinGrupoResponse": {
-            "type": "object",
-            "properties": {
-                "apellidos_estudiante": {
-                    "type": "string"
-                },
-                "correo_electronico_estudiante": {
-                    "type": "string"
-                },
-                "evaluaciones_estudiante": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListEvaluacionesEstudianteResponse"
-                    }
-                },
-                "id": {
-                    "type": "string"
-                },
-                "id_grupo": {
-                    "type": "integer"
-                },
-                "nombres_estudiante": {
-                    "type": "string"
-                },
-                "rol_estudiante": {
-                    "$ref": "#/definitions/Response.GetOneRolResponse"
-                },
-                "rut_estudiante": {
-                    "type": "string"
-                },
-                "telefono_celular_estudiante": {
-                    "type": "string"
-                },
-                "telefono_fijo_estudiante": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.ListEstudiantesResponse": {
-            "type": "object",
-            "properties": {
-                "apellidos_estudiante": {
-                    "type": "string"
-                },
-                "correo_electronico_estudiante": {
-                    "type": "string"
-                },
-                "evaluaciones_estudiante": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListEvaluacionesEstudianteResponse"
-                    }
-                },
-                "id": {
-                    "type": "string"
-                },
-                "id_grupo": {
-                    "type": "integer"
-                },
-                "nombres_estudiante": {
-                    "type": "string"
-                },
-                "rol_estudiante": {
-                    "$ref": "#/definitions/Response.GetOneRolResponse"
-                },
-                "rut_estudiante": {
-                    "type": "string"
-                },
-                "telefono_celular_estudiante": {
-                    "type": "string"
-                },
-                "telefono_fijo_estudiante": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.ListEvaluacionesEstudianteResponse": {
-            "type": "object",
-            "properties": {
-                "asunto_principal_consulta_evaluacion": {
-                    "type": "string"
-                },
-                "categoria_observador_evaluacion": {
-                    "type": "string"
-                },
-                "complejidad_caso_evaluacion": {
-                    "type": "string"
-                },
-                "entorno_clinico_evaluacion": {
-                    "type": "string"
-                },
-                "evaluador_evaluacion": {
-                    "$ref": "#/definitions/Response.GetOneEvaluadorResponse"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "id_estudiante": {
-                    "type": "string"
-                },
-                "nombre_evaluacion": {
-                    "type": "string"
-                },
-                "numero_observaciones_previas_evaluacion": {
-                    "type": "string"
-                },
-                "observacion_calificacion_evaluacion": {
-                    "type": "string"
-                },
-                "paciente_evaluacion": {
-                    "type": "string"
-                },
-                "periodo_evaluacion": {
-                    "$ref": "#/definitions/Response.GetOnePeriodoResponse"
-                },
-                "puntajes_evaluacion": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListPuntajesResponse"
-                    }
-                },
-                "tiempo_utilizado_evaluacion": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Response.ListEvaluacionesGrupoEstudianteResponse": {
-            "type": "object",
-            "properties": {
-                "asunto_principal_consulta_evaluacion": {
-                    "type": "string"
-                },
-                "categoria_observador_evaluacion": {
-                    "type": "string"
-                },
-                "complejidad_caso_evaluacion": {
-                    "type": "string"
-                },
-                "entorno_clinico_evaluacion": {
-                    "type": "string"
-                },
-                "evaluador_evaluacion": {
-                    "$ref": "#/definitions/Response.GetOneEvaluadorResponse"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "id_estudiante": {
-                    "type": "string"
-                },
-                "nombre_evaluacion": {
-                    "type": "string"
-                },
-                "numero_observaciones_previas_evaluacion": {
-                    "type": "string"
-                },
-                "observacion_calificacion_evaluacion": {
-                    "type": "string"
-                },
-                "paciente_evaluacion": {
-                    "type": "string"
-                },
-                "periodo_evaluacion": {
-                    "$ref": "#/definitions/Response.GetOnePeriodoResponse"
-                },
-                "puntajes_evaluacion": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListPuntajesResponse"
-                    }
-                },
-                "tiempo_utilizado_evaluacion": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Response.ListEvaluacionesGrupoEvaluadorResponse": {
-            "type": "object",
-            "properties": {
-                "asunto_principal_consulta_evaluacion": {
-                    "type": "string"
-                },
-                "categoria_observador_evaluacion": {
-                    "type": "string"
-                },
-                "complejidad_caso_evaluacion": {
-                    "type": "string"
-                },
-                "entorno_clinico_evaluacion": {
-                    "type": "string"
-                },
-                "evaluador_evaluacion": {
-                    "$ref": "#/definitions/Response.GetOneEvaluadorResponse"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "id_estudiante": {
-                    "type": "string"
-                },
-                "nombre_evaluacion": {
-                    "type": "string"
-                },
-                "numero_observaciones_previas_evaluacion": {
-                    "type": "string"
-                },
-                "observacion_calificacion_evaluacion": {
-                    "type": "string"
-                },
-                "paciente_evaluacion": {
-                    "type": "string"
-                },
-                "periodo_evaluacion": {
-                    "$ref": "#/definitions/Response.GetOnePeriodoResponse"
-                },
-                "puntajes_evaluacion": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListPuntajesResponse"
-                    }
-                },
-                "tiempo_utilizado_evaluacion": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Response.ListEvaluacionesResponse": {
-            "type": "object",
-            "properties": {
-                "asunto_principal_consulta_evaluacion": {
-                    "type": "string"
-                },
-                "categoria_observador_evaluacion": {
-                    "type": "string"
-                },
-                "complejidad_caso_evaluacion": {
-                    "type": "string"
-                },
-                "entorno_clinico_evaluacion": {
-                    "type": "string"
-                },
-                "evaluador_evaluacion": {
-                    "$ref": "#/definitions/Response.GetOneEvaluadorResponse"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "id_estudiante": {
-                    "type": "string"
-                },
-                "nombre_evaluacion": {
-                    "type": "string"
-                },
-                "numero_observaciones_previas_evaluacion": {
-                    "type": "string"
-                },
-                "observacion_calificacion_evaluacion": {
-                    "type": "string"
-                },
-                "paciente_evaluacion": {
-                    "type": "string"
-                },
-                "periodo_evaluacion": {
-                    "$ref": "#/definitions/Response.GetOnePeriodoResponse"
-                },
-                "puntajes_evaluacion": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListPuntajesResponse"
-                    }
-                },
-                "tiempo_utilizado_evaluacion": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Response.ListEvaluadoresResponse": {
-            "type": "object",
-            "properties": {
-                "apellidos_evaluador": {
-                    "type": "string"
-                },
-                "cargo_evaluador": {
-                    "type": "string"
-                },
-                "correo_electronico_evaluador": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "nombres_evaluador": {
-                    "type": "string"
-                },
-                "recinto_evaluador": {
-                    "type": "string"
-                },
-                "rol_evaluador": {
-                    "$ref": "#/definitions/Response.GetOneRolResponse"
-                },
-                "rut_evaluador": {
-                    "type": "string"
-                },
-                "telefono_celular_evaluador": {
-                    "type": "string"
-                },
-                "telefono_fijo_evaluador": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.ListGruposResponse": {
-            "type": "object",
-            "properties": {
-                "estudiantes_grupo": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Response.ListEstudiantesResponse"
-                    }
-                },
-                "evaluador_grupo": {
-                    "$ref": "#/definitions/Response.GetOneEvaluadorResponse"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "id_curso": {
-                    "type": "integer"
-                },
-                "nombre_grupo": {
-                    "type": "string"
-                },
-                "sigla_grupo": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.ListPeriodosResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                },
-                "nombre_periodo": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.ListPuntajesResponse": {
-            "type": "object",
-            "properties": {
-                "calificacion_puntaje": {
-                    "type": "integer"
-                },
-                "codigo_competencia_puntaje": {
-                    "type": "string"
-                },
-                "feedback_puntaje": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "id_evaluacion": {
-                    "type": "integer"
-                },
-                "nombre_competencia_puntaje": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.ListRolesResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                },
-                "nombre_rol": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.PutMyAdministradorAcademicoResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.PutMyAdministradorTiResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.PutMyEstudianteResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.PutMyEvaluadorResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.PutOneAdministradorAcademicoResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.PutOneAdministradorTiResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.PutOneCursoResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Response.PutOneEstudianteResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.PutOneEvaluadorResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "Response.PutOneGrupoResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Response.PutOnePeriodoResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Response.PutOneRolResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Response.RemoveEstudianteFromGrupoResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Response.RemoveEvaluadorFromGrupoResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Swagger.AddAdministradorAcademicoToCursoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.AddAdministradorAcademicoToCursoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.AddEstudianteToCursoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.AddEstudianteToCursoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.AddEstudianteToGrupoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.AddEstudianteToGrupoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.AddEvaluadorToCursoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.AddEvaluadorToCursoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.AddEvaluadorToGrupoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.AddEvaluadorToGrupoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.AddNewAdministradorAcademicoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.AddNewAdministradorAcademicoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.AddNewAdministradorTiSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.AddNewAdministradorTiResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.AddNewCalificacionEstudianteSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.AddNewCalificacionEstudianteResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.AddNewCursoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.AddNewCursoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.AddNewEstudianteSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.AddNewEstudianteResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.AddNewEstudiantesSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.AddNewEstudiantesResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.AddNewEvaluacionSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.AddNewEvaluacionResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.AddNewEvaluadorSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.AddNewEvaluadorResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.AddNewEvaluadoresSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.AddNewEvaluadoresResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.AddNewGrupoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.AddNewGrupoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.AddNewPeriodoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.AddNewPeriodoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.AddNewRolSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.AddNewRolResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.AuthenticationSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.Authentication"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.DeleteAdministradorAcademicoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.DeleteAdministradorAcademicoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.DeleteAdministradorTiSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.DeleteAdministradorTiResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.DeleteCursoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.DeleteCursoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.DeleteEstudianteSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.DeleteEstudianteResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.DeleteEvaluadorSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.DeleteEvaluadorResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.DeleteGrupoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.DeleteGrupoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.DeletePeriodoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.DeletePeriodoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.DeleteRolSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.DeleteRolResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.EvolucionEstudiantePorCompetenciaSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.EvolucionEstudiantePorCompetenciaResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.EvolucionEstudiantePorEvaluacionSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.EvolucionEstudiantePorEvaluacionResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.EvolucionGrupoPorCompetenciaSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.EvolucionGrupoPorCompetenciaResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.EvolucionGrupoPorEvaluacionSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.EvolucionGrupoPorEvaluacionResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.GetCursosAdministradorAcademicoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.GetCursosAdministradorAcademicoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.GetCursosEstudianteSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.GetCursosEstudianteResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.GetCursosEvaluadorSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.GetCursosEvaluadorResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.GetGruposAdministradorAcademicoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.GetGruposAdministradorAcademicoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.GetGruposEstudianteSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.GetGruposEstudianteResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.GetGruposEvaluadorSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.GetGruposEvaluadorResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.GetMyAdministradorAcademicoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.GetMyAdministradorAcademicoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.GetMyAdministradorTiSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.GetMyAdministradorTiResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.GetMyEstudianteSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.GetMyEstudianteResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.GetMyEvaluadorSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.GetMyEvaluadorResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.GetOneAdministradorAcademicoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.GetOneAdministradorAcademicoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.GetOneAdministradorTiSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.GetOneAdministradorTiResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.GetOneCursoAdministradorAcademicoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.GetOneCursoAdministradorAcademicoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.GetOneCursoEstudianteSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.GetOneCursoEstudianteResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.GetOneCursoEvaluadorSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.GetOneCursoEvaluadorResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.GetOneCursoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.GetOneCursoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.GetOneEstudianteSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.GetOneEstudianteResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.GetOneEvaluadorSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.GetOneEvaluadorResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.GetOneGrupoAdministradorAcademicoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.GetOneGrupoAdministradorAcademicoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.GetOneGrupoEstudianteSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.GetOneGrupoEstudianteResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.GetOneGrupoEvaluadorSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.GetOneGrupoEvaluadorResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.GetOneGrupoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.GetOneGrupoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.GetOnePeriodoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.GetOnePeriodoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.GetOneRolSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.GetOneRolResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.ListAdministradoresAcademicosSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.ListAdministradoresAcademicosResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.ListAdministradoresTiSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.ListAdministradoresTiResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.ListCursosSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.ListCursosResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.ListEstudiantesCursoSinGrupoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.ListEstudiantesCursoSinGrupoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.ListEstudiantesCursoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.ListEstudiantesCursoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.ListEstudiantesSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.ListEstudiantesResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.ListEvaluacionesGrupoEstudianteSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.ListEvaluacionesGrupoEstudianteResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.ListEvaluacionesGrupoEvaluadorSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.ListEvaluacionesGrupoEvaluadorResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.ListEvaluacionesSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.ListEvaluacionesResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.ListEvaluadoresSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.ListEvaluadoresResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.ListGruposSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.ListGruposResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.ListPeriodosSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.ListPeriodosResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.ListRolesSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.ListRolesResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.PutMyAdministradorAcademicoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.PutMyAdministradorAcademicoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.PutMyAdministradorTiSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.PutMyAdministradorTiResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.PutMyEstudianteSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.PutMyEstudianteResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.PutMyEvaluadorSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.PutMyEvaluadorResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.PutOneAdministradorAcademicoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.PutOneAdministradorAcademicoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.PutOneAdministradorTiSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.PutOneAdministradorTiResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.PutOneCursoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.PutOneCursoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.PutOneEstudianteSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.PutOneEstudianteResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.PutOneEvaluadorSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.PutOneEvaluadorResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.PutOneGrupoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.PutOneGrupoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.PutOnePeriodoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.PutOnePeriodoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.PutOneRolSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.PutOneRolResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.RemoveEstudianteFromGrupoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.RemoveEstudianteFromGrupoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "Swagger.RemoveEvaluadorFromGrupoSwagger": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/Response.RemoveEvaluadorFromGrupoResponse"
-                },
-                "meta": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "administrador_academico.massive_add_input": {
-            "type": "object",
-            "properties": {
-                "administradores_academicos": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "apellidos_administrador_academico": {
-                                "type": "string"
-                            },
-                            "correo_electronico_administrador_academico": {
-                                "type": "string"
-                            },
-                            "hash_contrasena_administrador_academico": {
-                                "type": "string"
-                            },
-                            "id_cursos": {
-                                "type": "array",
-                                "items": {
-                                    "type": "integer"
-                                }
-                            },
-                            "nombres_administrador_academico": {
-                                "type": "string"
-                            },
-                            "rut_administrador_academico": {
-                                "type": "string"
-                            },
-                            "telefono_celular_administrador_academico": {
-                                "type": "string"
-                            },
-                            "telefono_fijo_administrador_academico": {
-                                "type": "string"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "administrador_ti.massive_add_input": {
-            "type": "object",
-            "properties": {
-                "administradores_ti": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "apellidos_administrador_ti": {
-                                "type": "string"
-                            },
-                            "correo_electronico_administrador_ti": {
-                                "type": "string"
-                            },
-                            "hash_contrasena_administrador_ti": {
-                                "type": "string"
-                            },
-                            "nombres_administrador_ti": {
-                                "type": "string"
-                            },
-                            "rut_administrador_ti": {
-                                "type": "string"
-                            },
-                            "telefono_celular_administrador_ti": {
-                                "type": "string"
-                            },
-                            "telefono_fijo_administrador_ti": {
-                                "type": "string"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "api_helpers.ResponseError": {
-            "type": "object",
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "error": {
-                    "type": "string"
-                }
-            }
-        },
-        "curso.massive_add_input": {
-            "type": "object",
-            "properties": {
-                "cursos": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "type": "integer"
-                            },
-                            "id_periodo": {
-                                "type": "integer"
-                            },
-                            "nombre_curso": {
-                                "type": "string"
-                            },
-                            "sigla_curso": {
-                                "type": "string"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "estudiante.massive_add_input": {
-            "type": "object",
-            "properties": {
-                "estudiantes": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "apellidos_estudiante": {
-                                "type": "string"
-                            },
-                            "correo_electronico_estudiante": {
-                                "type": "string"
-                            },
-                            "hash_contrasena_estudiante": {
-                                "type": "string"
-                            },
-                            "id_grupos": {
-                                "type": "array",
-                                "items": {
-                                    "type": "integer"
-                                }
-                            },
-                            "nombres_estudiante": {
-                                "type": "string"
-                            },
-                            "rut_estudiante": {
-                                "type": "string"
-                            },
-                            "telefono_celular_estudiante": {
-                                "type": "string"
-                            },
-                            "telefono_fijo_estudiante": {
-                                "type": "string"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "evaluador.massive_add_input": {
-            "type": "object",
-            "properties": {
-                "evaluadores": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "apellidos_evaluador": {
-                                "type": "string"
-                            },
-                            "cargo_evaluador": {
-                                "type": "string"
-                            },
-                            "correo_electronico_evaluador": {
-                                "type": "string"
-                            },
-                            "hash_contrasena_evaluador": {
-                                "type": "string"
-                            },
-                            "id_grupos": {
-                                "type": "array",
-                                "items": {
-                                    "type": "integer"
-                                }
-                            },
-                            "nombres_evaluador": {
-                                "type": "string"
-                            },
-                            "recinto_evaluador": {
-                                "type": "string"
-                            },
-                            "rut_evaluador": {
-                                "type": "string"
-                            },
-                            "telefono_celular_evaluador": {
-                                "type": "string"
-                            },
-                            "telefono_fijo_evaluador": {
-                                "type": "string"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "grupo.massive_add_input": {
+        "grupo.massiveAddRequest": {
             "type": "object",
             "properties": {
                 "grupos": {
@@ -7037,6 +4804,52 @@ var doc = `{
                     }
                 }
             }
+        },
+        "grupo.putRequest": {
+            "type": "object",
+            "properties": {
+                "id_curso": {
+                    "type": "string"
+                },
+                "nombre_grupo": {
+                    "type": "string"
+                },
+                "sigla_grupo": {
+                    "type": "string"
+                }
+            }
+        },
+        "periodo.addRequest": {
+            "type": "object",
+            "properties": {
+                "nombre_periodo": {
+                    "type": "string"
+                }
+            }
+        },
+        "periodo.putRequest": {
+            "type": "object",
+            "properties": {
+                "nombre_periodo": {
+                    "type": "string"
+                }
+            }
+        },
+        "rol.addRequest": {
+            "type": "object",
+            "properties": {
+                "nombre_rol": {
+                    "type": "string"
+                }
+            }
+        },
+        "rol.putRequest": {
+            "type": "object",
+            "properties": {
+                "nombre_rol": {
+                    "type": "string"
+                }
+            }
         }
     }
 }`
@@ -7056,7 +4869,7 @@ var SwaggerInfo = swaggerInfo{
 	Host:        "",
 	BasePath:    "/api/v1",
 	Schemes:     []string{},
-	Title:       "MedRoom API",
+	Title:       "medRoom",
 	Description: "Swagger definition for MedRoom backend.",
 }
 

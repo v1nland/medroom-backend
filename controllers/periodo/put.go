@@ -24,16 +24,16 @@ func putRequestParse(u *putRequest) {
 
 // @Summary Modifica un periodo
 // @Description Modifica un periodo con los datos entregados
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   id_periodo     path    string     true        "Id del periodo a modificar"
-// @Param   input_actualiza_periodo     body    Request.Put     true        "Periodo a modificar"
-// @Success 200 {object} Swagger.PutOnePeriodoSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Param   input_actualiza_periodo     body    putRequest     true        "Periodo a modificar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/periodos/{id_periodo} [put]
 func Put(c *gin.Context) {
-	id := c.Params.ByName("id")
+	id_periodo := c.Params.ByName("id_periodo")
 
 	var input putRequest
 	if err := c.ShouldBind(&input); err != nil {
@@ -44,7 +44,7 @@ func Put(c *gin.Context) {
 	putRequestParse(&input)
 
 	var periodo models.Periodo
-	if err := repositories.GetOnePeriodo(&periodo, id); err != nil {
+	if err := repositories.GetOnePeriodo(&periodo, id_periodo); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
@@ -54,10 +54,10 @@ func Put(c *gin.Context) {
 		// Id: utils.CheckNullString(input.Id, periodo.Id),
 	}
 
-	if err := repositories.PutOnePeriodo(&periodo, id); err != nil {
+	if err := repositories.PutOnePeriodo(&periodo, id_periodo); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, periodo)
+	api_helpers.RespondJson(c, 200, periodo)
 }

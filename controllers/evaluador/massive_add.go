@@ -79,12 +79,12 @@ func massiveAddRequestParse(u *massiveAddRequest) {
 
 // @Summary Agrega nuevos evaluadores de forma masiva
 // @Description Genera nuevos evaluadores con los datos entregados
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   input_evaluador     body    massive_add_input     true        "Evaluador a agregar"
-// @Success 200 {object} Swagger.AddNewEvaluadoresSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Param   input_evaluador     body    massiveAddRequest     true        "Evaluador a agregar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/evaluadores/carga-masiva [post]
 func AddNewEvaluadores(c *gin.Context) {
 	var payload massiveAddRequest
@@ -124,8 +124,8 @@ func AddNewEvaluadores(c *gin.Context) {
 	}
 
 	if len(evaluadores_error) > 0 {
-		api_helpers.RespondJSON(c, 201, evaluadores_error)
+		api_helpers.RespondJson(c, 201, evaluadores_error)
 	} else {
-		api_helpers.RespondJSON(c, 200, "OK")
+		api_helpers.RespondJson(c, 200, "OK")
 	}
 }

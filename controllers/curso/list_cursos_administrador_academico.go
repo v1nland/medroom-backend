@@ -11,11 +11,11 @@ import (
 
 // @Summary Obtiene los cursos de un administrador academico
 // @Description Obtiene los cursos de un administrador academico según su token
-// @Tags 04 - Administración Académica
+// @Tags Administración Académica
 // @Accept  json
 // @Produce  json
-// @Success 200 {object} Swagger.GetCursosAdministradorAcademicoSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-academica/me/cursos [get]
 func GetCursosAdministradorAcademico(c *gin.Context) {
 	id_evaluador := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ADMINISTRADOR_ACADEMICO")
@@ -26,5 +26,5 @@ func GetCursosAdministradorAcademico(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, cursos)
+	api_helpers.RespondJson(c, 200, cursos)
 }

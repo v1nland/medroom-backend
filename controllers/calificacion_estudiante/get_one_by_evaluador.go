@@ -10,15 +10,16 @@ import (
 
 // @Summary Obtiene una calificación
 // @Description Obtiene una calificación de un estudiante
-// @Tags 03 - Evaluadores
+// @Tags Evaluadores
 // @Accept  json
 // @Produce  json
-// @Param   id_curso     path    string     true        "Id del curso"
-// @Param   id_grupo     path    string     true        "Id del grupo"
+// @Param   id_periodo     path    string     true        "Id del periodo"
+// @Param   sigla_curso     path    string     true        "Sigla del curso"
+// @Param   sigla_grupo     path    string     true        "Sigla del grupo"
 // @Param   id_evaluacion     path    string     true        "Id de la evaluacion"
-// @Success 200 {array} Swagger.ListEvaluacionesSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
-// @Router /estudiantes/me/cursos/{id_curso}/grupos/{id_grupo}/evaluaciones/{id_evaluacion}/calificacion [get]
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
+// @Router /estudiantes/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/evaluaciones/{id_evaluacion}/calificacion [get]
 func GetByEvaluador(c *gin.Context) {
 	// id_evaluador := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
 	id_evaluacion := c.Params.ByName("id_evaluacion")
@@ -30,5 +31,5 @@ func GetByEvaluador(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, calificacion_estudiante)
+	api_helpers.RespondJson(c, 200, calificacion_estudiante)
 }

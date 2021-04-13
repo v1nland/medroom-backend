@@ -12,19 +12,20 @@ import (
 
 // @Summary Modifica los grupos de un evaluador
 // @Description Modifica los grupos de un evaluador con los datos entregados
-// @Tags 04 - Administración Académica
+// @Tags Administración Académica
 // @Accept  json
 // @Produce  json
-// @Param   id_curso     path    string     true        "ID del curso a modificar"
-// @Param   id_grupo     path    string     true        "ID del grupo a modificar"
+// @Param   id_periodo     path    string     true        "Id del periodo"
+// @Param   sigla_curso     path    string     true        "Sigla del curso"
+// @Param   sigla_grupo     path    string     true        "Sigla del grupo"
 // @Param   uuid_evaluador     path    string     true        "UUID del evaluador a asociar"
-// @Success 200 {object} Swagger.AddEvaluadorToGrupoSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
-// @Router /administracion-academica/cursos/{id_curso}/grupos/{id_grupo}/evaluadores/{uuid_evaluador} [put]
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
+// @Router /administracion-academica/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/evaluadores/{uuid_evaluador} [put]
 func AddEvaluadorToGrupo(c *gin.Context) {
 	id_periodo := c.Params.ByName("id_periodo")
-	sigla_curso := c.Params.ByName("id")
-	sigla_grupo := c.Params.ByName("id_grupo")
+	sigla_curso := c.Params.ByName("sigla_curso")
+	sigla_grupo := c.Params.ByName("sigla_grupo")
 	id_evaluador := c.Params.ByName("id_evaluador")
 
 	var curso models.Curso
@@ -52,5 +53,5 @@ func AddEvaluadorToGrupo(c *gin.Context) {
 		repositories.DeleteEvaluadorGrupo(curso.Grupos_curso[index].Sigla_grupo, curso.Grupos_curso[index].Sigla_curso, curso.Grupos_curso[index].Id_periodo_curso, id_evaluador)
 	}
 
-	api_helpers.RespondJSON(c, 200, grupo)
+	api_helpers.RespondJson(c, 200, grupo)
 }

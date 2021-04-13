@@ -10,26 +10,26 @@ import (
 
 // @Summary Elimina un rol
 // @Description Elimina un rol con los datos entregados
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
 // @Param   id_rol     path    string     true        "Id del rol a eliminar"
-// @Success 200 {object} Swagger.DeleteRolSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/roles/{id_rol} [delete]
 func Delete(c *gin.Context) {
-	id := c.Params.ByName("id")
+	id_rol := c.Params.ByName("id_rol")
 
 	var rol models.Rol
-	if err := repositories.GetOneRol(&rol, id); err != nil {
+	if err := repositories.GetOneRol(&rol, id_rol); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
-	if err := repositories.DeleteRol(&rol, id); err != nil {
+	if err := repositories.DeleteRol(&rol, id_rol); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, rol)
+	api_helpers.RespondJson(c, 200, rol)
 }

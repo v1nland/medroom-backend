@@ -1,14 +1,11 @@
 package curso
 
 import (
-	"errors"
-	"fmt"
 	"medroom-backend/api_helpers"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 )
 
 type PuntajesEvaluacionEstudianteReport struct {
@@ -35,25 +32,21 @@ type EstudianteReport struct {
 
 // @Summary Obtiene un reporte de notas
 // @Description Obtiene un reporte de notas según el id de curso
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   id_curso     path    string     true        "Id del curso a buscar"
-// @Success 200 {object} Swagger.GetOneCursoSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
-// @Router /administracion-ti/cursos/{id_curso} [get]
+// @Param   id_periodo     path    string     true        "Id del periodo"
+// @Param   sigla_curso     path    string     true        "Sigla del curso a buscar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
+// @Router /administracion-ti/cursos/{id_periodo}/{sigla_curso}/reporte-notas [get]
 func GetMarksReport(c *gin.Context) {
 	id_periodo := c.Params.ByName("id_periodo")
-	sigla_curso := c.Params.ByName("id")
+	sigla_curso := c.Params.ByName("sigla_curso")
 
 	var curso models.Curso
 	if err := repositories.GetOneCurso(&curso, sigla_curso, id_periodo); err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
-			api_helpers.RespondJSON(c, 200, "Curso not found")
-		} else {
-			api_helpers.RespondError(c, 500, "default")
-		}
-
+		api_helpers.RespondError(c, 500, "default")
 		return
 	}
 
@@ -61,7 +54,6 @@ func GetMarksReport(c *gin.Context) {
 
 	for _, grupo := range curso.Grupos_curso {
 		var gp models.Grupo
-		fmt.Println(grupo)
 
 		if err := repositories.GetOneGrupo(&gp, grupo.Sigla_curso, grupo.Id_periodo_curso, gp.Sigla_grupo); err != nil {
 			api_helpers.RespondError(c, 500, err.Error())
@@ -108,5 +100,5 @@ func GetMarksReport(c *gin.Context) {
 		}
 	}
 
-	api_helpers.RespondJSON(c, 200, reporte)
+	api_helpers.RespondJson(c, 200, reporte)
 }

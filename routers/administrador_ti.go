@@ -38,81 +38,82 @@ func SetupAdministradorTiRouter(r *gin.Engine) *gin.Engine {
 		estudiantes := router.Group("/estudiantes")
 		{
 			estudiantes.GET("", estudiante.List)
-			estudiantes.GET(":id", estudiante.Get)
+			estudiantes.GET(":id_estudiante", estudiante.Get)
 			estudiantes.POST("", estudiante.Add)
-			estudiantes.POST("carga-masiva", estudiante.AddNewEstudiantes)
-			estudiantes.PUT(":id", estudiante.Put)
-			estudiantes.DELETE(":id", estudiante.Delete)
+			estudiantes.PUT(":id_estudiante", estudiante.Put)
+			estudiantes.DELETE(":id_estudiante", estudiante.Delete)
 		}
 
 		evaluadores := router.Group("/evaluadores")
 		{
 			evaluadores.GET("", evaluador.List)
-			evaluadores.GET(":id", evaluador.Get)
+			evaluadores.GET(":id_evaluador", evaluador.Get)
 			evaluadores.POST("", evaluador.Add)
-			evaluadores.PUT(":id", evaluador.Put)
-			evaluadores.DELETE(":id", evaluador.Delete)
+			evaluadores.PUT(":id_evaluador", evaluador.Put)
+			evaluadores.DELETE(":id_evaluador", evaluador.Delete)
 		}
 
 		administradores_academicos := router.Group("/administradores-academicos")
 		{
 			administradores_academicos.GET("", administrador_academico.List)
-			administradores_academicos.GET(":id", administrador_academico.Get)
+			administradores_academicos.GET(":id_administrador_academico", administrador_academico.Get)
 			administradores_academicos.POST("", administrador_academico.Add)
-			administradores_academicos.POST("/carga-masiva", administrador_academico.MassiveAdd)
-			administradores_academicos.PUT(":id", administrador_academico.Put)
-			administradores_academicos.DELETE(":id", administrador_academico.Delete)
+			administradores_academicos.PUT(":id_administrador_academico", administrador_academico.Put)
+			administradores_academicos.DELETE(":id_administrador_academico", administrador_academico.Delete)
 		}
 
 		administradores_ti := router.Group("/administradores-ti")
 		{
 			administradores_ti.GET("", administrador_ti.List)
-			administradores_ti.GET(":id", administrador_ti.Get)
+			administradores_ti.GET(":id_administrador_ti", administrador_ti.Get)
 			administradores_ti.POST("", administrador_ti.Add)
-			administradores_ti.PUT(":id", administrador_ti.Put)
-			administradores_ti.DELETE(":id", administrador_ti.Delete)
+			administradores_ti.PUT(":id_administrador_ti", administrador_ti.Put)
+			administradores_ti.DELETE(":id_administrador_ti", administrador_ti.Delete)
 		}
 
 		cursos := router.Group("/cursos")
 		{
 			cursos.GET("", curso.ListCursos)
-			cursos.GET(":id", curso.GetOneCurso)
-			cursos.GET(":id/reporte-notas", curso.GetMarksReport)
-			cursos.POST("", curso.Add)
-			cursos.POST("carga-masiva", curso.AddNewCursos)
-			cursos.PUT(":id", curso.Put)
-			cursos.PUT(":id/estudiantes/:id_estudiante", curso.AddEstudianteToCurso)
-			cursos.PUT(":id/evaluadores/:id_evaluador", curso.AddEvaluadorToCurso)
-			cursos.PUT(":id/administradores-academicos/:id_administrador_academico", curso.AddAdministradorAcademicoToCurso)
-			cursos.DELETE(":id", curso.Delete)
+			cursos.GET(":id_periodo/:sigla_curso", curso.GetOneCurso)
+			cursos.GET(":id_periodo/:sigla_curso/reporte-notas", curso.GetMarksReport)
+			cursos.POST(":id_periodo", curso.Add)
+			cursos.PUT(":id_periodo/:sigla_curso", curso.Put)
+			cursos.PUT(":id_periodo/:sigla_curso/estudiantes/:id_estudiante", curso.AddEstudianteToCurso)
+			cursos.PUT(":id_periodo/:sigla_curso/evaluadores/:id_evaluador", curso.AddEvaluadorToCurso)
+			cursos.PUT(":id_periodo/:sigla_curso/administradores-academicos/:id_administrador_academico", curso.AddAdministradorAcademicoToCurso)
+			cursos.DELETE(":id_periodo/:sigla_curso", curso.Delete)
+
+			cursos.GET(":id_periodo/:sigla_curso/grupos", grupo.ListGrupos)
+			cursos.GET(":id_periodo/:sigla_curso/grupos/:sigla_grupo", grupo.GetOneGrupo)
+			cursos.POST(":id_periodo/:sigla_curso/grupos", grupo.Add)
+			cursos.PUT(":id_periodo/:sigla_curso/grupos/:sigla_grupo", grupo.Put)
+			cursos.DELETE(":id_periodo/:sigla_curso/grupos/:sigla_grupo", grupo.Delete)
 		}
 
-		grupos := router.Group("/grupos")
+		carga_masiva := router.Group("/carga-masiva")
 		{
-			grupos.GET("", grupo.ListGrupos)
-			grupos.GET(":id", grupo.GetOneGrupo)
-			grupos.POST("", grupo.Add)
-			grupos.POST("carga-masiva", grupo.AddNewGrupos)
-			grupos.PUT(":id", grupo.Put)
-			grupos.DELETE(":id", grupo.Delete)
+			carga_masiva.POST("cursos", curso.MassiveAdd)
+			carga_masiva.POST("grupos", grupo.MassiveAdd)
+			carga_masiva.POST("estudiantes", estudiante.MassiveAdd)
+			carga_masiva.POST("administradores-academicos", administrador_academico.MassiveAdd)
 		}
 
 		periodos := router.Group("/periodos")
 		{
 			periodos.GET("", periodo.List)
-			periodos.GET(":id", periodo.Get)
+			periodos.GET(":id_periodo", periodo.Get)
 			periodos.POST("", periodo.Add)
-			periodos.PUT(":id", periodo.Put)
-			periodos.DELETE(":id", periodo.Delete)
+			periodos.PUT(":id_periodo", periodo.Put)
+			periodos.DELETE(":id_periodo", periodo.Delete)
 		}
 
 		roles := router.Group("/roles")
 		{
 			roles.GET("", rol.List)
-			roles.GET(":id", rol.Get)
+			roles.GET(":id_rol", rol.Get)
 			roles.POST("", rol.Add)
-			roles.PUT(":id", rol.PutOneRol)
-			roles.DELETE(":id", rol.Delete)
+			roles.PUT(":id_rol", rol.PutOneRol)
+			roles.DELETE(":id_rol", rol.Delete)
 		}
 	}
 

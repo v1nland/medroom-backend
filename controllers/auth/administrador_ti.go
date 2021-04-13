@@ -27,12 +27,12 @@ type authAdministradorTiResponse struct {
 
 // @Summary Autenticación de administrador ti
 // @Description Ingresa usuario y contraseña para iniciar sesión
-// @Tags 01 - Autenticación
+// @Tags Autenticación
 // @Accept  json
 // @Produce  json
-// @Param   input_credentials     body    Request.LoginAdministradorTi     true        "Credenciales de acceso"
-// @Success 200 {array} Swagger.AuthenticationSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Param   input_credentials     body    authAdministradorTiRequest     true        "Credenciales de acceso"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/login [post]
 func AuthenticateAdministradorTi(c *gin.Context) {
 	var administrador_ti models.AdministradorTi
@@ -61,7 +61,7 @@ func AuthenticateAdministradorTi(c *gin.Context) {
 		token, _ := encoder.SignedString([]byte(os.Getenv("SECRET_KEY_ADMINISTRADOR_TI")))
 		login_response.Token = token
 
-		api_helpers.RespondJSON(c, 200, login_response)
+		api_helpers.RespondJson(c, 200, login_response)
 		return
 	}
 }

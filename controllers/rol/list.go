@@ -10,11 +10,11 @@ import (
 
 // @Summary Lista de roles
 // @Description Lista todos los roles
-// @Tags 00 - Rutas públicas
+// @Tags Rutas públicas
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} Swagger.ListRolesSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /roles [get]
 func List(c *gin.Context) {
 	var roles []models.Rol
@@ -24,5 +24,5 @@ func List(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, roles)
+	api_helpers.RespondJson(c, 200, roles)
 }

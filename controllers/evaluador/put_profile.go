@@ -38,15 +38,15 @@ func putProfileRequestParse(u *putProfileRequest) {
 
 // @Summary Modifica mi perfil
 // @Description Modifica el perfil del propio evaluador con los datos entregados
-// @Tags 03 - Evaluadores
+// @Tags Evaluadores
 // @Accept  json
 // @Produce  json
-// @Param   input_actualiza_evaluador     body    Request.PutProfile     true        "Evaluador a modificar"
-// @Success 200 {object} Swagger.PutMyEvaluadorSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Param   input_actualiza_evaluador     body    putProfileRequest     true        "Evaluador a modificar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /evaluadores/me [put]
 func PutProfile(c *gin.Context) {
-	id := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
+	id_evaluador := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
 
 	var input putProfileRequest
 	if err := c.ShouldBind(&input); err != nil {
@@ -57,13 +57,13 @@ func PutProfile(c *gin.Context) {
 	putProfileRequestParse(&input)
 
 	var evaluador models.Evaluador
-	if err := repositories.GetOneEvaluador(&evaluador, id); err != nil {
+	if err := repositories.GetOneEvaluador(&evaluador, id_evaluador); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
 	if evaluador.Hash_contrasena_evaluador != *input.Hash_contrasena_evaluador {
-		api_helpers.RespondJSON(c, 403, "Wrong current password")
+		api_helpers.RespondJson(c, 403, "Wrong current password")
 		return
 	}
 
@@ -82,11 +82,11 @@ func PutProfile(c *gin.Context) {
 		Cargo_evaluador:              utils.CheckNullString(input.Cargo_evaluador, evaluador.Cargo_evaluador),
 	}
 
-	if err := repositories.PutOneEvaluador(&evaluador, id); err != nil {
+	if err := repositories.PutOneEvaluador(&evaluador, id_evaluador); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
 	// api_helpers.RespondJSON(c, 200, f_output.PutMyEvaluador(model))
-	api_helpers.RespondJSON(c, 200, evaluador)
+	api_helpers.RespondJson(c, 200, evaluador)
 }

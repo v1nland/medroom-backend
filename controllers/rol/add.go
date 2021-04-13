@@ -24,12 +24,12 @@ func addRequestParse(u *addRequest) {
 
 // @Summary Agrega un nuevo rol
 // @Description Genera un nuevo rol con los datos entregados
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   input_rol     body    Request.AddNewRol     true        "Rol a agregar"
-// @Success 200 {object} Swagger.AddNewRolSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Param   input_rol     body    addRequest     true        "Rol a agregar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/roles [post]
 func Add(c *gin.Context) {
 	var input addRequest
@@ -50,5 +50,5 @@ func Add(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, rol)
+	api_helpers.RespondJson(c, 200, rol)
 }

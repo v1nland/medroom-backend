@@ -11,11 +11,11 @@ import (
 
 // @Summary Obtiene el perfil del evaluador
 // @Description Obtiene el perfil del evaluador según su token
-// @Tags 03 - Evaluadores
+// @Tags Evaluadores
 // @Accept  json
 // @Produce  json
-// @Success 200 {object} Swagger.GetMyEvaluadorSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /evaluadores/me [get]
 func Profile(c *gin.Context) {
 	id_evaluador := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
@@ -27,5 +27,5 @@ func Profile(c *gin.Context) {
 	}
 
 	// api_helpers.RespondJSON(c, 200, f_output.GetMyEvaluador(container))
-	api_helpers.RespondJSON(c, 200, evaluador)
+	api_helpers.RespondJson(c, 200, evaluador)
 }

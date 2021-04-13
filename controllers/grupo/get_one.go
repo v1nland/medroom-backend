@@ -10,17 +10,19 @@ import (
 
 // @Summary Obtiene un grupo
 // @Description Obtiene un grupo según su Id
-// @Tags 04 - Administración Académica
+// @Tags Administración Académica
 // @Accept  json
 // @Produce  json
-// @Param   id_grupo     path    string     true        "Id del grupo a buscar"
-// @Success 200 {object} Swagger.GetOneGrupoSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
-// @Router /administracion-academica/grupos/{id_grupo} [get]
+// @Param   id_periodo     path    string     true        "Id del periodo"
+// @Param   sigla_curso     path    string     true        "Sigla del curso"
+// @Param   sigla_grupo     path    string     true        "Sigla del grupo"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
+// @Router /administracion-academica/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo} [get]
 func GetOneGrupo(c *gin.Context) {
 	id_periodo := c.Params.ByName("id_periodo")
 	sigla_curso := c.Params.ByName("sigla_curso")
-	sigla_grupo := c.Params.ByName("id")
+	sigla_grupo := c.Params.ByName("sigla_grupo")
 
 	var grupo models.Grupo
 	if err := repositories.GetOneGrupo(&grupo, sigla_curso, id_periodo, sigla_grupo); err != nil {
@@ -28,5 +30,5 @@ func GetOneGrupo(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, grupo)
+	api_helpers.RespondJson(c, 200, grupo)
 }

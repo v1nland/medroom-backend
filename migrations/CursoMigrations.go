@@ -113,7 +113,7 @@ func Curso() {
 	}
 
 	if err := repositories.AddNewCurso(container); err != nil {
-		panic("NO SE PUDO MIGRAR CURSO 'NINJUTSU'")
+		fmt.Println("NO SE PUDO MIGRAR CURSO 'NINJUTSU'")
 	}
 
 	utils.StructToString(container)
@@ -185,7 +185,7 @@ func Curso() {
 	}
 
 	if err := repositories.AddNewCurso(container); err != nil {
-		panic("NO SE PUDO MIGRAR CURSO 'NINJUTSU AVANZADO'")
+		fmt.Println("NO SE PUDO MIGRAR CURSO 'NINJUTSU AVANZADO'")
 	}
 
 	utils.StructToString(container)
@@ -257,7 +257,7 @@ func Curso() {
 	}
 
 	if err := repositories.AddNewCurso(container); err != nil {
-		panic("NO SE PUDO MIGRAR CURSO 'NINJUTSU MEDICO'")
+		fmt.Println("NO SE PUDO MIGRAR CURSO 'NINJUTSU MEDICO'")
 	}
 
 	utils.StructToString(container)

@@ -10,11 +10,11 @@ import (
 
 // @Summary Lista de administradores-ti
 // @Description Lista todos los administradores-ti
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} Swagger.ListAdministradoresTiSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/administradores-ti [get]
 func List(c *gin.Context) {
 	var admins []models.AdministradorTi
@@ -23,5 +23,5 @@ func List(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, admins)
+	api_helpers.RespondJson(c, 200, admins)
 }

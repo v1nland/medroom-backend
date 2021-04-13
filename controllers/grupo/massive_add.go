@@ -37,14 +37,14 @@ func massiveAddRequestParse(u *massiveAddRequest) {
 
 // @Summary Agrega nuevos grupos de forma masiva
 // @Description Genera nuevos grupos con los datos entregados
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   input_grupo     body    massive_add_input     true        "Grupo a agregar"
-// @Success 200 {object} Swagger.AddNewGrupoSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Param   input_grupo     body    massiveAddRequest     true        "Grupo a agregar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/grupos/carga-masiva [post]
-func AddNewGrupos(c *gin.Context) {
+func MassiveAdd(c *gin.Context) {
 	var payload massiveAddRequest
 	if err := c.ShouldBind(&payload); err != nil {
 		api_helpers.RespondError(c, 400, err.Error())
@@ -68,8 +68,8 @@ func AddNewGrupos(c *gin.Context) {
 	}
 
 	if len(grupos_error) > 0 {
-		api_helpers.RespondJSON(c, 201, grupos_error)
+		api_helpers.RespondJson(c, 201, grupos_error)
 	} else {
-		api_helpers.RespondJSON(c, 200, "ok")
+		api_helpers.RespondJson(c, 200, "ok")
 	}
 }

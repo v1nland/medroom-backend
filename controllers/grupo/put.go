@@ -31,18 +31,20 @@ func putRequestParse(u *putRequest) {
 
 // @Summary Modifica un grupo
 // @Description Modifica un grupo con los datos entregados
-// @Tags 04 - Administración Académica
+// @Tags Administración Académica
 // @Accept  json
 // @Produce  json
-// @Param   id_grupo     path    string     true        "Id del grupo a modificar"
-// @Param   input_actualiza_grupo     body    Request.Put     true        "Grupo a modificar"
-// @Success 200 {object} Swagger.PutOneGrupoSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
-// @Router /administracion-academica/grupos/{id_grupo} [put]
+// @Param   id_periodo     path    string     true        "Id del periodo"
+// @Param   sigla_curso     path    string     true        "Sigla del curso"
+// @Param   sigla_grupo     path    string     true        "Sigla del grupo"
+// @Param   input_actualiza_grupo     body    putRequest     true        "Grupo a modificar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
+// @Router /administracion-academica/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo} [put]
 func Put(c *gin.Context) {
 	id_periodo := c.Params.ByName("id_periodo")
 	sigla_curso := c.Params.ByName("sigla_curso")
-	sigla_grupo := c.Params.ByName("id_grupo")
+	sigla_grupo := c.Params.ByName("sigla_grupo")
 
 	var input putRequest
 	if err := c.ShouldBind(&input); err != nil {
@@ -69,5 +71,5 @@ func Put(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, grupo)
+	api_helpers.RespondJson(c, 200, grupo)
 }

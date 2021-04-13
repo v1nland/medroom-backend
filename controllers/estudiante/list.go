@@ -10,11 +10,11 @@ import (
 
 // @Summary Lista de estudiantes
 // @Description Lista todos los estudiantes existentes
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} Swagger.ListEstudiantesSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/estudiantes [get]
 func List(c *gin.Context) {
 	var estudiantes []models.Estudiante
@@ -24,5 +24,5 @@ func List(c *gin.Context) {
 	}
 
 	// api_helpers.RespondJSON(c, 200, f_output.ListEstudiantes(container))
-	api_helpers.RespondJSON(c, 200, estudiantes)
+	api_helpers.RespondJson(c, 200, estudiantes)
 }

@@ -10,21 +10,21 @@ import (
 
 // @Summary Obtiene un rol
 // @Description Obtiene un rol según su Id
-// @Tags 00 - Rutas públicas
+// @Tags Rutas públicas
 // @Accept  json
 // @Produce  json
 // @Param   id_rol     path    string     true        "Id del rol a buscar"
-// @Success 200 {object} Swagger.GetOneRolSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /roles/{id_rol} [get]
 func Get(c *gin.Context) {
-	id := c.Params.ByName("id")
+	id_rol := c.Params.ByName("id_rol")
 
 	var rol models.Rol
-	if err := repositories.GetOneRol(&rol, id); err != nil {
+	if err := repositories.GetOneRol(&rol, id_rol); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, rol)
+	api_helpers.RespondJson(c, 200, rol)
 }

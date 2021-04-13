@@ -12,19 +12,20 @@ import (
 
 // @Summary Modifica los grupos de un estudiante
 // @Description Modifica los grupos de un estudiante con los datos entregados
-// @Tags 04 - Administración Académica
+// @Tags Administración Académica
 // @Accept  json
 // @Produce  json
-// @Param   id_curso     path    string     true        "ID del curso a modificar"
-// @Param   id_grupo     path    string     true        "ID del grupo a modificar"
+// @Param   id_periodo     path    string     true        "Id del periodo"
+// @Param   sigla_curso     path    string     true        "Sigla del curso"
+// @Param   sigla_grupo     path    string     true        "Sigla del grupo"
 // @Param   uuid_estudiante     path    string     true        "UUID del estudiante a asociar"
-// @Success 200 {object} Swagger.RemoveEstudianteFromGrupoSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
-// @Router /administracion-academica/cursos/{id_curso}/grupos/{id_grupo}/estudiantes/{uuid_estudiante} [delete]
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
+// @Router /administracion-academica/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estudiantes/{uuid_estudiante} [delete]
 func RemoveEstudianteFromGrupo(c *gin.Context) {
 	id_periodo := c.Params.ByName("id_periodo")
-	sigla_curso := c.Params.ByName("id")
-	sigla_grupo := c.Params.ByName("id_grupo")
+	sigla_curso := c.Params.ByName("sigla_curso")
+	sigla_grupo := c.Params.ByName("sigla_grupo")
 	id_estudiante := c.Params.ByName("id_estudiante")
 
 	var curso models.Curso
@@ -58,5 +59,5 @@ func RemoveEstudianteFromGrupo(c *gin.Context) {
 		config.DB.Model(&grupo_sg).Association("Estudiantes_grupo").Append([]models.Estudiante{estudiante})
 	}
 
-	api_helpers.RespondJSON(c, 200, grupo)
+	api_helpers.RespondJson(c, 200, grupo)
 }

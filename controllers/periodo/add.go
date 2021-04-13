@@ -24,12 +24,12 @@ func addRequestParse(u *addRequest) {
 
 // @Summary Agrega un nuevo periodo
 // @Description Genera un nuevo periodo con los datos entregados
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   input_periodo     body    Request.Add     true        "Periodo a agregar"
-// @Success 200 {object} Swagger.AddNewPeriodoSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Param   input_periodo     body    addRequest     true        "Periodo a agregar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/periodos [post]
 func Add(c *gin.Context) {
 	var input addRequest
@@ -49,5 +49,5 @@ func Add(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, periodo)
+	api_helpers.RespondJson(c, 200, periodo)
 }

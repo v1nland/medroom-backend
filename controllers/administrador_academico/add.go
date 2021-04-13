@@ -61,15 +61,14 @@ func addRequestParse(u *addRequest) {
 
 // @Summary Agrega un nuevo administrador_academico
 // @Description Genera un nuevo administrador_academico con los datos entregados
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   input_administrador_academico     body    Request.Add     true        "AdministradorAcademico a agregar"
-// @Success 200 {object} Swagger.AddNewAdministradorAcademicoSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Param   input_administrador_academico     body    addRequest     true        "AdministradorAcademico a agregar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/administradores-academicos [post]
 func Add(c *gin.Context) {
-
 	// read payload
 	var input addRequest
 	if err := c.ShouldBind(&input); err != nil {
@@ -95,5 +94,5 @@ func Add(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, admin.Id)
+	api_helpers.RespondJson(c, 200, admin.Id)
 }

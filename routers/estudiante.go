@@ -36,19 +36,19 @@ func SetupEstudianteRouter(r *gin.Engine) *gin.Engine {
 
 		// my course routes
 		router.GET("me/cursos", curso.GetCursosEstudiante)
-		router.GET("me/cursos/:id_curso", curso.GetOneCursoEstudiante)
+		router.GET("me/cursos/:id_periodo/:sigla_curso", curso.GetOneCursoEstudiante)
 
 		// my group routes
-		router.GET("me/cursos/:id_curso/grupos", grupo.GetGruposEstudiante)
-		router.GET("me/cursos/:id_curso/grupos/:id_grupo", grupo.GetOneGrupoEstudiante)
+		router.GET("me/cursos/:id_periodo/:sigla_curso/grupos", grupo.GetGruposEstudiante)
+		router.GET("me/cursos/:id_periodo/:sigla_curso/grupos/:sigla_grupo", grupo.GetOneGrupoEstudiante)
 
 		// my evaluations
-		router.GET("me/cursos/:id_curso/grupos/:id_grupo/evaluaciones", evaluacion.ListEvaluacionesGrupoEstudiante)
-		router.GET("me/cursos/:id_curso/grupos/:id_grupo/evaluaciones/:id_evaluacion/calificacion", calificacion_estudiante.Get)
+		router.GET("me/cursos/:id_periodo/:sigla_curso/grupos/:sigla_grupo/evaluaciones", evaluacion.ListEvaluacionesGrupoEstudiante)
+		router.GET("me/cursos/:id_periodo/:sigla_curso/grupos/:sigla_grupo/evaluaciones/:id_evaluacion/calificacion", calificacion_estudiante.Get)
 
 		// reports
-		router.GET("me/cursos/:id_curso/grupos/:id_grupo/estadisticas/evolucion-por-competencia", estadistica.EvolucionEstudiantePorCompetencia)
-		router.GET("me/cursos/:id_curso/grupos/:id_grupo/estadisticas/evolucion-por-evaluacion", estadistica.EvolucionEstudiantePorEvaluacion)
+		router.GET("me/cursos/:id_periodo/:sigla_curso/grupos/:sigla_grupo/estadisticas/evolucion-por-competencia", estadistica.EvolucionEstudiantePorCompetencia)
+		router.GET("me/cursos/:id_periodo/:sigla_curso/grupos/:sigla_grupo/estadisticas/evolucion-por-evaluacion", estadistica.EvolucionEstudiantePorEvaluacion)
 	}
 
 	return r

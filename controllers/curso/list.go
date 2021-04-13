@@ -10,11 +10,11 @@ import (
 
 // @Summary Lista de cursos
 // @Description Lista todos los cursos
-// @Tags 05 - Administración Ti
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} Swagger.ListCursosSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/cursos [get]
 func ListCursos(c *gin.Context) {
 	var cursos []models.Curso
@@ -23,5 +23,5 @@ func ListCursos(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, cursos)
+	api_helpers.RespondJson(c, 200, cursos)
 }

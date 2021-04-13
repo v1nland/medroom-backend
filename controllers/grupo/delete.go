@@ -11,17 +11,19 @@ import (
 
 // @Summary Elimina un grupo
 // @Description Elimina un grupo con los datos entregados
-// @Tags 04 - Administración Académica
+// @Tags Administración Académica
 // @Accept  json
 // @Produce  json
-// @Param   id_grupo     path    string     true        "Id del grupo a eliminar"
-// @Success 200 {object} Swagger.DeleteGrupoSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
-// @Router /administracion-academica/grupos/{id_grupo} [delete]
+// @Param   id_periodo     path    string     true        "Id del periodo"
+// @Param   sigla_curso     path    string     true        "Sigla del curso"
+// @Param   sigla_grupo     path    string     true        "Sigla del grupo"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
+// @Router /administracion-academica/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo} [delete]
 func Delete(c *gin.Context) {
 	id_periodo := c.Params.ByName("id_periodo")
 	sigla_curso := c.Params.ByName("sigla_curso")
-	sigla_grupo := c.Params.ByName("id")
+	sigla_grupo := c.Params.ByName("sigla_grupo")
 
 	var grupo models.Grupo
 	if err := repositories.GetOneGrupo(&grupo, sigla_curso, id_periodo, sigla_grupo); err != nil {
@@ -47,5 +49,5 @@ func Delete(c *gin.Context) {
 	repositories.DeleteGrupo(&grupo)
 
 	// response
-	api_helpers.RespondJSON(c, 200, grupo)
+	api_helpers.RespondJson(c, 200, grupo)
 }

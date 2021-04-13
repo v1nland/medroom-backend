@@ -57,14 +57,14 @@ func massiveAddFormat(u *massiveAddRequest) {
 	}
 }
 
-// @Summary Agrega nuevos administrador_tis de forma masiva
-// @Description Genera nuevos administrador_tis con los datos entregados
-// @Tags 05 - Administración Ti
+// @Summary Agrega nuevos administrador_ti de forma masiva
+// @Description Genera nuevos administrador_ti con los datos entregados
+// @Tags Administración Ti
 // @Accept  json
 // @Produce  json
-// @Param   input_administrador_ti     body    massive_add_input     true        "AdministradoresTi a agregar"
-// @Success 200 {object} massive_add_input "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Param   input_administrador_ti     body    massiveAddRequest     true        "Administradores Ti a agregar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /administracion-ti/administradores-ti/carga-masiva [post]
 func MassiveAdd(c *gin.Context) {
 	var payload massiveAddRequest
@@ -94,8 +94,8 @@ func MassiveAdd(c *gin.Context) {
 	}
 
 	if len(administradores_tis_error) > 0 {
-		api_helpers.RespondJSON(c, 201, administradores_tis_error)
+		api_helpers.RespondJson(c, 201, administradores_tis_error)
 	} else {
-		api_helpers.RespondJSON(c, 200, "ok")
+		api_helpers.RespondJson(c, 200, "ok")
 	}
 }

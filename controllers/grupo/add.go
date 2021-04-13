@@ -31,15 +31,18 @@ func addRequestParse(u *addRequest) {
 
 // @Summary Agrega un nuevo grupo
 // @Description Genera un nuevo grupo con los datos entregados
-// @Tags 04 - Administración Académica
+// @Tags Administración Académica
 // @Accept  json
 // @Produce  json
-// @Param   input_grupo     body    Request.Add     true        "Grupo a agregar"
-// @Success 200 {object} Swagger.AddNewGrupoSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
-// @Router /administracion-academica/grupos [post]
+// @Param   id_periodo     path    string     true        "Id del periodo"
+// @Param   sigla_curso     path    string     true        "Sigla del curso"
+// @Param   input_grupo     body    addRequest     true        "Grupo a agregar"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
+// @Router /administracion-academica/cursos/{id_periodo}/{sigla_curso}/grupos [post]
 func Add(c *gin.Context) {
-	id_curso := c.Params.ByName("id")
+	id_periodo := c.Params.ByName("id_periodo")
+	sigla_curso := c.Params.ByName("sigla_curso")
 
 	var input addRequest
 	if err := c.ShouldBind(&input); err != nil {
@@ -50,10 +53,10 @@ func Add(c *gin.Context) {
 	addRequestParse(&input)
 
 	grupo := models.Grupo{
-		Sigla_curso: id_curso,
-		// add idPeriodoCurso
-		Nombre_grupo: *input.Nombre_grupo,
-		Sigla_grupo:  *input.Sigla_grupo,
+		Id_periodo_curso: id_periodo,
+		Sigla_curso:      sigla_curso,
+		Nombre_grupo:     *input.Nombre_grupo,
+		Sigla_grupo:      *input.Sigla_grupo,
 	}
 
 	if err := repositories.AddNewGrupo(&grupo); err != nil {
@@ -61,5 +64,5 @@ func Add(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, grupo)
+	api_helpers.RespondJson(c, 200, grupo)
 }

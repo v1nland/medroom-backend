@@ -27,12 +27,12 @@ type authEstudianteResponse struct {
 
 // @Summary Autenticación de estudiante
 // @Description Ingresa usuario y contraseña para iniciar sesión
-// @Tags 01 - Autenticación
+// @Tags Autenticación
 // @Accept  json
 // @Produce  json
-// @Param   input_credentials     body    Request.LoginEstudiante     true        "Credenciales de acceso"
-// @Success 200 {array} Swagger.AuthenticationSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
+// @Param   input_credentials     body    authEstudianteRequest     true        "Credenciales de acceso"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /estudiantes/login [post]
 func AuthenticateEstudiante(c *gin.Context) {
 	var estudiante models.Estudiante
@@ -61,7 +61,7 @@ func AuthenticateEstudiante(c *gin.Context) {
 		token, _ := encoder.SignedString([]byte(os.Getenv("SECRET_KEY_ESTUDIANTE")))
 		login_response.Token = token
 
-		api_helpers.RespondJSON(c, 200, login_response)
+		api_helpers.RespondJson(c, 200, login_response)
 		return
 	}
 }

@@ -10,12 +10,14 @@ import (
 
 // @Summary Lista de grupos
 // @Description Lista todos los grupos
-// @Tags 04 - Administración Académica
+// @Tags Administración Académica
 // @Accept  json
 // @Produce  json
-// @Success 200 {array} Swagger.ListGruposSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
-// @Router /administracion-academica/grupos [get]
+// @Param   id_periodo     path    string     true        "Id del periodo"
+// @Param   sigla_curso     path    string     true        "Sigla del curso"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
+// @Router /administracion-academica/cursos/{id_periodo}/{sigla_curso}/grupos [get]
 func ListGrupos(c *gin.Context) {
 	var grupos []models.Grupo
 
@@ -24,5 +26,5 @@ func ListGrupos(c *gin.Context) {
 		return
 	}
 
-	api_helpers.RespondJSON(c, 200, grupos)
+	api_helpers.RespondJson(c, 200, grupos)
 }

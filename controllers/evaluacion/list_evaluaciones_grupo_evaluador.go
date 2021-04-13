@@ -11,18 +11,19 @@ import (
 
 // @Summary Lista de evaluaciones de un grupo
 // @Description Lista todas los evaluaciones disponibles de un evaluador de un grupo
-// @Tags 03 - Evaluadores
+// @Tags Evaluadores
 // @Accept  json
 // @Produce  json
-// @Param   id_curso     path    string     true        "Id del curso"
-// @Param   id_grupo     path    string     true        "Id del grupo"
-// @Success 200 {array} Swagger.ListEvaluacionesGrupoEvaluadorSwagger "OK"
-// @Failure 400 {object} api_helpers.ResponseError "Bad request"
-// @Router /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/evaluaciones [get]
+// @Param   id_periodo     path    string     true        "Id del periodo"
+// @Param   sigla_curso     path    string     true        "Sigla del curso"
+// @Param   sigla_grupo     path    string     true        "Sigla del grupo"
+// @Success 200 {object} api_helpers.Json "OK"
+// @Failure 400 {object} api_helpers.Error "Bad request"
+// @Router /evaluadores/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/evaluaciones [get]
 func ListEvaluacionesGrupoEvaluador(c *gin.Context) {
 	id_periodo := c.Params.ByName("id_periodo")
-	sigla_grupo := c.Params.ByName("id_grupo")
-	sigla_curso := c.Params.ByName("id_curso")
+	sigla_grupo := c.Params.ByName("sigla_grupo")
+	sigla_curso := c.Params.ByName("sigla_curso")
 	id_evaluador := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
 
 	var grupo models.Grupo
@@ -32,5 +33,5 @@ func ListEvaluacionesGrupoEvaluador(c *gin.Context) {
 	}
 
 	// api_helpers.RespondJSON(c, 200, f_output.ListEvaluacionesEstudiante(grupo.Evaluaciones_grupo))
-	api_helpers.RespondJSON(c, 200, grupo.Evaluaciones_grupo)
+	api_helpers.RespondJson(c, 200, grupo.Evaluaciones_grupo)
 }
