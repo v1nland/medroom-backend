@@ -35,7 +35,7 @@ func SetupEstudianteRouter(r *gin.Engine) *gin.Engine {
 		router.PUT("me", estudiante.PutProfile)
 
 		// my course routes
-		router.GET("me/cursos", curso.GetCursosEstudiante)
+		router.GET("me/cursos", curso.ListCursosEstudiante)
 		router.GET("me/cursos/:id_periodo/:sigla_curso", curso.GetOneCursoEstudiante)
 
 		// my group routes
