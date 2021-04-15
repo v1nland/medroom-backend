@@ -10,9 +10,6 @@ import (
 func Evaluacion() {
 	fmt.Println("===== EVALUACION =====")
 
-	var grupos []models.Grupo
-	repositories.GetAllGrupos(&grupos)
-
 	// control 1
 	container := &models.Evaluacion{
 		Sigla_curso_grupo:      "CIT-1000",

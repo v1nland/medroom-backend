@@ -9,6 +9,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type profileResponse struct {
+	Rut_estudiante                string `json:"rut_estudiante"`
+	Nombres_estudiante            string `json:"nombres_estudiante"`
+	Apellidos_estudiante          string `json:"apellidos_estudiante"`
+	Correo_electronico_estudiante string `json:"correo_electronico_estudiante"`
+	Telefono_celular_estudiante   string `json:"telefono_celular_estudiante"`
+}
+
 // @Summary Obtiene el perfil del estudiante
 // @Description Obtiene el perfil del estudiante según su token
 // @Tags Estudiantes
