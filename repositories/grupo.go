@@ -61,8 +61,8 @@ func GetOneGrupoEstudiante(u *models.Grupo, sigla_grupo string, sigla_curso stri
 		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_grupo AND eg.sigla_curso = g.sigla_curso AND eg.id_periodo_curso = g.id_periodo_curso").
 		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
 		Where("estudiantes.id = ?", id_estudiante).
-		Where("c.sigla_grupo = ? AND c.id_periodo = ?", sigla_curso, id_periodo).
-		Where("g.sigla_grupo = ? AND g.id_periodo_curso = ?", sigla_grupo, id_periodo).
+		Where("c.sigla_curso = ? AND c.id_periodo = ?", sigla_curso, id_periodo).
+		Where("g.sigla_grupo = ? AND g.id_periodo_curso = ? AND g.sigla_curso", sigla_grupo, id_periodo, sigla_curso).
 		First(u).
 		Error; err != nil {
 		return err
