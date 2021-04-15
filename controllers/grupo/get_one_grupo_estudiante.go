@@ -5,21 +5,20 @@ import (
 	"medroom-backend/models"
 	"medroom-backend/repositories"
 	"medroom-backend/utils"
-	"time"
 
 	"github.com/gin-gonic/gin"
 )
 
 type getOneGrupoEstudianteResponse struct {
-	Sigla_curso        string       `json:"sigla_curso"`
-	Id_periodo_curso   string       `json:"id_periodo_curso"`
-	Sigla_grupo        string       `json:"sigla_grupo"`
-	Evaluaciones_grupo []Evaluacion `json:"evaluaciones_grupo"`
-	Evaluadores_grupo  []Evaluador  `json:"evaluadores_grupo"`
-	Estudiantes_grupo  []Estudiante `json:"estudiantes_grupo"`
-	Nombre_grupo       string       `json:"nombre_grupo"`
-	CreatedAt          time.Time    `json:"created_at"`
-	UpdatedAt          time.Time    `json:"updated_at"`
+	// Sigla_curso        string       `json:"sigla_curso"`
+	// Id_periodo_curso   string       `json:"id_periodo_curso"`
+	// Sigla_grupo        string       `json:"sigla_grupo"`
+	// Evaluaciones_grupo []Evaluacion `json:"evaluaciones_grupo"`
+	// Evaluadores_grupo  []Evaluador  `json:"evaluadores_grupo"`
+	// Estudiantes_grupo  []Estudiante `json:"estudiantes_grupo"`
+	// Nombre_grupo       string       `json:"nombre_grupo"`
+	// CreatedAt          time.Time    `json:"created_at"`
+	// UpdatedAt          time.Time    `json:"updated_at"`
 }
 
 // @Summary Obtiene un grupo de un estudiante
