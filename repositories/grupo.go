@@ -36,12 +36,12 @@ func GetOneGrupo(u *models.Grupo, sigla_curso string, id_periodo_curso string, s
 
 // ESTUDIANTE
 func GetGruposEstudiante(u *[]models.Grupo, sigla_curso string, id_periodo string, id_estudiante string) (err error) {
-	if err := config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
+	if err := config.DB.Debug().Session(&gorm.Session{FullSaveAssociations: true}).
 		Preload(clause.Associations).
 		Table("estudiantes").
 		Select("g.*").
 		Joins("JOIN estudiantes_grupos eg ON eg.id_estudiante = estudiantes.id").
-		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_curso AND eg.sigla_curso = g.id_periodo_curso AND eg.id_periodo_curso = g.sigla_grupo").
+		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_grupo AND eg.sigla_curso = g.sigla_curso AND eg.id_periodo_curso = g.id_periodo_curso").
 		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
 		Where("c.sigla_curso = ? AND c.id_periodo = ?", sigla_curso, id_periodo).
 		Where("estudiantes.id = ?", id_estudiante).
@@ -58,7 +58,7 @@ func GetOneGrupoEstudiante(u *models.Grupo, sigla_grupo string, sigla_curso stri
 		Table("estudiantes").
 		Select("g.*").
 		Joins("JOIN estudiantes_grupos eg ON eg.id_estudiante = estudiantes.id").
-		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_curso AND eg.sigla_curso = g.id_periodo_curso AND eg.id_periodo_curso = g.sigla_grupo").
+		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_grupo AND eg.sigla_curso = g.sigla_curso AND eg.id_periodo_curso = g.id_periodo_curso").
 		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
 		Where("estudiantes.id = ?", id_estudiante).
 		Where("c.sigla_grupo = ? AND c.id_periodo = ?", sigla_curso, id_periodo).
@@ -77,7 +77,7 @@ func GetGruposEvaluador(u *[]models.Grupo, sigla_curso string, id_periodo string
 		Table("evaluadores").
 		Select("g.*").
 		Joins("JOIN evaluadores_grupos eg ON eg.id_evaluador = evaluadores.id").
-		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_curso AND eg.sigla_curso = g.id_periodo_curso AND eg.id_periodo_curso = g.sigla_grupo").
+		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_grupo AND eg.sigla_curso = g.sigla_curso AND eg.id_periodo_curso = g.id_periodo_curso").
 		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
 		Where("evaluadores.id = ?", id_evaluador).
 		Where("c.sigla_grupo = ? AND c.id_periodo = ?", sigla_curso, id_periodo).
@@ -95,7 +95,7 @@ func GetOneGrupoEvaluador(u *models.Grupo, sigla_grupo string, sigla_curso strin
 		Table("evaluadores").
 		Select("g.*").
 		Joins("JOIN evaluadores_grupos eg ON eg.id_evaluador = evaluadores.id").
-		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_curso AND eg.sigla_curso = g.id_periodo_curso AND eg.id_periodo_curso = g.sigla_grupo").
+		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_grupo AND eg.sigla_curso = g.sigla_curso AND eg.id_periodo_curso = g.id_periodo_curso").
 		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
 		Where("evaluadores.id = ?", id_evaluador).
 		Where("c.sigla_grupo = ? AND c.id_periodo = ?", sigla_curso, id_periodo).
@@ -114,7 +114,7 @@ func GetGruposAdministradorAcademico(u *[]models.Grupo, sigla_curso string, id_p
 		Table("administradores_academicos").
 		Select("g.*").
 		Joins("JOIN administradores_academicos_cursos aac ON aac.id_administrador_academico = administradores_academicos.id").
-		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_curso AND eg.sigla_curso = g.id_periodo_curso AND eg.id_periodo_curso = g.sigla_grupo").
+		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_grupo AND eg.sigla_curso = g.sigla_curso AND eg.id_periodo_curso = g.id_periodo_curso").
 		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
 		Where("administradores_academicos.id = ?", id_administrador_academico).
 		Where("c.sigla_grupo = ? AND c.id_periodo = ?", sigla_curso, id_periodo).
@@ -133,7 +133,7 @@ func GetOneGrupoAdministradorAcademico(u *models.Grupo, sigla_grupo string, sigl
 		Table("administradores_academicos").
 		Select("g.*").
 		Joins("JOIN administradores_academicos_cursos aac ON aac.id_administrador_academico = administradores_academicos.id").
-		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_curso AND eg.sigla_curso = g.id_periodo_curso AND eg.id_periodo_curso = g.sigla_grupo").
+		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_grupo AND eg.sigla_curso = g.sigla_curso AND eg.id_periodo_curso = g.id_periodo_curso").
 		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
 		Where("administradores_academicos.id = ?", id_administrador_academico).
 		Where("c.sigla_grupo = ? AND c.id_periodo = ?", sigla_curso, id_periodo).

@@ -13,7 +13,6 @@ import (
 // ESTUDIANTE
 func GetCursosEstudiante(u *[]models.Curso, id_estudiante string) (err error) {
 	if err := config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
-		Debug().
 		Preload(clause.Associations).
 		Table("estudiantes").
 		Select("c.*").

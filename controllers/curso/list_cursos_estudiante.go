@@ -1,6 +1,7 @@
 package curso
 
 import (
+	"fmt"
 	"medroom-backend/api_helpers"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
@@ -52,6 +53,8 @@ func ListCursosEstudiante(c *gin.Context) {
 			api_helpers.RespondError(c, 500, err.Error())
 			return
 		}
+
+		fmt.Println(grupos_estudiante)
 
 		if len(grupos_estudiante) > 0 {
 			new_curso.Grupo_estudiante = grupos_estudiante[0].Sigla_grupo
