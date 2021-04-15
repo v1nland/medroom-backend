@@ -63,7 +63,7 @@ func GetOneGrupoEstudiante(u *models.Grupo, sigla_grupo string, sigla_curso stri
 		Where("estudiantes.id = ?", id_estudiante).
 		Where("c.sigla_curso = ? AND c.id_periodo = ?", sigla_curso, id_periodo).
 		Where("g.sigla_grupo = ? AND g.id_periodo_curso = ? AND g.sigla_curso = ?", sigla_grupo, id_periodo, sigla_curso).
-		First(u).
+		Find(u).
 		Error; err != nil {
 		return err
 	}
@@ -100,7 +100,7 @@ func GetOneGrupoEvaluador(u *models.Grupo, sigla_grupo string, sigla_curso strin
 		Where("evaluadores.id = ?", id_evaluador).
 		Where("c.sigla_curso = ? AND c.id_periodo = ?", sigla_curso, id_periodo).
 		Where("g.sigla_grupo = ? AND g.id_periodo_curso = ? AND g.sigla_curso = ?", sigla_curso, id_periodo, sigla_curso).
-		First(u).
+		Find(u).
 		Error; err != nil {
 		return err
 	}
@@ -138,7 +138,7 @@ func GetOneGrupoAdministradorAcademico(u *models.Grupo, sigla_grupo string, sigl
 		Where("administradores_academicos.id = ?", id_administrador_academico).
 		Where("c.sigla_grupo = ? AND c.id_periodo = ? AND g.sigla_curso = ?", sigla_curso, id_periodo, sigla_curso).
 		Where("g.sigla_grupo = ? AND g.id_periodo_curso = ?", sigla_grupo, id_periodo).
-		First(u).
+		Find(u).
 		Error; err != nil {
 		return err
 	}
