@@ -1,13 +1,6 @@
 basePath: /api/v1
 definitions:
-  ApiHelpers.ResponseError:
-    properties:
-      description:
-        type: string
-      error:
-        type: string
-    type: object
-  Request.AddNewAdministradorAcademicoPayload:
+  Request.AddNewAdministradorAcademico:
     properties:
       apellidos_administrador_academico:
         type: string
@@ -26,7 +19,7 @@ definitions:
       telefono_fijo_administrador_academico:
         type: string
     type: object
-  Request.AddNewAdministradorTiPayload:
+  Request.AddNewAdministradorTi:
     properties:
       apellidos_administrador_ti:
         type: string
@@ -47,7 +40,7 @@ definitions:
       telefono_fijo_administrador_ti:
         type: string
     type: object
-  Request.AddNewCalificacionEstudiantePayload:
+  Request.AddNewCalificacionEstudiante:
     properties:
       asunto_principal_consulta_calificacion_estudiante:
         type: string
@@ -73,8 +66,10 @@ definitions:
         type: array
       tiempo_utilizado_calificacion_estudiante:
         type: integer
+      valoracion_general_calificacion_estudiante:
+        type: integer
     type: object
-  Request.AddNewCursoPayload:
+  Request.AddNewCurso:
     properties:
       id_periodo:
         type: integer
@@ -83,7 +78,7 @@ definitions:
       sigla_curso:
         type: string
     type: object
-  Request.AddNewEstudiantePayload:
+  Request.AddNewEstudiante:
     properties:
       apellidos_estudiante:
         type: string
@@ -102,12 +97,12 @@ definitions:
       telefono_fijo_estudiante:
         type: string
     type: object
-  Request.AddNewEvaluacionPayload:
+  Request.AddNewEvaluacion:
     properties:
       nombre_evaluacion:
         type: string
     type: object
-  Request.AddNewEvaluadorPayload:
+  Request.AddNewEvaluador:
     properties:
       apellidos_evaluador:
         type: string
@@ -130,49 +125,47 @@ definitions:
       telefono_fijo_evaluador:
         type: string
     type: object
-  Request.AddNewGrupoPayload:
+  Request.AddNewGrupo:
     properties:
       id_curso:
         type: integer
-      id_evaluador:
-        type: string
       nombre_grupo:
         type: string
       sigla_grupo:
         type: string
     type: object
-  Request.AddNewPeriodoPayload:
+  Request.AddNewPeriodo:
     properties:
       nombre_periodo:
         type: string
     type: object
-  Request.AddNewRolPayload:
+  Request.AddNewRol:
     properties:
       nombre_rol:
         type: string
     type: object
-  Request.LoginAdministradorAcademicoPayload:
+  Request.LoginAdministradorAcademico:
     properties:
       correo_electronico_administrador_academico:
         type: string
       hash_contrasena_administrador_academico:
         type: string
     type: object
-  Request.LoginAdministradorTiPayload:
+  Request.LoginAdministradorTi:
     properties:
       correo_electronico_administrador_ti:
         type: string
       hash_contrasena_administrador_ti:
         type: string
     type: object
-  Request.LoginEstudiantePayload:
+  Request.LoginEstudiante:
     properties:
       correo_electronico_estudiante:
         type: string
       hash_contrasena_estudiante:
         type: string
     type: object
-  Request.LoginEvaluadorPayload:
+  Request.LoginEvaluador:
     properties:
       correo_electronico_evaluador:
         type: string
@@ -188,13 +181,15 @@ definitions:
       id_competencia:
         type: string
     type: object
-  Request.PutMyAdministradorAcademicoPayload:
+  Request.PutMyAdministradorAcademico:
     properties:
       apellidos_administrador_academico:
         type: string
       correo_electronico_administrador_academico:
         type: string
       hash_contrasena_administrador_academico:
+        type: string
+      hash_nueva_contrasena_administrador_academico:
         type: string
       id_rol:
         type: integer
@@ -207,13 +202,15 @@ definitions:
       telefono_fijo_administrador_academico:
         type: string
     type: object
-  Request.PutMyAdministradorTiPayload:
+  Request.PutMyAdministradorTi:
     properties:
       apellidos_administrador_ti:
         type: string
       correo_electronico_administrador_ti:
         type: string
       hash_contrasena_administrador_ti:
+        type: string
+      hash_nueva_contrasena_administrador_ti:
         type: string
       id_grupo:
         type: integer
@@ -228,27 +225,31 @@ definitions:
       telefono_fijo_administrador_ti:
         type: string
     type: object
-  Request.PutMyEstudiantePayload:
+  Request.PutMyEstudiante:
     properties:
       hash_contrasena_estudiante:
+        type: string
+      hash_nueva_contrasena_estudiante:
         type: string
       telefono_celular_estudiante:
         type: string
       telefono_fijo_estudiante:
         type: string
     type: object
-  Request.PutMyEvaluadorPayload:
+  Request.PutMyEvaluador:
     properties:
       cargo_evaluador:
         type: string
       hash_contrasena_evaluador:
+        type: string
+      hash_nueva_contrasena_evaluador:
         type: string
       telefono_celular_evaluador:
         type: string
       telefono_fijo_evaluador:
         type: string
     type: object
-  Request.PutOneAdministradorAcademicoPayload:
+  Request.PutOneAdministradorAcademico:
     properties:
       apellidos_administrador_academico:
         type: string
@@ -267,7 +268,7 @@ definitions:
       telefono_fijo_administrador_academico:
         type: string
     type: object
-  Request.PutOneAdministradorTiPayload:
+  Request.PutOneAdministradorTi:
     properties:
       apellidos_administrador_ti:
         type: string
@@ -288,7 +289,7 @@ definitions:
       telefono_fijo_administrador_ti:
         type: string
     type: object
-  Request.PutOneCursoPayload:
+  Request.PutOneCurso:
     properties:
       id_periodo:
         type: integer
@@ -297,7 +298,7 @@ definitions:
       sigla_curso:
         type: string
     type: object
-  Request.PutOneEstudiantePayload:
+  Request.PutOneEstudiante:
     properties:
       apellidos_estudiante:
         type: string
@@ -314,7 +315,7 @@ definitions:
       telefono_fijo_estudiante:
         type: string
     type: object
-  Request.PutOneEvaluadorPayload:
+  Request.PutOneEvaluador:
     properties:
       apellidos_evaluador:
         type: string
@@ -335,26 +336,29 @@ definitions:
       telefono_fijo_evaluador:
         type: string
     type: object
-  Request.PutOneGrupoPayload:
+  Request.PutOneGrupo:
     properties:
       id_curso:
         type: integer
-      id_evaluador:
-        type: string
       nombre_grupo:
         type: string
       sigla_grupo:
         type: string
     type: object
-  Request.PutOnePeriodoPayload:
+  Request.PutOnePeriodo:
     properties:
       nombre_periodo:
         type: string
     type: object
-  Request.PutOneRolPayload:
+  Request.PutOneRol:
     properties:
       nombre_rol:
         type: string
+    type: object
+  Response.AddAdministradorAcademicoToCursoResponse:
+    properties:
+      id:
+        type: integer
     type: object
   Response.AddEstudianteToCursoResponse:
     properties:
@@ -401,12 +405,22 @@ definitions:
       id:
         type: string
     type: object
+  Response.AddNewEstudiantesResponse:
+    properties:
+      id:
+        type: string
+    type: object
   Response.AddNewEvaluacionResponse:
     properties:
       id:
         type: integer
     type: object
   Response.AddNewEvaluadorResponse:
+    properties:
+      id:
+        type: string
+    type: object
+  Response.AddNewEvaluadoresResponse:
     properties:
       id:
         type: string
@@ -515,6 +529,61 @@ definitions:
           type: array
         type: object
     type: object
+  Response.EvolucionGrupoPorCompetenciaResponse:
+    properties:
+      eje_x:
+        items:
+          type: string
+        type: array
+      eje_y:
+        items:
+          type: integer
+        type: array
+      valores:
+        additionalProperties:
+          items:
+            properties:
+              promedio_grupo:
+                type: number
+            type: object
+          type: array
+        type: object
+    type: object
+  Response.EvolucionGrupoPorEvaluacionResponse:
+    properties:
+      eje_x:
+        items:
+          type: string
+        type: array
+      eje_y:
+        items:
+          type: integer
+        type: array
+      valores:
+        additionalProperties:
+          items:
+            properties:
+              promedio_grupo:
+                type: number
+            type: object
+          type: array
+        type: object
+    type: object
+  Response.GetCursosAdministradorAcademicoResponse:
+    properties:
+      grupos_curso:
+        items:
+          $ref: '#/definitions/Response.ListGruposResponse'
+        type: array
+      id:
+        type: integer
+      nombre_curso:
+        type: string
+      periodo_curso:
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
+      sigla_curso:
+        type: string
+    type: object
   Response.GetCursosEstudianteResponse:
     properties:
       grupos_curso:
@@ -543,6 +612,23 @@ definitions:
       periodo_curso:
         $ref: '#/definitions/Response.GetOnePeriodoResponse'
       sigla_curso:
+        type: string
+    type: object
+  Response.GetGruposAdministradorAcademicoResponse:
+    properties:
+      estudiantes_grupo:
+        items:
+          $ref: '#/definitions/Response.ListEstudiantesResponse'
+        type: array
+      evaluador_grupo:
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      id:
+        type: integer
+      id_curso:
+        type: integer
+      nombre_grupo:
+        type: string
+      sigla_grupo:
         type: string
     type: object
   Response.GetGruposEstudianteResponse:
@@ -703,6 +789,21 @@ definitions:
       telefono_fijo_administrador_ti:
         type: string
     type: object
+  Response.GetOneCursoAdministradorAcademicoResponse:
+    properties:
+      grupos_curso:
+        items:
+          $ref: '#/definitions/Response.ListGruposResponse'
+        type: array
+      id:
+        type: integer
+      nombre_curso:
+        type: string
+      periodo_curso:
+        $ref: '#/definitions/Response.GetOnePeriodoResponse'
+      sigla_curso:
+        type: string
+    type: object
   Response.GetOneCursoEstudianteResponse:
     properties:
       grupos_curso:
@@ -794,6 +895,23 @@ definitions:
       telefono_celular_evaluador:
         type: string
       telefono_fijo_evaluador:
+        type: string
+    type: object
+  Response.GetOneGrupoAdministradorAcademicoResponse:
+    properties:
+      estudiantes_grupo:
+        items:
+          $ref: '#/definitions/Response.ListEstudiantesResponse'
+        type: array
+      evaluador_grupo:
+        $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      id:
+        type: integer
+      id_curso:
+        type: integer
+      nombre_grupo:
+        type: string
+      sigla_grupo:
         type: string
     type: object
   Response.GetOneGrupoEstudianteResponse:
@@ -912,6 +1030,56 @@ definitions:
       periodo_curso:
         $ref: '#/definitions/Response.GetOnePeriodoResponse'
       sigla_curso:
+        type: string
+    type: object
+  Response.ListEstudiantesCursoResponse:
+    properties:
+      apellidos_estudiante:
+        type: string
+      correo_electronico_estudiante:
+        type: string
+      evaluaciones_estudiante:
+        items:
+          $ref: '#/definitions/Response.ListEvaluacionesEstudianteResponse'
+        type: array
+      id:
+        type: string
+      id_grupo:
+        type: integer
+      nombres_estudiante:
+        type: string
+      rol_estudiante:
+        $ref: '#/definitions/Response.GetOneRolResponse'
+      rut_estudiante:
+        type: string
+      telefono_celular_estudiante:
+        type: string
+      telefono_fijo_estudiante:
+        type: string
+    type: object
+  Response.ListEstudiantesCursoSinGrupoResponse:
+    properties:
+      apellidos_estudiante:
+        type: string
+      correo_electronico_estudiante:
+        type: string
+      evaluaciones_estudiante:
+        items:
+          $ref: '#/definitions/Response.ListEvaluacionesEstudianteResponse'
+        type: array
+      id:
+        type: string
+      id_grupo:
+        type: integer
+      nombres_estudiante:
+        type: string
+      rol_estudiante:
+        $ref: '#/definitions/Response.GetOneRolResponse'
+      rut_estudiante:
+        type: string
+      telefono_celular_estudiante:
+        type: string
+      telefono_fijo_estudiante:
         type: string
     type: object
   Response.ListEstudiantesResponse:
@@ -1200,6 +1368,25 @@ definitions:
       id:
         type: integer
     type: object
+  Response.RemoveEstudianteFromGrupoResponse:
+    properties:
+      id:
+        type: integer
+    type: object
+  Response.RemoveEvaluadorFromGrupoResponse:
+    properties:
+      id:
+        type: integer
+    type: object
+  Swagger.AddAdministradorAcademicoToCursoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.AddAdministradorAcademicoToCursoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
   Swagger.AddEstudianteToCursoSwagger:
     properties:
       data:
@@ -1281,6 +1468,15 @@ definitions:
       status:
         type: boolean
     type: object
+  Swagger.AddNewEstudiantesSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.AddNewEstudiantesResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
   Swagger.AddNewEvaluacionSwagger:
     properties:
       data:
@@ -1294,6 +1490,15 @@ definitions:
     properties:
       data:
         $ref: '#/definitions/Response.AddNewEvaluadorResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.AddNewEvaluadoresSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.AddNewEvaluadoresResponse'
       meta:
         type: string
       status:
@@ -1425,6 +1630,33 @@ definitions:
       status:
         type: boolean
     type: object
+  Swagger.EvolucionGrupoPorCompetenciaSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.EvolucionGrupoPorCompetenciaResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.EvolucionGrupoPorEvaluacionSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.EvolucionGrupoPorEvaluacionResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetCursosAdministradorAcademicoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetCursosAdministradorAcademicoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
   Swagger.GetCursosEstudianteSwagger:
     properties:
       data:
@@ -1438,6 +1670,15 @@ definitions:
     properties:
       data:
         $ref: '#/definitions/Response.GetCursosEvaluadorResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetGruposAdministradorAcademicoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetGruposAdministradorAcademicoResponse'
       meta:
         type: string
       status:
@@ -1515,6 +1756,15 @@ definitions:
       status:
         type: boolean
     type: object
+  Swagger.GetOneCursoAdministradorAcademicoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetOneCursoAdministradorAcademicoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
   Swagger.GetOneCursoEstudianteSwagger:
     properties:
       data:
@@ -1555,6 +1805,15 @@ definitions:
     properties:
       data:
         $ref: '#/definitions/Response.GetOneEvaluadorResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.GetOneGrupoAdministradorAcademicoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.GetOneGrupoAdministradorAcademicoResponse'
       meta:
         type: string
       status:
@@ -1627,6 +1886,24 @@ definitions:
     properties:
       data:
         $ref: '#/definitions/Response.ListCursosResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.ListEstudiantesCursoSinGrupoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.ListEstudiantesCursoSinGrupoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.ListEstudiantesCursoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.ListEstudiantesCursoResponse'
       meta:
         type: string
       status:
@@ -1812,6 +2089,167 @@ definitions:
       status:
         type: boolean
     type: object
+  Swagger.RemoveEstudianteFromGrupoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.RemoveEstudianteFromGrupoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Swagger.RemoveEvaluadorFromGrupoSwagger:
+    properties:
+      data:
+        $ref: '#/definitions/Response.RemoveEvaluadorFromGrupoResponse'
+      meta:
+        type: string
+      status:
+        type: boolean
+    type: object
+  administrador_academico.massive_add_input:
+    properties:
+      administradores_academicos:
+        items:
+          properties:
+            apellidos_administrador_academico:
+              type: string
+            correo_electronico_administrador_academico:
+              type: string
+            hash_contrasena_administrador_academico:
+              type: string
+            id_cursos:
+              items:
+                type: integer
+              type: array
+            nombres_administrador_academico:
+              type: string
+            rut_administrador_academico:
+              type: string
+            telefono_celular_administrador_academico:
+              type: string
+            telefono_fijo_administrador_academico:
+              type: string
+          type: object
+        type: array
+    type: object
+  administrador_ti.massive_add_input:
+    properties:
+      administradores_ti:
+        items:
+          properties:
+            apellidos_administrador_ti:
+              type: string
+            correo_electronico_administrador_ti:
+              type: string
+            hash_contrasena_administrador_ti:
+              type: string
+            nombres_administrador_ti:
+              type: string
+            rut_administrador_ti:
+              type: string
+            telefono_celular_administrador_ti:
+              type: string
+            telefono_fijo_administrador_ti:
+              type: string
+          type: object
+        type: array
+    type: object
+  api_helpers.ResponseError:
+    properties:
+      description:
+        type: string
+      error:
+        type: string
+    type: object
+  curso.massive_add_input:
+    properties:
+      cursos:
+        items:
+          properties:
+            id:
+              type: integer
+            id_periodo:
+              type: integer
+            nombre_curso:
+              type: string
+            sigla_curso:
+              type: string
+          type: object
+        type: array
+    type: object
+  estudiante.massive_add_input:
+    properties:
+      estudiantes:
+        items:
+          properties:
+            apellidos_estudiante:
+              type: string
+            correo_electronico_estudiante:
+              type: string
+            hash_contrasena_estudiante:
+              type: string
+            id_grupos:
+              items:
+                type: integer
+              type: array
+            nombres_estudiante:
+              type: string
+            rut_estudiante:
+              type: string
+            telefono_celular_estudiante:
+              type: string
+            telefono_fijo_estudiante:
+              type: string
+          type: object
+        type: array
+    type: object
+  evaluador.massive_add_input:
+    properties:
+      evaluadores:
+        items:
+          properties:
+            apellidos_evaluador:
+              type: string
+            cargo_evaluador:
+              type: string
+            correo_electronico_evaluador:
+              type: string
+            hash_contrasena_evaluador:
+              type: string
+            id_grupos:
+              items:
+                type: integer
+              type: array
+            nombres_evaluador:
+              type: string
+            recinto_evaluador:
+              type: string
+            rut_evaluador:
+              type: string
+            telefono_celular_evaluador:
+              type: string
+            telefono_fijo_evaluador:
+              type: string
+          type: object
+        type: array
+    type: object
+  grupo.massive_add_input:
+    properties:
+      grupos:
+        items:
+          properties:
+            id:
+              type: integer
+            id_curso:
+              type: integer
+            nombre_grupo:
+              type: string
+            sigla_grupo:
+              type: string
+          type: object
+        type: array
+    type: object
 info:
   contact:
     email: martin.saavedra@mail.udp.cl
@@ -1825,7 +2263,83 @@ info:
   title: MedRoom API
   version: "1.0"
 paths:
+  /administracion-academica/cursos/:id_curso/estudiantes:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los estudiantes existentes en un curso
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.ListEstudiantesCursoSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Lista de estudiantes de un curso
+      tags:
+      - 04 - Administración Académica
+  /administracion-academica/cursos/:id_curso/estudiantes/sin-grupo:
+    get:
+      consumes:
+      - application/json
+      description: Lista todos los estudiantes existentes en un curso sin grupo
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.ListEstudiantesCursoSinGrupoSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Lista de estudiantes de un curso sin grupo
+      tags:
+      - 04 - Administración Académica
   /administracion-academica/cursos/{id_curso}/grupos/{id_grupo}/estudiantes/{uuid_estudiante}:
+    delete:
+      consumes:
+      - application/json
+      description: Modifica los grupos de un estudiante con los datos entregados
+      parameters:
+      - description: ID del curso a modificar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: ID del grupo a modificar
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      - description: UUID del estudiante a asociar
+        in: path
+        name: uuid_estudiante
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.RemoveEstudianteFromGrupoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Modifica los grupos de un estudiante
+      tags:
+      - 04 - Administración Académica
     put:
       consumes:
       - application/json
@@ -1856,10 +2370,10 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica los grupos de un estudiante
       tags:
-      - 05 - Administración Académica
+      - 04 - Administración Académica
   /administracion-academica/cursos/{id_curso}/grupos/{id_grupo}/evaluadores/{uuid_evaluador}:
     put:
       consumes:
@@ -1891,10 +2405,45 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica los grupos de un evaluador
       tags:
-      - 05 - Administración Académica
+      - 04 - Administración Académica
+  /administracion-academica/cursos/{id_curso}/grupos/{id_grupo}/evaluadors/{uuid_evaluador}:
+    delete:
+      consumes:
+      - application/json
+      description: Modifica los grupos de un evaluador con los datos entregados
+      parameters:
+      - description: ID del curso a modificar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: ID del grupo a modificar
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      - description: UUID del evaluador a asociar
+        in: path
+        name: uuid_evaluador
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.RemoveEvaluadorFromGrupoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Modifica los grupos de un evaluador
+      tags:
+      - 04 - Administración Académica
   /administracion-academica/grupos:
     get:
       consumes:
@@ -1912,10 +2461,10 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de grupos
       tags:
-      - 05 - Administración Académica
+      - 04 - Administración Académica
     post:
       consumes:
       - application/json
@@ -1926,7 +2475,7 @@ paths:
         name: input_grupo
         required: true
         schema:
-          $ref: '#/definitions/Request.AddNewGrupoPayload'
+          $ref: '#/definitions/Request.AddNewGrupo'
       produces:
       - application/json
       responses:
@@ -1937,10 +2486,10 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Agrega un nuevo grupo
       tags:
-      - 05 - Administración Académica
+      - 04 - Administración Académica
   /administracion-academica/grupos/{id_grupo}:
     delete:
       consumes:
@@ -1962,10 +2511,10 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Elimina un grupo
       tags:
-      - 05 - Administración Académica
+      - 04 - Administración Académica
     get:
       consumes:
       - application/json
@@ -1986,10 +2535,10 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un grupo
       tags:
-      - 05 - Administración Académica
+      - 04 - Administración Académica
     put:
       consumes:
       - application/json
@@ -2005,7 +2554,7 @@ paths:
         name: input_actualiza_grupo
         required: true
         schema:
-          $ref: '#/definitions/Request.PutOneGrupoPayload'
+          $ref: '#/definitions/Request.PutOneGrupo'
       produces:
       - application/json
       responses:
@@ -2016,10 +2565,10 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica un grupo
       tags:
-      - 05 - Administración Académica
+      - 04 - Administración Académica
   /administracion-academica/login:
     post:
       consumes:
@@ -2031,7 +2580,7 @@ paths:
         name: input_credentials
         required: true
         schema:
-          $ref: '#/definitions/Request.LoginAdministradorAcademicoPayload'
+          $ref: '#/definitions/Request.LoginAdministradorAcademico'
       produces:
       - application/json
       responses:
@@ -2044,7 +2593,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Autenticación de administrador académico
       tags:
       - 01 - Autenticación
@@ -2063,10 +2612,10 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene el perfil del administrador academico
       tags:
-      - 04 - Administración Academica
+      - 04 - Administración Académica
     put:
       consumes:
       - application/json
@@ -2078,7 +2627,7 @@ paths:
         name: input_actualiza_administrador_academico
         required: true
         schema:
-          $ref: '#/definitions/Request.PutMyAdministradorAcademicoPayload'
+          $ref: '#/definitions/Request.PutMyAdministradorAcademico'
       produces:
       - application/json
       responses:
@@ -2089,10 +2638,109 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica mi perfil
       tags:
-      - 04 - Administración Academica
+      - 04 - Administración Académica
+  /administracion-academica/me/cursos:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene los cursos de un administrador academico según su token
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetCursosAdministradorAcademicoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Obtiene los cursos de un administrador academico
+      tags:
+      - 04 - Administración Académica
+  /administracion-academica/me/cursos/{id_curso}:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un curso de un administrador academico según su token
+      parameters:
+      - description: Id del curso a buscar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetOneCursoAdministradorAcademicoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Obtiene un curso de un administrador academico
+      tags:
+      - 04 - Administración Académica
+  /administracion-academica/me/cursos/{id_curso}/grupos:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene los grupos de un administrador academico según su token
+      parameters:
+      - description: Id del curso a buscar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetGruposAdministradorAcademicoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Obtiene los grupos de un administrador academico
+      tags:
+      - 04 - Administración Académica
+  /administracion-academica/me/cursos/{id_curso}/grupos/{id_grupo}:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene un grupo de un administrador academico según su token
+      parameters:
+      - description: Id del curso a buscar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: Id del grupo a buscar
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.GetOneGrupoAdministradorAcademicoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Obtiene un grupo de un administrador academico
+      tags:
+      - 04 - Administración Académica
   /administracion-ti/administradores-academicos:
     get:
       consumes:
@@ -2110,7 +2758,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de administradores-academicos
       tags:
       - 05 - Administración Ti
@@ -2124,7 +2772,7 @@ paths:
         name: input_administrador_academico
         required: true
         schema:
-          $ref: '#/definitions/Request.AddNewAdministradorAcademicoPayload'
+          $ref: '#/definitions/Request.AddNewAdministradorAcademico'
       produces:
       - application/json
       responses:
@@ -2135,7 +2783,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Agrega un nuevo administrador_academico
       tags:
       - 05 - Administración Ti
@@ -2160,7 +2808,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Elimina un administrador_academico
       tags:
       - 05 - Administración Ti
@@ -2184,7 +2832,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un administrador_academico
       tags:
       - 05 - Administración Ti
@@ -2203,7 +2851,7 @@ paths:
         name: input_actualiza_administrador_academico
         required: true
         schema:
-          $ref: '#/definitions/Request.PutOneAdministradorAcademicoPayload'
+          $ref: '#/definitions/Request.PutOneAdministradorAcademico'
       produces:
       - application/json
       responses:
@@ -2214,8 +2862,34 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica un administrador_academico
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/administradores-academicos/carga-masiva:
+    post:
+      consumes:
+      - application/json
+      description: Genera nuevos administrador_academicos con los datos entregados
+      parameters:
+      - description: AdministradoresAcademico a agregar
+        in: body
+        name: input_administrador_academico
+        required: true
+        schema:
+          $ref: '#/definitions/administrador_academico.massive_add_input'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/administrador_academico.massive_add_input'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Agrega nuevos administrador_academicos de forma masiva
       tags:
       - 05 - Administración Ti
   /administracion-ti/administradores-ti:
@@ -2235,7 +2909,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de administradores-ti
       tags:
       - 05 - Administración Ti
@@ -2249,7 +2923,7 @@ paths:
         name: input_administrador_ti
         required: true
         schema:
-          $ref: '#/definitions/Request.AddNewAdministradorTiPayload'
+          $ref: '#/definitions/Request.AddNewAdministradorTi'
       produces:
       - application/json
       responses:
@@ -2260,7 +2934,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Agrega un nuevo administrador_ti
       tags:
       - 05 - Administración Ti
@@ -2285,7 +2959,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Elimina un administrador_ti
       tags:
       - 05 - Administración Ti
@@ -2309,7 +2983,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un administrador_ti
       tags:
       - 05 - Administración Ti
@@ -2328,7 +3002,7 @@ paths:
         name: input_actualiza_administrador_ti
         required: true
         schema:
-          $ref: '#/definitions/Request.PutOneAdministradorTiPayload'
+          $ref: '#/definitions/Request.PutOneAdministradorTi'
       produces:
       - application/json
       responses:
@@ -2339,8 +3013,34 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica un administrador_ti
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/administradores-ti/carga-masiva:
+    post:
+      consumes:
+      - application/json
+      description: Genera nuevos administrador_tis con los datos entregados
+      parameters:
+      - description: AdministradoresTi a agregar
+        in: body
+        name: input_administrador_ti
+        required: true
+        schema:
+          $ref: '#/definitions/administrador_ti.massive_add_input'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/administrador_ti.massive_add_input'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Agrega nuevos administrador_tis de forma masiva
       tags:
       - 05 - Administración Ti
   /administracion-ti/cursos:
@@ -2360,7 +3060,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de cursos
       tags:
       - 05 - Administración Ti
@@ -2374,7 +3074,7 @@ paths:
         name: input_curso
         required: true
         schema:
-          $ref: '#/definitions/Request.AddNewCursoPayload'
+          $ref: '#/definitions/Request.AddNewCurso'
       produces:
       - application/json
       responses:
@@ -2385,7 +3085,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Agrega un nuevo curso
       tags:
       - 05 - Administración Ti
@@ -2410,7 +3110,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Elimina un curso
       tags:
       - 05 - Administración Ti
@@ -2434,7 +3134,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un curso
       tags:
       - 05 - Administración Ti
@@ -2453,7 +3153,7 @@ paths:
         name: input_actualiza_curso
         required: true
         schema:
-          $ref: '#/definitions/Request.PutOneCursoPayload'
+          $ref: '#/definitions/Request.PutOneCurso'
       produces:
       - application/json
       responses:
@@ -2464,8 +3164,39 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica un curso
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/cursos/{id_curso}/administradores-academicos/{uuid_administrador_academico}:
+    put:
+      consumes:
+      - application/json
+      description: Modifica los cursos de un administrador_academico con los datos
+        entregados
+      parameters:
+      - description: ID del curso a modificar
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: UUID del administrador_academico a asociar
+        in: path
+        name: uuid_administrador_academico
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.AddAdministradorAcademicoToCursoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Modifica los cursos de un administrador_academico
       tags:
       - 05 - Administración Ti
   /administracion-ti/cursos/{id_curso}/estudiantes/{uuid_estudiante}:
@@ -2494,7 +3225,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica los cursos de un estudiante
       tags:
       - 05 - Administración Ti
@@ -2524,8 +3255,34 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica los cursos de un evaluador
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/cursos/carga-masiva:
+    post:
+      consumes:
+      - application/json
+      description: Genera nuevos cursos con los datos entregados
+      parameters:
+      - description: Curso a agregar
+        in: body
+        name: input_curso
+        required: true
+        schema:
+          $ref: '#/definitions/curso.massive_add_input'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.AddNewCursoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Agrega nuevos cursos de forma masiva
       tags:
       - 05 - Administración Ti
   /administracion-ti/estudiantes:
@@ -2545,7 +3302,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de estudiantes
       tags:
       - 05 - Administración Ti
@@ -2559,7 +3316,7 @@ paths:
         name: input_estudiante
         required: true
         schema:
-          $ref: '#/definitions/Request.AddNewEstudiantePayload'
+          $ref: '#/definitions/Request.AddNewEstudiante'
       produces:
       - application/json
       responses:
@@ -2570,7 +3327,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Agrega un nuevo estudiante
       tags:
       - 05 - Administración Ti
@@ -2595,7 +3352,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Elimina un estudiante
       tags:
       - 05 - Administración Ti
@@ -2619,7 +3376,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un estudiante
       tags:
       - 05 - Administración Ti
@@ -2638,7 +3395,7 @@ paths:
         name: input_actualiza_estudiante
         required: true
         schema:
-          $ref: '#/definitions/Request.PutOneEstudiantePayload'
+          $ref: '#/definitions/Request.PutOneEstudiante'
       produces:
       - application/json
       responses:
@@ -2649,8 +3406,34 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica un estudiante
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/estudiantes/carga-masiva:
+    post:
+      consumes:
+      - application/json
+      description: Genera nuevos estudiantes con los datos entregados
+      parameters:
+      - description: Estudiante a agregar
+        in: body
+        name: input_estudiante
+        required: true
+        schema:
+          $ref: '#/definitions/estudiante.massive_add_input'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.AddNewEstudiantesSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Agrega nuevos estudiantes de forma masiva
       tags:
       - 05 - Administración Ti
   /administracion-ti/evaluadores:
@@ -2670,7 +3453,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de evaluadores
       tags:
       - 05 - Administración Ti
@@ -2684,7 +3467,7 @@ paths:
         name: input_evaluador
         required: true
         schema:
-          $ref: '#/definitions/Request.AddNewEvaluadorPayload'
+          $ref: '#/definitions/Request.AddNewEvaluador'
       produces:
       - application/json
       responses:
@@ -2695,7 +3478,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Agrega un nuevo evaluador
       tags:
       - 05 - Administración Ti
@@ -2720,7 +3503,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Elimina un evaluador
       tags:
       - 05 - Administración Ti
@@ -2744,7 +3527,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un evaluador
       tags:
       - 05 - Administración Ti
@@ -2763,7 +3546,7 @@ paths:
         name: input_actualiza_evaluador
         required: true
         schema:
-          $ref: '#/definitions/Request.PutOneEvaluadorPayload'
+          $ref: '#/definitions/Request.PutOneEvaluador'
       produces:
       - application/json
       responses:
@@ -2774,8 +3557,60 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica un evaluador
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/evaluadores/carga-masiva:
+    post:
+      consumes:
+      - application/json
+      description: Genera nuevos evaluadores con los datos entregados
+      parameters:
+      - description: Evaluador a agregar
+        in: body
+        name: input_evaluador
+        required: true
+        schema:
+          $ref: '#/definitions/evaluador.massive_add_input'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.AddNewEvaluadoresSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Agrega nuevos evaluadores de forma masiva
+      tags:
+      - 05 - Administración Ti
+  /administracion-ti/grupos/carga-masiva:
+    post:
+      consumes:
+      - application/json
+      description: Genera nuevos grupos con los datos entregados
+      parameters:
+      - description: Grupo a agregar
+        in: body
+        name: input_grupo
+        required: true
+        schema:
+          $ref: '#/definitions/grupo.massive_add_input'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Swagger.AddNewGrupoSwagger'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Agrega nuevos grupos de forma masiva
       tags:
       - 05 - Administración Ti
   /administracion-ti/login:
@@ -2789,7 +3624,7 @@ paths:
         name: input_credentials
         required: true
         schema:
-          $ref: '#/definitions/Request.LoginAdministradorTiPayload'
+          $ref: '#/definitions/Request.LoginAdministradorTi'
       produces:
       - application/json
       responses:
@@ -2802,7 +3637,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Autenticación de administrador ti
       tags:
       - 01 - Autenticación
@@ -2821,7 +3656,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene el perfil del administrador ti
       tags:
       - 05 - Administración Ti
@@ -2835,7 +3670,7 @@ paths:
         name: input_actualiza_administrador_ti
         required: true
         schema:
-          $ref: '#/definitions/Request.PutMyAdministradorTiPayload'
+          $ref: '#/definitions/Request.PutMyAdministradorTi'
       produces:
       - application/json
       responses:
@@ -2846,7 +3681,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica mi perfil
       tags:
       - 05 - Administración Ti
@@ -2861,7 +3696,7 @@ paths:
         name: input_periodo
         required: true
         schema:
-          $ref: '#/definitions/Request.AddNewPeriodoPayload'
+          $ref: '#/definitions/Request.AddNewPeriodo'
       produces:
       - application/json
       responses:
@@ -2872,7 +3707,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Agrega un nuevo periodo
       tags:
       - 05 - Administración Ti
@@ -2897,7 +3732,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Elimina un periodo
       tags:
       - 05 - Administración Ti
@@ -2916,7 +3751,7 @@ paths:
         name: input_actualiza_periodo
         required: true
         schema:
-          $ref: '#/definitions/Request.PutOnePeriodoPayload'
+          $ref: '#/definitions/Request.PutOnePeriodo'
       produces:
       - application/json
       responses:
@@ -2927,7 +3762,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica un periodo
       tags:
       - 05 - Administración Ti
@@ -2942,7 +3777,7 @@ paths:
         name: input_rol
         required: true
         schema:
-          $ref: '#/definitions/Request.AddNewRolPayload'
+          $ref: '#/definitions/Request.AddNewRol'
       produces:
       - application/json
       responses:
@@ -2953,7 +3788,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Agrega un nuevo rol
       tags:
       - 05 - Administración Ti
@@ -2978,7 +3813,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Elimina un rol
       tags:
       - 05 - Administración Ti
@@ -2997,7 +3832,7 @@ paths:
         name: input_actualiza_rol
         required: true
         schema:
-          $ref: '#/definitions/Request.PutOneRolPayload'
+          $ref: '#/definitions/Request.PutOneRol'
       produces:
       - application/json
       responses:
@@ -3008,7 +3843,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica un rol
       tags:
       - 05 - Administración Ti
@@ -3023,7 +3858,7 @@ paths:
         name: input_credentials
         required: true
         schema:
-          $ref: '#/definitions/Request.LoginEstudiantePayload'
+          $ref: '#/definitions/Request.LoginEstudiante'
       produces:
       - application/json
       responses:
@@ -3036,7 +3871,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Autenticación de estudiante
       tags:
       - 01 - Autenticación
@@ -3055,7 +3890,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene el perfil del estudiante
       tags:
       - 02 - Estudiantes
@@ -3069,7 +3904,7 @@ paths:
         name: input_actualiza_estudiante
         required: true
         schema:
-          $ref: '#/definitions/Request.PutMyEstudiantePayload'
+          $ref: '#/definitions/Request.PutMyEstudiante'
       produces:
       - application/json
       responses:
@@ -3080,7 +3915,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica mi perfil
       tags:
       - 02 - Estudiantes
@@ -3099,7 +3934,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene los cursos de un estudiante
       tags:
       - 02 - Estudiantes
@@ -3124,7 +3959,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un curso de un estudiante
       tags:
       - 02 - Estudiantes
@@ -3149,7 +3984,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene los grupos de un estudiante
       tags:
       - 02 - Estudiantes
@@ -3179,7 +4014,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un grupo de un estudiante
       tags:
       - 02 - Estudiantes
@@ -3211,7 +4046,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Evolución por competencia
       tags:
       - 02 - Estudiantes
@@ -3243,7 +4078,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Evolución por evaluacion
       tags:
       - 02 - Estudiantes
@@ -3276,7 +4111,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de evaluaciones de un grupo
       tags:
       - 02 - Estudiantes
@@ -3313,10 +4148,10 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene una calificación
       tags:
-      - 02 - Estudiantes
+      - 03 - Evaluadores
   /evaluadores/login:
     post:
       consumes:
@@ -3328,7 +4163,7 @@ paths:
         name: input_credentials
         required: true
         schema:
-          $ref: '#/definitions/Request.LoginEvaluadorPayload'
+          $ref: '#/definitions/Request.LoginEvaluador'
       produces:
       - application/json
       responses:
@@ -3341,7 +4176,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Autenticación de evaluador
       tags:
       - 01 - Autenticación
@@ -3360,7 +4195,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene el perfil del evaluador
       tags:
       - 03 - Evaluadores
@@ -3374,7 +4209,7 @@ paths:
         name: input_actualiza_evaluador
         required: true
         schema:
-          $ref: '#/definitions/Request.PutMyEvaluadorPayload'
+          $ref: '#/definitions/Request.PutMyEvaluador'
       produces:
       - application/json
       responses:
@@ -3385,7 +4220,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Modifica mi perfil
       tags:
       - 03 - Evaluadores
@@ -3404,7 +4239,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene los cursos de un evaluador
       tags:
       - 03 - Evaluadores
@@ -3429,7 +4264,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un curso de un evaluador
       tags:
       - 03 - Evaluadores
@@ -3454,7 +4289,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene los grupos de un evaluador
       tags:
       - 03 - Evaluadores
@@ -3484,8 +4319,72 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un grupo de un evaluador
+      tags:
+      - 03 - Evaluadores
+  /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/estadisticas/evolucion-por-competencia:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene la evolución de un grupo según competencia
+      parameters:
+      - description: Id del curso
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: Id del grupo
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.EvolucionGrupoPorCompetenciaSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Evolución por competencia
+      tags:
+      - 03 - Evaluadores
+  /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/estadisticas/evolucion-por-evaluacion:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene la evolución de un grupo según evaluacion
+      parameters:
+      - description: Id del curso
+        in: path
+        name: id_curso
+        required: true
+        type: string
+      - description: Id del grupo
+        in: path
+        name: id_grupo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Swagger.EvolucionGrupoPorEvaluacionSwagger'
+            type: array
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/api_helpers.ResponseError'
+      summary: Evolución por evaluacion
       tags:
       - 03 - Evaluadores
   /evaluadores/me/cursos/{id_curso}/grupos/{id_grupo}/estudiantes/{id_estudiante}/evaluaciones/{id_evaluacion}/calificacion:
@@ -3519,7 +4418,7 @@ paths:
         name: input_calificacion_estudiante
         required: true
         schema:
-          $ref: '#/definitions/Request.AddNewCalificacionEstudiantePayload'
+          $ref: '#/definitions/Request.AddNewCalificacionEstudiante'
       produces:
       - application/json
       responses:
@@ -3532,7 +4431,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Califica un estudiante
       tags:
       - 03 - Evaluadores
@@ -3565,7 +4464,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de evaluaciones de un grupo
       tags:
       - 03 - Evaluadores
@@ -3589,7 +4488,7 @@ paths:
         name: input_evaluacion
         required: true
         schema:
-          $ref: '#/definitions/Request.AddNewEvaluacionPayload'
+          $ref: '#/definitions/Request.AddNewEvaluacion'
       produces:
       - application/json
       responses:
@@ -3602,7 +4501,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Agrega una evaluación
       tags:
       - 03 - Evaluadores
@@ -3623,7 +4522,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de periodos
       tags:
       - 00 - Rutas públicas
@@ -3648,7 +4547,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un periodo
       tags:
       - 00 - Rutas públicas
@@ -3669,7 +4568,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Lista de roles
       tags:
       - 00 - Rutas públicas
@@ -3694,7 +4593,7 @@ paths:
         "400":
           description: Bad request
           schema:
-            $ref: '#/definitions/ApiHelpers.ResponseError'
+            $ref: '#/definitions/api_helpers.ResponseError'
       summary: Obtiene un rol
       tags:
       - 00 - Rutas públicas
