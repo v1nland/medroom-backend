@@ -34,6 +34,13 @@ func Profile(c *gin.Context) {
 		return
 	}
 
-	// api_helpers.RespondJSON(c, 200, f_output.GetMyEstudiante(container))
-	api_helpers.RespondJson(c, 200, estudiante)
+	response := profileResponse{
+		Rut_estudiante:                estudiante.Rut_estudiante,
+		Nombres_estudiante:            estudiante.Nombres_estudiante,
+		Apellidos_estudiante:          estudiante.Apellidos_estudiante,
+		Correo_electronico_estudiante: estudiante.Correo_electronico_estudiante,
+		Telefono_celular_estudiante:   estudiante.Telefono_celular_estudiante,
+	}
+
+	api_helpers.RespondJson(c, 200, response)
 }

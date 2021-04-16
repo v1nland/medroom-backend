@@ -10,6 +10,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// to do: filtrar evaluaciones que estan rendidas unicamente
+
 type estudianteGetOneGrupoEstudiante struct {
 	Nombres_estudiante            string `json:"nombres_estudiante"`
 	Apellidos_estudiante          string `json:"apellidos_estudiante"`
