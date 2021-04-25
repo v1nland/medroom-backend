@@ -2925,7 +2925,7 @@ var doc = `{
                 }
             }
         },
-        "/estudiantes/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-por-competencia": {
+        "/estudiantes/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-competencia": {
             "get": {
                 "description": "Obtiene la evolución de un estudiante según competencia",
                 "consumes": [
@@ -2977,7 +2977,7 @@ var doc = `{
                 }
             }
         },
-        "/estudiantes/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-por-evaluacion": {
+        "/estudiantes/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-evaluacion": {
             "get": {
                 "description": "Obtiene la evolución de un estudiante según evaluacion",
                 "consumes": [
@@ -3091,7 +3091,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Estudiantes"
+                    "Evaluadores"
                 ],
                 "summary": "Obtiene una calificación",
                 "parameters": [
@@ -3418,7 +3418,7 @@ var doc = `{
                 }
             }
         },
-        "/evaluadores/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-por-competencia": {
+        "/evaluadores/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-competencia": {
             "get": {
                 "description": "Obtiene la evolución de un grupo según competencia",
                 "consumes": [
@@ -3470,7 +3470,7 @@ var doc = `{
                 }
             }
         },
-        "/evaluadores/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-por-evaluacion": {
+        "/evaluadores/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-evaluacion": {
             "get": {
                 "description": "Obtiene la evolución de un grupo según evaluacion",
                 "consumes": [
@@ -4349,7 +4349,7 @@ var doc = `{
                     "type": "string"
                 },
                 "id_periodo": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "nombre_calificacion_estudiante": {
                     "type": "string"

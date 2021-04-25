@@ -243,7 +243,7 @@ definitions:
       entorno_clinico_calificacion_estudiante:
         type: string
       id_periodo:
-        type: integer
+        type: string
       nombre_calificacion_estudiante:
         type: string
       numero_observaciones_previas_calificacion_estudiante:
@@ -2503,7 +2503,7 @@ paths:
       summary: Obtiene un grupo de un estudiante
       tags:
       - Estudiantes
-  /estudiantes/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-por-competencia:
+  /estudiantes/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-competencia:
     get:
       consumes:
       - application/json
@@ -2538,7 +2538,7 @@ paths:
       summary: Evolución por competencia
       tags:
       - Estudiantes
-  /estudiantes/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-por-evaluacion:
+  /estudiantes/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-evaluacion:
     get:
       consumes:
       - application/json
@@ -2648,7 +2648,7 @@ paths:
             $ref: '#/definitions/api_helpers.Error'
       summary: Obtiene una calificación
       tags:
-      - Estudiantes
+      - Evaluadores
   /evaluadores/login:
     post:
       consumes:
@@ -2833,7 +2833,7 @@ paths:
       summary: Obtiene un grupo de un evaluador
       tags:
       - Evaluadores
-  /evaluadores/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-por-competencia:
+  /evaluadores/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-competencia:
     get:
       consumes:
       - application/json
@@ -2868,7 +2868,7 @@ paths:
       summary: Evolución por competencia
       tags:
       - Evaluadores
-  /evaluadores/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-por-evaluacion:
+  /evaluadores/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-evaluacion:
     get:
       consumes:
       - application/json

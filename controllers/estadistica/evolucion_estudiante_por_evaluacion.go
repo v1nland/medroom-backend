@@ -30,7 +30,7 @@ type evolucionEstudiantePorEvaluacionResponse struct {
 // @Param   sigla_grupo     path    string     true        "Sigla del grupo"
 // @Success 200 {object} api_helpers.Json "OK"
 // @Failure 400 {object} api_helpers.Error "Bad request"
-// @Router /estudiantes/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-por-evaluacion [get]
+// @Router /estudiantes/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-evaluacion [get]
 func EvolucionEstudiantePorEvaluacion(c *gin.Context) {
 	// params
 	id_estudiante := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")

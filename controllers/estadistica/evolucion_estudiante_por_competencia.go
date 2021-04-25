@@ -30,7 +30,7 @@ type evolucionEstudiantePorCompetenciaResponse struct {
 // @Param   sigla_grupo     path    string     true        "Sigla del grupo"
 // @Success 200 {object} api_helpers.Json "OK"
 // @Failure 400 {object} api_helpers.Error "Bad request"
-// @Router /estudiantes/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-por-competencia [get]
+// @Router /estudiantes/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-competencia [get]
 func EvolucionEstudiantePorCompetencia(c *gin.Context) {
 	sigla_curso := c.Params.ByName("sigla_curso")
 	id_periodo := c.Params.ByName("id_periodo")
