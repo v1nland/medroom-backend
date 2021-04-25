@@ -33,11 +33,12 @@ type evolucionGrupoPorCompetenciaResponse struct {
 func EvolucionGrupoPorCompetencia(c *gin.Context) {
 	// params
 	// id_evaluador := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
-	// id_curso := c.Params.ByName("id_curso")
+	sigla_curso := c.Params.ByName("sigla_curso")
+	id_periodo := c.Params.ByName("id_periodo")
 	sigla_grupo := c.Params.ByName("sigla_grupo")
 
 	var calificaciones_grupo []Query.CalificacionesGrupoPorCompetencia
-	if err := repositories.CalificacionesGrupoPorCompetencia(&calificaciones_grupo, sigla_grupo); err != nil {
+	if err := repositories.CalificacionesGrupoPorCompetencia(&calificaciones_grupo, sigla_curso, id_periodo, sigla_grupo); err != nil {
 		if !errors.Is(err, gorm.ErrRecordNotFound) {
 			api_helpers.RespondError(c, 500, "default")
 			return

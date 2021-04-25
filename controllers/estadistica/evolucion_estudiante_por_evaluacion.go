@@ -34,11 +34,12 @@ type evolucionEstudiantePorEvaluacionResponse struct {
 func EvolucionEstudiantePorEvaluacion(c *gin.Context) {
 	// params
 	id_estudiante := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
-	// id_curso := c.Params.ByName("id_curso")
+	sigla_curso := c.Params.ByName("sigla_curso")
+	id_periodo := c.Params.ByName("id_periodo")
 	sigla_grupo := c.Params.ByName("sigla_grupo")
 
 	var calificaciones_estudiante []Query.CalificacionesEstudiantePorEvaluacion
-	if err := repositories.CalificacionesEstudiantePorEvaluacion(&calificaciones_estudiante, sigla_grupo, id_estudiante); err != nil {
+	if err := repositories.CalificacionesEstudiantePorEvaluacion(&calificaciones_estudiante, sigla_curso, id_periodo, sigla_grupo, id_estudiante); err != nil {
 		if !errors.Is(err, gorm.ErrRecordNotFound) {
 			api_helpers.RespondError(c, 500, "default")
 			return

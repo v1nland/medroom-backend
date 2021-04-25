@@ -17,7 +17,7 @@ type addPuntaje struct {
 	Feedback_puntaje     *string `json:"feedback_puntaje"`
 }
 type addRequest struct {
-	Id_periodo                                           *int         `json:"id_periodo"`
+	Id_periodo                                           *string      `json:"id_periodo"`
 	Nombre_calificacion_estudiante                       *string      `json:"nombre_calificacion_estudiante"`
 	Entorno_clinico_calificacion_estudiante              *string      `json:"entorno_clinico_calificacion_estudiante"`
 	Paciente_calificacion_estudiante                     *string      `json:"paciente_calificacion_estudiante"`

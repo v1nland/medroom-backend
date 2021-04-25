@@ -32,13 +32,13 @@ type evolucionEstudiantePorCompetenciaResponse struct {
 // @Failure 400 {object} api_helpers.Error "Bad request"
 // @Router /estudiantes/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/estadisticas/evolucion-por-competencia [get]
 func EvolucionEstudiantePorCompetencia(c *gin.Context) {
-	// params
-	id_estudiante := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
-	// id_curso := c.Params.ByName("id_curso")
+	sigla_curso := c.Params.ByName("sigla_curso")
+	id_periodo := c.Params.ByName("id_periodo")
 	sigla_grupo := c.Params.ByName("sigla_grupo")
+	id_estudiante := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_ESTUDIANTE")
 
 	var calificaciones_estudiante []Query.CalificacionesEstudiantePorCompetencia
-	if err := repositories.CalificacionesEstudiantePorCompetencia(&calificaciones_estudiante, sigla_grupo, id_estudiante); err != nil {
+	if err := repositories.CalificacionesEstudiantePorCompetencia(&calificaciones_estudiante, sigla_curso, id_periodo, sigla_grupo, id_estudiante); err != nil {
 		if !errors.Is(err, gorm.ErrRecordNotFound) {
 			api_helpers.RespondError(c, 500, "default")
 			return
@@ -55,13 +55,15 @@ func EvolucionEstudiantePorCompetencia(c *gin.Context) {
 	}
 
 	for i := 0; i < len(calificaciones_estudiante); i++ {
-		response_container.Valores[calificaciones_estudiante[i].Id_competencia] = append(response_container.Valores[calificaciones_estudiante[i].Id_competencia], struct {
-			Puntaje_estudiante int     `json:"puntaje_estudiante"`
-			Promedio_grupo     float64 `json:"promedio_grupo"`
-		}{
-			calificaciones_estudiante[i].Calificacion_puntaje_estudiante,
-			calificaciones_estudiante[i].Promedio_calificacion_puntaje_grupo,
-		})
+		if calificaciones_estudiante[i].Id_competencia != "" {
+			response_container.Valores[calificaciones_estudiante[i].Id_competencia] = append(response_container.Valores[calificaciones_estudiante[i].Id_competencia], struct {
+				Puntaje_estudiante int     `json:"puntaje_estudiante"`
+				Promedio_grupo     float64 `json:"promedio_grupo"`
+			}{
+				calificaciones_estudiante[i].Calificacion_puntaje_estudiante,
+				calificaciones_estudiante[i].Promedio_calificacion_puntaje_grupo,
+			})
+		}
 	}
 
 	api_helpers.RespondJson(c, 200, response_container)

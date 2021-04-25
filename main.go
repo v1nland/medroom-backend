@@ -50,14 +50,14 @@ func main() {
 		migrations.Rol()
 		migrations.Competencia()
 		migrations.AdministradorTi()
-		// migrations.AdministradorAcademicomigrations()
+		// migrations.AdministradorAcademico()
 		// migrations.Evaluadormigrations()
 		migrations.Curso()
-		// migrations.Evaluacionmigrations()
-		// migrations.Grupomigrations()
-		// migrations.Estudiantemigrations()
-		// migrations.CalificacionEstudiantemigrations()
-		// migrations.Puntajemigrations()
+		migrations.Evaluacion()
+		// migrations.Grupo()
+		// migrations.Estudiante()
+		migrations.CalificacionEstudiante()
+		// migrations.Puntaje()
 	}
 
 	// setup router

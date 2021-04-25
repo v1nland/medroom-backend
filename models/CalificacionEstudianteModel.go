@@ -11,7 +11,7 @@ type CalificacionEstudiante struct {
 	Id_estudiante                                    uuid.UUID  `json:"id_estudiante" gorm:"primaryKey;autoIncrement:false"`
 	Id_evaluador                                     uuid.UUID  `json:"id_evaluador"`
 	Evaluador_calificacion_estudiante                Evaluador  `json:"evaluador_calificacion_estudiante" gorm:"foreignKey:Id_evaluador"`
-	Id_periodo                                       int        `json:"id_periodo" gorm:"primaryKey;autoIncrement:false"`
+	Id_periodo                                       string     `json:"id_periodo" gorm:"primaryKey;autoIncrement:false"`
 	Periodo_calificacion_estudiante                  Periodo    `json:"periodo_calificacion_estudiante" gorm:"foreignKey:Id_periodo"`
 	Id_evaluacion                                    int        `json:"id_evaluacion" gorm:"primaryKey;autoIncrement:false"`
 	Evaluacion_calificacion_estudiante               Evaluacion `json:"evaluacion_calificacion_estudiante" gorm:"foreignKey:Id_evaluacion"`

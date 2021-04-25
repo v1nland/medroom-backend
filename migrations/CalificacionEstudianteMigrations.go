@@ -19,7 +19,7 @@ func CalificacionEstudiante() {
 		Id_estudiante: grupos[1].Estudiantes_grupo[0].Id,
 		Id_evaluador:  grupos[1].Evaluadores_grupo[0].Id,
 		Id_evaluacion: 1,
-		Id_periodo:    1,
+		Id_periodo:    "2021-1",
 		Puntajes_calificacion_estudiante: []models.Puntaje{
 			{
 				Id_competencia:       "ANAM",
@@ -57,7 +57,7 @@ func CalificacionEstudiante() {
 	}
 
 	if err := repositories.AddNewCalificacionEstudiante(container); err != nil {
-		panic("NO SE PUDO MIGRAR CALIFICACION ESTUDIANTE")
+		fmt.Println("NO SE PUDO MIGRAR CALIFICACION ESTUDIANTE")
 	}
 
 	utils.StructToString(container)
