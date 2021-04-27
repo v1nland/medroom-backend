@@ -16,7 +16,8 @@ func GetAllEvaluadoresCurso(u *[]models.Evaluador, sigla_curso string, id_period
 		Preload(clause.Associations).
 		Order("created_at asc").
 		Joins("JOIN evaluadores_grupos eg on eg.id_evaluador = evaluadores.id").
-		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_curso AND eg.sigla_curso = g.id_periodo_curso AND eg.id_periodo_curso = g.sigla_grupo").
+		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_grupo AND eg.sigla_curso = g.sigla_curso AND eg.id_periodo_curso = g.id_periodo_curso").
+		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
 		Where("c.sigla_curso = ?", sigla_curso).
 		Where("c.id_periodo = ?", id_periodo).
 		Find(u).
@@ -31,6 +32,7 @@ func GetAllEvaluadoresCursoSinGrupo(u *[]models.Evaluador, sigla_curso string, i
 		Preload(clause.Associations).
 		Order("created_at asc").
 		Joins("JOIN evaluadores_grupos eg on eg.id_evaluador = evaluadores.id").
+		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_grupo AND eg.sigla_curso = g.sigla_curso AND eg.id_periodo_curso = g.id_periodo_curso").
 		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
 		Where("g.sigla_grupo = 'SG'").
 		Where("c.sigla_curso = ?", sigla_curso).

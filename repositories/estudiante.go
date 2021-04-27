@@ -15,7 +15,7 @@ func GetAllEstudiantesCurso(u *[]models.Estudiante, sigla_curso string, id_perio
 		Preload(clause.Associations).
 		Order("created_at asc").
 		Joins("JOIN estudiantes_grupos eg on eg.id_estudiante = estudiantes.id").
-		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_curso AND eg.sigla_curso = g.id_periodo_curso AND eg.id_periodo_curso = g.sigla_grupo").
+		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_grupo AND eg.sigla_curso = g.sigla_curso AND eg.id_periodo_curso = g.id_periodo_curso").
 		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
 		Where("g.sigla_grupo != 'SG'").
 		Where("c.sigla_curso = ?", sigla_curso).
@@ -32,7 +32,7 @@ func GetAllEstudiantesCursoSinGrupo(u *[]models.Estudiante, sigla_curso string, 
 		Preload(clause.Associations).
 		Order("created_at asc").
 		Joins("JOIN estudiantes_grupos eg on eg.id_estudiante = estudiantes.id").
-		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_curso AND eg.sigla_curso = g.id_periodo_curso AND eg.id_periodo_curso = g.sigla_grupo").
+		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_grupo AND eg.sigla_curso = g.sigla_curso AND eg.id_periodo_curso = g.id_periodo_curso").
 		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
 		Where("g.sigla_grupo = 'SG'").
 		Where("c.sigla_curso = ?", sigla_curso).
