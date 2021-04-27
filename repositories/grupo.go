@@ -81,7 +81,7 @@ func GetGruposEvaluador(u *[]models.Grupo, sigla_curso string, id_periodo string
 		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
 		Where("evaluadores.id = ?", id_evaluador).
 		Where("c.sigla_curso = ? AND c.id_periodo = ?", sigla_curso, id_periodo).
-		Where("g.sigla_grupo = ? AND g.id_periodo_curso = ? AND g.sigla_curso = ?", sigla_curso, id_periodo, sigla_curso).
+		Where("g.sigla_curso = ? AND g.id_periodo_curso = ?", sigla_curso, id_periodo).
 		Find(u).
 		Error; err != nil {
 		return err
@@ -99,7 +99,7 @@ func GetOneGrupoEvaluador(u *models.Grupo, sigla_grupo string, sigla_curso strin
 		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
 		Where("evaluadores.id = ?", id_evaluador).
 		Where("c.sigla_curso = ? AND c.id_periodo = ?", sigla_curso, id_periodo).
-		Where("g.sigla_grupo = ? AND g.id_periodo_curso = ? AND g.sigla_curso = ?", sigla_curso, id_periodo, sigla_curso).
+		Where("g.sigla_grupo = ? AND g.id_periodo_curso = ? AND g.sigla_curso = ?", sigla_grupo, id_periodo, sigla_curso).
 		Find(u).
 		Error; err != nil {
 		return err
@@ -118,7 +118,7 @@ func GetGruposAdministradorAcademico(u *[]models.Grupo, sigla_curso string, id_p
 		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
 		Where("administradores_academicos.id = ?", id_administrador_academico).
 		Where("c.sigla_curso = ? AND c.id_periodo = ?", sigla_curso, id_periodo).
-		Where("g.sigla_grupo = ? AND g.id_periodo_curso = ? AND g.sigla_curso = ?", sigla_curso, id_periodo, sigla_curso).
+		Where("g.id_periodo_curso = ? AND g.sigla_curso = ?", id_periodo, sigla_curso).
 		Group("g.sigla_curso, g.id_periodo_curso, g.sigla_grupo").
 		Find(u).
 		Error; err != nil {
@@ -137,7 +137,7 @@ func GetOneGrupoAdministradorAcademico(u *models.Grupo, sigla_grupo string, sigl
 		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
 		Where("administradores_academicos.id = ?", id_administrador_academico).
 		Where("c.sigla_grupo = ? AND c.id_periodo = ? AND g.sigla_curso = ?", sigla_curso, id_periodo, sigla_curso).
-		Where("g.sigla_grupo = ? AND g.id_periodo_curso = ?", sigla_grupo, id_periodo).
+		Where("g.sigla_grupo = ? AND g.id_periodo_curso = ? AND g.sigla_curso = ?", sigla_grupo, id_periodo, sigla_curso).
 		Find(u).
 		Error; err != nil {
 		return err

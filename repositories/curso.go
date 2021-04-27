@@ -30,13 +30,13 @@ func GetCursosEstudiante(u *[]models.Curso, id_estudiante string) (err error) {
 func GetOneCursoEstudiante(u *models.Curso, sigla_curso string, id_periodo string, id_estudiante string) (err error) {
 	if err := config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
 		Preload(clause.Associations).
-		Table("estudiantes").
 		Select("c.*").
+		Table("estudiantes").
 		Joins("JOIN estudiantes_grupos eg ON eg.id_estudiante = estudiantes.id").
 		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_grupo AND eg.sigla_curso = g.sigla_curso AND eg.id_periodo_curso = g.id_periodo_curso").
 		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
 		Where("c.sigla_curso = ? AND c.id_periodo = ? AND estudiantes.id = ?", sigla_curso, id_periodo, id_estudiante).
-		First(u).
+		Find(u).
 		Error; err != nil {
 		return err
 	}
@@ -64,13 +64,13 @@ func GetCursosEvaluador(u *[]models.Curso, id_evaluador string) (err error) {
 func GetOneCursoEvaluador(u *models.Curso, sigla_curso string, id_periodo string, id_evaluador string) (err error) {
 	if err := config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
 		Preload(clause.Associations).
-		Table("evaluadores").
 		Select("c.*").
+		Table("evaluadores").
 		Joins("JOIN evaluadores_grupos eg ON eg.id_evaluador = evaluadores.id").
 		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_grupo AND eg.sigla_curso = g.sigla_curso AND eg.id_periodo_curso = g.id_periodo_curso").
 		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
 		Where("c.sigla_curso = ? AND c.id_periodo = ? AND evaluadores.id = ?", sigla_curso, id_periodo, id_evaluador).
-		First(u).
+		Find(u).
 		Error; err != nil {
 		return err
 	}
@@ -102,7 +102,7 @@ func GetOneCursoAdministradorAcademico(u *models.Curso, sigla_curso string, id_p
 		Joins("JOIN administradores_academicos_cursos aac ON aac.id_administrador_academico = administradores_academicos.id").
 		Joins("JOIN cursos c ON aac.sigla_curso = c.sigla_curso AND aac.id_periodo = c.id_periodo").
 		Where("c.sigla = ? AND c.id_periodo = ? AND administradores_academicos.id = ?", sigla_curso, id_periodo, id_administrador_academico).
-		First(u).
+		Find(u).
 		Error; err != nil {
 		return err
 	}
@@ -125,7 +125,7 @@ func GetOneCurso(u *models.Curso, sigla string, id_periodo string) (err error) {
 		Preload(clause.Associations).
 		Where("sigla_curso = ?", sigla).
 		Where("id_periodo = ?", id_periodo).
-		First(u).
+		Find(u).
 		Error; err != nil {
 		return err
 	}
