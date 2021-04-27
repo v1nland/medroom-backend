@@ -114,8 +114,8 @@ func GetGruposAdministradorAcademico(u *[]models.Grupo, sigla_curso string, id_p
 		Table("administradores_academicos").
 		Select("g.*").
 		Joins("JOIN administradores_academicos_cursos aac ON aac.id_administrador_academico = administradores_academicos.id").
-		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_grupo AND eg.sigla_curso = g.sigla_curso AND eg.id_periodo_curso = g.id_periodo_curso").
-		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
+		Joins("JOIN cursos c ON aac.sigla_curso = c.sigla_curso AND aac.id_periodo = c.id_periodo").
+		Joins("JOIN grupos g ON c.sigla_curso = g.sigla_curso AND c.id_periodo = g.id_periodo_curso").
 		Where("administradores_academicos.id = ?", id_administrador_academico).
 		Where("c.sigla_curso = ? AND c.id_periodo = ?", sigla_curso, id_periodo).
 		Where("g.id_periodo_curso = ? AND g.sigla_curso = ?", id_periodo, sigla_curso).
@@ -133,10 +133,10 @@ func GetOneGrupoAdministradorAcademico(u *models.Grupo, sigla_grupo string, sigl
 		Table("administradores_academicos").
 		Select("g.*").
 		Joins("JOIN administradores_academicos_cursos aac ON aac.id_administrador_academico = administradores_academicos.id").
-		Joins("JOIN grupos g ON eg.sigla_grupo = g.sigla_grupo AND eg.sigla_curso = g.sigla_curso AND eg.id_periodo_curso = g.id_periodo_curso").
-		Joins("JOIN cursos c ON g.sigla_curso = c.sigla_curso AND g.id_periodo_curso = c.id_periodo").
+		Joins("JOIN cursos c ON aac.sigla_curso = c.sigla_curso AND aac.id_periodo = c.id_periodo").
+		Joins("JOIN grupos g ON c.sigla_curso = g.sigla_curso AND c.id_periodo = g.id_periodo_curso").
 		Where("administradores_academicos.id = ?", id_administrador_academico).
-		Where("c.sigla_grupo = ? AND c.id_periodo = ? AND g.sigla_curso = ?", sigla_curso, id_periodo, sigla_curso).
+		Where("c.sigla_curso = ? AND c.id_periodo = ?", sigla_curso, id_periodo).
 		Where("g.sigla_grupo = ? AND g.id_periodo_curso = ? AND g.sigla_curso = ?", sigla_grupo, id_periodo, sigla_curso).
 		Find(u).
 		Error; err != nil {

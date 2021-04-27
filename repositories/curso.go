@@ -101,7 +101,7 @@ func GetOneCursoAdministradorAcademico(u *models.Curso, sigla_curso string, id_p
 		Select("c.*").
 		Joins("JOIN administradores_academicos_cursos aac ON aac.id_administrador_academico = administradores_academicos.id").
 		Joins("JOIN cursos c ON aac.sigla_curso = c.sigla_curso AND aac.id_periodo = c.id_periodo").
-		Where("c.sigla = ? AND c.id_periodo = ? AND administradores_academicos.id = ?", sigla_curso, id_periodo, id_administrador_academico).
+		Where("c.sigla_curso = ? AND c.id_periodo = ? AND administradores_academicos.id = ?", sigla_curso, id_periodo, id_administrador_academico).
 		Find(u).
 		Error; err != nil {
 		return err
