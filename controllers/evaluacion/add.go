@@ -36,7 +36,8 @@ func addRequestParse(u *addRequest) {
 // @Router /evaluadores/me/cursos/{id_periodo}/{sigla_curso}/grupos/{sigla_grupo}/evaluaciones [post]
 func Add(c *gin.Context) {
 	// id_evaluador := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
-	// id_curso := c.Params.ByName("id_curso")
+	id_periodo := c.Params.ByName("id_periodo")
+	sigla_curso := c.Params.ByName("sigla_curso")
 	sigla_grupo := c.Params.ByName("sigla_grupo")
 
 	var input addRequest
@@ -48,8 +49,10 @@ func Add(c *gin.Context) {
 	addRequestParse(&input)
 
 	evaluacion := models.Evaluacion{
-		Sigla_grupo:       sigla_grupo,
-		Nombre_evaluacion: *input.Nombre_evaluacion,
+		Sigla_grupo:            sigla_grupo,
+		Id_periodo_curso_grupo: id_periodo,
+		Sigla_curso_grupo:      sigla_curso,
+		Nombre_evaluacion:      *input.Nombre_evaluacion,
 	}
 
 	if err := repositories.AddNewEvaluacion(&evaluacion); err != nil {
