@@ -24,35 +24,28 @@ func CalificacionEstudiante() {
 			{
 				Id_competencia:       "ANAM",
 				Calificacion_puntaje: 9,
-				Feedback_puntaje:     "BASTANTE BIEN",
 			},
 			{
 				Id_competencia:       "EXFI",
 				Calificacion_puntaje: 5,
-				Feedback_puntaje:     "BASTANTE BIEN",
 			},
 			{
 				Id_competencia:       "PROF",
 				Calificacion_puntaje: 5,
-				Feedback_puntaje:     "BASTANTE BIEN",
 			},
 			{
 				Id_competencia:       "JUCL",
 				Calificacion_puntaje: 4,
-				Feedback_puntaje:     "BASTANTE BIEN",
 			},
 			{
 				Id_competencia:       "HACO",
 				Calificacion_puntaje: 7,
-				Feedback_puntaje:     "BASTANTE BIEN",
 			},
 			{
 				Id_competencia:       "OREF",
 				Calificacion_puntaje: 1,
-				Feedback_puntaje:     "BASTANTE BIEN",
 			},
 		},
-		Nombre_calificacion_estudiante:             "CONTROL 1",
 		Valoracion_general_calificacion_estudiante: 4,
 	}
 

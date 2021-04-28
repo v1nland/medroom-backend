@@ -16,7 +16,6 @@ type CalificacionEstudiante struct {
 	Id_evaluacion                                    int        `json:"id_evaluacion" gorm:"primaryKey;autoIncrement:false"`
 	Evaluacion_calificacion_estudiante               Evaluacion `json:"evaluacion_calificacion_estudiante" gorm:"foreignKey:Id_evaluacion"`
 	Puntajes_calificacion_estudiante                 []Puntaje  `json:"puntajes_calificacion_estudiante" gorm:"foreignKey:Id_calificacion_estudiante;references:id"`
-	Nombre_calificacion_estudiante                   string     `json:"nombre_calificacion_estudiante"`
 	Observacion_calificacion_calificacion_estudiante string     `json:"observacion_calificacion_calificacion_estudiante"`
 	Valoracion_general_calificacion_estudiante       int        `json:"valoracion_general_calificacion_estudiante"`
 	CreatedAt                                        time.Time  `json:"created_at"`
