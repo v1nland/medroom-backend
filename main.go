@@ -53,10 +53,10 @@ func main() {
 		// migrations.AdministradorAcademico()
 		// migrations.Evaluadormigrations()
 		migrations.Curso()
-		migrations.Evaluacion()
+		// migrations.Evaluacion()
 		// migrations.Grupo()
 		// migrations.Estudiante()
-		migrations.CalificacionEstudiante()
+		// migrations.CalificacionEstudiante()
 		// migrations.Puntaje()
 	}
 

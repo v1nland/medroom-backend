@@ -47,7 +47,6 @@ func Add(c *gin.Context) {
 	id_evaluador := utils.DecodificarToken(c.GetHeader("authorization"), "SECRET_KEY_EVALUADOR")
 	id_estudiante := c.Params.ByName("id_estudiante")
 	id_evaluacion := c.Params.ByName("id_evaluacion")
-
 	id_periodo := c.Params.ByName("id_periodo")
 	// sigla_curso := c.Params.ByName("sigla_curso")
 	// sigla_grupo := c.Params.ByName("sigla_grupo")
