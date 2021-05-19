@@ -11,9 +11,7 @@ import (
 )
 
 type putRequest struct {
-	Id_periodo   *string `json:"id_periodo"`
 	Nombre_curso *string `json:"nombre_curso"`
-	Sigla_curso  *string `json:"sigla_curso"`
 }
 
 func putRequestParse(u *putRequest) {
@@ -21,11 +19,6 @@ func putRequestParse(u *putRequest) {
 		*u.Nombre_curso = strings.TrimSpace(*u.Nombre_curso)
 		*u.Nombre_curso = strings.ToUpper(*u.Nombre_curso)
 		*u.Nombre_curso = utils.RemoveAccents(*u.Nombre_curso)
-	}
-	if u.Sigla_curso != nil {
-		*u.Sigla_curso = strings.TrimSpace(*u.Sigla_curso)
-		*u.Sigla_curso = strings.ToUpper(*u.Sigla_curso)
-		*u.Sigla_curso = utils.RemoveAccents(*u.Sigla_curso)
 	}
 }
 
@@ -60,8 +53,8 @@ func Put(c *gin.Context) {
 
 	// replace data in model entity
 	curso = models.Curso{
-		Sigla_curso:  utils.CheckNullString(input.Sigla_curso, curso.Sigla_curso),
-		Id_periodo:   utils.CheckNullString(input.Id_periodo, curso.Id_periodo),
+		Sigla_curso:  curso.Sigla_curso,
+		Id_periodo:   curso.Id_periodo,
 		Nombre_curso: utils.CheckNullString(input.Nombre_curso, curso.Nombre_curso),
 	}
 
