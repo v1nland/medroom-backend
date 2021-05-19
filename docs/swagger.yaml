@@ -227,37 +227,17 @@ definitions:
     properties:
       calificacion_puntaje:
         type: integer
-      feedback_puntaje:
-        type: string
       id_competencia:
         type: string
     type: object
   calificacion_estudiante.addRequest:
     properties:
-      asunto_principal_consulta_calificacion_estudiante:
-        type: string
-      categoria_observador_calificacion_estudiante:
-        type: string
-      complejidad_caso_calificacion_estudiante:
-        type: string
-      entorno_clinico_calificacion_estudiante:
-        type: string
-      id_periodo:
-        type: string
-      nombre_calificacion_estudiante:
-        type: string
-      numero_observaciones_previas_calificacion_estudiante:
-        type: string
       observacion_calificacion_calificacion_estudiante:
-        type: string
-      paciente_calificacion_estudiante:
         type: string
       puntajes_calificacion_estudiante:
         items:
           $ref: '#/definitions/calificacion_estudiante.addPuntaje'
         type: array
-      tiempo_utilizado_calificacion_estudiante:
-        type: integer
       valoracion_general_calificacion_estudiante:
         type: integer
     type: object
@@ -265,37 +245,17 @@ definitions:
     properties:
       calificacion_puntaje:
         type: integer
-      feedback_puntaje:
-        type: string
       id_competencia:
         type: string
     type: object
   calificacion_estudiante.putRequest:
     properties:
-      asunto_principal_consulta_calificacion_estudiante:
-        type: string
-      categoria_observador_calificacion_estudiante:
-        type: string
-      complejidad_caso_calificacion_estudiante:
-        type: string
-      entorno_clinico_calificacion_estudiante:
-        type: string
-      id_periodo:
-        type: integer
-      nombre_calificacion_estudiante:
-        type: string
-      numero_observaciones_previas_calificacion_estudiante:
-        type: string
       observacion_calificacion_calificacion_estudiante:
-        type: string
-      paciente_calificacion_estudiante:
         type: string
       puntajes_calificacion_estudiante:
         items:
           $ref: '#/definitions/calificacion_estudiante.putPuntaje'
         type: array
-      tiempo_utilizado_calificacion_estudiante:
-        type: integer
       valoracion_general_calificacion_estudiante:
         type: integer
     type: object
@@ -2648,7 +2608,7 @@ paths:
             $ref: '#/definitions/api_helpers.Error'
       summary: Obtiene una calificación
       tags:
-      - Evaluadores
+      - Estudiantes
   /evaluadores/login:
     post:
       consumes:

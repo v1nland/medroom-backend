@@ -3091,7 +3091,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Evaluadores"
+                    "Estudiantes"
                 ],
                 "summary": "Obtiene una calificación",
                 "parameters": [
@@ -4325,9 +4325,6 @@ var doc = `{
                 "calificacion_puntaje": {
                     "type": "integer"
                 },
-                "feedback_puntaje": {
-                    "type": "string"
-                },
                 "id_competencia": {
                     "type": "string"
                 }
@@ -4336,31 +4333,7 @@ var doc = `{
         "calificacion_estudiante.addRequest": {
             "type": "object",
             "properties": {
-                "asunto_principal_consulta_calificacion_estudiante": {
-                    "type": "string"
-                },
-                "categoria_observador_calificacion_estudiante": {
-                    "type": "string"
-                },
-                "complejidad_caso_calificacion_estudiante": {
-                    "type": "string"
-                },
-                "entorno_clinico_calificacion_estudiante": {
-                    "type": "string"
-                },
-                "id_periodo": {
-                    "type": "string"
-                },
-                "nombre_calificacion_estudiante": {
-                    "type": "string"
-                },
-                "numero_observaciones_previas_calificacion_estudiante": {
-                    "type": "string"
-                },
                 "observacion_calificacion_calificacion_estudiante": {
-                    "type": "string"
-                },
-                "paciente_calificacion_estudiante": {
                     "type": "string"
                 },
                 "puntajes_calificacion_estudiante": {
@@ -4368,9 +4341,6 @@ var doc = `{
                     "items": {
                         "$ref": "#/definitions/calificacion_estudiante.addPuntaje"
                     }
-                },
-                "tiempo_utilizado_calificacion_estudiante": {
-                    "type": "integer"
                 },
                 "valoracion_general_calificacion_estudiante": {
                     "type": "integer"
@@ -4383,9 +4353,6 @@ var doc = `{
                 "calificacion_puntaje": {
                     "type": "integer"
                 },
-                "feedback_puntaje": {
-                    "type": "string"
-                },
                 "id_competencia": {
                     "type": "string"
                 }
@@ -4394,31 +4361,7 @@ var doc = `{
         "calificacion_estudiante.putRequest": {
             "type": "object",
             "properties": {
-                "asunto_principal_consulta_calificacion_estudiante": {
-                    "type": "string"
-                },
-                "categoria_observador_calificacion_estudiante": {
-                    "type": "string"
-                },
-                "complejidad_caso_calificacion_estudiante": {
-                    "type": "string"
-                },
-                "entorno_clinico_calificacion_estudiante": {
-                    "type": "string"
-                },
-                "id_periodo": {
-                    "type": "integer"
-                },
-                "nombre_calificacion_estudiante": {
-                    "type": "string"
-                },
-                "numero_observaciones_previas_calificacion_estudiante": {
-                    "type": "string"
-                },
                 "observacion_calificacion_calificacion_estudiante": {
-                    "type": "string"
-                },
-                "paciente_calificacion_estudiante": {
                     "type": "string"
                 },
                 "puntajes_calificacion_estudiante": {
@@ -4426,9 +4369,6 @@ var doc = `{
                     "items": {
                         "$ref": "#/definitions/calificacion_estudiante.putPuntaje"
                     }
-                },
-                "tiempo_utilizado_calificacion_estudiante": {
-                    "type": "integer"
                 },
                 "valoracion_general_calificacion_estudiante": {
                     "type": "integer"

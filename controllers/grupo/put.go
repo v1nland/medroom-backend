@@ -61,9 +61,13 @@ func Put(c *gin.Context) {
 	}
 
 	grupo = models.Grupo{
-		Sigla_curso:  utils.CheckNullString(input.Id_curso, grupo.Sigla_curso),
-		Nombre_grupo: utils.CheckNullString(input.Nombre_grupo, grupo.Nombre_grupo),
-		Sigla_grupo:  utils.CheckNullString(input.Sigla_grupo, grupo.Sigla_grupo),
+		Id_periodo_curso:   grupo.Id_periodo_curso,
+		Evaluaciones_grupo: grupo.Evaluaciones_grupo,
+		Evaluadores_grupo:  grupo.Evaluadores_grupo,
+		Estudiantes_grupo:  grupo.Estudiantes_grupo,
+		Sigla_curso:        utils.CheckNullString(input.Id_curso, grupo.Sigla_curso),
+		Nombre_grupo:       utils.CheckNullString(input.Nombre_grupo, grupo.Nombre_grupo),
+		Sigla_grupo:        utils.CheckNullString(input.Sigla_grupo, grupo.Sigla_grupo),
 	}
 
 	if err := repositories.PutOneGrupo(&grupo, sigla_grupo, sigla_curso, id_periodo); err != nil {
