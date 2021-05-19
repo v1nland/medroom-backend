@@ -11,9 +11,7 @@ import (
 )
 
 type putRequest struct {
-	Id_curso     *string `json:"id_curso"`
 	Nombre_grupo *string `json:"nombre_grupo"`
-	Sigla_grupo  *string `json:"sigla_grupo"`
 }
 
 func putRequestParse(u *putRequest) {
@@ -21,11 +19,6 @@ func putRequestParse(u *putRequest) {
 		*u.Nombre_grupo = strings.TrimSpace(*u.Nombre_grupo)
 		*u.Nombre_grupo = strings.ToUpper(*u.Nombre_grupo)
 		*u.Nombre_grupo = utils.RemoveAccents(*u.Nombre_grupo)
-	}
-	if u.Sigla_grupo != nil {
-		*u.Sigla_grupo = strings.TrimSpace(*u.Sigla_grupo)
-		*u.Sigla_grupo = strings.ToUpper(*u.Sigla_grupo)
-		*u.Sigla_grupo = utils.RemoveAccents(*u.Sigla_grupo)
 	}
 }
 
@@ -65,9 +58,9 @@ func Put(c *gin.Context) {
 		Evaluaciones_grupo: grupo.Evaluaciones_grupo,
 		Evaluadores_grupo:  grupo.Evaluadores_grupo,
 		Estudiantes_grupo:  grupo.Estudiantes_grupo,
-		Sigla_curso:        utils.CheckNullString(input.Id_curso, grupo.Sigla_curso),
+		Sigla_curso:        grupo.Sigla_curso,
 		Nombre_grupo:       utils.CheckNullString(input.Nombre_grupo, grupo.Nombre_grupo),
-		Sigla_grupo:        utils.CheckNullString(input.Sigla_grupo, grupo.Sigla_grupo),
+		Sigla_grupo:        grupo.Sigla_grupo,
 	}
 
 	if err := repositories.PutOneGrupo(&grupo, sigla_grupo, sigla_curso, id_periodo); err != nil {
