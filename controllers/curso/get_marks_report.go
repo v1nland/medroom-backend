@@ -57,6 +57,7 @@ func GetMarksReport(c *gin.Context) {
 
 		if err := repositories.GetOneGrupo(&gp, grupo.Sigla_curso, grupo.Id_periodo_curso, grupo.Sigla_grupo); err != nil {
 			api_helpers.RespondError(c, 500, err.Error())
+			return
 		}
 
 		for _, est := range gp.Estudiantes_grupo {
