@@ -51,6 +51,7 @@ func SetupAdministradorTiRouter(r *gin.Engine) *gin.Engine {
 			evaluadores.GET(":id_evaluador", evaluador.Get)
 			evaluadores.POST("", evaluador.Add)
 			evaluadores.PUT(":id_evaluador", evaluador.Put)
+			evaluadores.PUT(":id_evaluador/reestablecer", administrador_ti.ResetPasswordEvaluador)
 			evaluadores.DELETE(":id_evaluador", evaluador.Delete)
 		}
 
@@ -60,6 +61,7 @@ func SetupAdministradorTiRouter(r *gin.Engine) *gin.Engine {
 			administradores_academicos.GET(":id_administrador_academico", administrador_academico.Get)
 			administradores_academicos.POST("", administrador_academico.Add)
 			administradores_academicos.PUT(":id_administrador_academico", administrador_academico.Put)
+			administradores_academicos.PUT(":id_administrador_academico/reestablecer", administrador_ti.ResetPasswordAdministradorAcademico)
 			administradores_academicos.DELETE(":id_administrador_academico", administrador_academico.Delete)
 		}
 

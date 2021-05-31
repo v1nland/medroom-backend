@@ -1119,6 +1119,44 @@ var doc = `{
                 }
             }
         },
+        "/administracion-ti/administradores-academicos/{uuid_administrador_academico}/reestablecer": {
+            "put": {
+                "description": "Reestablecer password administrador_academico por defecto",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Administración Ti"
+                ],
+                "summary": "Reestablecer password administrador_academico",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del administrador_academico a modificar",
+                        "name": "uuid_administrador_academico",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.Json"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.Error"
+                        }
+                    }
+                }
+            }
+        },
         "/administracion-ti/administradores-ti": {
             "get": {
                 "description": "Lista todos los administradores-ti",
@@ -2028,6 +2066,44 @@ var doc = `{
                 }
             }
         },
+        "/administracion-ti/estudiantes/{uuid_estudiante}/reestablecer": {
+            "put": {
+                "description": "Reestablecer password estudiante por defecto",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Administración Ti"
+                ],
+                "summary": "Reestablecer password estudiante",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del estudiante a modificar",
+                        "name": "uuid_estudiante",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.Json"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.Error"
+                        }
+                    }
+                }
+            }
+        },
         "/administracion-ti/evaluadores": {
             "get": {
                 "description": "Lista todos los evaluadores",
@@ -2233,6 +2309,44 @@ var doc = `{
                     {
                         "type": "string",
                         "description": "UUID del evaluador a eliminar",
+                        "name": "uuid_evaluador",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.Json"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/api_helpers.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/administracion-ti/evaluadores/{uuid_evaluador}/reestablecer": {
+            "put": {
+                "description": "Reestablecer password evaluador por defecto",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Administración Ti"
+                ],
+                "summary": "Reestablecer password evaluador",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UUID del evaluador a modificar",
                         "name": "uuid_evaluador",
                         "in": "path",
                         "required": true
@@ -3091,7 +3205,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Estudiantes"
+                    "Evaluadores"
                 ],
                 "summary": "Obtiene una calificación",
                 "parameters": [
@@ -4059,31 +4173,13 @@ var doc = `{
         "administrador_academico.putProfileRequest": {
             "type": "object",
             "properties": {
-                "apellidos_administrador_academico": {
-                    "type": "string"
-                },
-                "correo_electronico_administrador_academico": {
-                    "type": "string"
-                },
                 "hash_contrasena_administrador_academico": {
                     "type": "string"
                 },
                 "hash_nueva_contrasena_administrador_academico": {
                     "type": "string"
                 },
-                "id_rol": {
-                    "type": "integer"
-                },
-                "nombres_administrador_academico": {
-                    "type": "string"
-                },
-                "rut_administrador_academico": {
-                    "type": "string"
-                },
                 "telefono_celular_administrador_academico": {
-                    "type": "string"
-                },
-                "telefono_fijo_administrador_academico": {
                     "type": "string"
                 }
             }
@@ -4414,13 +4510,7 @@ var doc = `{
         "curso.putRequest": {
             "type": "object",
             "properties": {
-                "id_periodo": {
-                    "type": "string"
-                },
                 "nombre_curso": {
-                    "type": "string"
-                },
-                "sigla_curso": {
                     "type": "string"
                 }
             }
@@ -4748,13 +4838,7 @@ var doc = `{
         "grupo.putRequest": {
             "type": "object",
             "properties": {
-                "id_curso": {
-                    "type": "string"
-                },
                 "nombre_grupo": {
-                    "type": "string"
-                },
-                "sigla_grupo": {
                     "type": "string"
                 }
             }
