@@ -185,10 +185,10 @@ func DeleteEstudianteGrupo(sigla_grupo string, sigla_curso string, id_periodo st
 func DeleteEvaluadorGrupo(sigla_grupo string, sigla_curso string, id_periodo string, id_evaluador string) (err error) {
 	if err := config.DB.Debug().
 		Exec(`DELETE FROM public.evaluadores_grupos 
-					WHERE estudiantes_grupos.sigla_curso = ? 
-					AND estudiantes_grupos.id_periodo_curso = ?
-					AND estudiantes_grupos.sigla_grupo = ?
-					AND estudiantes_grupos.id_evaluador = ?`, sigla_curso, id_periodo, sigla_grupo, id_evaluador).
+					WHERE evaluadores_grupos.sigla_curso = ? 
+					AND evaluadores_grupos.id_periodo_curso = ?
+					AND evaluadores_grupos.sigla_grupo = ?
+					AND evaluadores_grupos.id_evaluador = ?`, sigla_curso, id_periodo, sigla_grupo, id_evaluador).
 		Error; err != nil {
 		return err
 	}
