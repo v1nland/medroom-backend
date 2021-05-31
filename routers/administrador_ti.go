@@ -41,6 +41,7 @@ func SetupAdministradorTiRouter(r *gin.Engine) *gin.Engine {
 			estudiantes.GET(":id_estudiante", estudiante.Get)
 			estudiantes.POST("", estudiante.Add)
 			estudiantes.PUT(":id_estudiante", estudiante.Put)
+			estudiantes.PUT(":id_estudiante/reestablecer", administrador_ti.ResetPasswordEstudiante)
 			estudiantes.DELETE(":id_estudiante", estudiante.Delete)
 		}
 
