@@ -46,8 +46,6 @@ func RemoveEvaluadorFromGrupo(c *gin.Context) {
 		return
 	}
 
-	repositories.DeleteEvaluadorGrupo(sigla_grupo, sigla_curso, id_periodo, id_evaluador)
-
 	found, index := utils.SearchIndexGrupoBySigla(curso.Grupos_curso, "SG")
 	if found {
 		var grupo_sg models.Grupo
@@ -58,6 +56,8 @@ func RemoveEvaluadorFromGrupo(c *gin.Context) {
 
 		config.DB.Model(&grupo_sg).Association("Evaluadores_grupo").Append([]models.Evaluador{evaluador})
 	}
+
+	repositories.DeleteEvaluadorGrupo(sigla_grupo, sigla_curso, id_periodo, id_evaluador)
 
 	api_helpers.RespondJson(c, 200, grupo)
 }

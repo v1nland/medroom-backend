@@ -46,8 +46,6 @@ func RemoveEstudianteFromGrupo(c *gin.Context) {
 		return
 	}
 
-	repositories.DeleteEstudianteGrupo(sigla_grupo, sigla_curso, id_periodo, id_estudiante)
-
 	found, index := utils.SearchIndexGrupoBySigla(curso.Grupos_curso, "SG")
 	if found {
 		var grupo_sg models.Grupo
@@ -58,6 +56,8 @@ func RemoveEstudianteFromGrupo(c *gin.Context) {
 
 		config.DB.Model(&grupo_sg).Association("Estudiantes_grupo").Append([]models.Estudiante{estudiante})
 	}
+
+	repositories.DeleteEstudianteGrupo(sigla_grupo, sigla_curso, id_periodo, id_estudiante)
 
 	api_helpers.RespondJson(c, 200, grupo)
 }
