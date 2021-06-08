@@ -52,7 +52,7 @@ func main() {
 		migrations.AdministradorTi()
 		// migrations.AdministradorAcademico()
 		// migrations.Evaluadormigrations()
-		migrations.Curso()
+		// migrations.Curso()
 		// migrations.Evaluacion()
 		// migrations.Grupo()
 		// migrations.Estudiante()
