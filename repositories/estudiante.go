@@ -66,6 +66,17 @@ func GetOneEstudiante(u *models.Estudiante, id string) (err error) {
 	return nil
 }
 
+func GetOneEstudianteByRut(u *models.Estudiante, rut string) (err error) {
+	if err := config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
+		Preload(clause.Associations).
+		Where("rut_estudiante = ?", rut).
+		First(u).
+		Error; err != nil {
+		return err
+	}
+	return nil
+}
+
 func GetReporteEstudiante(u *models.Estudiante, id string) (err error) {
 	if err := config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
 		Preload(clause.Associations).

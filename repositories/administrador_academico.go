@@ -31,6 +31,17 @@ func GetAdministradorAcademico(u *models.AdministradorAcademico, id string) (err
 	return nil
 }
 
+func GetOneAdministradorAcademicoByRut(u *models.AdministradorAcademico, rut string) (err error) {
+	if err := config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
+		Preload(clause.Associations).
+		Where("rut_administrador_academico = ?", rut).
+		First(u).
+		Error; err != nil {
+		return err
+	}
+	return nil
+}
+
 func AddAdministradorAcademico(u *models.AdministradorAcademico) (err error) {
 	if err = config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
 		Preload(clause.Associations).

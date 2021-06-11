@@ -1,6 +1,7 @@
 package administrador_ti
 
 import (
+	"fmt"
 	"medroom-backend/api_helpers"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
@@ -75,7 +76,7 @@ func MassiveAdd(c *gin.Context) {
 
 	massiveAddFormat(&payload)
 
-	var administradores_tis_error []string
+	var administradores_ti_error []string
 	for i := 0; i < len(payload.AdministradoresTi); i++ {
 		administrador_ti := models.AdministradorTi{
 			Id_rol:                              4,
@@ -89,13 +90,13 @@ func MassiveAdd(c *gin.Context) {
 		}
 
 		if err := repositories.AddNewAdministradorTi(&administrador_ti); err != nil {
-			administradores_tis_error = append(administradores_tis_error, "["+*payload.AdministradoresTi[i].Rut_administrador_ti+"] "+*payload.AdministradoresTi[i].Nombres_administrador_ti+" "+*payload.AdministradoresTi[i].Apellidos_administrador_ti)
+			administradores_ti_error = append(administradores_ti_error, fmt.Sprintf("[%s] %s %s", *payload.AdministradoresTi[i].Rut_administrador_ti, *payload.AdministradoresTi[i].Nombres_administrador_ti, *payload.AdministradoresTi[i].Apellidos_administrador_ti))
 		}
 	}
 
-	if len(administradores_tis_error) > 0 {
-		api_helpers.RespondJson(c, 201, administradores_tis_error)
+	if len(administradores_ti_error) > 0 {
+		api_helpers.RespondJson(c, 201, administradores_ti_error)
 	} else {
-		api_helpers.RespondJson(c, 200, "ok")
+		api_helpers.RespondJson(c, 200, "OK")
 	}
 }

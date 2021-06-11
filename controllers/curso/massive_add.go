@@ -1,6 +1,7 @@
 package curso
 
 import (
+	"fmt"
 	"medroom-backend/api_helpers"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
@@ -12,8 +13,7 @@ import (
 
 type massiveAddRequest struct {
 	Cursos []struct {
-		Id           *int    `json:"id"`
-		Id_periodo   *int    `json:"id_periodo"`
+		Id_periodo   *string `json:"id_periodo"`
 		Nombre_curso *string `json:"nombre_curso"`
 		Sigla_curso  *string `json:"sigla_curso"`
 	} `json:"cursos"`
@@ -53,17 +53,11 @@ func MassiveAdd(c *gin.Context) {
 
 	massiveAddRequestParse(&payload)
 
-	var periodo models.Periodo
-	if err := repositories.GetUltimoPeriodo(&periodo); err != nil {
-		api_helpers.RespondError(c, 500, "ultimo periodo no encontrado")
-		return
-	}
-
-	var cursos_error []int
+	var cursos_error []string
 	for i := 0; i < len(payload.Cursos); i++ {
 		curso := models.Curso{
 			Sigla_curso:  *payload.Cursos[i].Sigla_curso,
-			Id_periodo:   periodo.Id,
+			Id_periodo:   *payload.Cursos[i].Id_periodo,
 			Nombre_curso: *payload.Cursos[i].Nombre_curso,
 			Estado_curso: true,
 			Grupos_curso: []models.Grupo{
@@ -77,13 +71,13 @@ func MassiveAdd(c *gin.Context) {
 		}
 
 		if err := repositories.AddNewCurso(&curso); err != nil {
-			cursos_error = append(cursos_error, *payload.Cursos[i].Id)
+			cursos_error = append(cursos_error, fmt.Sprintf("%s - %s", *payload.Cursos[i].Sigla_curso, *payload.Cursos[i].Nombre_curso))
 		}
 	}
 
 	if len(cursos_error) > 0 {
 		api_helpers.RespondJson(c, 201, cursos_error)
 	} else {
-		api_helpers.RespondJson(c, 200, "ok")
+		api_helpers.RespondJson(c, 200, "OK")
 	}
 }

@@ -22,3 +22,6 @@ vendor/
 
 # Binary files
 medroom-backend
+
+# pipeline files
+start.sh

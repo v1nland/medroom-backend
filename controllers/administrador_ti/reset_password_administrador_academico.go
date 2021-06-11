@@ -1,13 +1,10 @@
 package administrador_ti
 
 import (
-	"encoding/hex"
 	"medroom-backend/api_helpers"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
-	"strings"
-
-	"crypto/sha256"
+	"medroom-backend/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -36,9 +33,7 @@ func ResetPasswordAdministradorAcademico(c *gin.Context) {
 		return
 	}
 
-	newPass := strings.ReplaceAll(strings.ReplaceAll(administrador_academico.Rut_administrador_academico, ".", ""), "-", "")
-	newPassBytes := sha256.Sum256([]byte(newPass))
-	administrador_academico.Hash_contrasena_administrador_academico = hex.EncodeToString(newPassBytes[:])
+	administrador_academico.Hash_contrasena_administrador_academico = utils.GeneratePassword(administrador_academico.Rut_administrador_academico)
 
 	if err := repositories.PutAdministradorAcademico(&administrador_academico, id_administrador_academico); err != nil {
 		api_helpers.RespondError(c, 500, err.Error())

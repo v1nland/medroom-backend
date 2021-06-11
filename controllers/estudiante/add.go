@@ -15,7 +15,6 @@ type addRequest struct {
 	Rut_estudiante                *string `json:"rut_estudiante"`
 	Nombres_estudiante            *string `json:"nombres_estudiante"`
 	Apellidos_estudiante          *string `json:"apellidos_estudiante"`
-	Hash_contrasena_estudiante    *string `json:"hash_contrasena_estudiante"`
 	Correo_electronico_estudiante *string `json:"correo_electronico_estudiante"`
 	Telefono_fijo_estudiante      *string `json:"telefono_fijo_estudiante"`
 	Telefono_celular_estudiante   *string `json:"telefono_celular_estudiante"`
@@ -77,7 +76,7 @@ func Add(c *gin.Context) {
 		Rut_estudiante:                *input.Rut_estudiante,
 		Nombres_estudiante:            *input.Nombres_estudiante,
 		Apellidos_estudiante:          *input.Apellidos_estudiante,
-		Hash_contrasena_estudiante:    *input.Hash_contrasena_estudiante,
+		Hash_contrasena_estudiante:    utils.GeneratePassword(*input.Rut_estudiante),
 		Correo_electronico_estudiante: *input.Correo_electronico_estudiante,
 		Telefono_fijo_estudiante:      *input.Telefono_fijo_estudiante,
 		Telefono_celular_estudiante:   *input.Telefono_celular_estudiante,

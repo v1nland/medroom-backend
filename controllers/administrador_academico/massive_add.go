@@ -1,6 +1,7 @@
 package administrador_academico
 
 import (
+	"fmt"
 	"medroom-backend/api_helpers"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
@@ -10,14 +11,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type curso struct {
-	Sigla   *string `json:"sigla"`
-	Periodo *string `json:"periodo"`
+type Curso struct {
+	Id_periodo  *string `json:"id_periodo"`
+	Sigla_curso *string `json:"sigla_curso"`
 }
 
 type massiveAddRequest struct {
 	AdministradoresAcademicos []struct {
-		Cursos                                     []curso `json:"cursos"`
+		Curso                                      Curso   `json:"curso"`
 		Rut_administrador_academico                *string `json:"rut_administrador_academico"`
 		Nombres_administrador_academico            *string `json:"nombres_administrador_academico"`
 		Apellidos_administrador_academico          *string `json:"apellidos_administrador_academico"`
@@ -83,30 +84,74 @@ func MassiveAdd(c *gin.Context) {
 
 	var administradores_academicos_error []string
 	for i := 0; i < len(payload.AdministradoresAcademicos); i++ {
-		administrador_academico := models.AdministradorAcademico{
-			Id_rol:                                     3,
-			Cursos_administrador_academico:             []models.Curso{},
-			Rut_administrador_academico:                *payload.AdministradoresAcademicos[i].Rut_administrador_academico,
-			Nombres_administrador_academico:            *payload.AdministradoresAcademicos[i].Nombres_administrador_academico,
-			Apellidos_administrador_academico:          *payload.AdministradoresAcademicos[i].Apellidos_administrador_academico,
-			Hash_contrasena_administrador_academico:    *payload.AdministradoresAcademicos[i].Hash_contrasena_administrador_academico,
-			Correo_electronico_administrador_academico: *payload.AdministradoresAcademicos[i].Correo_electronico_administrador_academico,
-			Telefono_fijo_administrador_academico:      *payload.AdministradoresAcademicos[i].Telefono_fijo_administrador_academico,
-			Telefono_celular_administrador_academico:   *payload.AdministradoresAcademicos[i].Telefono_celular_administrador_academico,
-		}
+		var administrador_academico models.AdministradorAcademico
 
-		for j := 0; j < len(payload.AdministradoresAcademicos[i].Cursos); j++ {
-			var crs models.Curso
+		if err := repositories.GetOneAdministradorAcademicoByRut(&administrador_academico, *payload.AdministradoresAcademicos[i].Rut_administrador_academico); err == nil {
+			// administrador_academico ya existe
 
-			if err := repositories.GetOneCurso(&crs, *payload.AdministradoresAcademicos[i].Cursos[j].Sigla, *payload.AdministradoresAcademicos[i].Cursos[j].Periodo); err == nil {
-				administrador_academico.Cursos_administrador_academico = append(administrador_academico.Cursos_administrador_academico, crs)
+			// buscamos el grupo y lo asociamos al administrador_academico
+			var curso models.Curso
+			if err := repositories.GetOneCurso(&curso, *payload.AdministradoresAcademicos[i].Curso.Sigla_curso, *payload.AdministradoresAcademicos[i].Curso.Id_periodo); err == nil {
+				administrador_academico.Cursos_administrador_academico = append(administrador_academico.Cursos_administrador_academico, curso)
+			}
+
+			// actualizamos al administrador_academico con la nueva lista de grupos
+			if err := repositories.PutAdministradorAcademico(&administrador_academico, administrador_academico.Id.String()); err != nil {
+				administradores_academicos_error = append(administradores_academicos_error, fmt.Sprintf("[%s] %s %s", *payload.AdministradoresAcademicos[i].Rut_administrador_academico, *payload.AdministradoresAcademicos[i].Nombres_administrador_academico, *payload.AdministradoresAcademicos[i].Apellidos_administrador_academico))
+			}
+
+		} else {
+			// administrador_academico no existe
+			administrador_academico = models.AdministradorAcademico{
+				Id_rol:                                     1,
+				Cursos_administrador_academico:             []models.Curso{},
+				Rut_administrador_academico:                *payload.AdministradoresAcademicos[i].Rut_administrador_academico,
+				Nombres_administrador_academico:            *payload.AdministradoresAcademicos[i].Nombres_administrador_academico,
+				Apellidos_administrador_academico:          *payload.AdministradoresAcademicos[i].Apellidos_administrador_academico,
+				Hash_contrasena_administrador_academico:    *payload.AdministradoresAcademicos[i].Hash_contrasena_administrador_academico,
+				Correo_electronico_administrador_academico: *payload.AdministradoresAcademicos[i].Correo_electronico_administrador_academico,
+				Telefono_fijo_administrador_academico:      *payload.AdministradoresAcademicos[i].Telefono_fijo_administrador_academico,
+				Telefono_celular_administrador_academico:   *payload.AdministradoresAcademicos[i].Telefono_celular_administrador_academico,
+			}
+
+			// buscamos el grupo y lo asociamos al nuevo administrador_academico
+			var curso models.Curso
+			if err := repositories.GetOneCurso(&curso, *payload.AdministradoresAcademicos[i].Curso.Sigla_curso, *payload.AdministradoresAcademicos[i].Curso.Id_periodo); err == nil {
+				administrador_academico.Cursos_administrador_academico = append(administrador_academico.Cursos_administrador_academico, curso)
+			}
+
+			// agregamos el administrador_academico a la db
+			if err := repositories.AddAdministradorAcademico(&administrador_academico); err != nil {
+				administradores_academicos_error = append(administradores_academicos_error, fmt.Sprintf("[%s] %s %s", *payload.AdministradoresAcademicos[i].Rut_administrador_academico, *payload.AdministradoresAcademicos[i].Nombres_administrador_academico, *payload.AdministradoresAcademicos[i].Apellidos_administrador_academico))
 			}
 		}
-
-		if err := repositories.AddAdministradorAcademico(&administrador_academico); err != nil {
-			administradores_academicos_error = append(administradores_academicos_error, "["+*payload.AdministradoresAcademicos[i].Rut_administrador_academico+"] "+*payload.AdministradoresAcademicos[i].Nombres_administrador_academico+" "+*payload.AdministradoresAcademicos[i].Apellidos_administrador_academico)
-		}
 	}
+
+	// for i := 0; i < len(payload.AdministradoresAcademicos); i++ {
+	// 	administrador_academico := models.AdministradorAcademico{
+	// 		Id_rol:                                     3,
+	// 		Cursos_administrador_academico:             []models.Curso{},
+	// 		Rut_administrador_academico:                *payload.AdministradoresAcademicos[i].Rut_administrador_academico,
+	// 		Nombres_administrador_academico:            *payload.AdministradoresAcademicos[i].Nombres_administrador_academico,
+	// 		Apellidos_administrador_academico:          *payload.AdministradoresAcademicos[i].Apellidos_administrador_academico,
+	// 		Hash_contrasena_administrador_academico:    *payload.AdministradoresAcademicos[i].Hash_contrasena_administrador_academico,
+	// 		Correo_electronico_administrador_academico: *payload.AdministradoresAcademicos[i].Correo_electronico_administrador_academico,
+	// 		Telefono_fijo_administrador_academico:      *payload.AdministradoresAcademicos[i].Telefono_fijo_administrador_academico,
+	// 		Telefono_celular_administrador_academico:   *payload.AdministradoresAcademicos[i].Telefono_celular_administrador_academico,
+	// 	}
+
+	// 	for j := 0; j < len(payload.AdministradoresAcademicos[i].Cursos); j++ {
+	// 		var crs models.Curso
+
+	// 		if err := repositories.GetOneCurso(&crs, *payload.AdministradoresAcademicos[i].Cursos[j].Sigla, *payload.AdministradoresAcademicos[i].Cursos[j].Periodo); err == nil {
+	// 			administrador_academico.Cursos_administrador_academico = append(administrador_academico.Cursos_administrador_academico, crs)
+	// 		}
+	// 	}
+
+	// 	if err := repositories.AddAdministradorAcademico(&administrador_academico); err != nil {
+	// 		administradores_academicos_error = append(administradores_academicos_error, "["+*payload.AdministradoresAcademicos[i].Rut_administrador_academico+"] "+*payload.AdministradoresAcademicos[i].Nombres_administrador_academico+" "+*payload.AdministradoresAcademicos[i].Apellidos_administrador_academico)
+	// 	}
+	// }
 
 	if len(administradores_academicos_error) > 0 {
 		api_helpers.RespondJson(c, 201, administradores_academicos_error)

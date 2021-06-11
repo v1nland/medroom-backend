@@ -1,6 +1,7 @@
 package grupo
 
 import (
+	"fmt"
 	"medroom-backend/api_helpers"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
@@ -12,10 +13,10 @@ import (
 
 type massiveAddRequest struct {
 	Grupos []struct {
-		Id           *int    `json:"id"`
-		Id_curso     *int    `json:"id_curso"`
-		Nombre_grupo *string `json:"nombre_grupo"`
+		Id_periodo   *string `json:"id_periodo"`
+		Sigla_curso  *string `json:"sigla_curso"`
 		Sigla_grupo  *string `json:"sigla_grupo"`
+		Nombre_grupo *string `json:"nombre_grupo"`
 	} `json:"grupos"`
 }
 
@@ -53,23 +54,23 @@ func MassiveAdd(c *gin.Context) {
 
 	massiveAddRequestParse(&payload)
 
-	var grupos_error []int
+	var grupos_error []string
 	for i := 0; i < len(payload.Grupos); i++ {
 		grupo := models.Grupo{
-			// Id:           *payload.Grupos[i].Sigla_grupo,
-			Sigla_curso:  utils.IntToString(*payload.Grupos[i].Id_curso),
-			Nombre_grupo: *payload.Grupos[i].Nombre_grupo,
-			Sigla_grupo:  *payload.Grupos[i].Sigla_grupo,
+			Sigla_curso:      *payload.Grupos[i].Sigla_curso,
+			Id_periodo_curso: *payload.Grupos[i].Id_periodo,
+			Sigla_grupo:      *payload.Grupos[i].Sigla_grupo,
+			Nombre_grupo:     *payload.Grupos[i].Nombre_grupo,
 		}
 
 		if err := repositories.AddNewGrupo(&grupo); err != nil {
-			grupos_error = append(grupos_error, *payload.Grupos[i].Id)
+			grupos_error = append(grupos_error, fmt.Sprintf("%s - %s - %s", *payload.Grupos[i].Sigla_curso, *payload.Grupos[i].Sigla_grupo, *payload.Grupos[i].Nombre_grupo))
 		}
 	}
 
 	if len(grupos_error) > 0 {
 		api_helpers.RespondJson(c, 201, grupos_error)
 	} else {
-		api_helpers.RespondJson(c, 200, "ok")
+		api_helpers.RespondJson(c, 200, "OK")
 	}
 }

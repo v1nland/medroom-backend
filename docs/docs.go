@@ -4090,6 +4090,17 @@ var doc = `{
         }
     },
     "definitions": {
+        "administrador_academico.Curso": {
+            "type": "object",
+            "properties": {
+                "id_periodo": {
+                    "type": "string"
+                },
+                "sigla_curso": {
+                    "type": "string"
+                }
+            }
+        },
         "administrador_academico.addRequest": {
             "type": "object",
             "properties": {
@@ -4119,17 +4130,6 @@ var doc = `{
                 }
             }
         },
-        "administrador_academico.curso": {
-            "type": "object",
-            "properties": {
-                "periodo": {
-                    "type": "string"
-                },
-                "sigla": {
-                    "type": "string"
-                }
-            }
-        },
         "administrador_academico.massiveAddRequest": {
             "type": "object",
             "properties": {
@@ -4144,11 +4144,8 @@ var doc = `{
                             "correo_electronico_administrador_academico": {
                                 "type": "string"
                             },
-                            "cursos": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/administrador_academico.curso"
-                                }
+                            "curso": {
+                                "$ref": "#/definitions/administrador_academico.Curso"
                             },
                             "hash_contrasena_administrador_academico": {
                                 "type": "string"
@@ -4490,11 +4487,8 @@ var doc = `{
                     "items": {
                         "type": "object",
                         "properties": {
-                            "id": {
-                                "type": "integer"
-                            },
                             "id_periodo": {
-                                "type": "integer"
+                                "type": "string"
                             },
                             "nombre_curso": {
                                 "type": "string"
@@ -4515,6 +4509,20 @@ var doc = `{
                 }
             }
         },
+        "estudiante.Grupo": {
+            "type": "object",
+            "properties": {
+                "id_periodo": {
+                    "type": "string"
+                },
+                "sigla_curso": {
+                    "type": "string"
+                },
+                "sigla_grupo": {
+                    "type": "string"
+                }
+            }
+        },
         "estudiante.addRequest": {
             "type": "object",
             "properties": {
@@ -4522,9 +4530,6 @@ var doc = `{
                     "type": "string"
                 },
                 "correo_electronico_estudiante": {
-                    "type": "string"
-                },
-                "hash_contrasena_estudiante": {
                     "type": "string"
                 },
                 "id_rol": {
@@ -4544,20 +4549,6 @@ var doc = `{
                 }
             }
         },
-        "estudiante.grupo": {
-            "type": "object",
-            "properties": {
-                "periodo": {
-                    "type": "string"
-                },
-                "sigla_curso": {
-                    "type": "string"
-                },
-                "sigla_grupo": {
-                    "type": "string"
-                }
-            }
-        },
         "estudiante.massiveAddRequest": {
             "type": "object",
             "properties": {
@@ -4572,14 +4563,8 @@ var doc = `{
                             "correo_electronico_estudiante": {
                                 "type": "string"
                             },
-                            "grupos": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/estudiante.grupo"
-                                }
-                            },
-                            "hash_contrasena_estudiante": {
-                                "type": "string"
+                            "grupo": {
+                                "$ref": "#/definitions/estudiante.Grupo"
                             },
                             "nombres_estudiante": {
                                 "type": "string"
@@ -4649,6 +4634,20 @@ var doc = `{
                 }
             }
         },
+        "evaluador.Grupo": {
+            "type": "object",
+            "properties": {
+                "id_periodo": {
+                    "type": "string"
+                },
+                "sigla_curso": {
+                    "type": "string"
+                },
+                "sigla_grupo": {
+                    "type": "string"
+                }
+            }
+        },
         "evaluador.addRequest": {
             "type": "object",
             "properties": {
@@ -4684,20 +4683,6 @@ var doc = `{
                 }
             }
         },
-        "evaluador.grupo": {
-            "type": "object",
-            "properties": {
-                "periodo": {
-                    "type": "string"
-                },
-                "sigla_curso": {
-                    "type": "string"
-                },
-                "sigla_grupo": {
-                    "type": "string"
-                }
-            }
-        },
         "evaluador.massiveAddRequest": {
             "type": "object",
             "properties": {
@@ -4715,11 +4700,8 @@ var doc = `{
                             "correo_electronico_evaluador": {
                                 "type": "string"
                             },
-                            "grupos": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/evaluador.grupo"
-                                }
+                            "grupo": {
+                                "$ref": "#/definitions/evaluador.Grupo"
                             },
                             "hash_contrasena_evaluador": {
                                 "type": "string"
@@ -4818,13 +4800,13 @@ var doc = `{
                     "items": {
                         "type": "object",
                         "properties": {
-                            "id": {
-                                "type": "integer"
-                            },
-                            "id_curso": {
-                                "type": "integer"
+                            "id_periodo": {
+                                "type": "string"
                             },
                             "nombre_grupo": {
+                                "type": "string"
+                            },
+                            "sigla_curso": {
                                 "type": "string"
                             },
                             "sigla_grupo": {

@@ -1,6 +1,7 @@
 package estudiante
 
 import (
+	"fmt"
 	"medroom-backend/api_helpers"
 	"medroom-backend/models"
 	"medroom-backend/repositories"
@@ -10,19 +11,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type grupo struct {
+type Grupo struct {
+	Id_periodo  *string `json:"id_periodo"`
 	Sigla_curso *string `json:"sigla_curso"`
-	Periodo     *string `json:"periodo"`
 	Sigla_grupo *string `json:"sigla_grupo"`
 }
 
 type massiveAddRequest struct {
 	Estudiantes []struct {
-		Grupos                        []grupo `json:"grupos"`
+		Grupo                         Grupo   `json:"grupo"`
 		Rut_estudiante                *string `json:"rut_estudiante"`
 		Nombres_estudiante            *string `json:"nombres_estudiante"`
 		Apellidos_estudiante          *string `json:"apellidos_estudiante"`
-		Hash_contrasena_estudiante    *string `json:"hash_contrasena_estudiante"`
 		Correo_electronico_estudiante *string `json:"correo_electronico_estudiante"`
 		Telefono_fijo_estudiante      *string `json:"telefono_fijo_estudiante"`
 		Telefono_celular_estudiante   *string `json:"telefono_celular_estudiante"`
@@ -84,27 +84,46 @@ func MassiveAdd(c *gin.Context) {
 
 	var estudiantes_error []string
 	for i := 0; i < len(payload.Estudiantes); i++ {
-		estudiante := models.Estudiante{
-			Id_rol:                        1,
-			Grupos_estudiante:             []models.Grupo{},
-			Rut_estudiante:                *payload.Estudiantes[i].Rut_estudiante,
-			Nombres_estudiante:            *payload.Estudiantes[i].Nombres_estudiante,
-			Apellidos_estudiante:          *payload.Estudiantes[i].Apellidos_estudiante,
-			Hash_contrasena_estudiante:    *payload.Estudiantes[i].Hash_contrasena_estudiante,
-			Correo_electronico_estudiante: *payload.Estudiantes[i].Correo_electronico_estudiante,
-			Telefono_fijo_estudiante:      *payload.Estudiantes[i].Telefono_fijo_estudiante,
-			Telefono_celular_estudiante:   *payload.Estudiantes[i].Telefono_celular_estudiante,
-		}
+		var estudiante models.Estudiante
 
-		for j := 0; j < len(payload.Estudiantes[i].Grupos); j++ {
+		if err := repositories.GetOneEstudianteByRut(&estudiante, *payload.Estudiantes[i].Rut_estudiante); err == nil {
+			// estudiante ya existe
+
+			// buscamos el grupo y lo asociamos al estudiante
 			var gp models.Grupo
-			if err := repositories.GetOneGrupo(&gp, *payload.Estudiantes[i].Grupos[j].Sigla_curso, *payload.Estudiantes[i].Grupos[j].Periodo, *payload.Estudiantes[i].Grupos[j].Sigla_grupo); err == nil {
+			if err := repositories.GetOneGrupo(&gp, *payload.Estudiantes[i].Grupo.Sigla_curso, *payload.Estudiantes[i].Grupo.Id_periodo, *payload.Estudiantes[i].Grupo.Sigla_grupo); err == nil {
 				estudiante.Grupos_estudiante = append(estudiante.Grupos_estudiante, gp)
 			}
-		}
 
-		if err := repositories.AddNewEstudiante(&estudiante); err != nil {
-			estudiantes_error = append(estudiantes_error, "["+*payload.Estudiantes[i].Rut_estudiante+"] "+*payload.Estudiantes[i].Nombres_estudiante+" "+*payload.Estudiantes[i].Apellidos_estudiante)
+			// actualizamos al estudiante con la nueva lista de grupos
+			if err := repositories.PutOneEstudiante(&estudiante, estudiante.Id.String()); err != nil {
+				estudiantes_error = append(estudiantes_error, fmt.Sprintf("[%s] %s %s", *payload.Estudiantes[i].Rut_estudiante, *payload.Estudiantes[i].Nombres_estudiante, *payload.Estudiantes[i].Apellidos_estudiante))
+			}
+
+		} else {
+			// estudiante no existe
+			estudiante = models.Estudiante{
+				Id_rol:                        1,
+				Grupos_estudiante:             []models.Grupo{},
+				Rut_estudiante:                *payload.Estudiantes[i].Rut_estudiante,
+				Nombres_estudiante:            *payload.Estudiantes[i].Nombres_estudiante,
+				Apellidos_estudiante:          *payload.Estudiantes[i].Apellidos_estudiante,
+				Hash_contrasena_estudiante:    utils.GeneratePassword(*payload.Estudiantes[i].Rut_estudiante),
+				Correo_electronico_estudiante: *payload.Estudiantes[i].Correo_electronico_estudiante,
+				Telefono_fijo_estudiante:      *payload.Estudiantes[i].Telefono_fijo_estudiante,
+				Telefono_celular_estudiante:   *payload.Estudiantes[i].Telefono_celular_estudiante,
+			}
+
+			// buscamos el grupo y lo asociamos al nuevo estudiante
+			var gp models.Grupo
+			if err := repositories.GetOneGrupo(&gp, *payload.Estudiantes[i].Grupo.Sigla_curso, *payload.Estudiantes[i].Grupo.Id_periodo, *payload.Estudiantes[i].Grupo.Sigla_grupo); err == nil {
+				estudiante.Grupos_estudiante = append(estudiante.Grupos_estudiante, gp)
+			}
+
+			// agregamos el estudiante a la db
+			if err := repositories.AddNewEstudiante(&estudiante); err != nil {
+				estudiantes_error = append(estudiantes_error, fmt.Sprintf("[%s] %s %s", *payload.Estudiantes[i].Rut_estudiante, *payload.Estudiantes[i].Nombres_estudiante, *payload.Estudiantes[i].Apellidos_estudiante))
+			}
 		}
 	}
 

@@ -1,5 +1,12 @@
 basePath: /api/v1
 definitions:
+  administrador_academico.Curso:
+    properties:
+      id_periodo:
+        type: string
+      sigla_curso:
+        type: string
+    type: object
   administrador_academico.addRequest:
     properties:
       apellidos_administrador_academico:
@@ -19,13 +26,6 @@ definitions:
       telefono_fijo_administrador_academico:
         type: string
     type: object
-  administrador_academico.curso:
-    properties:
-      periodo:
-        type: string
-      sigla:
-        type: string
-    type: object
   administrador_academico.massiveAddRequest:
     properties:
       administradores_academicos:
@@ -35,10 +35,8 @@ definitions:
               type: string
             correo_electronico_administrador_academico:
               type: string
-            cursos:
-              items:
-                $ref: '#/definitions/administrador_academico.curso'
-              type: array
+            curso:
+              $ref: '#/definitions/administrador_academico.Curso'
             hash_contrasena_administrador_academico:
               type: string
             nombres_administrador_academico:
@@ -259,10 +257,8 @@ definitions:
       cursos:
         items:
           properties:
-            id:
-              type: integer
             id_periodo:
-              type: integer
+              type: string
             nombre_curso:
               type: string
             sigla_curso:
@@ -275,13 +271,20 @@ definitions:
       nombre_curso:
         type: string
     type: object
+  estudiante.Grupo:
+    properties:
+      id_periodo:
+        type: string
+      sigla_curso:
+        type: string
+      sigla_grupo:
+        type: string
+    type: object
   estudiante.addRequest:
     properties:
       apellidos_estudiante:
         type: string
       correo_electronico_estudiante:
-        type: string
-      hash_contrasena_estudiante:
         type: string
       id_rol:
         type: integer
@@ -294,15 +297,6 @@ definitions:
       telefono_fijo_estudiante:
         type: string
     type: object
-  estudiante.grupo:
-    properties:
-      periodo:
-        type: string
-      sigla_curso:
-        type: string
-      sigla_grupo:
-        type: string
-    type: object
   estudiante.massiveAddRequest:
     properties:
       estudiantes:
@@ -312,12 +306,8 @@ definitions:
               type: string
             correo_electronico_estudiante:
               type: string
-            grupos:
-              items:
-                $ref: '#/definitions/estudiante.grupo'
-              type: array
-            hash_contrasena_estudiante:
-              type: string
+            grupo:
+              $ref: '#/definitions/estudiante.Grupo'
             nombres_estudiante:
               type: string
             rut_estudiante:
@@ -362,6 +352,15 @@ definitions:
       nombre_evaluacion:
         type: string
     type: object
+  evaluador.Grupo:
+    properties:
+      id_periodo:
+        type: string
+      sigla_curso:
+        type: string
+      sigla_grupo:
+        type: string
+    type: object
   evaluador.addRequest:
     properties:
       apellidos_evaluador:
@@ -385,15 +384,6 @@ definitions:
       telefono_fijo_evaluador:
         type: string
     type: object
-  evaluador.grupo:
-    properties:
-      periodo:
-        type: string
-      sigla_curso:
-        type: string
-      sigla_grupo:
-        type: string
-    type: object
   evaluador.massiveAddRequest:
     properties:
       evaluadores:
@@ -405,10 +395,8 @@ definitions:
               type: string
             correo_electronico_evaluador:
               type: string
-            grupos:
-              items:
-                $ref: '#/definitions/evaluador.grupo'
-              type: array
+            grupo:
+              $ref: '#/definitions/evaluador.Grupo'
             hash_contrasena_evaluador:
               type: string
             nombres_evaluador:
@@ -472,11 +460,11 @@ definitions:
       grupos:
         items:
           properties:
-            id:
-              type: integer
-            id_curso:
-              type: integer
+            id_periodo:
+              type: string
             nombre_grupo:
+              type: string
+            sigla_curso:
               type: string
             sigla_grupo:
               type: string

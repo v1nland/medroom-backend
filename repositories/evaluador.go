@@ -66,6 +66,17 @@ func GetOneEvaluador(u *models.Evaluador, id string) (err error) {
 	return nil
 }
 
+func GetOneEvaluadorByRut(u *models.Evaluador, rut string) (err error) {
+	if err := config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
+		Preload(clause.Associations).
+		Where("rut_evaluador = ?", rut).
+		First(u).
+		Error; err != nil {
+		return err
+	}
+	return nil
+}
+
 func AddNewEvaluador(u *models.Evaluador) (err error) {
 	if err = config.DB.Session(&gorm.Session{FullSaveAssociations: true}).
 		Preload(clause.Associations).
