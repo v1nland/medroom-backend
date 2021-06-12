@@ -22,6 +22,12 @@ type massiveAddRequest struct {
 
 func massiveAddRequestParse(u *massiveAddRequest) {
 	for i := 0; i < len(u.Grupos); i++ {
+		if u.Grupos[i].Sigla_curso != nil {
+			*u.Grupos[i].Sigla_curso = strings.TrimSpace(*u.Grupos[i].Sigla_curso)
+			*u.Grupos[i].Sigla_curso = strings.ToUpper(*u.Grupos[i].Sigla_curso)
+			*u.Grupos[i].Sigla_curso = utils.RemoveAccents(*u.Grupos[i].Sigla_curso)
+		}
+
 		if u.Grupos[i].Nombre_grupo != nil {
 			*u.Grupos[i].Nombre_grupo = strings.TrimSpace(*u.Grupos[i].Nombre_grupo)
 			*u.Grupos[i].Nombre_grupo = strings.ToUpper(*u.Grupos[i].Nombre_grupo)
