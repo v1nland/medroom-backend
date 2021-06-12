@@ -31,6 +31,16 @@ type massiveAddRequest struct {
 
 func massiveAddRequestFormat(u *massiveAddRequest) {
 	for i := 0; i < len(u.Estudiantes); i++ {
+		if u.Estudiantes[i].Grupo.Sigla_curso != nil {
+			*u.Estudiantes[i].Grupo.Sigla_curso = strings.TrimSpace(*u.Estudiantes[i].Grupo.Sigla_curso)
+			*u.Estudiantes[i].Grupo.Sigla_curso = strings.ToUpper(*u.Estudiantes[i].Grupo.Sigla_curso)
+			*u.Estudiantes[i].Grupo.Sigla_curso = utils.RemoveAccents(*u.Estudiantes[i].Grupo.Sigla_curso)
+		}
+		if u.Estudiantes[i].Grupo.Sigla_grupo != nil {
+			*u.Estudiantes[i].Grupo.Sigla_grupo = strings.TrimSpace(*u.Estudiantes[i].Grupo.Sigla_grupo)
+			*u.Estudiantes[i].Grupo.Sigla_grupo = strings.ToUpper(*u.Estudiantes[i].Grupo.Sigla_grupo)
+			*u.Estudiantes[i].Grupo.Sigla_grupo = utils.RemoveAccents(*u.Estudiantes[i].Grupo.Sigla_grupo)
+		}
 		if u.Estudiantes[i].Rut_estudiante != nil {
 			*u.Estudiantes[i].Rut_estudiante = strings.TrimSpace(*u.Estudiantes[i].Rut_estudiante)
 			*u.Estudiantes[i].Rut_estudiante = strings.ToUpper(*u.Estudiantes[i].Rut_estudiante)
@@ -118,6 +128,8 @@ func MassiveAdd(c *gin.Context) {
 			var gp models.Grupo
 			if err := repositories.GetOneGrupo(&gp, *payload.Estudiantes[i].Grupo.Sigla_curso, *payload.Estudiantes[i].Grupo.Id_periodo, *payload.Estudiantes[i].Grupo.Sigla_grupo); err == nil {
 				estudiante.Grupos_estudiante = append(estudiante.Grupos_estudiante, gp)
+				estudiantes_error = append(estudiantes_error, fmt.Sprintf("[%s] %s %s", *payload.Estudiantes[i].Rut_estudiante, *payload.Estudiantes[i].Nombres_estudiante, *payload.Estudiantes[i].Apellidos_estudiante))
+				continue
 			}
 
 			// agregamos el estudiante a la db
