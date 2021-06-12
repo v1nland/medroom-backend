@@ -126,14 +126,15 @@ func MassiveAdd(c *gin.Context) {
 
 			// buscamos el grupo y lo asociamos al nuevo estudiante
 			var gp models.Grupo
-			if err := repositories.GetOneGrupo(&gp, *payload.Estudiantes[i].Grupo.Sigla_curso, *payload.Estudiantes[i].Grupo.Id_periodo, *payload.Estudiantes[i].Grupo.Sigla_grupo); err == nil {
-				estudiante.Grupos_estudiante = append(estudiante.Grupos_estudiante, gp)
+			if e_err := repositories.GetOneGrupo(&gp, *payload.Estudiantes[i].Grupo.Sigla_curso, *payload.Estudiantes[i].Grupo.Id_periodo, *payload.Estudiantes[i].Grupo.Sigla_grupo); e_err != nil {
 				estudiantes_error = append(estudiantes_error, fmt.Sprintf("[%s] %s %s", *payload.Estudiantes[i].Rut_estudiante, *payload.Estudiantes[i].Nombres_estudiante, *payload.Estudiantes[i].Apellidos_estudiante))
 				continue
 			}
 
+			estudiante.Grupos_estudiante = append(estudiante.Grupos_estudiante, gp)
+
 			// agregamos el estudiante a la db
-			if err := repositories.AddNewEstudiante(&estudiante); err != nil {
+			if e_err := repositories.AddNewEstudiante(&estudiante); e_err != nil {
 				estudiantes_error = append(estudiantes_error, fmt.Sprintf("[%s] %s %s", *payload.Estudiantes[i].Rut_estudiante, *payload.Estudiantes[i].Nombres_estudiante, *payload.Estudiantes[i].Apellidos_estudiante))
 			}
 		}
